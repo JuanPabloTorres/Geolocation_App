@@ -15,7 +15,9 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AdsGeolocationConnectionString");
 
-builder.Services.AddDbContext<GeolocationContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddDbContext<GeolocationContext>(opt => opt.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
+
+
 
 builder.Services.AddTransient<IAdvertisementRepository, AdvertisementRepository>();
 

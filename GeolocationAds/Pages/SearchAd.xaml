@@ -57,19 +57,23 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <Image
-                            Grid.Row="0"
-                            Aspect="Fill"
-                            HeightRequest="150"
-                            Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
 
                         <Label
-                            Grid.Row="1"
+                            Grid.Row="0"
                             FontAttributes="Bold"
                             FontSize="18"
                             HorizontalOptions="Center"
                             Text="{Binding Title}"
                             TextColor="#333333" />
+
+
+
+                        <Image
+                            Grid.Row="1"
+                            Aspect="Fill"
+                            HeightRequest="150"
+                            Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+
 
                         <Label
                             Grid.Row="2"
