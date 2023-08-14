@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="GeolocationAds.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
+
+            <x:String x:Key="BackendUrl">http://192.168.0.6:5160/api</x:String>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

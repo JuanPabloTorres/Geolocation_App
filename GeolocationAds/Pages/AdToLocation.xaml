@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.AdToLocation"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:tap="clr-namespace:GeolocationAds.Gestures"
+    Title="Set Location To Ad"
+    Routing.Route="AdToLocation">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout>
+
+
+
+
+
+
+        <ActivityIndicator
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="CenterAndExpand" />
+
+        <CollectionView
+            HeightRequest="500"
+            ItemsSource="{Binding Advertisements}"
+            SelectedItem="{Binding SelectedAdvertisement}"
+            SelectionChangedCommand="{Binding SelectAdCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Padding="10"
+                        BackgroundColor="#F2F2F2"
+                        Spacing="5">
+
+                        <Image Aspect="AspectFill" Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding Title}"
+                            TextColor="#333333" />
+
+                        <Label Text="{Binding Description}" TextColor="#666666" />
+                    </StackLayout>
+
+                    <!--<Frame
+                        Margin="10"
+                        Padding="10"
+                        BackgroundColor="#F2F2F2"
+                        CornerRadius="8">
+                        <StackLayout Spacing="5">
+                            <Frame.GestureRecognizers>
+                                <tap:TapBehavior Command="{Binding Source={RelativeSource Self}, Path=BindingContext.AdToLocationViewModel}" />
+                            </Frame.GestureRecognizers>
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.SelectAdCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                          CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Image
+                                Aspect="Fill"
+                                HeightRequest="150"
+                                IsAnimationPlaying="True"
+                                Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Title}"
+                                TextColor="#333333" />
+
+                            <Label Text="{Binding Description}" TextColor="#666666" />
+                        </StackLayout>
+                    </Frame>-->
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CollectionView
+            Grid.Row="0"
+            ItemsSource="{Binding Advertisements}"
+            SelectedItem="{Binding SelectedAdvertisement}"
+            SelectionChangedCommand="{Binding SelectAdCommand}"
+            SelectionMode="Single">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Margin="10"
+                        Padding="10"
+                        BackgroundColor="#F2F2F2"
+                        CornerRadius="8">
+                        <StackLayout Spacing="5">
+    <Frame.GestureRecognizers>
+    <TapGestureRecognizer Tapped="Section_Tapped"/>
+</Frame.GestureRecognizers>
+                            <Image
+                                Aspect="Fill"
+                                HeightRequest="150"
+                                IsAnimationPlaying="True"
+                                Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Title}"
+                                TextColor="#333333" />
+
+                            <Label Text="{Binding Description}" TextColor="#666666" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+
+    -->
+    <!--  Loading Indicator  -->
+    <!--
+        <ActivityIndicator
+            Grid.Row="0"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="CenterAndExpand" />
+
+
+    </Grid>-->
+
+
+
+
+</ContentPage>

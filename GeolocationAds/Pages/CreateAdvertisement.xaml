@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.CreateAdvertisment"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Create Advertisment"
+    Routing.Route="CreateAdvertisement">
+
+    <StackLayout Padding="20">
+        <!--  Title Entry  -->
+        <Label FontSize="Medium" Text="Title" />
+        <Entry
+            x:Name="TitleEntry"
+            FontSize="Large"
+            Placeholder="Enter Title"
+            Text="{Binding Advertisement.Title, Mode=TwoWay}">
+            <Entry.Triggers>
+                <DataTrigger
+                    Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                    TargetType="Entry"
+                    Value="">
+                    <Setter Property="BackgroundColor" Value="LightPink" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+
+        <!--  Description Editor  -->
+        <Label FontSize="Medium" Text="Description" />
+        <Editor
+            x:Name="DescriptionEditor"
+            FontSize="Large"
+            HeightRequest="120"
+            Placeholder="Enter Description"
+            Text="{Binding Advertisement.Description, Mode=TwoWay}">
+            <Editor.Triggers>
+                <DataTrigger
+                    Binding="{Binding Advertisement.Description, Mode=TwoWay}"
+                    TargetType="Editor"
+                    Value="">
+                    <Setter Property="BackgroundColor" Value="LightPink" />
+                </DataTrigger>
+            </Editor.Triggers>
+        </Editor>
+
+        <!--  ... (other UI elements) ...  -->
+        <Label FontSize="Medium" Text="Upload Content" />
+        <Button
+            x:Name="UploadButton"
+            Command="{Binding FileUploadCommand}"
+            FontSize="Large"
+            Text="Choose File" />
+
+
+        <!--  Selected File Label  -->
+
+        <Label x:Name="SelectedFileLabel" FontSize="Medium" />
+
+
+        <!--  Selected Image or Video  -->
+
+        <Image
+            Aspect="Fill"
+            IsAnimationPlaying="{Binding IsAnimation}"
+            Source="{Binding Image.Source}" />
+
+
+
+
+
+        <!--  Submit Button  -->
+        <Button
+            x:Name="SubmitButton"
+            BackgroundColor="#007BFF"
+            Command="{Binding SubmitCommand}"
+            CornerRadius="8"
+            FontSize="Large"
+            HeightRequest="50"
+            HorizontalOptions="FillAndExpand"
+            Text="Submit"
+            TextColor="White"
+            VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+
+
+
+
+
+</ContentPage>

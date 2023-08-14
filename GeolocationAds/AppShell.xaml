@@ -1,0 +1,27 @@
+<Shell
+    x:Class="GeolocationAds.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.Pages"
+    Shell.TabBarBackgroundColor="Black"
+    Shell.TabBarIsVisible="True">
+
+    <TabBar>
+        <!--  Home Tab  -->
+        <Tab Title="Home">
+            <ShellContent Title="Home" ContentTemplate="{DataTemplate local:SearchAd}" />
+        </Tab>
+
+        <!--  Create Ads Tab  -->
+        <Tab Title="Create Ads">
+            <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:CreateAdvertisment}" />
+        </Tab>
+
+        <Tab Title="Ad To Location">
+            <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
+        </Tab>
+    </TabBar>
+
+
+
+</Shell>

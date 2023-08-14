@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeolocationAds", "GeolocationAds.csproj", "{D2240481-67A5-4114-AD16-2B540AA23159}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolsLibrary", "..\ToolsLibrary\ToolsLibrary.csproj", "{5ED1E062-7677-442D-85F1-05F42CD1BFC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeolocationAdsAPI", "..\GeolocationAdsAPI\GeolocationAdsAPI.csproj", "{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2240481-67A5-4114-AD16-2B540AA23159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal
