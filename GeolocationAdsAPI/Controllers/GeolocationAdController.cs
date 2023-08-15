@@ -63,6 +63,9 @@ namespace GeolocationAdsAPI.Controllers
 
                     if (_adsNear.Count > 0)
                     {
+
+                        _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
+
                         response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Ads Found.", _adsNear, ToolsLibrary.Tools.Type.DataFound);
                     }
                     else

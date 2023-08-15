@@ -6,6 +6,8 @@
     Title="Create Advertisment"
     Routing.Route="CreateAdvertisement">
 
+    <ScrollView>
+        
     <StackLayout Padding="20">
         <!--  Title Entry  -->
         <Label FontSize="Medium" Text="Title" />
@@ -48,6 +50,7 @@
             x:Name="UploadButton"
             Command="{Binding FileUploadCommand}"
             FontSize="Large"
+            BackgroundColor="LightGreen"
             Text="Choose File" />
 
 
@@ -59,7 +62,7 @@
         <!--  Selected Image or Video  -->
 
         <Image
-            Aspect="Fill"
+            Aspect="AspectFill"
             IsAnimationPlaying="{Binding IsAnimation}"
             Source="{Binding Image.Source}" />
 
@@ -73,6 +76,7 @@
             BackgroundColor="#007BFF"
             Command="{Binding SubmitCommand}"
             CornerRadius="8"
+            Margin="10"
             FontSize="Large"
             HeightRequest="50"
             HorizontalOptions="FillAndExpand"
@@ -80,6 +84,7 @@
             TextColor="White"
             VerticalOptions="CenterAndExpand" />
     </StackLayout>
+    </ScrollView>
 
 
 

@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
-    Title="Look For Something"
+    Title="Are Look For Something?"
+   
     Routing.Route="SearchAd">
 
     <ContentPage.Resources>
@@ -16,18 +17,7 @@
 
     <VerticalStackLayout Padding="10" Spacing="10">
 
-        <!--  Submit Button  -->
-        <Button
-            x:Name="SearchAdButton"
-            BackgroundColor="#007BFF"
-            Command="{Binding SearchAdCommand}"
-            CornerRadius="8"
-            FontSize="Large"
-            HeightRequest="50"
-            Text="Search Ad"
-            TextColor="White"
-            VerticalOptions="CenterAndExpand"
-            WidthRequest="200" />
+       
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
@@ -40,14 +30,64 @@
 
         <CollectionView
             Margin="10"
+           
             HeightRequest="500"
             ItemsSource="{Binding Advertisements}"
             SelectedItem="{Binding SelectedAdvertisement}"
             SelectionChangedCommand="{Binding SelectAdCommand}"
             SelectionMode="Single">
 
+          
+
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
+                    <Grid Margin="0">
+
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <!-- Column for image -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Column for title and description -->
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Image spanning full row -->
+                        <Image
+            Grid.Column="0"
+                            Grid.RowSpan="2"
+            Aspect="AspectFill"
+            HeightRequest="150"
+            Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+
+                        <StackLayout Grid.Column="1" Grid.Row="0" Margin="10,0,0,0">
+                            <!-- Title centered -->
+                            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="{Binding Title}"
+                TextColor="#333333"
+                HorizontalTextAlignment="Center" />
+
+                            <!-- Description below the title -->
+                            <Label
+                Margin="0,5,0,0"
+                HorizontalOptions="FillAndExpand"
+                LineBreakMode="WordWrap"
+                Text="{Binding Description}"
+                TextColor="#666666" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+
+
+
+                <!--<DataTemplate>
 
 
                     <Grid Margin="0">
@@ -64,33 +104,51 @@
                             FontSize="18"
                             HorizontalOptions="Center"
                             Text="{Binding Title}"
+                   
                             TextColor="#333333" />
 
 
 
                         <Image
                             Grid.Row="1"
-                            Aspect="Fill"
-                            HeightRequest="150"
+                            Aspect="AspectFit"
+                            WidthRequest="300"
+                            HeightRequest="400"
+                       
                             Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
 
 
                         <Label
                             Grid.Row="2"
-                            HorizontalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
+                             FlowDirection="MatchParent"
+                     LineBreakMode="MiddleTruncation"
                             Text="{Binding Description}"
                             TextColor="#666666" />
                     </Grid>
 
 
-                </DataTemplate>
+                </DataTemplate>-->
             </CollectionView.ItemTemplate>
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                <LinearItemsLayout ItemSpacing="15" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
 
         </CollectionView>
+
+        <!--  Submit Button  -->
+        <Button
+     x:Name="SearchAdButton"
+     BackgroundColor="Red"
+     Command="{Binding SearchAdCommand}"
+     CornerRadius="8"
+     FontSize="Large"
+     HeightRequest="50"
+     Text="What's near me?"
+     TextColor="White"
+     VerticalOptions="CenterAndExpand"
+     WidthRequest="200" />
     </VerticalStackLayout>
 
 

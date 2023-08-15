@@ -12,69 +12,69 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = GeolocationAds
-build_property.ProjectDir = C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\
+build_property.ProjectDir = C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/App.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/AppShell.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/MainPage.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/AdToLocation.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Pages/AdToLocation.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.AdToLocation.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\AdToLocation.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\AdToLocation.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/CreateAdvertisement.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Pages/CreateAdvertisement.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.CreateAdvertisement.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\CreateAdvertisement.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\CreateAdvertisement.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/GoogleMapPage.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Pages/GoogleMapPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.GoogleMapPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\GoogleMapPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\GoogleMapPage.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/LocationPage.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Pages/LocationPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.LocationPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\LocationPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\LocationPage.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/SearchAd.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Pages/SearchAd.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.SearchAd.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\SearchAd.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\SearchAd.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/SearchAd2.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Pages/SearchAd2.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.SearchAd2.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\SearchAd2.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\SearchAd2.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Resources/Styles/Colors.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Resources/Styles/Styles.xaml]
+[C:/Users/estju/Source/Repos/JuanPabloTorres/Geolocation_App/GeolocationAds/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml

@@ -54,7 +54,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail("Failed to add.", null);
+                    var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail("Request Error.", null);
 
                     return failResponse;
                 }

@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAds\\GeolocationAds.csproj": {}
+    "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\GeolocationAds.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAds\\GeolocationAds.csproj": {
+    "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\GeolocationAds.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAds\\GeolocationAds.csproj",
+        "projectUniqueName": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\GeolocationAds.csproj",
         "projectName": "GeolocationAds",
-        "projectPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAds\\GeolocationAds.csproj",
-        "packagesPath": "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAds\\obj\\",
+        "projectPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\GeolocationAds.csproj",
+        "packagesPath": "C:\\Users\\estju\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Juan Pablo Torres\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\estju\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -37,32 +37,32 @@
           "net6.0-maccatalyst16.1": {
             "targetAlias": "net6.0-maccatalyst",
             "projectReferences": {
-              "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj"
+              "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj": {
+                "projectPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj"
               }
             }
           },
           "net7.0-android33.0": {
             "targetAlias": "net7.0-android33.0",
             "projectReferences": {
-              "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj"
+              "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj": {
+                "projectPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj"
               }
             }
           },
           "net7.0-ios16.1": {
             "targetAlias": "net7.0-ios",
             "projectReferences": {
-              "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj"
+              "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj": {
+                "projectPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj"
               }
             }
           },
           "net7.0-windows10.0.19041": {
             "targetAlias": "net7.0-windows10.0.19041.0",
             "projectReferences": {
-              "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
-                "projectPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj"
+              "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj": {
+                "projectPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj"
               }
             }
           }
@@ -101,12 +101,12 @@
             },
             "Microsoft.Maui.Dependencies": {
               "target": "Package",
-              "version": "[6.0.552, )",
+              "version": "[6.0.553, )",
               "autoReferenced": true
             },
             "Microsoft.Maui.Extensions": {
               "target": "Package",
-              "version": "[6.0.552, )",
+              "version": "[6.0.553, )",
               "autoReferenced": true
             },
             "System.Runtime.InteropServices.NFloat.Internal": {
@@ -130,35 +130,35 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.MacCatalyst.Ref",
-              "version": "[16.2.34, 16.2.34]"
+              "version": "[16.4.60, 16.4.60]"
             },
             {
               "name": "Microsoft.MacCatalyst.Runtime.maccatalyst-x64",
-              "version": "[16.2.34, 16.2.34]"
+              "version": "[16.4.60, 16.4.60]"
             },
             {
               "name": "Microsoft.Maui.Controls.Ref.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Controls.Runtime.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Core.Ref.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Core.Runtime.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Essentials.Ref.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Essentials.Runtime.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             }
           ],
           "frameworkReferences": {
@@ -178,7 +178,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net7.0-android33.0": {
           "targetAlias": "net7.0-android33.0",
@@ -227,7 +227,7 @@
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
-              "version": "[7.0.81, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             },
             "Xamarin.Android.Glide": {
@@ -314,7 +314,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net7.0-ios16.1": {
           "targetAlias": "net7.0-ios",
@@ -363,7 +363,7 @@
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
-              "version": "[7.0.81, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             }
           },
@@ -395,7 +395,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
@@ -444,18 +444,12 @@
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
-              "version": "[7.0.81, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             },
             "Microsoft.Maui.Graphics.Win2D.WinUI.Desktop": {
               "target": "Package",
-              "version": "[7.0.81, )",
-              "autoReferenced": true
-            },
-            "Microsoft.Windows.SDK.BuildTools": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[10.0.22621.755, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             },
             "Microsoft.WindowsAppSDK": {
@@ -478,19 +472,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[7.0.5, 7.0.5]"
+              "version": "[7.0.10, 7.0.10]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[7.0.5, 7.0.5]"
+              "version": "[7.0.10, 7.0.10]"
             },
             {
               "name": "Microsoft.Windows.SDK.NET.Ref",
-              "version": "[10.0.19041.28, 10.0.19041.28]"
+              "version": "[10.0.19041.29, 10.0.19041.29]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[7.0.5, 7.0.5]"
+              "version": "[7.0.10, 7.0.10]"
             }
           ],
           "frameworkReferences": {
@@ -510,7 +504,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -537,21 +531,21 @@
         }
       }
     },
-    "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
+    "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj",
         "projectName": "ToolsLibrary",
-        "projectPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj",
-        "packagesPath": "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\obj\\",
+        "projectPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj",
+        "packagesPath": "C:\\Users\\estju\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\estju\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Juan Pablo Torres\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\estju\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -602,13 +596,13 @@
             "Microsoft.Maui.Dependencies": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.552, )",
+              "version": "[6.0.553, )",
               "autoReferenced": true
             },
             "Microsoft.Maui.Extensions": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.552, )",
+              "version": "[6.0.553, )",
               "autoReferenced": true
             }
           },
@@ -626,27 +620,27 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.Maui.Controls.Ref.any",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Controls.Runtime.any",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Core.Ref.any",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Core.Runtime.any",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Essentials.Ref.any",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Essentials.Runtime.any",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             }
           ],
           "frameworkReferences": {
@@ -663,7 +657,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net6.0-maccatalyst16.1": {
           "targetAlias": "net6.0-maccatalyst",
@@ -671,13 +665,13 @@
             "Microsoft.Maui.Dependencies": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.552, )",
+              "version": "[6.0.553, )",
               "autoReferenced": true
             },
             "Microsoft.Maui.Extensions": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.552, )",
+              "version": "[6.0.553, )",
               "autoReferenced": true
             },
             "System.Runtime.InteropServices.NFloat.Internal": {
@@ -701,19 +695,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.MacCatalyst.Ref",
-              "version": "[16.2.34, 16.2.34]"
+              "version": "[16.4.60, 16.4.60]"
             },
             {
               "name": "Microsoft.Maui.Controls.Ref.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Core.Ref.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             },
             {
               "name": "Microsoft.Maui.Essentials.Ref.maccatalyst",
-              "version": "[6.0.552, 6.0.552]"
+              "version": "[6.0.553, 6.0.553]"
             }
           ],
           "frameworkReferences": {
@@ -733,7 +727,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net7.0-android33.0": {
           "targetAlias": "net7.0-android",
@@ -765,7 +759,7 @@
             "Microsoft.Maui.Graphics": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.81, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             },
             "Xamarin.Android.Glide": {
@@ -863,7 +857,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net7.0-ios16.1": {
           "targetAlias": "net7.0-ios",
@@ -895,7 +889,7 @@
             "Microsoft.Maui.Graphics": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.81, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             }
           },
@@ -927,7 +921,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         },
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
@@ -959,19 +953,13 @@
             "Microsoft.Maui.Graphics": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.81, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             },
             "Microsoft.Maui.Graphics.Win2D.WinUI.Desktop": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.81, )",
-              "autoReferenced": true
-            },
-            "Microsoft.Windows.SDK.BuildTools": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[10.0.22621.755, )",
+              "version": "[7.0.92, )",
               "autoReferenced": true
             },
             "Microsoft.WindowsAppSDK": {
@@ -995,7 +983,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.Windows.SDK.NET.Ref",
-              "version": "[10.0.19041.28, 10.0.19041.28]"
+              "version": "[10.0.19041.29, 10.0.19041.29]"
             }
           ],
           "frameworkReferences": {
@@ -1015,7 +1003,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

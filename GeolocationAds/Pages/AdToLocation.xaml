@@ -39,13 +39,18 @@
                         BackgroundColor="#F2F2F2"
                         Spacing="5">
 
-                        <Image Aspect="AspectFill" Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
-
                         <Label
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            Text="{Binding Title}"
-                            TextColor="#333333" />
+       FontAttributes="Bold"
+       FontSize="18"
+                              HorizontalOptions="Center"
+       Text="{Binding Title}"
+       TextColor="#333333" />
+
+                     
+
+                        <Image  Aspect="AspectFill" Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
+
+                     
 
                         <Label Text="{Binding Description}" TextColor="#666666" />
                     </StackLayout>
