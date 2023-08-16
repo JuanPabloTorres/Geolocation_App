@@ -1,15 +1,3 @@
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.deps.json
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.pdb
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.csproj.AssemblyReference.cache
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.AssemblyInfoInputs.cache
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.AssemblyInfo.cs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.csproj.CoreCompileInputs.cache
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\refint\ToolsLibrary.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.pdb
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ref\ToolsLibrary.dll
 C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.deps.json
 C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.dll
 C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.pdb
@@ -22,3 +10,15 @@ C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\obj\Deb
 C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\refint\ToolsLibrary.dll
 C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.pdb
 C:\Users\estju\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ref\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.deps.json
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.pdb
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.csproj.AssemblyReference.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.AssemblyInfoInputs.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.AssemblyInfo.cs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\refint\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ToolsLibrary.pdb
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net7.0-windows10.0.19041.0\ref\ToolsLibrary.dll

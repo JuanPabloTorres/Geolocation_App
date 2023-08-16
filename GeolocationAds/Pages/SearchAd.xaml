@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
-    Title="Look For Something"
+    Title="Are You Look For Something?"
+   BackgroundColor="AliceBlue"
     Routing.Route="SearchAd">
 
     <ContentPage.Resources>
@@ -13,86 +14,113 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-
     <VerticalStackLayout Padding="10" Spacing="10">
-
-        <!--  Submit Button  -->
-        <Button
-            x:Name="SearchAdButton"
-            BackgroundColor="#007BFF"
-            Command="{Binding SearchAdCommand}"
-            CornerRadius="8"
-            FontSize="Large"
-            HeightRequest="50"
-            Text="Search Ad"
-            TextColor="White"
-            VerticalOptions="CenterAndExpand"
-            WidthRequest="200" />
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
             IsVisible="{Binding IsLoading}"
             VerticalOptions="FillAndExpand">
             <ContentView.Content>
-                <ActivityIndicator IsRunning="{Binding IsLoading}" VerticalOptions="CenterAndExpand" />
+                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
             </ContentView.Content>
         </ContentView>
 
         <CollectionView
             Margin="10"
             HeightRequest="500"
+            HorizontalOptions="FillAndExpand"
             ItemsSource="{Binding Advertisements}"
-            SelectedItem="{Binding SelectedAdvertisement}"
-            SelectionChangedCommand="{Binding SelectAdCommand}"
-            SelectionMode="Single">
+            SelectionMode="Single"
+            VerticalOptions="FillAndExpand">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate>
 
+                <!--<DataTemplate>
 
-                    <Grid Margin="0">
+                    <Grid Margin="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-
                         <Label
                             Grid.Row="0"
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Text="{Binding Title}"
-                            TextColor="#333333" />
+                            Style="{StaticResource globalLabel}"
+                            Text="{Binding Title}" />
 
-
-
-                        <Image
+                        <Frame
                             Grid.Row="1"
-                            Aspect="Fill"
-                            HeightRequest="150"
-                            Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}" />
-
+                            CornerRadius="10"
+                            HasShadow="True"
+                            HeightRequest="300"
+                            WidthRequest="300">
+                            <Image
+                                Grid.Row="1"
+                                Aspect="AspectFill"
+                                HeightRequest="300"
+                                WidthRequest="300" />
+                                Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                        </Frame>
 
                         <Label
                             Grid.Row="2"
-                            HorizontalOptions="Center"
-                            Text="{Binding Description}"
-                            TextColor="#666666" />
+                            Style="{StaticResource globalDescriptionLabel}"
+                            Text="{Binding Description}" />
                     </Grid>
+                </DataTemplate>-->
 
+                <DataTemplate>
+                    <Frame Style="{StaticResource cardFrame}">
+                        <StackLayout Spacing="5">
+                            <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
 
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="300"
+                                Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                WidthRequest="300" />
+
+                            <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
+
+                            <Button
+                                Command="{Binding SetLocationCommand}"
+                                CommandParameter="{Binding CurrentAdvertisement}"
+                                Style="{StaticResource globalButton}"
+                                Text="To Favorite" />
+                        </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
+            <CollectionView.EmptyView>
+
+                <StackLayout>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
-
         </CollectionView>
+
+        <!--  Submit Button  -->
+
+        <Button
+            x:Name="SearchAdButton"
+            BackgroundColor="Red"
+            Command="{Binding SearchAdCommand}"
+            Style="{StaticResource globalButton}"
+            Text="What's Nearby?">
+
+            <Button.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="40"
+                    Offset="5,5" />
+            </Button.Shadow>
+        </Button>
     </VerticalStackLayout>
-
-
-
 </ContentPage>

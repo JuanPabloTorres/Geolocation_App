@@ -3,83 +3,113 @@
     x:Class="GeolocationAds.Pages.CreateAdvertisment"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Create Advertisment"
+    Title="Create Your Content"
+    BackgroundColor="AliceBlue"
     Routing.Route="CreateAdvertisement">
 
-    <StackLayout Padding="20">
-        <!--  Title Entry  -->
-        <Label FontSize="Medium" Text="Title" />
-        <Entry
-            x:Name="TitleEntry"
-            FontSize="Large"
-            Placeholder="Enter Title"
-            Text="{Binding Advertisement.Title, Mode=TwoWay}">
-            <Entry.Triggers>
-                <DataTrigger
-                    Binding="{Binding Advertisement.Title, Mode=TwoWay}"
-                    TargetType="Entry"
-                    Value="">
-                    <Setter Property="BackgroundColor" Value="LightPink" />
-                </DataTrigger>
-            </Entry.Triggers>
-        </Entry>
-
-        <!--  Description Editor  -->
-        <Label FontSize="Medium" Text="Description" />
-        <Editor
-            x:Name="DescriptionEditor"
-            FontSize="Large"
-            HeightRequest="120"
-            Placeholder="Enter Description"
-            Text="{Binding Advertisement.Description, Mode=TwoWay}">
-            <Editor.Triggers>
-                <DataTrigger
-                    Binding="{Binding Advertisement.Description, Mode=TwoWay}"
-                    TargetType="Editor"
-                    Value="">
-                    <Setter Property="BackgroundColor" Value="LightPink" />
-                </DataTrigger>
-            </Editor.Triggers>
-        </Editor>
-
-        <!--  ... (other UI elements) ...  -->
-        <Label FontSize="Medium" Text="Upload Content" />
-        <Button
-            x:Name="UploadButton"
-            Command="{Binding FileUploadCommand}"
-            FontSize="Large"
-            Text="Choose File" />
+    <Frame
+        Margin="8"
+        BackgroundColor="White"
+        BorderColor="White">
+        <ScrollView>
 
 
-        <!--  Selected File Label  -->
+            <StackLayout Padding="20">
+                <!--  Title Entry  -->
+                <Entry
+                    x:Name="TitleEntry"
+                    FontSize="Large"
+                    Placeholder="Title..."
+                    Text="{Binding Advertisement.Title, Mode=TwoWay}">
+                    <Entry.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                            TargetType="Entry"
+                            Value="">
+                            <Setter Property="BackgroundColor" Value="LightPink" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
 
-        <Label x:Name="SelectedFileLabel" FontSize="Medium" />
+                <!--  Description Editor  -->
+
+                <Editor
+                    x:Name="DescriptionEditor"
+                    FontSize="Large"
+                    Placeholder="About..."
+                    Text="{Binding Advertisement.Description, Mode=TwoWay}">
+                    <Editor.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Advertisement.Description, Mode=TwoWay}"
+                            TargetType="Editor"
+                            Value="">
+                            <Setter Property="BackgroundColor" Value="LightPink" />
+                        </DataTrigger>
+                    </Editor.Triggers>
+                </Editor>
+
+                <!--  ... (other UI elements) ...  -->
+                <Button
+                    x:Name="UploadButton"
+                    Command="{Binding FileUploadCommand}"
+                    Style="{StaticResource globalButton}"
+                    Text="Choose Image">
 
 
-        <!--  Selected Image or Video  -->
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
 
-        <Image
-            Aspect="Fill"
-            IsAnimationPlaying="{Binding IsAnimation}"
-            Source="{Binding Image.Source}" />
+                </Button>
+
+
+                <!--  Selected File Label  -->
+
+                <Label x:Name="SelectedFileLabel" FontSize="Medium" />
+
+
+                <!--  Selected Image or Video  -->
+                <Frame
+                    CornerRadius="10"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    WidthRequest="300">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="300"
+                        IsAnimationPlaying="{Binding IsAnimation}"
+                        Source="{Binding Image.Source}"
+                        WidthRequest="300" />
+                </Frame>
 
 
 
 
+                <!--  Submit Button  -->
+                <Button
+                    x:Name="SubmitButton"
+                    BackgroundColor="#007BFF"
+                    Command="{Binding SubmitCommand}"
+                    Style="{StaticResource globalButton}"
+                    Text="Save">
 
-        <!--  Submit Button  -->
-        <Button
-            x:Name="SubmitButton"
-            BackgroundColor="#007BFF"
-            Command="{Binding SubmitCommand}"
-            CornerRadius="8"
-            FontSize="Large"
-            HeightRequest="50"
-            HorizontalOptions="FillAndExpand"
-            Text="Submit"
-            TextColor="White"
-            VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+
+
+                </Button>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
 
 
 

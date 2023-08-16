@@ -62,12 +62,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.Searc
 build_metadata.AdditionalFiles.TargetPath = Pages\SearchAd.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\SearchAd.xaml
 
-[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/SearchAd2.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.SearchAd2.xaml
-build_metadata.AdditionalFiles.TargetPath = Pages\SearchAd2.xaml
-build_metadata.AdditionalFiles.RelativePath = Pages\SearchAd2.xaml
-
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Resources.Styles.Colors.xaml

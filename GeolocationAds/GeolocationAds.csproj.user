@@ -26,8 +26,5 @@
     <MauiXaml Update="Pages\SearchAd.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="Pages\SearchAd2.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
   </ItemGroup>
 </Project>

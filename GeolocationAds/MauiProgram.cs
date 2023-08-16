@@ -1,6 +1,7 @@
 ﻿using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
+using ToolsLibrary.TemplateViewModel;
 
 namespace GeolocationAds;
 
@@ -15,9 +16,13 @@ public static class MauiProgram
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            }).UseMauiMaps();
 
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+
+                fonts.AddFont("Roboto-Light.ttf", "Roboto");
+
+                //fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
+            }).UseMauiMaps();
 
         // Create a custom HttpClientHandler to allow self-signed certificates
         //var httpClientHandler = new HttpClientHandler();
@@ -34,12 +39,13 @@ public static class MauiProgram
         //// Register the HttpClient as a singleton service in the service container
         //builder.Services.AddSingleton(httpClient);
 
-
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
 
         builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
 
         builder.Services.AddTransient<CreateGeolocationViewModel>();
+
+        builder.Services.AddTransient<AdLocationTemplateViewModel>();
 
         builder.Services.AddTransient<AdToLocationViewModel>();
 
@@ -50,9 +56,6 @@ public static class MauiProgram
         builder.Services.AddTransient<AdToLocation>();
 
         builder.Services.AddTransient<SearchAd>();
-
-        builder.Services.AddTransient<SearchAd2>();
-
 
         return builder.Build();
     }

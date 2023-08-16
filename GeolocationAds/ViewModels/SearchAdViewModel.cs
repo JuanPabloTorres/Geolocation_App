@@ -13,21 +13,6 @@ namespace GeolocationAds.ViewModels
 
         public ICommand SearchAdCommand { get; set; }
 
-        private bool isLoading;
-
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                if (isLoading != value)
-                {
-                    isLoading = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private ObservableCollection<Advertisement> _advertisements;
 
         public ObservableCollection<Advertisement> Advertisements
@@ -49,8 +34,6 @@ namespace GeolocationAds.ViewModels
             this.geolocationAdService = geolocationAdService;
 
             this.SearchAdCommand = new Command(Initialize);
-
-
         }
 
         private async Task LoadData(CurrentLocation currentLocation)
@@ -61,14 +44,12 @@ namespace GeolocationAds.ViewModels
             {
                 if (!_apiResponse.Data.IsObjectNull())
                 {
-
                     this.Advertisements = new ObservableCollection<Advertisement>(_apiResponse.Data);
                 }
                 else
                 {
                     await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
-
             }
             else
             {

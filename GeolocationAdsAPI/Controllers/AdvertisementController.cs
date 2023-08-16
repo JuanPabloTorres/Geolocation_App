@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -10,9 +11,7 @@ namespace GeolocationAdsAPI.Controllers
     [ApiController]
     public class AdvertisementController : ControllerBase
     {
-
         private readonly IAdvertisementRepository advertisementRepository;
-
 
         public AdvertisementController(IAdvertisementRepository advertisementRepository)
         {
@@ -26,9 +25,12 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-                //response = ResponseFactory<Advertisement>.BuildSusccess("Data Found.", null, type: ToolsLibrary.Tools.Type.DataFound);
-
                 response = await this.advertisementRepository.GetAllAsync();
+
+                if (!response.Data.IsObjectNull())
+                {
+                    response.Data = response.Data.OrderBy(o => o.CreateDate).Reverse();
+                }
 
                 return Ok(response);
             }
@@ -47,10 +49,7 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-
                 response = await this.advertisementRepository.CreateAsync(advertisement);
-
-                //response = ResponseFactory<Advertisement>.BuildSusccess("Added susccessfully.", null, type: ToolsLibrary.Tools.Type.DataFound);
 
                 return Ok(response);
             }

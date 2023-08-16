@@ -11,11 +11,66 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
+            <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
 
             <!--<x:String x:Key="BackendUrl">http://192.168.0.6:5160/api</x:String>-->
 
-            <x:String x:Key="BackendUrl">http://10.0.2.2:80/api</x:String>
+            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:80/api</x:String>-->
+
+            <Style x:Key="globalLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+            </Style>
+
+            <Style x:Key="emptyCollectionLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+
+            </Style>
+
+            <Style x:Key="globalDescriptionLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+                <Setter Property="LineBreakMode" Value="MiddleTruncation" />
+            </Style>
+
+
+            <Style x:Key="globalButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BackgroundColor" Value="#EF9B0F" />
+            </Style>
+
+            <Style x:Key="globalLoading" TargetType="ActivityIndicator">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Color" Value="Red" />
+                <Setter Property="Margin" Value="20" />
+            </Style>
+
+            <Style x:Key="cardFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

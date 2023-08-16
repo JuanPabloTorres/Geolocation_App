@@ -18,7 +18,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="TemplateViewModels\" />
+	  <Compile Remove="TemplateViewModels\**" />
+	  <EmbeddedResource Remove="TemplateViewModels\**" />
+	  <MauiCss Remove="TemplateViewModels\**" />
+	  <MauiXaml Remove="TemplateViewModels\**" />
+	  <None Remove="TemplateViewModels\**" />
 	</ItemGroup>
 
 </Project>

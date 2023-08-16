@@ -1,17 +1,16 @@
 ﻿using GeolocationAds.Services;
-using GeolocationAds.Tools;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
+using ToolsLibrary.TemplateViewModel;
 
 namespace GeolocationAds.ViewModels
 {
     public class AdToLocationViewModel : BaseViewModel
     {
-        private ObservableCollection<Advertisement> _advertisements;
+        private ObservableCollection<AdLocationTemplateViewModel> _advertisements;
 
-        public ObservableCollection<Advertisement> Advertisements
+        public ObservableCollection<AdLocationTemplateViewModel> Advertisements
         {
             get => _advertisements;
             set
@@ -25,26 +24,11 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private bool isLoading;
-
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                if (isLoading != value)
-                {
-                    isLoading = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private IAdvertisementService advertisementService { get; set; }
 
         private IGeolocationAdService geolocationAdService { get; set; }
 
-        public ICommand SelectAdCommand { get; set; }
+        public ICommand SearchAdCommand { get; set; }
 
         private Advertisement _selectedAdvertisement;
 
@@ -57,8 +41,6 @@ namespace GeolocationAds.ViewModels
                 {
                     _selectedAdvertisement = value;
 
-                    SetLocationYesOrNoAlert(value);
-
                     OnPropertyChanged();
                 }
             }
@@ -70,51 +52,7 @@ namespace GeolocationAds.ViewModels
 
             this.geolocationAdService = geolocationAdService;
 
-
-        }
-
-        private async void SetLocationYesOrNoAlert(Advertisement selectAd)
-        {
-            if (!selectAd.IsObjectNull())
-            {
-                var response = await Shell.Current.DisplayAlert("Notification", $"Set Location To:{selectAd.Title}", "Yes", "No");
-
-                if (response)
-                {
-                    await this.CreateAdToLocation(selectAd);
-                }
-            }
-        }
-
-        private async Task CreateAdToLocation(Advertisement ad)
-        {
-            var locationReponse = await GeolocationTool.GetLocation();
-
-            if (locationReponse.IsSuccess)
-            {
-                GeolocationAd newAd = new GeolocationAd()
-                {
-                    AdvertisingId = ad.ID,
-                    CreateDate = DateTime.Now,
-                    Latitude = locationReponse.Data.Latitude,
-                    Longitude = locationReponse.Data.Longitude
-                };
-
-                var _apiResponse = await this.geolocationAdService.Add(newAd);
-
-                if (_apiResponse.IsSuccess)
-                {
-                    await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                }
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
-            }
+            this.SearchAdCommand = new Command(Initialize);
         }
 
         private async Task LoadData()
@@ -123,7 +61,21 @@ namespace GeolocationAds.ViewModels
 
             if (_apiResponse.IsSuccess)
             {
-                this.Advertisements = new ObservableCollection<Advertisement>(_apiResponse.Data);
+                IList<AdLocationTemplateViewModel> _tempDataValues = new List<AdLocationTemplateViewModel>();
+
+                foreach (var item in _apiResponse.Data)
+                {
+                    var _item = new AdLocationTemplateViewModel(this.advertisementService, this.geolocationAdService)
+                    {
+                        CurrentAdvertisement = item,
+                    };
+
+                    _tempDataValues.Add(_item);
+                }
+
+                //this.Advertisements = new ObservableCollection<Advertisement>(_apiResponse.Data);
+
+                this.Advertisements = new ObservableCollection<AdLocationTemplateViewModel>(_tempDataValues);
             }
             else
             {
@@ -131,7 +83,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public async Task Initialize()
+        public async void Initialize()
         {
             IsLoading = true;
 

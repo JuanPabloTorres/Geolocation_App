@@ -14,9 +14,13 @@ namespace GeolocationAdsAPI.Controllers
     {
         private readonly IGeolocationAdRepository geolocationAdRepository;
 
-        public GeolocationAdController(IGeolocationAdRepository geolocationAdRepository)
+        private readonly IAdvertisementRepository advertisementRepository;
+
+        public GeolocationAdController(IGeolocationAdRepository geolocationAdRepository, IAdvertisementRepository advertisementRepository)
         {
             this.geolocationAdRepository = geolocationAdRepository;
+
+            this.advertisementRepository = advertisementRepository;
         }
 
         [HttpPost("[action]")]
@@ -26,9 +30,33 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
+                var _currentAdToPost = newGeolocationAd.Advertisement;
+
+                newGeolocationAd.Advertisement = null;
+
                 response = await this.geolocationAdRepository.CreateAsync(newGeolocationAd);
 
-                return Ok(response);
+                if (response.IsSuccess)
+                {
+                    _currentAdToPost.IsPosted = true;
+
+                    var _adPostedResponse = await this.advertisementRepository.UpdateAsync(_currentAdToPost.ID, _currentAdToPost);
+
+                    if (_adPostedResponse.IsSuccess)
+                    {
+                        newGeolocationAd.Advertisement = _currentAdToPost;
+
+                        response = ResponseFactory<GeolocationAd>.BuildSusccess("Content Posted Correctly.", newGeolocationAd, ToolsLibrary.Tools.Type.Added);
+
+                        return Ok(response);
+                    }
+
+                    return Ok(_adPostedResponse);
+                }
+                else
+                {
+                    return Ok(response);
+                }
             }
             catch (Exception ex)
             {
@@ -63,7 +91,6 @@ namespace GeolocationAdsAPI.Controllers
 
                     if (_adsNear.Count > 0)
                     {
-
                         _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
 
                         response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Ads Found.", _adsNear, ToolsLibrary.Tools.Type.DataFound);
