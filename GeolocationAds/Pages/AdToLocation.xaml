@@ -61,6 +61,11 @@
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
         </CollectionView>
 
         <Button

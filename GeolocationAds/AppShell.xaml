@@ -6,18 +6,12 @@
     Shell.BackgroundColor="Red"
     Shell.NavBarHasShadow="True"
     Shell.PresentationMode="Animated"
-    Shell.TabBarBackgroundColor="DodgerBlue"
+    Shell.TabBarBackgroundColor="#EF9B0F"
     Shell.TabBarIsVisible="True"
     Shell.TabBarTitleColor="White"
-    Shell.TabBarUnselectedColor="DarkSlateGrey">
-
-
-
+    Shell.TabBarUnselectedColor="Black">
 
     <TabBar>
-
-
-
 
         <!--  Home Tab  -->
         <Tab Title="Home">
@@ -31,14 +25,7 @@
 
         <Tab Title="Set Location">
 
-
-
             <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
         </Tab>
     </TabBar>
-
-
-
-
-
 </Shell>

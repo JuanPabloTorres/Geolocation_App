@@ -21,7 +21,7 @@ public static class MauiProgram
 
                 fonts.AddFont("Roboto-Light.ttf", "Roboto");
 
-                //fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
+                fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
             }).UseMauiMaps();
 
         // Create a custom HttpClientHandler to allow self-signed certificates

@@ -578,6 +578,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\mauifont.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\OpenSans-Regular.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\OpenSans-Semibold.ttf
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\Roboto-Bold.ttf
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\Roboto-Light.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\actool\_PartialAppManifest.items
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\actool\_BundleResourceWithLogicalName.items
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\actool\_ProcessedImageAssetsPath.items
@@ -598,5 +600,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\GeolocationAds.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\GeolocationAds.genruntimeconfig.cache
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\ref\GeolocationAds.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\Roboto-Light.ttf
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\Roboto-Bold.ttf

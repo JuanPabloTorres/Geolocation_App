@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     Title="Are You Look For Something?"
-   BackgroundColor="AliceBlue"
+    BackgroundColor="AliceBlue"
     Routing.Route="SearchAd">
 
     <ContentPage.Resources>
@@ -83,11 +83,14 @@
 
                             <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
 
-                            <Button
-                                Command="{Binding SetLocationCommand}"
-                                CommandParameter="{Binding CurrentAdvertisement}"
-                                Style="{StaticResource globalButton}"
-                                Text="To Favorite" />
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Button Style="{StaticResource cardButton}" Text="More Detail" />
+
+                                <Button Style="{StaticResource cardButton}" Text="To Favorite" />
+
+                            </StackLayout>
+
+
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
