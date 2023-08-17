@@ -36,6 +36,8 @@ namespace ToolsLibrary.TemplateViewModel
 
         public ICommand SetLocationCommand { get; set; }
 
+        public ICommand RemoveCommand { get; set; }
+
         private async Task CreateAdToLocation(Advertisement ad)
         {
             var locationReponse = await GeolocationTool.GetLocation();
@@ -70,11 +72,47 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
+        private async Task RemoveContent(Advertisement ad)
+        {
+            var locationReponse = await GeolocationTool.GetLocation();
+
+            if (locationReponse.IsSuccess)
+            {
+                var _apiResponse = await this.advertisementService.Remove(ad.ID);
+
+                if (_apiResponse.IsSuccess)
+                {
+                    await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                }
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+            }
+        }
+
         private async void SetLocationYesOrNoAlert(Advertisement selectAd)
         {
             if (!selectAd.IsObjectNull())
             {
                 var response = await Shell.Current.DisplayAlert("Notification", $"Set Location To:{selectAd.Title}", "Yes", "No");
+
+                if (response)
+                {
+                    await this.CreateAdToLocation(selectAd);
+                }
+            }
+        }
+
+        private async void RemoveContentYesOrNoAlert(Advertisement selectAd)
+        {
+            if (!selectAd.IsObjectNull())
+            {
+                var response = await Shell.Current.DisplayAlert("Notification", $" Remove:{selectAd.Title}", "Yes", "No");
 
                 if (response)
                 {

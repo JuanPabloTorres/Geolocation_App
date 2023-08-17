@@ -35,41 +35,6 @@
 
             <CollectionView.ItemTemplate>
 
-                <!--<DataTemplate>
-
-                    <Grid Margin="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Label
-                            Grid.Row="0"
-                            Style="{StaticResource globalLabel}"
-                            Text="{Binding Title}" />
-
-                        <Frame
-                            Grid.Row="1"
-                            CornerRadius="10"
-                            HasShadow="True"
-                            HeightRequest="300"
-                            WidthRequest="300">
-                            <Image
-                                Grid.Row="1"
-                                Aspect="AspectFill"
-                                HeightRequest="300"
-                                WidthRequest="300" />
-                                Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                        </Frame>
-
-                        <Label
-                            Grid.Row="2"
-                            Style="{StaticResource globalDescriptionLabel}"
-                            Text="{Binding Description}" />
-                    </Grid>
-                </DataTemplate>-->
-
                 <DataTemplate>
                     <Frame Style="{StaticResource cardFrame}">
                         <StackLayout Spacing="5">
@@ -87,10 +52,7 @@
                                 <Button Style="{StaticResource cardButton}" Text="More Detail" />
 
                                 <Button Style="{StaticResource cardButton}" Text="To Favorite" />
-
                             </StackLayout>
-
-
                         </StackLayout>
                     </Frame>
                 </DataTemplate>

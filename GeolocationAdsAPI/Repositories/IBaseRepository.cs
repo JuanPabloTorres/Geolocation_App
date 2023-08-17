@@ -11,5 +11,7 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<T>> UpdateAsync(int id, T entity);
 
         Task<ResponseTool<T>> Get(int id);
+
+        Task<ResponseTool<T>> Remove(int id);
     }
 }

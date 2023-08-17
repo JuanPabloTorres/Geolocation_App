@@ -7,10 +7,8 @@ namespace GeolocationAds.Services
 {
     public class BaseService<T> : IBaseService<T> where T : class
     {
-        protected readonly string APIPrefix = "api/";
-
         protected readonly HttpClient _httpClient;
-
+        protected readonly string APIPrefix = "api/";
         protected readonly string ApiSuffix;
 
         protected Uri BaseApiUri;
@@ -102,21 +100,7 @@ namespace GeolocationAds.Services
             }
         }
 
-        // This method must be in a class in a platform project, even if
-        // the HttpClient object is constructed in a shared project.
-        public HttpClientHandler GetInsecureHandler()
-        {
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
-            {
-                if (cert.Issuer.Equals("CN=localhost"))
-                    return true;
-                return errors == System.Net.Security.SslPolicyErrors.None;
-            };
-            return handler;
-        }
-
-        public Task<ResponseTool<T>> Get(Guid Id)
+        public Task<ResponseTool<T>> Get(int Id)
         {
             throw new NotImplementedException();
         }
@@ -152,12 +136,57 @@ namespace GeolocationAds.Services
             }
         }
 
-        public Task<ResponseTool<T>> Remove(Guid Id)
+        // This method must be in a class in a platform project, even if
+        // the HttpClient object is constructed in a shared project.
+        public HttpClientHandler GetInsecureHandler()
         {
-            throw new NotImplementedException();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+            {
+                if (cert.Issuer.Equals("CN=localhost"))
+                    return true;
+                return errors == System.Net.Security.SslPolicyErrors.None;
+            };
+            return handler;
+        }
+        public async Task<ResponseTool<T>> Remove(int Id)
+        {
+            try
+            {
+                // Build the full API endpoint URL for the specific resource
+                var apiUrl = $"{this.BaseApiUri}/{nameof(Remove)}/{Id}";
+
+                // Send the DELETE request to the API
+                var response = await _httpClient.DeleteAsync(apiUrl);
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read the response content and deserialize it to the appropriate type T
+                    var responseJson = await response.Content.ReadAsStringAsync();
+
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<T>>(responseJson);
+
+                    return responseData;
+                }
+                else
+                {
+                    // Build a fail response with the error message from the API
+                    var failResponse = ResponseFactory<T>.BuildFail("Failed to remove.", null);
+
+                    return failResponse;
+                }
+            }
+            catch (Exception ex)
+            {
+                // If an exception occurs, build a fail response with the error message
+                var failResponse = ResponseFactory<T>.BuildFail($"An error occurred: {ex.Message}", null);
+
+                return failResponse;
+            }
         }
 
-        public Task<ResponseTool<T>> Update(T data, Guid currentId)
+        public Task<ResponseTool<T>> Update(T data, int currentId)
         {
             throw new NotImplementedException();
         }

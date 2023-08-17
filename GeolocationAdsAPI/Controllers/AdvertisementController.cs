@@ -18,6 +18,25 @@ namespace GeolocationAdsAPI.Controllers
             this.advertisementRepository = advertisementRepository;
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Add(Advertisement advertisement)
+        {
+            ResponseTool<Advertisement> response;
+
+            try
+            {
+                response = await this.advertisementRepository.CreateAsync(advertisement);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {
@@ -42,14 +61,14 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Add(Advertisement advertisement)
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> Remove(int id)
         {
             ResponseTool<Advertisement> response;
 
             try
             {
-                response = await this.advertisementRepository.CreateAsync(advertisement);
+                response = await this.advertisementRepository.Remove(id);
 
                 return Ok(response);
             }

@@ -12,9 +12,6 @@
         <ResourceDictionary>
             <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
             <local:IsEnableConverter x:Key="IsEnableConverter" />
-
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -51,17 +48,24 @@
 
                             <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding CurrentAdvertisement.Description}" />
 
-                            <Button
-                                Command="{Binding SetLocationCommand}"
-                                CommandParameter="{Binding CurrentAdvertisement}"
-                                IsEnabled="{Binding CurrentAdvertisement.IsPosted, Converter={StaticResource IsEnableConverter}}"
-                                Style="{StaticResource globalButton}"
-                                Text="Set To Current Location" />
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Button
+                                    Command="{Binding SetLocationCommand}"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    IsEnabled="{Binding CurrentAdvertisement.IsPosted, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource cardButton}"
+                                    Text="Set To Current Location" />
+
+                                <Button
+                                    Command="{Binding SetLocationCommand}"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    Style="{StaticResource cardButton}"
+                                    Text="Remove" />
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />

@@ -67,6 +67,7 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="BackgroundColor" Value="#007BFF" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
 
             <Style x:Key="globalLoading" TargetType="ActivityIndicator">

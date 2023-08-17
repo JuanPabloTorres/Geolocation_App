@@ -22,7 +22,25 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
             await _context.SaveChangesAsync();
 
             return ResponseFactory<T>.BuildSusccess("Entity created successfully.", entity);
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        }
+    }
 
+    public async Task<ResponseTool<T>> Get(int id)
+    {
+        try
+        {
+            var entity = await _context.Set<T>().FindAsync(id);
+
+            if (entity != null)
+            {
+                return ResponseFactory<T>.BuildSusccess("Entity found.", entity);
+            }
+
+            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
         }
         catch (Exception ex)
         {
@@ -44,6 +62,29 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
+    public async Task<ResponseTool<T>> Remove(int id)
+    {
+        try
+        {
+            var entity = await _context.Set<T>().FindAsync(id);
+
+            if (entity != null)
+            {
+                _context.Set<T>().Remove(entity);
+
+                await _context.SaveChangesAsync();
+
+                return ResponseFactory<T>.BuildSusccess("Entity removed successfully.", entity);
+            }
+
+            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        }
+    }
+
     public async Task<ResponseTool<T>> UpdateAsync(int id, T entity)
     {
         try
@@ -57,25 +98,6 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
                 await _context.SaveChangesAsync();
 
                 return ResponseFactory<T>.BuildSusccess("Entity updated successfully.", existingEntity);
-            }
-
-            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
-        }
-        catch (Exception ex)
-        {
-            return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        }
-    }
-
-    public async Task<ResponseTool<T>> Get(int id)
-    {
-        try
-        {
-            var entity = await _context.Set<T>().FindAsync(id);
-
-            if (entity != null)
-            {
-                return ResponseFactory<T>.BuildSusccess("Entity found.", entity);
             }
 
             return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
