@@ -61,7 +61,7 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpPost("[action]/{id}")]
+        [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> Remove(int id)
         {
             ResponseTool<Advertisement> response;

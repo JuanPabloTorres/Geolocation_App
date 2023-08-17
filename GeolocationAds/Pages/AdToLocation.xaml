@@ -57,7 +57,7 @@
                                     Text="Set To Current Location" />
 
                                 <Button
-                                    Command="{Binding SetLocationCommand}"
+                                    Command="{Binding RemoveCommand}"
                                     CommandParameter="{Binding CurrentAdvertisement}"
                                     Style="{StaticResource cardButton}"
                                     Text="Remove" />

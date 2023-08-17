@@ -18,6 +18,8 @@ namespace ToolsLibrary.TemplateViewModel
         public AdLocationTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService) : base(advertisementService, geolocationAdService)
         {
             SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
+
+            RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
         }
 
         public Advertisement CurrentAdvertisement
@@ -82,6 +84,9 @@ namespace ToolsLibrary.TemplateViewModel
 
                 if (_apiResponse.IsSuccess)
                 {
+
+                    CurrentAdvertisement = null;
+
                     await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
                 }
                 else
@@ -116,7 +121,7 @@ namespace ToolsLibrary.TemplateViewModel
 
                 if (response)
                 {
-                    await this.CreateAdToLocation(selectAd);
+                    await this.RemoveContent(selectAd);
                 }
             }
         }
