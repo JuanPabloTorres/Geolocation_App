@@ -1,4 +1,6 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Services;
 using GeolocationAds.Tools;
 using System.Windows.Input;
 using ToolsLibrary.Extensions;
@@ -84,8 +86,7 @@ namespace ToolsLibrary.TemplateViewModel
 
                 if (_apiResponse.IsSuccess)
                 {
-
-                    CurrentAdvertisement = null;
+                    WeakReferenceMessenger.Default.Send(new DeleteItemMessage(ad));
 
                     await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
                 }

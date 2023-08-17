@@ -1444,6 +1444,9 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\azure.identity\1.6.0\lib\netstandard2.0\Azure.Identity.dll">
       <PackagePath>Azure.Identity.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\communitytoolkit.mvvm\8.2.1\lib\net6.0\CommunityToolkit.Mvvm.dll">
+      <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\googlemapsapi\1.2.1\lib\net6.0\GoogleMapsApi.dll">
       <PackagePath>GoogleMapsApi.dll</PackagePath>
     </AppxPackagedFile>

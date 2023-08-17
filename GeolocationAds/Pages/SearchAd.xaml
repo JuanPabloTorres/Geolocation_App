@@ -11,6 +11,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+            <local:IsEnableConverter x:Key="IsEnableConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -28,10 +29,15 @@
         <CollectionView
             Margin="10"
             HeightRequest="500"
-            HorizontalOptions="FillAndExpand"
             ItemsSource="{Binding Advertisements}"
-            SelectionMode="Single"
-            VerticalOptions="FillAndExpand">
+            SelectionMode="Single">
+
+            <CollectionView.EmptyView>
+
+                <StackLayout>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
+                </StackLayout>
+            </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
 
@@ -58,12 +64,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
-            <CollectionView.EmptyView>
 
-                <StackLayout>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
-                </StackLayout>
-            </CollectionView.EmptyView>
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
@@ -76,6 +77,7 @@
             x:Name="SearchAdButton"
             BackgroundColor="Red"
             Command="{Binding SearchAdCommand}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="What's Nearby?">
 

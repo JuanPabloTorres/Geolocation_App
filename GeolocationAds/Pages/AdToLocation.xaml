@@ -75,6 +75,7 @@
         <Button
             BackgroundColor="Red"
             Command="{Binding SearchAdCommand}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="Get My Content">
 

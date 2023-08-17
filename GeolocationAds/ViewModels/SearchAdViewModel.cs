@@ -34,6 +34,8 @@ namespace GeolocationAds.ViewModels
             this.geolocationAdService = geolocationAdService;
 
             this.SearchAdCommand = new Command(Initialize);
+
+            this.Advertisements = new ObservableCollection<Advertisement>();
         }
 
         private async Task LoadData(CurrentLocation currentLocation)
@@ -44,15 +46,19 @@ namespace GeolocationAds.ViewModels
             {
                 if (!_apiResponse.Data.IsObjectNull())
                 {
-                    this.Advertisements = new ObservableCollection<Advertisement>(_apiResponse.Data);
+                    this.Advertisements.AddRange(_apiResponse.Data);
                 }
                 else
                 {
+                    this.Advertisements.Clear();
+
                     await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
             }
             else
             {
+                this.Advertisements.Clear();
+
                 await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
             }
         }

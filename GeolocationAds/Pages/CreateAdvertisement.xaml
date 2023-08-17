@@ -3,9 +3,16 @@
     x:Class="GeolocationAds.Pages.CreateAdvertisment"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     Title="Create Your Content"
     BackgroundColor="AliceBlue"
     Routing.Route="CreateAdvertisement">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IsEnableConverter x:Key="IsEnableConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Frame
         Margin="8"
@@ -94,6 +101,7 @@
                     x:Name="SubmitButton"
                     BackgroundColor="#007BFF"
                     Command="{Binding SubmitCommand}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Save">
 
@@ -107,6 +115,16 @@
 
 
                 </Button>
+
+                <ContentView
+                    x:Name="LoadingIndicatorContainer"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="FillAndExpand">
+                    <ContentView.Content>
+                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                    </ContentView.Content>
+                </ContentView>
+
             </StackLayout>
         </ScrollView>
     </Frame>

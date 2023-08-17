@@ -77,6 +77,10 @@
         "net6.0-maccatalyst16.1": {
           "targetAlias": "net6.0-maccatalyst",
           "dependencies": {
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
             "GoogleMapsApi": {
               "target": "Package",
               "version": "[1.2.1, )"
@@ -183,6 +187,10 @@
         "net7.0-android33.0": {
           "targetAlias": "net7.0-android33.0",
           "dependencies": {
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
             "GoogleMapsApi": {
               "target": "Package",
               "version": "[1.2.1, )"
@@ -319,6 +327,10 @@
         "net7.0-ios16.1": {
           "targetAlias": "net7.0-ios",
           "dependencies": {
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
             "GoogleMapsApi": {
               "target": "Package",
               "version": "[1.2.1, )"
@@ -400,6 +412,10 @@
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
           "dependencies": {
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
             "GoogleMapsApi": {
               "target": "Package",
               "version": "[1.2.1, )"

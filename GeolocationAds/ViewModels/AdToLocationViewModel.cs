@@ -1,6 +1,9 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 
@@ -53,6 +56,18 @@ namespace GeolocationAds.ViewModels
             this.geolocationAdService = geolocationAdService;
 
             this.SearchAdCommand = new Command(Initialize);
+
+            this.Advertisements = new ObservableCollection<AdLocationTemplateViewModel>();
+
+            WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    var _toRemoveAdContent = Advertisements.Where(v => v.CurrentAdvertisement.ID == m.Value.ID).FirstOrDefault();
+
+                    Advertisements.Remove(_toRemoveAdContent);
+                });
+            });
         }
 
         private async Task LoadData()
@@ -61,7 +76,7 @@ namespace GeolocationAds.ViewModels
 
             if (_apiResponse.IsSuccess)
             {
-                IList<AdLocationTemplateViewModel> _tempDataValues = new List<AdLocationTemplateViewModel>();
+                IList<AdLocationTemplateViewModel> _adLocationTemplateViewModel = new List<AdLocationTemplateViewModel>();
 
                 foreach (var item in _apiResponse.Data)
                 {
@@ -70,15 +85,17 @@ namespace GeolocationAds.ViewModels
                         CurrentAdvertisement = item,
                     };
 
-                    _tempDataValues.Add(_item);
+                    _adLocationTemplateViewModel.Add(_item);
                 }
 
                 //this.Advertisements = new ObservableCollection<Advertisement>(_apiResponse.Data);
 
-                this.Advertisements = new ObservableCollection<AdLocationTemplateViewModel>(_tempDataValues);
+                this.Advertisements.AddRange(_adLocationTemplateViewModel);
             }
             else
             {
+                this.Advertisements.Clear();
+
                 await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
             }
         }

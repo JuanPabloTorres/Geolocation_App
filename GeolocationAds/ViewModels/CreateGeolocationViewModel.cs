@@ -91,6 +91,8 @@ namespace GeolocationAds.ViewModels
 
         private async void OnSubmitButtonClicked()
         {
+            IsLoading = true;
+
             this.Advertisement.Content = this.fileBytes;
 
             this.Advertisement.CreateDate = DateTime.Now;
@@ -109,6 +111,8 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
             }
+
+            IsLoading = false;
         }
 
         private async void OnUploadCommandExecuted()
