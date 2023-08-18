@@ -14,5 +14,7 @@ namespace ToolsLibrary.Models
 
         [ForeignKey("LoginId")]
         public LoginCredential Login { get; set; }
+
+
     }
 }

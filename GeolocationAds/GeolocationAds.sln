@@ -7,26 +7,34 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeolocationAds", "Geolocati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolsLibrary", "..\ToolsLibrary\ToolsLibrary.csproj", "{5ED1E062-7677-442D-85F1-05F42CD1BFC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeolocationAdsAPI", "..\GeolocationAdsAPI\GeolocationAdsAPI.csproj", "{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeolocationAdsAPI", "..\GeolocationAdsAPI\GeolocationAdsAPI.csproj", "{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		IIS|Any CPU = IIS|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D2240481-67A5-4114-AD16-2B540AA23159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2240481-67A5-4114-AD16-2B540AA23159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2240481-67A5-4114-AD16-2B540AA23159}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.IIS|Any CPU.ActiveCfg = IIS|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.IIS|Any CPU.Build.0 = IIS|Any CPU
+		{D2240481-67A5-4114-AD16-2B540AA23159}.IIS|Any CPU.Deploy.0 = IIS|Any CPU
 		{D2240481-67A5-4114-AD16-2B540AA23159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2240481-67A5-4114-AD16-2B540AA23159}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2240481-67A5-4114-AD16-2B540AA23159}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.IIS|Any CPU.ActiveCfg = IIS|Any CPU
+		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.IIS|Any CPU.Build.0 = IIS|Any CPU
 		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED1E062-7677-442D-85F1-05F42CD1BFC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.IIS|Any CPU.ActiveCfg = IIS|Any CPU
+		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.IIS|Any CPU.Build.0 = IIS|Any CPU
 		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

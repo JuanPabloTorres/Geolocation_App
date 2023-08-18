@@ -8,11 +8,12 @@
     BackgroundColor="AliceBlue"
     Routing.Route="CreateAdvertisement">
 
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <local:IsEnableConverter x:Key="IsEnableConverter" />
+            <local:ErrorMessageConverter x:Key="ErrorMessageConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <Frame
         Margin="8"
@@ -20,48 +21,94 @@
         BorderColor="White">
         <ScrollView>
 
-
             <StackLayout Padding="20">
-                <!--  Title Entry  -->
-                <Entry
-                    x:Name="TitleEntry"
-                    FontSize="Large"
-                    Placeholder="Title..."
-                    Text="{Binding Advertisement.Title, Mode=TwoWay}">
-                    <Entry.Triggers>
-                        <DataTrigger
-                            Binding="{Binding Advertisement.Title, Mode=TwoWay}"
-                            TargetType="Entry"
-                            Value="">
-                            <Setter Property="BackgroundColor" Value="LightPink" />
-                        </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
 
-                <!--  Description Editor  -->
+                <CollectionView ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-                <Editor
-                    x:Name="DescriptionEditor"
-                    FontSize="Large"
-                    Placeholder="About..."
-                    Text="{Binding Advertisement.Description, Mode=TwoWay}">
-                    <Editor.Triggers>
-                        <DataTrigger
-                            Binding="{Binding Advertisement.Description, Mode=TwoWay}"
-                            TargetType="Editor"
-                            Value="">
-                            <Setter Property="BackgroundColor" Value="LightPink" />
-                        </DataTrigger>
-                    </Editor.Triggers>
-                </Editor>
+                <StackLayout Spacing="10">
 
-                <!--  ... (other UI elements) ...  -->
+                    <!--  Label  -->
+                    <Label Style="{StaticResource formlLabel}" Text="Title" />
+
+                    <!--  Title Entry  -->
+                    <Entry
+                        x:Name="TitleEntry"
+                        FontSize="Large"
+                        Placeholder="Title..."
+                        Text="{Binding Advertisement.Title, Mode=TwoWay}">
+                        <Entry.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                                TargetType="Entry"
+                                Value="">
+                                <Setter Property="BackgroundColor" Value="LightPink" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+
+                </StackLayout>
+
+
+
+
+
+                <StackLayout Spacing="10">
+
+                    <!--  Label  -->
+                    <Label Style="{StaticResource formlLabel}" Text="About" />
+
+                    <!--  Description Editor  -->
+                    <Editor
+                        x:Name="DescriptionEditor"
+                        FontSize="Large"
+                        Placeholder="About..."
+                        Text="{Binding Advertisement.Description, Mode=TwoWay}">
+                        <Editor.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Advertisement.Description, Mode=TwoWay}"
+                                TargetType="Editor"
+                                Value="">
+                                <Setter Property="BackgroundColor" Value="LightPink" />
+                            </DataTrigger>
+                        </Editor.Triggers>
+                    </Editor>
+
+                </StackLayout>
+
+
+
+
+
+                <StackLayout Spacing="10">
+
+                    <!--  Label  -->
+                    <Label Style="{StaticResource formlLabel}" Text="Expiration Date" />
+
+                    <!--  Date Picker  -->
+                    <DatePicker
+                        x:Name="DatePicker"
+                        Date="{Binding Advertisement.ExpirationDate, Mode=TwoWay}"
+                        Style="{StaticResource ModernDatePickerStyle}" />
+
+                </StackLayout>
+
+
+
+
+                <!--  ... Choose File ...  -->
                 <Button
                     x:Name="UploadButton"
                     Command="{Binding FileUploadCommand}"
                     Style="{StaticResource globalButton}"
                     Text="Choose Image">
-
 
                     <Button.Shadow>
                         <Shadow
@@ -70,13 +117,7 @@
                             Radius="40"
                             Offset="5,5" />
                     </Button.Shadow>
-
                 </Button>
-
-
-                <!--  Selected File Label  -->
-
-                <Label x:Name="SelectedFileLabel" FontSize="Medium" />
 
 
                 <!--  Selected Image or Video  -->
@@ -92,9 +133,6 @@
                         Source="{Binding Image.Source}"
                         WidthRequest="300" />
                 </Frame>
-
-
-
 
                 <!--  Submit Button  -->
                 <Button
@@ -112,8 +150,6 @@
                             Radius="40"
                             Offset="5,5" />
                     </Button.Shadow>
-
-
                 </Button>
 
                 <ContentView
@@ -124,13 +160,7 @@
                         <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
                     </ContentView.Content>
                 </ContentView>
-
             </StackLayout>
         </ScrollView>
     </Frame>
-
-
-
-
-
 </ContentPage>

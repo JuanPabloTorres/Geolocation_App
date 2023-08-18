@@ -24,8 +24,9 @@
         <CollectionView
             Margin="10"
             HeightRequest="500"
-            ItemsSource="{Binding Advertisements}"
-            SelectionMode="Single">
+            ItemsSource="{Binding Advertisements}">
+
+
 
             <CollectionView.EmptyView>
 
@@ -70,14 +71,20 @@
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
+
+
         </CollectionView>
+
+        <StackLayout>
+            <Label Style="{StaticResource globalLabel}" Text="{Binding Advertisements.Count, StringFormat='Total Items: {0}'}" />
+        </StackLayout>
 
         <Button
             BackgroundColor="Red"
             Command="{Binding SearchAdCommand}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
-            Text="Get My Content">
+            Text="My Content">
 
             <Button.Shadow>
                 <Shadow

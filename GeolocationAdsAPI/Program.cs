@@ -17,12 +17,11 @@ var connectionString = builder.Configuration.GetConnectionString("AdsGeolocation
 
 builder.Services.AddDbContext<GeolocationContext>(opt => opt.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 
-
-
 builder.Services.AddTransient<IAdvertisementRepository, AdvertisementRepository>();
 
 builder.Services.AddTransient<IGeolocationAdRepository, GeolocationAdRepository>();
 
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

@@ -42,6 +42,8 @@ namespace GeolocationAds.ViewModels
         {
             var _apiResponse = await this.geolocationAdService.FindAdNear(currentLocation);
 
+            this.Advertisements.Clear();
+
             if (_apiResponse.IsSuccess)
             {
                 if (!_apiResponse.Data.IsObjectNull())
@@ -50,15 +52,11 @@ namespace GeolocationAds.ViewModels
                 }
                 else
                 {
-                    this.Advertisements.Clear();
-
                     await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
             }
             else
             {
-                this.Advertisements.Clear();
-
                 await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
             }
         }

@@ -16,7 +16,7 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ToListAsync();
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => v.Advertisement.ExpirationDate >= DateTime.Now).ToListAsync();
 
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
             }

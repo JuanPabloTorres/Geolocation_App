@@ -23,7 +23,12 @@
             <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:CreateAdvertisment}" />
         </Tab>
 
-        <Tab Title="Set Location">
+        <Tab Title="Your Content">
+
+            <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
+        </Tab>
+
+        <Tab Title="Settings">
 
             <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
         </Tab>

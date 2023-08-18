@@ -93,11 +93,11 @@ namespace GeolocationAdsAPI.Controllers
                     {
                         _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
 
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Ads Found.", _adsNear, ToolsLibrary.Tools.Type.DataFound);
+                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", _adsNear, ToolsLibrary.Tools.Type.DataFound);
                     }
                     else
                     {
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Near Ad Found.", null, ToolsLibrary.Tools.Type.NotFound);
+                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Near Content.", null, ToolsLibrary.Tools.Type.NotFound);
                     }
                 }
                 else

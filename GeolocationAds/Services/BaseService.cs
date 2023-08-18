@@ -15,17 +15,23 @@ namespace GeolocationAds.Services
 
         public BaseService()
         {
-            //#if DEBUG
-            //            HttpClientHandler insecureHandler = GetInsecureHandler();
+            string _httpResourceName = string.Empty;
 
-            //            this._httpClient = new HttpClient(insecureHandler);
-            //#else
-            //   this._httpClient = new HttpClient();
-            //#endif
+#if DEBUG
+            _httpResourceName = "BackendUrl";
+#endif
+
+#if IIS
+              _httpResourceName = "IISBackendUrl";
+#endif
+
+#if Release
+            _httpResourceName = "ProdBackendUrl";
+#endif
 
             this._httpClient = new HttpClient();
 
-            var backendUrl = Application.Current.Resources["BackendUrl"] as string;
+            var backendUrl = Application.Current.Resources[_httpResourceName] as string;
 
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);
         }
@@ -149,6 +155,7 @@ namespace GeolocationAds.Services
             };
             return handler;
         }
+
         public async Task<ResponseTool<T>> Remove(int Id)
         {
             try

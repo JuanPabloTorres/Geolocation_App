@@ -55,9 +55,9 @@ namespace GeolocationAds.ViewModels
 
             this.geolocationAdService = geolocationAdService;
 
-            this.SearchAdCommand = new Command(Initialize);
-
             this.Advertisements = new ObservableCollection<AdLocationTemplateViewModel>();
+
+            this.SearchAdCommand = new Command(Initialize);
 
             WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
             {
@@ -74,6 +74,8 @@ namespace GeolocationAds.ViewModels
         {
             var _apiResponse = await this.advertisementService.GetAll();
 
+            this.Advertisements.Clear();
+
             if (_apiResponse.IsSuccess)
             {
                 IList<AdLocationTemplateViewModel> _adLocationTemplateViewModel = new List<AdLocationTemplateViewModel>();
@@ -88,14 +90,10 @@ namespace GeolocationAds.ViewModels
                     _adLocationTemplateViewModel.Add(_item);
                 }
 
-                //this.Advertisements = new ObservableCollection<Advertisement>(_apiResponse.Data);
-
                 this.Advertisements.AddRange(_adLocationTemplateViewModel);
             }
             else
             {
-                this.Advertisements.Clear();
-
                 await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
             }
         }

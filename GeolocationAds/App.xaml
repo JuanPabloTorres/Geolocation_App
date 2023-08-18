@@ -3,6 +3,7 @@
     x:Class="GeolocationAds.App"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:local="clr-namespace:GeolocationAds">
     <Application.Resources>
         <ResourceDictionary>
@@ -13,9 +14,9 @@
 
             <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
 
-            <!--<x:String x:Key="BackendUrl">http://192.168.0.6:5160/api</x:String>-->
+            <x:String x:Key="ProdBackendUrl">http://192.168.0.6:5160/api</x:String>
 
-            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:80/api</x:String>-->
+            <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <Style x:Key="globalLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Center" />
@@ -23,6 +24,16 @@
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+
+            <Style x:Key="formlLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="Gray" />
             </Style>
 
             <Style x:Key="emptyCollectionLabel" TargetType="Label">
@@ -39,7 +50,7 @@
                 <Setter Property="VerticalOptions" Value="Start" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="FontFamily" Value="Arial" />
-                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="TextColor" Value="Gray" />
                 <Setter Property="Margin" Value="0,5,0,0" />
                 <Setter Property="LineBreakMode" Value="MiddleTruncation" />
             </Style>
@@ -80,10 +91,36 @@
             <Style x:Key="cardFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderColor" Value="LightGray" />
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
             </Style>
+
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontFamily" Value="Roboto" />
+
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
+
+
+            </Style>
+
+            <converters:IsEnableConverter x:Key="IsEnableConverter" />
+
+            <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
