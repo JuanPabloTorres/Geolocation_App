@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.Register"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Register"
+    Routing.Route="Register"
+    Shell.TabBarIsVisible="False">
+
+    <Frame
+        Margin="8"
+        BackgroundColor="White"
+        BorderColor="White">
+        <ScrollView>
+
+            <StackLayout Padding="20">
+
+                <CollectionView ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!--  ... Choose File ...  -->
+                <Button
+                    x:Name="UploadButton"
+                    Command="{Binding FileUploadCommand}"
+                    Style="{StaticResource globalButton}"
+                    Text="Choose Image">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+                </Button>
+
+                <!--  Selected Image or Video  -->
+                <Frame
+                    CornerRadius="10"
+                    HasShadow="True"
+                    HeightRequest="300"
+                    WidthRequest="300">
+                    <Image
+                        Aspect="AspectFill"
+                        IsAnimationPlaying="{Binding IsAnimation}"
+                        Source="{Binding Image.Source}" />
+                </Frame>
+
+                <StackLayout HorizontalOptions="FillAndExpand">
+
+                    <!--  Label  -->
+                    <Label Style="{StaticResource formlLabel}" Text="Name:" />
+
+                    <!--  Title Entry  -->
+                    <Entry
+                        x:Name="NameEntry"
+                        FontSize="Large"
+                        Placeholder="FullName..."
+                        Text="{Binding Advertisement.Title, Mode=TwoWay}">
+                        <Entry.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                                TargetType="Entry"
+                                Value="">
+                                <Setter Property="BackgroundColor" Value="LightPink" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="FillAndExpand">
+
+                    <!--  Label  -->
+                    <Label Style="{StaticResource formlLabel}" Text="Phone:" />
+
+                    <!--  Description Editor  -->
+                    <Entry
+                        x:Name="PhoneEntry"
+                        FontSize="Large"
+                        Placeholder="Phone..."
+                        Text="{Binding Advertisement.Title, Mode=TwoWay}">
+                        <Entry.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                                TargetType="Entry"
+                                Value="">
+                                <Setter Property="BackgroundColor" Value="LightPink" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="FillAndExpand">
+
+                    <!--  Label  -->
+                    <Label Style="{StaticResource formlLabel}" Text="Email:" />
+
+                    <!--  Date Picker  -->
+                    <Entry
+                        x:Name="EmailEntry"
+                        FontSize="Large"
+                        Placeholder="Email..."
+                        Text="{Binding Advertisement.Title, Mode=TwoWay}">
+                        <Entry.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                                TargetType="Entry"
+                                Value="">
+                                <Setter Property="BackgroundColor" Value="LightPink" />
+                            </DataTrigger>
+                        </Entry.Triggers>
+                    </Entry>
+                </StackLayout>
+
+                <!--  Submit Button  -->
+                <Button
+                    x:Name="SubmitButton"
+                    BackgroundColor="#007BFF"
+                    Command="{Binding SubmitCommand}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Complete">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+                </Button>
+
+                <ContentView
+                    x:Name="LoadingIndicatorContainer"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="FillAndExpand">
+                    <ContentView.Content>
+                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                    </ContentView.Content>
+                </ContentView>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</ContentPage>

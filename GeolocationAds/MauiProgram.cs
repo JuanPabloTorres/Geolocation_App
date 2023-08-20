@@ -24,38 +24,33 @@ public static class MauiProgram
                 fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
             }).UseMauiMaps();
 
-        // Create a custom HttpClientHandler to allow self-signed certificates
-        //var httpClientHandler = new HttpClientHandler();
-        //httpClientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
-        //{
-        //    // Add your validation logic here, for development/testing purposes,
-        //    // you can simply return true to trust any certificate, but this is not recommended for production use.
-        //    return true;
-        //};
 
-        //// Use the custom HttpClientHandler in HttpClient
-        //var httpClient = new HttpClient(httpClientHandler);
-
-        //// Register the HttpClient as a singleton service in the service container
-        //builder.Services.AddSingleton(httpClient);
 
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
 
         builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
 
-        builder.Services.AddTransient<CreateGeolocationViewModel>();
+        builder.Services.AddSingleton<CreateGeolocationViewModel>();
 
-        builder.Services.AddTransient<AdLocationTemplateViewModel>();
+        builder.Services.AddSingleton<AdLocationTemplateViewModel>();
 
-        builder.Services.AddTransient<AdToLocationViewModel>();
+        builder.Services.AddSingleton<AdToLocationViewModel>();
 
-        builder.Services.AddTransient<SearchAdViewModel>();
+        builder.Services.AddSingleton<SearchAdViewModel>();
 
-        builder.Services.AddTransient<CreateAdvertisment>();
+        builder.Services.AddSingleton<LoginViewModel>();
 
-        builder.Services.AddTransient<AdToLocation>();
+        builder.Services.AddSingleton<CreateAdvertisment>();
 
-        builder.Services.AddTransient<SearchAd>();
+        builder.Services.AddSingleton<RegisterViewModel>();
+
+        builder.Services.AddSingleton<AdToLocation>();
+
+        builder.Services.AddSingleton<SearchAd>();
+
+        builder.Services.AddSingleton<Login>();
+
+        builder.Services.AddSingleton<Register>();
 
         return builder.Build();
     }

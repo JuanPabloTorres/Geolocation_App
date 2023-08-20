@@ -31,6 +31,7 @@ namespace GeolocationAdsAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<byte[]>("Content")
+                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<int>("CreateBy")
@@ -40,6 +41,7 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ExpirationDate")
@@ -49,6 +51,7 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UpdateBy")
@@ -57,7 +60,12 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Advertisements");
                 });
@@ -173,6 +181,15 @@ namespace GeolocationAdsAPI.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("ToolsLibrary.Models.Advertisement", b =>
+                {
+                    b.HasOne("ToolsLibrary.Models.User", null)
+                        .WithMany("Advertisements")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ToolsLibrary.Models.GeolocationAd", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
@@ -204,6 +221,11 @@ namespace GeolocationAdsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Login");
+                });
+
+            modelBuilder.Entity("ToolsLibrary.Models.User", b =>
+                {
+                    b.Navigation("Advertisements");
                 });
 #pragma warning restore 612, 618
         }

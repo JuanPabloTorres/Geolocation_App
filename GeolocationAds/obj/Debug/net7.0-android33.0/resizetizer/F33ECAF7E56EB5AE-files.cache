@@ -1,4 +1,8 @@
-﻿obj\Debug\net7.0-android33.0\resizetizer\r\drawable-hdpi\dotnet_bot.png
+﻿obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow.jpg
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\logo01.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\prototypelogo.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\radar.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable-hdpi\dotnet_bot.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable-hdpi\splash.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable-mdpi\dotnet_bot.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable-mdpi\splash.png

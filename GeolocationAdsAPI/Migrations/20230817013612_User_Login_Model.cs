@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -72,7 +71,7 @@ namespace GeolocationAdsAPI.Migrations
                 column: "UserId",
                 principalTable: "Users",
                 principalColumn: "ID",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         /// <inheritdoc />

@@ -50,8 +50,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\radar.png" />
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
+	  <None Remove="Resources\Images\LoginBackGroundYellow.jpg" />
+	  <None Remove="Resources\Images\logo01.png" />
+	  <None Remove="Resources\Images\prototypeLogo.png" />
+	  <None Remove="Resources\Images\radar.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +92,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LocationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Login.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Register.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchAd.xaml">

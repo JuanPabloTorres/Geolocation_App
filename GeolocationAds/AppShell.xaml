@@ -2,23 +2,30 @@
     x:Class="GeolocationAds.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:GeolocationAds.Pages"
+    xmlns:local="clr-namespace:GeolocationAds"
+    xmlns:pages="clr-namespace:GeolocationAds.Pages"
     Shell.BackgroundColor="Red"
-    Shell.NavBarHasShadow="True"
-    Shell.PresentationMode="Animated"
-    Shell.TabBarBackgroundColor="#EF9B0F"
-    Shell.TabBarIsVisible="True"
-    Shell.TabBarTitleColor="White"
-    Shell.TabBarUnselectedColor="Black">
+    Shell.TabBarIsVisible="False">
 
-    <TabBar>
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:Login}"
+        FlyoutItemIsVisible="False"
+        Route="login"
+        Shell.FlyoutBehavior="Disabled" />
 
-        <!--  Home Tab  -->
+    <!--<TabBar>
+
+    -->
+    <!--  Home Tab  -->
+    <!--
         <Tab Title="Home">
             <ShellContent Title="Home" ContentTemplate="{DataTemplate local:SearchAd}" />
         </Tab>
 
-        <!--  Create Ads Tab  -->
+    -->
+    <!--  Create Ads Tab  -->
+    <!--
         <Tab Title="Create">
             <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:CreateAdvertisment}" />
         </Tab>
@@ -32,5 +39,12 @@
 
             <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
         </Tab>
-    </TabBar>
+    </TabBar>-->
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
+        <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:SearchAd}" />
+        <ShellContent Title="Create" ContentTemplate="{DataTemplate pages:CreateAdvertisment}" />
+        <ShellContent Title="Set Location" ContentTemplate="{DataTemplate pages:AdToLocation}" />
+
+    </FlyoutItem>
 </Shell>

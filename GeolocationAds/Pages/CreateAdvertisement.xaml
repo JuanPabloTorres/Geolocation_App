@@ -8,12 +8,7 @@
     BackgroundColor="AliceBlue"
     Routing.Route="CreateAdvertisement">
 
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-            <local:IsEnableConverter x:Key="IsEnableConverter" />
-            <local:ErrorMessageConverter x:Key="ErrorMessageConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>-->
+
 
     <Frame
         Margin="8"

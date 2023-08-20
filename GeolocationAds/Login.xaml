@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Login"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Login"
+    BackgroundImageSource="loginbackgroundyellow.jpg"
+    Routing.Route="Login"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+
+    <Grid VerticalOptions="CenterAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Header Section  -->
+
+
+        <!--  Form Section  -->
+        <StackLayout
+            Grid.Row="1"
+            Margin="20"
+            HeightRequest="550"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Frame Style="{StaticResource cardLogoFrame}">
+                <StackLayout Spacing="5">
+
+                    <Image
+                        Aspect="AspectFit"
+                        HeightRequest="200"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="logo01.png"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="200" />
+
+                    <Entry Placeholder="Username" PlaceholderColor="#777777" />
+                    <Entry
+                        IsPassword="True"
+                        Placeholder="Password"
+                        PlaceholderColor="#777777" />
+
+                    <Button
+                        Command="{Binding LoginCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource globalButton}"
+                        Text="Login" />
+
+                    <BoxView
+                        BackgroundColor="LightGray"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+
+                    <Button
+                        BackgroundColor="LightSalmon"
+                        Command="{Binding RegisterCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource globalButton}"
+                        Text="Register" />
+
+
+                    <ActivityIndicator
+                        IsRunning="{Binding IsLoading}"
+                        IsVisible="{Binding IsLoading}"
+                        Style="{StaticResource globalLoading}" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>

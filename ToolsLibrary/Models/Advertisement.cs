@@ -4,11 +4,17 @@ namespace ToolsLibrary.Models
 {
     public class Advertisement : BaseModel
     {
+        public Advertisement()
+        {
+        }
+
+        public Advertisement(DateTime experationDate)
+        {
+            this.ExpirationDate = experationDate;
+        }
+
         [Required(ErrorMessage = $"{nameof(Content)} is required.")]
         public byte[] Content { get; set; }
-
-        [Required(ErrorMessage = $"{nameof(Title)} is required.")]
-        public string Title { get; set; }
 
         [Required(ErrorMessage = $"{nameof(Description)} is required.")]
         public string Description { get; set; }
@@ -18,16 +24,9 @@ namespace ToolsLibrary.Models
 
         public bool IsPosted { get; set; }
 
+        [Required(ErrorMessage = $"{nameof(Title)} is required.")]
+        public string Title { get; set; }
+
         public int UserId { get; set; }
-
-        public Advertisement()
-        {
-
-        }
-
-        public Advertisement(DateTime experationDate)
-        {
-            this.ExpirationDate = experationDate;
-        }
     }
 }
