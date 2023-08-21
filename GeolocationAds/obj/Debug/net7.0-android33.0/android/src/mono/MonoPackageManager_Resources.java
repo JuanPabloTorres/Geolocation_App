@@ -47,6 +47,7 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Maui.Graphics.dll",
 		"Microsoft.Maui.Maps.dll",
 		"Microsoft.SqlServer.Server.dll",
+		"Microsoft.Toolkit.Mvvm.dll",
 		"Newtonsoft.Json.dll",
 		"System.Configuration.ConfigurationManager.dll",
 		"System.Drawing.Common.dll",

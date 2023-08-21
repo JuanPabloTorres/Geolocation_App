@@ -101,7 +101,7 @@
                 <!--  ... Choose File ...  -->
                 <Button
                     x:Name="UploadButton"
-                    Command="{Binding FileUploadCommand}"
+                    Command="{Binding OnUploadCommandExecutedCommand}"
                     Style="{StaticResource globalButton}"
                     Text="Choose Image">
 
@@ -133,7 +133,7 @@
                 <Button
                     x:Name="SubmitButton"
                     BackgroundColor="#007BFF"
-                    Command="{Binding SubmitCommand}"
+                    Command="{Binding OnSubmitButtonCommand}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Save">

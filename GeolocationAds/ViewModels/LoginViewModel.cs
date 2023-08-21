@@ -23,7 +23,7 @@ namespace GeolocationAds.ViewModels
 
         private async void GoToRegister()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new Register());
+            await Shell.Current.GoToAsync(nameof(Register));
         }
     }
 }

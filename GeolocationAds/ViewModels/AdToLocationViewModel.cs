@@ -2,14 +2,13 @@
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 
 namespace GeolocationAds.ViewModels
 {
-    public class AdToLocationViewModel : BaseViewModel
+    public partial class AdToLocationViewModel : BaseViewModel
     {
         private ObservableCollection<AdLocationTemplateViewModel> _advertisements;
 
@@ -30,8 +29,6 @@ namespace GeolocationAds.ViewModels
         private IAdvertisementService advertisementService { get; set; }
 
         private IGeolocationAdService geolocationAdService { get; set; }
-
-        public ICommand SearchAdCommand { get; set; }
 
         private Advertisement _selectedAdvertisement;
 
@@ -56,8 +53,6 @@ namespace GeolocationAds.ViewModels
             this.geolocationAdService = geolocationAdService;
 
             this.Advertisements = new ObservableCollection<AdLocationTemplateViewModel>();
-
-            this.SearchAdCommand = new Command(Initialize);
 
             WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
             {
@@ -100,11 +95,11 @@ namespace GeolocationAds.ViewModels
 
         public async void Initialize()
         {
-            IsLoading = true;
+            isLoading = true;
 
             await LoadData();
 
-            IsLoading = false;
+            isLoading = false;
         }
     }
 }

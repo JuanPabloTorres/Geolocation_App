@@ -1,4 +1,5 @@
 ﻿using GeolocationAds.Services;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
@@ -7,7 +8,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public class CreateGeolocationViewModel : BaseViewModel
+    public partial class CreateGeolocationViewModel : BaseViewModel
     {
         private Advertisement _advertisement;
 
@@ -37,10 +38,6 @@ namespace GeolocationAds.ViewModels
 
             Image.IsAnimationPlaying = false;
 
-            SubmitCommand = new Command(OnSubmitButtonClicked);
-
-            FileUploadCommand = new Command(OnUploadCommandExecuted);
-
             ValidationResults = new ObservableCollection<ValidationResult>();
         }
 
@@ -58,8 +55,6 @@ namespace GeolocationAds.ViewModels
                 }
             }
         }
-
-        public ICommand FileUploadCommand { get; }
 
         public Image Image
         {
@@ -90,9 +85,6 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        // Command property for the submit button
-        public ICommand SubmitCommand { get; }
-
         public ObservableCollection<ValidationResult> ValidationResults
         {
             get => _validationResults;
@@ -107,9 +99,10 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private async void OnSubmitButtonClicked()
+        [ICommand]
+        protected async override void OnSubmitButton()
         {
-            IsLoading = true;
+            isLoading = true;
 
             this.Advertisement.Content = this.fileBytes;
 
@@ -137,9 +130,10 @@ namespace GeolocationAds.ViewModels
                 }
             }
 
-            IsLoading = false;
+            isLoading = false;
         }
 
+        [ICommand]
         private async void OnUploadCommandExecuted()
         {
             try

@@ -27,6 +27,24 @@
                 <Setter Property="TextColor" Value="Gray" />
             </Style>
 
+            <Style x:Key="globalEntry" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="globalFormContainer" TargetType="StackLayout">
+
+
+
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Orientation" Value="Vertical" />
+
+
+
+            </Style>
+
             <Style x:Key="formlLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -58,7 +76,7 @@
 
             <Style x:Key="globalButton" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />

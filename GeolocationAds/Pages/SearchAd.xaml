@@ -76,7 +76,7 @@
         <Button
             x:Name="SearchAdButton"
             BackgroundColor="Red"
-            Command="{Binding SearchAdCommand}"
+            Command="{Binding InitializeCommand}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="What's Nearby?">

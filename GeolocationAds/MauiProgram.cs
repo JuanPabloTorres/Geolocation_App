@@ -1,6 +1,7 @@
 ﻿using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
+using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 
 namespace GeolocationAds;
@@ -29,6 +30,12 @@ public static class MauiProgram
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
 
         builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
+
+        builder.Services.AddTransient<IUserService, UserService>();
+
+        builder.Services.AddTransient<User>();
+
+        builder.Services.AddTransient<LoginCredential>();
 
         builder.Services.AddSingleton<CreateGeolocationViewModel>();
 

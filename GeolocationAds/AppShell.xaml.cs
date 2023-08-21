@@ -1,4 +1,6 @@
-﻿namespace GeolocationAds;
+﻿using GeolocationAds.Pages;
+
+namespace GeolocationAds;
 
 public partial class AppShell : Shell
 {
@@ -6,10 +8,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        //Routing.RegisterRoute(nameof(Login), typeof(Login));
+        Routing.RegisterRoute(nameof(Register), typeof(Register));
 
-        //Routing.RegisterRoute(nameof(Register), typeof(Register));
-
-        //Routing.RegisterRoute(nameof(SearchAd), typeof(SearchAd));
     }
 }

@@ -1,17 +1,17 @@
 ﻿using GeolocationAds.Services;
 using GeolocationAds.Tools;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
-    public class SearchAdViewModel : BaseViewModel
+    public partial class SearchAdViewModel : BaseViewModel
     {
         private IGeolocationAdService geolocationAdService;
 
-        public ICommand SearchAdCommand { get; set; }
+        //public ICommand SearchAdCommand { get; set; }
 
         private ObservableCollection<Advertisement> _advertisements;
 
@@ -33,7 +33,7 @@ namespace GeolocationAds.ViewModels
         {
             this.geolocationAdService = geolocationAdService;
 
-            this.SearchAdCommand = new Command(Initialize);
+            //this.SearchAdCommand = new Command(Initialize);
 
             this.Advertisements = new ObservableCollection<Advertisement>();
         }
@@ -61,9 +61,10 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        [ICommand]
         public async void Initialize()
         {
-            IsLoading = true;
+            isLoading = true;
 
             var locationReponse = await GeolocationTool.GetLocation();
 
@@ -78,7 +79,7 @@ namespace GeolocationAds.ViewModels
                 await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
             }
 
-            IsLoading = false;
+            isLoading = false;
         }
     }
 }
