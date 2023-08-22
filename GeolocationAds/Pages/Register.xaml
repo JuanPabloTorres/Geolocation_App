@@ -99,6 +99,7 @@
                 BackgroundColor="#007BFF"
                 Command="{Binding SubmitCommand}"
                 CommandParameter="{Binding User}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalButton}"
                 Text="Complete">
 

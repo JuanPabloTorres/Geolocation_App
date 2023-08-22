@@ -137,8 +137,6 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Logins");
                 });
 
@@ -162,7 +160,7 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LoginId")
+                    b.Property<int?>("LoginId")
                         .HasColumnType("int");
 
                     b.Property<string>("Phone")
@@ -201,24 +199,11 @@ namespace GeolocationAdsAPI.Migrations
                     b.Navigation("Advertisement");
                 });
 
-            modelBuilder.Entity("ToolsLibrary.Models.LoginCredential", b =>
-                {
-                    b.HasOne("ToolsLibrary.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ToolsLibrary.Models.User", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.LoginCredential", "Login")
                         .WithMany()
-                        .HasForeignKey("LoginId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LoginId");
 
                     b.Navigation("Login");
                 });

@@ -36,14 +36,19 @@
                         VerticalOptions="CenterAndExpand"
                         WidthRequest="200" />
 
-                    <Entry Placeholder="Username" PlaceholderColor="#777777" />
+                    <Entry
+                        Placeholder="Username"
+                        PlaceholderColor="#777777"
+                        Text="{Binding Model.Username}" />
                     <Entry
                         IsPassword="True"
                         Placeholder="Password"
-                        PlaceholderColor="#777777" />
+                        PlaceholderColor="#777777"
+                        Text="{Binding Model.Password}" />
 
                     <Button
                         Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding Model}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource globalButton}"
                         Text="Login" />

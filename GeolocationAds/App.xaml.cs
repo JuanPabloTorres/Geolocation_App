@@ -1,10 +1,8 @@
-﻿using GeolocationAds.ViewModels;
-
-namespace GeolocationAds;
+﻿namespace GeolocationAds;
 
 public partial class App : Application
 {
-    public App(LoginViewModel loginViewModel)
+    public App()
     {
         InitializeComponent();
 

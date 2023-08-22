@@ -1,5 +1,7 @@
 ﻿using GeolocationAdsAPI.Context;
+using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAdsAPI.Repositories
 {
@@ -9,6 +11,28 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
+        public async Task<ResponseTool<Login>> AddLoginCredential(Login credential)
+        {
+            ResponseTool<Login> response;
 
+            try
+            {
+                credential.CreateDate = DateTime.Now;
+
+                await _context.AddAsync(credential);
+
+                await _context.SaveChangesAsync();
+
+                response = ResponseFactory<Login>.BuildSusccess("Entity created successfully.", credential, ToolsLibrary.Tools.Type.Added);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<Login>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return response;
+            }
+        }
     }
 }

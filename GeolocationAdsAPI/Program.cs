@@ -21,6 +21,8 @@ builder.Services.AddTransient<IAdvertisementRepository, AdvertisementRepository>
 
 builder.Services.AddTransient<IGeolocationAdRepository, GeolocationAdRepository>();
 
+builder.Services.AddTransient<ILoginRespository, LoginRepository>();
+
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 var app = builder.Build();

@@ -21,11 +21,26 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public RegisterViewModel(User user, IUserService userService) : base(user, userService)
+        public RegisterViewModel(User user, IUserService service) : base(user, service)
         {
             this.User = user;
 
-            this.User.Login = new LoginCredential();
+            this.User.Login = new ToolsLibrary.Models.Login();
+
+            TestDataDefault();
+        }
+
+        private void TestDataDefault()
+        {
+            this.User.FullName = "User 02";
+
+            this.User.Phone = "787-111-1111";
+
+            this.User.Email = "user02@mail.com";
+
+            this.User.Login.Username = "user02";
+
+            this.User.Login.Password = "12345";
         }
     }
 }

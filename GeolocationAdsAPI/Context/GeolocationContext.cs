@@ -12,7 +12,7 @@ namespace GeolocationAdsAPI.Context
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<LoginCredential> Logins { get; set; }
+        public DbSet<Login> Logins { get; set; }
 
         public GeolocationContext(DbContextOptions<GeolocationContext> options) : base(options)
         {

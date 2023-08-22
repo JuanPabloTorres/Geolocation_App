@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
-using ToolsLibrary.Tools;
 
 namespace GeolocationAdsAPI.Controllers
 {
@@ -20,19 +19,26 @@ namespace GeolocationAdsAPI.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Add(User user)
         {
-            ResponseTool<User> response;
-
             try
             {
-                response = await this.userRepository.CreateAsync(user);
+                user.Login.CreateDate = DateTime.Now;
 
-                return Ok(response);
+                var userAddResponse = await this.userRepository.CreateAsync(user);
+
+                if (userAddResponse.IsSuccess)
+                {
+                    return Ok(userAddResponse);
+                }
+                else
+                {
+                    return Ok(userAddResponse);
+                }
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
-                return Ok(response);
+                return Ok(_exceptionResponse);
             }
         }
     }

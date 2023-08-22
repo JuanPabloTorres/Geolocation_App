@@ -31,11 +31,13 @@ public static class MauiProgram
 
         builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
 
+        builder.Services.AddTransient<ILoginService, LoginService>();
+
         builder.Services.AddTransient<IUserService, UserService>();
 
         builder.Services.AddTransient<User>();
 
-        builder.Services.AddTransient<LoginCredential>();
+        builder.Services.AddTransient<ToolsLibrary.Models.Login>();
 
         builder.Services.AddSingleton<CreateGeolocationViewModel>();
 
