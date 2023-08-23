@@ -8,8 +8,6 @@
     BackgroundColor="AliceBlue"
     Routing.Route="CreateAdvertisement">
 
-
-
     <Frame
         Margin="8"
         BackgroundColor="White"
@@ -38,22 +36,17 @@
                         x:Name="TitleEntry"
                         FontSize="Large"
                         Placeholder="Title..."
-                        Text="{Binding Advertisement.Title, Mode=TwoWay}">
+                        Text="{Binding Model.Title, Mode=TwoWay}">
                         <Entry.Triggers>
                             <DataTrigger
-                                Binding="{Binding Advertisement.Title, Mode=TwoWay}"
+                                Binding="{Binding Model.Title, Mode=TwoWay}"
                                 TargetType="Entry"
                                 Value="">
                                 <Setter Property="BackgroundColor" Value="LightPink" />
                             </DataTrigger>
                         </Entry.Triggers>
                     </Entry>
-
                 </StackLayout>
-
-
-
-
 
                 <StackLayout Spacing="10">
 
@@ -65,22 +58,17 @@
                         x:Name="DescriptionEditor"
                         FontSize="Large"
                         Placeholder="About..."
-                        Text="{Binding Advertisement.Description, Mode=TwoWay}">
+                        Text="{Binding Model.Description, Mode=TwoWay}">
                         <Editor.Triggers>
                             <DataTrigger
-                                Binding="{Binding Advertisement.Description, Mode=TwoWay}"
+                                Binding="{Binding Model.Description, Mode=TwoWay}"
                                 TargetType="Editor"
                                 Value="">
                                 <Setter Property="BackgroundColor" Value="LightPink" />
                             </DataTrigger>
                         </Editor.Triggers>
                     </Editor>
-
                 </StackLayout>
-
-
-
-
 
                 <StackLayout Spacing="10">
 
@@ -90,13 +78,9 @@
                     <!--  Date Picker  -->
                     <DatePicker
                         x:Name="DatePicker"
-                        Date="{Binding Advertisement.ExpirationDate, Mode=TwoWay}"
+                        Date="{Binding Model.ExpirationDate, Mode=TwoWay}"
                         Style="{StaticResource ModernDatePickerStyle}" />
-
                 </StackLayout>
-
-
-
 
                 <!--  ... Choose File ...  -->
                 <Button
@@ -113,7 +97,6 @@
                             Offset="5,5" />
                     </Button.Shadow>
                 </Button>
-
 
                 <!--  Selected Image or Video  -->
                 <Frame
@@ -133,7 +116,8 @@
                 <Button
                     x:Name="SubmitButton"
                     BackgroundColor="#007BFF"
-                    Command="{Binding OnSubmitButtonCommand}"
+                    Command="{Binding SubmitCommand}"
+                    CommandParameter="{Binding Model}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Save">

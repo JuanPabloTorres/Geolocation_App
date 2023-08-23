@@ -3,6 +3,7 @@ using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds;
 
@@ -26,6 +27,7 @@ public static class MauiProgram
             }).UseMauiMaps();
 
 
+        #region Api Service
 
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
 
@@ -35,11 +37,21 @@ public static class MauiProgram
 
         builder.Services.AddTransient<IUserService, UserService>();
 
+        #endregion
+
+        #region Models
+
         builder.Services.AddTransient<User>();
 
         builder.Services.AddTransient<ToolsLibrary.Models.Login>();
 
-        builder.Services.AddSingleton<CreateGeolocationViewModel>();
+        builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
+
+        #endregion
+
+        #region ViewModels
+
+        builder.Services.AddSingleton<CreateAdvertismentViewModel>();
 
         builder.Services.AddSingleton<AdLocationTemplateViewModel>();
 
@@ -49,9 +61,13 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<LoginViewModel>();
 
-        builder.Services.AddSingleton<CreateAdvertisment>();
-
         builder.Services.AddSingleton<RegisterViewModel>();
+
+        #endregion
+
+        #region Pages
+
+        builder.Services.AddSingleton<CreateAdvertisment>();
 
         builder.Services.AddSingleton<AdToLocation>();
 
@@ -60,6 +76,13 @@ public static class MauiProgram
         builder.Services.AddSingleton<Login>();
 
         builder.Services.AddSingleton<Register>();
+
+        #endregion 
+
+
+
+
+        builder.Services.AddSingleton<LogUserPerfilTool>();
 
         return builder.Build();
     }

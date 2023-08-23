@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,6 +25,22 @@ namespace GeolocationAds.ViewModels
                 if (_validationResults != value)
                 {
                     _validationResults = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<T> _collectionModel;
+
+        public ObservableCollection<T> CollectionModel
+        {
+            get => _collectionModel;
+            set
+            {
+                if (_collectionModel != value)
+                {
+                    _collectionModel = value;
 
                     OnPropertyChanged();
                 }
@@ -63,6 +81,8 @@ namespace GeolocationAds.ViewModels
 
         public ICommand SubmitCommand { get; set; }
 
+        protected LogUserPerfilTool LogUserPerfilTool { get; set; }
+
         public BaseViewModel2(T model, S service)
         {
             this.Model = model;
@@ -74,6 +94,23 @@ namespace GeolocationAds.ViewModels
             this.ValidationContexts = new List<ValidationContext>();
 
             SubmitCommand = new Command<T>(OnSubmit2);
+        }
+
+        public BaseViewModel2(T model, S service, LogUserPerfilTool logUserPerfil)
+        {
+            this.Model = model;
+
+            this.service = service;
+
+            this.ValidationResults = new ObservableCollection<ValidationResult>();
+
+            this.CollectionModel = new ObservableCollection<T>();
+
+            this.ValidationContexts = new List<ValidationContext>();
+
+            SubmitCommand = new Command<T>(OnSubmit2);
+
+            this.LogUserPerfilTool = logUserPerfil;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -93,8 +130,6 @@ namespace GeolocationAds.ViewModels
                 ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.CreateDate), now);
 
                 var validationContextCurrentType = new ValidationContext(obj);
-
-                //PropertyInfo[] properties = obj.GetType().GetProperties();
 
                 PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
 
@@ -262,8 +297,6 @@ namespace GeolocationAds.ViewModels
 
                     if (isValiteObj && _allSubPropetyValueAreValid)
                     {
-                        //var _apiResponse = await this.advertisementService.Add(this.Advertisement);
-
                         MethodInfo addMethod = this.service.GetType().GetMethod("Add");
 
                         if (addMethod != null)
@@ -284,15 +317,17 @@ namespace GeolocationAds.ViewModels
                             {
                                 if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
                                 {
-                                    Activator.CreateInstance<T>();
+                                    this.Model = Activator.CreateInstance<T>();
+
+                                    WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                                 }
                                 else
                                 {
                                     // Handle cases where T doesn't have a parameterless constructor
-                                    throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
-                                }
+                                    //throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
 
-                                //this.Image.Source = null;
+                                    await Shell.Current.DisplayAlert("Error", $"Type {typeof(T).FullName} does not have a parameterless constructor.", "OK");
+                                }
 
                                 await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
                             }
@@ -307,8 +342,6 @@ namespace GeolocationAds.ViewModels
                 {
                     if (isValiteObj)
                     {
-                        //var _apiResponse = await this.advertisementService.Add(this.Advertisement);
-
                         MethodInfo addMethod = this.service.GetType().GetMethod("Add");
 
                         if (addMethod != null)
@@ -355,6 +388,23 @@ namespace GeolocationAds.ViewModels
             }
 
             IsLoading = false;
+        }
+
+        protected virtual async Task LoadData()
+        {
+            this.IsLoading = true;
+
+            try
+            {
+                await Shell.Current.DisplayAlert("Error", "To Load Data Logic...", "OK");
+            }
+            catch (Exception ex)
+            {
+
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+            this.IsLoading = false;
         }
     }
 }

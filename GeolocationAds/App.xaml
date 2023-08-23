@@ -151,6 +151,8 @@
 
             <converters:IsEnableConverter x:Key="IsEnableConverter" />
 
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+
             <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
 
         </ResourceDictionary>

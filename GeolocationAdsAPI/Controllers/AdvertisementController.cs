@@ -37,6 +37,30 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
+        [HttpGet("[action]/{userId}")]
+        public async Task<IActionResult> GetAdvertisementsOfUser(int userId)
+        {
+            ResponseTool<IEnumerable<Advertisement>> response;
+
+            try
+            {
+                response = await this.advertisementRepository.GetAdvertisementsOfUser(userId);
+
+                if (!response.Data.IsObjectNull())
+                {
+                    response.Data = response.Data.OrderBy(o => o.CreateDate).Reverse();
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAll()
         {

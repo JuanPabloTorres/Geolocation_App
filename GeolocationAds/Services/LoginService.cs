@@ -20,7 +20,7 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<ToolsLibrary.Models.Login>> VerifyCredential(ToolsLibrary.Models.Login credential)
+        public async Task<ResponseTool<ToolsLibrary.Models.User>> VerifyCredential(ToolsLibrary.Models.Login credential)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace GeolocationAds.Services
                     // Read the response content and deserialize it to the appropriate type T
                     var responseJson = await _httpResponse.Content.ReadAsStringAsync();
 
-                    var responseData = JsonConvert.DeserializeObject<ResponseTool<ToolsLibrary.Models.Login>>(responseJson);
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<ToolsLibrary.Models.User>>(responseJson);
 
                     // Build a success response with the data
                     //var successResponse = ResponseFactory<T>.BuildSusccess("Successfully added.", responseData);
@@ -53,14 +53,14 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<ToolsLibrary.Models.Login>.BuildFail("Failed to add.", null);
+                    var failResponse = ResponseFactory<ToolsLibrary.Models.User>.BuildFail("Failed to add.", null);
 
                     return failResponse;
                 }
             }
             catch (Exception ex)
             {
-                return ResponseFactory<ToolsLibrary.Models.Login>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                return ResponseFactory<ToolsLibrary.Models.User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
     }

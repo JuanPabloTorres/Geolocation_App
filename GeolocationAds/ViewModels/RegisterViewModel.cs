@@ -5,42 +5,24 @@ namespace GeolocationAds.ViewModels
 {
     public partial class RegisterViewModel : BaseViewModel2<User, IUserService>
     {
-        private User _user;
-
-        public User User
-        {
-            get => _user;
-            set
-            {
-                if (_user != value)
-                {
-                    _user = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         public RegisterViewModel(User user, IUserService service) : base(user, service)
         {
-            this.User = user;
-
-            this.User.Login = new ToolsLibrary.Models.Login();
+            this.Model.Login = new ToolsLibrary.Models.Login();
 
             TestDataDefault();
         }
 
         private void TestDataDefault()
         {
-            this.User.FullName = "User 02";
+            this.Model.FullName = "User 02";
 
-            this.User.Phone = "787-111-1111";
+            this.Model.Phone = "787-111-1111";
 
-            this.User.Email = "user02@mail.com";
+            this.Model.Email = "user02@mail.com";
 
-            this.User.Login.Username = "user02";
+            this.Model.Login.Username = "user02";
 
-            this.User.Login.Password = "12345";
+            this.Model.Login.Password = "12345";
         }
     }
 }

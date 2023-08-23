@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -12,28 +13,28 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
-        public async Task<ResponseTool<Login>> VerifyCredential(Login credential)
+        public async Task<ResponseTool<User>> VerifyCredential(Login credential)
         {
-            ResponseTool<Login> response = null;
+            ResponseTool<User> response = null;
 
             try
             {
-                var isValid = await _context.Logins.AnyAsync(v => v.Username == credential.Username && v.Password == credential.Password);
+                var _foundUser = await _context.Users.Include(u => u.Login).Where(v => v.Login.Username == credential.Username && v.Login.Password == credential.Password).FirstOrDefaultAsync();
 
-                if (isValid)
+                if (!_foundUser.IsObjectNull())
                 {
-                    response = ResponseFactory<Login>.BuildSusccess("Valid Credentail", credential, ToolsLibrary.Tools.Type.Found);
+                    response = ResponseFactory<User>.BuildSusccess("Valid Credentail", _foundUser, ToolsLibrary.Tools.Type.Found);
                 }
                 else
                 {
-                    response = ResponseFactory<Login>.BuildFail("Invalid Credentail", null, ToolsLibrary.Tools.Type.NotFound);
+                    response = ResponseFactory<User>.BuildFail("Invalid Credentail", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
                 return response;
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<Login>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
                 return response;
             }

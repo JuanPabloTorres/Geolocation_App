@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToolsLibrary.Models
 {
@@ -11,5 +12,9 @@ namespace ToolsLibrary.Models
         public string Password { get; set; }
 
         public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+
     }
 }

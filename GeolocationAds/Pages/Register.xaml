@@ -38,7 +38,7 @@
                     x:Name="NameEntry"
                     Placeholder="FullName..."
                     Style="{StaticResource globalEntry}"
-                    Text="{Binding User.FullName, Mode=TwoWay}" />
+                    Text="{Binding Model.FullName, Mode=TwoWay}" />
             </StackLayout>
 
             <StackLayout Style="{StaticResource globalFormContainer}">
@@ -51,7 +51,7 @@
                     x:Name="PhoneEntry"
                     Placeholder="Phone..."
                     Style="{StaticResource globalEntry}"
-                    Text="{Binding User.Phone, Mode=TwoWay}" />
+                    Text="{Binding Model.Phone, Mode=TwoWay}" />
             </StackLayout>
 
             <StackLayout Style="{StaticResource globalFormContainer}">
@@ -64,7 +64,7 @@
                     x:Name="EmailEntry"
                     Placeholder="Email..."
                     Style="{StaticResource globalEntry}"
-                    Text="{Binding User.Email, Mode=TwoWay}" />
+                    Text="{Binding Model.Email, Mode=TwoWay}" />
             </StackLayout>
 
             <StackLayout Style="{StaticResource globalFormContainer}">
@@ -77,7 +77,7 @@
                     x:Name="UsernameEntry"
                     Placeholder="Username"
                     Style="{StaticResource globalEntry}"
-                    Text="{Binding User.Login.Username, Mode=TwoWay}" />
+                    Text="{Binding Model.Login.Username, Mode=TwoWay}" />
             </StackLayout>
 
             <StackLayout Style="{StaticResource globalFormContainer}">
@@ -90,7 +90,7 @@
                     x:Name="PasswordEntry"
                     Placeholder="Password"
                     Style="{StaticResource globalEntry}"
-                    Text="{Binding User.Login.Password, Mode=TwoWay}" />
+                    Text="{Binding Model.Login.Password, Mode=TwoWay}" />
             </StackLayout>
 
             <!--  Submit Button  -->
@@ -98,7 +98,7 @@
                 x:Name="SubmitButton"
                 BackgroundColor="#007BFF"
                 Command="{Binding SubmitCommand}"
-                CommandParameter="{Binding User}"
+                CommandParameter="{Binding Model}"
                 IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalButton}"
                 Text="Complete">

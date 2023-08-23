@@ -5,16 +5,6 @@ namespace ToolsLibrary.Tools
 {
     public class GenericTool<T>
     {
-        public static void SetPropertyValueOnObject<TValue>(T obj, string propertyName, TValue value)
-        {
-            var property = typeof(T).GetProperty(propertyName);
-
-            if (property != null && property.CanWrite)
-            {
-                property.SetValue(obj, value);
-            }
-        }
-
         public static IEnumerable<PropertyInfo> GetPropertiesOfType(T obj)
         {
             return obj.GetType().GetProperties();
@@ -38,5 +28,28 @@ namespace ToolsLibrary.Tools
 
             return propertiesIntance;
         }
+
+        public static void SetPropertyValueOnObject<TValue>(T obj, string propertyName, TValue value)
+        {
+            var property = typeof(T).GetProperty(propertyName);
+
+            if (property != null && property.CanWrite)
+            {
+                property.SetValue(obj, value);
+            }
+        }
+
+        public static TValue GetPropertyValueFromObject<TValue>(object obj, string propertyName)
+        {
+            var property = obj.GetType().GetProperty(propertyName);
+
+            if (property != null && property.CanRead)
+            {
+                return (TValue)property.GetValue(obj);
+            }
+
+            return default(TValue);
+        }
+
     }
 }

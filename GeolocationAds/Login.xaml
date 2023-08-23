@@ -9,9 +9,9 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
-    <Grid VerticalOptions="CenterAndExpand">
+    <Grid VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -22,18 +22,14 @@
         <StackLayout
             Grid.Row="1"
             Margin="20"
-            HeightRequest="550"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            HeightRequest="550">
             <Frame Style="{StaticResource cardLogoFrame}">
                 <StackLayout Spacing="5">
 
                     <Image
                         Aspect="AspectFit"
                         HeightRequest="200"
-                        HorizontalOptions="CenterAndExpand"
                         Source="logo01.png"
-                        VerticalOptions="CenterAndExpand"
                         WidthRequest="200" />
 
                     <Entry
@@ -53,10 +49,7 @@
                         Style="{StaticResource globalButton}"
                         Text="Login" />
 
-                    <BoxView
-                        BackgroundColor="LightGray"
-                        HeightRequest="1"
-                        HorizontalOptions="FillAndExpand" />
+
 
                     <Button
                         BackgroundColor="LightSalmon"

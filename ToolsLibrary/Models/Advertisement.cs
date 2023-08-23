@@ -4,15 +4,6 @@ namespace ToolsLibrary.Models
 {
     public class Advertisement : BaseModel
     {
-        public Advertisement()
-        {
-        }
-
-        public Advertisement(DateTime experationDate)
-        {
-            this.ExpirationDate = experationDate;
-        }
-
         [Required(ErrorMessage = $"{nameof(Content)} is required.")]
         public byte[] Content { get; set; }
 
@@ -28,5 +19,10 @@ namespace ToolsLibrary.Models
         public string Title { get; set; }
 
         public int UserId { get; set; }
+
+        public Advertisement()
+        {
+            this.ExpirationDate = DateTime.Now.AddDays(7);
+        }
     }
 }

@@ -5,6 +5,6 @@ namespace GeolocationAdsAPI.Repositories
 {
     public interface ILoginRespository : IBaseRepository<Login>
     {
-        Task<ResponseTool<Login>> VerifyCredential(Login credential);
+        Task<ResponseTool<User>> VerifyCredential(Login credential);
     }
 }

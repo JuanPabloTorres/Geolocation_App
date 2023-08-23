@@ -8,12 +8,12 @@
     BackgroundColor="AliceBlue"
     Routing.Route="AdToLocation">
 
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
             <local:IsEnableConverter x:Key="IsEnableConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <VerticalStackLayout Padding="10" Spacing="10">
         <ActivityIndicator
@@ -24,9 +24,7 @@
         <CollectionView
             Margin="10"
             HeightRequest="500"
-            ItemsSource="{Binding Advertisements}">
-
-
+            ItemsSource="{Binding CollectionModel}">
 
             <CollectionView.EmptyView>
 
@@ -71,17 +69,15 @@
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
-
-
         </CollectionView>
 
         <StackLayout>
-            <Label Style="{StaticResource globalLabel}" Text="{Binding Advertisements.Count, StringFormat='Total Items: {0}'}" />
+            <Label Style="{StaticResource globalLabel}" Text="{Binding CollectionModel.Count, StringFormat='Total Items: {0}'}" />
         </StackLayout>
 
         <Button
             BackgroundColor="Red"
-            Command="{Binding InitializeCommand}"
+            Command="{Binding SearchAdCommand}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="My Content">

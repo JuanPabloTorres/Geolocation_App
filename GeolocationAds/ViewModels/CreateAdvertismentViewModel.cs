@@ -1,60 +1,16 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class CreateGeolocationViewModel : BaseViewModel
+    public partial class CreateAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
     {
-        private Advertisement _advertisement;
-
         private Image _image;
-
-        private ObservableCollection<ValidationResult> _validationResults;
-
-        private IAdvertisementService advertisementService;
-
-        private byte[] fileBytes;
-
-        private IGeolocationAdService geolocationAdService;
-
-        private bool isAnimation;
-
-        private bool isImageSelected;
-
-        public CreateGeolocationViewModel(IGeolocationAdService geolocationAdService, IAdvertisementService advertisementService)
-        {
-            this.geolocationAdService = geolocationAdService;
-
-            this.advertisementService = advertisementService;
-
-            Advertisement = new Advertisement(DateTime.Now.AddDays(7));
-
-            Image = new Image();
-
-            Image.IsAnimationPlaying = false;
-
-            ValidationResults = new ObservableCollection<ValidationResult>();
-        }
-
-        public Advertisement Advertisement
-        {
-            get => _advertisement;
-
-            set
-            {
-                if (_advertisement != value)
-                {
-                    _advertisement = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         public Image Image
         {
@@ -71,6 +27,10 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        private byte[] fileBytes;
+
+        private bool isAnimation;
+
         public bool IsAnimation
         {
             get => isAnimation;
@@ -85,52 +45,24 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public ObservableCollection<ValidationResult> ValidationResults
+        public CreateAdvertismentViewModel(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool) : base(advertisement, advertisementService, logUserPerfilTool)
         {
-            get => _validationResults;
-            set
-            {
-                if (_validationResults != value)
-                {
-                    _validationResults = value;
+            SetDefault();
 
-                    OnPropertyChanged();
-                }
-            }
+            WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    SetDefault();
+                });
+            });
         }
 
-        [ICommand]
-        protected async override void OnSubmitButton()
+        private void SetDefault()
         {
-            isLoading = true;
+            this.Image = new Image();
 
-            this.Advertisement.Content = this.fileBytes;
-
-            this.Advertisement.CreateDate = DateTime.Now;
-
-            var validationContext = new ValidationContext(this.Advertisement);
-
-            ValidationResults.Clear();
-
-            if (Validator.TryValidateObject(this.Advertisement, validationContext, ValidationResults, true))
-            {
-                var _apiResponse = await this.advertisementService.Add(this.Advertisement);
-
-                if (_apiResponse.IsSuccess)
-                {
-                    this.Advertisement = new Advertisement();
-
-                    this.Image.Source = null;
-
-                    await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                }
-            }
-
-            isLoading = false;
+            this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
         }
 
         [ICommand]
@@ -197,10 +129,10 @@ namespace GeolocationAds.ViewModels
                     //    await DisplayAlert("Invalid File Type", "Please select an image or video file.", "OK");
                     //}
 
-                    isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
-                                     result.FileName.ToLower().EndsWith(".png") ||
-                                      result.FileName.ToLower().EndsWith(".gif") ||
-                                     result.FileName.ToLower().EndsWith(".jpeg");
+                    var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
+                                       result.FileName.ToLower().EndsWith(".png") ||
+                                        result.FileName.ToLower().EndsWith(".gif") ||
+                                       result.FileName.ToLower().EndsWith(".jpeg");
 
                     if (isImageSelected)
                     {
@@ -211,6 +143,8 @@ namespace GeolocationAds.ViewModels
                         Image.IsAnimationPlaying = true;
 
                         IsAnimation = true;
+
+                        this.Model.Content = fileBytes;
 
                         //if (result.FileName.ToLower().EndsWith(".gif"))
                         //{
