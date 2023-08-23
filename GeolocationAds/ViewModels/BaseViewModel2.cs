@@ -81,6 +81,8 @@ namespace GeolocationAds.ViewModels
 
         public ICommand SubmitCommand { get; set; }
 
+        public ICommand SearchCommand { get; set; }
+
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
         public BaseViewModel2(T model, S service)
@@ -90,6 +92,8 @@ namespace GeolocationAds.ViewModels
             this.service = service;
 
             this.ValidationResults = new ObservableCollection<ValidationResult>();
+
+            this.CollectionModel = new ObservableCollection<T>();
 
             this.ValidationContexts = new List<ValidationContext>();
 
@@ -400,7 +404,22 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
 
+            this.IsLoading = false;
+        }
+
+        protected virtual async Task LoadData(object extraData)
+        {
+            this.IsLoading = true;
+
+            try
+            {
+                await Shell.Current.DisplayAlert("Error", "To Load Data Logic with extra data...", "OK");
+            }
+            catch (Exception ex)
+            {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
 

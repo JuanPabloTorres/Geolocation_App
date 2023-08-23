@@ -29,7 +29,7 @@
         <CollectionView
             Margin="10"
             HeightRequest="500"
-            ItemsSource="{Binding Advertisements}"
+            ItemsSource="{Binding CollectionModel}"
             SelectionMode="Single">
 
             <CollectionView.EmptyView>
@@ -76,7 +76,7 @@
         <Button
             x:Name="SearchAdButton"
             BackgroundColor="Red"
-            Command="{Binding InitializeCommand}"
+            Command="{Binding SearchCommand}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="What's Nearby?">

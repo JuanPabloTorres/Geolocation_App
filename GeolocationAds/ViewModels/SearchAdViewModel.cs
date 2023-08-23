@@ -1,54 +1,30 @@
 ﻿using GeolocationAds.Services;
 using GeolocationAds.Tools;
-using Microsoft.Toolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class SearchAdViewModel : BaseViewModel
+    public partial class SearchAdViewModel : BaseViewModel2<Advertisement, IGeolocationAdService>
     {
-        private IGeolocationAdService geolocationAdService;
-
-        //public ICommand SearchAdCommand { get; set; }
-
-        private ObservableCollection<Advertisement> _advertisements;
-
-        public ObservableCollection<Advertisement> Advertisements
+        public SearchAdViewModel(Advertisement advertisement, IGeolocationAdService geolocationAdService) : base(advertisement, geolocationAdService)
         {
-            get => _advertisements;
-            set
-            {
-                if (_advertisements != value)
-                {
-                    _advertisements = value;
-
-                    OnPropertyChanged();
-                }
-            }
+            this.SearchCommand = new Command(Initialize);
         }
 
-        public SearchAdViewModel(IGeolocationAdService geolocationAdService)
+        protected override async Task LoadData(object extraData)
         {
-            this.geolocationAdService = geolocationAdService;
+            var currentLocation = extraData as CurrentLocation;
 
-            //this.SearchAdCommand = new Command(Initialize);
+            var _apiResponse = await this.service.FindAdNear(currentLocation);
 
-            this.Advertisements = new ObservableCollection<Advertisement>();
-        }
-
-        private async Task LoadData(CurrentLocation currentLocation)
-        {
-            var _apiResponse = await this.geolocationAdService.FindAdNear(currentLocation);
-
-            this.Advertisements.Clear();
+            this.CollectionModel.Clear();
 
             if (_apiResponse.IsSuccess)
             {
                 if (!_apiResponse.Data.IsObjectNull())
                 {
-                    this.Advertisements.AddRange(_apiResponse.Data);
+                    this.CollectionModel.AddRange(_apiResponse.Data);
                 }
                 else
                 {
@@ -61,10 +37,9 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        [ICommand]
         public async void Initialize()
         {
-            isLoading = true;
+            this.IsLoading = true;
 
             var locationReponse = await GeolocationTool.GetLocation();
 
@@ -79,7 +54,7 @@ namespace GeolocationAds.ViewModels
                 await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
             }
 
-            isLoading = false;
+            this.IsLoading = false;
         }
     }
 }
