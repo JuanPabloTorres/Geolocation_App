@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace GeolocationAds.ViewModels
 {
@@ -8,10 +7,6 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         protected bool isLoading;
 
-        [ICommand]
-        protected virtual void OnSubmitButton()
-        {
 
-        }
     }
 }

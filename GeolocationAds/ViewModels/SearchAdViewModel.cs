@@ -1,4 +1,6 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Services;
 using GeolocationAds.Tools;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -10,6 +12,14 @@ namespace GeolocationAds.ViewModels
         public SearchAdViewModel(Advertisement advertisement, IGeolocationAdService geolocationAdService) : base(advertisement, geolocationAdService)
         {
             this.SearchCommand = new Command(Initialize);
+
+            WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    this.CollectionModel.Clear();
+                });
+            });
         }
 
         protected override async Task LoadData(object extraData)

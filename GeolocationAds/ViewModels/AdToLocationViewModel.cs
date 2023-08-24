@@ -46,6 +46,16 @@ namespace GeolocationAds.ViewModels
                     Advertisements.Remove(_toRemoveAdContent);
                 });
             });
+
+            WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    this.CollectionModel.Clear();
+
+
+                });
+            });
         }
 
         protected override async Task LoadData()

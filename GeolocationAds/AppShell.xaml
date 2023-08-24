@@ -15,6 +15,7 @@
         Shell.FlyoutBehavior="Disabled" />
 
 
+
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
             Title="Home"
@@ -30,6 +31,14 @@
             Icon="location.png" />
 
     </FlyoutItem>
+
+
+    <Shell.FlyoutHeader>
+        <!--  Custom navigation header  -->
+        <StackLayout>
+            <Label Style="{StaticResource globalLabel}" Text="{Binding UserName, Mode=TwoWay}" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
 

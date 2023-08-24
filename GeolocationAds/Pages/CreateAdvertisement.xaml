@@ -26,7 +26,7 @@
                     Margin="5"
                     FontSize="30"
                     Style="{StaticResource globalLabel}"
-                    Text="Register content" />
+                    Text="Register Content" />
 
                 <Label Style="{StaticResource globalLabel}" Text="Title:" />
                 <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />

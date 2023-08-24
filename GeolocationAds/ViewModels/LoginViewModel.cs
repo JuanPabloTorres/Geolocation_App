@@ -52,6 +52,8 @@ namespace GeolocationAds.ViewModels
                 {
                     this.LogUserPerfilTool.LogUser = _apiResponse.Data;
 
+                    WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
+
                     await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
                 }
                 else
