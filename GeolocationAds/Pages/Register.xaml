@@ -3,126 +3,75 @@
     x:Class="GeolocationAds.Pages.Register"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="Register"
-    BackgroundColor="AliceBlue"
-    Routing.Route="Register"
-    Shell.TabBarIsVisible="False">
+    Routing.Route="Register">
 
-    <Frame
-        Margin="8"
-        BackgroundColor="White"
-        BorderColor="White">
+    <ScrollView IsClippedToBounds="True" Orientation="Vertical">
+        <Frame Style="{StaticResource cardFrame}">
 
+            <VerticalStackLayout Margin="10">
 
-        <StackLayout Margin="10">
+                <Label
+                    FontSize="30"
+                    Style="{StaticResource globalLabel}"
+                    Text="Complete Registration" />
 
-            <CollectionView ItemsSource="{Binding ValidationResults}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <CollectionView ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
+                <Label Style="{StaticResource globalLabel}" Text="FullName:" />
+                <local:CustomEntryContentView Placeholder="FullName" Text="{Binding Model.FullName}" />
 
+                <Label Style="{StaticResource globalLabel}" Text="Phone:" />
+                <local:CustomEntryContentView Placeholder="Phone" Text="{Binding Model.Phone}" />
 
-            <StackLayout Style="{StaticResource globalFormContainer}">
+                <Label Style="{StaticResource globalLabel}" Text="Email:" />
+                <local:CustomEntryContentView Placeholder="Email" Text="{Binding Model.Email}" />
 
-                <!--  Label  -->
-                <Label Style="{StaticResource formlLabel}" Text="Name:" />
+                <Label Style="{StaticResource globalLabel}" Text="Username:" />
+                <local:CustomEntryContentView Placeholder="Username" Text="{Binding Model.Login.Username}" />
 
-                <!--  Title Entry  -->
-                <Entry
-                    x:Name="NameEntry"
-                    Placeholder="FullName..."
-                    Style="{StaticResource globalEntry}"
-                    Text="{Binding Model.FullName, Mode=TwoWay}" />
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource globalFormContainer}">
-
-                <!--  Label  -->
-                <Label Style="{StaticResource formlLabel}" Text="Phone:" />
-
-                <!--  Description Editor  -->
-                <Entry
-                    x:Name="PhoneEntry"
-                    Placeholder="Phone..."
-                    Style="{StaticResource globalEntry}"
-                    Text="{Binding Model.Phone, Mode=TwoWay}" />
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource globalFormContainer}">
-
-                <!--  Label  -->
-                <Label Style="{StaticResource formlLabel}" Text="Email:" />
-
-                <!--  Date Picker  -->
-                <Entry
-                    x:Name="EmailEntry"
-                    Placeholder="Email..."
-                    Style="{StaticResource globalEntry}"
-                    Text="{Binding Model.Email, Mode=TwoWay}" />
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource globalFormContainer}">
-
-                <!--  Label  -->
-                <Label Style="{StaticResource formlLabel}" Text="Username:" />
-
-                <!--  Date Picker  -->
-                <Entry
-                    x:Name="UsernameEntry"
-                    Placeholder="Username"
-                    Style="{StaticResource globalEntry}"
-                    Text="{Binding Model.Login.Username, Mode=TwoWay}" />
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource globalFormContainer}">
-
-                <!--  Label  -->
-                <Label Style="{StaticResource formlLabel}" Text="Password:" />
-
-                <!--  Date Picker  -->
-                <Entry
-                    x:Name="PasswordEntry"
+                <Label Style="{StaticResource globalLabel}" Text="Passowrd:" />
+                <local:CustomEntryContentView
+                    IsPassword="True"
                     Placeholder="Password"
-                    Style="{StaticResource globalEntry}"
-                    Text="{Binding Model.Login.Password, Mode=TwoWay}" />
-            </StackLayout>
+                    Text="{Binding Model.Login.Password}" />
 
-            <!--  Submit Button  -->
-            <Button
-                x:Name="SubmitButton"
-                BackgroundColor="#007BFF"
-                Command="{Binding SubmitCommand}"
-                CommandParameter="{Binding Model}"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButton}"
-                Text="Complete">
+                <!--  Submit Button  -->
+                <Button
+                    x:Name="SubmitButton"
+                    Command="{Binding SubmitCommand}"
+                    CommandParameter="{Binding Model}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Complete">
 
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-            </Button>
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+                </Button>
 
-
-
-            <ContentView
-                x:Name="LoadingIndicatorContainer"
-                IsVisible="{Binding IsLoading}"
-                VerticalOptions="FillAndExpand">
-                <ContentView.Content>
-                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                </ContentView.Content>
-            </ContentView>
-        </StackLayout>
-
-    </Frame>
+                <ContentView
+                    x:Name="LoadingIndicatorContainer"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="FillAndExpand">
+                    <ContentView.Content>
+                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                    </ContentView.Content>
+                </ContentView>
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
 </ContentPage>

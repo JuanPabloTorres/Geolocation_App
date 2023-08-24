@@ -2,6 +2,7 @@ OpenSans-Regular.ttf
 OpenSans-Semibold.ttf
 Roboto-Bold.ttf
 Roboto-Light.ttf
+add.scale-100.png
 appicon.ico
 appiconLargeTile.scale-100.png
 appiconLargeTile.scale-125.png
@@ -53,7 +54,10 @@ dotnet_bot.scale-125.png
 dotnet_bot.scale-150.png
 dotnet_bot.scale-200.png
 dotnet_bot.scale-400.png
+home.scale-100.png
+location.scale-100.png
 loginbackgroundyellow.scale-100.jpg
+loginbackgroundyellow2.scale-100.jpg
 logo01.scale-100.png
 prototypelogo.scale-100.png
 radar.scale-100.png

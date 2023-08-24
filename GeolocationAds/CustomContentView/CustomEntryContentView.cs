@@ -1,0 +1,65 @@
+namespace GeolocationAds.CustomContentView;
+
+public class CustomEntryContentView : ContentView
+{
+    public static readonly BindableProperty TextProperty =
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(CustomEntryContentView), default(string), BindingMode.TwoWay);
+
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
+
+    public static readonly BindableProperty PlaceholderProperty =
+           BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CustomEntryContentView), default(string), BindingMode.TwoWay);
+
+    public string Placeholder
+    {
+        get => (string)GetValue(PlaceholderProperty);
+        set => SetValue(PlaceholderProperty, value);
+    }
+
+    public static readonly BindableProperty IsPasswordProperty =
+          BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(CustomEntryContentView), default(bool), BindingMode.TwoWay);
+
+    public bool IsPassword
+    {
+        get => (bool)GetValue(IsPasswordProperty);
+        set => SetValue(IsPasswordProperty, value);
+    }
+
+    public CustomEntryContentView()
+    {
+        var entry = new Entry
+        {
+
+            Keyboard = Keyboard.Text,
+            Style = (Style)Application.Current.Resources["globalEntry"]
+        };
+        entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), source: this));
+
+        entry.SetBinding(Entry.IsPasswordProperty, new Binding(nameof(IsPassword), source: this));
+
+        entry.SetBinding(Entry.PlaceholderProperty, new Binding(nameof(Placeholder), source: this));
+
+        var frame = new Frame
+        {
+            Style = (Style)Application.Current.Resources["entryFrame"],
+
+            Content = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                Children = { entry }
+            }
+        };
+
+        Content = new StackLayout
+        {
+            Margin = 5,
+            HorizontalOptions = LayoutOptions.FillAndExpand,
+            Orientation = StackOrientation.Vertical,
+            Children = { frame }
+        };
+    }
+}

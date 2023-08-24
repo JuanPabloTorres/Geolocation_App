@@ -3,43 +3,41 @@
     x:Class="GeolocationAds.Login"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="Login"
-    BackgroundImageSource="loginbackgroundyellow.jpg"
+    BackgroundImageSource="loginbackgroundyellow2.jpg"
     Routing.Route="Login"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
-    <Grid VerticalOptions="FillAndExpand">
+    <Grid VerticalOptions="CenterAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <!--  Header Section  -->
 
-
         <!--  Form Section  -->
-        <StackLayout
-            Grid.Row="1"
-            Margin="20"
-            HeightRequest="550">
-            <Frame Style="{StaticResource cardLogoFrame}">
-                <StackLayout Spacing="5">
+        <Frame Style="{StaticResource cardLogoFrame}">
+            <StackLayout Grid.Row="1" Margin="10">
 
-                    <Image
-                        Aspect="AspectFit"
-                        HeightRequest="200"
-                        Source="logo01.png"
-                        WidthRequest="200" />
+                <StackLayout>
 
-                    <Entry
+                    <Label
+                        Margin="5"
+                        FontSize="30"
+                        Style="{StaticResource globalLabel}"
+                        Text="Welcome" />
+
+                    <local:CustomEntryContentView
+                        IsPassword="False"
                         Placeholder="Username"
-                        PlaceholderColor="#777777"
                         Text="{Binding Model.Username}" />
-                    <Entry
+
+                    <local:CustomEntryContentView
                         IsPassword="True"
                         Placeholder="Password"
-                        PlaceholderColor="#777777"
                         Text="{Binding Model.Password}" />
 
                     <Button
@@ -47,24 +45,21 @@
                         CommandParameter="{Binding Model}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource globalButton}"
-                        Text="Login" />
-
-
+                        Text="Sign In" />
 
                     <Button
                         BackgroundColor="LightSalmon"
                         Command="{Binding RegisterCommand}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource globalButton}"
-                        Text="Register" />
-
+                        Text="Do you want to sign up?" />
 
                     <ActivityIndicator
                         IsRunning="{Binding IsLoading}"
                         IsVisible="{Binding IsLoading}"
                         Style="{StaticResource globalLoading}" />
                 </StackLayout>
-            </Frame>
-        </StackLayout>
+            </StackLayout>
+        </Frame>
     </Grid>
 </ContentPage>

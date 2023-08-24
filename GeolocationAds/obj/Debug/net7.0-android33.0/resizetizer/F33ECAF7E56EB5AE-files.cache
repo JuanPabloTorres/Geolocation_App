@@ -1,4 +1,8 @@
-﻿obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow.jpg
+﻿obj\Debug\net7.0-android33.0\resizetizer\r\drawable\add.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\home.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\location.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow.jpg
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow2.jpg
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\logo01.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\prototypelogo.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\radar.png

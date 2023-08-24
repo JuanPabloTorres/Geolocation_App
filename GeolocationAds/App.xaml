@@ -12,38 +12,102 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <!--  URLs  -->
             <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
-
             <x:String x:Key="ProdBackendUrl">http://192.168.0.6:5160/api</x:String>
-
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
+            <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="Margin" Value="8" />
             </Style>
 
             <Style x:Key="globalEntry" TargetType="Entry">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="Black" />
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+                <Setter Property="Margin" Value="5" />
             </Style>
 
             <Style x:Key="globalFormContainer" TargetType="StackLayout">
-
-
-
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="Orientation" Value="Vertical" />
-
-
-
             </Style>
+
+            <Style x:Key="globalDescriptionLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+                <Setter Property="LineBreakMode" Value="MiddleTruncation" />
+            </Style>
+
+            <Style x:Key="globalButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="BackgroundColor" Value="#EF9B0F" />
+            </Style>
+
+            <Style x:Key="globalLoading" TargetType="ActivityIndicator">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Color" Value="Red" />
+                <Setter Property="Margin" Value="20" />
+            </Style>
+
+            <!--  Frames  -->
+            <Style x:Key="cardFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+
+
+
+            <Style x:Key="entryFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="#FCD12A" />
+            </Style>
+
+            <Style x:Key="cardLogoFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+
+            <!--  Labels  -->
 
             <Style x:Key="formlLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
@@ -60,32 +124,16 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-
             </Style>
 
-            <Style x:Key="globalDescriptionLabel" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="FontFamily" Value="Arial" />
-                <Setter Property="TextColor" Value="Gray" />
-                <Setter Property="Margin" Value="0,5,0,0" />
-                <Setter Property="LineBreakMode" Value="MiddleTruncation" />
-            </Style>
-
-
-            <Style x:Key="globalButton" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="FontSize" Value="18" />
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="4" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="20" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="20" />
-                <Setter Property="BackgroundColor" Value="#EF9B0F" />
             </Style>
 
+            <!--  Butons,picker and others.  -->
             <Style x:Key="cardButton" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -99,41 +147,6 @@
                 <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
 
-            <Style x:Key="globalLoading" TargetType="ActivityIndicator">
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="Color" Value="Red" />
-                <Setter Property="Margin" Value="20" />
-            </Style>
-
-            <Style x:Key="cardFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#FFFFFF" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="BorderColor" Value="LightGray" />
-                <Setter Property="Margin" Value="15" />
-                <Setter Property="Padding" Value="10" />
-                <Setter Property="HasShadow" Value="True" />
-            </Style>
-
-            <Style x:Key="cardLogoFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#FFFFFF" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="FillAndExpand" />
-
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="BorderColor" Value="LightGray" />
-                <Setter Property="Margin" Value="15" />
-                <Setter Property="Padding" Value="10" />
-                <Setter Property="HasShadow" Value="True" />
-            </Style>
-
-            <Style x:Key="ErrorLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Red" />
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="Margin" Value="4" />
-                <Setter Property="FontAttributes" Value="Bold" />
-            </Style>
-
             <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="#333333" />
@@ -143,18 +156,12 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
-
-
             </Style>
 
-
-
+            <!--  Converters  -->
             <converters:IsEnableConverter x:Key="IsEnableConverter" />
-
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
-
             <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

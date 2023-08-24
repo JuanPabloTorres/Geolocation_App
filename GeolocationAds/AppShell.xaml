@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds"
     xmlns:pages="clr-namespace:GeolocationAds.Pages"
-    Shell.BackgroundColor="Red"
+    Shell.TabBarBackgroundColor="#FCD12A"
     Shell.TabBarIsVisible="False">
 
     <ShellContent
@@ -42,9 +42,18 @@
     </TabBar>-->
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
-        <ShellContent Title="Home" ContentTemplate="{DataTemplate pages:SearchAd}" />
-        <ShellContent Title="Create" ContentTemplate="{DataTemplate pages:CreateAdvertisment}" />
-        <ShellContent Title="Set Location" ContentTemplate="{DataTemplate pages:AdToLocation}" />
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate pages:SearchAd}"
+            Icon="home.png" />
+        <ShellContent
+            Title="Create"
+            ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
+            Icon="add.png" />
+        <ShellContent
+            Title="Set Location"
+            ContentTemplate="{DataTemplate pages:AdToLocation}"
+            Icon="location.png" />
 
     </FlyoutItem>
 </Shell>

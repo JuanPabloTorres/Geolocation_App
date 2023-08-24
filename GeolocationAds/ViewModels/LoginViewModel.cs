@@ -24,6 +24,8 @@ namespace GeolocationAds.ViewModels
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)
         {
+            IsLoading = true;
+
             try
             {
                 var _apiResponse = await this.service.VerifyCredential(credential);
@@ -43,6 +45,8 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
+
+            IsLoading = false;
         }
 
         private async void GoToRegister()
