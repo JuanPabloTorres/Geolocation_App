@@ -6,11 +6,9 @@ namespace ToolsLibrary.TemplateViewModel
 {
     public class TemplateBaseViewModel : INotifyPropertyChanged
     {
-
         protected IAdvertisementService advertisementService { get; set; }
 
         protected IGeolocationAdService geolocationAdService { get; set; }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -25,8 +23,6 @@ namespace ToolsLibrary.TemplateViewModel
 
         public TemplateBaseViewModel()
         {
-
         }
     }
-
 }

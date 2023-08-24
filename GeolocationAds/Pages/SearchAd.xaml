@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <VerticalStackLayout Padding="10" Spacing="10">
+    <VerticalStackLayout>
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
@@ -28,6 +28,8 @@
         <CarouselView
             Margin="10"
             HeightRequest="500"
+            IsBounceEnabled="True"
+            IsScrollAnimated="True"
             IsSwipeEnabled="True"
             ItemsSource="{Binding CollectionModel}">
 

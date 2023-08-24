@@ -1,4 +1,6 @@
-﻿using GeolocationAds.Pages;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using System.Windows.Input;
 using ToolsLibrary.Tools;
@@ -20,6 +22,22 @@ namespace GeolocationAds.ViewModels
             this.Model.Username = "user01";
 
             this.Model.Password = "12345";
+
+
+            WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    this.LogUserPerfilTool.LogUser = null;
+
+                    await Shell.Current.GoToAsync(nameof(Login));
+
+                    // Manually close the flyout
+                    Shell.Current.FlyoutIsPresented = false;
+
+
+                });
+            });
         }
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)

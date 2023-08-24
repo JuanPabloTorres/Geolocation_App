@@ -9,7 +9,7 @@
 
 
 
-    <VerticalStackLayout Padding="10" Spacing="10">
+    <VerticalStackLayout>
         <ActivityIndicator
             IsRunning="{Binding IsLoading}"
             IsVisible="{Binding IsLoading}"
@@ -18,6 +18,8 @@
         <CarouselView
             Margin="10"
             HeightRequest="500"
+            IsBounceEnabled="True"
+            IsScrollAnimated="True"
             IsSwipeEnabled="True"
             ItemsSource="{Binding CollectionModel}">
 
@@ -48,7 +50,7 @@
                                     CommandParameter="{Binding CurrentAdvertisement}"
                                     IsEnabled="{Binding CurrentAdvertisement.IsPosted, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource cardButton}"
-                                    Text="Set To Current Location" />
+                                    Text="Set Current Location" />
 
                                 <Button
                                     Command="{Binding RemoveCommand}"

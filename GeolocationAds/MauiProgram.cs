@@ -44,8 +44,6 @@ public static class MauiProgram
         {
 #if ANDROID
 
-
-
             handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #endif
         });
@@ -60,7 +58,7 @@ public static class MauiProgram
 
         builder.Services.AddTransient<IUserService, UserService>();
 
-        #endregion
+        #endregion Api Service
 
         #region Models
 
@@ -70,7 +68,7 @@ public static class MauiProgram
 
         builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
 
-        #endregion
+        #endregion Models
 
         #region ViewModels
 
@@ -86,7 +84,9 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<RegisterViewModel>();
 
-        #endregion
+        builder.Services.AddSingleton<AppShellViewModel>();
+
+        #endregion ViewModels
 
         #region Pages
 
@@ -100,10 +100,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<Register>();
 
-        #endregion 
-
-
-
+        #endregion Pages
 
         builder.Services.AddSingleton<LogUserPerfilTool>();
 

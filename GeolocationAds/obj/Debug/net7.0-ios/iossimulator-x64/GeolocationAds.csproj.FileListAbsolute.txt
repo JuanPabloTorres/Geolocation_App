@@ -1,4 +1,3 @@
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.iOS.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\GeolocationAds.runtimeconfig.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\GeolocationAds.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\GeolocationAds.pdb
@@ -223,6 +222,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\WindowsBase.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\mscorlib.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\netstandard.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.iOS.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.Maui.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.Maui.Controls.Compatibility.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Microsoft.Maui.Controls.Xaml.dll

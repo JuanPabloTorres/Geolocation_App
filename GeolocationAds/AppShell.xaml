@@ -14,32 +14,6 @@
         Route="login"
         Shell.FlyoutBehavior="Disabled" />
 
-    <!--<TabBar>
-
-    -->
-    <!--  Home Tab  -->
-    <!--
-        <Tab Title="Home">
-            <ShellContent Title="Home" ContentTemplate="{DataTemplate local:SearchAd}" />
-        </Tab>
-
-    -->
-    <!--  Create Ads Tab  -->
-    <!--
-        <Tab Title="Create">
-            <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:CreateAdvertisment}" />
-        </Tab>
-
-        <Tab Title="Your Content">
-
-            <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
-        </Tab>
-
-        <Tab Title="Settings">
-
-            <ShellContent Title="Ads" ContentTemplate="{DataTemplate local:AdToLocation}" />
-        </Tab>
-    </TabBar>-->
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
@@ -56,4 +30,15 @@
             Icon="location.png" />
 
     </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+
+        <StackLayout>
+            <Button
+                Command="{Binding SignOutCommand}"
+                Style="{StaticResource globalButton}"
+                Text="Sign Out" />
+        </StackLayout>
+
+    </Shell.FlyoutFooter>
 </Shell>
