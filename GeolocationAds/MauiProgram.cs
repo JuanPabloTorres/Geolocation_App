@@ -72,19 +72,19 @@ public static class MauiProgram
 
         #region ViewModels
 
-        builder.Services.AddSingleton<CreateAdvertismentViewModel>();
+        builder.Services.AddScoped<CreateAdvertismentViewModel>();
 
-        builder.Services.AddSingleton<AdLocationTemplateViewModel>();
+        builder.Services.AddScoped<AdLocationTemplateViewModel>();
 
-        builder.Services.AddSingleton<AdToLocationViewModel>();
+        builder.Services.AddScoped<AdToLocationViewModel>();
 
-        builder.Services.AddSingleton<SearchAdViewModel>();
+        builder.Services.AddScoped<SearchAdViewModel>();
 
-        builder.Services.AddSingleton<LoginViewModel>();
+        builder.Services.AddScoped<LoginViewModel>();
 
-        builder.Services.AddSingleton<RegisterViewModel>();
+        builder.Services.AddScoped<RegisterViewModel>();
 
-        builder.Services.AddSingleton<AppShellViewModel>();
+        builder.Services.AddScoped<AppShellViewModel>();
 
         #endregion ViewModels
 
