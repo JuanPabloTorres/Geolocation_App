@@ -195,11 +195,11 @@ namespace GeolocationAds.Pages
         {
             if (GeolocationRegistered.Count() > 0 || FoundLocations.Count() > 0)
             {
-                await this.Navigation.PushAsync(new GoogleMapPage(GeolocationRegistered, FoundLocations));
+                //await this.Navigation.PushAsync(new GoogleMapPage(GeolocationRegistered, FoundLocations));
             }
             else
             {
-                await this.Navigation.PushAsync(new GoogleMapPage());
+                //await this.Navigation.PushAsync(new GoogleMapPage());
             }
         }
 

@@ -47,6 +47,9 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("GeolocationAdId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsPosted")
                         .HasColumnType("bit");
 
@@ -64,6 +67,8 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("GeolocationAdId");
 
                     b.HasIndex("UserId");
 
@@ -101,12 +106,13 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AdvertisingId");
+                    b.HasIndex("AdvertisingId")
+                        .IsUnique();
 
                     b.ToTable("GeolocationAds");
                 });
 
-            modelBuilder.Entity("ToolsLibrary.Models.LoginCredential", b =>
+            modelBuilder.Entity("ToolsLibrary.Models.Login", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -121,6 +127,7 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UpdateBy")
@@ -133,9 +140,12 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Logins");
                 });
@@ -155,15 +165,18 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("LoginId")
                         .HasColumnType("int");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UpdateBy")
@@ -181,27 +194,44 @@ namespace GeolocationAdsAPI.Migrations
 
             modelBuilder.Entity("ToolsLibrary.Models.Advertisement", b =>
                 {
+                    b.HasOne("ToolsLibrary.Models.GeolocationAd", "GeolocationAd")
+                        .WithMany()
+                        .HasForeignKey("GeolocationAdId");
+
                     b.HasOne("ToolsLibrary.Models.User", null)
                         .WithMany("Advertisements")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("GeolocationAd");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.GeolocationAd", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
-                        .WithMany()
-                        .HasForeignKey("AdvertisingId")
+                        .WithOne()
+                        .HasForeignKey("ToolsLibrary.Models.GeolocationAd", "AdvertisingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Advertisement");
                 });
 
+            modelBuilder.Entity("ToolsLibrary.Models.Login", b =>
+                {
+                    b.HasOne("ToolsLibrary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ToolsLibrary.Models.User", b =>
                 {
-                    b.HasOne("ToolsLibrary.Models.LoginCredential", "Login")
+                    b.HasOne("ToolsLibrary.Models.Login", "Login")
                         .WithMany()
                         .HasForeignKey("LoginId");
 

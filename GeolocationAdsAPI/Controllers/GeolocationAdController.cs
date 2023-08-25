@@ -12,9 +12,8 @@ namespace GeolocationAdsAPI.Controllers
     [ApiController]
     public class GeolocationAdController : ControllerBase
     {
-        private readonly IGeolocationAdRepository geolocationAdRepository;
-
         private readonly IAdvertisementRepository advertisementRepository;
+        private readonly IGeolocationAdRepository geolocationAdRepository;
 
         public GeolocationAdController(IGeolocationAdRepository geolocationAdRepository, IAdvertisementRepository advertisementRepository)
         {
@@ -39,6 +38,8 @@ namespace GeolocationAdsAPI.Controllers
                 if (response.IsSuccess)
                 {
                     _currentAdToPost.IsPosted = true;
+
+                    _currentAdToPost.GeolocationAdId = response.Data.ID;
 
                     var _adPostedResponse = await this.advertisementRepository.UpdateAsync(_currentAdToPost.ID, _currentAdToPost);
 
@@ -85,6 +86,13 @@ namespace GeolocationAdsAPI.Controllers
 
                         if (meterDistance <= 10)
                         {
+                            item.Advertisement.GeolocationAd = new GeolocationAd()
+                            {
+                                ID = item.ID,
+                                Latitude = item.Latitude,
+                                Longitude = item.Longitude,
+                            };
+
                             _adsNear.Add(item.Advertisement);
                         }
                     }

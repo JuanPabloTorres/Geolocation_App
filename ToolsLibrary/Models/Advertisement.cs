@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToolsLibrary.Models
 {
@@ -19,6 +20,11 @@ namespace ToolsLibrary.Models
         public string Title { get; set; }
 
         public int UserId { get; set; }
+
+        public int? GeolocationAdId { get; set; }
+
+        [ForeignKey("GeolocationAdId")]
+        public GeolocationAd GeolocationAd { get; set; }
 
         public Advertisement()
         {

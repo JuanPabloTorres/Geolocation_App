@@ -6,6 +6,23 @@ namespace ToolsLibrary.TemplateViewModel
 {
     public class TemplateBaseViewModel : INotifyPropertyChanged
     {
+
+        private bool isLoading;
+
+        public bool IsLoading
+        {
+            get => isLoading;
+            set
+            {
+                if (isLoading != value)
+                {
+                    isLoading = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         protected IAdvertisementService advertisementService { get; set; }
 
         protected IGeolocationAdService geolocationAdService { get; set; }

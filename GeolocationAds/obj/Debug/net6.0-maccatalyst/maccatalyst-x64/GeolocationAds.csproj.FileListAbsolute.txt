@@ -283,6 +283,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\logo01.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\prototypelogo.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\radar.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\useravatar.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\mauiimage.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\f\MauiInfo.plist
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\mauifont.stamp
@@ -310,3 +311,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\GeolocationAds.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\GeolocationAds.genruntimeconfig.cache
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\ref\GeolocationAds.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\maps.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\profile.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\settings.png

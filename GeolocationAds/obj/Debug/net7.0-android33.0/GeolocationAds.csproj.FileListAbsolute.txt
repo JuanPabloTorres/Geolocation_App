@@ -1,3 +1,5 @@
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\api\internal\SignInConnectionListenerImplementor.java
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\typemaps.x86_64.ll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.runtimeconfig.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.pdb
@@ -43,6 +45,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\logo01.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\prototypelogo.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\radar.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\useravatar.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\mipmap-hdpi\appicon.png
@@ -539,7 +542,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Xamarin.Kotlin.StdLib.Jdk8.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Xamarin.KotlinX.Coroutines.Android.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Xamarin.KotlinX.Coroutines.Core.Jvm.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\typemaps.x86_64.ll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\AndroidManifest.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\AndroidManifest.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\__environment__.txt
@@ -1016,7 +1018,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\bumptech\glide\request\RequestListenerImplementor.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\api\internal\BackgroundDetector_BackgroundStateChangeListenerImplementor.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\api\internal\OnConnectionFailedListenerImplementor.java
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\api\internal\SignInConnectionListenerImplementor.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\api\PendingResult_StatusListenerImplementor.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\images\ImageManager_OnImageLoadedListenerImplementor.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\gms\common\moduleinstall\InstallStatusListenerImplementor.java
@@ -1096,3 +1097,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GenerateJavaStubs.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\maps.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\profile.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\settings.png

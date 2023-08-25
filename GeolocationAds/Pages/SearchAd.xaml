@@ -28,7 +28,6 @@
         <CarouselView
             Margin="10"
             HeightRequest="500"
-            IsBounceEnabled="True"
             IsScrollAnimated="True"
             IsSwipeEnabled="True"
             ItemsSource="{Binding CollectionModel}">
@@ -44,18 +43,30 @@
 
                 <DataTemplate>
                     <Frame Style="{StaticResource cardFrame}">
-                        <StackLayout Spacing="5">
-                            <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+                        <StackLayout>
 
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="300"
-                                Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                                WidthRequest="300" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+
+                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+
+                            </StackLayout>
+
+                            <Frame Style="{StaticResource imageFrame}">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="300"
+                                    IsAnimationPlaying="True"
+                                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                    WidthRequest="300" />
+                            </Frame>
 
                             <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
 
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                VerticalOptions="FillAndExpand">
                                 <Button Style="{StaticResource cardButton}" Text="More Detail" />
 
                                 <Button Style="{StaticResource cardButton}" Text="To Favorite" />
@@ -64,8 +75,6 @@
                     </Frame>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
-
-
 
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />

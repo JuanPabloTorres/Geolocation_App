@@ -31,11 +31,8 @@
                 <Label Style="{StaticResource globalLabel}" Text="Title:" />
                 <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />
 
-
-
                 <Label Style="{StaticResource globalLabel}" Text="Description:" />
                 <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
-
 
                 <Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
                 <local:CustomDatePickerContentView SelectedDate="{Binding Model.ExpirationDate}" />
@@ -57,11 +54,7 @@
                 </Button>
 
                 <!--  Selected Image or Video  -->
-                <Frame
-                    CornerRadius="10"
-                    HasShadow="True"
-                    HeightRequest="300"
-                    WidthRequest="300">
+                <Frame Style="{StaticResource imageFrame}">
                     <Image
                         Aspect="AspectFill"
                         HeightRequest="300"

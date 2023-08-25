@@ -44,40 +44,53 @@ namespace ToolsLibrary.TemplateViewModel
 
         private async Task CreateAdToLocation(Advertisement ad)
         {
-            var locationReponse = await GeolocationTool.GetLocation();
+            this.IsLoading = true;
 
-            if (locationReponse.IsSuccess)
+            try
             {
-                GeolocationAd newAd = new GeolocationAd()
+                var locationReponse = await GeolocationTool.GetLocation();
+
+                if (locationReponse.IsSuccess)
                 {
-                    AdvertisingId = ad.ID,
-                    Advertisement = ad,
-                    CreateDate = DateTime.Now,
-                    Latitude = locationReponse.Data.Latitude,
-                    Longitude = locationReponse.Data.Longitude
-                };
+                    GeolocationAd newAd = new GeolocationAd()
+                    {
+                        AdvertisingId = ad.ID,
+                        Advertisement = ad,
+                        CreateDate = DateTime.Now,
+                        Latitude = locationReponse.Data.Latitude,
+                        Longitude = locationReponse.Data.Longitude
+                    };
 
-                var _apiResponse = await this.geolocationAdService.Add(newAd);
+                    var _apiResponse = await this.geolocationAdService.Add(newAd);
 
-                if (_apiResponse.IsSuccess)
-                {
-                    this.CurrentAdvertisement = _apiResponse.Data.Advertisement;
+                    if (_apiResponse.IsSuccess)
+                    {
+                        this.CurrentAdvertisement = _apiResponse.Data.Advertisement;
 
-                    await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    }
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
+
+            this.IsLoading = false;
         }
 
         private async Task RemoveContent(Advertisement ad)
         {
+            this.IsLoading = true;
+
             var locationReponse = await GeolocationTool.GetLocation();
 
             if (locationReponse.IsSuccess)
@@ -99,6 +112,8 @@ namespace ToolsLibrary.TemplateViewModel
             {
                 await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
             }
+
+            this.IsLoading = false;
         }
 
         private async void SetLocationYesOrNoAlert(Advertisement selectAd)

@@ -7,8 +7,6 @@
     Title="Set Location To Content"
     Routing.Route="AdToLocation">
 
-
-
     <VerticalStackLayout>
         <ActivityIndicator
             IsRunning="{Binding IsLoading}"
@@ -33,31 +31,61 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Frame Style="{StaticResource cardFrame}">
-                        <StackLayout Spacing="5">
-                            <Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />
+                        <StackLayout>
 
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="300"
-                                Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                                WidthRequest="300" />
+                            <StackLayout Orientation="Horizontal">
 
-                            <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding CurrentAdvertisement.Description}" />
+                                <Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />
 
-                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <!--<Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />-->
+
+                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                            </StackLayout>
+
+                            <!--<Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />-->
+
+                            <Frame Style="{StaticResource imageFrame}">
+
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="300"
+                                    IsAnimationPlaying="True"
+                                    Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                    WidthRequest="300" />
+                            </Frame>
+
+                            <StackLayout
+                                Margin="5"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal">
                                 <Button
                                     Command="{Binding SetLocationCommand}"
                                     CommandParameter="{Binding CurrentAdvertisement}"
                                     IsEnabled="{Binding CurrentAdvertisement.IsPosted, Converter={StaticResource IsEnableConverter}}"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource cardButton}"
                                     Text="Set Current Location" />
 
                                 <Button
                                     Command="{Binding RemoveCommand}"
                                     CommandParameter="{Binding CurrentAdvertisement}"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource cardButton}"
-                                    Text="Remove" />
+                                    Text="Detail" />
+
+                                <Button
+                                    BackgroundColor="Red"
+                                    Command="{Binding RemoveCommand}"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource cardButton}"
+                                    Text="Delete" />
                             </StackLayout>
+
+                            <ActivityIndicator
+                                IsRunning="{Binding IsLoading}"
+                                IsVisible="{Binding IsLoading}"
+                                Style="{StaticResource globalLoading}" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
@@ -68,7 +96,7 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <StackLayout>
+        <StackLayout Margin="5" HorizontalOptions="EndAndExpand">
             <Label Style="{StaticResource globalLabel}" Text="{Binding CollectionModel.Count, StringFormat='Total Items: {0}'}" />
         </StackLayout>
 
@@ -76,7 +104,7 @@
             Command="{Binding SearchCommand}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
-            Text="My Content">
+            Text="Get My Content">
 
             <Button.Shadow>
                 <Shadow

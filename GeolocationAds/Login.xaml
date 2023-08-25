@@ -13,53 +13,53 @@
     <Grid VerticalOptions="CenterAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+
         </Grid.RowDefinitions>
 
         <!--  Header Section  -->
 
         <!--  Form Section  -->
-        <Frame Style="{StaticResource cardLogoFrame}">
-            <StackLayout Grid.Row="1" Margin="10">
+        <Frame Grid.Row="1" Style="{StaticResource cardLogoFrame}">
 
-                <StackLayout>
 
-                    <Label
-                        Margin="5"
-                        FontSize="30"
-                        Style="{StaticResource globalLabel}"
-                        Text="Welcome" />
+            <StackLayout>
 
-                    <local:CustomEntryContentView
-                        IsPassword="False"
-                        Placeholder="Username"
-                        Text="{Binding Model.Username}" />
+                <Label
+                    Margin="5"
+                    FontSize="30"
+                    Style="{StaticResource globalTitle}"
+                    Text="Welcome" />
 
-                    <local:CustomEntryContentView
-                        IsPassword="True"
-                        Placeholder="Password"
-                        Text="{Binding Model.Password}" />
+                <local:CustomEntryContentView
+                    IsPassword="False"
+                    Placeholder="Username"
+                    Text="{Binding Model.Username}" />
 
-                    <Button
-                        Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding Model}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource globalButton}"
-                        Text="Sign In" />
+                <local:CustomEntryContentView
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Text="{Binding Model.Password}" />
 
-                    <Button
-                        BackgroundColor="LightSalmon"
-                        Command="{Binding RegisterCommand}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource globalButton}"
-                        Text="Do you want to sign up?" />
+                <Button
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding Model}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Sign In" />
 
-                    <ActivityIndicator
-                        IsRunning="{Binding IsLoading}"
-                        IsVisible="{Binding IsLoading}"
-                        Style="{StaticResource globalLoading}" />
-                </StackLayout>
+                <Button
+                    BackgroundColor="LightSalmon"
+                    Command="{Binding RegisterCommand}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Do you want to sign up?" />
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsLoading}"
+                    IsVisible="{Binding IsLoading}"
+                    Style="{StaticResource globalLoading}" />
             </StackLayout>
+
         </Frame>
     </Grid>
 </ContentPage>

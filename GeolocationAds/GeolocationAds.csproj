@@ -59,8 +59,12 @@
 	  <None Remove="Resources\Images\LoginBackGroundYellow.jpg" />
 	  <None Remove="Resources\Images\loginbackgroundyellow2.jpg" />
 	  <None Remove="Resources\Images\logo01.png" />
+	  <None Remove="Resources\Images\maps.png" />
+	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\prototypeLogo.png" />
 	  <None Remove="Resources\Images\radar.png" />
+	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\useravatar.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -106,6 +110,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchAd.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\UserSetting.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

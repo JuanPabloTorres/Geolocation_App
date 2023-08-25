@@ -284,15 +284,18 @@ namespace GeolocationAds.ViewModels
 
                 foreach (var item in _propertyIntances)
                 {
-                    var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
+                    if (!item.IsObjectNull())
+                    {
+                        var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
 
-                    var validationContextSubProperty = new ValidationContext(item);
+                        var validationContextSubProperty = new ValidationContext(item);
 
-                    this.ValidationContexts.Add(validationContextSubProperty);
+                        this.ValidationContexts.Add(validationContextSubProperty);
 
-                    _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
+                        _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
 
-                    this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
+                        this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
+                    }
                 }
 
                 if (_validatedSubProperty.Count >= 0)

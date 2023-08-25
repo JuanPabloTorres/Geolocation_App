@@ -30,13 +30,40 @@
             ContentTemplate="{DataTemplate pages:AdToLocation}"
             Icon="location.png" />
 
+        <ShellContent
+            Title="Map"
+            ContentTemplate="{DataTemplate pages:GoogleMapPage}"
+            Icon="maps.png" />
+
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate pages:UserSetting}"
+            Icon="profile.png" />
+
     </FlyoutItem>
 
 
     <Shell.FlyoutHeader>
         <!--  Custom navigation header  -->
-        <StackLayout>
-            <Label Style="{StaticResource globalLabel}" Text="{Binding UserName, Mode=TwoWay}" />
+        <StackLayout Orientation="Horizontal">
+            <Frame
+                Margin="5"
+                CornerRadius="50"
+                HeightRequest="80"
+                HorizontalOptions="Start"
+                WidthRequest="80">
+
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="80"
+                    Source="useravatar.png"
+                    WidthRequest="80" />
+            </Frame>
+
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource globalTitle}"
+                Text="{Binding UserName, Mode=TwoWay}" />
         </StackLayout>
     </Shell.FlyoutHeader>
 

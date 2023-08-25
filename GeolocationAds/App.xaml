@@ -19,14 +19,34 @@
 
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+
+            <Style x:Key="globalTitle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Margin" Value="8" />
             </Style>
+            <Style x:Key="globalsubTitle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+
 
             <Style x:Key="globalEntry" TargetType="Entry">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
@@ -46,11 +66,11 @@
 
             <Style x:Key="globalDescriptionLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="FontSize" Value="16" />
+
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="Arial" />
                 <Setter Property="TextColor" Value="Gray" />
-                <Setter Property="Margin" Value="0,5,0,0" />
+                <Setter Property="Margin" Value="5" />
                 <Setter Property="LineBreakMode" Value="MiddleTruncation" />
             </Style>
 
@@ -60,9 +80,9 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="10" />
+                <Setter Property="Margin" Value="15" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="CornerRadius" Value="30" />
                 <Setter Property="BackgroundColor" Value="#EF9B0F" />
             </Style>
 
@@ -75,19 +95,33 @@
 
             <!--  Frames  -->
             <Style x:Key="cardFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="BorderColor" Value="#e6cc00" />
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
             </Style>
 
+            <Style x:Key="imageFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="BorderColor" Value="White" />
+
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="HeightRequest" Value="300" />
+                <Setter Property="WidthRequest" Value="300" />
+            </Style>
+
+
+
+
+
 
 
             <Style x:Key="entryFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White" />
-                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="CornerRadius" Value="12" />
                 <Setter Property="BorderColor" Value="LightGray" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="Padding" Value="5" />
@@ -101,7 +135,7 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
 
                 <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="BorderColor" Value="#FCD12A" />
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
@@ -128,8 +162,8 @@
 
             <Style x:Key="ErrorLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="Red" />
-                <Setter Property="FontSize" Value="14" />
                 <Setter Property="Margin" Value="4" />
+                <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 

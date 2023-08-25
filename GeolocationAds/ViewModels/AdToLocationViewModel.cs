@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
-using System.Collections.ObjectModel;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
@@ -11,29 +10,11 @@ namespace GeolocationAds.ViewModels
 {
     public partial class AdToLocationViewModel : BaseViewModel2<AdLocationTemplateViewModel, IGeolocationAdService>
     {
-        private ObservableCollection<AdLocationTemplateViewModel> _advertisements;
-
-        public ObservableCollection<AdLocationTemplateViewModel> Advertisements
-        {
-            get => _advertisements;
-            set
-            {
-                if (_advertisements != value)
-                {
-                    _advertisements = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private IAdvertisementService advertisementService { get; set; }
 
         public AdToLocationViewModel(AdLocationTemplateViewModel adLocationTemplateViewModel, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, LogUserPerfilTool logUserPerfilTool) : base(adLocationTemplateViewModel, geolocationAdService, logUserPerfilTool)
         {
             this.advertisementService = advertisementService;
-
-            this.Advertisements = new ObservableCollection<AdLocationTemplateViewModel>();
 
             this.SearchCommand = new Command(Initialize);
 
@@ -41,9 +22,9 @@ namespace GeolocationAds.ViewModels
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    var _toRemoveAdContent = Advertisements.Where(v => v.CurrentAdvertisement.ID == m.Value.ID).FirstOrDefault();
+                    var _toRemoveAdContent = this.CollectionModel.Where(v => v.CurrentAdvertisement.ID == m.Value.ID).FirstOrDefault();
 
-                    Advertisements.Remove(_toRemoveAdContent);
+                    this.CollectionModel.Remove(_toRemoveAdContent);
                 });
             });
 
@@ -52,8 +33,6 @@ namespace GeolocationAds.ViewModels
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     this.CollectionModel.Clear();
-
-
                 });
             });
         }

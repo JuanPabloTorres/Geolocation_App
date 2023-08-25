@@ -1,6 +1,7 @@
 ﻿using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
+using Microsoft.Maui.Controls.Maps;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 using ToolsLibrary.Tools;
@@ -64,6 +65,8 @@ public static class MauiProgram
 
         builder.Services.AddTransient<User>();
 
+        builder.Services.AddTransient<Pin>();
+
         builder.Services.AddTransient<ToolsLibrary.Models.Login>();
 
         builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
@@ -86,6 +89,8 @@ public static class MauiProgram
 
         builder.Services.AddScoped<AppShellViewModel>();
 
+        builder.Services.AddScoped<GoogleMapViewModel>();
+
         #endregion ViewModels
 
         #region Pages
@@ -100,10 +105,18 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<Register>();
 
+        builder.Services.AddSingleton<GoogleMapPage>();
+
+        builder.Services.AddSingleton<UserSetting>();
+
         #endregion Pages
+
+        #region Tools
 
         builder.Services.AddSingleton<LogUserPerfilTool>();
 
+
+        #endregion
         return builder.Build();
     }
 }
