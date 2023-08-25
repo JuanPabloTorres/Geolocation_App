@@ -11,10 +11,10 @@ namespace GeolocationAds.ViewModels
     {
         public IList<Pin> FoundLocations = new List<Pin>();
 
+        const int DISTANCE_METER = 1000;
+
         public GoogleMapViewModel(Pin model, IGeolocationAdService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
-            //Task.Run(async () => { await LoadData(); });
-
         }
 
         protected override async Task LoadData()
@@ -25,8 +25,7 @@ namespace GeolocationAds.ViewModels
             {
                 var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
 
-                var _apiResponse = await this.service.FindAdNear(_currentLocation);
-
+                var _apiResponse = await this.service.FindAdNear(_currentLocation, DISTANCE_METER.ToString());
                 this.CollectionModel.Clear();
 
                 if (_apiResponse.IsSuccess)

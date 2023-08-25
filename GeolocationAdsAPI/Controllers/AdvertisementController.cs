@@ -103,5 +103,26 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
+
+        [HttpPost("[action]/{Id}")]
+        public async Task<IActionResult> Add(Advertisement advertisement, int Id)
+        {
+            ResponseTool<Advertisement> response;
+
+            try
+            {
+                response = await this.advertisementRepository.UpdateAsync(Id, advertisement);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -61,6 +62,8 @@ namespace GeolocationAds.ViewModels
         private void SetDefault()
         {
             this.Image = new Image();
+
+            this.GetImageSourceFromFile();
 
             this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
         }
@@ -174,5 +177,19 @@ namespace GeolocationAds.ViewModels
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
+
+        private async void GetImageSourceFromFile()
+        {
+
+            var _fileName = "mediacontent.png";
+
+            this.Image.Source = ImageSource.FromFile(_fileName);
+
+            var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(_fileName);
+
+            this.Model.Content = _defaulMedia;
+        }
+
+
     }
 }

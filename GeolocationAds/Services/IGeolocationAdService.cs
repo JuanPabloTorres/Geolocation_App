@@ -5,6 +5,6 @@ namespace GeolocationAds.Services
 {
     public interface IGeolocationAdService : IBaseService<GeolocationAd>
     {
-        Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear(CurrentLocation currentLocation);
+        Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear(CurrentLocation currentLocation, string distance);
     }
 }

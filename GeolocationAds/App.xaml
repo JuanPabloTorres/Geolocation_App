@@ -13,8 +13,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--  URLs  -->
-            <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
-            <x:String x:Key="ProdBackendUrl">http://192.168.0.6:5160/api</x:String>
+            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
+            <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <!--  Global  -->
@@ -37,6 +37,7 @@
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Margin" Value="8" />
             </Style>
+
             <Style x:Key="globalsubTitle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -47,7 +48,6 @@
                 <Setter Property="Margin" Value="8" />
             </Style>
 
-
             <Style x:Key="globalEntry" TargetType="Entry">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -56,6 +56,16 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <Style x:Key="globalPicker" TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Margin" Value="5" />
             </Style>
 
@@ -112,12 +122,6 @@
                 <Setter Property="HeightRequest" Value="300" />
                 <Setter Property="WidthRequest" Value="300" />
             </Style>
-
-
-
-
-
-
 
             <Style x:Key="entryFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White" />
@@ -194,8 +198,11 @@
 
             <!--  Converters  -->
             <converters:IsEnableConverter x:Key="IsEnableConverter" />
+
             <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+
             <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

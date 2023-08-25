@@ -25,6 +25,8 @@ public static class MauiProgram
                 fonts.AddFont("Roboto-Light.ttf", "Roboto");
 
                 fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
+
+                fonts.AddFont("Sunshine.ttf", "Sunshine");
             }).UseMauiMaps();
 
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
@@ -49,6 +51,14 @@ public static class MauiProgram
 #endif
         });
 
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Picker), (handler, view) =>
+        {
+#if ANDROID
+
+            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+#endif
+        });
+
         #region Api Service
 
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
@@ -58,6 +68,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ILoginService, LoginService>();
 
         builder.Services.AddTransient<IUserService, UserService>();
+
+        builder.Services.AddTransient<IAppSettingService, AppSettingService>();
 
         #endregion Api Service
 

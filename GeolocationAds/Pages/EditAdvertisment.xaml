@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.EditAdvertisment"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    Title="EditAdvertisment">
+    <ScrollView>
+        <Frame Style="{StaticResource cardFrame}">
+
+            <StackLayout Padding="20">
+
+                <CollectionView ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label
+                    Margin="5"
+                    FontSize="30"
+                    Style="{StaticResource globalLabel}"
+                    Text="Update Content" />
+
+                <StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Style="{StaticResource globalLabel}" Text="{Binding Model.GeolocationAd.Latitude, StringFormat='Lat:{0}'}" />
+
+                        <Label Style="{StaticResource globalLabel}" Text="{Binding Model.GeolocationAd.Longitude, StringFormat='Lon:{0}'}" />
+
+                    </StackLayout>
+
+
+                </StackLayout>
+
+                <Label Style="{StaticResource globalLabel}" Text="Title:" />
+                <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />
+
+                <Label Style="{StaticResource globalLabel}" Text="Description:" />
+                <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
+
+                <Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
+                <local:CustomDatePickerContentView SelectedDate="{Binding Model.ExpirationDate}" />
+
+                <!--  ... Choose File ...  -->
+                <Button
+                    x:Name="UploadButton"
+                    Command="{Binding OnUploadCommandExecutedCommand}"
+                    Style="{StaticResource globalButton}"
+                    Text="Choose Image">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+                </Button>
+
+                <!--  Selected Image or Video  -->
+                <Frame Style="{StaticResource imageFrame}">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="300"
+                        IsAnimationPlaying="{Binding IsAnimation}"
+                        Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                        WidthRequest="300" />
+                </Frame>
+
+                <!--  Submit Button  -->
+                <Button
+                    x:Name="SubmitButton"
+                    Command="{Binding SubmitCommand}"
+                    CommandParameter="{Binding Model}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Save">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+                </Button>
+
+                <ContentView
+                    x:Name="LoadingIndicatorContainer"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="FillAndExpand">
+                    <ContentView.Content>
+                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                    </ContentView.Content>
+                </ContentView>
+            </StackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>

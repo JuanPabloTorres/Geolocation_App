@@ -40,6 +40,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.Creat
 build_metadata.AdditionalFiles.TargetPath = Pages\CreateAdvertisement.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\CreateAdvertisement.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/EditAdvertisment.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditAdvertisment.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EditAdvertisment.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EditAdvertisment.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/GoogleMapPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.GoogleMapPage.xaml

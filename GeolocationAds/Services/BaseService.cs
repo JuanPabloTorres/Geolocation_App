@@ -34,6 +34,9 @@ namespace GeolocationAds.Services
             var backendUrl = Application.Current.Resources[_httpResourceName] as string;
 
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);
+
+            // Other HttpClient configurations can be done here if needed
+            _httpClient.Timeout = TimeSpan.FromSeconds(30);
         }
 
         public BaseService(string apiSuffix)
@@ -106,9 +109,41 @@ namespace GeolocationAds.Services
             }
         }
 
-        public Task<ResponseTool<T>> Get(int Id)
+        public async Task<ResponseTool<T>> Get(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // Build the full API endpoint URL for the specific resource
+                var apiUrl = $"{this.BaseApiUri}/{nameof(Get)}/{Id}";
+
+                // Send the GET request to the API
+                var response = await _httpClient.GetAsync(apiUrl);
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read the response content and deserialize it to the appropriate type T
+                    var responseJson = await response.Content.ReadAsStringAsync();
+
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<T>>(responseJson);
+
+                    return responseData;
+                }
+                else
+                {
+                    // Build a fail response with the error message from the API
+                    var failResponse = ResponseFactory<T>.BuildFail("Failed to get data.", null);
+
+                    return failResponse;
+                }
+            }
+            catch (Exception ex)
+            {
+                // If an exception occurs, build a fail response with the error message
+                var failResponse = ResponseFactory<T>.BuildFail($"An error occurred: {ex.Message}", null);
+
+                return failResponse;
+            }
         }
 
         public async Task<ResponseTool<IEnumerable<T>>> GetAll()

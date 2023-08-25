@@ -25,6 +25,8 @@ builder.Services.AddTransient<ILoginRespository, LoginRepository>();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 
+builder.Services.AddTransient<IAppSettingRepository, AppSettingRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

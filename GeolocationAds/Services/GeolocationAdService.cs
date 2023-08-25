@@ -21,7 +21,7 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear(CurrentLocation currentLocation)
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear(CurrentLocation currentLocation, string distance)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace GeolocationAds.Services
                 var apiUrl = APIPrefix + ApiSuffix;
 
                 // Send the POST request to the API
-                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdNear)}", content);
+                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdNear)}/{distance}", content);
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)

@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     Title="Are You Look For Something?"
     Routing.Route="SearchAd">
 
@@ -81,8 +82,12 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <!--  Submit Button  -->
 
+
+        <Label Style="{StaticResource globalLabel}" Text="Distance In Meter:" />
+        <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
+
+        <!--  Submit Button  -->
         <Button
             x:Name="SearchAdButton"
             Command="{Binding SearchCommand}"

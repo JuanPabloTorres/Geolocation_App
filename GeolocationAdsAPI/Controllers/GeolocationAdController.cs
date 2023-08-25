@@ -67,8 +67,8 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> FindAdNear(CurrentLocation currentLocation)
+        [HttpPost("[action]/{distance}")]
+        public async Task<IActionResult> FindAdNear(CurrentLocation currentLocation, int distance)
         {
             ResponseTool<IEnumerable<Advertisement>> response;
 
@@ -84,7 +84,7 @@ namespace GeolocationAdsAPI.Controllers
                     {
                         double meterDistance = GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, item.Latitude, item.Longitude);
 
-                        if (meterDistance <= 10)
+                        if (meterDistance <= distance)
                         {
                             item.Advertisement.GeolocationAd = new GeolocationAd()
                             {

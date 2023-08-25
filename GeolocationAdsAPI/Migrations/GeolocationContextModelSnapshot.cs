@@ -75,6 +75,69 @@ namespace GeolocationAdsAPI.Migrations
                     b.ToTable("Advertisements");
                 });
 
+            modelBuilder.Entity("ToolsLibrary.Models.AppSetting", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CreateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SettingName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UpdateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "10"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "20"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "30"
+                        });
+                });
+
             modelBuilder.Entity("ToolsLibrary.Models.GeolocationAd", b =>
                 {
                     b.Property<int>("ID")

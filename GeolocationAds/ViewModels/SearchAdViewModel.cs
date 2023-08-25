@@ -2,6 +2,8 @@
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using GeolocationAds.Tools;
+using System.Collections.ObjectModel;
+using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 
@@ -9,9 +11,49 @@ namespace GeolocationAds.ViewModels
 {
     public partial class SearchAdViewModel : BaseViewModel2<Advertisement, IGeolocationAdService>
     {
-        public SearchAdViewModel(Advertisement advertisement, IGeolocationAdService geolocationAdService) : base(advertisement, geolocationAdService)
+        private IAppSettingService appSettingService;
+
+        private ObservableCollection<string> _distanceSettings;
+
+        public ObservableCollection<string> DistanceSettings
         {
+            get => _distanceSettings;
+            set
+            {
+                if (_distanceSettings != value)
+                {
+                    _distanceSettings = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _selectedDistance;
+
+        public string SelectedDistance
+        {
+            get => _selectedDistance;
+            set
+            {
+                if (_selectedDistance != value)
+                {
+                    _selectedDistance = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public SearchAdViewModel(Advertisement advertisement, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService) : base(advertisement, geolocationAdService)
+        {
+            this.appSettingService = appSettingService;
+
+            this.DistanceSettings = new ObservableCollection<string>();
+
             this.SearchCommand = new Command(Initialize);
+
+            Task.Run(async () => { await this.LoadSetting(); });
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -22,11 +64,32 @@ namespace GeolocationAds.ViewModels
             });
         }
 
+        private async Task LoadSetting()
+        {
+            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingsEnums.SettingName.ToString());
+
+            this.CollectionModel.Clear();
+
+            if (_apiResponse.IsSuccess)
+            {
+                foreach (var item in _apiResponse.Data)
+                {
+                    DistanceSettings.Add(item.Value);
+                }
+
+                SelectedDistance = DistanceSettings.FirstOrDefault();
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+            }
+        }
+
         protected override async Task LoadData(object extraData)
         {
             var currentLocation = extraData as CurrentLocation;
 
-            var _apiResponse = await this.service.FindAdNear(currentLocation);
+            var _apiResponse = await this.service.FindAdNear(currentLocation, SelectedDistance);
 
             this.CollectionModel.Clear();
 
