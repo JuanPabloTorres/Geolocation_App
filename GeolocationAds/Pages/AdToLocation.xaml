@@ -67,8 +67,8 @@
                                     Text="Set Current Location" />
 
                                 <Button
-                                    Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    Command="{Binding onNavigate}"
+                                    CommandParameter="{Binding CurrentAdvertisement.ID}"
                                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource cardButton}"
                                     Text="Detail" />

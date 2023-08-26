@@ -70,7 +70,7 @@
                         Aspect="AspectFill"
                         HeightRequest="300"
                         IsAnimationPlaying="{Binding IsAnimation}"
-                        Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                        Source="{Binding Model.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
                         WidthRequest="300" />
                 </Frame>
 

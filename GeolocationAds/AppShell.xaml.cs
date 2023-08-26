@@ -13,6 +13,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(Login), typeof(Login));
 
+        Routing.RegisterRoute(nameof(EditAdvertisment), typeof(EditAdvertisment));
+
         BindingContext = appShellViewModel;
     }
 

@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -26,6 +27,34 @@ namespace GeolocationAdsAPI.Controllers
             try
             {
                 response = await this.advertisementRepository.CreateAsync(advertisement);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            ResponseTool<Advertisement> response;
+
+            try
+            {
+                Expression<Func<Advertisement, object>>[] includes = { e => e.GeolocationAd };
+
+                response = await this.advertisementRepository.Get(id, includes);
+
+                if (!response.Data.GeolocationAd.IsObjectNull())
+                {
+                    var _geolocation = ModelFactory<GeolocationAd>.Build(response.Data.GeolocationAd);
+
+                    response.Data.GeolocationAd = new GeolocationAd(_geolocation);
+                }
 
                 return Ok(response);
             }
@@ -105,7 +134,7 @@ namespace GeolocationAdsAPI.Controllers
         }
 
         [HttpPost("[action]/{Id}")]
-        public async Task<IActionResult> Add(Advertisement advertisement, int Id)
+        public async Task<IActionResult> Update(Advertisement advertisement, int Id)
         {
             ResponseTool<Advertisement> response;
 
@@ -122,7 +151,5 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
-
-
     }
 }

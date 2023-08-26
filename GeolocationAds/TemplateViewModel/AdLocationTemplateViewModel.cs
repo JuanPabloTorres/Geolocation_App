@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
+using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.Tools;
 using System.Windows.Input;
@@ -22,6 +23,8 @@ namespace ToolsLibrary.TemplateViewModel
             SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
 
             RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
+
+            this.onNavigate = new Command<int>(Navigate);
         }
 
         public Advertisement CurrentAdvertisement
@@ -41,6 +44,8 @@ namespace ToolsLibrary.TemplateViewModel
         public ICommand SetLocationCommand { get; set; }
 
         public ICommand RemoveCommand { get; set; }
+
+        public ICommand onNavigate { get; set; }
 
         private async Task CreateAdToLocation(Advertisement ad)
         {
@@ -140,6 +145,13 @@ namespace ToolsLibrary.TemplateViewModel
                     await this.RemoveContent(selectAd);
                 }
             }
+        }
+
+        private async void Navigate(int id)
+        {
+            var navigationParameter = new Dictionary<string, object> { { "ID", id } };
+
+            await Shell.Current.GoToAsync(nameof(EditAdvertisment), navigationParameter);
         }
     }
 }

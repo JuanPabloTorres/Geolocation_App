@@ -103,6 +103,8 @@ public static class MauiProgram
 
         builder.Services.AddScoped<GoogleMapViewModel>();
 
+        builder.Services.AddScoped<EditAdvertismentViewModel>();
+
         #endregion ViewModels
 
         #region Pages
@@ -120,6 +122,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<GoogleMapPage>();
 
         builder.Services.AddSingleton<UserSetting>();
+
+        builder.Services.AddSingleton<EditAdvertisment>();
 
         #endregion Pages
 

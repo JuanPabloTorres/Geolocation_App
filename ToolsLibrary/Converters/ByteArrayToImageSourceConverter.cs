@@ -6,12 +6,12 @@ namespace ToolsLibrary.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is byte[] byteArray)
+            if (value is byte[] byteArray && byteArray.Length > 0)
             {
                 return ImageSource.FromStream(() => new MemoryStream(byteArray));
             }
 
-            return Colors.Transparent;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

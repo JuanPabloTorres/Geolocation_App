@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -13,7 +14,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class BaseViewModel2<T, S> : INotifyPropertyChanged
+    public partial class BaseViewModel2<T, S> : INotifyPropertyChanged, IQueryAttributable
     {
         private ObservableCollection<ValidationResult> _validationResults;
 
@@ -120,6 +121,21 @@ namespace GeolocationAds.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        public string ID { get; private set; }
+
+        public async void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            if (query.ContainsKey("ID"))
+            {
+                ID = query["ID"].ToString();
+
+                if (!ID.IsNullOrEmpty() && Convert.ToInt32(this.ID) > 0)
+                {
+                    await this.Get(Convert.ToInt32(ID));
+                }
+            }
+        }
 
         public async void OnSubmit(T obj)
         {
@@ -404,6 +420,46 @@ namespace GeolocationAds.ViewModels
             try
             {
                 await Shell.Current.DisplayAlert("Error", "To Load Data Logic...", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+            this.IsLoading = false;
+        }
+
+        protected virtual async Task Get(int id)
+        {
+            this.IsLoading = true;
+
+            try
+            {
+                MethodInfo addMethod = this.service.GetType().GetMethod(nameof(Get));
+
+                if (addMethod != null)
+                {
+                    // Parameters to pass to the "Add" method
+                    object[] parameters = new object[] { id };
+
+                    // Call the "Add" method on the userService instance
+                    Task<ResponseTool<T>> addTask = Task.Run(async () =>
+                    {
+                        return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
+                    });
+
+                    // Wait for the asynchronous task to complete
+                    ResponseTool<T> _apiResponse = await addTask;
+
+                    if (_apiResponse.IsSuccess)
+                    {
+                        this.Model = _apiResponse.Data;
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    }
+                }
             }
             catch (Exception ex)
             {

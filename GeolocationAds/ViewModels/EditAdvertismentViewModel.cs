@@ -8,7 +8,6 @@ namespace GeolocationAds.ViewModels
 {
     public partial class EditAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
     {
-
         private Image _image;
 
         public Image Image
@@ -43,10 +42,16 @@ namespace GeolocationAds.ViewModels
                 }
             }
         }
+
         public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
         }
 
+
+        void SetCurrentImage()
+        {
+            Image.Source = ImageSource.FromStream(() => new MemoryStream(this.Model.Content));
+        }
         private void SetDefault()
         {
             this.Image = new Image();
@@ -168,7 +173,6 @@ namespace GeolocationAds.ViewModels
 
         private async void GetImageSourceFromFile()
         {
-
             var _fileName = "mediacontent.png";
 
             this.Image.Source = ImageSource.FromFile(_fileName);

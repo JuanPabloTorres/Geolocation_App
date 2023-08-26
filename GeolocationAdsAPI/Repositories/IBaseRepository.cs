@@ -1,4 +1,5 @@
-﻿using ToolsLibrary.Tools;
+﻿using System.Linq.Expressions;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAdsAPI.Repositories
 {
@@ -7,6 +8,8 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<T>> CreateAsync(T entity);
 
         Task<ResponseTool<T>> Get(int id);
+
+        Task<ResponseTool<T>> Get(int id, params Expression<Func<T, object>>[] includes);
 
         Task<ResponseTool<IEnumerable<T>>> GetAllAsync();
 
