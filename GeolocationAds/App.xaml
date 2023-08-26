@@ -203,6 +203,8 @@
 
             <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
 
+            <converters:SubstringConverter x:Key="SubstringConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

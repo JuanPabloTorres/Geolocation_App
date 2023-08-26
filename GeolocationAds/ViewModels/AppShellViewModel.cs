@@ -26,6 +26,23 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        public string _avatar;
+
+        public string Avatar
+        {
+            get => _avatar;
+
+            set
+            {
+                if (_avatar != value)
+                {
+                    _avatar = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public User user { get; set; }
 
         public AppShellViewModel()
@@ -37,6 +54,18 @@ namespace GeolocationAds.ViewModels
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     this.UserName = m.Value;
+
+                    this.Avatar = this.UserName.FirstOrDefault().ToString();
+                });
+            });
+
+            WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    this.UserName = m.Value.FullName;
+
+                    this.Avatar = this.UserName.FirstOrDefault().ToString();
                 });
             });
         }

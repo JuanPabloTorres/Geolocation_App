@@ -1,4 +1,6 @@
-﻿using GeolocationAds.Pages;
+﻿
+using CommunityToolkit.Maui;
+using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
 using Microsoft.Maui.Controls.Maps;
@@ -16,6 +18,7 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

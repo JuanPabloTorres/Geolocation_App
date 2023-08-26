@@ -19,16 +19,5 @@ namespace ToolsLibrary.Models
         public Login()
         {
         }
-
-        //public Login(Login login)
-        //{
-        //    this.ID = login.ID;
-
-        //    this.CreateDate = login.CreateDate;
-
-        //    this.Username = login.Username;
-
-        //    this.Password = login.Password;
-        //}
     }
 }

@@ -4,6 +4,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\GeolocationAds.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Azure.Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Azure.Identity.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\CommunityToolkit.Maui.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\CommunityToolkit.Maui.Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\CommunityToolkit.Mvvm.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\GoogleMapsApi.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-ios\iossimulator-x64\Humanizer.dll

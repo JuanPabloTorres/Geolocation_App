@@ -13,16 +13,16 @@
     <SourceRoot Include="C:\Users\Juan Pablo Torres\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
-  <ImportGroup Condition=" '$(TargetFramework)' == 'net6.0-maccatalyst' AND '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props')" />
-  </ImportGroup>
   <ImportGroup Condition=" '$(TargetFramework)' == 'net7.0-android33.0' AND '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)xamarin.build.download\0.11.3\buildTransitive\Xamarin.Build.Download.props" Condition="Exists('$(NuGetPackageRoot)xamarin.build.download\0.11.3\buildTransitive\Xamarin.Build.Download.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>
   <ImportGroup Condition=" '$(TargetFramework)' == 'net7.0-ios' AND '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props')" />
+  </ImportGroup>
+  <ImportGroup Condition=" '$(TargetFramework)' == 'net7.0-maccatalyst' AND '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.5\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.5\build\net6.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>

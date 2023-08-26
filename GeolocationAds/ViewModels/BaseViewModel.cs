@@ -1,12 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class BaseViewModel : ObservableObject
+    public partial class BaseViewModel : INotifyPropertyChanged
     {
-        [ObservableProperty]
-        protected bool isLoading;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-
+        public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

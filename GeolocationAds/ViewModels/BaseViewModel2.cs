@@ -486,6 +486,8 @@ namespace GeolocationAds.ViewModels
 
                             if (_apiResponse.IsSuccess)
                             {
+                                WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
+
                                 await Shell.Current.Navigation.PopToRootAsync();
 
                                 await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");

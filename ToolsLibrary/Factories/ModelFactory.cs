@@ -2,7 +2,6 @@
 {
     public static class ModelFactory<T>
     {
-
         public static T Build(T model)
         {
             var _newModel = Activator.CreateInstance<T>();
@@ -34,6 +33,5 @@
 
             return _newModel;
         }
-
     }
 }
