@@ -82,6 +82,8 @@ namespace GeolocationAds.ViewModels
 
         public ICommand SubmitCommand { get; set; }
 
+        public ICommand SubmitUpdateCommand { get; set; }
+
         public ICommand SearchCommand { get; set; }
 
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
@@ -115,6 +117,8 @@ namespace GeolocationAds.ViewModels
 
             SubmitCommand = new Command<T>(OnSubmit2);
 
+            SubmitUpdateCommand = new Command<T>(OnSubmitUpdate);
+
             this.LogUserPerfilTool = logUserPerfil;
         }
 
@@ -133,6 +137,8 @@ namespace GeolocationAds.ViewModels
                 if (!ID.IsNullOrEmpty() && Convert.ToInt32(this.ID) > 0)
                 {
                     await this.Get(Convert.ToInt32(ID));
+
+                    WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
                 }
             }
         }
@@ -413,6 +419,136 @@ namespace GeolocationAds.ViewModels
             IsLoading = false;
         }
 
+        public async void OnSubmitUpdate(T obj)
+        {
+            IsLoading = true;
+
+            try
+            {
+                ValidationResults.Clear();
+
+                DateTime now = DateTime.Now;
+
+                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
+
+                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
+
+                var validationContextCurrentType = new ValidationContext(obj);
+
+                var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
+
+                PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
+
+                var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
+
+                var _validatedSubProperty = new List<bool>();
+
+                foreach (var item in _propertyIntances)
+                {
+                    if (!item.IsObjectNull())
+                    {
+                        var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
+
+                        var validationContextSubProperty = new ValidationContext(item);
+
+                        this.ValidationContexts.Add(validationContextSubProperty);
+
+                        _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
+
+                        this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
+                    }
+                }
+
+                if (_validatedSubProperty.Count >= 0)
+                {
+                    bool _allSubPropetyValueAreValid = _validatedSubProperty.All(v => v == true);
+
+                    if (isValiteObj && _allSubPropetyValueAreValid)
+                    {
+                        MethodInfo updateMethod = this.service.GetType().GetMethod("Update");
+
+                        if (updateMethod != null)
+                        {
+                            // Parameters to pass to the "Add" method
+
+                            var _id = obj.GetType().GetProperties().Where(p => p.Name == "ID").FirstOrDefault().GetValue(obj);
+
+                            object[] parameters = new object[] { obj, _id };
+
+                            // Call the "Add" method on the userService instance
+                            Task<ResponseTool<T>> updateTask = Task.Run(async () =>
+                            {
+                                return await (Task<ResponseTool<T>>)updateMethod.Invoke(this.service, parameters);
+                            });
+
+                            // Wait for the asynchronous task to complete
+                            ResponseTool<T> _apiResponse = await updateTask;
+
+                            if (_apiResponse.IsSuccess)
+                            {
+                                await Shell.Current.Navigation.PopToRootAsync();
+
+                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                            }
+                            else
+                            {
+                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (isValiteObj)
+                    {
+                        MethodInfo addMethod = this.service.GetType().GetMethod("Add");
+
+                        if (addMethod != null)
+                        {
+                            // Parameters to pass to the "Add" method
+                            object[] parameters = new object[] { obj };
+
+                            // Call the "Add" method on the userService instance
+                            Task<ResponseTool<T>> addTask = Task.Run(async () =>
+                            {
+                                return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
+                            });
+
+                            // Wait for the asynchronous task to complete
+                            ResponseTool<T> _apiResponse = await addTask;
+
+                            if (_apiResponse.IsSuccess)
+                            {
+                                if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
+                                {
+                                    Activator.CreateInstance<T>();
+                                }
+                                else
+                                {
+                                    // Handle cases where T doesn't have a parameterless constructor
+                                    throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
+                                }
+
+                                //this.Image.Source = null;
+
+                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                            }
+                            else
+                            {
+                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+            IsLoading = false;
+        }
+
         protected virtual async Task LoadData()
         {
             this.IsLoading = true;
@@ -431,25 +567,23 @@ namespace GeolocationAds.ViewModels
 
         protected virtual async Task Get(int id)
         {
-            this.IsLoading = true;
-
             try
             {
-                MethodInfo addMethod = this.service.GetType().GetMethod(nameof(Get));
+                MethodInfo getMethod = this.service.GetType().GetMethod(nameof(Get));
 
-                if (addMethod != null)
+                if (getMethod != null)
                 {
                     // Parameters to pass to the "Add" method
                     object[] parameters = new object[] { id };
 
                     // Call the "Add" method on the userService instance
-                    Task<ResponseTool<T>> addTask = Task.Run(async () =>
+                    Task<ResponseTool<T>> getTask = Task.Run(async () =>
                     {
-                        return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
+                        return await (Task<ResponseTool<T>>)getMethod.Invoke(this.service, parameters);
                     });
 
                     // Wait for the asynchronous task to complete
-                    ResponseTool<T> _apiResponse = await addTask;
+                    ResponseTool<T> _apiResponse = await getTask;
 
                     if (_apiResponse.IsSuccess)
                     {
@@ -465,8 +599,6 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-
-            this.IsLoading = false;
         }
 
         protected virtual async Task LoadData(object extraData)

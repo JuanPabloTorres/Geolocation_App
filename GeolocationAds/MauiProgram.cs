@@ -105,6 +105,10 @@ public static class MauiProgram
 
         builder.Services.AddScoped<EditAdvertismentViewModel>();
 
+        builder.Services.AddScoped<UserSettingViewModel>();
+
+        builder.Services.AddScoped<EditUserPerfilViewModel>();
+
         #endregion ViewModels
 
         #region Pages
@@ -124,6 +128,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<UserSetting>();
 
         builder.Services.AddSingleton<EditAdvertisment>();
+
+        builder.Services.AddSingleton<EditUserPerfil>();
 
         #endregion Pages
 

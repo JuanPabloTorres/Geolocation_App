@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.EditUserPerfil"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    Title="EditUserPerfil">
+    <ScrollView IsClippedToBounds="True" Orientation="Vertical">
+        <Frame Style="{StaticResource cardFrame}">
+
+            <VerticalStackLayout Margin="10">
+
+                <Label
+                    FontSize="30"
+                    Style="{StaticResource globalLabel}"
+                    Text="Update Registration" />
+
+                <CollectionView ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Style="{StaticResource globalLabel}" Text="FullName:" />
+                <local:CustomEntryContentView Placeholder="FullName" Text="{Binding Model.FullName}" />
+
+                <Label Style="{StaticResource globalLabel}" Text="Phone:" />
+                <local:CustomEntryContentView Placeholder="Phone" Text="{Binding Model.Phone}" />
+
+                <Label Style="{StaticResource globalLabel}" Text="Email:" />
+                <local:CustomEntryContentView Placeholder="Email" Text="{Binding Model.Email}" />
+
+                <Label Style="{StaticResource globalLabel}" Text="Username:" />
+                <local:CustomEntryContentView Placeholder="Username" Text="{Binding Model.Login.Username}" />
+
+                <Label Style="{StaticResource globalLabel}" Text="Passowrd:" />
+                <local:CustomEntryContentView
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Text="{Binding Model.Login.Password}" />
+
+                <!--  Submit Button  -->
+                <Button
+                    x:Name="SubmitButton"
+                    Command="{Binding SubmitUpdateCommand}"
+                    CommandParameter="{Binding Model}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Complete">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.5"
+                            Radius="40"
+                            Offset="5,5" />
+                    </Button.Shadow>
+                </Button>
+
+                <ContentView
+                    x:Name="LoadingIndicatorContainer"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="FillAndExpand">
+                    <ContentView.Content>
+                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                    </ContentView.Content>
+                </ContentView>
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>

@@ -133,7 +133,7 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpPost("[action]/{Id}")]
+        [HttpPut("[action]/{Id}")]
         public async Task<IActionResult> Update(Advertisement advertisement, int Id)
         {
             ResponseTool<Advertisement> response;

@@ -1,9 +1,13 @@
+using GeolocationAds.ViewModels;
+
 namespace GeolocationAds.Pages;
 
 public partial class UserSetting : ContentPage
 {
-	public UserSetting()
-	{
-		InitializeComponent();
-	}
+    public UserSetting(UserSettingViewModel userSettingViewModel)
+    {
+        InitializeComponent();
+
+        BindingContext = userSettingViewModel;
+    }
 }

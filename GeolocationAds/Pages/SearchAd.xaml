@@ -82,10 +82,15 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
+        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
 
+            <Label
+                HorizontalOptions="Start"
+                Style="{StaticResource globalLabel}"
+                Text="Distance In Meter:" />
+            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}"/>
+        </StackLayout>
 
-        <Label Style="{StaticResource globalLabel}" Text="Distance In Meter:" />
-        <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
 
         <!--  Submit Button  -->
         <Button

@@ -1,4 +1,5 @@
-﻿using GeolocationAds.AppTools;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
 using ToolsLibrary.Models;
@@ -45,20 +46,22 @@ namespace GeolocationAds.ViewModels
 
         public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
-        }
-
-
-        void SetCurrentImage()
-        {
-            Image.Source = ImageSource.FromStream(() => new MemoryStream(this.Model.Content));
-        }
-        private void SetDefault()
-        {
             this.Image = new Image();
 
-            this.GetImageSourceFromFile();
+            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    SetCurrentImage();
+                });
+            });
+        }
 
-            this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
+        private void SetCurrentImage()
+        {
+            this.IsAnimation = true;
+
+            Image.Source = ImageSource.FromStream(() => new MemoryStream(this.Model.Content));
         }
 
         [ICommand]
@@ -136,7 +139,7 @@ namespace GeolocationAds.ViewModels
 
                         Image.Source = ImageSource.FromStream(() => new MemoryStream(fileBytes));
 
-                        Image.IsAnimationPlaying = true;
+                        //Image.IsAnimationPlaying = true;
 
                         IsAnimation = true;
 
@@ -169,17 +172,6 @@ namespace GeolocationAds.ViewModels
 
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-        }
-
-        private async void GetImageSourceFromFile()
-        {
-            var _fileName = "mediacontent.png";
-
-            this.Image.Source = ImageSource.FromFile(_fileName);
-
-            var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(_fileName);
-
-            this.Model.Content = _defaulMedia;
         }
     }
 }

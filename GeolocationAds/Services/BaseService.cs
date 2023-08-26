@@ -182,6 +182,7 @@ namespace GeolocationAds.Services
         public HttpClientHandler GetInsecureHandler()
         {
             HttpClientHandler handler = new HttpClientHandler();
+
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
             {
                 if (cert.Issuer.Equals("CN=localhost"))
@@ -228,9 +229,46 @@ namespace GeolocationAds.Services
             }
         }
 
-        public Task<ResponseTool<T>> Update(T data, int currentId)
+        public async Task<ResponseTool<T>> Update(T data, int currentId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // Convert the data object to JSON
+                var json = JsonConvert.SerializeObject(data);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Build the full API endpoint URL for the specific resource and ID
+                var apiUrl = $"{this.BaseApiUri}/{nameof(Update)}/{currentId}";
+
+                // Send the PUT request to the API
+                var response = await _httpClient.PutAsync(apiUrl, content);
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read the response content and deserialize it to the appropriate type T
+                    var responseJson = await response.Content.ReadAsStringAsync();
+
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<T>>(responseJson);
+
+                    return responseData;
+                }
+                else
+                {
+                    // Build a fail response with the error message from the API
+                    var failResponse = ResponseFactory<T>.BuildFail("Failed to update.", null);
+
+                    return failResponse;
+                }
+            }
+            catch (Exception ex)
+            {
+                // If an exception occurs, build a fail response with the error message
+                var failResponse = ResponseFactory<T>.BuildFail($"An error occurred: {ex.Message}", null);
+
+                return failResponse;
+            }
         }
     }
 }

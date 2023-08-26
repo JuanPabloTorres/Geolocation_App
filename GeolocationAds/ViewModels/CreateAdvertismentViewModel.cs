@@ -183,7 +183,7 @@ namespace GeolocationAds.ViewModels
 
             var _fileName = "mediacontent.png";
 
-            this.Image.Source = ImageSource.FromFile(_fileName);
+            this.Image.Source = ImageSource.FromResource($"GeolocationAds.Resources.Images.{_fileName}");
 
             var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(_fileName);
 

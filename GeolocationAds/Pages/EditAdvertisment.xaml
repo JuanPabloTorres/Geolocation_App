@@ -70,14 +70,14 @@
                         Aspect="AspectFill"
                         HeightRequest="300"
                         IsAnimationPlaying="{Binding IsAnimation}"
-                        Source="{Binding Model.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                        Source="{Binding Image.Source, Mode=TwoWay}"
                         WidthRequest="300" />
                 </Frame>
 
                 <!--  Submit Button  -->
                 <Button
                     x:Name="SubmitButton"
-                    Command="{Binding SubmitCommand}"
+                    Command="{Binding SubmitUpdateCommand}"
                     CommandParameter="{Binding Model}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"

@@ -16,5 +16,19 @@ namespace ToolsLibrary.Models
         [ForeignKey("UserId")]
         public User User { get; set; }
 
+        public Login()
+        {
+        }
+
+        //public Login(Login login)
+        //{
+        //    this.ID = login.ID;
+
+        //    this.CreateDate = login.CreateDate;
+
+        //    this.Username = login.Username;
+
+        //    this.Password = login.Password;
+        //}
     }
 }

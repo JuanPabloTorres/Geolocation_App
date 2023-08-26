@@ -59,7 +59,7 @@
                         Aspect="AspectFill"
                         HeightRequest="300"
                         IsAnimationPlaying="{Binding IsAnimation}"
-                        Source="{Binding Image.Source}"
+                        Source="{Binding Image.Source, Mode=TwoWay}"
                         WidthRequest="300" />
                 </Frame>
 

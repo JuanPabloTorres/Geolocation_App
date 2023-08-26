@@ -3,12 +3,30 @@
     x:Class="GeolocationAds.Pages.UserSetting"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="UserSetting"
     Routing.Route="UserSetting">
+
     <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+
+        <!--  Submit Button  -->
+        <Button
+            x:Name="SearchAdButton"
+            Command="{Binding onNavigate}"
+            CommandParameter="{Binding Model.ID}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Update Perfil">
+
+            <Button.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="40"
+                    Offset="5,5" />
+            </Button.Shadow>
+        </Button>
+
     </VerticalStackLayout>
+
 </ContentPage>
