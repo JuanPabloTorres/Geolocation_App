@@ -50,6 +50,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditA
 build_metadata.AdditionalFiles.TargetPath = Pages\EditAdvertisment.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\EditAdvertisment.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/EditLoginCredential.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditLoginCredential.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EditLoginCredential.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EditLoginCredential.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/EditUserPerfil.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditUserPerfil.xaml
@@ -85,6 +91,12 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.UserSetting.xaml
 build_metadata.AdditionalFiles.TargetPath = Pages\UserSetting.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\UserSetting.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/RecoveryPasswordPopUp.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.RecoveryPasswordPopUp.xaml
+build_metadata.AdditionalFiles.TargetPath = PopUps\RecoveryPasswordPopUp.xaml
+build_metadata.AdditionalFiles.RelativePath = PopUps\RecoveryPasswordPopUp.xaml
 
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

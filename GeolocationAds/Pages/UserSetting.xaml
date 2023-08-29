@@ -4,15 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
-    Title="UserSetting"
+    Title="App Setting"
     Routing.Route="UserSetting">
 
-    <VerticalStackLayout>
+    <VerticalStackLayout VerticalOptions="FillAndExpand">
+        <Label Style="{StaticResource globalTitle}" Text="App Setting" />
 
-        <!--  Submit Button  -->
         <Button
-            x:Name="SearchAdButton"
-            Command="{Binding onNavigate}"
+            Command="{Binding onNavigateEditPerfilCommand}"
             CommandParameter="{Binding Model.ID}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
@@ -27,6 +26,20 @@
             </Button.Shadow>
         </Button>
 
-    </VerticalStackLayout>
+        <Button
+            Command="{Binding onNavigateEditLoginCommand}"
+            CommandParameter="{Binding Model.Login.ID}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Update Credential">
 
+            <Button.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="40"
+                    Offset="5,5" />
+            </Button.Shadow>
+        </Button>
+    </VerticalStackLayout>
 </ContentPage>

@@ -8,14 +8,23 @@
     Title="Content Around Map"
     Routing.Route="Map">
 
-    <StackLayout>
+    <StackLayout x:Name="mapContainer">
+
+        <ContentView
+            x:Name="LoadingIndicatorContainer"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="FillAndExpand">
+            <ContentView.Content>
+                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+            </ContentView.Content>
+        </ContentView>
 
         <maps:Map
             x:Name="googleMap"
             IsScrollEnabled="True"
             IsShowingUser="True"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             IsZoomEnabled="True"
-            ItemsSource="{Binding CollectionModel, Mode=TwoWay}"
-            MapType="Hybrid" />
+            MapType="Street" />
     </StackLayout>
 </ContentPage>

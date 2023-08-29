@@ -17,6 +17,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(EditUserPerfil), typeof(EditUserPerfil));
 
+        Routing.RegisterRoute(nameof(EditLoginCredential), typeof(EditLoginCredential));
+
         BindingContext = appShellViewModel;
     }
 

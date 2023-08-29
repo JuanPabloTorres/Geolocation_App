@@ -1,6 +1,6 @@
-﻿
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 using GeolocationAds.Pages;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
 using Microsoft.Maui.Controls.Maps;
@@ -74,6 +74,8 @@ public static class MauiProgram
 
         builder.Services.AddTransient<IAppSettingService, AppSettingService>();
 
+        builder.Services.AddTransient<IForgotPasswordService, ForgotPasswordService>();
+
         #endregion Api Service
 
         #region Models
@@ -112,6 +114,10 @@ public static class MauiProgram
 
         builder.Services.AddScoped<EditUserPerfilViewModel>();
 
+        builder.Services.AddScoped<EditLoginCredentialViewModel>();
+
+        builder.Services.AddScoped<RecoveryPasswordViewModel>();
+
         #endregion ViewModels
 
         #region Pages
@@ -134,14 +140,18 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<EditUserPerfil>();
 
+        builder.Services.AddSingleton<EditLoginCredential>();
+
+        builder.Services.AddSingleton<RecoveryPasswordPopUp>();
+
         #endregion Pages
 
         #region Tools
 
         builder.Services.AddSingleton<LogUserPerfilTool>();
 
+        #endregion Tools
 
-        #endregion
         return builder.Build();
     }
 }

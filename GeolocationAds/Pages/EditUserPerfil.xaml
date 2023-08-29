@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
-    Title="EditUserPerfil">
+    Title="Update Profile">
     <ScrollView IsClippedToBounds="True" Orientation="Vertical">
         <Frame Style="{StaticResource cardFrame}">
 
@@ -34,14 +34,14 @@
                 <Label Style="{StaticResource globalLabel}" Text="Email:" />
                 <local:CustomEntryContentView Placeholder="Email" Text="{Binding Model.Email}" />
 
-                <Label Style="{StaticResource globalLabel}" Text="Username:" />
+                <!--<Label Style="{StaticResource globalLabel}" Text="Username:" />
                 <local:CustomEntryContentView Placeholder="Username" Text="{Binding Model.Login.Username}" />
 
                 <Label Style="{StaticResource globalLabel}" Text="Passowrd:" />
                 <local:CustomEntryContentView
                     IsPassword="True"
                     Placeholder="Password"
-                    Text="{Binding Model.Login.Password}" />
+                    Text="{Binding Model.Login.Password}" />-->
 
                 <!--  Submit Button  -->
                 <Button

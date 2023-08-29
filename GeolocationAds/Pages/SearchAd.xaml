@@ -8,12 +8,12 @@
     Title="Are You Look For Something?"
     Routing.Route="SearchAd">
 
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
             <local:IsEnableConverter x:Key="IsEnableConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <VerticalStackLayout>
 
@@ -82,13 +82,15 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+        <StackLayout
+            Margin="5"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Orientation="Horizontal">
 
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="Distance In Meter:" />
-            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}"/>
+            <Label Style="{StaticResource globalLabel}" Text="Distance To Find: (M)" />
+            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
+
         </StackLayout>
 
 

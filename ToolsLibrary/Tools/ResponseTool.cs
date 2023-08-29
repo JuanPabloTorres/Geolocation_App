@@ -25,7 +25,9 @@
         Default,
         Fail,
         DataFound,
-        EntityNotFound
+        EntityNotFound,
+        Succesfully
+
 
     }
 }

@@ -27,6 +27,8 @@ builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.AddTransient<IAppSettingRepository, AppSettingRepository>();
 
+builder.Services.AddTransient<IForgotPasswordRepository, ForgotPasswordRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

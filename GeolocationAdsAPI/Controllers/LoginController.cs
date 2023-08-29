@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAdsAPI.Controllers
 {
@@ -14,6 +15,44 @@ namespace GeolocationAdsAPI.Controllers
         public LoginController(ILoginRespository loginRespository)
         {
             this.loginRespository = loginRespository;
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            ResponseTool<Login> response;
+
+            try
+            {
+                response = await this.loginRespository.Get(id);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<Login>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
+        [HttpPut("[action]/{Id}")]
+        public async Task<IActionResult> Update(Login login, int Id)
+        {
+            ResponseTool<Login> response;
+
+            try
+            {
+                response = await this.loginRespository.UpdateAsync(Id, login);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<Login>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
         }
 
         [HttpPost("[action]")]

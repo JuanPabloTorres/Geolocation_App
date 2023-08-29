@@ -16,6 +16,8 @@ namespace GeolocationAdsAPI.Context
 
         public DbSet<AppSetting> Settings { get; set; }
 
+        public DbSet<ForgotPassword> ForgotPasswords { get; set; }
+
         public GeolocationContext(DbContextOptions<GeolocationContext> options) : base(options)
         {
 

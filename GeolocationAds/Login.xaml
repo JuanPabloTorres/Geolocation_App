@@ -57,7 +57,7 @@
 
                 <Button
                     BackgroundColor="Transparent"
-                    Command="{Binding RegisterCommand}"
+                    Command="{Binding ForgotPasswordCommand}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Forgot Password?"

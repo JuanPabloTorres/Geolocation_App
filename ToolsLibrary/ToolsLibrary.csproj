@@ -26,4 +26,9 @@
 	  <None Remove="TemplateViewModels\**" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	  <PackageReference Include="MimeKit" Version="4.1.0" />
+	</ItemGroup>
+
 </Project>

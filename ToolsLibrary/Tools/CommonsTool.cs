@@ -1,9 +1,31 @@
-﻿using System.Reflection;
+﻿using Microsoft.Extensions.Configuration;
+using System.Net;
+using System.Net.Mail;
+using System.Reflection;
+using ToolsLibrary.Models;
 
 namespace ToolsLibrary.Tools
 {
     public static class CommonsTool
     {
+        public static string GenerateRandomCode(int length)
+        {
+            string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            Random random = new Random();
+
+            char[] code = new char[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(characters.Length);
+
+                code[i] = characters[index];
+            }
+
+            return new string(code);
+        }
+
         public static async Task<byte[]> GetFileBytesAsync(FileResult fileResult)
         {
             if (fileResult != null)
@@ -22,7 +44,6 @@ namespace ToolsLibrary.Tools
 
         public static async Task<byte[]> ImageSourceToByteArrayAsync()
         {
-
             var assem = Assembly.GetExecutingAssembly();
 
             using var stream = assem.GetManifestResourceStream("GeolocationAds.Resources.Images.mediacontent.png");
@@ -61,6 +82,36 @@ namespace ToolsLibrary.Tools
             {
                 throw new ArgumentException("Unsupported ImageSource type.");
             }
+        }
+
+        public static async Task SendEmailAsync(EmailRequest emailRequest, IConfiguration configuration)
+        {
+            var _port = int.Parse(configuration["Smtp:Port"]);
+
+            var smtpClient = new SmtpClient(configuration["Smtp:Server"])
+            {
+                Port = _port,
+                Credentials = new NetworkCredential(configuration["Smtp:Username"], configuration["Smtp:Password"]),
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+            };
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(configuration["Smtp:Username"], "Geolocation App"),
+
+                Subject = emailRequest.Subject,
+
+                Body = emailRequest.Body,
+
+                IsBodyHtml = true,
+
+            };
+
+            mailMessage.To.Add(emailRequest.To);
+
+            await smtpClient.SendMailAsync(mailMessage);
         }
     }
 }

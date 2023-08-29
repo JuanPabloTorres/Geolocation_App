@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.Pages;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using System.Windows.Input;
 using ToolsLibrary.Tools;
@@ -13,16 +15,23 @@ namespace GeolocationAds.ViewModels
 
         public ICommand RegisterCommand { get; set; }
 
-        public LoginViewModel(ToolsLibrary.Models.Login login, ILoginService service, LogUserPerfilTool logUserPerfil) : base(login, service, logUserPerfil)
+        public ICommand ForgotPasswordCommand { get; set; }
+
+        public RecoveryPasswordViewModel RecoveryPasswordViewModel;
+
+        public LoginViewModel(ToolsLibrary.Models.Login login, ILoginService service, LogUserPerfilTool logUserPerfil, IForgotPasswordService forgotPasswordService, RecoveryPasswordViewModel recoveryPasswordViewModel) : base(login, service, logUserPerfil)
         {
             LoginCommand = new Command<ToolsLibrary.Models.Login>(VerifyCredential);
 
             RegisterCommand = new Command(GoToRegister);
 
+            ForgotPasswordCommand = new Command(OpenRecoveryPopUp);
+
+            this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
+
             this.Model.Username = "user01";
 
             this.Model.Password = "12345";
-
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -34,10 +43,22 @@ namespace GeolocationAds.ViewModels
 
                     // Manually close the flyout
                     Shell.Current.FlyoutIsPresented = false;
-
-
                 });
             });
+        }
+
+        private async void OpenRecoveryPopUp()
+        {
+            var passwordRecoveryPage = new RecoveryPasswordPopUp(this.RecoveryPasswordViewModel);
+
+            await Application.Current.MainPage.ShowPopupAsync(passwordRecoveryPage);
+
+            //await new TaskFactory().StartNew(() => { Thread.Sleep(5000); });
+            //p.Close();
+
+            //this.ShowPopUp()
+
+            //await Shell.Current.CurrentPage.ShowPopupAsync(passwordRecoveryPage);
         }
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)

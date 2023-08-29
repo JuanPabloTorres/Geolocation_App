@@ -1,4 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
+using Microsoft.EntityFrameworkCore;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -30,6 +32,33 @@ namespace GeolocationAdsAPI.Repositories
             catch (Exception ex)
             {
                 response = ResponseFactory<Login>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return response;
+            }
+        }
+
+        public async Task<ResponseTool<User>> GetUserByEmail(string email)
+        {
+            ResponseTool<User> response;
+
+            try
+            {
+                var _user = await _context.Users.Where(v => v.Email == email).FirstOrDefaultAsync();
+
+                if (!_user.IsObjectNull())
+                {
+                    response = ResponseFactory<User>.BuildSusccess("Entity Found successfully.", _user, ToolsLibrary.Tools.Type.Added);
+                }
+                else
+                {
+                    response = ResponseFactory<User>.BuildFail("Entity Not Found.", null, ToolsLibrary.Tools.Type.NotFound);
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
                 return response;
             }

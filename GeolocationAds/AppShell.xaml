@@ -17,7 +17,7 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
-            Title="Home"
+            Title="Find"
             ContentTemplate="{DataTemplate pages:SearchAd}"
             Icon="home.png" />
         <ShellContent
@@ -25,7 +25,7 @@
             ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
             Icon="add.png" />
         <ShellContent
-            Title="Set Location"
+            Title="See My Content"
             ContentTemplate="{DataTemplate pages:AdToLocation}"
             Icon="location.png" />
 
@@ -46,14 +46,20 @@
             <Frame
                 Margin="5"
                 CornerRadius="50"
-                HeightRequest="80"
+                HeightRequest="70"
                 HorizontalOptions="Start"
-                WidthRequest="80">
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="70">
 
                 <toolkit:AvatarView
+                    BackgroundColor="Green"
                     FontAttributes="Bold"
                     FontSize="Large"
-                    Text="{Binding Avatar}" />
+                    HeightRequest="90"
+                    Text="{Binding Avatar}"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="90" />
             </Frame>
 
             <Label

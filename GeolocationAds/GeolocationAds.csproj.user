@@ -20,6 +20,9 @@
     <MauiXaml Update="Pages\EditAdvertisment.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Pages\EditLoginCredential.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Pages\EditUserPerfil.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
@@ -39,6 +42,9 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Pages\UserSetting.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="PopUps\RecoveryPasswordPopUp.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>
