@@ -1,4 +1,3 @@
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\com\companyname\geolocationads\R.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\Resources\Images\mediacontent.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.runtimeconfig.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.dll
@@ -149,6 +148,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resolvedassemblies.hash
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Azure.Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Azure.Identity.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\BouncyCastle.Cryptography.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\CommunityToolkit.Maui.Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\CommunityToolkit.Maui.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\CommunityToolkit.Mvvm.dll
@@ -159,6 +159,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\GoogleMapsApi.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Java.Interop.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Java.Interop.pdb
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MailKit.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MailKit.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Microsoft.AspNetCore.Hosting.Abstractions.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Microsoft.AspNetCore.Http.Abstractions.dll
@@ -215,6 +217,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Microsoft.VisualBasic.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Microsoft.Win32.Primitives.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Microsoft.Win32.Registry.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MimeKit.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MimeKit.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Mono.Android.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Mono.Android.Export.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\Mono.Android.Export.pdb
@@ -275,6 +279,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.FileSystem.Watcher.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.IsolatedStorage.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.MemoryMappedFiles.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.Pipelines.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.Pipes.AccessControl.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.Pipes.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.UnmanagedMemoryStream.dll
@@ -347,6 +352,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.Encoding.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.OpenSsl.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.Pkcs.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.Primitives.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.X509Certificates.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.dll
@@ -1093,6 +1099,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\com\google\android\material\textfield\TextInputLayout_OnEndIconChangedListenerImplementor.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\mono\MonoPackageManager_Resources.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\bin\packaged_resources
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\src\com\companyname\geolocationads\R.java
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\compressed_assemblies.x86_64.ll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\typemaps.x86_64.o
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\environment.x86_64.o
@@ -1109,10 +1116,5 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GenerateJavaStubs.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\BouncyCastle.Cryptography.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MailKit.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MailKit.pdb
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MimeKit.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\MimeKit.pdb
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.IO.Pipelines.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\assets\System.Security.Cryptography.Pkcs.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\star.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\moreinformation.png

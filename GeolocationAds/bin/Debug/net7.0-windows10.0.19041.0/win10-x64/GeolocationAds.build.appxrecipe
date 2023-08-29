@@ -1891,6 +1891,9 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\maps.scale-100.png">
       <PackagePath>maps.scale-100.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\moreinformation.scale-100.png">
+      <PackagePath>moreinformation.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\profile.scale-100.png">
       <PackagePath>profile.scale-100.png</PackagePath>
     </AppxPackagedFile>
@@ -1902,6 +1905,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\settings.scale-100.png">
       <PackagePath>settings.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\star.scale-100.png">
+      <PackagePath>star.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\useravatar.scale-100.png">
       <PackagePath>useravatar.scale-100.png</PackagePath>

@@ -29,7 +29,7 @@ namespace GeolocationAds.ViewModels
 
             this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
 
-            this.Model.Username = "user01";
+            this.Model.Username = "Log01";
 
             this.Model.Password = "12345";
 

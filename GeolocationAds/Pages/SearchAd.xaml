@@ -50,7 +50,6 @@
                                 <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
 
                                 <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
-
                             </StackLayout>
 
                             <Frame Style="{StaticResource imageFrame}">
@@ -70,7 +69,7 @@
                                 VerticalOptions="FillAndExpand">
                                 <Button Style="{StaticResource cardButton}" Text="More Detail" />
 
-                                <Button Style="{StaticResource cardButton}" Text="To Favorite" />
+                                <Button Style="{StaticResource cardButton}" Text="☆ To Favorite" />
                             </StackLayout>
                         </StackLayout>
                     </Frame>
@@ -84,15 +83,15 @@
 
         <StackLayout
             Margin="5"
-            HorizontalOptions="CenterAndExpand"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Orientation="Horizontal">
 
             <Label Style="{StaticResource globalLabel}" Text="Distance To Find: (M)" />
-            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
-
+            <localControl:CustomPickerContentView
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding DistanceSettings}"
+                SelectedItem="{Binding SelectedDistance}" />
         </StackLayout>
-
 
         <!--  Submit Button  -->
         <Button

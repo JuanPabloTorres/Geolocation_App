@@ -5,10 +5,12 @@ obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow.jpg
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow2.jpg
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\logo01.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\maps.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\moreinformation.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\profile.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\prototypelogo.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\radar.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\settings.png
+obj\Debug\net7.0-android33.0\resizetizer\r\drawable\star.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable\useravatar.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable-hdpi\dotnet_bot.png
 obj\Debug\net7.0-android33.0\resizetizer\r\drawable-hdpi\splash.png

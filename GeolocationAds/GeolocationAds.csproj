@@ -66,10 +66,12 @@
 	  <None Remove="Resources\Images\logo01.png" />
 	  <None Remove="Resources\Images\maps.png" />
 	  <None Remove="Resources\Images\mediacontent.png" />
+	  <None Remove="Resources\Images\moreinformation.png" />
 	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\prototypeLogo.png" />
 	  <None Remove="Resources\Images\radar.png" />
 	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\star.png" />
 	  <None Remove="Resources\Images\useravatar.png" />
 	  <None Remove="Resources\Splash\splash01.jpg" />
 	</ItemGroup>
