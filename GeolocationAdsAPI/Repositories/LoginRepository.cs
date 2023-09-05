@@ -23,6 +23,13 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (!_foundUser.IsObjectNull())
                 {
+                    if (_foundUser.UserStatus == UserStatus.ResetPassword)
+                    {
+                        response = ResponseFactory<User>.BuildFail("User Reset Password", null, ToolsLibrary.Tools.Type.Fail);
+
+                        return response;
+                    }
+
                     response = ResponseFactory<User>.BuildSusccess("Valid Credentail", _foundUser, ToolsLibrary.Tools.Type.Found);
                 }
                 else

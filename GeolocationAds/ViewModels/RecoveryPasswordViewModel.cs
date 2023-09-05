@@ -1,8 +1,11 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using ToolsLibrary.Dto;
+using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
@@ -187,8 +190,6 @@ namespace GeolocationAds.ViewModels
             {
                 ValidationResults.Clear();
 
-                DateTime now = DateTime.Now;
-
                 this.NewPassword.Code = this.Code;
 
                 var validationContextCurrentType = new ValidationContext(this.NewPassword);
@@ -202,6 +203,8 @@ namespace GeolocationAds.ViewModels
                     if (_apiResponse.IsSuccess)
                     {
                         await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+
+                        WeakReferenceMessenger.Default.Send(new UpdateMessage<ForgotPassword>(_apiResponse.Data));
                     }
                     else
                     {

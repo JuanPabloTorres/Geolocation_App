@@ -68,17 +68,6 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (response.IsSuccess)
                 {
-                    var _haveRecoveryPasswordResponse = await this.forgotPasswordRepository.UserHaveForgotPassword(response.Data.ID);
-
-                    if (_haveRecoveryPasswordResponse.ResponseType == ToolsLibrary.Tools.Type.IsRecoveryPassword)
-                    {
-                        response.Message = _haveRecoveryPasswordResponse.Message;
-
-                        response.ResponseType = _haveRecoveryPasswordResponse.ResponseType;
-
-                        response.IsSuccess = false;
-                    }
-
                     return Ok(response);
                 }
                 else

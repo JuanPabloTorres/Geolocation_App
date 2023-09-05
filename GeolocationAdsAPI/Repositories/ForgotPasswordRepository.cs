@@ -14,19 +14,34 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
-        public async Task<ResponseTool<ForgotPassword>> UserHaveForgotPassword(int userId)
+        public async Task<ResponseTool<ForgotPassword>> ChangePassword(NewPasswordDto newPasswordDto)
         {
             try
             {
-                var entity = await _context.ForgotPasswords.Where(v => v.UserId == userId && v.IsValid == true && v.ExpTime >= DateTime.Now).FirstOrDefaultAsync();
+                var entity = await _context.ForgotPasswords.Where(v => v.Code == newPasswordDto.Code).FirstOrDefaultAsync();
 
                 if (!entity.IsObjectNull())
                 {
-                    return ResponseFactory<ForgotPassword>.BuildSusccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
+                    var _user = await _context.Users.Include(l => l.Login).Where(u => u.ID == entity.UserId).FirstOrDefaultAsync();
+
+                    if (_user.IsObjectNull())
+                    {
+                        return ResponseFactory<ForgotPassword>.BuildFail("Fail on change password.", null, ToolsLibrary.Tools.Type.Fail);
+                    }
+
+                    _user.Login.Password = newPasswordDto.NewPassword;
+
+                    _user.UserStatus = UserStatus.ValidUser;
+
+                    _context.Entry(_user).State = EntityState.Modified;
+
+                    await _context.SaveChangesAsync();
+
+                    return ResponseFactory<ForgotPassword>.BuildSusccess("Succesffully.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
                 }
                 else
                 {
-                    return ResponseFactory<ForgotPassword>.BuildFail("Not have recovery password.", null, ToolsLibrary.Tools.Type.NotRecoveryPassword);
+                    return ResponseFactory<ForgotPassword>.BuildFail("Fail on change password.", null, ToolsLibrary.Tools.Type.Fail);
                 }
             }
             catch (Exception ex)
@@ -56,7 +71,7 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<ForgotPassword>>> InvalidUserForgotPassword(int userId)
+        public async Task<ResponseTool<IEnumerable<ForgotPassword>>> InvalidUserForgotPasswords(int userId)
         {
             try
             {
@@ -84,32 +99,19 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<ForgotPassword>> ChangePassword(NewPasswordDto newPasswordDto)
+        public async Task<ResponseTool<ForgotPassword>> UserHaveForgotPassword(int userId)
         {
             try
             {
-                var entity = await _context.ForgotPasswords.Where(v => v.Code == newPasswordDto.Code).FirstOrDefaultAsync();
+                var entity = await _context.ForgotPasswords.Where(v => v.UserId == userId && v.IsValid == true && v.ExpTime >= DateTime.Now).FirstOrDefaultAsync();
 
                 if (!entity.IsObjectNull())
                 {
-                    var _user = await _context.Users.Include(l => l.Login).Where(u => u.ID == entity.UserId).FirstOrDefaultAsync();
-
-                    if (_user.IsObjectNull())
-                    {
-                        return ResponseFactory<ForgotPassword>.BuildFail("Fail on change password.", null, ToolsLibrary.Tools.Type.Fail);
-                    }
-
-                    _user.Login.Password = newPasswordDto.NewPassword;
-
-                    _context.Entry(_user).State = EntityState.Modified;
-
-                    await _context.SaveChangesAsync();
-
-                    return ResponseFactory<ForgotPassword>.BuildSusccess("Succesffully.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
+                    return ResponseFactory<ForgotPassword>.BuildSusccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
                 }
                 else
                 {
-                    return ResponseFactory<ForgotPassword>.BuildFail("Fail on change password.", null, ToolsLibrary.Tools.Type.Fail);
+                    return ResponseFactory<ForgotPassword>.BuildFail("Not have recovery password.", null, ToolsLibrary.Tools.Type.NotRecoveryPassword);
                 }
             }
             catch (Exception ex)

@@ -5,8 +5,8 @@ using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using System.Windows.Input;
+using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
-using Type = ToolsLibrary.Tools.Type;
 
 namespace GeolocationAds.ViewModels
 {
@@ -18,7 +18,9 @@ namespace GeolocationAds.ViewModels
 
         public ICommand ForgotPasswordCommand { get; set; }
 
-        public RecoveryPasswordViewModel RecoveryPasswordViewModel;
+        private RecoveryPasswordViewModel RecoveryPasswordViewModel;
+
+        private RecoveryPasswordPopUp passwordRecoveryPage;
 
         public LoginViewModel(ToolsLibrary.Models.Login login, ILoginService service, LogUserPerfilTool logUserPerfil, IForgotPasswordService forgotPasswordService, RecoveryPasswordViewModel recoveryPasswordViewModel) : base(login, service, logUserPerfil)
         {
@@ -46,20 +48,21 @@ namespace GeolocationAds.ViewModels
                     Shell.Current.FlyoutIsPresented = false;
                 });
             });
+
+            WeakReferenceMessenger.Default.Register<UpdateMessage<ForgotPassword>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await this.passwordRecoveryPage.CloseAsync();
+                });
+            });
         }
 
         private async void OpenRecoveryPopUp()
         {
-            var passwordRecoveryPage = new RecoveryPasswordPopUp(this.RecoveryPasswordViewModel);
+            this.passwordRecoveryPage = new RecoveryPasswordPopUp(this.RecoveryPasswordViewModel);
 
-            //await Application.Current.MainPage.ShowPopupAsync(passwordRecoveryPage);
-
-            //await new TaskFactory().StartNew(() => { Thread.Sleep(5000); });
-            //p.Close();
-
-            //this.ShowPopUp()
-
-            await Shell.Current.CurrentPage.ShowPopupAsync(passwordRecoveryPage);
+            await Shell.Current.CurrentPage.ShowPopupAsync(this.passwordRecoveryPage);
         }
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)
@@ -72,26 +75,22 @@ namespace GeolocationAds.ViewModels
 
                 if (_apiResponse.IsSuccess)
                 {
-                    this.LogUserPerfilTool.LogUser = _apiResponse.Data;
+                    if (_apiResponse.Data.UserStatus != ToolsLibrary.Models.UserStatus.ResetPassword)
+                    {
+                        this.LogUserPerfilTool.LogUser = _apiResponse.Data;
 
-                    WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
+                        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
 
-                    await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+                        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    }
                 }
                 else
                 {
-                    switch (_apiResponse.ResponseType)
-                    {
-                        case Type.IsRecoveryPassword:
-
-                            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-
-                            break;
-
-                        default:
-                            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                            break;
-                    }
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
             }
             catch (Exception ex)

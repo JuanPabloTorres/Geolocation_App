@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToolsLibrary.Models
 {
+    public enum UserStatus
+    {
+        ResetPassword = 1,
+        InvalidUser = 2,
+        ValidUser = 3
+    }
+
     public class User : BaseModel
     {
         public ICollection<Advertisement> Advertisements { get; set; }
@@ -20,5 +27,7 @@ namespace ToolsLibrary.Models
 
         [Required(ErrorMessage = $"{nameof(Phone)} is required.")]
         public string Phone { get; set; }
+
+        public UserStatus UserStatus { get; set; }
     }
 }

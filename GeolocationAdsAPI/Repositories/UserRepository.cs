@@ -37,6 +37,37 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
+        public async Task<ResponseTool<User>> ChangeStatus(int userId, UserStatus status)
+        {
+            ResponseTool<User> response;
+
+            try
+            {
+                var _user = await _context.Users.FindAsync(userId);
+
+                if (!_user.IsObjectNull())
+                {
+                    _user.UserStatus = status;
+
+                    await _context.SaveChangesAsync();
+
+                    response = ResponseFactory<User>.BuildSusccess("Setting Added.", _user, ToolsLibrary.Tools.Type.Added);
+                }
+                else
+                {
+                    response = ResponseFactory<User>.BuildFail("Entity Not Found.", null, ToolsLibrary.Tools.Type.NotFound);
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return response;
+            }
+        }
+
         public async Task<ResponseTool<User>> GetUserByEmail(string email)
         {
             ResponseTool<User> response;

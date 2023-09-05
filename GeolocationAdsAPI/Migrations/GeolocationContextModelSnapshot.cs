@@ -285,6 +285,9 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserStatus")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("LoginId");
