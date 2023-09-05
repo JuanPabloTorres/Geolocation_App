@@ -10,7 +10,10 @@ public partial class RecoveryPasswordPopUp : Popup
         InitializeComponent();
 
         BindingContext = recoveryPasswordViewModel;
+    }
 
-
+    private async void OnCloseButtonClicked(object sender, EventArgs e)
+    {
+        await CloseAsync(false);
     }
 }

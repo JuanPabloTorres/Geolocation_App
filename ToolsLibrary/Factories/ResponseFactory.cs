@@ -12,6 +12,7 @@ namespace ToolsLibrary.Factories
                 Data = data,
                 Message = message,
                 IsSuccess = true,
+                ResponseType = type
             };
 
             return __response;

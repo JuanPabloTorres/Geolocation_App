@@ -20,6 +20,12 @@
             Title="Find"
             ContentTemplate="{DataTemplate pages:SearchAd}"
             Icon="home.png" />
+
+        <ShellContent
+            Title="Favorites"
+            ContentTemplate="{DataTemplate pages:MyFavorites}"
+            Icon="star.png" />
+
         <ShellContent
             Title="Create"
             ContentTemplate="{DataTemplate pages:CreateAdvertisment}"

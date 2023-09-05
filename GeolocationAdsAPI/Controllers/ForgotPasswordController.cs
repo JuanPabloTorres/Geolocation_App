@@ -1,5 +1,7 @@
 ﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using ToolsLibrary.Dto;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -36,6 +38,15 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (_UserResponse.IsSuccess)
                 {
+                    var _invalidUserOldForgotPassword = await this.forgotPasswordRepository.InvalidUserForgotPassword(_UserResponse.Data.ID);
+
+                    if (!_invalidUserOldForgotPassword.IsSuccess)
+                    {
+                        response = ResponseFactory<ForgotPassword>.BuildFail(_invalidUserOldForgotPassword.Message, null, ToolsLibrary.Tools.Type.Fail);
+
+                        return Ok(response);
+                    }
+
                     var _forgotPassword = new ForgotPassword()
                     {
                         Code = CommonsTool.GenerateRandomCode(5),
@@ -50,9 +61,13 @@ namespace GeolocationAdsAPI.Controllers
 
                     if (_forgotPasswordResponse.IsSuccess)
                     {
+                        var _codeCamel = _forgotPasswordResponse.Data.Code.ToCamelCase();
+
+                        var _body = CommonsTool.HtmlEmailRecoveryDesign(_codeCamel);
+
                         var _emailRequest = new EmailRequest()
                         {
-                            Body = "<div>Username" + "User01" + "</div>" + "<div>Password" + "12345" + "</div>",
+                            Body = _body,
 
                             Subject = "Password Recovery",
 
@@ -78,6 +93,44 @@ namespace GeolocationAdsAPI.Controllers
 
                     return Ok(response);
                 }
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<ForgotPassword>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
+        [HttpGet("[action]/{code}")]
+        public async Task<IActionResult> ConfirmCode(string code)
+        {
+            ResponseTool<ForgotPassword> response;
+
+            try
+            {
+                response = await this.forgotPasswordRepository.ConfirmCode(code);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<ForgotPassword>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> ChangePassword(NewPasswordDto newPasswordDto)
+        {
+            ResponseTool<ForgotPassword> response;
+
+            try
+            {
+                response = await this.forgotPasswordRepository.ChangePassword(newPasswordDto);
+
+                return Ok(response);
             }
             catch (Exception ex)
             {

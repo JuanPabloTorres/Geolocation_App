@@ -25,6 +25,6 @@
             IsShowingUser="True"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             IsZoomEnabled="True"
-            MapType="Street" />
+            MapType="Hybrid" />
     </StackLayout>
 </ContentPage>

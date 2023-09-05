@@ -8,6 +8,26 @@
     Routing.Route="AdToLocation">
 
     <VerticalStackLayout>
+
+        <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
+            <Label Style="{StaticResource globalLabel}" Text="{Binding CollectionModel.Count, StringFormat='Total Items: {0}'}" />
+        </StackLayout>
+
+        <Button
+            Command="{Binding SearchCommand}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Load">
+
+            <Button.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="40"
+                    Offset="5,5" />
+            </Button.Shadow>
+        </Button>
+
         <ActivityIndicator
             IsRunning="{Binding IsLoading}"
             IsVisible="{Binding IsLoading}"
@@ -33,14 +53,7 @@
                     <Frame Style="{StaticResource cardFrame}">
                         <StackLayout>
 
-                            <StackLayout Orientation="Horizontal">
 
-                                <Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />
-
-
-
-                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
-                            </StackLayout>
 
 
 
@@ -53,6 +66,20 @@
                                     Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
                                     WidthRequest="300" />
                             </Frame>
+
+                            <BoxView
+                                Margin="4,10,4,10"
+                                BackgroundColor="#e5e4e2"
+                                HeightRequest="1" />
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />
+
+
+
+                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                            </StackLayout>
 
                             <StackLayout
                                 Margin="5"
@@ -96,23 +123,6 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
-            <Label Style="{StaticResource globalLabel}" Text="{Binding CollectionModel.Count, StringFormat='Total Items: {0}'}" />
-        </StackLayout>
 
-        <Button
-            Command="{Binding SearchCommand}"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Load">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>
     </VerticalStackLayout>
 </ContentPage>

@@ -26,7 +26,9 @@
         Fail,
         DataFound,
         EntityNotFound,
-        Succesfully
+        Succesfully,
+        IsRecoveryPassword,
+        NotRecoveryPassword
 
 
     }

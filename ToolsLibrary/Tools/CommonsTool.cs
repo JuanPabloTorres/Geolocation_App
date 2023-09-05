@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
+using System.Text;
 using ToolsLibrary.Models;
 
 namespace ToolsLibrary.Tools
@@ -112,6 +113,60 @@ namespace ToolsLibrary.Tools
             mailMessage.To.Add(emailRequest.To);
 
             await smtpClient.SendMailAsync(mailMessage);
+        }
+
+        public static string HtmlEmailRecoveryDesign(string code)
+        {
+            var bodyBuilder = new StringBuilder();
+
+            bodyBuilder.AppendLine("<!DOCTYPE html>");
+
+            bodyBuilder.AppendLine("<html lang=\"en\">");
+
+            bodyBuilder.AppendLine("<head>");
+
+            bodyBuilder.AppendLine("    <meta charset=\"UTF-8\">");
+
+            bodyBuilder.AppendLine("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+
+            bodyBuilder.AppendLine("    <title> Password Recovery</title>");
+
+            bodyBuilder.AppendLine("    <style>");
+
+            // Include the CSS styles from the previous response here
+            bodyBuilder.AppendLine("    </style>");
+
+            bodyBuilder.AppendLine("</head>");
+
+            bodyBuilder.AppendLine("<body>");
+
+            bodyBuilder.AppendLine("    <div class=\"container\">");
+
+            bodyBuilder.AppendLine("        <div class=\"header\">");
+
+            bodyBuilder.AppendLine("            <h1> Password Recovery</h1>");
+
+            bodyBuilder.AppendLine("        </div>");
+
+            bodyBuilder.AppendLine("        <div class=\"content\">");
+
+            bodyBuilder.AppendLine($"<div><b>{code}</b></div>"); // This is where you insert the dynamic content
+
+            bodyBuilder.AppendLine("        </div>");
+
+            bodyBuilder.AppendLine("        <div class=\"footer\">");
+
+            bodyBuilder.AppendLine("            <p>If you need further assistance, please contact our support team.</p>");
+
+            bodyBuilder.AppendLine("        </div>");
+
+            bodyBuilder.AppendLine("    </div>");
+
+            bodyBuilder.AppendLine("</body>");
+
+            bodyBuilder.AppendLine("</html>");
+
+            return bodyBuilder.ToString();
         }
     }
 }

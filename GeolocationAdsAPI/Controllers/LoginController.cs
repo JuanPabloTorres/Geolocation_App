@@ -12,9 +12,13 @@ namespace GeolocationAdsAPI.Controllers
     {
         private ILoginRespository loginRespository;
 
-        public LoginController(ILoginRespository loginRespository)
+        private IForgotPasswordRepository forgotPasswordRepository;
+
+        public LoginController(ILoginRespository loginRespository, IForgotPasswordRepository forgotPasswordRepository)
         {
             this.loginRespository = loginRespository;
+
+            this.forgotPasswordRepository = forgotPasswordRepository;
         }
 
         [HttpGet("[action]/{id}")]
@@ -64,6 +68,17 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (response.IsSuccess)
                 {
+                    var _haveRecoveryPasswordResponse = await this.forgotPasswordRepository.UserHaveForgotPassword(response.Data.ID);
+
+                    if (_haveRecoveryPasswordResponse.ResponseType == ToolsLibrary.Tools.Type.IsRecoveryPassword)
+                    {
+                        response.Message = _haveRecoveryPasswordResponse.Message;
+
+                        response.ResponseType = _haveRecoveryPasswordResponse.ResponseType;
+
+                        response.IsSuccess = false;
+                    }
+
                     return Ok(response);
                 }
                 else

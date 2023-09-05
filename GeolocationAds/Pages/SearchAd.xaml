@@ -8,14 +8,38 @@
     Title="Are You Look For Something?"
     Routing.Route="SearchAd">
 
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
-            <local:IsEnableConverter x:Key="IsEnableConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>-->
-
     <VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <StackLayout
+                Margin="5"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Orientation="Horizontal">
+
+                <Label Style="{StaticResource globalLabel}" Text="Distance To Find: (M)" />
+                <localControl:CustomPickerContentView
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding DistanceSettings}"
+                    SelectedItem="{Binding SelectedDistance}" />
+            </StackLayout>
+
+            <!--  Submit Button  -->
+            <Button
+                x:Name="SearchAdButton"
+                Command="{Binding SearchCommand}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}"
+                Text="What's Nearby?">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+        </VerticalStackLayout>
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
@@ -46,12 +70,6 @@
                     <Frame Style="{StaticResource cardFrame}">
                         <StackLayout>
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
-
-                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
-                            </StackLayout>
-
                             <Frame Style="{StaticResource imageFrame}">
                                 <Image
                                     Aspect="AspectFill"
@@ -60,6 +78,17 @@
                                     Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
                                     WidthRequest="300" />
                             </Frame>
+
+                            <BoxView
+                                Margin="4,10,4,10"
+                                BackgroundColor="#e5e4e2"
+                                HeightRequest="1" />
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+
+                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                            </StackLayout>
 
                             <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
 
@@ -80,34 +109,5 @@
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
         </CarouselView>
-
-        <StackLayout
-            Margin="5"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Orientation="Horizontal">
-
-            <Label Style="{StaticResource globalLabel}" Text="Distance To Find: (M)" />
-            <localControl:CustomPickerContentView
-                HorizontalOptions="FillAndExpand"
-                ItemsSource="{Binding DistanceSettings}"
-                SelectedItem="{Binding SelectedDistance}" />
-        </StackLayout>
-
-        <!--  Submit Button  -->
-        <Button
-            x:Name="SearchAdButton"
-            Command="{Binding SearchCommand}"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="What's Nearby?">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>
     </VerticalStackLayout>
 </ContentPage>

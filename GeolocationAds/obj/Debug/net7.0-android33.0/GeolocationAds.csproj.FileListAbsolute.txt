@@ -1,3 +1,4 @@
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\bin\classes.dex
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\Resources\Images\mediacontent.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.runtimeconfig.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-android33.0\GeolocationAds.dll
@@ -44,10 +45,12 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow2.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\logo01.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\maps.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\moreinformation.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\profile.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\prototypelogo.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\radar.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\settings.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\star.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\useravatar.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
@@ -1106,7 +1109,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\compressed_assemblies.x86_64.o
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\jni_remap.x86_64.o
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\app_shared_libraries\x86_64\libxamarin-app.so
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\bin\classes.dex
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\android\bin\classes2.dex
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_CleanIntermediateIfNeeded.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_CompileJava.stamp
@@ -1116,5 +1118,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GenerateJavaStubs.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\star.png
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\moreinformation.png

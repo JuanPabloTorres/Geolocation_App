@@ -1,3 +1,4 @@
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\PresentationFramework.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.exe
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Resources\Images\mediacontent.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xbf
@@ -268,7 +269,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\PresentationFramework.Classic.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\PresentationFramework.Luna.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\PresentationFramework.Royale.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\PresentationFramework.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\PresentationUI.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\ReachFramework.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\System.CodeDom.dll
@@ -634,10 +634,12 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\loginbackgroundyellow2.scale-100.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logo01.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\maps.scale-100.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\moreinformation.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\profile.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\prototypelogo.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\radar.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\settings.scale-100.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\star.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\useravatar.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauiimage.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.AssemblyInfoInputs.cache
@@ -666,5 +668,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\star.scale-100.png
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\moreinformation.scale-100.png

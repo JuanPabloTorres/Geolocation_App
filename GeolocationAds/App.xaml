@@ -13,8 +13,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--  URLs  -->
-            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
-            <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
+            <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
+            <!--<x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>-->
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <!--  Global  -->
@@ -61,7 +61,7 @@
 
             <Style x:Key="globalPicker" TargetType="Picker">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -78,8 +78,8 @@
                 <Setter Property="HorizontalOptions" Value="Start" />
 
                 <Setter Property="FontSize" Value="14" />
-                <Setter Property="FontFamily" Value="Arial" />
-                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="#242124" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="LineBreakMode" Value="MiddleTruncation" />
             </Style>
@@ -107,8 +107,6 @@
             <Style x:Key="cardFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="GhostWhite" />
                 <Setter Property="CornerRadius" Value="20" />
-
-
                 <Setter Property="BorderColor" Value="#e5e4e2" />
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="Padding" Value="10" />
@@ -119,7 +117,6 @@
                 <Setter Property="BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="CornerRadius" Value="10" />
                 <Setter Property="BorderColor" Value="White" />
-
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="HeightRequest" Value="300" />
                 <Setter Property="WidthRequest" Value="300" />
@@ -139,7 +136,6 @@
                 <Setter Property="BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-
                 <Setter Property="CornerRadius" Value="20" />
                 <Setter Property="BorderColor" Value="#FCD12A" />
                 <Setter Property="Margin" Value="15" />
@@ -207,6 +203,7 @@
 
             <converters:SubstringConverter x:Key="SubstringConverter" />
 
+            <converters:StepViewConverter x:Key="StepViewConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

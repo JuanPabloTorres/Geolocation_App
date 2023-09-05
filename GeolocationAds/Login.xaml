@@ -61,7 +61,7 @@
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Forgot Password?"
-                    TextColor="Blue" />
+                    TextColor="#333399" />
 
                 <ActivityIndicator
                     IsRunning="{Binding IsLoading}"

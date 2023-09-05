@@ -6,6 +6,7 @@ using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using System.Windows.Input;
 using ToolsLibrary.Tools;
+using Type = ToolsLibrary.Tools.Type;
 
 namespace GeolocationAds.ViewModels
 {
@@ -51,14 +52,14 @@ namespace GeolocationAds.ViewModels
         {
             var passwordRecoveryPage = new RecoveryPasswordPopUp(this.RecoveryPasswordViewModel);
 
-            await Application.Current.MainPage.ShowPopupAsync(passwordRecoveryPage);
+            //await Application.Current.MainPage.ShowPopupAsync(passwordRecoveryPage);
 
             //await new TaskFactory().StartNew(() => { Thread.Sleep(5000); });
             //p.Close();
 
             //this.ShowPopUp()
 
-            //await Shell.Current.CurrentPage.ShowPopupAsync(passwordRecoveryPage);
+            await Shell.Current.CurrentPage.ShowPopupAsync(passwordRecoveryPage);
         }
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)
@@ -79,7 +80,18 @@ namespace GeolocationAds.ViewModels
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    switch (_apiResponse.ResponseType)
+                    {
+                        case Type.IsRecoveryPassword:
+
+                            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                            break;
+
+                        default:
+                            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                            break;
+                    }
                 }
             }
             catch (Exception ex)

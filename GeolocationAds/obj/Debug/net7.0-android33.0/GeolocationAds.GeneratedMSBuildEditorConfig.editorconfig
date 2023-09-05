@@ -74,6 +74,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.Locat
 build_metadata.AdditionalFiles.TargetPath = Pages\LocationPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\LocationPage.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/MyFavorites.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.MyFavorites.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\MyFavorites.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\MyFavorites.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/Register.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.Register.xaml

@@ -35,7 +35,6 @@ public class CustomPickerContentView : ContentView
     {
         var picker = new Picker
         {
-            HorizontalTextAlignment = TextAlignment.Center,
             Style = (Style)Application.Current.Resources["globalPicker"]
         };
 
