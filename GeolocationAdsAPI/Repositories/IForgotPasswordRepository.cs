@@ -10,7 +10,7 @@ namespace GeolocationAdsAPI.Repositories
 
         Task<ResponseTool<ForgotPassword>> ConfirmCode(string code);
 
-        Task<ResponseTool<IEnumerable<ForgotPassword>>> InvalidUserForgotPassword(int userId);
+        Task<ResponseTool<IEnumerable<ForgotPassword>>> InvalidUserForgotPasswords(int userId);
 
         Task<ResponseTool<ForgotPassword>> UserHaveForgotPassword(int userId);
     }

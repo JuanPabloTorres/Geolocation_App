@@ -60,10 +60,17 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var entity = await _context.ForgotPasswords.Where(v => v.UserId == userId && v.IsValid == true && v.ExpTime >= DateTime.Now).ToListAsync();
+                var entity = await _context.ForgotPasswords.Where(v => v.UserId == userId && v.IsValid == true).ToListAsync();
 
                 if (!entity.IsObjectNull())
                 {
+                    foreach (var item in entity)
+                    {
+                        item.IsValid = false;
+                    }
+
+                    await _context.SaveChangesAsync();
+
                     return ResponseFactory<IEnumerable<ForgotPassword>>.BuildSusccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
                 }
                 else

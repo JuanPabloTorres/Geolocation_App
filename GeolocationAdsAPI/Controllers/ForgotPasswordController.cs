@@ -38,7 +38,7 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (_UserResponse.IsSuccess)
                 {
-                    var _invalidUserOldForgotPassword = await this.forgotPasswordRepository.InvalidUserForgotPassword(_UserResponse.Data.ID);
+                    var _invalidUserOldForgotPassword = await this.forgotPasswordRepository.InvalidUserForgotPasswords(_UserResponse.Data.ID);
 
                     if (!_invalidUserOldForgotPassword.IsSuccess)
                     {
