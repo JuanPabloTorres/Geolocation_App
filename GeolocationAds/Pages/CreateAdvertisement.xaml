@@ -10,7 +10,7 @@
     <ScrollView>
         <Frame Style="{StaticResource cardFrame}">
 
-            <StackLayout Padding="20">
+            <StackLayout>
 
                 <CollectionView ItemsSource="{Binding ValidationResults}">
                     <CollectionView.ItemTemplate>
@@ -60,7 +60,7 @@
                         HeightRequest="300"
                         IsAnimationPlaying="{Binding IsAnimation}"
                         Source="{Binding Image.Source, Mode=TwoWay}"
-                        WidthRequest="300" />
+                        WidthRequest="400" />
                 </Frame>
 
                 <!--  Submit Button  -->

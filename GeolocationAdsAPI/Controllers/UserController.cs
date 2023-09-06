@@ -14,9 +14,13 @@ namespace GeolocationAdsAPI.Controllers
     {
         private IUserRepository userRepository;
 
-        public UserController(IUserRepository userRepository)
+        private ILoginRespository loginRespository;
+
+        public UserController(IUserRepository userRepository, ILoginRespository loginRespository)
         {
             this.userRepository = userRepository;
+
+            this.loginRespository = loginRespository;
         }
 
         [HttpPost("[action]")]
@@ -25,6 +29,10 @@ namespace GeolocationAdsAPI.Controllers
             try
             {
                 user.Login.CreateDate = DateTime.Now;
+
+                user.UserStatus = UserStatus.Active;
+
+                user.Login.HashPassword = CommonsTool.HashPassword(user.Login.Password);
 
                 var userAddResponse = await this.userRepository.CreateAsync(user);
 

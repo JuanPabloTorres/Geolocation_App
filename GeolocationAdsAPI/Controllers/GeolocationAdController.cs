@@ -13,6 +13,7 @@ namespace GeolocationAdsAPI.Controllers
     public class GeolocationAdController : ControllerBase
     {
         private readonly IAdvertisementRepository advertisementRepository;
+
         private readonly IGeolocationAdRepository geolocationAdRepository;
 
         public GeolocationAdController(IGeolocationAdRepository geolocationAdRepository, IAdvertisementRepository advertisementRepository)
@@ -29,6 +30,15 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
+                var _removeOldGeolocation = await this.geolocationAdRepository.RemoveAllOfAdvertisementId(newGeolocationAd.AdvertisingId);
+
+                if (!_removeOldGeolocation.IsSuccess)
+                {
+                    response = ResponseFactory<GeolocationAd>.BuildFail(_removeOldGeolocation.Message, null, ToolsLibrary.Tools.Type.Fail);
+
+                    return Ok(response);
+                }
+
                 var _currentAdToPost = newGeolocationAd.Advertisement;
 
                 newGeolocationAd.Advertisement = null;

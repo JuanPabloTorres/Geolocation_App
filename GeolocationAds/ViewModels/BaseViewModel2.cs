@@ -72,9 +72,12 @@ namespace GeolocationAds.ViewModels
             get => _model;
             set
             {
-                _model = value;
+                if (!EqualityComparer<T>.Default.Equals(_model, value))
+                {
+                    _model = value;
 
-                OnPropertyChanged();
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -138,7 +141,7 @@ namespace GeolocationAds.ViewModels
                 {
                     await this.Get(Convert.ToInt32(ID));
 
-                    WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
+                    //WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
                 }
             }
         }

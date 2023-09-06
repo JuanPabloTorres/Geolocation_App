@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ToolsLibrary.Attributes.ValidationAttributes;
 
 namespace ToolsLibrary.Models
 {
@@ -12,6 +13,7 @@ namespace ToolsLibrary.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = $"{nameof(ExpirationDate)} is required.")]
+        [ExpDateValidation(ErrorMessage = "The selected date is not valid; it must be a date that is greater than today's date.")]
         public DateTime ExpirationDate { get; set; }
 
         public bool IsPosted { get; set; }

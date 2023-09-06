@@ -19,7 +19,18 @@ namespace GeolocationAdsAPI.Repositories
 
             try
             {
-                var _foundUser = await _context.Users.Include(u => u.Login).Where(v => v.Login.Username == credential.Username && v.Login.Password == credential.Password).FirstOrDefaultAsync();
+                Func<Login, bool> credentialCondition = v => v.Username == credential.Username && BCrypt.Net.BCrypt.Verify(credential.Password, v.HashPassword);
+
+                var _foundLogin = _context.Logins.Where(credentialCondition).FirstOrDefault();
+
+                if (_foundLogin.IsObjectNull())
+                {
+                    response = ResponseFactory<User>.BuildFail("Invalid Credentail", null, ToolsLibrary.Tools.Type.NotFound);
+
+                    return response;
+                }
+
+                var _foundUser = await _context.Users.Include(u => u.Login).Where(v => v.ID == _foundLogin.UserId).FirstOrDefaultAsync();
 
                 if (!_foundUser.IsObjectNull())
                 {

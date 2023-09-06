@@ -14,9 +14,13 @@ namespace GeolocationAdsAPI.Controllers
     {
         private readonly IAdvertisementRepository advertisementRepository;
 
-        public AdvertisementController(IAdvertisementRepository advertisementRepository)
+        private readonly IGeolocationAdRepository geolocationAdRepository;
+
+        public AdvertisementController(IAdvertisementRepository advertisementRepository, IGeolocationAdRepository geolocationAdRepository)
         {
             this.advertisementRepository = advertisementRepository;
+
+            this.geolocationAdRepository = geolocationAdRepository;
         }
 
         [HttpPost("[action]")]
@@ -73,6 +77,15 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
+                var _verifyExpResponse = await this.advertisementRepository.VerifyExpiredAdvertimentOfUser(userId);
+
+                if (!_verifyExpResponse.IsSuccess)
+                {
+                    response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(_verifyExpResponse.Message, null, ToolsLibrary.Tools.Type.Fail);
+
+                    return Ok(response);
+                }
+
                 response = await this.advertisementRepository.GetAdvertisementsOfUser(userId);
 
                 if (!response.Data.IsObjectNull())

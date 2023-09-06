@@ -168,5 +168,16 @@ namespace ToolsLibrary.Tools
 
             return bodyBuilder.ToString();
         }
+
+        public static string HashPassword(string password)
+        {
+            // Generate a random salt
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // You can adjust the cost factor as needed
+
+            // Hash the password with the salt
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+
+            return hashedPassword;
+        }
     }
 }

@@ -6,5 +6,9 @@ namespace GeolocationAdsAPI.Repositories
     public interface IGeolocationAdRepository : IBaseRepository<GeolocationAd>
     {
         Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync();
+
+        Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id);
+
+        Task<ResponseTool<bool>> AdvertisementExistInGeolocationAd(int id);
     }
 }

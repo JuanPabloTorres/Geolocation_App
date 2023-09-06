@@ -25,5 +25,29 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> VerifyExpiredAdvertimentOfUser(int userId)
+        {
+            try
+            {
+                var _dataFoundResult = await _context.Advertisements.Where(v => v.UserId == userId).ToListAsync();
+
+                foreach (var item in _dataFoundResult)
+                {
+                    if (DateTime.Now > item.ExpirationDate)
+                    {
+                        item.IsPosted = false;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
     }
 }

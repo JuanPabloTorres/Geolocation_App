@@ -53,7 +53,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<ToolsLibrary.Models.User>.BuildFail("Failed to add.", null);
+                    var failResponse = ResponseFactory<ToolsLibrary.Models.User>.BuildFail("Bad Request.", null);
 
                     return failResponse;
                 }

@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using GeolocationAds.Messages;
-using GeolocationAds.Services;
+﻿using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -28,39 +26,21 @@ namespace GeolocationAds.ViewModels
 
         private byte[] fileBytes;
 
-        private bool isAnimation;
-
-        public bool IsAnimation
-        {
-            get => isAnimation;
-            set
-            {
-                if (isAnimation != value)
-                {
-                    isAnimation = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
             this.Image = new Image();
 
-            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    SetCurrentImage();
-                });
-            });
+            //WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
+            //{
+            //    MainThread.BeginInvokeOnMainThread(() =>
+            //    {
+            //        SetCurrentImage();
+            //    });
+            //});
         }
 
         private void SetCurrentImage()
         {
-            this.IsAnimation = true;
-
             Image.Source = ImageSource.FromStream(() => new MemoryStream(this.Model.Content));
         }
 
@@ -69,8 +49,6 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                IsAnimation = false;
-
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg" });
@@ -140,8 +118,6 @@ namespace GeolocationAds.ViewModels
                         Image.Source = ImageSource.FromStream(() => new MemoryStream(fileBytes));
 
                         //Image.IsAnimationPlaying = true;
-
-                        IsAnimation = true;
 
                         this.Model.Content = fileBytes;
 

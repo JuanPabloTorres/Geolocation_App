@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ToolsLibrary.Models
 {
@@ -11,9 +12,12 @@ namespace ToolsLibrary.Models
         [Required(ErrorMessage = $"{nameof(Password)} is required.")]
         public string Password { get; set; }
 
+        public string HashPassword { get; set; }
+
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
+        [JsonIgnore]
         public User User { get; set; }
 
         public Login()

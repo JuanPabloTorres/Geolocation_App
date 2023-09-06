@@ -7,13 +7,15 @@
     Title="My Content"
     Routing.Route="AdToLocation">
 
-    <VerticalStackLayout>
-
-        <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
-            <Label Style="{StaticResource globalLabel}" Text="{Binding CollectionModel.Count, StringFormat='Total Items: {0}'}" />
-        </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
         <Button
+            Grid.Row="0"
             Command="{Binding SearchCommand}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
@@ -29,15 +31,14 @@
         </Button>
 
         <ActivityIndicator
+            Grid.Row="1"
             IsRunning="{Binding IsLoading}"
             IsVisible="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
 
         <CarouselView
+            Grid.Row="2"
             Margin="10"
-            HeightRequest="500"
-            IsBounceEnabled="True"
-            IsScrollAnimated="True"
             IsSwipeEnabled="True"
             ItemsSource="{Binding CollectionModel}">
 
@@ -53,10 +54,6 @@
                     <Frame Style="{StaticResource cardFrame}">
                         <StackLayout>
 
-
-
-
-
                             <Frame Style="{StaticResource imageFrame}">
 
                                 <Image
@@ -64,7 +61,7 @@
                                     HeightRequest="300"
                                     IsAnimationPlaying="True"
                                     Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                                    WidthRequest="300" />
+                                    WidthRequest="400" />
                             </Frame>
 
                             <BoxView
@@ -76,8 +73,6 @@
 
                                 <Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />
 
-
-
                                 <Label Style="{StaticResource globalsubTitle}" Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
                             </StackLayout>
 
@@ -88,7 +83,6 @@
                                 <Button
                                     Command="{Binding SetLocationCommand}"
                                     CommandParameter="{Binding CurrentAdvertisement}"
-                                    IsEnabled="{Binding CurrentAdvertisement.IsPosted, Converter={StaticResource IsEnableConverter}}"
                                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource cardButton}"
                                     Text="Set Current Location" />
@@ -122,7 +116,5 @@
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
         </CarouselView>
-
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

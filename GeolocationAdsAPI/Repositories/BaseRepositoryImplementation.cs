@@ -30,6 +30,28 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
+    public async Task<ResponseTool<T>> CreateAsync(T entity, params object[] relatedEntities)
+    {
+        try
+        {
+            _context.Set<T>().Add(entity);
+
+            // Attach related entities if provided
+            foreach (var relatedEntity in relatedEntities)
+            {
+                _context.Attach(relatedEntity);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return ResponseFactory<T>.BuildSusccess("Entity created successfully.", entity);
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        }
+    }
+
     public async Task<ResponseTool<T>> Get(int id)
     {
         try
@@ -86,6 +108,36 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
             var allEntities = await _context.Set<T>().ToListAsync();
 
             return ResponseFactory<IEnumerable<T>>.BuildSusccess("Entities fetched successfully.", allEntities);
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory<IEnumerable<T>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        }
+    }
+
+    public async Task<ResponseTool<IEnumerable<T>>> GetAllWithIncludesAsync(params Expression<Func<T, object>>[] includes)
+    {
+        try
+        {
+            var query = _context.Set<T>().AsQueryable();
+
+            // Include navigation properties
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            // Create a predicate expression for the Where clause
+            //Expression<Func<T, bool>> predicate = GetIdPredicate(id);
+
+            var entity = await query.ToListAsync();
+
+            if (entity != null)
+            {
+                return ResponseFactory<IEnumerable<T>>.BuildSusccess("Entities found.", entity, ToolsLibrary.Tools.Type.Found);
+            }
+
+            return ResponseFactory<IEnumerable<T>>.BuildFail("Entities not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
         }
         catch (Exception ex)
         {

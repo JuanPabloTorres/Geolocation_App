@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Wh74xvsvsRGMHx6S20M15Qjfvy/JCGepyWYVvqBHKOIxEYNax76OriPv4bjN5DexiPuPwWAjXNFod1B5NJMHgQ==",
+  "dgSpecHash": "INJZjCIPcw5Qrixw/IRzq5IVCeM/D96IIFlyDuRLkSEj8dh8fg0PqZxAJvJwSQf71fBzIa3cS0uLOTNTHhR94w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",

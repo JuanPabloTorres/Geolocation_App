@@ -12,15 +12,9 @@ namespace GeolocationAds.ViewModels
 {
     public partial class LoginViewModel : BaseViewModel2<ToolsLibrary.Models.Login, ILoginService>
     {
-        public ICommand LoginCommand { get; set; }
-
-        public ICommand RegisterCommand { get; set; }
-
-        public ICommand ForgotPasswordCommand { get; set; }
+        private RecoveryPasswordPopUp passwordRecoveryPage;
 
         private RecoveryPasswordViewModel RecoveryPasswordViewModel;
-
-        private RecoveryPasswordPopUp passwordRecoveryPage;
 
         public LoginViewModel(ToolsLibrary.Models.Login login, ILoginService service, LogUserPerfilTool logUserPerfil, IForgotPasswordService forgotPasswordService, RecoveryPasswordViewModel recoveryPasswordViewModel) : base(login, service, logUserPerfil)
         {
@@ -32,9 +26,9 @@ namespace GeolocationAds.ViewModels
 
             this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
 
-            this.Model.Username = "Log01";
+            this.Model.Username = "test";
 
-            this.Model.Password = "12345";
+            this.Model.Password = "1234";
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -56,6 +50,17 @@ namespace GeolocationAds.ViewModels
                     await this.passwordRecoveryPage.CloseAsync();
                 });
             });
+        }
+
+        public ICommand ForgotPasswordCommand { get; set; }
+
+        public ICommand LoginCommand { get; set; }
+
+        public ICommand RegisterCommand { get; set; }
+
+        private async void GoToRegister()
+        {
+            await Shell.Current.GoToAsync(nameof(Register));
         }
 
         private async void OpenRecoveryPopUp()
@@ -99,11 +104,6 @@ namespace GeolocationAds.ViewModels
             }
 
             IsLoading = false;
-        }
-
-        private async void GoToRegister()
-        {
-            await Shell.Current.GoToAsync(nameof(Register));
         }
     }
 }

@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeolocationAdsAPI.Migrations
 {
     [DbContext(typeof(GeolocationContext))]
-    [Migration("20230822002237_nullable_loginId_UserModel")]
-    partial class nullable_loginId_UserModel
+    [Migration("20230905225321_Inital")]
+    partial class Inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -50,6 +50,9 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("GeolocationAdId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsPosted")
                         .HasColumnType("bit");
 
@@ -68,9 +71,111 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("GeolocationAdId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Advertisements");
+                });
+
+            modelBuilder.Entity("ToolsLibrary.Models.AppSetting", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CreateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SettingName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UpdateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "10"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "20"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "30"
+                        });
+                });
+
+            modelBuilder.Entity("ToolsLibrary.Models.ForgotPassword", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CreateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsValid")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UpdateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ForgotPasswords");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.GeolocationAd", b =>
@@ -104,12 +209,13 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AdvertisingId");
+                    b.HasIndex("AdvertisingId")
+                        .IsUnique();
 
                     b.ToTable("GeolocationAds");
                 });
 
-            modelBuilder.Entity("ToolsLibrary.Models.LoginCredential", b =>
+            modelBuilder.Entity("ToolsLibrary.Models.Login", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -124,6 +230,7 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UpdateBy")
@@ -136,9 +243,12 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Logins");
                 });
@@ -158,15 +268,18 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("LoginId")
                         .HasColumnType("int");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UpdateBy")
@@ -174,6 +287,9 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("UserStatus")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -184,27 +300,44 @@ namespace GeolocationAdsAPI.Migrations
 
             modelBuilder.Entity("ToolsLibrary.Models.Advertisement", b =>
                 {
+                    b.HasOne("ToolsLibrary.Models.GeolocationAd", "GeolocationAd")
+                        .WithMany()
+                        .HasForeignKey("GeolocationAdId");
+
                     b.HasOne("ToolsLibrary.Models.User", null)
                         .WithMany("Advertisements")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("GeolocationAd");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.GeolocationAd", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
-                        .WithMany()
-                        .HasForeignKey("AdvertisingId")
+                        .WithOne()
+                        .HasForeignKey("ToolsLibrary.Models.GeolocationAd", "AdvertisingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Advertisement");
                 });
 
+            modelBuilder.Entity("ToolsLibrary.Models.Login", b =>
+                {
+                    b.HasOne("ToolsLibrary.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ToolsLibrary.Models.User", b =>
                 {
-                    b.HasOne("ToolsLibrary.Models.LoginCredential", "Login")
+                    b.HasOne("ToolsLibrary.Models.Login", "Login")
                         .WithMany()
                         .HasForeignKey("LoginId");
 

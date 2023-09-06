@@ -14,13 +14,13 @@ namespace GeolocationAds.ViewModels
 
         private void TestDataDefault()
         {
-            this.Model.FullName = "User 02";
+            this.Model.FullName = "Test 02";
 
             this.Model.Phone = "787-111-1111";
 
-            this.Model.Email = "user02@mail.com";
+            this.Model.Email = "est.juanpablotorres@mail.com";
 
-            this.Model.Login.Username = "user02";
+            this.Model.Login.Username = "test";
 
             this.Model.Login.Password = "12345";
         }

@@ -35,6 +35,23 @@ namespace GeolocationAds.ViewModels
                     this.CollectionModel.Clear();
                 });
             });
+
+            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    var _oldValue = this.CollectionModel.Where(v => v.CurrentAdvertisement.ID == m.Value.ID).FirstOrDefault();
+
+                    this.CollectionModel.Remove(_oldValue);
+
+                    var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service)
+                    {
+                        CurrentAdvertisement = m.Value,
+                    };
+
+                    this.CollectionModel.Add(_item);
+                });
+            });
         }
 
         protected override async Task LoadData()

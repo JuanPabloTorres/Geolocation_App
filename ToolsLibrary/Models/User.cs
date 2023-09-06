@@ -7,7 +7,8 @@ namespace ToolsLibrary.Models
     {
         ResetPassword = 1,
         InvalidUser = 2,
-        ValidUser = 3
+        ValidUser = 3,
+        Active = 4,
     }
 
     public class User : BaseModel
@@ -21,7 +22,7 @@ namespace ToolsLibrary.Models
         public string FullName { get; set; }
 
         [ForeignKey("LoginId")]
-        public Login Login { get; set; }
+        public virtual Login Login { get; set; }
 
         public int? LoginId { get; set; }
 

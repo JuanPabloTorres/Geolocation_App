@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Hd+ozEJnsZgE4iwQN0sBan6TFIU7bUilfcgyupWbiLLrwKZ9Oher4d3Fn+bN7df7r/FHKfaZr7edf66bNo3fDQ==",
+  "dgSpecHash": "wdWGJWgdRzmZBh+c+q9P6WmYYgx/vKNM5iPg6DnoOVN3Xigyzsr+qQiXRhAcJB1Zw7E1HsSokuYHiaN4GG1zJA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

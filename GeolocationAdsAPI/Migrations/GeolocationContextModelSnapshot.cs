@@ -30,6 +30,9 @@ namespace GeolocationAdsAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int?>("CaptureID")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Content")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
@@ -67,6 +70,8 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CaptureID");
 
                     b.HasIndex("GeolocationAdId");
 
@@ -136,6 +141,34 @@ namespace GeolocationAdsAPI.Migrations
                             UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "30"
                         });
+                });
+
+            modelBuilder.Entity("ToolsLibrary.Models.Capture", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CreateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UpdateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Captures");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.ForgotPassword", b =>
@@ -226,6 +259,9 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("HashPassword")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -245,7 +281,8 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Logins");
                 });
@@ -290,13 +327,15 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("LoginId");
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.Advertisement", b =>
                 {
+                    b.HasOne("ToolsLibrary.Models.Capture", null)
+                        .WithMany("Advertisements")
+                        .HasForeignKey("CaptureID");
+
                     b.HasOne("ToolsLibrary.Models.GeolocationAd", "GeolocationAd")
                         .WithMany()
                         .HasForeignKey("GeolocationAdId");
@@ -324,26 +363,24 @@ namespace GeolocationAdsAPI.Migrations
             modelBuilder.Entity("ToolsLibrary.Models.Login", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Login")
+                        .HasForeignKey("ToolsLibrary.Models.Login", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ToolsLibrary.Models.User", b =>
+            modelBuilder.Entity("ToolsLibrary.Models.Capture", b =>
                 {
-                    b.HasOne("ToolsLibrary.Models.Login", "Login")
-                        .WithMany()
-                        .HasForeignKey("LoginId");
-
-                    b.Navigation("Login");
+                    b.Navigation("Advertisements");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.User", b =>
                 {
                     b.Navigation("Advertisements");
+
+                    b.Navigation("Login");
                 });
 #pragma warning restore 612, 618
         }

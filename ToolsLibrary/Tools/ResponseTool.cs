@@ -18,6 +18,7 @@
         Found,
         NotFound,
         Exist,
+        NotExist,
         Exception,
         Updated,
         Added,
