@@ -8,9 +8,16 @@
     Title="Are You Look For Something?"
     Routing.Route="SearchAd">
 
-    <VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
         <StackLayout
+            Grid.Row="0"
             Margin="5"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Orientation="Horizontal">
@@ -25,6 +32,7 @@
         <!--  Submit Button  -->
         <Button
             x:Name="SearchAdButton"
+            Grid.Row="1"
             Command="{Binding SearchCommand}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
@@ -41,6 +49,7 @@
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
+            Grid.Row="2"
             IsVisible="{Binding IsLoading}"
             VerticalOptions="FillAndExpand">
             <ContentView.Content>
@@ -49,6 +58,7 @@
         </ContentView>
 
         <CarouselView
+            Grid.Row="3"
             Margin="10"
             IsSwipeEnabled="True"
             ItemsSource="{Binding CollectionModel}">
@@ -63,47 +73,50 @@
             <CarouselView.ItemTemplate>
 
                 <DataTemplate>
-                    <Frame Style="{StaticResource cardFrame}">
-                        <StackLayout>
 
-                            <Frame Style="{StaticResource imageFrame}">
-                                <Image
-                                    Aspect="AspectFill"
-                                    HeightRequest="300"
-                                    IsAnimationPlaying="True"
-                                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                                    WidthRequest="400" />
-                            </Frame>
+                    <VerticalStackLayout>
 
-                            <BoxView
-                                Margin="4,10,4,10"
-                                BackgroundColor="#e5e4e2"
-                                HeightRequest="1" />
+                        <Frame Style="{StaticResource cardFrame}">
+                            <StackLayout>
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+                                <Frame Style="{StaticResource imageFrame}">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="300"
+                                        IsAnimationPlaying="True"
+                                        Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                        WidthRequest="400" />
+                                </Frame>
 
-                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                                <BoxView
+                                    Margin="4,10,4,10"
+                                    BackgroundColor="#e5e4e2"
+                                    HeightRequest="1" />
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+
+                                    <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                                </StackLayout>
+
+                                <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
+
+                                <StackLayout
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="FillAndExpand">
+
+                                    <Button Style="{StaticResource cardButton}" Text="☆ Capture" />
+                                </StackLayout>
                             </StackLayout>
-
-                            <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
-
-                            <StackLayout
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal"
-                                VerticalOptions="FillAndExpand">
-
-
-                                <Button Style="{StaticResource cardButton}" Text="☆ Capture" />
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
+                        </Frame>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
 
             <CarouselView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                <LinearItemsLayout Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
         </CarouselView>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

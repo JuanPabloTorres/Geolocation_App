@@ -34,19 +34,24 @@ namespace GeolocationAds.ViewModels
                     {
                         foreach (var adsGeoItem in _apiResponse.Data)
                         {
-                            Location location = new Location()
+                            foreach (var geo in adsGeoItem.GeolocationAds)
                             {
-                                Latitude = adsGeoItem.GeolocationAd.Latitude,
-                                Longitude = adsGeoItem.GeolocationAd.Longitude,
-                            };
+                                Location location = new Location()
+                                {
+                                    Latitude = geo.Latitude,
+                                    Longitude = geo.Longitude,
+                                };
 
-                            this.CollectionModel.Add(new Microsoft.Maui.Controls.Maps.Pin()
-                            {
-                                Location = location,
-                                Label = adsGeoItem.Title,
-                                Address = $"LA:{location.Latitude} Lo:{location.Longitude}",
-                                Type = Microsoft.Maui.Controls.Maps.PinType.SavedPin,
-                            });
+                                this.CollectionModel.Add(new Microsoft.Maui.Controls.Maps.Pin()
+                                {
+                                    Location = location,
+                                    Label = adsGeoItem.Title,
+                                    Address = $"LA:{location.Latitude} Lo:{location.Longitude}",
+                                    Type = Microsoft.Maui.Controls.Maps.PinType.SavedPin,
+                                });
+                            }
+
+
                         }
                     }
                     else

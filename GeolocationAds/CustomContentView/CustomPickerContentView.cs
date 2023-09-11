@@ -1,4 +1,5 @@
 using System.Collections;
+using ToolsLibrary.Extensions;
 
 namespace GeolocationAds.CustomContentView;
 
@@ -11,6 +12,15 @@ public class CustomPickerContentView : ContentView
     {
         get => GetValue(SelectedItemProperty);
         set => SetValue(SelectedItemProperty, value);
+    }
+
+    public static readonly BindableProperty DisplayItemProperty =
+          BindableProperty.Create(nameof(DisplayItem), typeof(object), typeof(CustomPickerContentView), default(object), BindingMode.TwoWay);
+
+    public object DisplayItem
+    {
+        get => GetValue(DisplayItemProperty);
+        set => SetValue(DisplayItemProperty, value);
     }
 
     public static readonly BindableProperty ItemsSourceProperty =
@@ -31,14 +41,37 @@ public class CustomPickerContentView : ContentView
         set => SetValue(TitleProperty, value);
     }
 
+    // Create a custom bindable property for ItemDisplayBindingPath
+    public static readonly BindableProperty ItemDisplayBindingPathProperty =
+        BindableProperty.Create(nameof(ItemDisplayBindingPath), typeof(string), typeof(CustomPickerContentView), default(string));
+
+    public string ItemDisplayBindingPath
+    {
+        get => (string)GetValue(ItemDisplayBindingPathProperty);
+        set => SetValue(ItemDisplayBindingPathProperty, value);
+    }
+
+    // Create a custom bindable property for ItemDisplayBindingPath
+    public static readonly BindableProperty SelectValueProperty =
+        BindableProperty.Create(nameof(SelectValue), typeof(string), typeof(CustomPickerContentView), default(string));
+
+    public string SelectValue
+    {
+        get => (string)GetValue(SelectValueProperty);
+        set => SetValue(SelectValueProperty, value);
+    }
+
+    private Picker picker;
+
     public CustomPickerContentView()
     {
-        var picker = new Picker
+        picker = new Picker
         {
             Style = (Style)Application.Current.Resources["globalPicker"]
         };
 
         picker.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(SelectedItem), source: this));
+
         picker.SetBinding(Picker.ItemsSourceProperty, new Binding(nameof(ItemsSource), source: this));
 
         var frame = new Frame
@@ -54,5 +87,40 @@ public class CustomPickerContentView : ContentView
             Orientation = StackOrientation.Vertical,
             Children = { frame }
         };
+    }
+
+    protected override void OnBindingContextChanged()
+    {
+        if (!string.IsNullOrEmpty(ItemDisplayBindingPath))
+        {
+            picker.ItemDisplayBinding = new Binding(ItemDisplayBindingPath);
+
+            // Select the first item from the ItemsSource if it's not empty
+
+            if (!DisplayItem.IsObjectNull())
+            {
+                SelectedItem = DisplayItem;
+            }
+            else
+            {
+                if (ItemsSource != null && ItemsSource.GetEnumerator().MoveNext())
+                {
+                    // Use LINQ to find the item with the matching "Value"
+                    var matchingItem = ItemsSource?.Cast<object>().FirstOrDefault(item =>
+                    {
+                        // Replace "Value" with the name of the property you want to check
+                        var valueProperty = item.GetType().GetProperty("Value");
+                        if (valueProperty != null)
+                        {
+                            var itemValue = valueProperty.GetValue(item);
+                            return itemValue != null && itemValue.ToString() == SelectValue;
+                        }
+                        return false;
+                    });
+
+                    SelectedItem = ItemsSource.Cast<object>().FirstOrDefault();
+                }
+            }
+        }
     }
 }

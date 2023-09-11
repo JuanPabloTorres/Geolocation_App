@@ -183,12 +183,22 @@
                 <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
 
+            <Style x:Key="XButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="BorderColor" Value="#333333" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
             <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="#333333" />
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="FontFamily" Value="Roboto" />
-
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />

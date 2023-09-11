@@ -66,7 +66,7 @@ namespace GeolocationAds.ViewModels
 
         private async Task LoadSetting()
         {
-            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingsEnums.SettingName.ToString());
+            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.MeterDistance.ToString());
 
             this.CollectionModel.Clear();
 

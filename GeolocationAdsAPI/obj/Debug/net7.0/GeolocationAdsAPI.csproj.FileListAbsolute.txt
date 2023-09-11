@@ -286,6 +286,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\GeolocationAdsAPI.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\BCrypt.Net-Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\MailKit.dll
@@ -540,4 +541,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net7.0\GeolocationAdsAPI.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net7.0\GeolocationAdsAPI.genruntimeconfig.cache
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net7.0\ref\GeolocationAdsAPI.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\BCrypt.Net-Core.dll

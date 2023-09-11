@@ -46,10 +46,7 @@ namespace GeolocationAdsAPI.Context
                 .HasForeignKey<Login>(l => l.UserId)
                 .IsRequired(true); // Optional, depending on your requirements
 
-            //modelBuilder.Entity<GeolocationAd>()
-            //    .HasOne(a => a.Advertisement)
-            //    .WithOne(ad => ad.GeolocationAd)
-            //    .OnDelete(DeleteBehavior.ClientSetNull); // Set cascade delete behavior
+
 
             //modelBuilder.Entity<Advertisement>()
             //.HasOne(a => a.GeolocationAd)

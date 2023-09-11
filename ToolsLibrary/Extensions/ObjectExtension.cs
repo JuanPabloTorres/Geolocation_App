@@ -16,6 +16,18 @@ namespace ToolsLibrary.Extensions
             }
         }
 
+        public static bool IsNotNullOrCountGreaterZero(this IEnumerable<object> obj)
+        {
+            if (obj != null && obj.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static string ToCamelCase(this string input)
         {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;

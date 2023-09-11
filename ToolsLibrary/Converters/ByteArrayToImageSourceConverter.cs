@@ -21,7 +21,11 @@ namespace ToolsLibrary.Converters
             //    return ImageSource.FromStream(() => new MemoryStream(byteArray));
             //}
 
-            return null;
+            //return null;
+
+            var _fileName = "mediacontent.png";
+
+            return ImageSource.FromResource($"GeolocationAds.Resources.Images.{_fileName}");
         }
     }
 }

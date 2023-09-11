@@ -3,7 +3,10 @@ using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ToolsLibrary.Enums;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -30,25 +33,61 @@ namespace GeolocationAds.ViewModels
 
         private byte[] fileBytes;
 
-        private bool isAnimation;
+        private IAppSettingService appSettingService;
 
-        public bool IsAnimation
+        private ObservableCollection<AppSetting> _adTypesSettings;
+
+        public ObservableCollection<AppSetting> AdTypesSettings
         {
-            get => isAnimation;
+            get => _adTypesSettings;
             set
             {
-                if (isAnimation != value)
+                if (_adTypesSettings != value)
                 {
-                    isAnimation = value;
+                    _adTypesSettings = value;
 
                     OnPropertyChanged();
                 }
             }
         }
 
-        public CreateAdvertismentViewModel(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool) : base(advertisement, advertisementService, logUserPerfilTool)
+        private AppSetting _selectedAdType;
+
+        public AppSetting SelectedAdType
         {
+            get => _selectedAdType;
+            set
+            {
+                if (_selectedAdType != value)
+                {
+                    _selectedAdType = value;
+
+                    this.Model.Settings.Clear();
+
+                    this.Model.Settings.Add(new AdvertisementSettings()
+                    {
+                        AdvertisementId = this.Model.ID,
+                        SettingId = _selectedAdType.ID,
+                        CreateDate = DateTime.Now,
+                        CreateBy = this.LogUserPerfilTool.LogUser.ID
+                    });
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public CreateAdvertismentViewModel(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool, IAppSettingService appSettingService) : base(advertisement, advertisementService, logUserPerfilTool)
+        {
+            this.appSettingService = appSettingService;
+
+            this.AdTypesSettings = new ObservableCollection<AppSetting>();
+
+            this.Model.Settings = new List<AdvertisementSettings>();
+
             SetDefault();
+
+            Task.Run(async () => { await this.LoadSetting(); });
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
@@ -68,13 +107,27 @@ namespace GeolocationAds.ViewModels
             this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
         }
 
+        private async Task LoadSetting()
+        {
+            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+
+            this.CollectionModel.Clear();
+
+            if (_apiResponse.IsSuccess)
+            {
+                AdTypesSettings.AddRange(_apiResponse.Data);
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+            }
+        }
+
         [ICommand]
         private async void OnUploadCommandExecuted()
         {
             try
             {
-                IsAnimation = false;
-
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg" });
@@ -145,8 +198,6 @@ namespace GeolocationAds.ViewModels
 
                         Image.IsAnimationPlaying = true;
 
-                        IsAnimation = true;
-
                         this.Model.Content = fileBytes;
 
                         //if (result.FileName.ToLower().EndsWith(".gif"))
@@ -180,7 +231,6 @@ namespace GeolocationAds.ViewModels
 
         private async void GetImageSourceFromFile()
         {
-
             var _fileName = "mediacontent.png";
 
             this.Image.Source = ImageSource.FromResource($"GeolocationAds.Resources.Images.{_fileName}");
@@ -189,7 +239,5 @@ namespace GeolocationAds.ViewModels
 
             this.Model.Content = _defaulMedia;
         }
-
-
     }
 }

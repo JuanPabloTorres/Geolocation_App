@@ -31,6 +31,8 @@ namespace GeolocationAdsAPI.Repositories
 
                     _user.Login.Password = newPasswordDto.NewPassword;
 
+                    _user.Login.HashPassword = CommonsTool.HashPassword(_user.Login.Password);
+
                     _user.UserStatus = UserStatus.ValidUser;
 
                     _context.Entry(_user).State = EntityState.Modified;

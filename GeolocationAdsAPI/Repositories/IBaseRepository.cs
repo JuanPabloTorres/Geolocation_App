@@ -20,5 +20,9 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<T>> Remove(int id);
 
         Task<ResponseTool<T>> UpdateAsync(int id, T entity);
+
+        Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, object>>[] relatedExpressions);
+
+        Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, IEnumerable<object>>>[] relatedExpressions);
     }
 }

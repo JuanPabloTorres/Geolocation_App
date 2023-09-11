@@ -13,14 +13,12 @@
     <Grid VerticalOptions="CenterAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-
         </Grid.RowDefinitions>
 
         <!--  Header Section  -->
 
         <!--  Form Section  -->
         <Frame Grid.Row="1" Style="{StaticResource cardLogoFrame}">
-
 
             <StackLayout>
 
@@ -68,7 +66,6 @@
                     IsVisible="{Binding IsLoading}"
                     Style="{StaticResource globalLoading}" />
             </StackLayout>
-
         </Frame>
     </Grid>
 </ContentPage>

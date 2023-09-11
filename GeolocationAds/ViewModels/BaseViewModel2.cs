@@ -142,8 +142,20 @@ namespace GeolocationAds.ViewModels
                     await this.Get(Convert.ToInt32(ID));
 
                     //WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
+
+                    OnApplyQueryAttributesCompleted(EventArgs.Empty);
                 }
             }
+        }
+
+        public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
+
+        public event ApplyQueryAttributesEventHandler ApplyQueryAttributesCompleted;
+
+
+        protected virtual void OnApplyQueryAttributesCompleted(EventArgs e)
+        {
+            ApplyQueryAttributesCompleted?.Invoke(this, e);
         }
 
         public async void OnSubmit(T obj)
@@ -489,7 +501,7 @@ namespace GeolocationAds.ViewModels
 
                             if (_apiResponse.IsSuccess)
                             {
-                                WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
+                                //WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
 
                                 await Shell.Current.Navigation.PopToRootAsync();
 

@@ -1,5 +1,8 @@
 ﻿using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using ToolsLibrary.Enums;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -26,22 +29,136 @@ namespace GeolocationAds.ViewModels
 
         private byte[] fileBytes;
 
-        public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
+        private IAppSettingService appSettingService;
+
+        private ObservableCollection<AppSetting> _adTypesSettings;
+
+        public ObservableCollection<AppSetting> AdTypesSettings
         {
+            get => _adTypesSettings;
+            set
+            {
+                if (_adTypesSettings != value)
+                {
+                    _adTypesSettings = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private AppSetting _selectedAdType;
+
+        public AppSetting SelectedAdType
+        {
+            get => _selectedAdType;
+            set
+            {
+                if (_selectedAdType != value)
+                {
+                    _selectedAdType = value;
+
+
+                    SelectedTypeChange(SelectedAdType);
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        void SelectedTypeChange(AppSetting value)
+        {
+            try
+            {
+
+                if (this.Model.Settings.IsNotNullOrCountGreaterZero() && !value.IsObjectNull())
+                {
+                    var _toUpdateSetting = this.Model.Settings.FirstOrDefault();
+
+                    _toUpdateSetting.UpdateDate = DateTime.Now;
+
+                    _toUpdateSetting.UpdateBy = this.LogUserPerfilTool.LogUser.ID;
+
+                    _toUpdateSetting.SettingId = value.ID;
+                }
+                else
+                {
+                    if (!_selectedAdType.IsObjectNull())
+                    {
+                        this.Model.Settings = new List<AdvertisementSettings>();
+
+                        this.Model.Settings.Add(new AdvertisementSettings()
+                        {
+                            AdvertisementId = this.Model.ID,
+                            SettingId = value.ID,
+                            CreateDate = DateTime.Now,
+                            CreateBy = this.LogUserPerfilTool.LogUser.ID
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil, IAppSettingService appSettingService) : base(model, service, logUserPerfil)
+        {
+            this.appSettingService = appSettingService;
+
+            this.AdTypesSettings = new ObservableCollection<AppSetting>();
+
+            this.SelectedAdType = new AppSetting();
+
             this.Image = new Image();
 
-            //WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
-            //{
-            //    MainThread.BeginInvokeOnMainThread(() =>
-            //    {
-            //        SetCurrentImage();
-            //    });
-            //});
+            this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+        }
+
+        private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
+        {
+            await this.LoadSetting();
         }
 
         private void SetCurrentImage()
         {
             Image.Source = ImageSource.FromStream(() => new MemoryStream(this.Model.Content));
+        }
+
+        public async Task LoadSetting()
+        {
+            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+
+            this.CollectionModel.Clear();
+
+            if (_apiResponse.IsSuccess)
+            {
+                AdTypesSettings.AddRange(_apiResponse.Data);
+
+                foreach (var item in AdTypesSettings)
+                {
+                    if (this.Model.Settings.IsNotNullOrCountGreaterZero())
+                    {
+                        foreach (var modelsetting in this.Model.Settings)
+                        {
+                            if (modelsetting.SettingId == item.ID)
+                            {
+                                this.SelectedAdType = item;
+
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                //this.SelectedAdType = this.AdTypesSettings.Where(v => v.ID == _currenType.ID).FirstOrDefault();
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+            }
         }
 
         [ICommand]

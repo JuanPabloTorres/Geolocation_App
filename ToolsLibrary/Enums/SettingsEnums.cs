@@ -7,6 +7,7 @@
 
     public enum SettingName
     {
-        MeterDistance
+        MeterDistance,
+        AdTypes
     }
 }

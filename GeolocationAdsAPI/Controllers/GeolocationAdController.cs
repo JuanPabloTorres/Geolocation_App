@@ -30,15 +30,6 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-                var _removeOldGeolocation = await this.geolocationAdRepository.RemoveAllOfAdvertisementId(newGeolocationAd.AdvertisingId);
-
-                if (!_removeOldGeolocation.IsSuccess)
-                {
-                    response = ResponseFactory<GeolocationAd>.BuildFail(_removeOldGeolocation.Message, null, ToolsLibrary.Tools.Type.Fail);
-
-                    return Ok(response);
-                }
-
                 var _currentAdToPost = newGeolocationAd.Advertisement;
 
                 newGeolocationAd.Advertisement = null;
@@ -49,7 +40,7 @@ namespace GeolocationAdsAPI.Controllers
                 {
                     _currentAdToPost.IsPosted = true;
 
-                    _currentAdToPost.GeolocationAdId = response.Data.ID;
+                    //_currentAdToPost.GeolocationAdId = response.Data.ID;
 
                     var _adPostedResponse = await this.advertisementRepository.UpdateAsync(_currentAdToPost.ID, _currentAdToPost);
 
@@ -96,12 +87,7 @@ namespace GeolocationAdsAPI.Controllers
 
                         if (meterDistance <= distance)
                         {
-                            item.Advertisement.GeolocationAd = new GeolocationAd()
-                            {
-                                ID = item.ID,
-                                Latitude = item.Latitude,
-                                Longitude = item.Longitude,
-                            };
+                            item.Advertisement.GeolocationAds = item.Advertisement.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
 
                             _adsNear.Add(item.Advertisement);
                         }

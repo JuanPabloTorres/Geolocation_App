@@ -19,7 +19,7 @@
             Command="{Binding SearchCommand}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
-            Text="Load">
+            Text="Refresh">
 
             <Button.Shadow>
                 <Shadow
@@ -34,16 +34,16 @@
             Grid.Row="1"
             IsRunning="{Binding IsLoading}"
             IsVisible="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}" />
+            Style="{StaticResource globalLoading}"
+            VerticalOptions="CenterAndExpand" />
+
 
         <CarouselView
             Grid.Row="2"
             Margin="10"
-            IsSwipeEnabled="True"
             ItemsSource="{Binding CollectionModel}">
 
             <CarouselView.EmptyView>
-
                 <StackLayout>
                     <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
                 </StackLayout>
@@ -51,70 +51,77 @@
 
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Style="{StaticResource cardFrame}">
-                        <StackLayout>
+                    <VerticalStackLayout>
 
-                            <Frame Style="{StaticResource imageFrame}">
+                        <Frame Style="{StaticResource cardFrame}">
+                            <StackLayout>
 
-                                <Image
-                                    Aspect="AspectFill"
-                                    HeightRequest="300"
-                                    IsAnimationPlaying="True"
-                                    Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                                    WidthRequest="400" />
-                            </Frame>
+                                <StackLayout Orientation="Horizontal">
 
-                            <BoxView
-                                Margin="4,10,4,10"
-                                BackgroundColor="#e5e4e2"
-                                HeightRequest="1" />
+                                    <Label
+                                        HorizontalOptions="StartAndExpand"
+                                        Style="{StaticResource globalLabel}"
+                                        Text="{Binding CurrentAdvertisement.Title}" />
 
-                            <StackLayout Orientation="Horizontal">
+                                    <Button
+                                        Command="{Binding RemoveCommand}"
+                                        CommandParameter="{Binding CurrentAdvertisement}"
+                                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                        Style="{StaticResource XButton}"
+                                        Text="X" />
+                                </StackLayout>
 
-                                <Label Style="{StaticResource globalLabel}" Text="{Binding CurrentAdvertisement.Title}" />
+                                <Frame Style="{StaticResource imageFrame}">
 
-                                <Label Style="{StaticResource globalsubTitle}" Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="300"
+                                        IsAnimationPlaying="True"
+                                        Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                        WidthRequest="400" />
+                                </Frame>
+
+                                <BoxView
+                                    Margin="4,10,4,10"
+                                    BackgroundColor="#e5e4e2"
+                                    HeightRequest="1" />
+
+                                <Label
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource globalsubTitle}"
+                                    Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+
+                                <StackLayout Margin="5" Orientation="Horizontal">
+                                    <Button
+                                        Command="{Binding SetLocationCommand}"
+                                        CommandParameter="{Binding CurrentAdvertisement}"
+                                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                        Style="{StaticResource cardButton}"
+                                        Text="Set Location" />
+
+                                    <Button
+                                        BackgroundColor="Green"
+                                        Command="{Binding onNavigate}"
+                                        CommandParameter="{Binding CurrentAdvertisement.ID}"
+                                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                        Style="{StaticResource cardButton}"
+                                        Text="Detail" />
+                                </StackLayout>
+
+                                <ActivityIndicator
+                                    IsRunning="{Binding IsLoading}"
+                                    IsVisible="{Binding IsLoading}"
+                                    Style="{StaticResource globalLoading}" />
                             </StackLayout>
-
-                            <StackLayout
-                                Margin="5"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal">
-                                <Button
-                                    Command="{Binding SetLocationCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="Set Current Location" />
-
-                                <Button
-                                    Command="{Binding onNavigate}"
-                                    CommandParameter="{Binding CurrentAdvertisement.ID}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="Detail" />
-
-                                <Button
-                                    BackgroundColor="Red"
-                                    Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="Delete" />
-                            </StackLayout>
-
-                            <ActivityIndicator
-                                IsRunning="{Binding IsLoading}"
-                                IsVisible="{Binding IsLoading}"
-                                Style="{StaticResource globalLoading}" />
-                        </StackLayout>
-                    </Frame>
+                        </Frame>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
 
             <CarouselView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                <LinearItemsLayout Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
         </CarouselView>
+
     </Grid>
 </ContentPage>

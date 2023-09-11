@@ -14,4 +14,11 @@ public partial class AdToLocation : ContentPage
 
         BindingContext = adToLocationViewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        viewModel.Initialize();
+    }
 }

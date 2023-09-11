@@ -136,7 +136,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<UserSetting>();
 
-        builder.Services.AddSingleton<EditAdvertisment>();
+        builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel>($"{nameof(EditAdvertisment)}");
 
         builder.Services.AddSingleton<EditUserPerfil>();
 

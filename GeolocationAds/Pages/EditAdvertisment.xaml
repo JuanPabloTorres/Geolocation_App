@@ -20,23 +20,16 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Label
-                    Margin="5"
-                    FontSize="30"
-                    Style="{StaticResource globalLabel}"
-                    Text="Update Content" />
-
                 <StackLayout>
+
+                    <Label Style="{StaticResource globalLabel}" Text="Coordinates:" />
 
                     <StackLayout Orientation="Horizontal">
 
                         <Label Style="{StaticResource globalLabel}" Text="{Binding Model.GeolocationAd.Latitude, StringFormat='Lat:{0}'}" />
 
                         <Label Style="{StaticResource globalLabel}" Text="{Binding Model.GeolocationAd.Longitude, StringFormat='Lon:{0}'}" />
-
                     </StackLayout>
-
-
                 </StackLayout>
 
                 <Label Style="{StaticResource globalLabel}" Text="Title:" />
@@ -45,8 +38,26 @@
                 <Label Style="{StaticResource globalLabel}" Text="Description:" />
                 <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
 
+                <Label Style="{StaticResource globalLabel}" Text="Type:" />
+                <local:CustomPickerContentView
+                    DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand"
+                    ItemDisplayBindingPath="Value"
+                    SelectValue="{Binding SelectedAdType}"
+                    ItemsSource="{Binding AdTypesSettings}"
+                    SelectedItem="{Binding SelectedAdType}" />
+
+                <!--<Frame Style="{StaticResource entryFrame}">
+                    <Picker
+                        ItemDisplayBinding="{Binding Value}"
+                        ItemsSource="{Binding AdTypesSettings}"
+                        SelectedItem="{Binding SelectedAdType}"
+                        Style="{StaticResource globalPicker}" />
+
+                </Frame>-->
+
                 <Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
-                <local:CustomDatePickerContentView SelectedDate="{Binding Model.ExpirationDate}" />
+                <local:CustomDatePickerContentView x:Name="customPicker" SelectedDate="{Binding Model.ExpirationDate}" />
 
                 <!--  ... Choose File ...  -->
                 <Button

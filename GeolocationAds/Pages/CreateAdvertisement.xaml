@@ -34,6 +34,13 @@
                 <Label Style="{StaticResource globalLabel}" Text="Description:" />
                 <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
 
+                <Label Style="{StaticResource globalLabel}" Text="Type:" />
+                <local:CustomPickerContentView
+                    HorizontalOptions="FillAndExpand"
+                    ItemDisplayBindingPath="Value"
+                    ItemsSource="{Binding AdTypesSettings}"
+                    SelectedItem="{Binding SelectedAdType}" />
+
                 <Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
                 <local:CustomDatePickerContentView SelectedDate="{Binding Model.ExpirationDate}" />
 

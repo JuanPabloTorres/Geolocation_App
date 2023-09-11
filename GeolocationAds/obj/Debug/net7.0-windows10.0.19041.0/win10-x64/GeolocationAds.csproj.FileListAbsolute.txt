@@ -1,3 +1,15 @@
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.csproj.AssemblyReference.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauiimage.inputs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauifont.inputs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauisplash.inputs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauimanifest.stamp
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.g.i.cs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.g.cs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\XamlTypeInfo.g.cs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xaml
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xbf
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\XamlSaveStateFile.xml
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.exe
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Resources\Images\mediacontent.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xbf
@@ -9,6 +21,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Azure.Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Azure.Identity.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\BCrypt.Net-Core.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\BouncyCastle.Cryptography.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Maui.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Maui.Core.dll
@@ -552,18 +565,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\WinRT.Runtime.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\ToolsLibrary.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\ToolsLibrary.pdb
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.csproj.AssemblyReference.cache
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauiimage.inputs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauifont.inputs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauisplash.inputs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauimanifest.stamp
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.g.i.cs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.g.cs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\XamlTypeInfo.g.cs
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xaml
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xbf
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\XamlSaveStateFile.xml
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\GeolocationAds.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png
@@ -668,4 +669,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\BCrypt.Net-Core.dll

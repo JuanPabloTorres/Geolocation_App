@@ -16,11 +16,15 @@ namespace GeolocationAdsAPI.Controllers
 
         private readonly IGeolocationAdRepository geolocationAdRepository;
 
-        public AdvertisementController(IAdvertisementRepository advertisementRepository, IGeolocationAdRepository geolocationAdRepository)
+        private readonly IAdvertisementSettingsRepository advertisementSettingsRepository;
+
+        public AdvertisementController(IAdvertisementRepository advertisementRepository, IGeolocationAdRepository geolocationAdRepository, IAdvertisementSettingsRepository advertisementSettingsRepository)
         {
             this.advertisementRepository = advertisementRepository;
 
             this.geolocationAdRepository = geolocationAdRepository;
+
+            this.advertisementSettingsRepository = advertisementSettingsRepository;
         }
 
         [HttpPost("[action]")]
@@ -49,16 +53,22 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-                Expression<Func<Advertisement, object>>[] includes = { e => e.GeolocationAd };
+                Expression<Func<Advertisement, object>>[] includes = { e => e.GeolocationAds };
+
+                Expression<Func<Advertisement, object>>[] additionalIncludes = { e => e.Settings };
+
+                includes = includes.Concat(additionalIncludes).ToArray();
 
                 response = await this.advertisementRepository.Get(id, includes);
 
-                if (!response.Data.GeolocationAd.IsObjectNull())
+                if (!response.IsSuccess)
                 {
-                    var _geolocation = ModelFactory<GeolocationAd>.Build(response.Data.GeolocationAd);
+                    response = ResponseFactory<Advertisement>.BuildFail(response.Message, null, ToolsLibrary.Tools.Type.Fail);
 
-                    response.Data.GeolocationAd = new GeolocationAd(_geolocation);
+                    return Ok(response);
                 }
+
+                response.Data.GeolocationAds = response.Data.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
 
                 return Ok(response);
             }
@@ -153,7 +163,37 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
+                Expression<Func<Advertisement, IEnumerable<object>>>[] related = { e => e.Settings };
+
                 response = await this.advertisementRepository.UpdateAsync(Id, advertisement);
+
+                if (response.IsSuccess)
+                {
+                    var _adSetting = advertisement.Settings.Where(v => v.GetType() == typeof(AdvertisementSettings)).FirstOrDefault();
+
+                    if (_adSetting.ID == 0)
+                    {
+                        var _settingResponse = await this.advertisementSettingsRepository.CreateAsync(_adSetting);
+
+                        if (!_settingResponse.IsSuccess)
+                        {
+                            response = ResponseFactory<Advertisement>.BuildFail(_settingResponse.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                            return Ok(response);
+                        }
+                    }
+                    else
+                    {
+                        var _settingResponse = await this.advertisementSettingsRepository.UpdateAsync(_adSetting.ID, _adSetting);
+
+                        if (!_settingResponse.IsSuccess)
+                        {
+                            response = ResponseFactory<Advertisement>.BuildFail(_settingResponse.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                            return Ok(response);
+                        }
+                    }
+                }
 
                 return Ok(response);
             }

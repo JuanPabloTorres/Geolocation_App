@@ -35,5 +35,24 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetAppSettingByNames(IList<string> settingNames)
+        {
+            ResponseTool<IEnumerable<AppSetting>> response;
+
+            try
+            {
+                response = await this.appSettingRepository.GetAppSettingByNames(settingNames);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<IEnumerable<AppSetting>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
     }
 }
