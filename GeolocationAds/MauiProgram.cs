@@ -122,7 +122,9 @@ public static class MauiProgram
 
         #region Pages
 
-        builder.Services.AddSingleton<CreateAdvertisment>();
+        builder.Services.AddScoped<CreateAdvertisment>();
+
+        //builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
 
         builder.Services.AddSingleton<AdToLocation>();
 

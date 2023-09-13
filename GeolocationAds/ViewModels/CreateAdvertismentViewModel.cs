@@ -62,20 +62,24 @@ namespace GeolocationAds.ViewModels
                 {
                     _selectedAdType = value;
 
-                    this.Model.Settings.Clear();
+                    //this.Model.Settings.Clear();
 
-                    this.Model.Settings.Add(new AdvertisementSettings()
-                    {
-                        AdvertisementId = this.Model.ID,
-                        SettingId = _selectedAdType.ID,
-                        CreateDate = DateTime.Now,
-                        CreateBy = this.LogUserPerfilTool.LogUser.ID
-                    });
+                    //this.Model.Settings.Add(new AdvertisementSettings()
+                    //{
+                    //    AdvertisementId = this.Model.ID,
+                    //    SettingId = _selectedAdType.ID,
+                    //    CreateDate = DateTime.Now,
+                    //    CreateBy = this.LogUserPerfilTool.LogUser.ID
+                    //});
+
+                    SelectedTypeChange(_selectedAdType);
 
                     OnPropertyChanged();
                 }
             }
         }
+
+
 
         public CreateAdvertismentViewModel(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool, IAppSettingService appSettingService) : base(advertisement, advertisementService, logUserPerfilTool)
         {
@@ -238,6 +242,42 @@ namespace GeolocationAds.ViewModels
             var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(_fileName);
 
             this.Model.Content = _defaulMedia;
+        }
+
+        private async void SelectedTypeChange(AppSetting value)
+        {
+            try
+            {
+                if (this.Model.Settings.IsNotNullOrCountGreaterZero() && !value.IsObjectNull())
+                {
+                    var _toUpdateSetting = this.Model.Settings.FirstOrDefault();
+
+                    _toUpdateSetting.UpdateDate = DateTime.Now;
+
+                    _toUpdateSetting.UpdateBy = this.LogUserPerfilTool.LogUser.ID;
+
+                    _toUpdateSetting.SettingId = value.ID;
+                }
+                else
+                {
+                    if (!_selectedAdType.IsObjectNull())
+                    {
+                        this.Model.Settings = new List<AdvertisementSettings>();
+
+                        this.Model.Settings.Add(new AdvertisementSettings()
+                        {
+                            AdvertisementId = this.Model.ID,
+                            SettingId = value.ID,
+                            CreateDate = DateTime.Now,
+                            CreateBy = this.LogUserPerfilTool.LogUser.ID
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
     }
 }

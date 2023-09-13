@@ -22,10 +22,7 @@ namespace GeolocationAdsAPI.Context
         public DbSet<AppSetting> Settings { get; set; }
 
         public DbSet<User> Users { get; set; }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //}
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
