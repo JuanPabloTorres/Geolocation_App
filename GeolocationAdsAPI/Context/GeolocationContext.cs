@@ -58,7 +58,13 @@ namespace GeolocationAdsAPI.Context
             modelBuilder.Entity<AppSetting>().HasData(
                 new AppSetting { ID = 1, SettingName = "MeterDistance", Value = "10" },
                 new AppSetting { ID = 2, SettingName = "MeterDistance", Value = "20" },
-                new AppSetting { ID = 3, SettingName = "MeterDistance", Value = "30" }
+                new AppSetting { ID = 3, SettingName = "MeterDistance", Value = "30" },
+                new AppSetting { ID = 4, SettingName = "MeterDistance", Value = "40" },
+                new AppSetting { ID = 5, SettingName = "MeterDistance", Value = "50" },
+                new AppSetting { ID = 6, SettingName = "AdTypes", Value = "Broadcast" },
+                new AppSetting { ID = 7, SettingName = "AdTypes", Value = "Social" },
+                new AppSetting { ID = 8, SettingName = "AdTypes", Value = "Store" },
+                new AppSetting { ID = 9, SettingName = "AdTypes", Value = "Offer" }
             // Add more initial settings as needed
             );
         }

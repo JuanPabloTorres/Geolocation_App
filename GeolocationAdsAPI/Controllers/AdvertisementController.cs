@@ -68,7 +68,8 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(response);
                 }
 
-                response.Data.GeolocationAds = response.Data.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
+                response.Data.GeolocationAds = response.Data.GeolocationAds
+                    .Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude, ExpirationDate = g.ExpirationDate }).ToList();
 
                 return Ok(response);
             }

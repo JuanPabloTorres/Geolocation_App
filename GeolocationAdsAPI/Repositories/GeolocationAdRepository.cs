@@ -20,15 +20,12 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (_exist)
                 {
-
                     return ResponseFactory<bool>.BuildSusccess("Exist.", true, ToolsLibrary.Tools.Type.Exist);
                 }
                 else
                 {
                     return ResponseFactory<bool>.BuildSusccess("Exist.", false, ToolsLibrary.Tools.Type.NotExist);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -41,6 +38,24 @@ namespace GeolocationAdsAPI.Repositories
             try
             {
                 var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => DateTime.Now <= v.Advertisement.ExpirationDate).ToListAsync();
+
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo(int settingId)
+        {
+            try
+            {
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(s => s.Settings)
+                    .Where(v => DateTime.Now <=
+                    v.Advertisement.ExpirationDate &&
+                    v.Advertisement.Settings.Any(s => s.SettingId == settingId))
+                    .ToListAsync();
 
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
             }

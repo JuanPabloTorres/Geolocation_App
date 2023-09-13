@@ -8,6 +8,6 @@
     public enum SettingName
     {
         MeterDistance,
-        AdTypes
+        AdTypes,
     }
 }

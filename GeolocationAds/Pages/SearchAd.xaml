@@ -19,14 +19,21 @@
         <StackLayout
             Grid.Row="0"
             Margin="5"
+            HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Orientation="Horizontal">
 
-            <Label Style="{StaticResource globalLabel}" Text="Distance To Find: (M)" />
+            <Label Style="{StaticResource globalLabel}" Text="Distance: (M)" HorizontalOptions="Start"/>
+            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
+
+            <Label Style="{StaticResource globalLabel}" Text="Type:" HorizontalOptions="Start" />
             <localControl:CustomPickerContentView
-                HorizontalOptions="FillAndExpand"
-                ItemsSource="{Binding DistanceSettings}"
-                SelectedItem="{Binding SelectedDistance}" />
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                HorizontalOptions="StartAndExpand"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType}" />
         </StackLayout>
 
         <!--  Submit Button  -->

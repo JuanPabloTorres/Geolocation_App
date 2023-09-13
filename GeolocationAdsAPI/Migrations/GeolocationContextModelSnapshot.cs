@@ -170,6 +170,66 @@ namespace GeolocationAdsAPI.Migrations
                             UpdateBy = 0,
                             UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "30"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "40"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "MeterDistance",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "50"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "AdTypes",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "Broadcast"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "AdTypes",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "Social"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "AdTypes",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "Store"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "AdTypes",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "Offer"
                         });
                 });
 
@@ -253,6 +313,9 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<double>("Latitude")

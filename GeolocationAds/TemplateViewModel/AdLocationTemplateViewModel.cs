@@ -63,7 +63,9 @@ namespace ToolsLibrary.TemplateViewModel
                         Advertisement = ad,
                         CreateDate = DateTime.Now,
                         Latitude = locationReponse.Data.Latitude,
-                        Longitude = locationReponse.Data.Longitude
+                        Longitude = locationReponse.Data.Longitude,
+                        ExpirationDate = DateTime.Now.AddDays(7)
+
                     };
 
                     var _apiResponse = await this.geolocationAdService.Add(newAd);

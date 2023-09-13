@@ -118,5 +118,56 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
+
+        [HttpPost("[action]/{distance}/{settinTypeId}")]
+        public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settinTypeId)
+        {
+            ResponseTool<IEnumerable<Advertisement>> response;
+
+            IList<Advertisement> _adsNear = new List<Advertisement>();
+
+            try
+            {
+                var _geoAd_Response = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo(settinTypeId);
+
+                if (_geoAd_Response.IsSuccess)
+                {
+                    foreach (var item in _geoAd_Response.Data)
+                    {
+                        double meterDistance = GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, item.Latitude, item.Longitude);
+
+                        if (meterDistance <= distance)
+                        {
+                            item.Advertisement.GeolocationAds = item.Advertisement.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
+
+                            _adsNear.Add(item.Advertisement);
+                        }
+                    }
+
+                    if (_adsNear.Count > 0)
+                    {
+                        _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
+
+                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", _adsNear, ToolsLibrary.Tools.Type.DataFound);
+                    }
+                    else
+                    {
+                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Near Content.", null, ToolsLibrary.Tools.Type.NotFound);
+                    }
+                }
+                else
+                {
+                    response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess(_geoAd_Response.Message, null, ToolsLibrary.Tools.Type.Fail);
+                }
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
     }
 }

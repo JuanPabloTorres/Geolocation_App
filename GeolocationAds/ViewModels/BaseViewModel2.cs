@@ -125,10 +125,6 @@ namespace GeolocationAds.ViewModels
             this.LogUserPerfilTool = logUserPerfil;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
         public string ID { get; private set; }
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -141,17 +137,18 @@ namespace GeolocationAds.ViewModels
                 {
                     await this.Get(Convert.ToInt32(ID));
 
-                    //WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
-
                     OnApplyQueryAttributesCompleted(EventArgs.Empty);
                 }
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
         public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
 
         public event ApplyQueryAttributesEventHandler ApplyQueryAttributesCompleted;
-
 
         protected virtual void OnApplyQueryAttributesCompleted(EventArgs e)
         {

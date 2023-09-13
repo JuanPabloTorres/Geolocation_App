@@ -7,6 +7,8 @@ namespace GeolocationAdsAPI.Repositories
     {
         Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync();
 
+        Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo(int settingId);
+
         Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id);
 
         Task<ResponseTool<bool>> AdvertisementExistInGeolocationAd(int id);

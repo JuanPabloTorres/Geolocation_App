@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using ToolsLibrary.Attributes.ValidationAttributes;
 
 namespace ToolsLibrary.Models
 {
@@ -12,6 +14,10 @@ namespace ToolsLibrary.Models
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+
+        [Required(ErrorMessage = $"{nameof(ExpirationDate)} is required.")]
+        [ExpDateValidation(ErrorMessage = "The selected date is not valid; it must be a date that is greater than today's date.")]
+        public DateTime ExpirationDate { get; set; }
 
         public GeolocationAd()
         {

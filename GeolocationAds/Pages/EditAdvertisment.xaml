@@ -20,18 +20,6 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <StackLayout>
-
-                    <Label Style="{StaticResource globalLabel}" Text="Coordinates:" />
-
-                    <StackLayout Orientation="Horizontal">
-
-                        <Label Style="{StaticResource globalLabel}" Text="{Binding Model.GeolocationAd.Latitude, StringFormat='Lat:{0}'}" />
-
-                        <Label Style="{StaticResource globalLabel}" Text="{Binding Model.GeolocationAd.Longitude, StringFormat='Lon:{0}'}" />
-                    </StackLayout>
-                </StackLayout>
-
                 <Label Style="{StaticResource globalLabel}" Text="Title:" />
                 <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />
 
@@ -43,8 +31,8 @@
                     DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
                     HorizontalOptions="FillAndExpand"
                     ItemDisplayBindingPath="Value"
-                    SelectValue="{Binding SelectedAdType}"
                     ItemsSource="{Binding AdTypesSettings}"
+                    SelectValue="{Binding SelectedAdType}"
                     SelectedItem="{Binding SelectedAdType}" />
 
                 <!--<Frame Style="{StaticResource entryFrame}">
@@ -53,7 +41,6 @@
                         ItemsSource="{Binding AdTypesSettings}"
                         SelectedItem="{Binding SelectedAdType}"
                         Style="{StaticResource globalPicker}" />
-
                 </Frame>-->
 
                 <Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
