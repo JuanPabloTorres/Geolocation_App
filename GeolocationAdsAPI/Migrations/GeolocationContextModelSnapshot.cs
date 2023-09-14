@@ -261,6 +261,42 @@ namespace GeolocationAdsAPI.Migrations
                     b.ToTable("Captures");
                 });
 
+            modelBuilder.Entity("ToolsLibrary.Models.ContentType", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AdvertisingId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("CreateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UpdateBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AdvertisingId");
+
+                    b.ToTable("ContentTypes");
+                });
+
             modelBuilder.Entity("ToolsLibrary.Models.ForgotPassword", b =>
                 {
                     b.Property<int>("ID")
@@ -452,6 +488,17 @@ namespace GeolocationAdsAPI.Migrations
                     b.Navigation("Setting");
                 });
 
+            modelBuilder.Entity("ToolsLibrary.Models.ContentType", b =>
+                {
+                    b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
+                        .WithMany("Contents")
+                        .HasForeignKey("AdvertisingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisement");
+                });
+
             modelBuilder.Entity("ToolsLibrary.Models.GeolocationAd", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
@@ -476,6 +523,8 @@ namespace GeolocationAdsAPI.Migrations
 
             modelBuilder.Entity("ToolsLibrary.Models.Advertisement", b =>
                 {
+                    b.Navigation("Contents");
+
                     b.Navigation("GeolocationAds");
 
                     b.Navigation("Settings");

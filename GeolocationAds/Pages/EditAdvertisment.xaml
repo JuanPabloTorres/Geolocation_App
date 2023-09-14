@@ -49,7 +49,7 @@
                 <!--  ... Choose File ...  -->
                 <Button
                     x:Name="UploadButton"
-                    Command="{Binding OnUploadCommandExecutedCommand}"
+                    Command="{Binding UploadContentCommand}"
                     Style="{StaticResource globalButton}"
                     Text="Choose Image">
 
@@ -63,6 +63,12 @@
                 </Button>
 
                 <!--  Selected Image or Video  -->
+                <!--
+                <Frame Style="{StaticResource imageFrame}">
+                    <WebView x:Name="SelectedVideo" Source="{Binding Video}"   HeightRequest="300"  WidthRequest="400" />
+                </Frame>-->
+
+                <!--  Selected Image or Video  -->
                 <Frame Style="{StaticResource imageFrame}">
                     <Image
                         Aspect="AspectFill"
@@ -70,6 +76,8 @@
                         Source="{Binding Model.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
                         WidthRequest="400" />
                 </Frame>
+
+
 
                 <!--  Submit Button  -->
                 <Button

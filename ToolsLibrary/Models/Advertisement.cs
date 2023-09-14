@@ -22,6 +22,8 @@ namespace ToolsLibrary.Models
 
         public ICollection<GeolocationAd> GeolocationAds { get; set; }
 
+        public ICollection<ContentType> Contents { get; set; }
+
         public ICollection<AdvertisementSettings> Settings { get; set; }
 
         public bool IsPosted { get; set; }

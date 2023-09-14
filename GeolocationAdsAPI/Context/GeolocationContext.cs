@@ -13,6 +13,8 @@ namespace GeolocationAdsAPI.Context
 
         public DbSet<Capture> Captures { get; set; }
 
+        public DbSet<ContentType> ContentTypes { get; set; }
+
         public DbSet<ForgotPassword> ForgotPasswords { get; set; }
 
         public DbSet<GeolocationAd> GeolocationAds { get; set; }
@@ -22,7 +24,6 @@ namespace GeolocationAdsAPI.Context
         public DbSet<AppSetting> Settings { get; set; }
 
         public DbSet<User> Users { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,8 +43,6 @@ namespace GeolocationAdsAPI.Context
                 .WithOne(l => l.User)
                 .HasForeignKey<Login>(l => l.UserId)
                 .IsRequired(true); // Optional, depending on your requirements
-
-
 
             //modelBuilder.Entity<Advertisement>()
             //.HasOne(a => a.GeolocationAd)

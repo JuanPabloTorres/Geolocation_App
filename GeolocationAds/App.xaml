@@ -214,6 +214,10 @@
             <converters:SubstringConverter x:Key="SubstringConverter" />
 
             <converters:StepViewConverter x:Key="StepViewConverter" />
+
+            <converters:ImageOrVideoCheckConverter x:Key="ImageOrVideoCheckConverter" />
+
+            <converters:ByteArrayToVideSourceConverter x:Key="ByteArrayToVideSourceConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

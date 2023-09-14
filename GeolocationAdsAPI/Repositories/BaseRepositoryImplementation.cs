@@ -193,37 +193,6 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
-    private void UpdateRelatedData(T existingEntity, T updatedEntity)
-    {
-        // Check if the entity type has any navigation properties representing related data.
-        var navigationProperties = _context.Entry(existingEntity).Navigations.ToList();
-
-        foreach (var navigationProperty in navigationProperties)
-        {
-            // Use reflection to get the related data collection from the updated entity.
-            var relatedDataCollection = updatedEntity.GetType().GetProperty(navigationProperty.Metadata.Name).GetValue(updatedEntity);
-
-            // If it's a collection property, update the related data.
-            if (navigationProperty is CollectionEntry collectionEntry)
-            {
-                // Get the existing related data collection.
-                var existingCollection = collectionEntry.CurrentValue as IList;
-
-                if (existingCollection != null)
-                {
-                    // Clear the existing related data collection.
-                    existingCollection.Clear();
-
-                    // Add the related data from the updated entity to the existing entity.
-                    foreach (var relatedData in (IEnumerable<object>)relatedDataCollection)
-                    {
-                        existingCollection.Add(relatedData);
-                    }
-                }
-            }
-        }
-    }
-
     public async Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, object>>[] relatedExpressions)
     {
         try
@@ -304,5 +273,36 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         var equalsExpression = Expression.Equal(property, idValue);
 
         return Expression.Lambda<Func<T, bool>>(equalsExpression, parameter);
+    }
+
+    private void UpdateRelatedData(T existingEntity, T updatedEntity)
+    {
+        // Check if the entity type has any navigation properties representing related data.
+        var navigationProperties = _context.Entry(existingEntity).Navigations.ToList();
+
+        foreach (var navigationProperty in navigationProperties)
+        {
+            // Use reflection to get the related data collection from the updated entity.
+            var relatedDataCollection = updatedEntity.GetType().GetProperty(navigationProperty.Metadata.Name).GetValue(updatedEntity);
+
+            // If it's a collection property, update the related data.
+            if (navigationProperty is CollectionEntry collectionEntry)
+            {
+                // Get the existing related data collection.
+                var existingCollection = collectionEntry.CurrentValue as IList;
+
+                if (existingCollection != null)
+                {
+                    // Clear the existing related data collection.
+                    existingCollection.Clear();
+
+                    // Add the related data from the updated entity to the existing entity.
+                    foreach (var relatedData in (IEnumerable<object>)relatedDataCollection)
+                    {
+                        existingCollection.Add(relatedData);
+                    }
+                }
+            }
+        }
     }
 }

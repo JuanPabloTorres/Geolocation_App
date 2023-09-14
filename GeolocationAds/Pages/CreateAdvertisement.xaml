@@ -4,8 +4,96 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     Title="Create Your Content"
     Routing.Route="CreateAdvertisement">
+
+    <ContentPage.Resources>
+        <!--  Data template for displaying a video  -->
+        <DataTemplate x:Key="VideoDataTemplate">
+            <Frame Style="{StaticResource imageFrame}">
+                <WebView
+                    x:Name="SelectedVideo"
+                    HeightRequest="300"
+                    Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
+                    WidthRequest="400" />
+            </Frame>
+        </DataTemplate>
+
+        <!--  Data template for displaying an image  -->
+        <DataTemplate x:Key="ImageDataTemplate">
+            <Frame Style="{StaticResource imageFrame}">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="300"
+                    IsAnimationPlaying="{Binding IsAnimation}"
+                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
+                    WidthRequest="400" />
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ImageDataTemplate2">
+            <Frame Style="{StaticResource cardFrame}">
+                <StackLayout>
+
+                    <Button
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        Text="X" />
+
+                    <Frame Style="{StaticResource imageFrame}">
+
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="300"
+                            IsAnimationPlaying="True"
+                            Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
+                            WidthRequest="400" />
+                    </Frame>
+
+                    <ActivityIndicator
+                        IsRunning="{Binding IsLoading}"
+                        IsVisible="{Binding IsLoading}"
+                        Style="{StaticResource globalLoading}" />
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplate2">
+            <Frame Style="{StaticResource cardFrame}">
+                <StackLayout>
+
+                    <Button
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        Text="X" />
+
+                    <Frame Style="{StaticResource imageFrame}">
+
+                        <WebView
+                            x:Name="SelectedVideo"
+                            HeightRequest="300"
+                            Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
+                            WidthRequest="400" />
+                    </Frame>
+
+                    <ActivityIndicator
+                        IsRunning="{Binding IsLoading}"
+                        IsVisible="{Binding IsLoading}"
+                        Style="{StaticResource globalLoading}" />
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <templateSelector:ContentTypeTemplateSelector
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplate2}"
+            VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
+    </ContentPage.Resources>
 
     <ScrollView>
         <Frame Style="{StaticResource cardFrame}">
@@ -47,7 +135,7 @@
                 <!--  ... Choose File ...  -->
                 <Button
                     x:Name="UploadButton"
-                    Command="{Binding OnUploadCommandExecutedCommand}"
+                    Command="{Binding UploadContentCommand}"
                     Style="{StaticResource globalButton}"
                     Text="Choose Image">
 
@@ -60,15 +148,29 @@
                     </Button.Shadow>
                 </Button>
 
+                <CollectionView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
+
                 <!--  Selected Image or Video  -->
-                <Frame Style="{StaticResource imageFrame}">
+                <!--
+                <Frame IsVisible="{Binding VisualType, Converter={StaticResource ImageOrVideoCheckConverter}, ConverterParameter=Video}" Style="{StaticResource imageFrame}">
+                    <WebView
+                        x:Name="SelectedVideo"
+                        HeightRequest="300"
+                        Source="{Binding Video}"
+                        WidthRequest="400" />
+                </Frame>
+
+                -->
+                <!--  Selected Image or Video  -->
+                <!--
+                <Frame IsVisible="{Binding VisualType, Converter={StaticResource ImageOrVideoCheckConverter}, ConverterParameter=Image}" Style="{StaticResource imageFrame}">
                     <Image
                         Aspect="AspectFill"
                         HeightRequest="300"
                         IsAnimationPlaying="{Binding IsAnimation}"
                         Source="{Binding Image.Source, Mode=TwoWay}"
                         WidthRequest="400" />
-                </Frame>
+                </Frame>-->
 
                 <!--  Submit Button  -->
                 <Button

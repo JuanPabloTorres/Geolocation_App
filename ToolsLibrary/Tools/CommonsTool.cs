@@ -36,6 +36,7 @@ namespace ToolsLibrary.Tools
                     using (MemoryStream ms = new MemoryStream())
                     {
                         await stream.CopyToAsync(ms);
+
                         return ms.ToArray();
                     }
                 }

@@ -1,6 +1,7 @@
 ﻿using GeolocationAds.Services;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -10,6 +11,23 @@ namespace GeolocationAds.ViewModels
 {
     public partial class EditAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
     {
+        private HtmlWebViewSource _video;
+
+        public HtmlWebViewSource Video
+        {
+            get => _video;
+
+            set
+            {
+                if (_video != value)
+                {
+                    _video = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private Image _image;
 
         public Image Image
@@ -58,7 +76,6 @@ namespace GeolocationAds.ViewModels
                 {
                     _selectedAdType = value;
 
-
                     SelectedTypeChange(SelectedAdType);
 
                     OnPropertyChanged();
@@ -66,11 +83,10 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        void SelectedTypeChange(AppSetting value)
+        private void SelectedTypeChange(AppSetting value)
         {
             try
             {
-
                 if (this.Model.Settings.IsNotNullOrCountGreaterZero() && !value.IsObjectNull())
                 {
                     var _toUpdateSetting = this.Model.Settings.FirstOrDefault();
@@ -99,10 +115,11 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
+
+        public ICommand UploadContentCommand { get; set; }
 
         public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil, IAppSettingService appSettingService) : base(model, service, logUserPerfil)
         {
@@ -115,6 +132,8 @@ namespace GeolocationAds.ViewModels
             this.Image = new Image();
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+
+            UploadContentCommand = new Command(OnUploadCommandExecuted2);
         }
 
         private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
@@ -263,6 +282,84 @@ namespace GeolocationAds.ViewModels
 
                 //SelectedFileLabel.Text = "Error selecting file: " + ex.Message;
 
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        [ICommand]
+        private async void OnUploadCommandExecuted2()
+        {
+            try
+            {
+                var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
+
+                fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
+
+                var customFileTypes = new FilePickerFileType(fileTypes);
+
+                // Pick image
+                FileResult imageResult = await FilePicker.PickAsync(new PickOptions
+                {
+                    FileTypes = customFileTypes,
+                    PickerTitle = "Select an image or video"
+                });
+
+                FileResult result = imageResult;
+
+                if (result != null)
+                {
+                    fileBytes = await CommonsTool.GetFileBytesAsync(result);
+
+                    var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
+                        result.FileName.ToLower().EndsWith(".png") ||
+                        result.FileName.ToLower().EndsWith(".gif") ||
+                        result.FileName.ToLower().EndsWith(".jpeg");
+
+                    if (isImageSelected)
+                    {
+                        // Display image
+                        Image.Source = ImageSource.FromStream(() => new MemoryStream(fileBytes));
+
+                        this.Model.Content = fileBytes;
+                    }
+                    else
+                    {
+                        //string html = $@"
+                        //                <html>
+                        //                        <body>
+                        //                            <video width='100%' height='100%' controls>
+                        //                                <source src='data:video/mp4;base64,{Convert.ToBase64String(fileBytes)}' type='video/mp4' />
+                        //                                <audio src='data:audio/mp3;base64,{Convert.ToBase64String(fileBytes)}' type='audio/mp3' autoplay></audio>
+                        //                            </video>
+                        //                            <script>
+                        //                                document.querySelector('video').addEventListener('click', function() {{
+                        //                                    if (this.requestFullscreen) {{
+                        //                                        this.requestFullscreen();
+                        //                                    }} else if (this.webkitRequestFullscreen) {{
+                        //                                        this.webkitRequestFullscreen();
+                        //                                    }} else if (this.msRequestFullscreen) {{
+                        //                                        this.msRequestFullscreen();
+                        //                                    }}
+                        //                                }});
+                        //                            </script>
+                        //                        </body>
+                        //                    </html>";
+
+                        // Display video using WebView
+                        Video = new HtmlWebViewSource
+                        {
+                            Html = $"<html><body><video width='100%' height='100%' controls><source src='data:video/mp4;base64,{Convert.ToBase64String(fileBytes)}' type='video/mp4' /></video></body></html>"
+                        };
+
+                        //Video = new HtmlWebViewSource
+                        //{
+                        //    Html = html
+                        //};
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }

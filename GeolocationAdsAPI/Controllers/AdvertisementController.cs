@@ -14,15 +14,11 @@ namespace GeolocationAdsAPI.Controllers
     {
         private readonly IAdvertisementRepository advertisementRepository;
 
-        private readonly IGeolocationAdRepository geolocationAdRepository;
-
         private readonly IAdvertisementSettingsRepository advertisementSettingsRepository;
 
-        public AdvertisementController(IAdvertisementRepository advertisementRepository, IGeolocationAdRepository geolocationAdRepository, IAdvertisementSettingsRepository advertisementSettingsRepository)
+        public AdvertisementController(IAdvertisementRepository advertisementRepository, IAdvertisementSettingsRepository advertisementSettingsRepository)
         {
             this.advertisementRepository = advertisementRepository;
-
-            this.geolocationAdRepository = geolocationAdRepository;
 
             this.advertisementSettingsRepository = advertisementSettingsRepository;
         }
@@ -53,13 +49,15 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-                Expression<Func<Advertisement, object>>[] includes = { e => e.GeolocationAds };
+                Expression<Func<Advertisement, object>>[] geolocationAd = { e => e.GeolocationAds };
 
-                Expression<Func<Advertisement, object>>[] additionalIncludes = { e => e.Settings };
+                Expression<Func<Advertisement, object>>[] settins = { e => e.Settings };
 
-                includes = includes.Concat(additionalIncludes).ToArray();
+                Expression<Func<Advertisement, object>>[] contents = { e => e.Contents };
 
-                response = await this.advertisementRepository.Get(id, includes);
+                geolocationAd = geolocationAd.Concat(settins).Concat(contents).ToArray();
+
+                response = await this.advertisementRepository.Get(id, geolocationAd);
 
                 if (!response.IsSuccess)
                 {
@@ -70,6 +68,9 @@ namespace GeolocationAdsAPI.Controllers
 
                 response.Data.GeolocationAds = response.Data.GeolocationAds
                     .Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude, ExpirationDate = g.ExpirationDate }).ToList();
+
+                response.Data.Contents = response.Data.Contents
+                 .Select(c => new ContentType() { ID = c.ID, AdvertisingId = c.AdvertisingId, Content = c.Content, Type = c.Type, }).ToList();
 
                 return Ok(response);
             }
