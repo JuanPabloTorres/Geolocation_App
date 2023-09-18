@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
-using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 using ToolsLibrary.Tools;
@@ -47,27 +46,27 @@ namespace GeolocationAds.ViewModels
 
         protected override async Task LoadData()
         {
+            this.CollectionModel.Clear();
+
             var _userId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>(nameof(User.ID));
 
             var _apiResponse = await this.advertisementService.GetAdvertisementsOfUser(_userId);
 
-            this.CollectionModel.Clear();
-
             if (_apiResponse.IsSuccess)
             {
-                IList<AdLocationTemplateViewModel> _adLocationTemplateViewModel = new List<AdLocationTemplateViewModel>();
-
                 foreach (var item in _apiResponse.Data)
                 {
-                    var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service)
+                    foreach (var ads in item.Contents)
                     {
-                        CurrentAdvertisement = item,
-                    };
+                        var _decompressed = CommonsTool.Decompress(ads.Content);
 
-                    _adLocationTemplateViewModel.Add(_item);
+                        ads.Content = _decompressed;
+                    }
+
+                    var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service, item);
+
+                    this.CollectionModel.Add(_item);
                 }
-
-                this.CollectionModel.AddRange(_adLocationTemplateViewModel);
             }
             else
             {

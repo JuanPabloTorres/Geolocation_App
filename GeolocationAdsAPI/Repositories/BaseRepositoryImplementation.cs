@@ -24,7 +24,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             await _context.SaveChangesAsync();
 
-            return ResponseFactory<T>.BuildSusccess("Entity created successfully.", entity);
+            return ResponseFactory<T>.BuildSusccess("Created successfully.", entity);
         }
         catch (Exception ex)
         {
@@ -46,7 +46,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             await _context.SaveChangesAsync();
 
-            return ResponseFactory<T>.BuildSusccess("Entity created successfully.", entity);
+            return ResponseFactory<T>.BuildSusccess("Created successfully.", entity);
         }
         catch (Exception ex)
         {
@@ -62,10 +62,10 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (entity != null)
             {
-                return ResponseFactory<T>.BuildSusccess("Entity found.", entity);
+                return ResponseFactory<T>.BuildSusccess("Found.", entity);
             }
 
-            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+            return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
         }
         catch (Exception ex)
         {
@@ -92,10 +92,10 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (entity != null)
             {
-                return ResponseFactory<T>.BuildSusccess("Entity found.", entity, ToolsLibrary.Tools.Type.Found);
+                return ResponseFactory<T>.BuildSusccess("Found.", entity, ToolsLibrary.Tools.Type.Found);
             }
 
-            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+            return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
         }
         catch (Exception ex)
         {
@@ -109,7 +109,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         {
             var allEntities = await _context.Set<T>().ToListAsync();
 
-            return ResponseFactory<IEnumerable<T>>.BuildSusccess("Entities fetched successfully.", allEntities);
+            return ResponseFactory<IEnumerable<T>>.BuildSusccess("Data Found successfully.", allEntities);
         }
         catch (Exception ex)
         {
@@ -159,10 +159,10 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<T>.BuildSusccess("Entity removed successfully.", entity);
+                return ResponseFactory<T>.BuildSusccess("Removed successfully.", entity);
             }
 
-            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+            return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
         }
         catch (Exception ex)
         {
@@ -180,12 +180,14 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
             {
                 _context.Entry(existingEntity).CurrentValues.SetValues(entity);
 
+                //_context.Entry(existingEntity).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<T>.BuildSusccess("Entity updated successfully.", entity);
+                return ResponseFactory<T>.BuildSusccess("Updated successfully.", entity);
             }
 
-            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+            return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
         }
         catch (Exception ex)
         {
@@ -201,49 +203,20 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (existingEntity != null)
             {
-                //foreach (var relatedEntity in relatedEntities)
-                //{
-                //    _context.Attach(relatedEntity);
-                //}
-
-                //foreach (var item in entity.GetType().GetProperties())
-                //{
-                //    if (item.Name == )
-                //    {
-                //    }
-                //}
-
-                //foreach (var relatedExpression in relatedExpressions)
-                //{
-                //    _context.Entry(existingEntity).Reference(relatedExpression).Load();
-                //}
-
-                _context.Entry(existingEntity).CurrentValues.SetValues(entity);
-
-                await _context.SaveChangesAsync();
-
-                return ResponseFactory<T>.BuildSusccess("Entity updated successfully.", existingEntity);
-            }
-
-            return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
-        }
-        catch (Exception ex)
-        {
-            return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        }
-    }
-
-    public async Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, IEnumerable<object>>>[] relatedExpressions)
-    {
-        try
-        {
-            var existingEntity = await _context.Set<T>().FindAsync(id);
-
-            if (existingEntity != null)
-            {
-                foreach (var relatedExpression in relatedExpressions)
+                foreach (var navigationProperty in relatedExpressions)
                 {
-                    _context.Entry(existingEntity).Collection(relatedExpression).Query().Load();
+                    var propertyName = GetPropertyName(navigationProperty);
+
+                    var entry = _context.Entry(entity);
+
+                    //if (entry.Reference(propertyName).IsLoaded)
+                    //{
+                    //    entry.Reference(propertyName).IsModified = true;
+                    //}
+                    if (entry.Collection(propertyName).IsLoaded)
+                    {
+                        entry.Collection(propertyName).IsModified = true;
+                    }
                 }
 
                 _context.Entry(existingEntity).CurrentValues.SetValues(entity);
@@ -261,6 +234,34 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
+    //public async Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, IEnumerable<object>>>[] relatedExpressions)
+    //{
+    //    try
+    //    {
+    //        var existingEntity = await _context.Set<T>().FindAsync(id);
+
+    //        if (existingEntity != null)
+    //        {
+    //            foreach (var relatedExpression in relatedExpressions)
+    //            {
+    //                _context.Entry(existingEntity).Collection(relatedExpression).Query().Load();
+    //            }
+
+    //            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+
+    //            await _context.SaveChangesAsync();
+
+    //            return ResponseFactory<T>.BuildSusccess("Entity updated successfully.", existingEntity);
+    //        }
+
+    //        return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+    //    }
+    //}
+
     // Helper method to dynamically create the predicate expression for the ID
     private Expression<Func<T, bool>> GetIdPredicate(int id)
     {
@@ -273,6 +274,19 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         var equalsExpression = Expression.Equal(property, idValue);
 
         return Expression.Lambda<Func<T, bool>>(equalsExpression, parameter);
+    }
+
+    private string GetPropertyName(Expression<Func<T, object>> propertyExpression)
+    {
+        if (propertyExpression.Body is MemberExpression memberExpression)
+        {
+            return memberExpression.Member.Name;
+        }
+        else if (propertyExpression.Body is UnaryExpression unaryExpression && unaryExpression.Operand is MemberExpression operand)
+        {
+            return operand.Member.Name;
+        }
+        throw new ArgumentException("Invalid property expression", nameof(propertyExpression));
     }
 
     private void UpdateRelatedData(T existingEntity, T updatedEntity)

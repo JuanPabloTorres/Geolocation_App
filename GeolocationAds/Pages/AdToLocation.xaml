@@ -4,8 +4,38 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     Title="My Content"
     Routing.Route="AdToLocation">
+
+    <ContentPage.Resources>
+        <!--  Data template for displaying a video  -->
+        <DataTemplate x:Key="VideoDataTemplate">
+            <Frame Style="{StaticResource imageFrameCollection}">
+                <WebView
+                    x:Name="SelectedVideo"
+                    HeightRequest="300"
+                    Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
+                    WidthRequest="200" />
+            </Frame>
+        </DataTemplate>
+        <!--  Data template for displaying an image  -->
+        <DataTemplate x:Key="ImageDataTemplate">
+            <Frame Style="{StaticResource imageFrameCollection}">
+                <Image
+                    Aspect="Center"
+                    HeightRequest="200"
+                    IsAnimationPlaying="{Binding IsAnimation}"
+                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
+                    WidthRequest="200" />
+            </Frame>
+        </DataTemplate>
+
+        <templateSelector:ContentTypeTemplateSelector2
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplate}"
+            VideoDataTemplate="{StaticResource VideoDataTemplate}" />
+    </ContentPage.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -37,21 +67,19 @@
             Style="{StaticResource globalLoading}"
             VerticalOptions="CenterAndExpand" />
 
+        <ScrollView Grid.Row="2" Orientation="Vertical">
 
-        <CarouselView
-            Grid.Row="2"
-            Margin="10"
-            ItemsSource="{Binding CollectionModel}">
+            <CollectionView Grid.Row="2" ItemsSource="{Binding CollectionModel}">
 
-            <CarouselView.EmptyView>
-                <StackLayout>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
-                </StackLayout>
-            </CarouselView.EmptyView>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
 
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
 
                         <Frame Style="{StaticResource cardFrame}">
                             <StackLayout>
@@ -71,25 +99,18 @@
                                         Text="X" />
                                 </StackLayout>
 
-                                <Frame Style="{StaticResource imageFrame}">
+                                <CollectionView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding CurrentAdvertisement.Contents}">
 
-                                    <Image
-                                        Aspect="AspectFill"
-                                        HeightRequest="300"
-                                        IsAnimationPlaying="True"
-                                        Source="{Binding CurrentAdvertisement.Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
-                                        WidthRequest="400" />
-                                </Frame>
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout Orientation="Vertical" Span="{Binding CurrentAdvertisement.Contents, Converter={StaticResource SpanConverter}}" />
+                                    </CollectionView.ItemsLayout>
 
-                                <BoxView
-                                    Margin="4,10,4,10"
-                                    BackgroundColor="#e5e4e2"
-                                    HeightRequest="1" />
-
-                                <Label
-                                    HorizontalOptions="End"
-                                    Style="{StaticResource globalsubTitle}"
-                                    Text="{Binding CurrentAdvertisement.ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                                    <CollectionView.EmptyView>
+                                        <StackLayout>
+                                            <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                                        </StackLayout>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
 
                                 <StackLayout Margin="5" Orientation="Horizontal">
                                     <Button
@@ -114,14 +135,15 @@
                                     Style="{StaticResource globalLoading}" />
                             </StackLayout>
                         </Frame>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
 
-            <CarouselView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" />
-            </CarouselView.ItemsLayout>
-        </CarouselView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </ScrollView>
 
     </Grid>
 </ContentPage>

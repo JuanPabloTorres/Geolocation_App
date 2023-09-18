@@ -89,17 +89,23 @@ namespace GeolocationAds.ViewModels
 
             Task.Run(async () => { await this.LoadSetting(); });
 
+
+            ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+            this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
+
+            SetDefault();
+
+
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
+                    this.ContentTypesTemplate.Clear();
+
                     SetDefault();
                 });
             });
-
-            ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-            SetDefault();
         }
 
         private void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
@@ -119,16 +125,28 @@ namespace GeolocationAds.ViewModels
 
         private void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (sender is IList<ContentType> contents)
+            if (sender is IList<ContentTypeTemplateViewModel> contents)
             {
-                if (this.Model.Contents.Count > 0)
+                if (!this.Model.Contents.IsObjectNull())
                 {
-                    this.Model.Contents.Clear();
-                }
+                    if (this.Model.Contents.Count > 0)
+                    {
+                        this.Model.Contents.Clear();
+                    }
 
-                foreach (var item in contents)
-                {
-                    this.Model.Contents.Add(item);
+                    foreach (var item in contents)
+                    {
+                        var _toModelContent = new ContentType()
+                        {
+                            Content = CommonsTool.Compress(item.ContentType.Content),
+                            AdvertisingId = item.ContentType.AdvertisingId,
+                            CreateDate = item.ContentType.CreateDate,
+                            Type = item.ContentType.Type,
+                            CreateBy = this.LogUserPerfilTool.LogUser.ID
+                        };
+
+                        this.Model.Contents.Add(_toModelContent);
+                    }
                 }
             }
         }
@@ -196,8 +214,6 @@ namespace GeolocationAds.ViewModels
 
                     if (isImageSelected)
                     {
-                        this.Model.Content = fileBytes;
-
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content);
@@ -225,8 +241,6 @@ namespace GeolocationAds.ViewModels
             const string FILENAME = "mediacontent.png";
 
             var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(FILENAME);
-
-            this.Model.Content = _defaulMedia;
 
             var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 

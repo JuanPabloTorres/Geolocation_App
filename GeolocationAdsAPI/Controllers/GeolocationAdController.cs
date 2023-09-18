@@ -38,7 +38,7 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (response.IsSuccess)
                 {
-                    _currentAdToPost.IsPosted = true;
+                    //_currentAdToPost.IsPosted = true;
 
                     //_currentAdToPost.GeolocationAdId = response.Data.ID;
 
@@ -101,7 +101,7 @@ namespace GeolocationAdsAPI.Controllers
                     }
                     else
                     {
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Near Content.", null, ToolsLibrary.Tools.Type.NotFound);
+                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Nearby Content.", null, ToolsLibrary.Tools.Type.NotFound);
                     }
                 }
                 else
@@ -152,7 +152,7 @@ namespace GeolocationAdsAPI.Controllers
                     }
                     else
                     {
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Near Content.", null, ToolsLibrary.Tools.Type.NotFound);
+                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Nearby Content.", null, ToolsLibrary.Tools.Type.NotFound);
                     }
                 }
                 else

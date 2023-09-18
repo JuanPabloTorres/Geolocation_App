@@ -1,9 +1,12 @@
-﻿using GeolocationAds.Services;
+﻿using GeolocationAds.App_ViewModel_Factory;
+using GeolocationAds.Services;
+using GeolocationAds.TemplateViewModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -11,43 +14,7 @@ namespace GeolocationAds.ViewModels
 {
     public partial class EditAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
     {
-        private HtmlWebViewSource _video;
-
-        public HtmlWebViewSource Video
-        {
-            get => _video;
-
-            set
-            {
-                if (_video != value)
-                {
-                    _video = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private Image _image;
-
-        public Image Image
-        {
-            get => _image;
-
-            set
-            {
-                if (_image != value)
-                {
-                    _image = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private byte[] fileBytes;
-
-        private IAppSettingService appSettingService;
 
         private ObservableCollection<AppSetting> _adTypesSettings;
 
@@ -59,6 +26,22 @@ namespace GeolocationAds.ViewModels
                 if (_adTypesSettings != value)
                 {
                     _adTypesSettings = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
+
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
+        {
+            get => _contentTypestemplate;
+            set
+            {
+                if (_contentTypestemplate != value)
+                {
+                    _contentTypestemplate = value;
 
                     OnPropertyChanged();
                 }
@@ -119,6 +102,8 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        private IAppSettingService appSettingService;
+
         public ICommand UploadContentCommand { get; set; }
 
         public EditAdvertismentViewModel(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil, IAppSettingService appSettingService) : base(model, service, logUserPerfil)
@@ -129,21 +114,84 @@ namespace GeolocationAds.ViewModels
 
             this.SelectedAdType = new AppSetting();
 
-            this.Image = new Image();
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+
+            UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
 
-            UploadContentCommand = new Command(OnUploadCommandExecuted2);
+            ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+            this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
+        }
+
+        private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            try
+            {
+                if (sender is IList<ContentTypeTemplateViewModel> contents)
+                {
+                    if (!this.Model.Contents.IsObjectNull())
+                    {
+                        if (this.Model.Contents.Count > 0)
+                        {
+                            this.Model.Contents.Clear();
+                        }
+
+                        foreach (var item in contents)
+                        {
+                            var _toModelContent = new ContentType()
+                            {
+                                Content = CommonsTool.Compress(item.ContentType.Content),
+                                AdvertisingId = this.Model.ID,
+                                CreateDate = item.ContentType.CreateDate,
+                                Type = item.ContentType.Type,
+                                CreateBy = this.LogUserPerfilTool.LogUser.ID
+                            };
+
+                            this.Model.Contents.Add(_toModelContent);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        private void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
+        {
+            this.IsLoading = true;
+
+            if (sender is ContentTypeTemplateViewModel template)
+            {
+                if (!template.IsObjectNull())
+                {
+                    this.ContentTypesTemplate.Remove(template);
+                }
+            }
+
+            this.IsLoading = false;
         }
 
         private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
         {
             await this.LoadSetting();
-        }
 
-        private void SetCurrentImage()
-        {
-            Image.Source = ImageSource.FromStream(() => new MemoryStream(this.Model.Content));
+            this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
+
+            foreach (var item in this.Model.Contents)
+            {
+                var _decompressed = CommonsTool.Decompress(item.Content);
+
+                item.Content = _decompressed;
+
+                var _template = ContentTypeTemplateFactory.BuilContentType(item);
+
+                this.ContentTypesTemplate.Add(_template);
+            }
+            this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
         }
 
         public async Task LoadSetting()
@@ -171,118 +219,10 @@ namespace GeolocationAds.ViewModels
                         }
                     }
                 }
-
-                //this.SelectedAdType = this.AdTypesSettings.Where(v => v.ID == _currenType.ID).FirstOrDefault();
             }
             else
             {
                 await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-            }
-        }
-
-        [ICommand]
-        private async void OnUploadCommandExecuted()
-        {
-            try
-            {
-                var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
-
-                fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg" });
-
-                var customFileTypes = new FilePickerFileType(fileTypes);
-
-                // Pick image
-                FileResult imageResult = await FilePicker.PickAsync(new PickOptions
-                {
-                    FileTypes = customFileTypes,
-                    PickerTitle = "Select an image"
-                });
-
-                // Pick video
-                //FileResult videoResult = await FilePicker.PickAsync(new PickOptions
-                //{
-                //    FileTypes = FilePickerFileType.Videos,
-                //    PickerTitle = "Select a video"
-                //});
-
-                //FileResult result = imageResult ?? videoResult;
-
-                FileResult result = imageResult;
-
-                if (result != null)
-                {
-                    fileBytes = await CommonsTool.GetFileBytesAsync(result);
-
-                    //SelectedFileLabel.Text = result.FileName;
-
-                    //// Check if the selected file is an image or video
-                    //bool isImage = result.FileName.ToLower().EndsWith(".jpg") ||
-                    //               result.FileName.ToLower().EndsWith(".png") ||
-                    //               result.FileName.ToLower().EndsWith(".jpeg");
-
-                    //bool isVideo = result.FileName.ToLower().EndsWith(".mp4") ||
-                    //               result.FileName.ToLower().EndsWith(".avi") ||
-                    //               result.FileName.ToLower().EndsWith(".mov");
-
-                    //if (isImage || isVideo)
-                    //{
-                    //    // Convert selected file to bytes
-                    //    using (var stream = await result.OpenReadAsync())
-                    //    {
-                    //        using (MemoryStream ms = new MemoryStream())
-                    //        {
-                    //            await stream.CopyToAsync(ms);
-                    //            fileBytes = ms.ToArray();
-                    //        }
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    // File is neither an image nor a video
-                    //    await DisplayAlert("Invalid File Type", "Please select an image or video file.", "OK");
-                    //}
-
-                    var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
-                                       result.FileName.ToLower().EndsWith(".png") ||
-                                        result.FileName.ToLower().EndsWith(".gif") ||
-                                       result.FileName.ToLower().EndsWith(".jpeg");
-
-                    if (isImageSelected)
-                    {
-                        //Image.IsAnimationPlaying = false;
-
-                        Image.Source = ImageSource.FromStream(() => new MemoryStream(fileBytes));
-
-                        //Image.IsAnimationPlaying = true;
-
-                        this.Model.Content = fileBytes;
-
-                        //if (result.FileName.ToLower().EndsWith(".gif"))
-                        //{
-                        //    IsAnimation = true;
-                        //}
-                        //Im.IsVisible = true;
-                        //SelectedVideo.IsVisible = false;
-                    }
-                    else
-                    {
-                        //// Display video using WebView
-                        //SelectedVideo.Source = new HtmlWebViewSource
-                        //{
-                        //    Html = $"<html><body><video width='100%' height='100%' controls><source src='data:video/mp4;base64,{Convert.ToBase64String(fileBytes)}' type='video/mp4' /></video></body></html>"
-                        //};
-                        //SelectedVideo.IsVisible = true;
-                        //SelectedImage.IsVisible = false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle exception
-
-                //SelectedFileLabel.Text = "Error selecting file: " + ex.Message;
-
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -295,9 +235,11 @@ namespace GeolocationAds.ViewModels
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
 
+                fileTypes.Add(DevicePlatform.iOS, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
+
                 var customFileTypes = new FilePickerFileType(fileTypes);
 
-                // Pick image
+                // Pick image or video
                 FileResult imageResult = await FilePicker.PickAsync(new PickOptions
                 {
                     FileTypes = customFileTypes,
@@ -317,44 +259,19 @@ namespace GeolocationAds.ViewModels
 
                     if (isImageSelected)
                     {
-                        // Display image
-                        Image.Source = ImageSource.FromStream(() => new MemoryStream(fileBytes));
+                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        this.Model.Content = fileBytes;
+                        var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+
+                        this.ContentTypesTemplate.Add(_template);
                     }
                     else
                     {
-                        //string html = $@"
-                        //                <html>
-                        //                        <body>
-                        //                            <video width='100%' height='100%' controls>
-                        //                                <source src='data:video/mp4;base64,{Convert.ToBase64String(fileBytes)}' type='video/mp4' />
-                        //                                <audio src='data:audio/mp3;base64,{Convert.ToBase64String(fileBytes)}' type='audio/mp3' autoplay></audio>
-                        //                            </video>
-                        //                            <script>
-                        //                                document.querySelector('video').addEventListener('click', function() {{
-                        //                                    if (this.requestFullscreen) {{
-                        //                                        this.requestFullscreen();
-                        //                                    }} else if (this.webkitRequestFullscreen) {{
-                        //                                        this.webkitRequestFullscreen();
-                        //                                    }} else if (this.msRequestFullscreen) {{
-                        //                                        this.msRequestFullscreen();
-                        //                                    }}
-                        //                                }});
-                        //                            </script>
-                        //                        </body>
-                        //                    </html>";
+                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        // Display video using WebView
-                        Video = new HtmlWebViewSource
-                        {
-                            Html = $"<html><body><video width='100%' height='100%' controls><source src='data:video/mp4;base64,{Convert.ToBase64String(fileBytes)}' type='video/mp4' /></video></body></html>"
-                        };
+                        var _template = ContentTypeTemplateFactory.BuilContentType(_content);
 
-                        //Video = new HtmlWebViewSource
-                        //{
-                        //    Html = html
-                        //};
+                        this.ContentTypesTemplate.Add(_template);
                     }
                 }
             }

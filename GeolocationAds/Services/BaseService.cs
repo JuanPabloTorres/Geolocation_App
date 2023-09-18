@@ -8,10 +8,16 @@ namespace GeolocationAds.Services
     public class BaseService<T> : IBaseService<T> where T : class
     {
         protected readonly HttpClient _httpClient;
+
         protected readonly string APIPrefix = "api/";
+
         protected readonly string ApiSuffix;
 
         protected Uri BaseApiUri;
+
+        private const int TIMEOUT = 60;
+
+        private const int BUFFER_SIZE = 1000000;
 
         public BaseService()
         {
@@ -36,7 +42,7 @@ namespace GeolocationAds.Services
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);
 
             // Other HttpClient configurations can be done here if needed
-            _httpClient.Timeout = TimeSpan.FromSeconds(30);
+            _httpClient.Timeout = TimeSpan.FromSeconds(TIMEOUT);
         }
 
         public BaseService(string apiSuffix)
@@ -58,7 +64,7 @@ namespace GeolocationAds.Services
             _httpClient.BaseAddress = new Uri($"{backendUrl}/{apiSuffix}");
 
             // Other HttpClient configurations can be done here if needed
-            _httpClient.Timeout = TimeSpan.FromSeconds(30);
+            _httpClient.Timeout = TimeSpan.FromSeconds(TIMEOUT);
         }
 
         public async Task<ResponseTool<T>> Add(T data)
@@ -94,7 +100,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<T>.BuildFail("Failed to add.", null);
+                    var failResponse = ResponseFactory<T>.BuildFail("Bad Request.", null);
 
                     return failResponse;
                 }
@@ -132,7 +138,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<T>.BuildFail("Failed to get data.", null);
+                    var failResponse = ResponseFactory<T>.BuildFail("Bad Request.", null);
 
                     return failResponse;
                 }
@@ -215,7 +221,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<T>.BuildFail("Failed to remove.", null);
+                    var failResponse = ResponseFactory<T>.BuildFail("Bad Request.", null);
 
                     return failResponse;
                 }
@@ -257,7 +263,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<T>.BuildFail("Failed to update.", null);
+                    var failResponse = ResponseFactory<T>.BuildFail("Bad Request.", null);
 
                     return failResponse;
                 }

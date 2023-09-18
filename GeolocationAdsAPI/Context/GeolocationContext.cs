@@ -32,24 +32,15 @@ namespace GeolocationAdsAPI.Context
         // Seed method to populate initial AppSetting values
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //// Configure the Advertisement - GeolocationAd relationship
-            //modelBuilder.Entity<Advertisement>()
-            //    .HasOne(a => a.GeolocationAd)
-            //    .WithOne()
-            //    .OnDelete(DeleteBehavior.Cascade); // Set cascade delete behavior
-
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Login)
                 .WithOne(l => l.User)
                 .HasForeignKey<Login>(l => l.UserId)
                 .IsRequired(true); // Optional, depending on your requirements
 
-            //modelBuilder.Entity<Advertisement>()
-            //.HasOne(a => a.GeolocationAd)
-            //.WithOne(ad => ad.Advertisement)
-            //.OnDelete(DeleteBehavior.Cascade); // Set cascade delete behavior
-
-            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<AdvertisementSettings>()
+            //    .HasOne(c => c.Advertisement)
+            //    .WithMany(e => e.Settings);
 
             modelBuilder.Entity<AppSetting>().HasData(
                 new AppSetting { ID = 1, SettingName = "MeterDistance", Value = "10" },

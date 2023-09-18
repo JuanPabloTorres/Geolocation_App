@@ -5,7 +5,6 @@ namespace GeolocationAds.App_ViewModel_Factory
 {
     public static class ContentTypeTemplateFactory
     {
-
         public static ContentTypeTemplateViewModel BuilContentType(byte[] content, ContentVisualType visualType, int? advertisingId, int createdById)
         {
             var _contentType = new ContentType()
@@ -27,8 +26,6 @@ namespace GeolocationAds.App_ViewModel_Factory
 
         public static ContentTypeTemplateViewModel BuilContentType(ContentType contentType)
         {
-
-
             var _template = new ContentTypeTemplateViewModel()
             {
                 ContentType = contentType,
@@ -36,6 +33,5 @@ namespace GeolocationAds.App_ViewModel_Factory
 
             return _template;
         }
-
     }
 }

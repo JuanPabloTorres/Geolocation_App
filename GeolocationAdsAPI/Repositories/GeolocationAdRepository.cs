@@ -37,7 +37,7 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => DateTime.Now <= v.Advertisement.ExpirationDate).ToListAsync();
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => DateTime.Now <= v.ExpirationDate).ToListAsync();
 
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
             }
@@ -53,7 +53,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(s => s.Settings)
                     .Where(v => DateTime.Now <=
-                    v.Advertisement.ExpirationDate &&
+                    v.ExpirationDate &&
                     v.Advertisement.Settings.Any(s => s.SettingId == settingId))
                     .ToListAsync();
 

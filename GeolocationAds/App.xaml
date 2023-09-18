@@ -122,6 +122,15 @@
                 <Setter Property="WidthRequest" Value="400" />
             </Style>
 
+            <Style x:Key="imageFrameCollection" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderColor" Value="White" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="HeightRequest" Value="200" />
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+
             <Style x:Key="entryFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="CornerRadius" Value="12" />
@@ -204,6 +213,86 @@
                 <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
             </Style>
 
+            <!--  Data template for displaying a video  -->
+            <DataTemplate x:Key="VideoDataTemplate">
+                <Frame Style="{StaticResource imageFrame}">
+                    <WebView
+                        x:Name="SelectedVideo"
+                        HeightRequest="300"
+                        Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
+                        WidthRequest="400" />
+                </Frame>
+            </DataTemplate>
+
+            <!--  Data template for displaying an image  -->
+            <DataTemplate x:Key="ImageDataTemplate">
+                <Frame Style="{StaticResource imageFrame}">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="300"
+                        IsAnimationPlaying="{Binding IsAnimation}"
+                        Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
+                        WidthRequest="400" />
+                </Frame>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ImageDataTemplate2">
+                <Frame Style="{StaticResource cardFrame}">
+                    <StackLayout>
+
+                        <Button
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X" />
+
+                        <Frame Style="{StaticResource imageFrame}">
+
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="300"
+                                IsAnimationPlaying="True"
+                                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
+                                WidthRequest="400" />
+                        </Frame>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoading}"
+                            IsVisible="{Binding IsLoading}"
+                            Style="{StaticResource globalLoading}" />
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+
+            <DataTemplate x:Key="VideoDataTemplate2">
+                <Frame Style="{StaticResource cardFrame}">
+                    <StackLayout>
+
+                        <Button
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X" />
+
+                        <Frame Style="{StaticResource imageFrame}">
+
+                            <WebView
+                                x:Name="SelectedVideo"
+                                HeightRequest="300"
+                                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
+                                WidthRequest="400" />
+                        </Frame>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoading}"
+                            IsVisible="{Binding IsLoading}"
+                            Style="{StaticResource globalLoading}" />
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+
             <!--  Converters  -->
             <converters:IsEnableConverter x:Key="IsEnableConverter" />
 
@@ -218,6 +307,8 @@
             <converters:ImageOrVideoCheckConverter x:Key="ImageOrVideoCheckConverter" />
 
             <converters:ByteArrayToVideSourceConverter x:Key="ByteArrayToVideSourceConverter" />
+
+            <converters:SpanConverter x:Key="SpanConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

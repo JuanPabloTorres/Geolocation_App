@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
@@ -179,6 +180,32 @@ namespace ToolsLibrary.Tools
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
 
             return hashedPassword;
+        }
+
+        // Compress a byte array using GZip compression
+        public static byte[] Compress(byte[] data)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
+                {
+                    gzipStream.Write(data, 0, data.Length);
+                }
+                return memoryStream.ToArray();
+            }
+        }
+
+        // Decompress a GZip-compressed byte array
+        public static byte[] Decompress(byte[] compressedData)
+        {
+            using (MemoryStream memoryStream = new MemoryStream(compressedData))
+            using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+            using (MemoryStream decompressedStream = new MemoryStream())
+            {
+                gzipStream.CopyTo(decompressedStream);
+
+                return decompressedStream.ToArray();
+            }
         }
     }
 }

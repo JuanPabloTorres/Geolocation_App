@@ -33,10 +33,6 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<int?>("CaptureID")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Content")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<int>("CreateBy")
                         .HasColumnType("int");
 
@@ -46,12 +42,6 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsPosted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -473,7 +463,7 @@ namespace GeolocationAdsAPI.Migrations
 
             modelBuilder.Entity("ToolsLibrary.Models.AdvertisementSettings", b =>
                 {
-                    b.HasOne("ToolsLibrary.Models.Advertisement", null)
+                    b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
                         .WithMany("Settings")
                         .HasForeignKey("AdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -484,6 +474,8 @@ namespace GeolocationAdsAPI.Migrations
                         .HasForeignKey("SettingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Advertisement");
 
                     b.Navigation("Setting");
                 });

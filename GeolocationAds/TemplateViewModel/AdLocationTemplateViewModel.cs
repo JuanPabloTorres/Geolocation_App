@@ -27,6 +27,17 @@ namespace ToolsLibrary.TemplateViewModel
             this.onNavigate = new Command<int>(Navigate);
         }
 
+        public AdLocationTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
+        {
+            SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
+
+            RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
+
+            this.CurrentAdvertisement = advertisement;
+
+            this.onNavigate = new Command<int>(Navigate);
+        }
+
         public Advertisement CurrentAdvertisement
         {
             get => _currentAdvertisement;
@@ -65,7 +76,6 @@ namespace ToolsLibrary.TemplateViewModel
                         Latitude = locationReponse.Data.Latitude,
                         Longitude = locationReponse.Data.Longitude,
                         ExpirationDate = DateTime.Now.AddDays(7)
-
                     };
 
                     var _apiResponse = await this.geolocationAdService.Add(newAd);

@@ -10,6 +10,7 @@
 
     <ContentPage.Resources>
         <!--  Data template for displaying a video  -->
+        <!--
         <DataTemplate x:Key="VideoDataTemplate">
             <Frame Style="{StaticResource imageFrame}">
                 <WebView
@@ -20,7 +21,9 @@
             </Frame>
         </DataTemplate>
 
+        -->
         <!--  Data template for displaying an image  -->
+        <!--
         <DataTemplate x:Key="ImageDataTemplate">
             <Frame Style="{StaticResource imageFrame}">
                 <Image
@@ -87,7 +90,7 @@
                         Style="{StaticResource globalLoading}" />
                 </StackLayout>
             </Frame>
-        </DataTemplate>
+        </DataTemplate>-->
 
         <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
@@ -129,8 +132,8 @@
                     ItemsSource="{Binding AdTypesSettings}"
                     SelectedItem="{Binding SelectedAdType}" />
 
-                <Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
-                <local:CustomDatePickerContentView SelectedDate="{Binding Model.ExpirationDate}" />
+                <!--<Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
+                <local:CustomDatePickerContentView SelectedDate="{Binding Model.ExpirationDate}" />-->
 
                 <!--  ... Choose File ...  -->
                 <Button

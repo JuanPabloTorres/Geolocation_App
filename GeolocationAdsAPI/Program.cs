@@ -15,7 +15,18 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AdsGeolocationConnectionString");
 
-builder.Services.AddDbContext<GeolocationContext>(opt => opt.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
+//builder.Services.AddDbContext<GeolocationContext>(opt => opt.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
+
+builder.Services.AddDbContext<GeolocationContext>(options =>
+{
+    options.UseSqlServer(connectionString, sqlServerOptions =>
+    {
+        sqlServerOptions.EnableRetryOnFailure(); // Enable retry on failure, if needed
+        sqlServerOptions.CommandTimeout(60); // Set the connection timeout to 30 seconds
+        sqlServerOptions.MaxBatchSize(100);
+
+    });
+});
 
 builder.Services.AddTransient<IAdvertisementRepository, AdvertisementRepository>();
 
@@ -30,6 +41,8 @@ builder.Services.AddTransient<IAppSettingRepository, AppSettingRepository>();
 builder.Services.AddTransient<IForgotPasswordRepository, ForgotPasswordRepository>();
 
 builder.Services.AddTransient<IAdvertisementSettingsRepository, AdvertisementSettingsRepository>();
+
+builder.Services.AddTransient<IContentTypeRepository, ContentTypeRepository>();
 
 var app = builder.Build();
 

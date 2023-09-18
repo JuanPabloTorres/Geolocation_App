@@ -23,10 +23,16 @@
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Orientation="Horizontal">
 
-            <Label Style="{StaticResource globalLabel}" Text="Distance: (M)" HorizontalOptions="Start"/>
+            <Label
+                HorizontalOptions="Start"
+                Style="{StaticResource globalLabel}"
+                Text="Distance: (M)" />
             <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
 
-            <Label Style="{StaticResource globalLabel}" Text="Type:" HorizontalOptions="Start" />
+            <Label
+                HorizontalOptions="Start"
+                Style="{StaticResource globalLabel}"
+                Text="Type:" />
             <localControl:CustomPickerContentView
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
                 HorizontalOptions="StartAndExpand"

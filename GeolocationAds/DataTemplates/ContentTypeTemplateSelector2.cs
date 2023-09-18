@@ -1,0 +1,31 @@
+﻿using ToolsLibrary.Models;
+
+namespace GeolocationAds.DataTemplates
+{
+    public class ContentTypeTemplateSelector2 : DataTemplateSelector
+    {
+        public DataTemplate VideoDataTemplate { get; set; }
+
+        public DataTemplate ImageDataTemplate { get; set; }
+
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            if (item is ContentType contentType)
+            {
+                if (contentType.Type == ContentVisualType.Video)
+                {
+                    return VideoDataTemplate;
+                }
+                else if (contentType.Type == ContentVisualType.Image)
+                {
+                    return ImageDataTemplate;
+                }
+            }
+
+            // Return a default template or null if needed
+            return null;
+        }
+
+
+    }
+}

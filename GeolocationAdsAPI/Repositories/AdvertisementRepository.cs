@@ -16,7 +16,20 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var _dataFoundResult = await _context.Advertisements.Where(v => v.UserId == userId).ToListAsync();
+                var _dataFoundResult = await _context.Advertisements.Include(c => c.Contents)
+                    .Where(v => v.UserId == userId)
+                    .Select(s =>
+                    new Advertisement()
+                    {
+                        ID = s.ID,
+                        Description = s.Description,
+                        Title = s.Title,
+                        UserId = s.UserId,
+                        Contents = s.Contents.
+                    Select(cs =>
+                    new ContentType() { ID = cs.ID, Type = cs.Type, Content = cs.Content })
+                    .ToList()
+                    }).ToListAsync();
 
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
             }
@@ -32,13 +45,13 @@ namespace GeolocationAdsAPI.Repositories
             {
                 var _dataFoundResult = await _context.Advertisements.Where(v => v.UserId == userId).ToListAsync();
 
-                foreach (var item in _dataFoundResult)
-                {
-                    if (DateTime.Now > item.ExpirationDate)
-                    {
-                        item.IsPosted = false;
-                    }
-                }
+                //foreach (var item in _dataFoundResult)
+                //{
+                //    if (DateTime.Now > item.ExpirationDate)
+                //    {
+                //        item.IsPosted = false;
+                //    }
+                //}
 
                 await _context.SaveChangesAsync();
 
