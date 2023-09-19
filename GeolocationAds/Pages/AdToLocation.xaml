@@ -102,7 +102,7 @@
                                 <CollectionView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding CurrentAdvertisement.Contents}">
 
                                     <CollectionView.ItemsLayout>
-                                        <GridItemsLayout Orientation="Vertical" Span="{Binding CurrentAdvertisement.Contents, Converter={StaticResource SpanConverter}}" />
+                                        <GridItemsLayout Orientation="Vertical" Span="1" />
                                     </CollectionView.ItemsLayout>
 
                                     <CollectionView.EmptyView>

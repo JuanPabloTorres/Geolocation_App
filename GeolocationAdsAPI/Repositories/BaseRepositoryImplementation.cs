@@ -16,7 +16,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<ResponseTool<T>> CreateAsync(T entity)
+    public async virtual Task<ResponseTool<T>> CreateAsync(T entity)
     {
         try
         {
@@ -54,7 +54,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
-    public async Task<ResponseTool<T>> Get(int id)
+    public async virtual Task<ResponseTool<T>> Get(int id)
     {
         try
         {
@@ -170,7 +170,32 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
-    public async Task<ResponseTool<T>> UpdateAsync(int id, T entity)
+    //public async Task<ResponseTool<T>> UpdateAsync(int id, T entity)
+    //{
+    //    try
+    //    {
+    //        var existingEntity = await _context.Set<T>().FindAsync(id);
+
+    //        if (existingEntity != null)
+    //        {
+    //            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+
+    //            //_context.Entry(existingEntity).State = EntityState.Modified;
+
+    //            await _context.SaveChangesAsync();
+
+    //            return ResponseFactory<T>.BuildSusccess("Updated successfully.", entity);
+    //        }
+
+    //        return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+    //    }
+    //}
+
+    public virtual async Task<ResponseTool<T>> UpdateAsync(int id, T entity)
     {
         try
         {
@@ -178,9 +203,18 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (existingEntity != null)
             {
+                // Attach the entity to the context if it's not already tracked
+                if (!_context.Entry(existingEntity).IsKeySet)
+                {
+                    _context.Set<T>().Attach(existingEntity);
+                }
+
+                // Explicitly mark properties as modified
                 _context.Entry(existingEntity).CurrentValues.SetValues(entity);
 
-                //_context.Entry(existingEntity).State = EntityState.Modified;
+                // Alternatively, you can manually mark specific properties as modified:
+                // _context.Entry(existingEntity).Property(e => e.Property1).IsModified = true;
+                // _context.Entry(existingEntity).Property(e => e.Property2).IsModified = true;
 
                 await _context.SaveChangesAsync();
 
@@ -234,6 +268,19 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
+    protected void UpdateCollection<T>(ICollection<T> existingCollection, ICollection<T> updatedCollection)
+    {
+        // Clear the existing collection and add items from the updated collection
+        existingCollection.Clear();
+
+        if (updatedCollection != null)
+        {
+            foreach (var item in updatedCollection)
+            {
+                existingCollection.Add(item);
+            }
+        }
+    }
     //public async Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, IEnumerable<object>>>[] relatedExpressions)
     //{
     //    try

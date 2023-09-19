@@ -17,15 +17,7 @@ namespace GeolocationAds.ViewModels
 
             this.SearchCommand = new Command(Initialize);
 
-            WeakReferenceMessenger.Default.Register<DeleteItemMessage>(this, (r, m) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    var _toRemoveAdContent = this.CollectionModel.Where(v => v.CurrentAdvertisement.ID == m.Value.ID).FirstOrDefault();
-
-                    this.CollectionModel.Remove(_toRemoveAdContent);
-                });
-            });
+            AdLocationTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -44,33 +36,50 @@ namespace GeolocationAds.ViewModels
             });
         }
 
+        private void AdLocationTemplateViewModel_ItemDeleted(object sender, EventArgs e)
+        {
+            if (sender is AdLocationTemplateViewModel model)
+            {
+                var _toRemoveAdContent = this.CollectionModel.Where(v => v.CurrentAdvertisement.ID == model.CurrentAdvertisement.ID).FirstOrDefault();
+
+                this.CollectionModel.Remove(_toRemoveAdContent);
+            }
+        }
+
         protected override async Task LoadData()
         {
-            this.CollectionModel.Clear();
-
-            var _userId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>(nameof(User.ID));
-
-            var _apiResponse = await this.advertisementService.GetAdvertisementsOfUser(_userId);
-
-            if (_apiResponse.IsSuccess)
+            try
             {
-                foreach (var item in _apiResponse.Data)
+                this.CollectionModel.Clear();
+
+                var _userId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>(nameof(User.ID));
+
+                var _apiResponse = await this.advertisementService.GetAdvertisementsOfUser(_userId);
+
+                if (_apiResponse.IsSuccess)
                 {
-                    foreach (var ads in item.Contents)
+                    foreach (var item in _apiResponse.Data)
                     {
-                        var _decompressed = CommonsTool.Decompress(ads.Content);
+                        //foreach (var ads in item.Contents)
+                        //{
+                        //    var _decompressed = CommonsTool.Decompress(ads.Content);
 
-                        ads.Content = _decompressed;
+                        //    ads.Content = _decompressed;
+                        //}
+
+                        var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service, item);
+
+                        this.CollectionModel.Add(_item);
                     }
-
-                    var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service, item);
-
-                    this.CollectionModel.Add(_item);
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 

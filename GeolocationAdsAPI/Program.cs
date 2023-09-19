@@ -23,7 +23,7 @@ builder.Services.AddDbContext<GeolocationContext>(options =>
     {
         sqlServerOptions.EnableRetryOnFailure(); // Enable retry on failure, if needed
         sqlServerOptions.CommandTimeout(60); // Set the connection timeout to 30 seconds
-        sqlServerOptions.MaxBatchSize(100);
+        sqlServerOptions.UseRelationalNulls();
 
     });
 });
@@ -43,6 +43,8 @@ builder.Services.AddTransient<IForgotPasswordRepository, ForgotPasswordRepositor
 builder.Services.AddTransient<IAdvertisementSettingsRepository, AdvertisementSettingsRepository>();
 
 builder.Services.AddTransient<IContentTypeRepository, ContentTypeRepository>();
+
+builder.Services.AddTransient<ICaptureRepository, CaptureRepository>();
 
 var app = builder.Build();
 

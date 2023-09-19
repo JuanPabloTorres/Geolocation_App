@@ -11,6 +11,8 @@ namespace GeolocationAdsAPI.Context
 
         public DbSet<Advertisement> Advertisements { get; set; }
 
+        public DbSet<AdvertisementSettings> AdvertisementSettings { get; set; }
+
         public DbSet<Capture> Captures { get; set; }
 
         public DbSet<ContentType> ContentTypes { get; set; }
@@ -38,9 +40,25 @@ namespace GeolocationAdsAPI.Context
                 .HasForeignKey<Login>(l => l.UserId)
                 .IsRequired(true); // Optional, depending on your requirements
 
-            //modelBuilder.Entity<AdvertisementSettings>()
-            //    .HasOne(c => c.Advertisement)
-            //    .WithMany(e => e.Settings);
+            modelBuilder.Entity<Advertisement>()
+                  .HasMany(a => a.Contents)// Advertisement has many ContentTypes
+                  .WithOne(c => c.Advertisement)  // ContentType has one Advertisement
+                  .HasForeignKey(c => c.AdvertisingId);  // Use AdvertisementId as the foreign key
+
+            modelBuilder.Entity<AdvertisementSettings>()
+           .HasKey(ads => new { ads.AdvertisementId, ads.SettingId });
+
+            modelBuilder.Entity<Advertisement>()
+                .HasMany(a => a.Settings)
+                .WithOne()
+                .HasForeignKey(ad => ad.AdvertisementId);
+
+            modelBuilder.Entity<AdvertisementSettings>()
+                .HasOne(ads => ads.Setting)
+                .WithMany()
+                .HasForeignKey(ads => ads.SettingId);
+
+
 
             modelBuilder.Entity<AppSetting>().HasData(
                 new AppSetting { ID = 1, SettingName = "MeterDistance", Value = "10" },

@@ -40,7 +40,7 @@ namespace GeolocationAds.TemplateViewModel
             RemoveCommand = new Command(RemoveCurrentItem);
         }
 
-        void RemoveCurrentItem()
+        public override void RemoveCurrentItem()
         {
             OnDeleteType(EventArgs.Empty);
         }

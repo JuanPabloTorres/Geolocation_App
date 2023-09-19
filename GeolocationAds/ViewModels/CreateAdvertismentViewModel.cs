@@ -87,15 +87,13 @@ namespace GeolocationAds.ViewModels
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
-            Task.Run(async () => { await this.LoadSetting(); });
-
+            //Task.Run(async () => { await this.LoadSetting(); });
 
             ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
             this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
 
             SetDefault();
-
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
@@ -136,16 +134,16 @@ namespace GeolocationAds.ViewModels
 
                     foreach (var item in contents)
                     {
-                        var _toModelContent = new ContentType()
-                        {
-                            Content = CommonsTool.Compress(item.ContentType.Content),
-                            AdvertisingId = item.ContentType.AdvertisingId,
-                            CreateDate = item.ContentType.CreateDate,
-                            Type = item.ContentType.Type,
-                            CreateBy = this.LogUserPerfilTool.LogUser.ID
-                        };
+                        //var _toModelContent = new ContentType()
+                        //{
+                        //    Content = CommonsTool.Compress(item.ContentType.Content),
+                        //    AdvertisingId = item.ContentType.AdvertisingId,
+                        //    CreateDate = item.ContentType.CreateDate,
+                        //    Type = item.ContentType.Type,
+                        //    CreateBy = this.LogUserPerfilTool.LogUser.ID
+                        //};
 
-                        this.Model.Contents.Add(_toModelContent);
+                        this.Model.Contents.Add(item.ContentType);
                     }
                 }
             }
@@ -163,11 +161,11 @@ namespace GeolocationAds.ViewModels
             this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
         }
 
-        private async Task LoadSetting()
+        public async Task LoadSetting()
         {
             var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
-            this.CollectionModel.Clear();
+            this.AdTypesSettings.Clear();
 
             if (_apiResponse.IsSuccess)
             {
@@ -253,30 +251,18 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                if (this.Model.Settings.IsNotNullOrCountGreaterZero() && !value.IsObjectNull())
+                if (!this.Model.Settings.IsObjectNull() && !value.IsObjectNull())
                 {
-                    var _toUpdateSetting = this.Model.Settings.FirstOrDefault();
+                    this.Model.Settings.Clear();
 
-                    _toUpdateSetting.UpdateDate = DateTime.Now;
-
-                    _toUpdateSetting.UpdateBy = this.LogUserPerfilTool.LogUser.ID;
-
-                    _toUpdateSetting.SettingId = value.ID;
-                }
-                else
-                {
-                    if (!_selectedAdType.IsObjectNull())
+                    var _adSetting = new AdvertisementSettings()
                     {
-                        this.Model.Settings = new List<AdvertisementSettings>();
+                        CreateDate = DateTime.Now,
+                        CreateBy = this.LogUserPerfilTool.LogUser.ID,
+                        SettingId = value.ID,
+                    };
 
-                        this.Model.Settings.Add(new AdvertisementSettings()
-                        {
-                            AdvertisementId = this.Model.ID,
-                            SettingId = value.ID,
-                            CreateDate = DateTime.Now,
-                            CreateBy = this.LogUserPerfilTool.LogUser.ID
-                        });
-                    }
+                    this.Model.Settings.Add(_adSetting);
                 }
             }
             catch (Exception ex)

@@ -139,34 +139,41 @@ namespace GeolocationAds.ViewModels
 
         private async Task LoadSettings2()
         {
-            this.CollectionModel.Clear();
-
-            IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
-
-            var _apiResponse = await this.appSettingService.GetAppSettingByNames(settings);
-
-            if (_apiResponse.IsSuccess)
+            try
             {
-                foreach (var item in _apiResponse.Data)
+                this.CollectionModel.Clear();
+
+                IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
+
+                var _apiResponse = await this.appSettingService.GetAppSettingByNames(settings);
+
+                if (_apiResponse.IsSuccess)
                 {
-                    if (SettingName.MeterDistance.ToString() == item.SettingName)
+                    foreach (var item in _apiResponse.Data)
                     {
-                        DistanceSettings.Add(item.Value);
+                        if (SettingName.MeterDistance.ToString() == item.SettingName)
+                        {
+                            DistanceSettings.Add(item.Value);
+                        }
+
+                        if (SettingName.AdTypes.ToString() == item.SettingName)
+                        {
+                            AdTypesSettings.Add(item);
+                        }
                     }
 
-                    if (SettingName.AdTypes.ToString() == item.SettingName)
-                    {
-                        AdTypesSettings.Add(item);
-                    }
+                    SelectedAdType = AdTypesSettings.FirstOrDefault();
+
+                    SelectedDistance = DistanceSettings.FirstOrDefault();
                 }
-
-                SelectedAdType = AdTypesSettings.FirstOrDefault();
-
-                SelectedDistance = DistanceSettings.FirstOrDefault();
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 

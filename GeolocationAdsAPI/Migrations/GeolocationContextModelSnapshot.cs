@@ -67,13 +67,16 @@ namespace GeolocationAdsAPI.Migrations
 
             modelBuilder.Entity("ToolsLibrary.Models.AdvertisementSettings", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("AdvertisementId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    b.Property<int>("SettingId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("AdvertisementId")
+                    b.Property<int?>("AdvertisementID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdvertisementID1")
                         .HasColumnType("int");
 
                     b.Property<int>("CreateBy")
@@ -82,8 +85,11 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SettingId")
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<int>("UpdateBy")
                         .HasColumnType("int");
@@ -91,9 +97,9 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("AdvertisementId", "SettingId");
 
-                    b.HasIndex("AdvertisementId");
+                    b.HasIndex("AdvertisementID");
 
                     b.HasIndex("SettingId");
 
@@ -264,6 +270,9 @@ namespace GeolocationAdsAPI.Migrations
 
                     b.Property<byte[]>("Content")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ContentName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CreateBy")
                         .HasColumnType("int");
@@ -464,6 +473,10 @@ namespace GeolocationAdsAPI.Migrations
             modelBuilder.Entity("ToolsLibrary.Models.AdvertisementSettings", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
+                        .WithMany()
+                        .HasForeignKey("AdvertisementID");
+
+                    b.HasOne("ToolsLibrary.Models.Advertisement", null)
                         .WithMany("Settings")
                         .HasForeignKey("AdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)

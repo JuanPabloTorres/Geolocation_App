@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using GeolocationAds.Messages;
-using GeolocationAds.Pages;
+﻿using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.Tools;
 using System.Windows.Input;
@@ -36,6 +34,15 @@ namespace ToolsLibrary.TemplateViewModel
             this.CurrentAdvertisement = advertisement;
 
             this.onNavigate = new Command<int>(Navigate);
+        }
+
+        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
+
+        public static event RemoveItemEventHandler ItemDeleted;
+
+        protected virtual void OnDeleteItem(EventArgs e)
+        {
+            ItemDeleted?.Invoke(this, e);
         }
 
         public Advertisement CurrentAdvertisement
@@ -106,31 +113,40 @@ namespace ToolsLibrary.TemplateViewModel
 
         private async Task RemoveContent(Advertisement ad)
         {
-            this.IsLoading = true;
-
-            var locationReponse = await GeolocationTool.GetLocation();
-
-            if (locationReponse.IsSuccess)
+            try
             {
-                var _apiResponse = await this.advertisementService.Remove(ad.ID);
+                this.IsLoading = true;
 
-                if (_apiResponse.IsSuccess)
+                var locationReponse = await GeolocationTool.GetLocation();
+
+                if (locationReponse.IsSuccess)
                 {
-                    WeakReferenceMessenger.Default.Send(new DeleteItemMessage(ad));
+                    var _apiResponse = await this.advertisementService.Remove(ad.ID);
 
-                    await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                    if (_apiResponse.IsSuccess)
+                    {
+                        //WeakReferenceMessenger.Default.Send(new DeleteItemMessage(ad));
+
+                        RemoveCurrentItem();
+
+                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    }
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
                 }
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
-            }
 
-            this.IsLoading = false;
+                this.IsLoading = false;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         private async void SetLocationYesOrNoAlert(Advertisement selectAd)
@@ -164,6 +180,11 @@ namespace ToolsLibrary.TemplateViewModel
             var navigationParameter = new Dictionary<string, object> { { "ID", id } };
 
             await Shell.Current.GoToAsync(nameof(EditAdvertisment), navigationParameter);
+        }
+
+        public override void RemoveCurrentItem()
+        {
+            OnDeleteItem(EventArgs.Empty);
         }
     }
 }

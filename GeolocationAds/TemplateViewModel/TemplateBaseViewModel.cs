@@ -47,5 +47,10 @@ namespace ToolsLibrary.TemplateViewModel
         public TemplateBaseViewModel()
         {
         }
+
+        public virtual void RemoveCurrentItem()
+        {
+
+        }
     }
 }

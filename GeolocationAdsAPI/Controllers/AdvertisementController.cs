@@ -1,6 +1,5 @@
 ﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -14,17 +13,9 @@ namespace GeolocationAdsAPI.Controllers
     {
         private readonly IAdvertisementRepository advertisementRepository;
 
-        private readonly IAdvertisementSettingsRepository advertisementSettingsRepository;
-
-        private readonly IContentTypeRepository contentTypeRepository;
-
-        public AdvertisementController(IAdvertisementRepository advertisementRepository, IAdvertisementSettingsRepository advertisementSettingsRepository, IContentTypeRepository contentTypeRepository)
+        public AdvertisementController(IAdvertisementRepository advertisementRepository)
         {
             this.advertisementRepository = advertisementRepository;
-
-            this.advertisementSettingsRepository = advertisementSettingsRepository;
-
-            this.contentTypeRepository = contentTypeRepository;
         }
 
         [HttpPost("[action]")]
@@ -53,15 +44,7 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-                //Expression<Func<Advertisement, object>>[] geolocationAd = { e => e.GeolocationAds };
-
-                Expression<Func<Advertisement, object>>[] settins = { e => e.Settings };
-
-                Expression<Func<Advertisement, object>>[] contents = { e => e.Contents };
-
-                settins = settins.Concat(contents).ToArray();
-
-                response = await this.advertisementRepository.Get(id, settins);
+                response = await this.advertisementRepository.Get(id);
 
                 if (!response.IsSuccess)
                 {
@@ -69,12 +52,6 @@ namespace GeolocationAdsAPI.Controllers
 
                     return Ok(response);
                 }
-
-                //response.Data.GeolocationAds = response.Data.GeolocationAds
-                //    .Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude, ExpirationDate = g.ExpirationDate }).ToList();
-
-                response.Data.Contents = response.Data.Contents
-                 .Select(c => new ContentType() { ID = c.ID, AdvertisingId = c.AdvertisingId, Content = c.Content, Type = c.Type, }).ToList();
 
                 return Ok(response);
             }
@@ -94,11 +71,6 @@ namespace GeolocationAdsAPI.Controllers
             try
             {
                 response = await this.advertisementRepository.GetAdvertisementsOfUser(userId);
-
-                if (!response.Data.IsObjectNull())
-                {
-                    response.Data = response.Data.OrderBy(o => o.CreateDate).Reverse();
-                }
 
                 return Ok(response);
             }
@@ -169,28 +141,28 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(response);
                 }
 
-                var _adSetting = advertisement.Settings.Where(v => v.GetType() == typeof(AdvertisementSettings)).FirstOrDefault();
+                //var _adSetting = advertisement.Settings.Where(v => v.GetType() == typeof(AdvertisementSettings)).FirstOrDefault();
 
-                var _settingResponse = await this.advertisementSettingsRepository.UpdateAsync(_adSetting.ID, _adSetting);
+                //var _settingResponse = await this.advertisementSettingsRepository.UpdateAsync(_adSetting.ID, _adSetting);
 
-                if (!_settingResponse.IsSuccess)
-                {
-                    response = ResponseFactory<Advertisement>.BuildFail(_settingResponse.Message, null, ToolsLibrary.Tools.Type.Exception);
+                //if (!_settingResponse.IsSuccess)
+                //{
+                //    response = ResponseFactory<Advertisement>.BuildFail(_settingResponse.Message, null, ToolsLibrary.Tools.Type.Exception);
 
-                    return Ok(response);
-                }
+                //    return Ok(response);
+                //}
 
-                if (response.Data.Contents.Count() > 0)
-                {
-                    var _removeAllResponse = await this.contentTypeRepository.RemoveAllContentOfAdvertisement(Id);
+                //if (response.Data.Contents.Count() > 0)
+                //{
+                //    var _removeAllResponse = await this.contentTypeRepository.RemoveAllContentOfAdvertisement(Id);
 
-                    if (!_removeAllResponse.IsSuccess)
-                    {
-                        return Ok(ResponseFactory<Advertisement>.BuildFail(_removeAllResponse.Message, null, ToolsLibrary.Tools.Type.Exception));
-                    }
+                //    if (!_removeAllResponse.IsSuccess)
+                //    {
+                //        return Ok(ResponseFactory<Advertisement>.BuildFail(_removeAllResponse.Message, null, ToolsLibrary.Tools.Type.Exception));
+                //    }
 
-                    await this.contentTypeRepository.CreateRangeAsync(response.Data.Contents);
-                }
+                //    await this.contentTypeRepository.CreateRangeAsync(response.Data.Contents);
+                //}
 
                 return Ok(response);
             }

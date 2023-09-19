@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -12,24 +13,54 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
+        public override async Task<ResponseTool<Advertisement>> CreateAsync(Advertisement advertisement)
+        {
+            try
+            {
+                // Add the advertisement entity to the DbSet
+                _context.Advertisements.Add(advertisement);
+
+                // Optionally, you can also add related entities in a similar way if needed.
+                _context.ContentTypes.AddRange(advertisement.Contents);
+
+                _context.AdvertisementSettings.AddRange(advertisement.Settings);
+
+                // Save changes asynchronously
+                await _context.SaveChangesAsync();
+
+                return ResponseFactory<Advertisement>.BuildSusccess("Created", advertisement, ToolsLibrary.Tools.Type.DataFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId)
         {
             try
             {
-                var _dataFoundResult = await _context.Advertisements.Include(c => c.Contents)
+                var _dataFoundResult = await _context.Advertisements
                     .Where(v => v.UserId == userId)
-                    .Select(s =>
-                    new Advertisement()
+                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
+                    .Take(5)
+                    .Select(s => new Advertisement
                     {
                         ID = s.ID,
                         Description = s.Description,
                         Title = s.Title,
                         UserId = s.UserId,
-                        Contents = s.Contents.
-                    Select(cs =>
-                    new ContentType() { ID = cs.ID, Type = cs.Type, Content = cs.Content })
-                    .ToList()
-                    }).ToListAsync();
+                        Contents = s.Contents
+                            .Select(cs => new ContentType
+                            {
+                                ID = cs.ID,
+                                Type = cs.Type,
+                                Content = cs.Content
+                            })
+                            .ToList()
+                    })
+                    .AsNoTracking()
+                    .ToListAsync();
 
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
             }
@@ -39,19 +70,85 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
+        public override async Task<ResponseTool<Advertisement>> Get(int Id)
+        {
+            try
+            {
+                var _exist = await this._context.Advertisements.FindAsync(Id);
+
+                if (_exist.IsObjectNull())
+                {
+                    return ResponseFactory<Advertisement>.BuildFail("Not Found", null, ToolsLibrary.Tools.Type.NotFound);
+                }
+
+                var _dataFoundResult = await _context.Advertisements.AsNoTracking().Include(s => s.Settings).Include(c => c.Contents).Where(v => v.ID == Id)
+                    .Select(s => new Advertisement
+                    {
+                        ID = s.ID,
+                        Description = s.Description,
+                        Title = s.Title,
+                        UserId = s.UserId,
+                        Settings = s.Settings
+                        .Select(s => new AdvertisementSettings()
+                        {
+                            ID = s.ID,
+                            SettingId = s.SettingId
+                        }).ToList(),
+                        Contents = s.Contents
+                            .Select(cs => new ContentType
+                            {
+                                ID = cs.ID,
+                                Type = cs.Type,
+                                Content = cs.Content
+                            })
+                            .ToList()
+                    }).FirstOrDefaultAsync();
+
+                return ResponseFactory<Advertisement>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
+        {
+            try
+            {
+                var existingAdvertisement = await _context.Advertisements
+                    .Include(a => a.Contents) // Include the Contents collection if needed
+                    .Include(a => a.Settings) // Include the Settings collection if needed
+                    .FirstOrDefaultAsync(a => a.ID == id);
+
+                if (!existingAdvertisement.IsObjectNull())
+                {
+                    // Update scalar properties
+                    _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
+
+                    // Update nested collections (e.g., Contents, GeolocationAds, Settings)
+                    UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+
+                    UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
+
+                    await _context.SaveChangesAsync();
+
+                    return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", existingAdvertisement);
+                }
+
+                return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
         public async Task<ResponseTool<IEnumerable<Advertisement>>> VerifyExpiredAdvertimentOfUser(int userId)
         {
             try
             {
                 var _dataFoundResult = await _context.Advertisements.Where(v => v.UserId == userId).ToListAsync();
-
-                //foreach (var item in _dataFoundResult)
-                //{
-                //    if (DateTime.Now > item.ExpirationDate)
-                //    {
-                //        item.IsPosted = false;
-                //    }
-                //}
 
                 await _context.SaveChangesAsync();
 
@@ -62,5 +159,7 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+
     }
 }

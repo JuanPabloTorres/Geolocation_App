@@ -76,6 +76,8 @@ public static class MauiProgram
 
         builder.Services.AddTransient<IForgotPasswordService, ForgotPasswordService>();
 
+        builder.Services.AddTransient<ICaptureService, CaptureService>();
+
         #endregion Api Service
 
         #region Models

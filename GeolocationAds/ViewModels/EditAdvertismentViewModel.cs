@@ -66,7 +66,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private void SelectedTypeChange(AppSetting value)
+        private async void SelectedTypeChange(AppSetting value)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                throw;
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -140,16 +140,16 @@ namespace GeolocationAds.ViewModels
 
                         foreach (var item in contents)
                         {
-                            var _toModelContent = new ContentType()
-                            {
-                                Content = CommonsTool.Compress(item.ContentType.Content),
-                                AdvertisingId = this.Model.ID,
-                                CreateDate = item.ContentType.CreateDate,
-                                Type = item.ContentType.Type,
-                                CreateBy = this.LogUserPerfilTool.LogUser.ID
-                            };
+                            //var _toModelContent = new ContentType()
+                            //{
+                            //    Content = CommonsTool.Compress(item.ContentType.Content),
+                            //    AdvertisingId = this.Model.ID,
+                            //    CreateDate = item.ContentType.CreateDate,
+                            //    Type = item.ContentType.Type,
+                            //    CreateBy = this.LogUserPerfilTool.LogUser.ID
+                            //};
 
-                            this.Model.Contents.Add(_toModelContent);
+                            this.Model.Contents.Add(item.ContentType);
                         }
                     }
                 }
@@ -183,9 +183,9 @@ namespace GeolocationAds.ViewModels
 
             foreach (var item in this.Model.Contents)
             {
-                var _decompressed = CommonsTool.Decompress(item.Content);
+                //var _decompressed = CommonsTool.Decompress(item.Content);
 
-                item.Content = _decompressed;
+                //item.Content = _decompressed;
 
                 var _template = ContentTypeTemplateFactory.BuilContentType(item);
 
@@ -196,33 +196,40 @@ namespace GeolocationAds.ViewModels
 
         public async Task LoadSetting()
         {
-            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
-            this.CollectionModel.Clear();
-
-            if (_apiResponse.IsSuccess)
+            try
             {
-                AdTypesSettings.AddRange(_apiResponse.Data);
+                var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
-                foreach (var item in AdTypesSettings)
+                this.CollectionModel.Clear();
+
+                if (_apiResponse.IsSuccess)
                 {
-                    if (this.Model.Settings.IsNotNullOrCountGreaterZero())
-                    {
-                        foreach (var modelsetting in this.Model.Settings)
-                        {
-                            if (modelsetting.SettingId == item.ID)
-                            {
-                                this.SelectedAdType = item;
+                    AdTypesSettings.AddRange(_apiResponse.Data);
 
-                                return;
+                    foreach (var item in AdTypesSettings)
+                    {
+                        if (this.Model.Settings.IsNotNullOrCountGreaterZero())
+                        {
+                            foreach (var modelsetting in this.Model.Settings)
+                            {
+                                if (modelsetting.SettingId == item.ID)
+                                {
+                                    this.SelectedAdType = item;
+
+                                    return;
+                                }
                             }
                         }
                     }
                 }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -231,6 +238,8 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
+                this.IsLoading = true;
+
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
@@ -274,6 +283,8 @@ namespace GeolocationAds.ViewModels
                         this.ContentTypesTemplate.Add(_template);
                     }
                 }
+
+                this.IsLoading = false;
             }
             catch (Exception ex)
             {

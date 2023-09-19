@@ -10,6 +10,32 @@ namespace ToolsLibrary.Tools
 {
     public static class CommonsTool
     {
+        // Compress a byte array using GZip compression
+        public static byte[] Compress(byte[] data)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
+                {
+                    gzipStream.Write(data, 0, data.Length);
+                }
+                return memoryStream.ToArray();
+            }
+        }
+
+        // Decompress a GZip-compressed byte array
+        public static byte[] Decompress(byte[] compressedData)
+        {
+            using (MemoryStream memoryStream = new MemoryStream(compressedData))
+            using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+            using (MemoryStream decompressedStream = new MemoryStream())
+            {
+                gzipStream.CopyTo(decompressedStream);
+
+                return decompressedStream.ToArray();
+            }
+        }
+
         public static string GenerateRandomCode(int length)
         {
             string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -43,6 +69,71 @@ namespace ToolsLibrary.Tools
                 }
             }
             return null;
+        }
+
+        public static string HashPassword(string password)
+        {
+            // Generate a random salt
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // You can adjust the cost factor as needed
+
+            // Hash the password with the salt
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+
+            return hashedPassword;
+        }
+
+        public static string HtmlEmailRecoveryDesign(string code)
+        {
+            var bodyBuilder = new StringBuilder();
+
+            bodyBuilder.AppendLine("<!DOCTYPE html>");
+
+            bodyBuilder.AppendLine("<html lang=\"en\">");
+
+            bodyBuilder.AppendLine("<head>");
+
+            bodyBuilder.AppendLine("    <meta charset=\"UTF-8\">");
+
+            bodyBuilder.AppendLine("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+
+            bodyBuilder.AppendLine("    <title> Password Recovery</title>");
+
+            bodyBuilder.AppendLine("    <style>");
+
+            // Include the CSS styles from the previous response here
+            bodyBuilder.AppendLine("    </style>");
+
+            bodyBuilder.AppendLine("</head>");
+
+            bodyBuilder.AppendLine("<body>");
+
+            bodyBuilder.AppendLine("    <div class=\"container\">");
+
+            bodyBuilder.AppendLine("        <div class=\"header\">");
+
+            bodyBuilder.AppendLine("            <h1> Password Recovery</h1>");
+
+            bodyBuilder.AppendLine("        </div>");
+
+            bodyBuilder.AppendLine("        <div class=\"content\">");
+
+            bodyBuilder.AppendLine($"<div><b>{code}</b></div>"); // This is where you insert the dynamic content
+
+            bodyBuilder.AppendLine("        </div>");
+
+            bodyBuilder.AppendLine("        <div class=\"footer\">");
+
+            bodyBuilder.AppendLine("            <p>If you need further assistance, please contact our support team.</p>");
+
+            bodyBuilder.AppendLine("        </div>");
+
+            bodyBuilder.AppendLine("    </div>");
+
+            bodyBuilder.AppendLine("</body>");
+
+            bodyBuilder.AppendLine("</html>");
+
+            return bodyBuilder.ToString();
         }
 
         public static async Task<byte[]> ImageSourceToByteArrayAsync()
@@ -115,97 +206,6 @@ namespace ToolsLibrary.Tools
             mailMessage.To.Add(emailRequest.To);
 
             await smtpClient.SendMailAsync(mailMessage);
-        }
-
-        public static string HtmlEmailRecoveryDesign(string code)
-        {
-            var bodyBuilder = new StringBuilder();
-
-            bodyBuilder.AppendLine("<!DOCTYPE html>");
-
-            bodyBuilder.AppendLine("<html lang=\"en\">");
-
-            bodyBuilder.AppendLine("<head>");
-
-            bodyBuilder.AppendLine("    <meta charset=\"UTF-8\">");
-
-            bodyBuilder.AppendLine("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-
-            bodyBuilder.AppendLine("    <title> Password Recovery</title>");
-
-            bodyBuilder.AppendLine("    <style>");
-
-            // Include the CSS styles from the previous response here
-            bodyBuilder.AppendLine("    </style>");
-
-            bodyBuilder.AppendLine("</head>");
-
-            bodyBuilder.AppendLine("<body>");
-
-            bodyBuilder.AppendLine("    <div class=\"container\">");
-
-            bodyBuilder.AppendLine("        <div class=\"header\">");
-
-            bodyBuilder.AppendLine("            <h1> Password Recovery</h1>");
-
-            bodyBuilder.AppendLine("        </div>");
-
-            bodyBuilder.AppendLine("        <div class=\"content\">");
-
-            bodyBuilder.AppendLine($"<div><b>{code}</b></div>"); // This is where you insert the dynamic content
-
-            bodyBuilder.AppendLine("        </div>");
-
-            bodyBuilder.AppendLine("        <div class=\"footer\">");
-
-            bodyBuilder.AppendLine("            <p>If you need further assistance, please contact our support team.</p>");
-
-            bodyBuilder.AppendLine("        </div>");
-
-            bodyBuilder.AppendLine("    </div>");
-
-            bodyBuilder.AppendLine("</body>");
-
-            bodyBuilder.AppendLine("</html>");
-
-            return bodyBuilder.ToString();
-        }
-
-        public static string HashPassword(string password)
-        {
-            // Generate a random salt
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // You can adjust the cost factor as needed
-
-            // Hash the password with the salt
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
-
-            return hashedPassword;
-        }
-
-        // Compress a byte array using GZip compression
-        public static byte[] Compress(byte[] data)
-        {
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
-                {
-                    gzipStream.Write(data, 0, data.Length);
-                }
-                return memoryStream.ToArray();
-            }
-        }
-
-        // Decompress a GZip-compressed byte array
-        public static byte[] Decompress(byte[] compressedData)
-        {
-            using (MemoryStream memoryStream = new MemoryStream(compressedData))
-            using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
-            using (MemoryStream decompressedStream = new MemoryStream())
-            {
-                gzipStream.CopyTo(decompressedStream);
-
-                return decompressedStream.ToArray();
-            }
         }
     }
 }

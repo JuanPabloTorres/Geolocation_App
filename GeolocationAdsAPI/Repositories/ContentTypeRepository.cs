@@ -12,14 +12,41 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
+        //public async Task<ResponseTool<bool>> CreateRangeAsync(IEnumerable<ContentType> contentTypes)
+        //{
+        //    try
+        //    {
+        //        await _context.ContentTypes.AddRangeAsync(contentTypes);
+
+        //        await this._context.SaveChangesAsync();
+
+
+        //        return ResponseFactory<bool>.BuildSusccess("Created.", true, ToolsLibrary.Tools.Type.Added);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
         public async Task<ResponseTool<bool>> CreateRangeAsync(IEnumerable<ContentType> contentTypes)
         {
             try
             {
-                await _context.ContentTypes.AddRangeAsync(contentTypes);
+                // Using a temporary in-memory list to avoid issues with EF Core tracking
+                var tempList = contentTypes.ToList();
 
-                await this._context.SaveChangesAsync();
+                // Disable change tracking for the entities to improve performance
+                _context.ChangeTracker.AutoDetectChangesEnabled = false;
 
+                // Add the entities to the context without tracking them
+                _context.ContentTypes.AddRange(tempList);
+
+                // Save changes in a batch
+                await _context.SaveChangesAsync();
+
+                // Re-enable change tracking
+                _context.ChangeTracker.AutoDetectChangesEnabled = true;
 
                 return ResponseFactory<bool>.BuildSusccess("Created.", true, ToolsLibrary.Tools.Type.Added);
             }
@@ -28,6 +55,7 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
 
         public async Task<ResponseTool<IEnumerable<ContentType>>> GetContentsOfAdById(int id)
         {

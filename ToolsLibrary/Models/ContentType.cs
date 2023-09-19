@@ -11,6 +11,8 @@ namespace ToolsLibrary.Models
 
         public int AdvertisingId { get; set; }
 
+        public string ContentName { get; set; }
+
         [ForeignKey(nameof(AdvertisingId))]
         [JsonIgnore]
         public Advertisement Advertisement { get; set; }
