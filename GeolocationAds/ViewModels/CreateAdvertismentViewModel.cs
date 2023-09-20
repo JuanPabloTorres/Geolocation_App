@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
@@ -63,6 +64,24 @@ namespace GeolocationAds.ViewModels
                     _selectedAdType = value;
 
                     SelectedTypeChange(_selectedAdType);
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private MediaSource _mediaSource;
+
+        public MediaSource MediaSource
+        {
+            get => _mediaSource;
+            set
+            {
+                if (_mediaSource != value)
+                {
+                    _mediaSource = value;
+
+                    //SelectedTypeChange(_selectedAdType);
 
                     OnPropertyChanged();
                 }
@@ -151,10 +170,9 @@ namespace GeolocationAds.ViewModels
 
         private void SetDefault()
         {
-            if (this.Model.Contents.IsObjectNull())
-            {
-                this.Model.Contents = new List<ContentType>();
-            }
+            this.Model.Settings = new List<AdvertisementSettings>();
+
+            this.Model.Contents = new List<ContentType>();
 
             this.GetImageSourceFromFile();
 
@@ -193,22 +211,22 @@ namespace GeolocationAds.ViewModels
                 var customFileTypes = new FilePickerFileType(fileTypes);
 
                 // Pick image or video
-                FileResult imageResult = await FilePicker.PickAsync(new PickOptions
+                FileResult _optionsResult = await FilePicker.PickAsync(new PickOptions
                 {
                     FileTypes = customFileTypes,
                     PickerTitle = "Select an image or video"
                 });
 
-                FileResult result = imageResult;
+                FileResult result = _optionsResult;
 
                 if (result != null)
                 {
                     fileBytes = await CommonsTool.GetFileBytesAsync(result);
 
                     var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
-                        result.FileName.ToLower().EndsWith(".png") ||
-                        result.FileName.ToLower().EndsWith(".gif") ||
-                        result.FileName.ToLower().EndsWith(".jpeg");
+                                          result.FileName.ToLower().EndsWith(".png") ||
+                                          result.FileName.ToLower().EndsWith(".gif") ||
+                                          result.FileName.ToLower().EndsWith(".jpeg");
 
                     if (isImageSelected)
                     {
@@ -222,7 +240,7 @@ namespace GeolocationAds.ViewModels
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+                        var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
                         this.ContentTypesTemplate.Add(_template);
                     }
@@ -232,6 +250,45 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
+        }
+
+        public async void TakePhoto()
+        {
+            try
+            {
+                FileResult photo = await MediaPicker.Default.PickVideoAsync();
+
+                if (photo != null)
+                {
+                    // save the file into local storage
+                    string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+
+                    using Stream sourceStream = await photo.OpenReadAsync();
+
+                    using FileStream localFileStream = File.OpenWrite(localFilePath);
+
+                    await sourceStream.CopyToAsync(localFileStream);
+
+                    var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
+
+                    var _template = ContentTypeTemplateFactory.BuilContentType(_content, localFilePath);
+
+                    this.ContentTypesTemplate.Add(_template);
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        public string SaveByteArrayToTempFile(byte[] byteArray)
+        {
+            string tempFilePath = Path.GetTempFileName();
+
+            File.WriteAllBytes(tempFilePath, byteArray);
+
+            return tempFilePath;
         }
 
         private async void GetImageSourceFromFile()

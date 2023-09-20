@@ -1,4 +1,5 @@
-﻿using GeolocationAds.TemplateViewModel;
+﻿using CommunityToolkit.Maui.Views;
+using GeolocationAds.TemplateViewModel;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.App_ViewModel_Factory
@@ -24,11 +25,12 @@ namespace GeolocationAds.App_ViewModel_Factory
             return _template;
         }
 
-        public static ContentTypeTemplateViewModel BuilContentType(ContentType contentType)
+        public static ContentTypeTemplateViewModel BuilContentType(ContentType contentType, MediaSource? mediaSource = null)
         {
             var _template = new ContentTypeTemplateViewModel()
             {
                 ContentType = contentType,
+                MediaSource = mediaSource
             };
 
             return _template;

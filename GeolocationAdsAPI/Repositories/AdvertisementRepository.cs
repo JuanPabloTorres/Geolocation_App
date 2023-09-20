@@ -28,7 +28,7 @@ namespace GeolocationAdsAPI.Repositories
                 // Save changes asynchronously
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<Advertisement>.BuildSusccess("Created", advertisement, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<Advertisement>.BuildSusccess("Created", null, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
@@ -53,13 +53,11 @@ namespace GeolocationAdsAPI.Repositories
                         Contents = s.Contents
                             .Select(cs => new ContentType
                             {
-                                ID = cs.ID,
-                                Type = cs.Type,
+
                                 Content = cs.Content
                             })
                             .ToList()
                     })
-                    .AsNoTracking()
                     .ToListAsync();
 
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
@@ -133,7 +131,7 @@ namespace GeolocationAdsAPI.Repositories
 
                     await _context.SaveChangesAsync();
 
-                    return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", existingAdvertisement);
+                    return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
                 }
 
                 return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
@@ -159,7 +157,5 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
-
     }
 }

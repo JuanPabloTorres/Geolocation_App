@@ -12,7 +12,7 @@
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.Maui.Dependencies": "6.0.552",
           "Microsoft.Maui.Extensions": "6.0.552",
-          "MimeKit": "4.1.0",
+          "MimeKit": "4.2.0",
           "runtimepack.Microsoft.Maui.Core.Runtime.any": "6.0.552",
           "runtimepack.Microsoft.Maui.Controls.Runtime.any": "6.0.552",
           "runtimepack.Microsoft.Maui.Essentials.Runtime.any": "6.0.552"
@@ -194,7 +194,7 @@
           }
         }
       },
-      "MimeKit/4.1.0": {
+      "MimeKit/4.2.0": {
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
@@ -203,8 +203,8 @@
         },
         "runtime": {
           "lib/net6.0/MimeKit.dll": {
-            "assemblyVersion": "4.1.0.0",
-            "fileVersion": "4.1.0.0"
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
           }
         }
       },
@@ -390,12 +390,12 @@
       "path": "microsoft.maui.graphics/6.0.501",
       "hashPath": "microsoft.maui.graphics.6.0.501.nupkg.sha512"
     },
-    "MimeKit/4.1.0": {
+    "MimeKit/4.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JUIaZfYybdRcyt1wgPo1e2j4aI3Rp8USKpxka1WImUs17+2X3Xl0sDJYfbzFchJ46qZeSvIwL+/aAjxPtFsm4A==",
-      "path": "mimekit/4.1.0",
-      "hashPath": "mimekit.4.1.0.nupkg.sha512"
+      "sha512": "sha512-HlfWiJ6t40r8u/rCK2p/8dm1ILiWw4XHucm2HImDYIFS3uZe7IKZyaCDafEoZR7VG7AW1JQxNPQCAxmAnJfRvA==",
+      "path": "mimekit/4.2.0",
+      "hashPath": "mimekit.4.2.0.nupkg.sha512"
     },
     "System.Diagnostics.DiagnosticSource/6.0.0": {
       "type": "package",

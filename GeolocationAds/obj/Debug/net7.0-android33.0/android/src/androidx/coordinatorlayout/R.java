@@ -8,33 +8,33 @@ package androidx.coordinatorlayout;
 
 public final class R {
 	public static final class attr {
-		public static final int coordinatorLayoutStyle = 0x7f030134;
-		public static final int keylines = 0x7f03024a;
-		public static final int layout_anchor = 0x7f03025a;
-		public static final int layout_anchorGravity = 0x7f03025b;
-		public static final int layout_behavior = 0x7f03025c;
-		public static final int layout_dodgeInsetEdges = 0x7f03028d;
-		public static final int layout_insetEdge = 0x7f030297;
-		public static final int layout_keyline = 0x7f030298;
-		public static final int statusBarBackground = 0x7f0303e7;
+		public static final int coordinatorLayoutStyle = 0x7f04013c;
+		public static final int keylines = 0x7f040256;
+		public static final int layout_anchor = 0x7f040266;
+		public static final int layout_anchorGravity = 0x7f040267;
+		public static final int layout_behavior = 0x7f040268;
+		public static final int layout_dodgeInsetEdges = 0x7f040299;
+		public static final int layout_insetEdge = 0x7f0402a3;
+		public static final int layout_keyline = 0x7f0402a4;
+		public static final int statusBarBackground = 0x7f040407;
 	}
 	public static final class id {
-		public static final int bottom = 0x7f080061;
-		public static final int end = 0x7f0800b8;
-		public static final int left = 0x7f0800f6;
-		public static final int none = 0x7f080150;
-		public static final int right = 0x7f080171;
-		public static final int start = 0x7f0801af;
-		public static final int top = 0x7f0801e0;
+		public static final int bottom = 0x7f0a0061;
+		public static final int end = 0x7f0a00b8;
+		public static final int left = 0x7f0a012a;
+		public static final int none = 0x7f0a0184;
+		public static final int right = 0x7f0a01a6;
+		public static final int start = 0x7f0a01e5;
+		public static final int top = 0x7f0a0218;
 	}
 	public static final class style {
-		public static final int Widget_Support_CoordinatorLayout = 0x7f100429;
+		public static final int Widget_Support_CoordinatorLayout = 0x7f120449;
 	}
 	public static final class styleable {
-		public static final int[] CoordinatorLayout = new int[] { 0x7f03024a, 0x7f0303e7 };
+		public static final int[] CoordinatorLayout = new int[] { 0x7f040256, 0x7f040407 };
 		public static final int CoordinatorLayout_keylines = 0;
 		public static final int CoordinatorLayout_statusBarBackground = 1;
-		public static final int[] CoordinatorLayout_Layout = new int[] { 0x010100b3, 0x7f03025a, 0x7f03025b, 0x7f03025c, 0x7f03028d, 0x7f030297, 0x7f030298 };
+		public static final int[] CoordinatorLayout_Layout = new int[] { 0x010100b3, 0x7f040266, 0x7f040267, 0x7f040268, 0x7f040299, 0x7f0402a3, 0x7f0402a4 };
 		public static final int CoordinatorLayout_Layout_android_layout_gravity = 0;
 		public static final int CoordinatorLayout_Layout_layout_anchor = 1;
 		public static final int CoordinatorLayout_Layout_layout_anchorGravity = 2;

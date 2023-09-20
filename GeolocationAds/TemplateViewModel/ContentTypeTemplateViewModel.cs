@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Maui.Views;
+using System.Windows.Input;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 
@@ -17,6 +18,24 @@ namespace GeolocationAds.TemplateViewModel
                 if (_contentType != value)
                 {
                     _contentType = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private MediaSource _mediaSource;
+
+        public MediaSource MediaSource
+        {
+            get => _mediaSource;
+            set
+            {
+                if (_mediaSource != value)
+                {
+                    _mediaSource = value;
+
+                    //SelectedTypeChange(_selectedAdType);
 
                     OnPropertyChanged();
                 }

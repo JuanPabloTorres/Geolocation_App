@@ -1438,10 +1438,10 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.28\lib\net6.0\WinRT.Runtime.dll">
       <PackagePath>WinRT.Runtime.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\azure.core\1.24.0\lib\net5.0\Azure.Core.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\azure.core\1.25.0\lib\net5.0\Azure.Core.dll">
       <PackagePath>Azure.Core.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\azure.identity\1.6.0\lib\netstandard2.0\Azure.Identity.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\azure.identity\1.7.0\lib\netstandard2.0\Azure.Identity.dll">
       <PackagePath>Azure.Identity.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\bcrypt.net-core\1.6.0\lib\netstandard2.0\BCrypt.Net-Core.dll">
@@ -1456,13 +1456,16 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\communitytoolkit.maui.core\5.3.0\lib\net7.0-windows10.0.19041\CommunityToolkit.Maui.Core.dll">
       <PackagePath>CommunityToolkit.Maui.Core.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\communitytoolkit.maui.mediaelement\2.0.0\lib\net7.0-windows10.0.19041\CommunityToolkit.Maui.MediaElement.dll">
+      <PackagePath>CommunityToolkit.Maui.MediaElement.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\communitytoolkit.mvvm\8.2.1\lib\net6.0\CommunityToolkit.Mvvm.dll">
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\googlemapsapi\1.2.1\lib\net6.0\GoogleMapsApi.dll">
       <PackagePath>GoogleMapsApi.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\mailkit\4.1.0\lib\net6.0\MailKit.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\mailkit\4.2.0\lib\net6.0\MailKit.dll">
       <PackagePath>MailKit.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.aspnetcore.hosting.abstractions\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll">
@@ -1480,19 +1483,19 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.1\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll">
       <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.data.sqlclient\5.0.2\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.data.sqlclient\5.1.1\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll">
       <PackagePath>Microsoft.Data.SqlClient.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore\7.0.10\lib\net6.0\Microsoft.EntityFrameworkCore.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.dll">
       <PackagePath>Microsoft.EntityFrameworkCore.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.abstractions\7.0.10\lib\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.abstractions\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll">
       <PackagePath>Microsoft.EntityFrameworkCore.Abstractions.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.relational\7.0.10\lib\net6.0\Microsoft.EntityFrameworkCore.Relational.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.relational\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.Relational.dll">
       <PackagePath>Microsoft.EntityFrameworkCore.Relational.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.sqlserver\7.0.10\lib\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.sqlserver\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll">
       <PackagePath>Microsoft.EntityFrameworkCore.SqlServer.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.extensions.caching.abstractions\7.0.0\lib\net7.0\Microsoft.Extensions.Caching.Abstractions.dll">
@@ -1534,28 +1537,28 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.graphics.win2d\1.0.4\lib\net5.0-windows10.0.17763.0\Microsoft.Graphics.Canvas.Interop.dll">
       <PackagePath>Microsoft.Graphics.Canvas.Interop.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identity.client\4.45.0\lib\net5.0-windows10.0.17763\Microsoft.Identity.Client.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identity.client\4.47.2\lib\net5.0-windows10.0.17763\Microsoft.Identity.Client.dll">
       <PackagePath>Microsoft.Identity.Client.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identity.client.extensions.msal\2.19.3\lib\netcoreapp2.1\Microsoft.Identity.Client.Extensions.Msal.dll">
       <PackagePath>Microsoft.Identity.Client.Extensions.Msal.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.abstractions\6.21.0\lib\net6.0\Microsoft.IdentityModel.Abstractions.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.abstractions\6.24.0\lib\net6.0\Microsoft.IdentityModel.Abstractions.dll">
       <PackagePath>Microsoft.IdentityModel.Abstractions.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.jsonwebtokens\6.21.0\lib\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.jsonwebtokens\6.24.0\lib\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll">
       <PackagePath>Microsoft.IdentityModel.JsonWebTokens.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.logging\6.21.0\lib\net6.0\Microsoft.IdentityModel.Logging.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.logging\6.24.0\lib\net6.0\Microsoft.IdentityModel.Logging.dll">
       <PackagePath>Microsoft.IdentityModel.Logging.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.protocols\6.21.0\lib\net6.0\Microsoft.IdentityModel.Protocols.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.protocols\6.24.0\lib\net6.0\Microsoft.IdentityModel.Protocols.dll">
       <PackagePath>Microsoft.IdentityModel.Protocols.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.protocols.openidconnect\6.21.0\lib\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.protocols.openidconnect\6.24.0\lib\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
       <PackagePath>Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.tokens\6.21.0\lib\net6.0\Microsoft.IdentityModel.Tokens.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.identitymodel.tokens\6.24.0\lib\net6.0\Microsoft.IdentityModel.Tokens.dll">
       <PackagePath>Microsoft.IdentityModel.Tokens.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.maui.controls.maps\7.0.92\lib\net7.0-windows10.0.19041\Microsoft.Maui.Controls.Maps.dll">
@@ -1627,13 +1630,13 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.windowsappsdk\1.2.221209.1\lib\net6.0-windows10.0.18362.0\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\mimekit\4.1.0\lib\net6.0\MimeKit.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\mimekit\4.2.0\lib\net6.0\MimeKit.dll">
       <PackagePath>MimeKit.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.identitymodel.tokens.jwt\6.21.0\lib\net6.0\System.IdentityModel.Tokens.Jwt.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.identitymodel.tokens.jwt\6.24.0\lib\net6.0\System.IdentityModel.Tokens.Jwt.dll">
       <PackagePath>System.IdentityModel.Tokens.Jwt.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.io.pipelines\5.0.2\lib\netcoreapp3.0\System.IO.Pipelines.dll">
@@ -1642,7 +1645,7 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.memory.data\1.0.2\lib\netstandard2.0\System.Memory.Data.dll">
       <PackagePath>System.Memory.Data.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.runtime.caching\5.0.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.runtime.caching\6.0.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll">
       <PackagePath>System.Runtime.Caching.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.security.cryptography.pkcs\7.0.2\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll">
@@ -1651,7 +1654,7 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\system.speech\7.0.0\runtimes\win\lib\net7.0\System.Speech.dll">
       <PackagePath>System.Speech.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.data.sqlclient.sni.runtime\5.0.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.data.sqlclient.sni.runtime\5.1.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll">
       <PackagePath>Microsoft.Data.SqlClient.SNI.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.graphics.win2d\1.0.4\runtimes\win10-x64\native\Microsoft.Graphics.Canvas.dll">
@@ -1669,7 +1672,7 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\humanizer.core\2.14.1\lib\net6.0\Humanizer.dll">
       <PackagePath>Humanizer.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.design\7.0.10\lib\net6.0\Microsoft.EntityFrameworkCore.Design.dll">
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.design\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.Design.dll">
       <PackagePath>Microsoft.EntityFrameworkCore.Design.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.extensions.dependencymodel\7.0.0\lib\net7.0\Microsoft.Extensions.DependencyModel.dll">

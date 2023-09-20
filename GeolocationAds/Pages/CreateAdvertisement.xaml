@@ -5,39 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Create Your Content"
     Routing.Route="CreateAdvertisement">
 
     <ContentPage.Resources>
-        <!--  Data template for displaying a video  -->
-        <!--
-        <DataTemplate x:Key="VideoDataTemplate">
-            <Frame Style="{StaticResource imageFrame}">
-                <WebView
-                    x:Name="SelectedVideo"
-                    HeightRequest="300"
-                    Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
-                    WidthRequest="400" />
-            </Frame>
-        </DataTemplate>
 
-        -->
-        <!--  Data template for displaying an image  -->
-        <!--
-        <DataTemplate x:Key="ImageDataTemplate">
-            <Frame Style="{StaticResource imageFrame}">
-                <Image
-                    Aspect="AspectFill"
-                    HeightRequest="300"
-                    IsAnimationPlaying="{Binding IsAnimation}"
-                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                    WidthRequest="400" />
-            </Frame>
-        </DataTemplate>
 
         <DataTemplate x:Key="ImageDataTemplate2">
             <Frame Style="{StaticResource cardFrame}">
-                <StackLayout>
+                <VerticalStackLayout>
 
                     <Button
                         Command="{Binding RemoveCommand}"
@@ -60,37 +37,40 @@
                         IsRunning="{Binding IsLoading}"
                         IsVisible="{Binding IsLoading}"
                         Style="{StaticResource globalLoading}" />
-                </StackLayout>
+                </VerticalStackLayout>
             </Frame>
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplate2">
-            <Frame Style="{StaticResource cardFrame}">
-                <StackLayout>
 
-                    <Button
-                        Command="{Binding RemoveCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        Text="X" />
+            <VerticalStackLayout>
 
-                    <Frame Style="{StaticResource imageFrame}">
+                <Button
+                    Command="{Binding RemoveCommand}"
+                    CommandParameter="{Binding CurrentAdvertisement}"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource XButton}"
+                    Text="X" />
 
-                        <WebView
-                            x:Name="SelectedVideo"
-                            HeightRequest="300"
-                            Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
-                            WidthRequest="400" />
-                    </Frame>
+                <!--<WebView
+                        x:Name="SelectedVideo"
+                        HeightRequest="300"
+                        Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
+                        WidthRequest="400" />-->
 
-                    <ActivityIndicator
-                        IsRunning="{Binding IsLoading}"
-                        IsVisible="{Binding IsLoading}"
-                        Style="{StaticResource globalLoading}" />
-                </StackLayout>
-            </Frame>
-        </DataTemplate>-->
+                <toolkit:MediaElement
+                    
+                    Aspect="AspectFill"
+                    StateChanged="MediaElement_StateChanged"
+                    ShouldKeepScreenOn="True"
+                    Source="{Binding MediaSource}" />
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsLoading}"
+                    IsVisible="{Binding IsLoading}"
+                    Style="{StaticResource globalLoading}" />
+            </VerticalStackLayout>
+        </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
@@ -98,10 +78,12 @@
             VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
     </ContentPage.Resources>
 
-    <ScrollView>
+    <ScrollView x:Name="ScrollView01">
+
+
         <Frame Style="{StaticResource cardFrame}">
 
-            <StackLayout>
+            <VerticalStackLayout>
 
                 <CollectionView ItemsSource="{Binding ValidationResults}">
                     <CollectionView.ItemTemplate>
@@ -151,7 +133,7 @@
                     </Button.Shadow>
                 </Button>
 
-                <CollectionView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
+                <CarouselView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
 
                 <!--  Selected Image or Video  -->
                 <!--
@@ -201,7 +183,8 @@
                         <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
                     </ContentView.Content>
                 </ContentView>
-            </StackLayout>
+            </VerticalStackLayout>
         </Frame>
+
     </ScrollView>
 </ContentPage>

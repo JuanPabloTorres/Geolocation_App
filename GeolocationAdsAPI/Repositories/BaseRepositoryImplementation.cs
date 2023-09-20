@@ -2,6 +2,7 @@
 using GeolocationAdsAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using NuGet.Packaging;
 using System.Collections;
 using System.Linq.Expressions;
 using ToolsLibrary.Factories;
@@ -16,7 +17,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async virtual Task<ResponseTool<T>> CreateAsync(T entity)
+    public virtual async Task<ResponseTool<T>> CreateAsync(T entity)
     {
         try
         {
@@ -54,7 +55,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
-    public async virtual Task<ResponseTool<T>> Get(int id)
+    public virtual async Task<ResponseTool<T>> Get(int id)
     {
         try
         {
@@ -275,12 +276,15 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
         if (updatedCollection != null)
         {
-            foreach (var item in updatedCollection)
-            {
-                existingCollection.Add(item);
-            }
+            existingCollection.AddRange(updatedCollection);
+
+            //foreach (var item in updatedCollection)
+            //{
+            //    existingCollection.Add(item);
+            //}
         }
     }
+
     //public async Task<ResponseTool<T>> UpdateAsync(int id, T entity, params Expression<Func<T, IEnumerable<object>>>[] relatedExpressions)
     //{
     //    try

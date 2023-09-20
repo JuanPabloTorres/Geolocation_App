@@ -45,20 +45,13 @@ namespace GeolocationAdsAPI.Context
                   .WithOne(c => c.Advertisement)  // ContentType has one Advertisement
                   .HasForeignKey(c => c.AdvertisingId);  // Use AdvertisementId as the foreign key
 
-            modelBuilder.Entity<AdvertisementSettings>()
-           .HasKey(ads => new { ads.AdvertisementId, ads.SettingId });
-
             modelBuilder.Entity<Advertisement>()
                 .HasMany(a => a.Settings)
                 .WithOne()
                 .HasForeignKey(ad => ad.AdvertisementId);
 
             modelBuilder.Entity<AdvertisementSettings>()
-                .HasOne(ads => ads.Setting)
-                .WithMany()
-                .HasForeignKey(ads => ads.SettingId);
-
-
+                .HasOne(ads => ads.Setting);
 
             modelBuilder.Entity<AppSetting>().HasData(
                 new AppSetting { ID = 1, SettingName = "MeterDistance", Value = "10" },

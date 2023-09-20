@@ -217,7 +217,7 @@
           }
         }
       },
-      "MimeKit/4.1.0": {
+      "MimeKit/4.2.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
@@ -575,7 +575,7 @@
           }
         }
       },
-      "MimeKit/4.1.0": {
+      "MimeKit/4.2.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
@@ -935,7 +935,7 @@
           }
         }
       },
-      "MimeKit/4.1.0": {
+      "MimeKit/4.2.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
@@ -2992,7 +2992,7 @@
           }
         }
       },
-      "MimeKit/4.1.0": {
+      "MimeKit/4.2.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
@@ -3447,7 +3447,7 @@
           }
         }
       },
-      "MimeKit/4.1.0": {
+      "MimeKit/4.2.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.2.1",
@@ -5091,13 +5091,14 @@
         "tools/x86/GenXbf.dll"
       ]
     },
-    "MimeKit/4.1.0": {
-      "sha512": "JUIaZfYybdRcyt1wgPo1e2j4aI3Rp8USKpxka1WImUs17+2X3Xl0sDJYfbzFchJ46qZeSvIwL+/aAjxPtFsm4A==",
+    "MimeKit/4.2.0": {
+      "sha512": "HlfWiJ6t40r8u/rCK2p/8dm1ILiWw4XHucm2HImDYIFS3uZe7IKZyaCDafEoZR7VG7AW1JQxNPQCAxmAnJfRvA==",
       "type": "package",
-      "path": "mimekit/4.1.0",
+      "path": "mimekit/4.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "docs/README.md",
         "icons/mimekit-50.png",
         "lib/net462/MimeKit.dll",
         "lib/net462/MimeKit.dll.config",
@@ -5123,7 +5124,7 @@
         "lib/netstandard2.1/MimeKit.dll.config",
         "lib/netstandard2.1/MimeKit.pdb",
         "lib/netstandard2.1/MimeKit.xml",
-        "mimekit.4.1.0.nupkg.sha512",
+        "mimekit.4.2.0.nupkg.sha512",
         "mimekit.nuspec"
       ]
     },
@@ -7399,14 +7400,14 @@
       "Microsoft.AspNetCore.Http.Features >= 5.0.17",
       "Microsoft.Maui.Dependencies >= 6.0.552",
       "Microsoft.Maui.Extensions >= 6.0.552",
-      "MimeKit >= 4.1.0"
+      "MimeKit >= 4.2.0"
     ],
     "net6.0-maccatalyst16.1": [
       "BCrypt.Net-Core >= 1.6.0",
       "Microsoft.AspNetCore.Http.Features >= 5.0.17",
       "Microsoft.Maui.Dependencies >= 6.0.552",
       "Microsoft.Maui.Extensions >= 6.0.552",
-      "MimeKit >= 4.1.0",
+      "MimeKit >= 4.2.0",
       "System.Runtime.InteropServices.NFloat.Internal >= 6.0.1"
     ],
     "net7.0-android33.0": [
@@ -7417,7 +7418,7 @@
       "Microsoft.Extensions.Logging >= 7.0.0",
       "Microsoft.Extensions.Logging.Abstractions >= 7.0.0",
       "Microsoft.Maui.Graphics >= 7.0.81",
-      "MimeKit >= 4.1.0",
+      "MimeKit >= 4.2.0",
       "Xamarin.Android.Glide >= 4.13.2.2",
       "Xamarin.AndroidX.Browser >= 1.4.0.3",
       "Xamarin.AndroidX.Legacy.Support.V4 >= 1.0.0.15",
@@ -7438,7 +7439,7 @@
       "Microsoft.Extensions.Logging >= 7.0.0",
       "Microsoft.Extensions.Logging.Abstractions >= 7.0.0",
       "Microsoft.Maui.Graphics >= 7.0.81",
-      "MimeKit >= 4.1.0"
+      "MimeKit >= 4.2.0"
     ],
     "net7.0-windows10.0.19041": [
       "BCrypt.Net-Core >= 1.6.0",
@@ -7451,7 +7452,7 @@
       "Microsoft.Maui.Graphics.Win2D.WinUI.Desktop >= 7.0.81",
       "Microsoft.Windows.SDK.BuildTools >= 10.0.22621.755",
       "Microsoft.WindowsAppSDK >= 1.2.221209.1",
-      "MimeKit >= 4.1.0"
+      "MimeKit >= 4.2.0"
     ]
   },
   "packageFolders": {
@@ -7542,7 +7543,7 @@
           },
           "MimeKit": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "[4.2.0, )"
           }
         },
         "imports": [
@@ -7623,7 +7624,7 @@
           },
           "MimeKit": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "[4.2.0, )"
           },
           "System.Runtime.InteropServices.NFloat.Internal": {
             "target": "Package",
@@ -7723,7 +7724,7 @@
           },
           "MimeKit": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "[4.2.0, )"
           },
           "Xamarin.Android.Glide": {
             "suppressParent": "All",
@@ -7865,7 +7866,7 @@
           },
           "MimeKit": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "[4.2.0, )"
           }
         },
         "imports": [
@@ -7959,7 +7960,7 @@
           },
           "MimeKit": {
             "target": "Package",
-            "version": "[4.1.0, )"
+            "version": "[4.2.0, )"
           }
         },
         "imports": [

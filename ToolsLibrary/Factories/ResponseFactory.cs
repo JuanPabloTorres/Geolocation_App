@@ -5,7 +5,7 @@ namespace ToolsLibrary.Factories
 {
     public static class ResponseFactory<T>
     {
-        public static ResponseTool<T> BuildSusccess(string message, T data, Type type = Type.Default)
+        public static ResponseTool<T> BuildSusccess(string message, T? data, Type type = Type.Default)
         {
             ResponseTool<T> __response = new ResponseTool<T>()
             {
