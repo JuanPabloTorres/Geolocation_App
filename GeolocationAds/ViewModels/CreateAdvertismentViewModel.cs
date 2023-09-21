@@ -81,8 +81,6 @@ namespace GeolocationAds.ViewModels
                 {
                     _mediaSource = value;
 
-                    //SelectedTypeChange(_selectedAdType);
-
                     OnPropertyChanged();
                 }
             }
@@ -105,8 +103,6 @@ namespace GeolocationAds.ViewModels
             this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
-
-            //Task.Run(async () => { await this.LoadSetting(); });
 
             ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
@@ -140,31 +136,29 @@ namespace GeolocationAds.ViewModels
             this.IsLoading = false;
         }
 
-        private void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (sender is IList<ContentTypeTemplateViewModel> contents)
+            try
             {
-                if (!this.Model.Contents.IsObjectNull())
+                if (sender is IList<ContentTypeTemplateViewModel> contents)
                 {
-                    if (this.Model.Contents.Count > 0)
+                    if (!this.Model.Contents.IsObjectNull())
                     {
-                        this.Model.Contents.Clear();
-                    }
+                        if (this.Model.Contents.Count > 0)
+                        {
+                            this.Model.Contents.Clear();
+                        }
 
-                    foreach (var item in contents)
-                    {
-                        //var _toModelContent = new ContentType()
-                        //{
-                        //    Content = CommonsTool.Compress(item.ContentType.Content),
-                        //    AdvertisingId = item.ContentType.AdvertisingId,
-                        //    CreateDate = item.ContentType.CreateDate,
-                        //    Type = item.ContentType.Type,
-                        //    CreateBy = this.LogUserPerfilTool.LogUser.ID
-                        //};
-
-                        this.Model.Contents.Add(item.ContentType);
+                        foreach (var item in contents)
+                        {
+                            this.Model.Contents.Add(item.ContentType);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -240,6 +234,8 @@ namespace GeolocationAds.ViewModels
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
+                        var _file = CommonsTool.SaveByteArrayToTempFile(fileBytes);
+
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
                         this.ContentTypesTemplate.Add(_template);
@@ -280,15 +276,6 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-        }
-
-        public string SaveByteArrayToTempFile(byte[] byteArray)
-        {
-            string tempFilePath = Path.GetTempFileName();
-
-            File.WriteAllBytes(tempFilePath, byteArray);
-
-            return tempFilePath;
         }
 
         private async void GetImageSourceFromFile()

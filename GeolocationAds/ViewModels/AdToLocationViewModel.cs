@@ -60,13 +60,6 @@ namespace GeolocationAds.ViewModels
                 {
                     foreach (var item in _apiResponse.Data)
                     {
-                        //foreach (var ads in item.Contents)
-                        //{
-                        //    var _decompressed = CommonsTool.Decompress(ads.Content);
-
-                        //    ads.Content = _decompressed;
-                        //}
-
                         var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service, item);
 
                         this.CollectionModel.Add(_item);

@@ -4,7 +4,7 @@ namespace ToolsLibrary.Factories
 {
     public static class ContentTypeFactory
     {
-        public static ContentType BuilContentType(byte[] content, ContentVisualType visualType, int? advertisingId, int createdById)
+        public static ContentType BuilContentType(byte[] content, ContentVisualType visualType, int? advertisingId, int? createdById)
         {
             var _contentType = new ContentType()
             {
@@ -12,7 +12,7 @@ namespace ToolsLibrary.Factories
                 AdvertisingId = advertisingId.HasValue ? advertisingId.Value : 0,
                 Type = visualType,
                 CreateDate = DateTime.Now,
-                CreateBy = createdById
+                CreateBy = createdById.HasValue ? createdById.Value : 0
             };
 
             return _contentType;

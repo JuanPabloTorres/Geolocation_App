@@ -233,6 +233,10 @@
               "target": "Package",
               "version": "[1.6.0, )"
             },
+            "CommunityToolkit.Maui.MediaElement": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -375,6 +379,10 @@
               "target": "Package",
               "version": "[1.6.0, )"
             },
+            "CommunityToolkit.Maui.MediaElement": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -450,6 +458,10 @@
             "BCrypt.Net-Core": {
               "target": "Package",
               "version": "[1.6.0, )"
+            },
+            "CommunityToolkit.Maui.MediaElement": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",

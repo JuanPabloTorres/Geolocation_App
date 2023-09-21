@@ -5,33 +5,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="My Content"
     Routing.Route="AdToLocation">
 
     <ContentPage.Resources>
         <!--  Data template for displaying a video  -->
         <DataTemplate x:Key="VideoDataTemplate">
-            <Frame Style="{StaticResource imageFrameCollection}">
-                <WebView
-                    x:Name="SelectedVideo"
-                    HeightRequest="300"
-                    Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
-                    WidthRequest="200" />
-            </Frame>
-        </DataTemplate>
-        <!--  Data template for displaying an image  -->
-        <DataTemplate x:Key="ImageDataTemplate">
-            <Frame Style="{StaticResource imageFrameCollection}">
-                <Image
-                    Aspect="Center"
-                    HeightRequest="200"
-                    IsAnimationPlaying="{Binding IsAnimation}"
-                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                    WidthRequest="200" />
-            </Frame>
+
+            <toolkit:MediaElement
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Aspect="Fill"
+                HeightRequest="180"
+                ShouldShowPlaybackControls="True"
+                Source="{Binding MediaSource}" />
         </DataTemplate>
 
-        <templateSelector:ContentTypeTemplateSelector2
+        <!--  Data template for displaying an image  -->
+
+        <DataTemplate x:Key="ImageDataTemplate">
+
+            <Image
+                Aspect="Fill"
+                HeightRequest="180"
+                IsAnimationPlaying="{Binding IsAnimation}"
+                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
+        </DataTemplate>
+
+        <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
             ImageDataTemplate="{StaticResource ImageDataTemplate}"
             VideoDataTemplate="{StaticResource VideoDataTemplate}" />
@@ -41,7 +43,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
 
         <Button
@@ -67,83 +69,78 @@
             Style="{StaticResource globalLoading}"
             VerticalOptions="CenterAndExpand" />
 
-        <ScrollView Grid.Row="2" Orientation="Vertical">
+        <CarouselView Grid.Row="2" ItemsSource="{Binding CollectionModel}">
 
-            <CollectionView Grid.Row="2" ItemsSource="{Binding CollectionModel}">
+            <CarouselView.EmptyView>
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
+                </VerticalStackLayout>
+            </CarouselView.EmptyView>
 
-                <CollectionView.EmptyView>
-                    <StackLayout>
-                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
-                    </StackLayout>
-                </CollectionView.EmptyView>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <Frame Style="{StaticResource cardFrame}">
+                        <VerticalStackLayout>
 
+                            <StackLayout Orientation="Horizontal">
 
-                        <Frame Style="{StaticResource cardFrame}">
-                            <StackLayout>
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{StaticResource globalLabel}"
+                                    Text="{Binding CurrentAdvertisement.Title}" />
 
-                                <StackLayout Orientation="Horizontal">
-
-                                    <Label
-                                        HorizontalOptions="StartAndExpand"
-                                        Style="{StaticResource globalLabel}"
-                                        Text="{Binding CurrentAdvertisement.Title}" />
-
-                                    <Button
-                                        Command="{Binding RemoveCommand}"
-                                        CommandParameter="{Binding CurrentAdvertisement}"
-                                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                        Style="{StaticResource XButton}"
-                                        Text="X" />
-                                </StackLayout>
-
-                                <CollectionView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding CurrentAdvertisement.Contents}">
-
-                                    <CollectionView.ItemsLayout>
-                                        <GridItemsLayout Orientation="Vertical" Span="1" />
-                                    </CollectionView.ItemsLayout>
-
-                                    <CollectionView.EmptyView>
-                                        <StackLayout>
-                                            <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
-                                        </StackLayout>
-                                    </CollectionView.EmptyView>
-                                </CollectionView>
-
-                                <StackLayout Margin="5" Orientation="Horizontal">
-                                    <Button
-                                        Command="{Binding SetLocationCommand}"
-                                        CommandParameter="{Binding CurrentAdvertisement}"
-                                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                        Style="{StaticResource cardButton}"
-                                        Text="Set Location" />
-
-                                    <Button
-                                        BackgroundColor="Green"
-                                        Command="{Binding onNavigate}"
-                                        CommandParameter="{Binding CurrentAdvertisement.ID}"
-                                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                        Style="{StaticResource cardButton}"
-                                        Text="Detail" />
-                                </StackLayout>
-
-                                <ActivityIndicator
-                                    IsRunning="{Binding IsLoading}"
-                                    IsVisible="{Binding IsLoading}"
-                                    Style="{StaticResource globalLoading}" />
+                                <Button
+                                    Command="{Binding RemoveCommand}"
+                                    HorizontalOptions="EndAndExpand"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource XButton}"
+                                    Text="X" />
                             </StackLayout>
-                        </Frame>
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                            <CarouselView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}">
 
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Horizontal" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
-        </ScrollView>
+                                <CarouselView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" />
+                                </CarouselView.ItemsLayout>
 
+                                <CarouselView.EmptyView>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                                    </StackLayout>
+                                </CarouselView.EmptyView>
+                            </CarouselView>
+
+                            <HorizontalStackLayout Margin="5" HorizontalOptions="FillAndExpand">
+                                <Button
+                                    Command="{Binding SetLocationCommand}"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource cardButton}"
+                                    Text="Set Location" />
+
+                                <Button
+                                    BackgroundColor="Green"
+                                    Command="{Binding onNavigate}"
+                                    CommandParameter="{Binding CurrentAdvertisement.ID}"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource cardButton}"
+                                    Text="Detail" />
+                            </HorizontalStackLayout>
+
+                            <ActivityIndicator
+                                IsRunning="{Binding IsLoading}"
+                                IsVisible="{Binding IsLoading}"
+                                Style="{StaticResource globalLoading}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CarouselView.ItemsLayout>
+        </CarouselView>
     </Grid>
 </ContentPage>

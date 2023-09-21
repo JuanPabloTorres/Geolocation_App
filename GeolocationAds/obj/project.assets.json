@@ -3570,6 +3570,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -7028,6 +7029,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -10486,6 +10488,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -13944,6 +13947,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -17402,6 +17406,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -20860,6 +20865,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -24318,6 +24324,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -27781,6 +27788,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -29954,6 +29962,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -32205,6 +32214,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -34456,6 +34466,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -36707,6 +36718,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -38958,6 +38970,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -41209,6 +41222,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -43460,6 +43474,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -45721,6 +45736,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -65822,6 +65838,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -68203,6 +68220,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -70584,6 +70602,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -72965,6 +72984,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -75346,6 +75366,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -77727,6 +77748,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -80108,6 +80130,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },
@@ -82508,6 +82531,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Maui.MediaElement": "2.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MimeKit": "4.2.0"
         },

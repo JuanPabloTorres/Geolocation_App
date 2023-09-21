@@ -178,6 +178,29 @@ namespace ToolsLibrary.Tools
             }
         }
 
+        //public static string SaveByteArrayToTempFile(byte[] byteArray)
+        //{
+        //    string tempFilePath = Path.GetTempFileName();
+
+        //    File.WriteAllBytes(tempFilePath, byteArray);
+
+        //    return tempFilePath;
+        //}
+
+        public static string SaveByteArrayToTempFile(byte[] byteArray)
+        {
+            string tempFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            string tempFileName = Guid.NewGuid().ToString().Take(4).ToString(); // Use a unique filename
+
+            string tempFilePath = Path.Combine(tempFolderPath, tempFileName);
+
+            File.WriteAllBytes(tempFilePath, byteArray);
+
+            return tempFilePath;
+        }
+
+
         public static async Task SendEmailAsync(EmailRequest emailRequest, IConfiguration configuration)
         {
             var _port = int.Parse(configuration["Smtp:Port"]);

@@ -5,91 +5,82 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Update Content">
 
     <ContentPage.Resources>
-        <!--  Data template for displaying a video  -->
-        <!--
-        <DataTemplate x:Key="VideoDataTemplate">
-            <Frame Style="{StaticResource imageFrame}">
-                <WebView
-                    x:Name="SelectedVideo"
-                    HeightRequest="300"
-                    Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
-                    WidthRequest="400" />
-            </Frame>
-        </DataTemplate>
-
-        -->
-        <!--  Data template for displaying an image  -->
-        <!--
-        <DataTemplate x:Key="ImageDataTemplate">
-            <Frame Style="{StaticResource imageFrame}">
-                <Image
-                    Aspect="AspectFill"
-                    HeightRequest="300"
-                    IsAnimationPlaying="{Binding IsAnimation}"
-                    Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                    WidthRequest="400" />
-            </Frame>
-        </DataTemplate>
 
         <DataTemplate x:Key="ImageDataTemplate2">
-            <Frame Style="{StaticResource cardFrame}">
-                <StackLayout>
 
-                    <Button
-                        Command="{Binding RemoveCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        Text="X" />
+            <Frame Style="{StaticResource dataTemplateFrame}">
+                <Grid>
+                    <Image
+                        Aspect="Fill"
+                        HeightRequest="300"
+                        Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
 
-                    <Frame Style="{StaticResource imageFrame}">
+                    <!--  Button Container Grid  -->
+                    <Grid>
+                        <!--  Button is placed in the same cell as the image  -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                        <Image
-                            Aspect="AspectFill"
-                            HeightRequest="300"
-                            IsAnimationPlaying="True"
-                            Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                            WidthRequest="400" />
-                    </Frame>
-
-                    <ActivityIndicator
-                        IsRunning="{Binding IsLoading}"
-                        IsVisible="{Binding IsLoading}"
-                        Style="{StaticResource globalLoading}" />
-                </StackLayout>
+                        <!--  Button  -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X"
+                            VerticalOptions="Start" />
+                    </Grid>
+                </Grid>
             </Frame>
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplate2">
-            <Frame Style="{StaticResource cardFrame}">
-                <StackLayout>
 
-                    <Button
-                        Command="{Binding RemoveCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        Text="X" />
+            <Frame Style="{StaticResource dataTemplateFrame}">
+                <Grid>
 
-                    <Frame Style="{StaticResource imageFrame}">
+                    <toolkit:MediaElement
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Aspect="Fill"
+                        HeightRequest="300"
+                        ShouldShowPlaybackControls="True"
+                        Source="{Binding MediaSource}" />
 
-                        <WebView
-                            x:Name="SelectedVideo"
-                            HeightRequest="300"
-                            Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
-                            WidthRequest="400" />
-                    </Frame>
+                    <!--  Button Container Grid  -->
+                    <Grid>
+                        <!--  Button is placed in the same cell as the image  -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <ActivityIndicator
-                        IsRunning="{Binding IsLoading}"
-                        IsVisible="{Binding IsLoading}"
-                        Style="{StaticResource globalLoading}" />
-                </StackLayout>
+                        <!--  Button  -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X"
+                            VerticalOptions="Start" />
+                    </Grid>
+                </Grid>
             </Frame>
-        </DataTemplate>-->
+        </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
@@ -97,109 +88,76 @@
             VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
     </ContentPage.Resources>
 
-    <ScrollView>
-        <Frame Style="{StaticResource cardFrame}">
+    <Frame Style="{StaticResource cardFrame}">
 
-            <StackLayout>
+        <VerticalStackLayout>
 
-                <CollectionView ItemsSource="{Binding ValidationResults}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+            <CollectionView ItemsSource="{Binding ValidationResults}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                <Label Style="{StaticResource globalLabel}" Text="Title:" />
-                <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />
+            <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />
 
-                <Label Style="{StaticResource globalLabel}" Text="Description:" />
-                <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
+            <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
 
-                <Label Style="{StaticResource globalLabel}" Text="Type:" />
-                <local:CustomPickerContentView
-                    DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                    HorizontalOptions="FillAndExpand"
-                    ItemDisplayBindingPath="Value"
-                    ItemsSource="{Binding AdTypesSettings}"
-                    SelectValue="{Binding SelectedAdType}"
-                    SelectedItem="{Binding SelectedAdType}" />
+            <local:CustomPickerContentView
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType}" />
 
-                <!--<Frame Style="{StaticResource entryFrame}">
-                    <Picker
-                        ItemDisplayBinding="{Binding Value}"
-                        ItemsSource="{Binding AdTypesSettings}"
-                        SelectedItem="{Binding SelectedAdType}"
-                        Style="{StaticResource globalPicker}" />
-                </Frame>-->
+            <!--  ... Choose File ...  -->
+            <Button
+                x:Name="UploadButton"
+                Command="{Binding UploadContentCommand}"
+                Style="{StaticResource globalButton}"
+                Text="Choose Image">
 
-                <!--<Label Style="{StaticResource globalLabel}" Text="Expiration Date:" />
-                <local:CustomDatePickerContentView x:Name="customPicker" SelectedDate="{Binding Model.ExpirationDate}" />-->
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
 
-                <!--  ... Choose File ...  -->
-                <Button
-                    x:Name="UploadButton"
-                    Command="{Binding UploadContentCommand}"
-                    Style="{StaticResource globalButton}"
-                    Text="Choose Image">
+            <CarouselView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
 
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
-                </Button>
+            <!--  Submit Button  -->
+            <Button
+                x:Name="SubmitButton"
+                Command="{Binding SubmitUpdateCommand}"
+                CommandParameter="{Binding Model}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}"
+                Text="Save">
 
-                <CollectionView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
 
-                <!--  Selected Image or Video  -->
-                <!--
-                <Frame Style="{StaticResource imageFrame}">
-                    <WebView x:Name="SelectedVideo" Source="{Binding Video}"   HeightRequest="300"  WidthRequest="400" />
-                </Frame>-->
-
-                <!--  Selected Image or Video  -->
-                <!--<Frame Style="{StaticResource imageFrame}">
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="300"
-                        Source="{Binding Model.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                        WidthRequest="400" />
-                </Frame>-->
-
-
-
-                <!--  Submit Button  -->
-                <Button
-                    x:Name="SubmitButton"
-                    Command="{Binding SubmitUpdateCommand}"
-                    CommandParameter="{Binding Model}"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource globalButton}"
-                    Text="Save">
-
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
-                </Button>
-
-                <ContentView
-                    x:Name="LoadingIndicatorContainer"
-                    IsVisible="{Binding IsLoading}"
-                    VerticalOptions="FillAndExpand">
-                    <ContentView.Content>
-                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                    </ContentView.Content>
-                </ContentView>
-            </StackLayout>
-        </Frame>
-    </ScrollView>
+            <ContentView
+                x:Name="LoadingIndicatorContainer"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand">
+                <ContentView.Content>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                </ContentView.Content>
+            </ContentView>
+        </VerticalStackLayout>
+    </Frame>
 </ContentPage>

@@ -13,6 +13,8 @@ namespace ToolsLibrary.Models
 
         public string ContentName { get; set; }
 
+        public string FilePath { get; set; }
+
         [ForeignKey(nameof(AdvertisingId))]
         [JsonIgnore]
         public Advertisement Advertisement { get; set; }

@@ -42,8 +42,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 var _dataFoundResult = await _context.Advertisements
                     .Where(v => v.UserId == userId)
-                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
-                    .Take(5)
+                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed                    
                     .Select(s => new Advertisement
                     {
                         ID = s.ID,
@@ -53,7 +52,7 @@ namespace GeolocationAdsAPI.Repositories
                         Contents = s.Contents
                             .Select(cs => new ContentType
                             {
-
+                                Type = cs.Type,
                                 Content = cs.Content
                             })
                             .ToList()

@@ -1,9 +1,14 @@
-﻿using GeolocationAds.Pages;
+﻿using CommunityToolkit.Maui.Views;
+using GeolocationAds.App_ViewModel_Factory;
+using GeolocationAds.Pages;
 using GeolocationAds.Services;
+using GeolocationAds.TemplateViewModel;
 using GeolocationAds.Tools;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
 
 namespace ToolsLibrary.TemplateViewModel
 {
@@ -25,15 +30,75 @@ namespace ToolsLibrary.TemplateViewModel
             this.onNavigate = new Command<int>(Navigate);
         }
 
+        private MediaSource _mediaSource;
+
+        public MediaSource MediaSource
+        {
+            get => _mediaSource;
+            set
+            {
+                if (_mediaSource != value)
+                {
+                    _mediaSource = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
+
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
+        {
+            get => _contentTypestemplate;
+            set
+            {
+                if (_contentTypestemplate != value)
+                {
+                    _contentTypestemplate = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public AdLocationTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
             SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
 
             RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
 
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+
             this.CurrentAdvertisement = advertisement;
 
             this.onNavigate = new Command<int>(Navigate);
+
+            FillTemplate();
+        }
+
+        public void FillTemplate()
+        {
+            if (!this.CurrentAdvertisement.Contents.IsObjectNull())
+            {
+                foreach (var item in this.CurrentAdvertisement.Contents)
+                {
+                    if (item.Type == ContentVisualType.Image)
+                    {
+                        var _template = ContentTypeTemplateFactory.BuilContentType(item);
+
+                        this.ContentTypesTemplate.Add(_template);
+                    }
+                    else
+                    {
+                        var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+
+                        var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+
+                        this.ContentTypesTemplate.Add(_template);
+                    }
+                }
+            }
         }
 
         public delegate void RemoveItemEventHandler(object sender, EventArgs e);

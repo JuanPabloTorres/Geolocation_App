@@ -183,11 +183,9 @@ namespace GeolocationAds.ViewModels
 
             foreach (var item in this.Model.Contents)
             {
-                //var _decompressed = CommonsTool.Decompress(item.Content);
+                var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
 
-                //item.Content = _decompressed;
-
-                var _template = ContentTypeTemplateFactory.BuilContentType(item);
+                var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
 
                 this.ContentTypesTemplate.Add(_template);
             }
@@ -278,7 +276,7 @@ namespace GeolocationAds.ViewModels
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+                        var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
                         this.ContentTypesTemplate.Add(_template);
                     }

@@ -113,6 +113,17 @@
                 <Setter Property="HasShadow" Value="True" />
             </Style>
 
+            <Style x:Key="dataTemplateFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="GhostWhite" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderColor" Value="#e5e4e2" />
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="HeightRequest" Value="180" />
+
+            </Style>
+
             <Style x:Key="imageFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="CornerRadius" Value="5" />
