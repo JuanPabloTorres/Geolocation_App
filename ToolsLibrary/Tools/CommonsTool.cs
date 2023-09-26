@@ -230,5 +230,53 @@ namespace ToolsLibrary.Tools
 
             await smtpClient.SendMailAsync(mailMessage);
         }
+
+        public static byte[] ExtractFirstFrame(byte[] videoBytes)
+        {
+            // Find the start of the video data in the byte array
+            int startIndex = FindVideoStartIndex(videoBytes);
+
+            if (startIndex == -1)
+            {
+                throw new InvalidOperationException("Video data not found in the byte array.");
+            }
+
+            // Extract the video data starting from the identified index
+            byte[] videoData = new byte[videoBytes.Length - startIndex];
+            Array.Copy(videoBytes, startIndex, videoData, 0, videoData.Length);
+
+            return videoData;
+        }
+
+        public static int FindVideoStartIndex(byte[] data)
+        {
+            // Search for the video data start marker in the byte array
+            byte[] startMarker = { 0x00, 0x00, 0x00, 0x01 };
+            for (int i = 0; i < data.Length - startMarker.Length; i++)
+            {
+                bool foundMarker = true;
+                for (int j = 0; j < startMarker.Length; j++)
+                {
+                    if (data[i + j] != startMarker[j])
+                    {
+                        foundMarker = false;
+                        break;
+                    }
+                }
+                if (foundMarker)
+                {
+                    return i;
+                }
+            }
+            return -1; // Start marker not found
+        }
+
+        //public  static Image ByteArrayToImage(byte[] byteArray)
+        // {
+        //     using (MemoryStream stream = new MemoryStream(byteArray))
+        //     {
+        //         return Image.From(stream);
+        //     }
+        // }
     }
 }
