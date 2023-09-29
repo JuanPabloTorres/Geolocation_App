@@ -52,8 +52,8 @@ namespace GeolocationAdsAPI.Repositories
             try
             {
                 var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(s => s.Settings)
-                    .Where(v => DateTime.Now <=
-                    v.ExpirationDate &&
+                    .Where(v =>
+                    DateTime.Now <= v.ExpirationDate &&
                     v.Advertisement.Settings.Any(s => s.SettingId == settingId))
                     .ToListAsync();
 

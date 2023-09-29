@@ -1,17 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
+using GeolocationAds.TemplateViewModel;
 using GeolocationAds.Tools;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
     public partial class SearchAdViewModel : BaseViewModel2<Advertisement, IGeolocationAdService>
     {
-        private IAppSettingService appSettingService;
+        private readonly IAppSettingService appSettingService;
+
+        private readonly ICaptureService captureService;
 
         private ObservableCollection<string> _distanceSettings;
 
@@ -61,6 +65,22 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
+
+        public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels
+        {
+            get => _nearByTemplateViewModels;
+            set
+            {
+                if (_nearByTemplateViewModels != value)
+                {
+                    _nearByTemplateViewModels = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private AppSetting _selectedAdType;
 
         public AppSetting SelectedAdType
@@ -77,13 +97,17 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public SearchAdViewModel(Advertisement advertisement, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService) : base(advertisement, geolocationAdService)
+        public SearchAdViewModel(Advertisement advertisement, ICaptureService captureService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUser) : base(advertisement, geolocationAdService, logUser)
         {
             this.appSettingService = appSettingService;
+
+            this.captureService = captureService;
 
             this.DistanceSettings = new ObservableCollection<string>();
 
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
+
+            this.NearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel>();
 
             this.SearchCommand = new Command(Initialize);
 
@@ -189,7 +213,10 @@ namespace GeolocationAds.ViewModels
             {
                 if (!_apiResponse.Data.IsObjectNull())
                 {
-                    this.CollectionModel.AddRange(_apiResponse.Data);
+                    foreach (var item in _apiResponse.Data)
+                    {
+                        this.NearByTemplateViewModels.Add(new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool));
+                    }
                 }
                 else
                 {

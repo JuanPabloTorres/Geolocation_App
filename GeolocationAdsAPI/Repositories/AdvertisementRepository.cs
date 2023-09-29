@@ -42,7 +42,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 var _dataFoundResult = await _context.Advertisements
                     .Where(v => v.UserId == userId)
-                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed                    
+                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
                     .Select(s => new Advertisement
                     {
                         ID = s.ID,
@@ -124,9 +124,31 @@ namespace GeolocationAdsAPI.Repositories
                     _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
 
                     // Update nested collections (e.g., Contents, GeolocationAds, Settings)
-                    UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
 
-                    UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
+                    if (!updatedAdvertisement.Contents.IsObjectNull())
+                    {
+                        UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+                    }
+                    else
+                    {
+                        updatedAdvertisement.Contents = existingAdvertisement.Contents;
+                    }
+
+                    if (!updatedAdvertisement.Settings.IsObjectNull())
+                    {
+                        //UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+
+                        UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
+                    }
+                    else
+                    {
+                        updatedAdvertisement.Settings = existingAdvertisement.Settings;
+                    }
+
+                    // Update scalar properties
+                    _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
+
+                    //UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
 
                     await _context.SaveChangesAsync();
 

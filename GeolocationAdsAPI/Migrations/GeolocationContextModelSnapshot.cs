@@ -30,9 +30,6 @@ namespace GeolocationAdsAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CaptureID")
-                        .HasColumnType("int");
-
                     b.Property<int>("CreateBy")
                         .HasColumnType("int");
 
@@ -57,8 +54,6 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CaptureID");
 
                     b.HasIndex("UserId");
 
@@ -231,6 +226,9 @@ namespace GeolocationAdsAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CreateBy")
                         .HasColumnType("int");
 
@@ -247,6 +245,8 @@ namespace GeolocationAdsAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AdvertisementId");
 
                     b.ToTable("Captures");
                 });
@@ -456,10 +456,6 @@ namespace GeolocationAdsAPI.Migrations
 
             modelBuilder.Entity("ToolsLibrary.Models.Advertisement", b =>
                 {
-                    b.HasOne("ToolsLibrary.Models.Capture", null)
-                        .WithMany("Advertisements")
-                        .HasForeignKey("CaptureID");
-
                     b.HasOne("ToolsLibrary.Models.User", null)
                         .WithMany("Advertisements")
                         .HasForeignKey("UserId")
@@ -482,6 +478,17 @@ namespace GeolocationAdsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Setting");
+                });
+
+            modelBuilder.Entity("ToolsLibrary.Models.Capture", b =>
+                {
+                    b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisements")
+                        .WithMany()
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisements");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.ContentType", b =>
@@ -524,11 +531,6 @@ namespace GeolocationAdsAPI.Migrations
                     b.Navigation("GeolocationAds");
 
                     b.Navigation("Settings");
-                });
-
-            modelBuilder.Entity("ToolsLibrary.Models.Capture", b =>
-                {
-                    b.Navigation("Advertisements");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.User", b =>

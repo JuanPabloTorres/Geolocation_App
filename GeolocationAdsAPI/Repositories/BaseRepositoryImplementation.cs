@@ -277,11 +277,6 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         if (updatedCollection != null)
         {
             existingCollection.AddRange(updatedCollection);
-
-            //foreach (var item in updatedCollection)
-            //{
-            //    existingCollection.Add(item);
-            //}
         }
     }
 

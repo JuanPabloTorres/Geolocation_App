@@ -35,5 +35,16 @@ namespace GeolocationAds.App_ViewModel_Factory
 
             return _template;
         }
+
+        public static ContentTypeTemplateViewModel BuilContentType(ContentType contentType, byte[] image)
+        {
+            var _template = new ContentTypeTemplateViewModel()
+            {
+                ContentType = contentType,
+                Image = ImageSource.FromStream(() => new MemoryStream(image))
+            };
+
+            return _template;
+        }
     }
 }

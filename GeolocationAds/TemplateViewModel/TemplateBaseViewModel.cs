@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace ToolsLibrary.TemplateViewModel
 {
-    public class TemplateBaseViewModel : INotifyPropertyChanged, IQueryAttributable
+    public class TemplateBaseViewModel : INotifyPropertyChanged
     {
         private bool isLoading;
 
@@ -30,13 +30,6 @@ namespace ToolsLibrary.TemplateViewModel
 
         public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-        public string ID { get; private set; }
-
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
-            ID = query["ID"] as string;
-        }
-
         public TemplateBaseViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService)
         {
             this.geolocationAdService = geolocationAdService;
@@ -50,7 +43,6 @@ namespace ToolsLibrary.TemplateViewModel
 
         public virtual void RemoveCurrentItem()
         {
-
         }
     }
 }

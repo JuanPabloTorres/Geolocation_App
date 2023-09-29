@@ -26,6 +26,7 @@ namespace GeolocationAds.ViewModels
                 var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
 
                 var _apiResponse = await this.service.FindAdNear(_currentLocation, DISTANCE_METER.ToString());
+
                 this.CollectionModel.Clear();
 
                 if (_apiResponse.IsSuccess)

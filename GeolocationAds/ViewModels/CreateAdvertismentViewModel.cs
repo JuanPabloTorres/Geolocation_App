@@ -232,11 +232,7 @@ namespace GeolocationAds.ViewModels
                     }
                     else
                     {
-                        byte[] firstFrameBytes = CommonsTool.ExtractFirstFrame(fileBytes);
-
-                        //var image  ImageSource.FromStream(() => new MemoryStream(firstFrameBytes));
-
-                        var _content = ContentTypeFactory.BuilContentType(firstFrameBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
                         var _file = CommonsTool.SaveByteArrayToTempFile(fileBytes);
 

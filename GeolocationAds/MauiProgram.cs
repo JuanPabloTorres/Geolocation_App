@@ -91,6 +91,8 @@ public static class MauiProgram
 
         builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
 
+        builder.Services.AddTransient<ToolsLibrary.Models.Capture>();
+
         #endregion Models
 
         #region ViewModels
@@ -121,6 +123,8 @@ public static class MauiProgram
 
         builder.Services.AddScoped<RecoveryPasswordViewModel>();
 
+        builder.Services.AddScoped<CaptureViewModel>();
+
         #endregion ViewModels
 
         #region Pages
@@ -148,6 +152,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<EditLoginCredential>();
 
         builder.Services.AddSingleton<RecoveryPasswordPopUp>();
+
+        builder.Services.AddSingleton<MyFavorites>();
 
         #endregion Pages
 

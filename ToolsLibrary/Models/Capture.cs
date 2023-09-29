@@ -1,9 +1,14 @@
-﻿namespace ToolsLibrary.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ToolsLibrary.Models
 {
     public class Capture : BaseModel
     {
-        public int UserId { get; set; }
+        public int AdvertisementId { get; set; }
 
-        public ICollection<Advertisement> Advertisements { get; set; }
+        [ForeignKey("AdvertisementId")]
+        public Advertisement Advertisements { get; set; }
+
+        public int UserId { get; set; }
     }
 }

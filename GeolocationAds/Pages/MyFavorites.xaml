@@ -1,12 +1,178 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GeolocationAds.Pages.MyFavorites"
-             Title="MyFavorites">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="GeolocationAds.Pages.MyFavorites"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="MyFavorites">
+
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="ImageDataTemplate2">
+
+            <Frame Style="{StaticResource dataTemplateFrame}">
+                <Grid>
+                    <Image
+                        Aspect="Fill"
+                        HeightRequest="300"
+                        Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
+
+                    <!--  Button Container Grid  -->
+                    <Grid>
+                        <!--  Button is placed in the same cell as the image  -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Button  -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X"
+                            VerticalOptions="Start" />
+                    </Grid>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplate2">
+
+            <Frame Style="{StaticResource dataTemplateFrame}">
+                <Grid>
+
+                    <toolkit:MediaElement
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Aspect="Fill"
+                        HeightRequest="300"
+                        ShouldShowPlaybackControls="True"
+                        Source="{Binding MediaSource}" />
+
+                    <!--  Button Container Grid  -->
+                    <Grid>
+                        <!--  Button is placed in the same cell as the image  -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Button  -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X"
+                            VerticalOptions="Start" />
+                    </Grid>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+
+        <templateSelector:ContentTypeTemplateSelector
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplate2}"
+            VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Submit Button  -->
+
+        <ContentView
+            x:Name="LoadingIndicatorContainer"
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="FillAndExpand">
+            <ContentView.Content>
+                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+            </ContentView.Content>
+        </ContentView>
+
+        <!--<CarouselView
+            Grid.Row="3"
+            Margin="10"
+            IsSwipeEnabled="True"
+            ItemsSource="{Binding CollectionModel}">
+
+            <CarouselView.EmptyView>
+
+                <StackLayout>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
+                </StackLayout>
+            </CarouselView.EmptyView>
+
+            <CarouselView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <VerticalStackLayout>
+
+                        <Frame Style="{StaticResource cardFrame}">
+                            <StackLayout>
+
+                                <Frame Style="{StaticResource imageFrame}">
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="300"
+                                        IsAnimationPlaying="True"
+                                        Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                        WidthRequest="400" />
+                                </Frame>
+
+                                <BoxView
+                                    Margin="4,10,4,10"
+                                    BackgroundColor="#e5e4e2"
+                                    HeightRequest="1" />
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+
+                                    <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
+                                </StackLayout>
+
+                                <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
+
+                                <StackLayout
+                                    HorizontalOptions="FillAndExpand"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="FillAndExpand">
+
+                                    <Button Style="{StaticResource cardButton}" Text="Detail" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+        </CarouselView>-->
+
+        <CarouselView
+            Grid.Row="0"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding ContentTypesTemplate}"
+            VerticalOptions="FillAndExpand" />
+    </Grid>
 </ContentPage>

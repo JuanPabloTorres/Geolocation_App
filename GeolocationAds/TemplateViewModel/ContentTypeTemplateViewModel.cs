@@ -42,6 +42,22 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
+        private ImageSource _image;
+
+        public ImageSource Image
+        {
+            get => _image;
+            set
+            {
+                if (_image != value)
+                {
+                    _image = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
 
         public static event ApplyQueryAttributesEventHandler ContentTypeDeleted;

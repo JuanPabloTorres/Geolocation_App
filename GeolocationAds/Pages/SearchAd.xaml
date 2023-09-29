@@ -74,7 +74,7 @@
             Grid.Row="3"
             Margin="10"
             IsSwipeEnabled="True"
-            ItemsSource="{Binding CollectionModel}">
+            ItemsSource="{Binding NearByTemplateViewModels}">
 
             <CarouselView.EmptyView>
 
@@ -106,20 +106,20 @@
                                     BackgroundColor="#e5e4e2"
                                     HeightRequest="1" />
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Style="{StaticResource globalLabel}" Text="{Binding Title}" />
+                                <Label Style="{StaticResource globalLabel}" Text="{Binding Advertisement.Title}" />
 
-                                    <Label Style="{StaticResource globalsubTitle}" Text="{Binding ExpirationDate, StringFormat='Exp:{0:dd/MM/yyyy}'}" />
-                                </StackLayout>
-
-                                <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Description}" />
+                                <Label Style="{StaticResource globalDescriptionLabel}" Text="{Binding Advertisement.Description}" />
 
                                 <StackLayout
                                     HorizontalOptions="FillAndExpand"
                                     Orientation="Horizontal"
                                     VerticalOptions="FillAndExpand">
 
-                                    <Button Style="{StaticResource cardButton}" Text="☆ Capture" />
+                                    <Button
+                                        Command="{Binding CaptureCommand}"
+                                        CommandParameter="{Binding Advertisement}"
+                                        Style="{StaticResource cardButton}"
+                                        Text="☆ Capture" />
                                 </StackLayout>
                             </StackLayout>
                         </Frame>

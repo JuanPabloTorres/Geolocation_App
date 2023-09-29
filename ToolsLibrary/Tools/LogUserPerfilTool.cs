@@ -15,5 +15,10 @@ namespace ToolsLibrary.Tools
             return _value;
         }
 
+        public int GetUserId()
+        {
+            return this.LogUser.ID;
+        }
+
     }
 }

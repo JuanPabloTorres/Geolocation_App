@@ -46,6 +46,22 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
+        private Image _image;
+
+        public Image Image
+        {
+            get => _image;
+            set
+            {
+                if (_image != value)
+                {
+                    _image = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
 
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
@@ -85,7 +101,7 @@ namespace ToolsLibrary.TemplateViewModel
                 {
                     if (item.Type == ContentVisualType.Image)
                     {
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item);
+                        var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
                         this.ContentTypesTemplate.Add(_template);
                     }

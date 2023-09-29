@@ -129,16 +129,23 @@ namespace GeolocationAds.ViewModels
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            if (query.ContainsKey("ID"))
+            try
             {
-                ID = query["ID"].ToString();
-
-                if (!ID.IsNullOrEmpty() && Convert.ToInt32(this.ID) > 0)
+                if (query.ContainsKey("ID"))
                 {
-                    await this.Get(Convert.ToInt32(ID));
+                    ID = query["ID"].ToString();
 
-                    OnApplyQueryAttributesCompleted(EventArgs.Empty);
+                    if (!ID.IsNullOrEmpty() && Convert.ToInt32(this.ID) > 0)
+                    {
+                        await this.Get(Convert.ToInt32(ID));
+
+                        OnApplyQueryAttributesCompleted(EventArgs.Empty);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 

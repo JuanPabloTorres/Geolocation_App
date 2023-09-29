@@ -88,9 +88,9 @@
             VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
     </ContentPage.Resources>
 
-    <Frame Style="{StaticResource cardFrame}">
+  
 
-        <VerticalStackLayout>
+        <VerticalStackLayout VerticalOptions="FillAndExpand">
 
             <CollectionView ItemsSource="{Binding ValidationResults}">
                 <CollectionView.ItemTemplate>
@@ -130,7 +130,7 @@
                 </Button.Shadow>
             </Button>
 
-            <CarouselView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
+            <CarouselView  VerticalOptions="FillAndExpand" ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
 
             <!--  Submit Button  -->
             <Button
@@ -159,5 +159,5 @@
                 </ContentView.Content>
             </ContentView>
         </VerticalStackLayout>
-    </Frame>
+
 </ContentPage>
