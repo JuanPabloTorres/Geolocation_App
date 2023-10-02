@@ -51,10 +51,32 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(s => s.Settings)
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(c => c.Contents).Include(s => s.Advertisement.Settings)
                     .Where(v =>
                     DateTime.Now <= v.ExpirationDate &&
                     v.Advertisement.Settings.Any(s => s.SettingId == settingId))
+                    .Select(s => new GeolocationAd
+                    {
+                        ID = s.ID,
+                        ExpirationDate = s.ExpirationDate,
+                        Latitude = s.Latitude,
+                        Longitude = s.Longitude,
+
+                        Advertisement = new Advertisement
+                        {
+                            ID = s.AdvertisingId,
+                            Description = s.Advertisement.Description,
+                            Title = s.Advertisement.Title,
+                            UserId = s.Advertisement.UserId,
+                            Contents = s.Advertisement.Contents
+                            .Select(cs => new ContentType
+                            {
+                                Type = cs.Type,
+                                Content = cs.Content
+                            })
+                            .ToList()
+                        }
+                    })
                     .ToListAsync();
 
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);

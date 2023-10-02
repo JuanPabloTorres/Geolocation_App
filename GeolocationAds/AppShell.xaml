@@ -17,12 +17,12 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
-            Title="Find"
+            Title="Find Content"
             ContentTemplate="{DataTemplate pages:SearchAd}"
             Icon="home.png" />
 
         <ShellContent
-            Title="Favorites"
+            Title="Captues"
             ContentTemplate="{DataTemplate pages:MyFavorites}"
             Icon="star.png" />
 
@@ -31,12 +31,12 @@
             ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
             Icon="add.png" />
         <ShellContent
-            Title="See My Content"
+            Title="My Content"
             ContentTemplate="{DataTemplate pages:AdToLocation}"
             Icon="location.png" />
 
         <ShellContent
-            Title="Map"
+            Title="Nearby Content Map"
             ContentTemplate="{DataTemplate pages:GoogleMapPage}"
             Icon="maps.png" />
 
@@ -58,7 +58,7 @@
                 WidthRequest="70">
 
                 <toolkit:AvatarView
-                    BackgroundColor="Green"
+                    BackgroundColor="GreenYellow"
                     FontAttributes="Bold"
                     FontSize="Large"
                     HeightRequest="90"

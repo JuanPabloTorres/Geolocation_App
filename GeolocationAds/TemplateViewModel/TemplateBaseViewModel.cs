@@ -37,6 +37,11 @@ namespace ToolsLibrary.TemplateViewModel
             this.advertisementService = advertisementService;
         }
 
+        public TemplateBaseViewModel(IAdvertisementService advertisementService)
+        {
+            this.advertisementService = advertisementService;
+        }
+
         public TemplateBaseViewModel()
         {
         }

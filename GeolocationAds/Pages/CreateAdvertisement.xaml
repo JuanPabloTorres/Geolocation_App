@@ -90,8 +90,108 @@
             VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
     </ContentPage.Resources>
 
-    <ContentView>
-        <ScrollView>
+    <Frame Style="{StaticResource cardFrame}">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="100*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+
+
+
+
+            <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <local:CustomEntryContentView
+                Grid.Row="1"
+                Placeholder="Title"
+                Text="{Binding Model.Title}" />
+
+            <local:CustomEntryContentView
+                Grid.Row="2"
+                Placeholder="Description"
+                Text="{Binding Model.Description}" />
+
+            <local:CustomPickerContentView
+                Grid.Row="3"
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType}" />
+
+            <!--  ... Choose File ...  -->
+            <Button
+                x:Name="UploadButton"
+                Grid.Row="4"
+                Command="{Binding UploadContentCommand}"
+                Style="{StaticResource globalButton}"
+                Text="Choose Image">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+
+            <CarouselView
+                Grid.Row="5"
+                ItemTemplate="{StaticResource typeSelector}"
+                ItemsSource="{Binding ContentTypesTemplate}"
+                VerticalOptions="FillAndExpand" />
+
+            <!--  Submit Button  -->
+            <Button
+                x:Name="SubmitButton"
+                Grid.Row="6"
+                Command="{Binding SubmitCommand}"
+                CommandParameter="{Binding Model}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}"
+                Text="Save">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>
+
+
+
+            <ActivityIndicator
+                Grid.Row="7"
+                IsRunning="{Binding IsLoading}"
+                Style="{StaticResource globalLoading}" />
+
+
+        </Grid>
+    </Frame>
+
+
+    <!--<ScrollView>
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -174,14 +274,14 @@
                     Style="{StaticResource globalLoading}" />
 
             </Grid>
-        </ScrollView>
+        </ScrollView>-->
 
-        <!--<ContentView x:Name="LoadingIndicatorContainer" IsVisible="{Binding IsLoading}">
+    <!--<ContentView x:Name="LoadingIndicatorContainer" IsVisible="{Binding IsLoading}">
             <ContentView.Content>-->
-        <!--<ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" IsVisible="{Binding IsLoading}"/>-->
-        <!--</ContentView.Content>
+    <!--<ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" IsVisible="{Binding IsLoading}"/>-->
+    <!--</ContentView.Content>
         </ContentView>-->
-    </ContentView>
+
 
 
     <!--<VerticalStackLayout Style="{Binding verticalStandarStyle}">

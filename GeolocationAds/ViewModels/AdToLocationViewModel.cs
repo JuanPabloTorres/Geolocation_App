@@ -7,17 +7,17 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class AdToLocationViewModel : BaseViewModel2<AdLocationTemplateViewModel, IGeolocationAdService>
+    public partial class AdToLocationViewModel : BaseViewModel2<MangeContentTemplateViewModel, IGeolocationAdService>
     {
         private IAdvertisementService advertisementService { get; set; }
 
-        public AdToLocationViewModel(AdLocationTemplateViewModel adLocationTemplateViewModel, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, LogUserPerfilTool logUserPerfilTool) : base(adLocationTemplateViewModel, geolocationAdService, logUserPerfilTool)
+        public AdToLocationViewModel(MangeContentTemplateViewModel adLocationTemplateViewModel, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, LogUserPerfilTool logUserPerfilTool) : base(adLocationTemplateViewModel, geolocationAdService, logUserPerfilTool)
         {
             this.advertisementService = advertisementService;
 
             this.SearchCommand = new Command(Initialize);
 
-            AdLocationTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
+            MangeContentTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -38,7 +38,7 @@ namespace GeolocationAds.ViewModels
 
         private void AdLocationTemplateViewModel_ItemDeleted(object sender, EventArgs e)
         {
-            if (sender is AdLocationTemplateViewModel model)
+            if (sender is MangeContentTemplateViewModel model)
             {
                 var _toRemoveAdContent = this.CollectionModel.Where(v => v.CurrentAdvertisement.ID == model.CurrentAdvertisement.ID).FirstOrDefault();
 
@@ -60,7 +60,7 @@ namespace GeolocationAds.ViewModels
                 {
                     foreach (var item in _apiResponse.Data)
                     {
-                        var _item = new AdLocationTemplateViewModel(this.advertisementService, this.service, item);
+                        var _item = new MangeContentTemplateViewModel(this.advertisementService, this.service, item);
 
                         this.CollectionModel.Add(_item);
                     }

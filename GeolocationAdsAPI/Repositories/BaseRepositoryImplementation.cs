@@ -25,7 +25,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             await _context.SaveChangesAsync();
 
-            return ResponseFactory<T>.BuildSusccess("Created successfully.", entity);
+            return ResponseFactory<T>.BuildSusccess("Created successfully.", entity, ToolsLibrary.Tools.Type.Added);
         }
         catch (Exception ex)
         {

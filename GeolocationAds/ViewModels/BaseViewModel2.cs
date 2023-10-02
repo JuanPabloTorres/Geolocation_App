@@ -32,21 +32,23 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private ObservableCollection<T> _collectionModel;
+        //private ObservableCollection<T> _collectionModel;
 
-        public ObservableCollection<T> CollectionModel
-        {
-            get => _collectionModel;
-            set
-            {
-                if (_collectionModel != value)
-                {
-                    _collectionModel = value;
+        //public ObservableCollection<T> CollectionModel
+        //{
+        //    get => _collectionModel;
+        //    set
+        //    {
+        //        if (_collectionModel != value)
+        //        {
+        //            _collectionModel = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        public ObservableCollection<T> CollectionModel { get; set; }
 
         private ICollection<ValidationContext> ValidationContexts;
 

@@ -138,7 +138,7 @@ namespace GeolocationAdsAPI.Controllers
 
                         if (meterDistance <= distance)
                         {
-                            item.Advertisement.GeolocationAds = item.Advertisement.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
+                            //item.Advertisement.GeolocationAds = item.Advertisement.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
 
                             _adsNear.Add(item.Advertisement);
                         }

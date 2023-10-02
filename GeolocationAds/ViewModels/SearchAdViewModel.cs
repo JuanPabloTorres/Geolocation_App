@@ -17,21 +17,23 @@ namespace GeolocationAds.ViewModels
 
         private readonly ICaptureService captureService;
 
-        private ObservableCollection<string> _distanceSettings;
+        //private ObservableCollection<string> _distanceSettings;
 
-        public ObservableCollection<string> DistanceSettings
-        {
-            get => _distanceSettings;
-            set
-            {
-                if (_distanceSettings != value)
-                {
-                    _distanceSettings = value;
+        //public ObservableCollection<string> DistanceSettings
+        //{
+        //    get => _distanceSettings;
+        //    set
+        //    {
+        //        if (_distanceSettings != value)
+        //        {
+        //            _distanceSettings = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        public ObservableCollection<string> DistanceSettings { get; set; }
 
         private string _selectedDistance;
 
@@ -49,37 +51,41 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private ObservableCollection<AppSetting> _adTypesSettings;
+        //private ObservableCollection<AppSetting> _adTypesSettings;
 
-        public ObservableCollection<AppSetting> AdTypesSettings
-        {
-            get => _adTypesSettings;
-            set
-            {
-                if (_adTypesSettings != value)
-                {
-                    _adTypesSettings = value;
+        //public ObservableCollection<AppSetting> AdTypesSettings
+        //{
+        //    get => _adTypesSettings;
+        //    set
+        //    {
+        //        if (_adTypesSettings != value)
+        //        {
+        //            _adTypesSettings = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
-        public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels
-        {
-            get => _nearByTemplateViewModels;
-            set
-            {
-                if (_nearByTemplateViewModels != value)
-                {
-                    _nearByTemplateViewModels = value;
+        //private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels
+        //{
+        //    get => _nearByTemplateViewModels;
+        //    set
+        //    {
+        //        if (_nearByTemplateViewModels != value)
+        //        {
+        //            _nearByTemplateViewModels = value;
+
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels { get; set; }
 
         private AppSetting _selectedAdType;
 
@@ -203,19 +209,28 @@ namespace GeolocationAds.ViewModels
 
         protected override async Task LoadData(object extraData)
         {
-            var currentLocation = extraData as CurrentLocation;
-
-            var _apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
-
-            this.CollectionModel.Clear();
-
-            if (_apiResponse.IsSuccess)
+            try
             {
-                if (!_apiResponse.Data.IsObjectNull())
+                this.CollectionModel.Clear();
+
+                this.NearByTemplateViewModels.Clear();
+
+                var currentLocation = extraData as CurrentLocation;
+
+                var _apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
+
+                if (_apiResponse.IsSuccess)
                 {
-                    foreach (var item in _apiResponse.Data)
+                    if (!_apiResponse.Data.IsObjectNull())
                     {
-                        this.NearByTemplateViewModels.Add(new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool));
+                        foreach (var item in _apiResponse.Data)
+                        {
+                            this.NearByTemplateViewModels.Add(new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool));
+                        }
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                     }
                 }
                 else
@@ -223,9 +238,9 @@ namespace GeolocationAds.ViewModels
                     await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 

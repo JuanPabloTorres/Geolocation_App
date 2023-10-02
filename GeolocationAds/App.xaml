@@ -107,10 +107,9 @@
             <!--  Frames  -->
             <Style x:Key="cardFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="GhostWhite" />
-                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="CornerRadius" Value="4" />
                 <Setter Property="BorderColor" Value="#e5e4e2" />
-                <Setter Property="Margin" Value="10" />
-
+                <Setter Property="Margin" Value="5" />
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
@@ -267,7 +266,7 @@
                     <Grid>
                         <Image
                             Aspect="Fill"
-                            Source="{Binding Image}"
+                            Source="{Binding Image, Mode=TwoWay}"
                             VerticalOptions="FillAndExpand" />
 
                         <!--  Button Container Grid  -->
@@ -294,6 +293,7 @@
                             Grid.RowSpan="2"
                             Aspect="Fill"
                             ShouldAutoPlay="False"
+                            ShouldKeepScreenOn="False"
                             ShouldShowPlaybackControls="True"
                             Source="{Binding MediaSource}"
                             VerticalOptions="FillAndExpand" />

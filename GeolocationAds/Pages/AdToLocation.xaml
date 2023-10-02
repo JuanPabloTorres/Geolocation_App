@@ -69,9 +69,9 @@
                         <Grid VerticalOptions="FillAndExpand">
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="25*" />
                                 <RowDefinition Height="100*" />
-                                <RowDefinition Height="30*" />
+                                <RowDefinition Height="35*" />
                                 <RowDefinition Height="10*" />
                             </Grid.RowDefinitions>
 
@@ -97,10 +97,10 @@
 
                             <CarouselView
                                 Grid.Row="1"
-                                VerticalOptions="FillAndExpand"
                                 IsSwipeEnabled="True"
                                 ItemTemplate="{StaticResource typeSelector}"
-                                ItemsSource="{Binding ContentTypesTemplate}">
+                                ItemsSource="{Binding ContentTypesTemplate}"
+                                VerticalOptions="FillAndExpand">
 
                                 <CarouselView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Horizontal" />
@@ -151,12 +151,14 @@
 
         <HorizontalStackLayout Grid.Row="3" HorizontalOptions="CenterAndExpand">
             <Button
+                x:Name="BackBtn"
                 Clicked="BackItemButton_Clicked"
                 FontSize="25"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalButton}"
                 Text="Back" />
             <Button
+                x:Name="NextBtn"
                 Clicked="NextItemButton_Clicked"
                 FontSize="25"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"

@@ -160,16 +160,23 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
+        private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
         {
             this.IsLoading = true;
 
-            if (sender is ContentTypeTemplateViewModel template)
+            try
             {
-                if (!template.IsObjectNull())
+                if (sender is ContentTypeTemplateViewModel template)
                 {
-                    this.ContentTypesTemplate.Remove(template);
+                    if (!template.IsObjectNull())
+                    {
+                        this.ContentTypesTemplate.Remove(template);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
 
             this.IsLoading = false;
@@ -177,19 +184,30 @@ namespace GeolocationAds.ViewModels
 
         private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
         {
-            await this.LoadSetting();
+            this.IsLoading = true;
 
-            this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
-
-            foreach (var item in this.Model.Contents)
+            try
             {
-                var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+                this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
 
-                var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+                await this.LoadSetting();
 
-                this.ContentTypesTemplate.Add(_template);
+                foreach (var item in this.Model.Contents)
+                {
+                    var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+
+                    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+
+                    this.ContentTypesTemplate.Add(_template);
+                }
+                this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
             }
-            this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+            this.IsLoading = false;
         }
 
         public async Task LoadSetting()
@@ -234,9 +252,11 @@ namespace GeolocationAds.ViewModels
         [ICommand]
         private async void OnUploadCommandExecuted2()
         {
+            this.IsLoading = true;
+
             try
             {
-                this.IsLoading = true;
+
 
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
@@ -281,13 +301,13 @@ namespace GeolocationAds.ViewModels
                         this.ContentTypesTemplate.Add(_template);
                     }
                 }
-
-                this.IsLoading = false;
             }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
+
+            this.IsLoading = false;
         }
     }
 }
