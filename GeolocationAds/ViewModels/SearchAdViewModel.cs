@@ -17,23 +17,13 @@ namespace GeolocationAds.ViewModels
 
         private readonly ICaptureService captureService;
 
-        //private ObservableCollection<string> _distanceSettings;
-
-        //public ObservableCollection<string> DistanceSettings
-        //{
-        //    get => _distanceSettings;
-        //    set
-        //    {
-        //        if (_distanceSettings != value)
-        //        {
-        //            _distanceSettings = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
+        private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
 
         public ObservableCollection<string> DistanceSettings { get; set; }
+
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
+
+        public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels { get; set; }
 
         private string _selectedDistance;
 
@@ -50,42 +40,6 @@ namespace GeolocationAds.ViewModels
                 }
             }
         }
-
-        //private ObservableCollection<AppSetting> _adTypesSettings;
-
-        //public ObservableCollection<AppSetting> AdTypesSettings
-        //{
-        //    get => _adTypesSettings;
-        //    set
-        //    {
-        //        if (_adTypesSettings != value)
-        //        {
-        //            _adTypesSettings = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
-        public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
-
-        //private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
-
-        //public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels
-        //{
-        //    get => _nearByTemplateViewModels;
-        //    set
-        //    {
-        //        if (_nearByTemplateViewModels != value)
-        //        {
-        //            _nearByTemplateViewModels = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
-        public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels { get; set; }
 
         private AppSetting _selectedAdType;
 
@@ -125,56 +79,17 @@ namespace GeolocationAds.ViewModels
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    this.CollectionModel.Clear();
+                    this.NearByTemplateViewModels.Clear();
                 });
             });
         }
 
-        private async Task LoadSettings()
-        {
-            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.MeterDistance.ToString());
-
-            this.CollectionModel.Clear();
-
-            if (_apiResponse.IsSuccess)
-            {
-                foreach (var item in _apiResponse.Data)
-                {
-                    DistanceSettings.Add(item.Value);
-                }
-
-                SelectedDistance = DistanceSettings.FirstOrDefault();
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-            }
-
-            var _typeSettingResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
-            if (_typeSettingResponse.IsSuccess)
-            {
-                foreach (var item in _typeSettingResponse.Data)
-                {
-                    AdTypesSettings.Add(item);
-                }
-
-                SelectedAdType = AdTypesSettings.FirstOrDefault();
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-            }
-        }
-
         private async Task LoadSettings2()
         {
+            this.IsLoading = true;
+
             try
             {
-                this.CollectionModel.Clear();
-
-                IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
-
                 var _apiResponse = await this.appSettingService.GetAppSettingByNames(settings);
 
                 if (_apiResponse.IsSuccess)
@@ -205,14 +120,14 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
+
+            this.IsLoading = false;
         }
 
         protected override async Task LoadData(object extraData)
         {
             try
             {
-                this.CollectionModel.Clear();
-
                 this.NearByTemplateViewModels.Clear();
 
                 var currentLocation = extraData as CurrentLocation;
@@ -266,11 +181,21 @@ namespace GeolocationAds.ViewModels
 
         public async void InitializeSettings()
         {
-            this.IsLoading = true;
-
             await LoadSettings2();
-
-            this.IsLoading = false;
         }
+
+        //public void Dispose()
+        //{
+        //    WeakReferenceMessenger.Default.Unregister<LogOffMessage>(this);
+
+        //    // Clear collections or other resources
+        //    NearByTemplateViewModels.Clear();
+
+        //    // Optionally, you can also dispose of any disposable objects here if applicable.
+        //    // For example, if captureService implements IDisposable:
+        //    // captureService.Dispose();
+
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }

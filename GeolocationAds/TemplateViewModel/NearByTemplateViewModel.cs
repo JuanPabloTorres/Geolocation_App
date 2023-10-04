@@ -34,26 +34,10 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
-
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        {
-            get => _contentTypestemplate;
-            set
-            {
-                if (_contentTypestemplate != value)
-                {
-                    _contentTypestemplate = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
 
         public NearByTemplateViewModel(ICaptureService captureService, Advertisement advertisement, LogUserPerfilTool logUser)
         {
-            //CaptureCommand = new Command(CaptureItem);
-
             this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
             this.LogUser = logUser;
@@ -126,5 +110,12 @@ namespace GeolocationAds.TemplateViewModel
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
+
+        //public void Dispose()
+        //{
+        //    this.ContentTypesTemplate.Clear();
+
+        //    this.Advertisement = null;
+        //}
     }
 }

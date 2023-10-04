@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="Login"
-    BackgroundImageSource="loginbackgroundyellow2.jpg"
+    BackgroundImageSource="blackbackground.jpg"
     Routing.Route="Login"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -24,10 +24,13 @@
 
                 <Label
                     Margin="5"
-                    FontFamily="Sunshine"
-                    FontSize="50"
+                    FontFamily="Roboto"
+                    FontSize="40"
                     Style="{StaticResource globalTitle}"
-                    Text="Welcome" />
+                    Text="G-Book"
+                    TextColor="#3e4144" />
+
+
 
                 <local:CustomEntryContentView
                     IsPassword="False"
@@ -47,7 +50,7 @@
                     Text="Sign In" />
 
                 <Button
-                    BackgroundColor="LightSalmon"
+                    BackgroundColor="CadetBlue"
                     Command="{Binding RegisterCommand}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
@@ -59,7 +62,7 @@
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Forgot Password?"
-                    TextColor="#333399" />
+                    TextColor="SteelBlue" />
 
                 <ActivityIndicator
                     IsRunning="{Binding IsLoading}"

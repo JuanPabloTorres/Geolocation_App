@@ -1,6 +1,7 @@
 ﻿using GeolocationAds.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace ToolsLibrary.TemplateViewModel
 {
@@ -26,9 +27,20 @@ namespace ToolsLibrary.TemplateViewModel
 
         protected IGeolocationAdService geolocationAdService { get; set; }
 
+        public ICommand RemoveCommand { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
+
+        public static event RemoveItemEventHandler ItemDeleted;
+
+        public virtual void OnDeleteItem(EventArgs e)
+        {
+            ItemDeleted?.Invoke(this, e);
+        }
 
         public TemplateBaseViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService)
         {

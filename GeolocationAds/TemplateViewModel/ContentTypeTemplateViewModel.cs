@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui.Views;
-using System.Windows.Input;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 
@@ -67,11 +66,8 @@ namespace GeolocationAds.TemplateViewModel
             ContentTypeDeleted?.Invoke(this, e);
         }
 
-        public ICommand RemoveCommand { get; set; }
-
         public ContentTypeTemplateViewModel()
         {
-
             RemoveCommand = new Command(RemoveCurrentItem);
         }
 
@@ -79,5 +75,14 @@ namespace GeolocationAds.TemplateViewModel
         {
             OnDeleteType(EventArgs.Empty);
         }
+
+        //public void Dispose()
+        //{
+        //    this.Image = null;
+
+        //    this.MediaSource = null;
+
+        //    this.ContentType = null;
+        //}
     }
 }

@@ -93,25 +93,34 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
 
-        <!--  Submit Button  -->
+        <Button
+            Grid.Row="0"
+            Command="{Binding SearchCommand}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Refresh">
 
-        <ContentView
-            x:Name="LoadingIndicatorContainer"
-            Grid.Row="1"
-            IsVisible="{Binding IsLoading}"
-            VerticalOptions="FillAndExpand">
-            <ContentView.Content>
-                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-            </ContentView.Content>
-        </ContentView>
+            <Button.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="40"
+                    Offset="5,5" />
+            </Button.Shadow>
+        </Button>
+
+
+
+
 
         <CarouselView
             x:Name="carouselView"
             Grid.Row="1"
             IsSwipeEnabled="False"
-            ItemsSource="{Binding MangeContents}">
+            ItemsSource="{Binding CaptureTemplateViewModels}">
 
             <CarouselView.EmptyView>
                 <VerticalStackLayout>
@@ -146,7 +155,7 @@
 
                                 <Button
                                     Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    CommandParameter="{Binding Capture}"
                                     HorizontalOptions="EndAndExpand"
                                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource XButton}"
@@ -170,6 +179,12 @@
                                     </StackLayout>
                                 </CarouselView.EmptyView>
                             </CarouselView>
+
+                            <Label
+                                Grid.Row="2"
+                                HorizontalOptions="Start"
+                                Style="{StaticResource globalLabel}"
+                                Text="{Binding CurrentAdvertisement.Title}" />
 
                             <!--<StackLayout
                                 Grid.Row="2"
@@ -207,30 +222,34 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
+        <ActivityIndicator
+            Grid.Row="2"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
 
-        <!--<CarouselView
-            x:Name="carouselView"
-            Grid.Row="1"
-            ItemTemplate="{StaticResource typeSelector}"
-            ItemsSource="{Binding ContentTypesTemplate}"
-            VerticalOptions="FillAndExpand" />-->
-
-        <HorizontalStackLayout
-            Grid.Row="3"
-            HorizontalOptions="CenterAndExpand"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+        <StackLayout
+            Grid.Row="2"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Orientation="Horizontal">
             <Button
                 x:Name="BackBtn"
+                Margin="0"
+                BackgroundColor="#ff9800"
                 Clicked="BackItemButton_Clicked"
+                CornerRadius="0"
                 FontSize="25"
                 Style="{StaticResource globalButton}"
                 Text="Back" />
             <Button
                 x:Name="NextBtn"
+                Margin="0"
+                BackgroundColor="#ff9800"
                 Clicked="NextItemButton_Clicked"
+                CornerRadius="0"
                 FontSize="25"
                 Style="{StaticResource globalButton}"
                 Text="Next" />
-        </HorizontalStackLayout>
+        </StackLayout>
     </Grid>
 </ContentPage>

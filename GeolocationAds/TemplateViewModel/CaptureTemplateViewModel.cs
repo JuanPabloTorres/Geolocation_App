@@ -1,4 +1,5 @@
 ﻿using GeolocationAds.App_ViewModel_Factory;
+using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -9,6 +10,8 @@ namespace GeolocationAds.TemplateViewModel
 {
     public class CaptureTemplateViewModel : TemplateBaseViewModel
     {
+        public ICaptureService Service { get; set; }
+
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
         {
             get; set;
@@ -30,11 +33,33 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        public CaptureTemplateViewModel(Advertisement advertisement)
+        private Capture _capture;
+
+        public Capture Capture
+        {
+            get => _capture;
+            set
+            {
+                if (_capture != value)
+                {
+                    _capture = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public CaptureTemplateViewModel(Capture capture, ICaptureService service)
         {
             this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
-            this.CurrentAdvertisement = advertisement;
+            this.RemoveCommand = new Command<Capture>(Remove);
+
+            this.Capture = capture;
+
+            this.CurrentAdvertisement = capture.Advertisements;
+
+            this.Service = service;
 
             FillTemplate();
         }
@@ -61,6 +86,26 @@ namespace GeolocationAds.TemplateViewModel
                         this.ContentTypesTemplate.Add(_template);
                     }
                 }
+            }
+        }
+
+        public async void Remove(Capture capture)
+        {
+            try
+            {
+                var _apiResponse = await this.Service.Remove(capture.ID);
+
+                if (_apiResponse.IsSuccess)
+                {
+                    OnDeleteItem(EventArgs.Empty);
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
         }
     }

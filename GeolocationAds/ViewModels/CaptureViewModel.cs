@@ -1,6 +1,7 @@
 ﻿using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using System.Collections.ObjectModel;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -8,17 +9,37 @@ namespace GeolocationAds.ViewModels
 {
     public class CaptureViewModel : BaseViewModel2<Capture, ICaptureService>
     {
-        private IAdvertisementService advertisementService { get; set; }
+        public ObservableCollection<CaptureTemplateViewModel> CaptureTemplateViewModels { get; set; }
 
-        public ObservableCollection<CaptureTemplateViewModel> MangeContents { get; set; }
-
-        public CaptureViewModel(Capture model, ICaptureService service, LogUserPerfilTool logUserPerfil, IAdvertisementService advertisementService) : base(model, service, logUserPerfil)
+        public CaptureViewModel(Capture model, ICaptureService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
-            this.MangeContents = new ObservableCollection<CaptureTemplateViewModel>();
+            this.CaptureTemplateViewModels = new ObservableCollection<CaptureTemplateViewModel>();
 
-            Task.Run(async () => { await LoadData(); });
+            this.SearchCommand = new Command(Initialize);
 
-            this.advertisementService = advertisementService;
+            CaptureTemplateViewModel.ItemDeleted += CaptureTemplateViewModel_ItemDeleted;
+        }
+
+        private async void CaptureTemplateViewModel_ItemDeleted(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender is CaptureTemplateViewModel model)
+                {
+                    var _toRemoveAdContent = this.CaptureTemplateViewModels.Where(v => v.Capture.ID == model.Capture.ID).FirstOrDefault();
+
+                    if (!_toRemoveAdContent.IsObjectNull())
+                    {
+                        this.CaptureTemplateViewModels.Remove(_toRemoveAdContent);
+
+                        await Shell.Current.DisplayAlert("Error", "Capture Removed", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         protected override async Task LoadData()
@@ -27,45 +48,17 @@ namespace GeolocationAds.ViewModels
 
             try
             {
-                this.MangeContents.Clear();
+                this.CaptureTemplateViewModels.Clear();
 
                 var _apiResponse = await this.service.GetMyCaptures(LogUserPerfilTool.GetUserId());
 
                 if (_apiResponse.IsSuccess)
                 {
-                    //foreach (var item in _apiResponse.Data)
-                    //{
-                    //    foreach (var content in item.Advertisements.Contents)
-                    //    {
-                    //        if (content.Type == ContentVisualType.Image)
-                    //        {
-                    //            var _template = ContentTypeTemplateFactory.BuilContentType(content, content.Content);
-
-                    //            this.ContentTypesTemplate.Add(_template);
-                    //        }
-                    //        else
-                    //        {
-                    //            var _file = CommonsTool.SaveByteArrayToTempFile(content.Content);
-
-                    //            var _template = ContentTypeTemplateFactory.BuilContentType(content, _file);
-
-                    //            this.ContentTypesTemplate.Add(_template);
-                    //        }
-
-                    //        //var _file = CommonsTool.SaveByteArrayToTempFile(content.Content);
-
-                    //        //var _template = ContentTypeTemplateFactory.BuilContentType(content, _file);
-
-                    //        //this.ContentTypesTemplate.Add(_template);
-                    //    }
-
-                    //}
-
                     foreach (var item in _apiResponse.Data)
                     {
-                        var _item = new CaptureTemplateViewModel(item.Advertisements);
+                        var _item = new CaptureTemplateViewModel(item, this.service);
 
-                        this.MangeContents.Add(_item);
+                        this.CaptureTemplateViewModels.Add(_item);
                     }
                 }
                 else
@@ -83,11 +76,7 @@ namespace GeolocationAds.ViewModels
 
         public async void Initialize()
         {
-            this.IsLoading = true;
-
             await LoadData();
-
-            this.IsLoading = false;
         }
     }
 }

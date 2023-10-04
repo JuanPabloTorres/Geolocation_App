@@ -60,6 +60,7 @@
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
 	  <None Remove="Resources\Fonts\Sunshine.ttf" />
 	  <None Remove="Resources\Images\add.png" />
+	  <None Remove="Resources\Images\BlackBackGround.jpg" />
 	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\LoginBackGroundYellow.jpg" />
 	  <None Remove="Resources\Images\loginbackgroundyellow2.jpg" />

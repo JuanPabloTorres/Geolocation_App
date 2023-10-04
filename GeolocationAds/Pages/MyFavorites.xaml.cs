@@ -45,15 +45,6 @@ public partial class MyFavorites : ContentPage
         {
             await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
         }
-
-        //if (carouselView.Position < (carouselView.ItemsSource?.Count - 1))
-        //{
-        //    carouselView.Position++;
-        //}
-
-        //carouselView.IsSwipeEnabled = true;
-
-        //carouselView.IsSwipeEnabled = false;
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)

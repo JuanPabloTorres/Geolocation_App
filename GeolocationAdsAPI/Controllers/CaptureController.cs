@@ -55,5 +55,22 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception));
             }
         }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            try
+            {
+                var response = await this.captureRepository.Remove(id);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
     }
 }

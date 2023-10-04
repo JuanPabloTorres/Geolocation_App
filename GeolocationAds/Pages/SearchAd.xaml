@@ -21,9 +21,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="100*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
 
         <StackLayout
@@ -95,8 +95,8 @@
                         <Grid VerticalOptions="FillAndExpand">
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="25*" />
-                                <RowDefinition Height="100*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="50*" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -158,23 +158,30 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <HorizontalStackLayout
+        <StackLayout
             Grid.Row="3"
-            HorizontalOptions="CenterAndExpand"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Orientation="Horizontal">
             <Button
                 x:Name="BackBtn"
+                Margin="0"
+                BackgroundColor="#ff9800"
                 Clicked="BackItemButton_Clicked"
+                CornerRadius="0"
                 FontSize="25"
                 Style="{StaticResource globalButton}"
                 Text="Back" />
             <Button
                 x:Name="NextBtn"
+                Margin="0"
+                BackgroundColor="#ff9800"
                 Clicked="NextItemButton_Clicked"
+                CornerRadius="0"
                 FontSize="25"
                 Style="{StaticResource globalButton}"
                 Text="Next" />
-        </HorizontalStackLayout>
+        </StackLayout>
 
         <ActivityIndicator
             Grid.Row="3"

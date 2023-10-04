@@ -30,20 +30,6 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        //public MangeContentTemplateViewModel()
-        //{
-        //    SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
-        //}
-
-        //public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService) : base(advertisementService, geolocationAdService)
-        //{
-        //    SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
-
-        //    RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
-
-        //    this.onNavigate = new Command<int>(Navigate);
-        //}
-
         public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
             SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
@@ -140,20 +126,18 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
+        //public delegate void RemoveItemEventHandler(object sender, EventArgs e);
 
-        public static event RemoveItemEventHandler ItemDeleted;
+        //public static event RemoveItemEventHandler ItemDeleted;
 
-        protected virtual void OnDeleteItem(EventArgs e)
-        {
-            ItemDeleted?.Invoke(this, e);
-        }
-
-
+        //protected virtual void OnDeleteItem(EventArgs e)
+        //{
+        //    ItemDeleted?.Invoke(this, e);
+        //}
 
         public ICommand SetLocationCommand { get; set; }
 
-        public ICommand RemoveCommand { get; set; }
+        //public ICommand RemoveCommand { get; set; }
 
         public ICommand onNavigate { get; set; }
 
@@ -278,5 +262,16 @@ namespace ToolsLibrary.TemplateViewModel
         {
             OnDeleteItem(EventArgs.Empty);
         }
+
+        //public void Dispose()
+        //{
+        //    this.ContentTypesTemplate.Clear();
+
+        //    this.CurrentAdvertisement = null;
+
+        //    this.MediaSource = null;
+
+        //    this.Image = null;
+        //}
     }
 }

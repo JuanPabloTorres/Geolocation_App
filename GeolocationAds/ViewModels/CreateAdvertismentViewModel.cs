@@ -20,37 +20,41 @@ namespace GeolocationAds.ViewModels
     {
         private byte[] fileBytes;
 
-        private ObservableCollection<AppSetting> _adTypesSettings;
+        //private ObservableCollection<AppSetting> _adTypesSettings;
 
-        public ObservableCollection<AppSetting> AdTypesSettings
-        {
-            get => _adTypesSettings;
-            set
-            {
-                if (_adTypesSettings != value)
-                {
-                    _adTypesSettings = value;
+        //public ObservableCollection<AppSetting> AdTypesSettings
+        //{
+        //    get => _adTypesSettings;
+        //    set
+        //    {
+        //        if (_adTypesSettings != value)
+        //        {
+        //            _adTypesSettings = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        {
-            get => _contentTypestemplate;
-            set
-            {
-                if (_contentTypestemplate != value)
-                {
-                    _contentTypestemplate = value;
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
+
+        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
+        //{
+        //    get => _contentTypestemplate;
+        //    set
+        //    {
+        //        if (_contentTypestemplate != value)
+        //        {
+        //            _contentTypestemplate = value;
+
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
         private AppSetting _selectedAdType;
 
@@ -108,8 +112,6 @@ namespace GeolocationAds.ViewModels
 
             this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
 
-            SetDefault();
-
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -162,9 +164,16 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private void SetDefault()
+        public void SetDefault()
         {
-            this.Model.Settings = new List<AdvertisementSettings>();
+            var _adSetting = new AdvertisementSettings()
+            {
+                CreateDate = DateTime.Now,
+                CreateBy = this.LogUserPerfilTool.LogUser.ID,
+                SettingId = this.SelectedAdType.ID,
+            };
+
+            this.Model.Settings = new List<AdvertisementSettings>() { _adSetting };
 
             this.Model.Contents = new List<ContentType>();
 

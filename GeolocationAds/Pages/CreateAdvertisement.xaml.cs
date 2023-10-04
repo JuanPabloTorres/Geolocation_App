@@ -18,5 +18,7 @@ public partial class CreateAdvertisment : ContentPage
     protected override async void OnAppearing()
     {
         await viewModel.LoadSetting();
+
+        this.viewModel.SetDefault();
     }
 }
