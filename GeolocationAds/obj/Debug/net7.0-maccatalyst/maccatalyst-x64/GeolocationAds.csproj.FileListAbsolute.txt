@@ -289,6 +289,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot@2x.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\dotnet_bot@3x.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\add.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\blackbackground.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\home.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\location.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\loginbackgroundyellow.jpg
@@ -305,6 +306,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\mauiimage.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\f\MauiInfo.plist
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\mauifont.stamp
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\f\MaterialIcons-Regular.ttf
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\f\MaterialIconsOutlined-Regular.otf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\f\OpenSans-Regular.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\f\OpenSans-Semibold.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\f\Roboto-Bold.ttf
@@ -330,4 +333,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\GeolocationAds.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\GeolocationAds.genruntimeconfig.cache
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\ref\GeolocationAds.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\blackbackground.jpg

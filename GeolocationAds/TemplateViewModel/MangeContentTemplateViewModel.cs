@@ -14,6 +14,12 @@ namespace ToolsLibrary.TemplateViewModel
 {
     public class MangeContentTemplateViewModel : TemplateBaseViewModel
     {
+        public ICommand SetLocationCommand { get; set; }
+
+        public ICommand OpenActionPopUpCommand { get; set; }
+
+        public ICommand onNavigate { get; set; }
+
         private Advertisement _currentAdvertisement;
 
         public Advertisement CurrentAdvertisement
@@ -28,30 +34,6 @@ namespace ToolsLibrary.TemplateViewModel
                     OnPropertyChanged();
                 }
             }
-        }
-
-        public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
-        {
-            SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
-
-            RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
-
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
-
-            this.CurrentAdvertisement = advertisement;
-
-            this.onNavigate = new Command<int>(Navigate);
-
-            FillTemplate();
-        }
-
-        public MangeContentTemplateViewModel(IAdvertisementService advertisementService, Advertisement advertisement) : base(advertisementService)
-        {
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
-
-            this.CurrentAdvertisement = advertisement;
-
-            FillTemplate();
         }
 
         private MediaSource _mediaSource;
@@ -102,6 +84,32 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
+        public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
+        {
+            SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
+
+            RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
+
+            OpenActionPopUpCommand = new Command(OpenActionPopUp);
+
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+
+            this.CurrentAdvertisement = advertisement;
+
+            this.onNavigate = new Command<int>(Navigate);
+
+            FillTemplate();
+        }
+
+        public MangeContentTemplateViewModel(IAdvertisementService advertisementService, Advertisement advertisement) : base(advertisementService)
+        {
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+
+            this.CurrentAdvertisement = advertisement;
+
+            FillTemplate();
+        }
+
         public void FillTemplate()
         {
             if (!this.CurrentAdvertisement.Contents.IsObjectNull())
@@ -126,20 +134,35 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        //public delegate void RemoveItemEventHandler(object sender, EventArgs e);
+        public async void OpenActionPopUp()
+        {
+            string action = await Shell.Current.DisplayActionSheet("Actions: ", "Cancel", null, "Detail", "Set Location", "Manage Location");
 
-        //public static event RemoveItemEventHandler ItemDeleted;
+            switch (action)
+            {
+                case "Detail":
 
-        //protected virtual void OnDeleteItem(EventArgs e)
-        //{
-        //    ItemDeleted?.Invoke(this, e);
-        //}
+                    Navigate(this.CurrentAdvertisement.ID);
 
-        public ICommand SetLocationCommand { get; set; }
+                    break;
 
-        //public ICommand RemoveCommand { get; set; }
+                case "Set Location":
 
-        public ICommand onNavigate { get; set; }
+                    SetLocationYesOrNoAlert(this.CurrentAdvertisement);
+
+                    break;
+
+                case "Manage Location":
+
+                    await Shell.Current.DisplayAlert("Notification", "On Develop.", "OK");
+
+                    break;
+
+                default:
+
+                    break;
+            }
+        }
 
         private async Task CreateAdToLocation(Advertisement ad)
         {

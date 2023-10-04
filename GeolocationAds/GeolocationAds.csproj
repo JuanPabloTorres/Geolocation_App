@@ -56,6 +56,8 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\home.png" />
 	  <None Remove="Resources\AppIcon\radar.png" />
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
 	  <None Remove="Resources\Fonts\Sunshine.ttf" />
@@ -145,6 +147,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\UserSetting.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PopUps\FilterPopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopUps\RecoveryPasswordPopUp.xaml">

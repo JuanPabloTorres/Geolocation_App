@@ -22,6 +22,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\sp\values\maui_colors.xml
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\mauisplash.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\mauifont.stamp
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\f\MaterialIcons-Regular.ttf
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\f\MaterialIconsOutlined-Regular.otf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\f\OpenSans-Regular.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\f\OpenSans-Semibold.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\f\Roboto-Bold.ttf
@@ -38,6 +40,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable-xxxhdpi\splash.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\add.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\blackbackground.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\home.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\location.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\loginbackgroundyellow.jpg
@@ -1208,4 +1211,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GenerateJavaStubs.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-android33.0\resizetizer\r\drawable\blackbackground.jpg

@@ -31,6 +31,10 @@ public static class MauiProgram
                 fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
 
                 fonts.AddFont("Sunshine.ttf", "Sunshine");
+
+                fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined-Regular");
+
+                fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
             }).UseMauiMaps();
 
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
@@ -123,11 +127,15 @@ public static class MauiProgram
 
         builder.Services.AddScoped<RecoveryPasswordViewModel>();
 
+        builder.Services.AddScoped<FilterPopUpViewModel>();
+
         builder.Services.AddScoped<CaptureViewModel>();
 
         #endregion ViewModels
 
         #region Pages
+
+        builder.Services.AddTransient<FilterPopUp>();
 
         builder.Services.AddSingleton<CreateAdvertisment>();
 

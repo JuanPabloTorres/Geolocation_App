@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup
+    x:Class="GeolocationAds.PopUps.FilterPopUp"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <Grid Padding="15" BackgroundColor="White" WidthRequest="280">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Orientation="Horizontal">
+
+            <Label Style="{StaticResource globalLabel}" Text="Filter" />
+
+            <Button
+                Margin="5"
+                BackgroundColor="Transparent"
+                Clicked="OnCloseButtonClicked"
+                HorizontalOptions="EndAndExpand"
+                Style="{StaticResource globalButton}"
+                Text="X"
+                TextColor="#242124" />
+        </StackLayout>
+
+        <VerticalStackLayout Grid.Row="1">
+
+
+
+            <Label
+                HorizontalOptions="Start"
+                Style="{StaticResource globalLabel}"
+                Text="Type:" />
+            <localControl:CustomPickerContentView
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType}" />
+
+
+        </VerticalStackLayout>
+
+
+
+        <Button
+            Grid.Row="2"
+            Command="{Binding FilterCommand}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Search" />
+
+
+        <ActivityIndicator
+            Grid.Row="2"
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
+    </Grid>
+</mct:Popup>

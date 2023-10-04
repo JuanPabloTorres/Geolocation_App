@@ -239,8 +239,13 @@
                 Clicked="BackItemButton_Clicked"
                 CornerRadius="0"
                 FontSize="25"
-                Style="{StaticResource globalButton}"
-                Text="Back" />
+                Style="{StaticResource globalButton}">
+
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
+                </Button.ImageSource>
+
+            </Button>
             <Button
                 x:Name="NextBtn"
                 Margin="0"
@@ -248,8 +253,13 @@
                 Clicked="NextItemButton_Clicked"
                 CornerRadius="0"
                 FontSize="25"
-                Style="{StaticResource globalButton}"
-                Text="Next" />
+                Style="{StaticResource globalButton}">
+
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
+                </Button.ImageSource>
+
+            </Button>
         </StackLayout>
     </Grid>
 </ContentPage>

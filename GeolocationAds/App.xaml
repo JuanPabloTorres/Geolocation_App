@@ -94,7 +94,7 @@
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BackgroundColor" Value="#333333" />
+                <Setter Property="BackgroundColor" Value="#3e4144" />
             </Style>
 
             <Style x:Key="globalLoading" TargetType="ActivityIndicator">
@@ -222,13 +222,13 @@
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="BorderColor" Value="#333333" />
+                <Setter Property="BorderColor" Value="#3e4144" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
 
             <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
                 <Setter Property="BackgroundColor" Value="Transparent" />
-                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="TextColor" Value="#3e4144" />
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />

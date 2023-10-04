@@ -573,6 +573,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauisplash.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\mauifont.stamp
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\f\MaterialIcons-Regular.ttf
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\f\MaterialIconsOutlined-Regular.otf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Semibold.ttf
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\f\Roboto-Bold.ttf
@@ -625,6 +627,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\blackbackground.scale-100.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png
@@ -670,4 +673,3 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\blackbackground.scale-100.jpg
