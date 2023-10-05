@@ -110,7 +110,7 @@ namespace ToolsLibrary.TemplateViewModel
             FillTemplate();
         }
 
-        public void FillTemplate()
+        public async void FillTemplate()
         {
             if (!this.CurrentAdvertisement.Contents.IsObjectNull())
             {
@@ -124,7 +124,7 @@ namespace ToolsLibrary.TemplateViewModel
                     }
                     else
                     {
-                        var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+                        var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
 

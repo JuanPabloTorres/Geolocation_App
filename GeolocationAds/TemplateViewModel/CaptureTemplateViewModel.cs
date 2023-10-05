@@ -61,10 +61,10 @@ namespace GeolocationAds.TemplateViewModel
 
             this.Service = service;
 
-            FillTemplate();
+            Task.Run(async () => { await FillTemplate(); });
         }
 
-        public void FillTemplate()
+        public async Task FillTemplate()
         {
             if (!this.CurrentAdvertisement.Contents.IsObjectNull())
             {
@@ -79,7 +79,7 @@ namespace GeolocationAds.TemplateViewModel
 
                     if (item.Type == ContentVisualType.Video)
                     {
-                        var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+                        var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
 

@@ -15,7 +15,7 @@
 
             <!--  URLs  -->
             <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
-            <x:String x:Key="BackendUrl">http://192.168.0.4:5160/api</x:String>
+            <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <!--  Global  -->
@@ -236,28 +236,7 @@
                 <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
             </Style>
 
-            <!--  Data template for displaying a video  -->
-            <DataTemplate x:Key="VideoDataTemplate">
-                <Frame Style="{StaticResource imageFrame}">
-                    <WebView
-                        x:Name="SelectedVideo"
-                        HeightRequest="300"
-                        Source="{Binding Content, Converter={StaticResource ByteArrayToVideSourceConverter}}"
-                        WidthRequest="400" />
-                </Frame>
-            </DataTemplate>
 
-            <!--  Data template for displaying an image  -->
-            <DataTemplate x:Key="ImageDataTemplate">
-                <Frame Style="{StaticResource imageFrame}">
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="300"
-                        IsAnimationPlaying="{Binding IsAnimation}"
-                        Source="{Binding Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                        WidthRequest="400" />
-                </Frame>
-            </DataTemplate>
 
             <DataTemplate x:Key="ImageDataTemplateForDisplay">
 

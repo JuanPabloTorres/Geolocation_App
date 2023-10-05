@@ -16,37 +16,41 @@ namespace GeolocationAds.ViewModels
     {
         private byte[] fileBytes;
 
-        private ObservableCollection<AppSetting> _adTypesSettings;
+        //private ObservableCollection<AppSetting> _adTypesSettings;
 
-        public ObservableCollection<AppSetting> AdTypesSettings
-        {
-            get => _adTypesSettings;
-            set
-            {
-                if (_adTypesSettings != value)
-                {
-                    _adTypesSettings = value;
+        //public ObservableCollection<AppSetting> AdTypesSettings
+        //{
+        //    get => _adTypesSettings;
+        //    set
+        //    {
+        //        if (_adTypesSettings != value)
+        //        {
+        //            _adTypesSettings = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        {
-            get => _contentTypestemplate;
-            set
-            {
-                if (_contentTypestemplate != value)
-                {
-                    _contentTypestemplate = value;
+        //private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
+        //{
+        //    get => _contentTypestemplate;
+        //    set
+        //    {
+        //        if (_contentTypestemplate != value)
+        //        {
+        //            _contentTypestemplate = value;
+
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
 
         private AppSetting _selectedAdType;
 
@@ -112,9 +116,9 @@ namespace GeolocationAds.ViewModels
 
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
 
-            this.SelectedAdType = new AppSetting();
-
             this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+
+            this.SelectedAdType = new AppSetting();
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
@@ -122,7 +126,7 @@ namespace GeolocationAds.ViewModels
 
             ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
-            this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
+            //this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
         }
 
         private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -140,15 +144,6 @@ namespace GeolocationAds.ViewModels
 
                         foreach (var item in contents)
                         {
-                            //var _toModelContent = new ContentType()
-                            //{
-                            //    Content = CommonsTool.Compress(item.ContentType.Content),
-                            //    AdvertisingId = this.Model.ID,
-                            //    CreateDate = item.ContentType.CreateDate,
-                            //    Type = item.ContentType.Type,
-                            //    CreateBy = this.LogUserPerfilTool.LogUser.ID
-                            //};
-
                             this.Model.Contents.Add(item.ContentType);
                         }
                     }
@@ -171,6 +166,8 @@ namespace GeolocationAds.ViewModels
                     if (!template.IsObjectNull())
                     {
                         this.ContentTypesTemplate.Remove(template);
+
+
                     }
                 }
             }
@@ -194,12 +191,24 @@ namespace GeolocationAds.ViewModels
 
                 foreach (var item in this.Model.Contents)
                 {
-                    var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+                    if (item.Type == ContentVisualType.Image)
+                    {
+                        var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
-                    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+                        this.ContentTypesTemplate.Add(_template);
+                    }
+                    else
+                    {
+                        var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
-                    this.ContentTypesTemplate.Add(_template);
+                        var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+
+                        this.ContentTypesTemplate.Add(_template);
+                    }
+
+
                 }
+
                 this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
             }
             catch (Exception ex)
@@ -215,8 +224,6 @@ namespace GeolocationAds.ViewModels
             try
             {
                 var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
-                this.CollectionModel.Clear();
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -256,8 +263,6 @@ namespace GeolocationAds.ViewModels
 
             try
             {
-
-
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
@@ -288,6 +293,8 @@ namespace GeolocationAds.ViewModels
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
+                        //this.Model.Contents.Add(_content);
+
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content);
 
                         this.ContentTypesTemplate.Add(_template);
@@ -295,6 +302,8 @@ namespace GeolocationAds.ViewModels
                     else
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
+
+                        //this.Model.Contents.Add(_content);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 

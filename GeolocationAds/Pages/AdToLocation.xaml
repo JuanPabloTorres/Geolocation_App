@@ -48,8 +48,6 @@
                 CursorPosition="0"
                 HorizontalOptions="FillAndExpand"
                 Placeholder="..." />
-
-
         </StackLayout>
     </Shell.TitleView>-->
 
@@ -70,8 +68,6 @@
         </Grid.RowDefinitions>
 
         <!--<VerticalStackLayout Grid.Row="0" IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
-
-
 
             <Label
                 HorizontalOptions="Start"
@@ -154,7 +150,6 @@
                                     <Button.ImageSource>
                                         <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
                                     </Button.ImageSource>
-
                                 </Button>
 
                                 <Button
@@ -167,18 +162,23 @@
                                     <Button.ImageSource>
                                         <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                                     </Button.ImageSource>
-
                                 </Button>
                             </StackLayout>
 
                             <CarouselView
                                 Grid.Row="1"
-                                IsSwipeEnabled="True"
+                                IsBounceEnabled="False"
+                                IsScrollAnimated="False"
                                 ItemTemplate="{StaticResource typeSelector}"
-                                ItemsSource="{Binding ContentTypesTemplate}">
+                                ItemsSource="{Binding ContentTypesTemplate}"
+                                ItemsUpdatingScrollMode="KeepScrollOffset"
+                                Loop="False">
 
                                 <CarouselView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" />
+                                    <LinearItemsLayout
+                                        Orientation="Horizontal"
+                                        SnapPointsAlignment="Start"
+                                        SnapPointsType="MandatorySingle" />
                                 </CarouselView.ItemsLayout>
 
                                 <CarouselView.EmptyView>
@@ -269,7 +269,6 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
                 </Button.ImageSource>
-
             </Button>
             <Button
                 x:Name="NextBtn"
@@ -283,7 +282,6 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
                 </Button.ImageSource>
-
             </Button>
         </StackLayout>
     </Grid>

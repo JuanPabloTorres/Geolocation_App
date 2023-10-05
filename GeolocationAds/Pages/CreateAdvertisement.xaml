@@ -6,88 +6,207 @@
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Title="Create Your Content"
+    Title="Create Content"
     Routing.Route="CreateAdvertisement">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding UploadContentCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe8a7;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding SubmitCommand}" CommandParameter="{Binding Model}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
 
-        <DataTemplate x:Key="ImageDataTemplate2">
+        <!--<DataTemplate x:Key="ImageDataTemplateCreate">
 
-            <Frame Style="{StaticResource dataTemplateFrame}">
+
+            <Grid>
+                <Image Aspect="Fill" Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
+
+        -->
+        <!--  Button Container Grid  -->
+        <!--
                 <Grid>
-                    <Image
-                        Aspect="Fill"
-                        Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                        VerticalOptions="FillAndExpand" />
+        -->
+        <!--  Button is placed in the same cell as the image  -->
+        <!--
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <!--  Button Container Grid  -->
-                    <Grid>
-                        <!--  Button is placed in the same cell as the image  -->
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--  Button  -->
-                        <Button
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding CurrentAdvertisement}"
-                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                            Style="{StaticResource XButton}"
-                            Text="X"
-                            VerticalOptions="Start" />
-                    </Grid>
+        -->
+        <!--  Button  -->
+        <!--
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        Text="X"
+                        VerticalOptions="Start" />
                 </Grid>
-            </Frame>
+            </Grid>
+
         </DataTemplate>
 
-        <DataTemplate x:Key="VideoDataTemplate2">
+        <DataTemplate x:Key="VideoDataTemplateCreate">
 
-            <Frame Style="{StaticResource dataTemplateFrame}">
+
+            <Grid>
+
+                <toolkit:MediaElement
+                    Grid.Row="1"
+                    Aspect="Fill"
+                    ShouldAutoPlay="False"
+                    ShouldShowPlaybackControls="True"
+                    Source="{Binding MediaSource}" />
+
+        -->
+        <!--  Button Container Grid  -->
+        <!--
                 <Grid>
+        -->
+        <!--  Button is placed in the same cell as the image  -->
+        <!--
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <toolkit:MediaElement
-                        Grid.Row="1"
-                        Grid.RowSpan="2"
-                        Aspect="Fill"
-                        ShouldAutoPlay="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        ShouldShowPlaybackControls="True"
-                        Source="{Binding MediaSource}"
-                        VerticalOptions="FillAndExpand" />
-
-                    <!--  Button Container Grid  -->
-                    <Grid>
-                        <!--  Button is placed in the same cell as the image  -->
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--  Button  -->
-                        <Button
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding CurrentAdvertisement}"
-                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                            Style="{StaticResource XButton}"
-                            Text="X"
-                            VerticalOptions="Start" />
-                    </Grid>
+        -->
+        <!--  Button  -->
+        <!--
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        Text="X"
+                        VerticalOptions="Start" />
                 </Grid>
-            </Frame>
+            </Grid>
+
+        </DataTemplate>-->
+
+        <DataTemplate x:Key="ImageDataTemplateCreate">
+
+
+            <Grid>
+                <Image Aspect="Fill" Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
+
+                <!--  Button Container Grid  -->
+                <Grid>
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Button  -->
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        TextColor="#3e4144"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="MaterialIconsOutlined-Regular"
+                                Glyph="&#xe5cd;"
+                                Color="#3e4144" />
+                        </Button.ImageSource>
+
+                    </Button>
+                </Grid>
+            </Grid>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplateCreate">
+
+
+            <Grid>
+
+                <toolkit:MediaElement
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Aspect="Fill"
+                    ShouldShowPlaybackControls="True"
+                    Source="{Binding MediaSource}" />
+
+                <!--  Button Container Grid  -->
+                <Grid>
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+
+                    <!--  Button  -->
+                    <Button
+                        Grid.Row="0"
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        TextColor="#3e4144"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+
+                        <Button.ImageSource>
+                            <FontImageSource
+                                FontFamily="MaterialIconsOutlined-Regular"
+                                Glyph="&#xe5cd;"
+                                Color="#3e4144" />
+                        </Button.ImageSource>
+
+                    </Button>
+                </Grid>
+            </Grid>
+
         </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
-            ImageDataTemplate="{StaticResource ImageDataTemplate2}"
-            VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
+            ImageDataTemplate="{StaticResource ImageDataTemplateCreate}"
+            VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
     </ContentPage.Resources>
 
     <Frame Style="{StaticResource cardFrame}">
@@ -99,14 +218,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <!--<RowDefinition Height="Auto" />-->
                 <RowDefinition Height="100*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="10*" />
+                <!--<RowDefinition Height="Auto" />-->
+                <!--<RowDefinition Height="Auto" />-->
             </Grid.RowDefinitions>
-
-
-
 
             <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
                 <CollectionView.ItemTemplate>
@@ -138,7 +254,7 @@
                 SelectedItem="{Binding SelectedAdType}" />
 
             <!--  ... Choose File ...  -->
-            <Button
+            <!--<Button
                 x:Name="UploadButton"
                 Grid.Row="4"
                 Command="{Binding UploadContentCommand}"
@@ -152,16 +268,16 @@
                         Radius="40"
                         Offset="5,5" />
                 </Button.Shadow>
-            </Button>
+            </Button>-->
 
             <CarouselView
-                Grid.Row="5"
+                Grid.Row="4"
                 ItemTemplate="{StaticResource typeSelector}"
                 ItemsSource="{Binding ContentTypesTemplate}"
                 VerticalOptions="FillAndExpand" />
 
             <!--  Submit Button  -->
-            <Button
+            <!--<Button
                 x:Name="SubmitButton"
                 Grid.Row="6"
                 Command="{Binding SubmitCommand}"
@@ -177,19 +293,14 @@
                         Radius="40"
                         Offset="5,5" />
                 </Button.Shadow>
-            </Button>
-
-
+            </Button>-->
 
             <ActivityIndicator
-                Grid.Row="7"
+                Grid.Row="4"
                 IsRunning="{Binding IsLoading}"
                 Style="{StaticResource globalLoading}" />
-
-
         </Grid>
     </Frame>
-
 
     <!--<ScrollView>
             <Grid Padding="10">
@@ -272,17 +383,14 @@
                     IsRunning="{Binding IsLoading}"
                     IsVisible="{Binding IsLoading}"
                     Style="{StaticResource globalLoading}" />
-
             </Grid>
         </ScrollView>-->
 
     <!--<ContentView x:Name="LoadingIndicatorContainer" IsVisible="{Binding IsLoading}">
             <ContentView.Content>-->
-    <!--<ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" IsVisible="{Binding IsLoading}"/>-->
+    <!--<ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" IsVisible="{Binding IsLoading}" />-->
     <!--</ContentView.Content>
         </ContentView>-->
-
-
 
     <!--<VerticalStackLayout Style="{Binding verticalStandarStyle}">
 
@@ -295,8 +403,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-
 
     -->
     <!--<Label Style="{StaticResource globalLabel}" Text="Title:" />-->
@@ -366,5 +472,4 @@
             </ContentView.Content>
         </ContentView>
     </VerticalStackLayout>-->
-
 </ContentPage>

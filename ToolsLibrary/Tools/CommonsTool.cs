@@ -187,7 +187,7 @@ namespace ToolsLibrary.Tools
         //    return tempFilePath;
         //}
 
-        public static string SaveByteArrayToTempFile(byte[] byteArray)
+        public static async Task<string> SaveByteArrayToTempFile(byte[] byteArray)
         {
             string tempFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
@@ -195,7 +195,7 @@ namespace ToolsLibrary.Tools
 
             string tempFilePath = Path.Combine(tempFolderPath, tempFileName);
 
-            File.WriteAllBytes(tempFilePath, byteArray);
+            await File.WriteAllBytesAsync(tempFilePath, byteArray);
 
             return tempFilePath;
         }

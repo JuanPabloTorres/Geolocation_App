@@ -35,7 +35,8 @@ namespace GeolocationAds.DataTemplates
                 {
                     return VideoDataTemplate;
                 }
-                else if (contentType.ContentType.Type == ContentVisualType.Image)
+
+                if (contentType.ContentType.Type == ContentVisualType.Image)
                 {
                     return ImageDataTemplate;
                 }

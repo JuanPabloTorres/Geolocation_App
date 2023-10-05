@@ -67,7 +67,7 @@ namespace GeolocationAds.TemplateViewModel
                         }
                         else
                         {
-                            var _file = CommonsTool.SaveByteArrayToTempFile(item.Content);
+                            var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
                             var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
 

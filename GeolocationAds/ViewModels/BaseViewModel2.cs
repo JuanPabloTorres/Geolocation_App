@@ -16,21 +16,23 @@ namespace GeolocationAds.ViewModels
 {
     public partial class BaseViewModel2<T, S> : INotifyPropertyChanged, IQueryAttributable
     {
-        private ObservableCollection<ValidationResult> _validationResults;
+        //private ObservableCollection<ValidationResult> _validationResults;
 
-        public ObservableCollection<ValidationResult> ValidationResults
-        {
-            get => _validationResults;
-            set
-            {
-                if (_validationResults != value)
-                {
-                    _validationResults = value;
+        //public ObservableCollection<ValidationResult> ValidationResults
+        //{
+        //    get => _validationResults;
+        //    set
+        //    {
+        //        if (_validationResults != value)
+        //        {
+        //            _validationResults = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        public ObservableCollection<ValidationResult> ValidationResults { get; set; }
 
         //private ObservableCollection<T> _collectionModel;
 
