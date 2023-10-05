@@ -16,39 +16,7 @@ namespace GeolocationAds.ViewModels
 {
     public partial class BaseViewModel2<T, S> : INotifyPropertyChanged, IQueryAttributable
     {
-        //private ObservableCollection<ValidationResult> _validationResults;
-
-        //public ObservableCollection<ValidationResult> ValidationResults
-        //{
-        //    get => _validationResults;
-        //    set
-        //    {
-        //        if (_validationResults != value)
-        //        {
-        //            _validationResults = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         public ObservableCollection<ValidationResult> ValidationResults { get; set; }
-
-        //private ObservableCollection<T> _collectionModel;
-
-        //public ObservableCollection<T> CollectionModel
-        //{
-        //    get => _collectionModel;
-        //    set
-        //    {
-        //        if (_collectionModel != value)
-        //        {
-        //            _collectionModel = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
 
         public ObservableCollection<T> CollectionModel { get; set; }
 
@@ -590,6 +558,22 @@ namespace GeolocationAds.ViewModels
             this.IsLoading = false;
         }
 
+        protected virtual async Task LoadData(object extraData)
+        {
+            this.IsLoading = true;
+
+            try
+            {
+                await Shell.Current.DisplayAlert("Error", "To Load Data Logic with extra data...", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+            this.IsLoading = false;
+        }
+
         protected virtual async Task Get(int id)
         {
             try
@@ -624,22 +608,6 @@ namespace GeolocationAds.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-        }
-
-        protected virtual async Task LoadData(object extraData)
-        {
-            this.IsLoading = true;
-
-            try
-            {
-                await Shell.Current.DisplayAlert("Error", "To Load Data Logic with extra data...", "OK");
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-            }
-
-            this.IsLoading = false;
         }
     }
 }

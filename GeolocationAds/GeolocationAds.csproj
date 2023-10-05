@@ -63,6 +63,7 @@
 	  <None Remove="Resources\Fonts\Sunshine.ttf" />
 	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\BlackBackGround.jpg" />
+	  <None Remove="Resources\Images\gbook03.jpg" />
 	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\LoginBackGroundYellow.jpg" />
 	  <None Remove="Resources\Images\loginbackgroundyellow2.jpg" />
@@ -70,11 +71,13 @@
 	  <None Remove="Resources\Images\maps.png" />
 	  <None Remove="Resources\Images\mediacontent.png" />
 	  <None Remove="Resources\Images\moreinformation.png" />
+	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Images\profile.png" />
 	  <None Remove="Resources\Images\prototypeLogo.png" />
 	  <None Remove="Resources\Images\radar.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\star.png" />
+	  <None Remove="Resources\Images\travelexplore.png" />
 	  <None Remove="Resources\Images\useravatar.png" />
 	  <None Remove="Resources\Splash\splash01.jpg" />
 	</ItemGroup>
@@ -150,6 +153,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopUps\FilterPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PopUps\FilterPopUpForSearch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopUps\RecoveryPasswordPopUp.xaml">

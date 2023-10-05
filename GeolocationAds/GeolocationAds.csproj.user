@@ -50,6 +50,9 @@
     <MauiXaml Update="PopUps\FilterPopUp.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="PopUps\FilterPopUpForSearch.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="PopUps\RecoveryPasswordPopUp.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

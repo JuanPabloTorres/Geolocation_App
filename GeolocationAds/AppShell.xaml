@@ -19,7 +19,7 @@
         <ShellContent
             Title="Find Content"
             ContentTemplate="{DataTemplate pages:SearchAd}"
-            Icon="home.png" />
+            Icon="travelexplore.png" />
 
         <ShellContent
             Title="Captues"
@@ -29,7 +29,7 @@
         <ShellContent
             Title="Create"
             ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
-            Icon="add.png" />
+            Icon="plus.png" />
         <ShellContent
             Title="My Content"
             ContentTemplate="{DataTemplate pages:AdToLocation}"
@@ -44,6 +44,8 @@
             Title="Settings"
             ContentTemplate="{DataTemplate pages:UserSetting}"
             Icon="profile.png" />
+
+
     </FlyoutItem>
 
     <Shell.FlyoutHeader>
@@ -81,7 +83,14 @@
             <Button
                 Command="{Binding SignOutCommand}"
                 Style="{StaticResource globalButton}"
-                Text="Sign Out" />
+                Text="Sign Out">
+
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
+                </Button.ImageSource>
+
+            </Button>
+
         </StackLayout>
     </Shell.FlyoutFooter>
 </Shell>

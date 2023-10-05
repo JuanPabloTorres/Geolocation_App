@@ -168,10 +168,11 @@
                 <Setter Property="BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="BorderColor" Value="#ffc340" />
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="Padding" Value="10" />
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="Padding" Value="15" />
+                <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HasShadow" Value="True" />
             </Style>
 
@@ -210,8 +211,7 @@
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="0" />
-
-                <Setter Property="BackgroundColor" Value="#007BFF" />
+                <Setter Property="BackgroundColor" Value="#1e90ff" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
 

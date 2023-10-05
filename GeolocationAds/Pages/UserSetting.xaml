@@ -7,15 +7,25 @@
     Title="App Setting"
     Routing.Route="UserSetting">
 
-    <VerticalStackLayout VerticalOptions="FillAndExpand">
-        <Label Style="{StaticResource globalTitle}" Text="App Setting" />
+    <Grid VerticalOptions="CenterAndExpand">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+
+        </Grid.RowDefinitions>
+
 
         <Button
+            Grid.Row="0"
             Command="{Binding onNavigateEditPerfilCommand}"
             CommandParameter="{Binding Model.ID}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
-            Text="Update Perfil">
+            Text="Update Perfil"
+            TextTransform="Uppercase">
 
             <Button.Shadow>
                 <Shadow
@@ -24,14 +34,20 @@
                     Radius="40"
                     Offset="5,5" />
             </Button.Shadow>
+
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe923;" />
+            </Button.ImageSource>
         </Button>
 
         <Button
+            Grid.Row="1"
             Command="{Binding onNavigateEditLoginCommand}"
             CommandParameter="{Binding Model.Login.ID}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
-            Text="Update Credential">
+            Text="Update Credential"
+            TextTransform="Uppercase">
 
             <Button.Shadow>
                 <Shadow
@@ -40,6 +56,10 @@
                     Radius="40"
                     Offset="5,5" />
             </Button.Shadow>
+
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe923;" />
+            </Button.ImageSource>
         </Button>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

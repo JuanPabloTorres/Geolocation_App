@@ -23,34 +23,6 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <!--<Shell.TitleView>
-
-        <StackLayout Orientation="Horizontal">
-
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="My Content"
-                TextColor="White" />
-
-    -->
-    <!--<localControl:CustomPickerContentView
-                HorizontalOptions="FillAndExpand"
-                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                ItemDisplayBindingPath="Value"
-                ItemsSource="{Binding AdTypesSettings}"
-                SelectValue="{Binding SelectedAdType}"
-                SelectedItem="{Binding SelectedAdType}" />-->
-    <!--
-
-            <Entry
-                ClearButtonVisibility="WhileEditing"
-                CursorPosition="0"
-                HorizontalOptions="FillAndExpand"
-                Placeholder="..." />
-        </StackLayout>
-    </Shell.TitleView>-->
-
     <ContentPage.Resources>
 
         <templateSelector:ContentTypeTemplateSelector
@@ -62,55 +34,23 @@
     <Grid>
 
         <Grid.RowDefinitions>
-
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <!--<VerticalStackLayout Grid.Row="0" IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
-
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="Type:" />
-            <localControl:CustomPickerContentView
-                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                ItemDisplayBindingPath="Value"
-                ItemsSource="{Binding AdTypesSettings}"
-                SelectValue="{Binding SelectedAdType}"
-                SelectedItem="{Binding SelectedAdType}" />
-
-        -->
-        <!--<Button
-                Grid.Row="1"
-                Command="{Binding SearchCommand}"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButton}"
-                Text="Refresh">
-
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-            </Button>-->
-        <!--
-        </VerticalStackLayout>-->
 
         <CarouselView
             x:Name="carouselView"
             Grid.Row="0"
             Margin="0"
-            IsScrollAnimated="True"
             IsSwipeEnabled="False"
-            ItemsSource="{Binding CollectionModel}">
+            ItemsSource="{Binding CollectionModel}"
+            Position="0">
 
             <CarouselView.EmptyView>
-                <VerticalStackLayout>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
-                </VerticalStackLayout>
+
+                <Grid>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="My Content Goes Here" />
+                </Grid>
             </CarouselView.EmptyView>
 
             <CarouselView.ItemTemplate>
@@ -126,7 +66,6 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
-                                <!--<RowDefinition Height="Auto" />-->
                             </Grid.RowDefinitions>
 
                             <StackLayout
@@ -188,48 +127,6 @@
                                 </CarouselView.EmptyView>
                             </CarouselView>
 
-                            <!--<Grid Grid.Row="2">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Button
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    BackgroundColor="#3e4144"
-                                    Command="{Binding SetLocationCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="📍"
-                                    TextColor="White" />
-
-                                <Button
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    BackgroundColor="#3e4144"
-                                    Command="{Binding onNavigate}"
-                                    CommandParameter="{Binding CurrentAdvertisement.ID}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="✏️"
-                                    TextColor="White" />
-
-                                <Button
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    BackgroundColor="#3e4144"
-                                    Command="{Binding onNavigate}"
-                                    CommandParameter="{Binding CurrentAdvertisement.ID}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="🔧📍"
-                                    TextColor="White" />
-                            </Grid>-->
-
                             <ActivityIndicator
                                 Grid.Row="2"
                                 IsRunning="{Binding IsLoading}"
@@ -244,13 +141,6 @@
                 <LinearItemsLayout Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
         </CarouselView>
-
-        <ActivityIndicator
-            Grid.Row="1"
-            IsRunning="{Binding IsLoading}"
-            IsVisible="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}"
-            VerticalOptions="CenterAndExpand" />
 
         <StackLayout
             Grid.Row="1"
@@ -284,5 +174,10 @@
                 </Button.ImageSource>
             </Button>
         </StackLayout>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
     </Grid>
 </ContentPage>

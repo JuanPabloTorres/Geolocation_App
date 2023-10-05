@@ -8,7 +8,10 @@
     xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <Grid Padding="15" BackgroundColor="White" WidthRequest="280">
+    <Grid
+        Padding="15"
+        BackgroundColor="White"
+        WidthRequest="280">
 
         <Grid.RowDefinitions>
 
@@ -26,14 +29,28 @@
                 BackgroundColor="Transparent"
                 Clicked="OnCloseButtonClicked"
                 HorizontalOptions="EndAndExpand"
-                Style="{StaticResource globalButton}"
-                Text="X"
-                TextColor="#242124" />
+                Style="{StaticResource XButton}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+
+
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="MaterialIconsOutlined-Regular"
+                        Glyph="&#xe5cd;"
+                        Color="#3e4144" />
+                </Button.ImageSource>
+
+            </Button>
         </StackLayout>
 
         <VerticalStackLayout Grid.Row="1">
-
-
 
             <Label
                 HorizontalOptions="Start"
@@ -45,11 +62,7 @@
                 ItemsSource="{Binding AdTypesSettings}"
                 SelectValue="{Binding SelectedAdType}"
                 SelectedItem="{Binding SelectedAdType}" />
-
-
         </VerticalStackLayout>
-
-
 
         <Button
             Grid.Row="2"
@@ -57,7 +70,6 @@
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="Search" />
-
 
         <ActivityIndicator
             Grid.Row="2"

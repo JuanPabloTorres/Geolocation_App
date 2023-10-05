@@ -100,6 +100,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.Filt
 build_metadata.AdditionalFiles.TargetPath = PopUps\FilterPopUp.xaml
 build_metadata.AdditionalFiles.RelativePath = PopUps\FilterPopUp.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/FilterPopUpForSearch.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.FilterPopUpForSearch.xaml
+build_metadata.AdditionalFiles.TargetPath = PopUps\FilterPopUpForSearch.xaml
+build_metadata.AdditionalFiles.RelativePath = PopUps\FilterPopUpForSearch.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/RecoveryPasswordPopUp.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.RecoveryPasswordPopUp.xaml

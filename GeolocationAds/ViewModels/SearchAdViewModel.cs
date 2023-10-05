@@ -1,9 +1,12 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.Tools;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -16,6 +19,10 @@ namespace GeolocationAds.ViewModels
         private readonly IAppSettingService appSettingService;
 
         private readonly ICaptureService captureService;
+
+        private FilterPopUpForSearch _filterPopUp;
+
+        public ICommand OpenFilterPopUpCommand { get; set; }
 
         private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
 
@@ -57,6 +64,8 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        private FilterPopUpViewModel filterPopUpViewModel;
+
         public SearchAdViewModel(Advertisement advertisement, ICaptureService captureService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUser) : base(advertisement, geolocationAdService, logUser)
         {
             this.appSettingService = appSettingService;
@@ -71,9 +80,13 @@ namespace GeolocationAds.ViewModels
 
             this.SearchCommand = new Command(Initialize);
 
+            this.OpenFilterPopUpCommand = new Command(OpenFilterPopUp);
+
             this.SelectedAdType = new AppSetting();
 
             InitializeSettings();
+
+            FilterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -82,6 +95,29 @@ namespace GeolocationAds.ViewModels
                     this.NearByTemplateViewModels.Clear();
                 });
             });
+        }
+
+        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        {
+            try
+            {
+                await this._filterPopUp.CloseAsync();
+
+                var _sender = sender as FilterPopUpViewModel;
+
+                if (!_sender.IsObjectNull())
+                {
+                    this.SelectedAdType = _sender.SelectedAdType;
+
+                    this.SelectedDistance = _sender.SelectedDistance;
+
+                    Initialize();
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         private async Task LoadSettings2()
@@ -110,6 +146,8 @@ namespace GeolocationAds.ViewModels
                     SelectedAdType = AdTypesSettings.FirstOrDefault();
 
                     SelectedDistance = DistanceSettings.FirstOrDefault();
+
+                    filterPopUpViewModel = new FilterPopUpViewModel(this.AdTypesSettings, this.DistanceSettings);
                 }
                 else
                 {
@@ -182,6 +220,20 @@ namespace GeolocationAds.ViewModels
         public async void InitializeSettings()
         {
             await LoadSettings2();
+        }
+
+        private async void OpenFilterPopUp()
+        {
+            try
+            {
+                this._filterPopUp = new FilterPopUpForSearch(this.filterPopUpViewModel);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUp);
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         //public void Dispose()

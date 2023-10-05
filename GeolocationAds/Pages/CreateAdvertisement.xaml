@@ -26,88 +26,7 @@
 
     <ContentPage.Resources>
 
-        <!--<DataTemplate x:Key="ImageDataTemplateCreate">
-
-
-            <Grid>
-                <Image Aspect="Fill" Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
-
-        -->
-        <!--  Button Container Grid  -->
-        <!--
-                <Grid>
-        -->
-        <!--  Button is placed in the same cell as the image  -->
-        <!--
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-        -->
-        <!--  Button  -->
-        <!--
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Command="{Binding RemoveCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        Text="X"
-                        VerticalOptions="Start" />
-                </Grid>
-            </Grid>
-
-        </DataTemplate>
-
-        <DataTemplate x:Key="VideoDataTemplateCreate">
-
-
-            <Grid>
-
-                <toolkit:MediaElement
-                    Grid.Row="1"
-                    Aspect="Fill"
-                    ShouldAutoPlay="False"
-                    ShouldShowPlaybackControls="True"
-                    Source="{Binding MediaSource}" />
-
-        -->
-        <!--  Button Container Grid  -->
-        <!--
-                <Grid>
-        -->
-        <!--  Button is placed in the same cell as the image  -->
-        <!--
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-        -->
-        <!--  Button  -->
-        <!--
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Command="{Binding RemoveCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        Text="X"
-                        VerticalOptions="Start" />
-                </Grid>
-            </Grid>
-
-        </DataTemplate>-->
-
         <DataTemplate x:Key="ImageDataTemplateCreate">
-
 
             <Grid>
                 <Image Aspect="Fill" Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
@@ -144,15 +63,12 @@
                                 Glyph="&#xe5cd;"
                                 Color="#3e4144" />
                         </Button.ImageSource>
-
                     </Button>
                 </Grid>
             </Grid>
-
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplateCreate">
-
 
             <Grid>
 
@@ -170,7 +86,6 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-
                     <!--  Button  -->
                     <Button
                         Grid.Row="0"
@@ -189,18 +104,15 @@
                                 Offset="5,5" />
                         </Button.Shadow>
 
-
                         <Button.ImageSource>
                             <FontImageSource
                                 FontFamily="MaterialIconsOutlined-Regular"
                                 Glyph="&#xe5cd;"
                                 Color="#3e4144" />
                         </Button.ImageSource>
-
                     </Button>
                 </Grid>
             </Grid>
-
         </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
@@ -218,10 +130,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <!--<RowDefinition Height="Auto" />-->
                 <RowDefinition Height="100*" />
-                <!--<RowDefinition Height="Auto" />-->
-                <!--<RowDefinition Height="Auto" />-->
             </Grid.RowDefinitions>
 
             <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
@@ -232,6 +141,10 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
             </CollectionView>
 
             <local:CustomEntryContentView
@@ -253,47 +166,28 @@
                 SelectValue="{Binding SelectedAdType}"
                 SelectedItem="{Binding SelectedAdType}" />
 
-            <!--  ... Choose File ...  -->
-            <!--<Button
-                x:Name="UploadButton"
-                Grid.Row="4"
-                Command="{Binding UploadContentCommand}"
-                Style="{StaticResource globalButton}"
-                Text="Choose Image">
-
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-            </Button>-->
-
             <CarouselView
                 Grid.Row="4"
+                IsBounceEnabled="False"
+                IsScrollAnimated="False"
                 ItemTemplate="{StaticResource typeSelector}"
                 ItemsSource="{Binding ContentTypesTemplate}"
-                VerticalOptions="FillAndExpand" />
+                ItemsUpdatingScrollMode="KeepScrollOffset"
+                Loop="False">
 
-            <!--  Submit Button  -->
-            <!--<Button
-                x:Name="SubmitButton"
-                Grid.Row="6"
-                Command="{Binding SubmitCommand}"
-                CommandParameter="{Binding Model}"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButton}"
-                Text="Save">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Horizontal"
+                        SnapPointsAlignment="Start"
+                        SnapPointsType="MandatorySingle" />
+                </CarouselView.ItemsLayout>
 
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-            </Button>-->
+                <CarouselView.EmptyView>
+                    <StackLayout>
+                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                    </StackLayout>
+                </CarouselView.EmptyView>
+            </CarouselView>
 
             <ActivityIndicator
                 Grid.Row="4"
@@ -301,175 +195,4 @@
                 Style="{StaticResource globalLoading}" />
         </Grid>
     </Frame>
-
-    <!--<ScrollView>
-            <Grid Padding="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-                <local:CustomEntryContentView
-                    Grid.Row="1"
-                    Placeholder="Title"
-                    Text="{Binding Model.Title}" />
-
-                <local:CustomEntryContentView
-                    Grid.Row="2"
-                    Placeholder="Description"
-                    Text="{Binding Model.Description}" />
-
-                <local:CustomPickerContentView
-                    Grid.Row="3"
-                    ItemDisplayBindingPath="Value"
-                    ItemsSource="{Binding AdTypesSettings}"
-                    SelectedItem="{Binding SelectedAdType}" />
-
-                <Button
-                    x:Name="UploadButton"
-                    Grid.Row="4"
-                    Command="{Binding UploadContentCommand}"
-                    Style="{StaticResource globalButton}"
-                    Text="Choose Image">
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
-                </Button>
-
-                <CarouselView
-                    Grid.Row="5"
-                    ItemTemplate="{StaticResource typeSelector}"
-                    ItemsSource="{Binding ContentTypesTemplate}" />
-
-                <Button
-                    x:Name="SubmitButton"
-                    Grid.Row="6"
-                    Command="{Binding SubmitCommand}"
-                    CommandParameter="{Binding Model}"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource globalButton}"
-                    Text="Save">
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
-                </Button>
-
-                <ActivityIndicator
-                    Grid.Row="7"
-                    IsRunning="{Binding IsLoading}"
-                    IsVisible="{Binding IsLoading}"
-                    Style="{StaticResource globalLoading}" />
-            </Grid>
-        </ScrollView>-->
-
-    <!--<ContentView x:Name="LoadingIndicatorContainer" IsVisible="{Binding IsLoading}">
-            <ContentView.Content>-->
-    <!--<ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" IsVisible="{Binding IsLoading}" />-->
-    <!--</ContentView.Content>
-        </ContentView>-->
-
-    <!--<VerticalStackLayout Style="{Binding verticalStandarStyle}">
-
-        <CollectionView ItemsSource="{Binding ValidationResults}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-    -->
-    <!--<Label Style="{StaticResource globalLabel}" Text="Title:" />-->
-    <!--
-        <local:CustomEntryContentView Placeholder="Title" Text="{Binding Model.Title}" />
-
-    -->
-    <!--<Label Style="{StaticResource globalLabel}" Text="Description:" />-->
-    <!--
-        <local:CustomEntryContentView Placeholder="Description" Text="{Binding Model.Description}" />
-
-    -->
-    <!--<Label Style="{StaticResource globalLabel}" Text="Type:" />-->
-    <!--
-        <local:CustomPickerContentView
-            HorizontalOptions="FillAndExpand"
-            ItemDisplayBindingPath="Value"
-            ItemsSource="{Binding AdTypesSettings}"
-            SelectedItem="{Binding SelectedAdType}" />
-
-    -->
-    <!--  ... Choose File ...  -->
-    <!--
-        <Button
-            x:Name="UploadButton"
-            Command="{Binding UploadContentCommand}"
-            Style="{StaticResource globalButton}"
-            Text="Choose Image">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>
-
-        <CarouselView ItemTemplate="{StaticResource typeSelector}" ItemsSource="{Binding ContentTypesTemplate}" />
-
-    -->
-    <!--  Submit Button  -->
-    <!--
-        <Button
-            x:Name="SubmitButton"
-            Command="{Binding SubmitCommand}"
-            CommandParameter="{Binding Model}"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Save">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>
-
-        <ContentView
-            x:Name="LoadingIndicatorContainer"
-            IsVisible="{Binding IsLoading}"
-            VerticalOptions="FillAndExpand">
-            <ContentView.Content>
-                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-            </ContentView.Content>
-        </ContentView>
-    </VerticalStackLayout>-->
 </ContentPage>

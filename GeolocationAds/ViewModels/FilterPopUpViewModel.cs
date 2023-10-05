@@ -1,17 +1,11 @@
-﻿using GeolocationAds.Services;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using ToolsLibrary.Enums;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
     public class FilterPopUpViewModel : BaseViewModel
     {
-        private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
-
-        private readonly IAppSettingService appSettingService;
-
         public ICommand FilterCommand { get; set; }
 
         private AppSetting _selectedAdType;
@@ -50,60 +44,31 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
-        public FilterPopUpViewModel(IAppSettingService appSettingService)
+        public FilterPopUpViewModel(IEnumerable<AppSetting> appSettings, IEnumerable<string> distanceSettings)
         {
-            this.appSettingService = appSettingService;
+            this.DistanceSettings = new ObservableCollection<string>(distanceSettings);
 
-            this.DistanceSettings = new ObservableCollection<string>();
+            this.AdTypesSettings = new ObservableCollection<AppSetting>(appSettings);
 
-            this.AdTypesSettings = new ObservableCollection<AppSetting>();
+            SelectedAdType = AdTypesSettings.FirstOrDefault();
 
-            InitializeSettings();
+            SelectedDistance = DistanceSettings.FirstOrDefault();
+
+            this.FilterCommand = new Command(OnsubmitFilter);
         }
 
-        public async void InitializeSettings()
+        public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
+
+        public static event SubmitFilterEventHandler OnFilterItem;
+
+        public virtual void FilterItemInvoke(EventArgs e)
         {
-            await LoadSettings2();
+            OnFilterItem?.Invoke(this, e);
         }
 
-        private async Task LoadSettings2()
+        public void OnsubmitFilter()
         {
-            this.IsLoading = true;
-
-            try
-            {
-                var _apiResponse = await this.appSettingService.GetAppSettingByNames(settings);
-
-                if (_apiResponse.IsSuccess)
-                {
-                    foreach (var item in _apiResponse.Data)
-                    {
-                        if (SettingName.MeterDistance.ToString() == item.SettingName)
-                        {
-                            DistanceSettings.Add(item.Value);
-                        }
-
-                        if (SettingName.AdTypes.ToString() == item.SettingName)
-                        {
-                            AdTypesSettings.Add(item);
-                        }
-                    }
-
-                    SelectedAdType = AdTypesSettings.FirstOrDefault();
-
-                    SelectedDistance = DistanceSettings.FirstOrDefault();
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-            }
-
-            this.IsLoading = false;
+            FilterItemInvoke(EventArgs.Empty);
         }
     }
 }

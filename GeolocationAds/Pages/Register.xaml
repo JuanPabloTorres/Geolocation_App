@@ -4,74 +4,131 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
-    Title="Register"
+    Title="New Registration"
     Routing.Route="Register">
 
-    <ScrollView IsClippedToBounds="True" Orientation="Vertical">
-        <Frame Style="{StaticResource cardFrame}">
+    <ContentPage.ToolbarItems>
 
-            <VerticalStackLayout Margin="10">
+        <ToolbarItem Command="{Binding SubmitCommand}" CommandParameter="{Binding Model}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 
-                <Label
-                    FontSize="30"
-                    Style="{StaticResource globalLabel}"
-                    Text="Complete Registration" />
+    <Frame Padding="10" Style="{StaticResource cardFrame}">
 
-                <CollectionView ItemsSource="{Binding ValidationResults}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+        <Grid VerticalOptions="CenterAndExpand">
 
-                <Label Style="{StaticResource globalLabel}" Text="FullName:" />
-                <local:CustomEntryContentView Placeholder="FullName" Text="{Binding Model.FullName}" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                <Label Style="{StaticResource globalLabel}" Text="Phone:" />
-                <local:CustomEntryContentView Placeholder="Phone" Text="{Binding Model.Phone}" />
+            <Label
+                Grid.Row="0"
+                FontSize="30"
+                Style="{StaticResource globalLabel}"
+                Text="Complete Registration" />
 
-                <Label Style="{StaticResource globalLabel}" Text="Email:" />
-                <local:CustomEntryContentView Placeholder="Email" Text="{Binding Model.Email}" />
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                <Label Style="{StaticResource globalLabel}" Text="Username:" />
-                <local:CustomEntryContentView Placeholder="Username" Text="{Binding Model.Login.Username}" />
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
 
-                <Label Style="{StaticResource globalLabel}" Text="Passowrd:" />
-                <local:CustomEntryContentView
-                    IsPassword="True"
-                    Placeholder="Password"
-                    Text="{Binding Model.Login.Password}" />
+            </CollectionView>
 
-                <!--  Submit Button  -->
-                <Button
-                    x:Name="SubmitButton"
-                    Command="{Binding SubmitCommand}"
-                    CommandParameter="{Binding Model}"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource globalButton}"
-                    Text="Complete">
+            <Label
+                Grid.Row="2"
+                Style="{StaticResource globalLabel}"
+                Text="FullName:" />
+            <local:CustomEntryContentView
+                Grid.Row="3"
+                Placeholder="FullName"
+                Text="{Binding Model.FullName}" />
 
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
-                </Button>
+            <Label
+                Grid.Row="4"
+                Style="{StaticResource globalLabel}"
+                Text="Phone:" />
+            <local:CustomEntryContentView
+                Grid.Row="5"
+                Placeholder="Phone"
+                Text="{Binding Model.Phone}" />
 
-                <ContentView
-                    x:Name="LoadingIndicatorContainer"
-                    IsVisible="{Binding IsLoading}"
-                    VerticalOptions="FillAndExpand">
-                    <ContentView.Content>
-                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                    </ContentView.Content>
-                </ContentView>
-            </VerticalStackLayout>
-        </Frame>
-    </ScrollView>
+            <Label
+                Grid.Row="6"
+                Style="{StaticResource globalLabel}"
+                Text="Email:" />
+            <local:CustomEntryContentView
+                Grid.Row="7"
+                Placeholder="Email"
+                Text="{Binding Model.Email}" />
+
+            <Label
+                Grid.Row="8"
+                Style="{StaticResource globalLabel}"
+                Text="Username:" />
+            <local:CustomEntryContentView
+                Grid.Row="9"
+                Placeholder="Username"
+                Text="{Binding Model.Login.Username}" />
+
+            <Label
+                Grid.Row="10"
+                Style="{StaticResource globalLabel}"
+                Text="Password:" />
+            <local:CustomEntryContentView
+                Grid.Row="11"
+                IsPassword="True"
+                Placeholder="Password"
+                Text="{Binding Model.Login.Password}" />
+
+            <!--  Submit Button  -->
+            <!--<Button
+                x:Name="SubmitButton"
+                Command="{Binding SubmitCommand}"
+                CommandParameter="{Binding Model}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}"
+                Text="Complete">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+            </Button>-->
+
+            <ContentView
+                x:Name="LoadingIndicatorContainer"
+                Grid.Row="12"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand">
+                <ContentView.Content>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                </ContentView.Content>
+            </ContentView>
+        </Grid>
+    </Frame>
 </ContentPage>

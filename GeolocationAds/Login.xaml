@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="Login"
-    BackgroundImageSource="blackbackground.jpg"
+    BackgroundImageSource="gbook03.jpg"
     Routing.Route="Login"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -47,7 +47,13 @@
                     CommandParameter="{Binding Model}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
-                    Text="Sign In" />
+                    Text="Sign In">
+
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xea77;" />
+                    </Button.ImageSource>
+
+                </Button>
 
                 <Button
                     BackgroundColor="CadetBlue"

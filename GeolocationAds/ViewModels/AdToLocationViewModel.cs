@@ -58,6 +58,8 @@ namespace GeolocationAds.ViewModels
 
         private FilterPopUp filterPopUp;
 
+        private FilterPopUpViewModel filterPopUpViewModel;
+
         public ICommand OpenFilterPopUpCommand { get; set; }
 
         public AdToLocationViewModel(MangeContentTemplateViewModel adLocationTemplateViewModel, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUserPerfilTool) : base(adLocationTemplateViewModel, geolocationAdService, logUserPerfilTool)
@@ -161,6 +163,8 @@ namespace GeolocationAds.ViewModels
                     SelectedAdType = AdTypesSettings.FirstOrDefault();
 
                     SelectedDistance = DistanceSettings.FirstOrDefault();
+
+                    filterPopUpViewModel = new FilterPopUpViewModel(this.AdTypesSettings, this.DistanceSettings);
                 }
                 else
                 {
@@ -193,9 +197,7 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                var _viewModel = new FilterPopUpViewModel(this.appSettingService);
-
-                this.filterPopUp = new FilterPopUp(_viewModel);
+                this.filterPopUp = new FilterPopUp(this.filterPopUpViewModel);
 
                 await Shell.Current.CurrentPage.ShowPopupAsync(this.filterPopUp);
             }

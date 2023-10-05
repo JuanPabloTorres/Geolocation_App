@@ -189,17 +189,44 @@ namespace ToolsLibrary.Tools
 
         public static async Task<string> SaveByteArrayToTempFile(byte[] byteArray)
         {
-            string tempFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            try
+            {
+                string tempFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-            string tempFileName = Guid.NewGuid().ToString().Take(4).ToString(); // Use a unique filename
+                // Clean up existing temporary files in the folder
+                CleanUpTempFiles(tempFolderPath);
 
-            string tempFilePath = Path.Combine(tempFolderPath, tempFileName);
+                string tempFileName = Guid.NewGuid().ToString().Take(4).ToString(); // Use a unique filename
 
-            await File.WriteAllBytesAsync(tempFilePath, byteArray);
+                string tempFilePath = Path.Combine(tempFolderPath, tempFileName);
 
-            return tempFilePath;
+                await File.WriteAllBytesAsync(tempFilePath, byteArray);
+
+                return tempFilePath;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+            return string.Empty;
         }
 
+        private static async void CleanUpTempFiles(string folderPath)
+        {
+            try
+            {
+                foreach (string filePath in Directory.GetFiles(folderPath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during cleanup
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
 
         public static async Task SendEmailAsync(EmailRequest emailRequest, IConfiguration configuration)
         {
@@ -223,7 +250,6 @@ namespace ToolsLibrary.Tools
                 Body = emailRequest.Body,
 
                 IsBodyHtml = true,
-
             };
 
             mailMessage.To.Add(emailRequest.To);

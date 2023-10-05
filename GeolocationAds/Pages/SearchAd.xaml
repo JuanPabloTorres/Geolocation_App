@@ -6,8 +6,23 @@
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
-    Title="Are You Look For Something?"
+    Title="Find Content"
     Routing.Route="SearchAd">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding OpenFilterPopUpCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding SearchCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xf04e;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
 
@@ -19,70 +34,21 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-
         </Grid.RowDefinitions>
-
-        <StackLayout
-            Grid.Row="0"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Orientation="Vertical">
-
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="Distance: (M)" />
-
-            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
-
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="Type:" />
-            <localControl:CustomPickerContentView
-                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                ItemDisplayBindingPath="Value"
-                ItemsSource="{Binding AdTypesSettings}"
-                SelectValue="{Binding SelectedAdType}"
-                SelectedItem="{Binding SelectedAdType}" />
-        </StackLayout>
-
-        <!--  Submit Button  -->
-        <Button
-            x:Name="SearchAdButton"
-            Grid.Row="1"
-            Command="{Binding SearchCommand}"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="What's Nearby?">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>
-
-        <!--<ActivityIndicator
-            Grid.Row="2"
-            IsRunning="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}" />-->
 
         <CarouselView
             x:Name="carouselView"
-            Grid.Row="2"
+            Grid.Row="0"
+            Position="0"
             IsSwipeEnabled="False"
             ItemsSource="{Binding NearByTemplateViewModels}">
 
             <CarouselView.EmptyView>
 
                 <Grid>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Are You Look For Something?" />
                 </Grid>
             </CarouselView.EmptyView>
 
@@ -90,66 +56,83 @@
 
                 <DataTemplate>
 
-                    <Frame Style="{StaticResource cardFrame}">
 
-                        <Grid VerticalOptions="FillAndExpand">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="20*" />
-                                <RowDefinition Height="50*" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                    <Grid>
 
-                            <StackLayout
-                                Grid.Row="0"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal"
-                                VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                                <Label
-                                    HorizontalOptions="Start"
-                                    Style="{StaticResource globalLabel}"
-                                    Text="{Binding Advertisement.Title}" />
-                            </StackLayout>
+                        <StackLayout
+                            Grid.Row="0"
+                            BackgroundColor="#ff9800"
+                            Orientation="Horizontal">
 
-                            <CarouselView
-                                Grid.Row="1"
-                                IsSwipeEnabled="True"
-                                ItemTemplate="{StaticResource typeSelector}"
-                                ItemsSource="{Binding ContentTypesTemplate}"
-                                VerticalOptions="FillAndExpand">
+                            <Label
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource globalLabel}"
+                                Text="{Binding Advertisement.Title}"
+                                TextColor="White" />
 
-                                <CarouselView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" />
-                                </CarouselView.ItemsLayout>
+                            <Button
+                                Command="{Binding OpenActionPopUpCommand}"
+                                CommandParameter="{Binding CurrentAdvertisement}"
+                                CornerRadius="0"
+                                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                Style="{StaticResource XButton}">
 
-                                <CarouselView.EmptyView>
-                                    <StackLayout>
-                                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
-                                    </StackLayout>
-                                </CarouselView.EmptyView>
-                            </CarouselView>
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
+                                </Button.ImageSource>
+                            </Button>
+                        </StackLayout>
 
-                            <StackLayout
-                                Grid.Row="2"
-                                Margin="5"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal">
-                                <Button
-                                    Command="{Binding CaptureCommand}"
-                                    CommandParameter="{Binding Advertisement}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="☆ Capture" />
-                            </StackLayout>
+                        <CarouselView
+                            Grid.Row="1"
+                            IsBounceEnabled="False"
+                            IsScrollAnimated="False"
+                            ItemTemplate="{StaticResource typeSelector}"
+                            ItemsSource="{Binding ContentTypesTemplate}"
+                            ItemsUpdatingScrollMode="KeepScrollOffset"
+                            Loop="False">
 
-                            <ActivityIndicator
-                                Grid.Row="3"
-                                IsRunning="{Binding IsLoading}"
-                                IsVisible="{Binding IsLoading}"
-                                Style="{StaticResource globalLoading}" />
-                        </Grid>
-                    </Frame>
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout
+                                    Orientation="Horizontal"
+                                    SnapPointsAlignment="Start"
+                                    SnapPointsType="MandatorySingle" />
+                            </CarouselView.ItemsLayout>
+
+                            <CarouselView.EmptyView>
+                                <StackLayout>
+                                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                                </StackLayout>
+                            </CarouselView.EmptyView>
+                        </CarouselView>
+
+                        <Button
+                            Grid.Row="2"
+                            Command="{Binding CaptureCommand}"
+                            CommandParameter="{Binding Advertisement}"
+                            Style="{StaticResource cardButton}"
+                            Text="Capture"
+                            VerticalOptions="FillAndExpand">
+
+                            <Button.ImageSource>
+                                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe838;" />
+                            </Button.ImageSource>
+                        </Button>
+
+                        <ActivityIndicator
+                            Grid.Row="2"
+                            IsRunning="{Binding IsLoading}"
+                            IsVisible="{Binding IsLoading}"
+                            Style="{StaticResource globalLoading}" />
+                    </Grid>
+
                 </DataTemplate>
             </CarouselView.ItemTemplate>
 
@@ -159,7 +142,7 @@
         </CarouselView>
 
         <StackLayout
-            Grid.Row="3"
+            Grid.Row="1"
             HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Orientation="Horizontal">
@@ -175,7 +158,6 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
                 </Button.ImageSource>
-
             </Button>
             <Button
                 x:Name="NextBtn"
@@ -189,12 +171,11 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
                 </Button.ImageSource>
-
             </Button>
         </StackLayout>
 
         <ActivityIndicator
-            Grid.Row="3"
+            Grid.Row="1"
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
     </Grid>

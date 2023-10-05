@@ -153,6 +153,10 @@
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
         </CollectionView>
 
         <local:CustomEntryContentView
@@ -191,11 +195,34 @@
             </Button.Shadow>
         </Button>-->
 
-        <CarouselView
+        <!--<CarouselView
             Grid.Row="4"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}"
-            VerticalOptions="FillAndExpand" />
+            VerticalOptions="FillAndExpand" />-->
+
+        <CarouselView
+            Grid.Row="4"
+            IsBounceEnabled="False"
+            IsScrollAnimated="False"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding ContentTypesTemplate}"
+            ItemsUpdatingScrollMode="KeepScrollOffset"
+            Loop="False">
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Horizontal"
+                    SnapPointsAlignment="Start"
+                    SnapPointsType="MandatorySingle" />
+            </CarouselView.ItemsLayout>
+
+            <CarouselView.EmptyView>
+                <StackLayout>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                </StackLayout>
+            </CarouselView.EmptyView>
+        </CarouselView>
 
         <!--  Submit Button  -->
         <!--<Button
