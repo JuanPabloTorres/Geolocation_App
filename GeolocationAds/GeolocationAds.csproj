@@ -61,24 +61,14 @@
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
 	  <None Remove="Resources\Fonts\Sunshine.ttf" />
-	  <None Remove="Resources\Images\add.png" />
-	  <None Remove="Resources\Images\BlackBackGround.jpg" />
+	  <None Remove="Resources\Images\filebox.png" />
 	  <None Remove="Resources\Images\gbook03.jpg" />
-	  <None Remove="Resources\Images\location.png" />
-	  <None Remove="Resources\Images\LoginBackGroundYellow.jpg" />
-	  <None Remove="Resources\Images\loginbackgroundyellow2.jpg" />
-	  <None Remove="Resources\Images\logo01.png" />
-	  <None Remove="Resources\Images\maps.png" />
+	  <None Remove="Resources\Images\map.png" />
 	  <None Remove="Resources\Images\mediacontent.png" />
-	  <None Remove="Resources\Images\moreinformation.png" />
 	  <None Remove="Resources\Images\plus.png" />
-	  <None Remove="Resources\Images\profile.png" />
-	  <None Remove="Resources\Images\prototypeLogo.png" />
-	  <None Remove="Resources\Images\radar.png" />
-	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\setting.png" />
 	  <None Remove="Resources\Images\star.png" />
 	  <None Remove="Resources\Images\travelexplore.png" />
-	  <None Remove="Resources\Images\useravatar.png" />
 	  <None Remove="Resources\Splash\splash01.jpg" />
 	</ItemGroup>
 

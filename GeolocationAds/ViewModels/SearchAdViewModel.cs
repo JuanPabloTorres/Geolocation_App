@@ -166,7 +166,7 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                this.NearByTemplateViewModels.Clear();
+                //this.NearByTemplateViewModels.Clear();
 
                 var currentLocation = extraData as CurrentLocation;
 
@@ -200,6 +200,8 @@ namespace GeolocationAds.ViewModels
         public async void Initialize()
         {
             this.IsLoading = true;
+
+            this.NearByTemplateViewModels.Clear();
 
             var locationReponse = await GeolocationTool.GetLocation();
 

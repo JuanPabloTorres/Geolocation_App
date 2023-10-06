@@ -41,10 +41,8 @@
         <CarouselView
             x:Name="carouselView"
             Grid.Row="0"
-            Margin="0"
             IsSwipeEnabled="False"
-            ItemsSource="{Binding CollectionModel}"
-            Position="0">
+            ItemsSource="{Binding CollectionModel}">
 
             <CarouselView.EmptyView>
 

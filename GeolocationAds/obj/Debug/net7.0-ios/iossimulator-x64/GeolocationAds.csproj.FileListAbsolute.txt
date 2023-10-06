@@ -346,3 +346,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\travelexplore.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\gbook03.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\plus.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\map.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\setting.png
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-ios\iossimulator-x64\resizetizer\r\Resources\filebox.png

@@ -41,7 +41,6 @@
         <CarouselView
             x:Name="carouselView"
             Grid.Row="0"
-            Position="0"
             IsSwipeEnabled="False"
             ItemsSource="{Binding NearByTemplateViewModels}">
 

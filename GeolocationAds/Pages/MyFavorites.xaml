@@ -8,79 +8,21 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="My Captures">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SearchCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding OpenFilterPopUpCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
-
-        <DataTemplate x:Key="ImageDataTemplate2">
-
-            <Frame Style="{StaticResource dataTemplateFrame}">
-                <Grid>
-                    <Image
-                        Aspect="Fill"
-                        HeightRequest="300"
-                        Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
-
-                    <!--  Button Container Grid  -->
-                    <Grid>
-                        <!--  Button is placed in the same cell as the image  -->
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--  Button  -->
-                        <Button
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding CurrentAdvertisement}"
-                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                            Style="{StaticResource XButton}"
-                            Text="X"
-                            VerticalOptions="Start" />
-                    </Grid>
-                </Grid>
-            </Frame>
-        </DataTemplate>
-
-        <DataTemplate x:Key="VideoDataTemplate2">
-
-            <Frame Style="{StaticResource dataTemplateFrame}">
-                <Grid>
-
-                    <toolkit:MediaElement
-                        Grid.Row="1"
-                        Grid.RowSpan="2"
-                        Aspect="Fill"
-                        HeightRequest="300"
-                        ShouldShowPlaybackControls="True"
-                        Source="{Binding MediaSource}" />
-
-                    <!--  Button Container Grid  -->
-                    <Grid>
-                        <!--  Button is placed in the same cell as the image  -->
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--  Button  -->
-                        <Button
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding CurrentAdvertisement}"
-                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                            Style="{StaticResource XButton}"
-                            Text="X"
-                            VerticalOptions="Start" />
-                    </Grid>
-                </Grid>
-            </Frame>
-        </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
@@ -90,13 +32,11 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-
         </Grid.RowDefinitions>
 
-        <Button
+        <!--<Button
             Grid.Row="0"
             Command="{Binding SearchCommand}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -110,15 +50,11 @@
                     Radius="40"
                     Offset="5,5" />
             </Button.Shadow>
-        </Button>
-
-
-
-
+        </Button>-->
 
         <CarouselView
             x:Name="carouselView"
-            Grid.Row="1"
+            Grid.Row="0"
             IsSwipeEnabled="False"
             ItemsSource="{Binding CaptureTemplateViewModels}">
 
@@ -128,7 +64,7 @@
                 </VerticalStackLayout>
             </CarouselView.EmptyView>
 
-            <CarouselView.ItemTemplate>
+            <!--<CarouselView.ItemTemplate>
                 <DataTemplate>
 
                     <Frame Style="{StaticResource cardFrame}">
@@ -186,7 +122,8 @@
                                 Style="{StaticResource globalLabel}"
                                 Text="{Binding CurrentAdvertisement.Title}" />
 
-                            <!--<StackLayout
+            -->
+            <!--<StackLayout
                                 Grid.Row="2"
                                 Margin="5"
                                 HorizontalOptions="FillAndExpand"
@@ -206,9 +143,94 @@
                                     Style="{StaticResource cardButton}"
                                     Text="Detail" />
                             </StackLayout>-->
+            <!--
 
                             <ActivityIndicator
                                 Grid.Row="3"
+                                IsRunning="{Binding IsLoading}"
+                                IsVisible="{Binding IsLoading}"
+                                Style="{StaticResource globalLoading}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>-->
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+
+                    <Frame
+                        Margin="0"
+                        CornerRadius="0"
+                        Style="{StaticResource cardFrame}">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <StackLayout
+                                Grid.Row="0"
+                                BackgroundColor="#ff9800"
+                                Orientation="Horizontal">
+
+                                <Label
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource globalLabel}"
+                                    Text="{Binding CurrentAdvertisement.Title}"
+                                    TextColor="White" />
+
+                                <Button
+                                    Command="{Binding OpenActionPopUpCommand}"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    CornerRadius="0"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource XButton}">
+
+                                    <Button.ImageSource>
+                                        <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
+                                    </Button.ImageSource>
+                                </Button>
+
+                                <Button
+                                    Command="{Binding RemoveCommand}"
+                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    CornerRadius="0"
+                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                                    Style="{StaticResource XButton}">
+
+                                    <Button.ImageSource>
+                                        <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+                                    </Button.ImageSource>
+                                </Button>
+                            </StackLayout>
+
+                            <CarouselView
+                                Grid.Row="1"
+                                IsBounceEnabled="False"
+                                IsScrollAnimated="False"
+                                ItemTemplate="{StaticResource typeSelector}"
+                                ItemsSource="{Binding ContentTypesTemplate}"
+                                ItemsUpdatingScrollMode="KeepScrollOffset"
+                                Loop="False">
+
+                                <CarouselView.ItemsLayout>
+                                    <LinearItemsLayout
+                                        Orientation="Horizontal"
+                                        SnapPointsAlignment="Start"
+                                        SnapPointsType="MandatorySingle" />
+                                </CarouselView.ItemsLayout>
+
+                                <CarouselView.EmptyView>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                                    </StackLayout>
+                                </CarouselView.EmptyView>
+                            </CarouselView>
+
+                            <ActivityIndicator
+                                Grid.Row="2"
                                 IsRunning="{Binding IsLoading}"
                                 IsVisible="{Binding IsLoading}"
                                 Style="{StaticResource globalLoading}" />
@@ -222,13 +244,8 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <ActivityIndicator
-            Grid.Row="2"
-            IsRunning="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}" />
-
         <StackLayout
-            Grid.Row="2"
+            Grid.Row="1"
             HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Orientation="Horizontal">
@@ -244,7 +261,6 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
                 </Button.ImageSource>
-
             </Button>
             <Button
                 x:Name="NextBtn"
@@ -258,8 +274,12 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
                 </Button.ImageSource>
-
             </Button>
         </StackLayout>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
     </Grid>
 </ContentPage>

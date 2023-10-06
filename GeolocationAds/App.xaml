@@ -170,7 +170,7 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="BorderColor" Value="#ffc340" />
-                <Setter Property="Margin" Value="8" />
+                <Setter Property="Margin" Value="5" />
                 <Setter Property="Padding" Value="15" />
                 <Setter Property="IsClippedToBounds" Value="True" />
                 <Setter Property="HasShadow" Value="True" />

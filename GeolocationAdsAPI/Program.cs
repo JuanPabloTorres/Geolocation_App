@@ -21,8 +21,8 @@ builder.Services.AddDbContext<GeolocationContext>(options =>
 {
     options.UseSqlServer(connectionString, sqlServerOptions =>
     {
-        sqlServerOptions.EnableRetryOnFailure(); // Enable retry on failure, if needed
-        sqlServerOptions.CommandTimeout(60); // Set the connection timeout to 30 seconds
+        sqlServerOptions.EnableRetryOnFailure(3); // Enable retry on failure, if needed
+        sqlServerOptions.CommandTimeout(150); // Set the connection timeout to 30 seconds
         sqlServerOptions.UseRelationalNulls();
 
     });

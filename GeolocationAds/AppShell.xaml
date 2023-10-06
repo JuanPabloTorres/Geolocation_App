@@ -33,17 +33,17 @@
         <ShellContent
             Title="My Content"
             ContentTemplate="{DataTemplate pages:AdToLocation}"
-            Icon="location.png" />
+            Icon="filebox.png" />
 
         <ShellContent
             Title="Nearby Content Map"
             ContentTemplate="{DataTemplate pages:GoogleMapPage}"
-            Icon="maps.png" />
+            Icon="map.png" />
 
         <ShellContent
             Title="Settings"
             ContentTemplate="{DataTemplate pages:UserSetting}"
-            Icon="profile.png" />
+            Icon="setting.png" />
 
 
     </FlyoutItem>
@@ -52,12 +52,12 @@
         <!--  Custom navigation header  -->
         <StackLayout Orientation="Horizontal">
             <Frame
-                Margin="5"
+                Margin="10"
                 CornerRadius="50"
-                HeightRequest="70"
+                HeightRequest="60"
                 HorizontalOptions="Start"
                 VerticalOptions="CenterAndExpand"
-                WidthRequest="70">
+                WidthRequest="60">
 
                 <toolkit:AvatarView
                     BackgroundColor="CadetBlue"

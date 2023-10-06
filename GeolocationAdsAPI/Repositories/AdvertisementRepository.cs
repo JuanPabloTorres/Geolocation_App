@@ -78,7 +78,7 @@ namespace GeolocationAdsAPI.Repositories
                     return ResponseFactory<Advertisement>.BuildFail("Not Found", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
-                var _dataFoundResult = await _context.Advertisements.AsNoTracking().Include(s => s.Settings).Include(c => c.Contents).Where(v => v.ID == Id)
+                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings).Include(c => c.Contents).Where(v => v.ID == Id)
                     .Select(s => new Advertisement
                     {
                         ID = s.ID,
