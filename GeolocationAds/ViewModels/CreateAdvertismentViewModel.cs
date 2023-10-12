@@ -155,7 +155,7 @@ namespace GeolocationAds.ViewModels
                     SettingId = this.SelectedAdType.ID,
                 };
 
-                this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
+                this.Model.UserId = this.LogUserPerfilTool.GetUserId();
 
                 this.Model.Settings = new List<AdvertisementSettings>() { _adSetting };
 

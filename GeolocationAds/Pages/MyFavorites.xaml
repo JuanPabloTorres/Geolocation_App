@@ -36,22 +36,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!--<Button
-            Grid.Row="0"
-            Command="{Binding SearchCommand}"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Refresh">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>-->
-
         <CarouselView
             x:Name="carouselView"
             Grid.Row="0"
@@ -59,101 +43,10 @@
             ItemsSource="{Binding CaptureTemplateViewModels}">
 
             <CarouselView.EmptyView>
-                <VerticalStackLayout>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Search For Content" />
-                </VerticalStackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Load Content To Display." />
+                </StackLayout>
             </CarouselView.EmptyView>
-
-            <!--<CarouselView.ItemTemplate>
-                <DataTemplate>
-
-                    <Frame Style="{StaticResource cardFrame}">
-
-                        <Grid VerticalOptions="FillAndExpand">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25*" />
-                                <RowDefinition Height="100*" />
-                                <RowDefinition Height="35*" />
-                                <RowDefinition Height="10*" />
-                            </Grid.RowDefinitions>
-
-                            <StackLayout
-                                Grid.Row="0"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal"
-                                VerticalOptions="Start">
-
-                                <Label
-                                    HorizontalOptions="Start"
-                                    Style="{StaticResource globalLabel}"
-                                    Text="{Binding CurrentAdvertisement.Title}" />
-
-                                <Button
-                                    Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding Capture}"
-                                    HorizontalOptions="EndAndExpand"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource XButton}"
-                                    Text="X" />
-                            </StackLayout>
-
-                            <CarouselView
-                                Grid.Row="1"
-                                IsSwipeEnabled="True"
-                                ItemTemplate="{StaticResource typeSelector}"
-                                ItemsSource="{Binding ContentTypesTemplate}"
-                                VerticalOptions="FillAndExpand">
-
-                                <CarouselView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Horizontal" />
-                                </CarouselView.ItemsLayout>
-
-                                <CarouselView.EmptyView>
-                                    <StackLayout>
-                                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
-                                    </StackLayout>
-                                </CarouselView.EmptyView>
-                            </CarouselView>
-
-                            <Label
-                                Grid.Row="2"
-                                HorizontalOptions="Start"
-                                Style="{StaticResource globalLabel}"
-                                Text="{Binding CurrentAdvertisement.Title}" />
-
-            -->
-            <!--<StackLayout
-                                Grid.Row="2"
-                                Margin="5"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Horizontal">
-                                <Button
-                                    Command="{Binding SetLocationCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="Set Location" />
-
-                                <Button
-                                    BackgroundColor="Green"
-                                    Command="{Binding onNavigate}"
-                                    CommandParameter="{Binding CurrentAdvertisement.ID}"
-                                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                                    Style="{StaticResource cardButton}"
-                                    Text="Detail" />
-                            </StackLayout>-->
-            <!--
-
-                            <ActivityIndicator
-                                Grid.Row="3"
-                                IsRunning="{Binding IsLoading}"
-                                IsVisible="{Binding IsLoading}"
-                                Style="{StaticResource globalLoading}" />
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>-->
 
             <CarouselView.ItemTemplate>
                 <DataTemplate>
@@ -187,8 +80,10 @@
                                 </CarouselView.ItemsLayout>
 
                                 <CarouselView.EmptyView>
-                                    <StackLayout>
-                                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Style="{StaticResource emptyCollectionLabel}" Text="No content available." />
+
+
                                     </StackLayout>
                                 </CarouselView.EmptyView>
                             </CarouselView>
@@ -219,7 +114,7 @@
 
                                 <Button
                                     Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding CurrentAdvertisement}"
+                                    CommandParameter="{Binding Capture}"
                                     CornerRadius="0"
                                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                                     Style="{StaticResource XButton}">
@@ -229,7 +124,6 @@
                                     </Button.ImageSource>
                                 </Button>
                             </StackLayout>
-
 
                             <ActivityIndicator
                                 Grid.Row="0"

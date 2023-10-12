@@ -7,6 +7,7 @@ using GeolocationAds.Tools;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -68,22 +69,6 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        //private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
-
-        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        //{
-        //    get => _contentTypestemplate;
-        //    set
-        //    {
-        //        if (_contentTypestemplate != value)
-        //        {
-        //            _contentTypestemplate = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
 
         public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
@@ -92,48 +77,30 @@ namespace ToolsLibrary.TemplateViewModel
 
             RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
 
-            OpenActionPopUpCommand = new Command(OpenActionPopUp);
+            OpenActionPopUpCommand = new Command(async () => { await OpenActionPopUp(); });
 
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+            //this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
             this.CurrentAdvertisement = advertisement;
 
             this.onNavigate = new Command<int>(Navigate);
 
-            FillTemplate();
+            //FillTemplate();
         }
 
-        public MangeContentTemplateViewModel(IAdvertisementService advertisementService, Advertisement advertisement) : base(advertisementService)
+        public async Task InitializeAsync()
         {
             this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
-            this.CurrentAdvertisement = advertisement;
-
-            FillTemplate();
+            await FillTemplate();
         }
 
-        public async void FillTemplate()
+        public async Task FillTemplate()
         {
             if (!this.CurrentAdvertisement.Contents.IsObjectNull())
             {
                 foreach (var item in this.CurrentAdvertisement.Contents)
                 {
-                    //if (item.Type == ContentVisualType.Image)
-                    //{
-                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
-
-                    //    this.ContentTypesTemplate.Add(_template);
-                    //}
-
-                    //if (item.Type == ContentVisualType.Video)
-                    //{
-                    //    var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
-
-                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
-
-                    //    this.ContentTypesTemplate.Add(_template);
-                    //}
-
                     var _template = await AppToolCommon.ProcessContentItem(item);
 
                     this.ContentTypesTemplate.Add(_template);
@@ -141,80 +108,87 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        public async void OpenActionPopUp()
+        public async Task OpenActionPopUp()
         {
-            string action = await Shell.Current.DisplayActionSheet("Actions: ", "Cancel", null, "Detail", "Set Location", "Manage Location");
-
-            switch (action)
-            {
-                case "Detail":
-
-                    Navigate(this.CurrentAdvertisement.ID);
-
-                    break;
-
-                case "Set Location":
-
-                    SetLocationYesOrNoAlert(this.CurrentAdvertisement);
-
-                    break;
-
-                case "Manage Location":
-
-                    await Shell.Current.DisplayAlert("Notification", "On Develop.", "OK");
-
-                    break;
-
-                default:
-
-                    break;
-            }
-        }
-
-        private async Task CreateAdToLocation(Advertisement ad)
-        {
-            this.IsLoading = true;
-
             try
             {
-                var locationReponse = await GeolocationTool.GetLocation();
+                this.IsLoading = true;
 
-                if (locationReponse.IsSuccess)
+                string action = await Shell.Current.DisplayActionSheet("Actions: ", "Cancel", null, "Detail", "Set Location", "Manage Location");
+
+                switch (action)
                 {
-                    GeolocationAd newAd = new GeolocationAd()
-                    {
-                        AdvertisingId = ad.ID,
-                        Advertisement = ad,
-                        CreateDate = DateTime.Now,
-                        Latitude = locationReponse.Data.Latitude,
-                        Longitude = locationReponse.Data.Longitude,
-                        ExpirationDate = DateTime.Now.AddDays(7)
-                    };
+                    case "Detail":
 
-                    var _apiResponse = await this.geolocationAdService.Add(newAd);
+                        Navigate(this.CurrentAdvertisement.ID);
 
-                    if (_apiResponse.IsSuccess)
-                    {
-                        this.CurrentAdvertisement = _apiResponse.Data.Advertisement;
+                        break;
 
-                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                    }
-                }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+                    case "Set Location":
+
+                        SetLocationYesOrNoAlert(this.CurrentAdvertisement);
+
+                        break;
+
+                    case "Manage Location":
+
+                        await CommonsTool.DisplayAlert("Notification", "On Development.");
+
+                        break;
+
+                    default:
+
+                        break;
                 }
             }
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
+            finally
+            {
+                this.IsLoading = false;
+            }
+        }
 
-            this.IsLoading = false;
+        private async Task CreateAdToLocation(Advertisement ad)
+        {
+            try
+            {
+                this.IsLoading = true;
+
+                var locationReponse = await GeolocationTool.GetLocation();
+
+                if (!locationReponse.IsSuccess)
+                {
+                    await CommonsTool.DisplayAlert("Error", locationReponse.Message);
+
+                    return;
+                }
+
+                GeolocationAd newAd = GeolocationAdFactory.CreateGeolocationAd(ad, locationReponse.Data);
+
+                var _apiResponse = await this.geolocationAdService.Add(newAd);
+
+                if (_apiResponse.IsSuccess)
+                {
+                    this.CurrentAdvertisement = ad;
+
+                    await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         private async Task RemoveContent(Advertisement ad)
@@ -223,35 +197,26 @@ namespace ToolsLibrary.TemplateViewModel
             {
                 this.IsLoading = true;
 
-                var locationReponse = await GeolocationTool.GetLocation();
+                var _apiResponse = await this.advertisementService.Remove(ad.ID);
 
-                if (locationReponse.IsSuccess)
+                if (_apiResponse.IsSuccess)
                 {
-                    var _apiResponse = await this.advertisementService.Remove(ad.ID);
+                    RemoveCurrentItem();
 
-                    if (_apiResponse.IsSuccess)
-                    {
-                        //WeakReferenceMessenger.Default.Send(new DeleteItemMessage(ad));
-
-                        RemoveCurrentItem();
-
-                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                    }
+                    await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
-
-                this.IsLoading = false;
             }
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
             }
         }
 
@@ -272,7 +237,7 @@ namespace ToolsLibrary.TemplateViewModel
         {
             if (!selectAd.IsObjectNull())
             {
-                var response = await Shell.Current.DisplayAlert("Notification", $"Do you want to Remove:{selectAd.Title} ?", "Yes", "No");
+                var response = await Shell.Current.DisplayAlert("Notification", $"Are you sure you want to remove this item?", "Yes", "No");
 
                 if (response)
                 {

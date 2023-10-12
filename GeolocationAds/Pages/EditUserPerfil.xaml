@@ -59,6 +59,7 @@
                 Text="FullName:" />
             <local:CustomEntryContentView
                 Grid.Row="3"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="FullName"
                 Text="{Binding Model.FullName}" />
 
@@ -68,6 +69,7 @@
                 Text="Phone:" />
             <local:CustomEntryContentView
                 Grid.Row="5"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Phone"
                 Text="{Binding Model.Phone}" />
 
@@ -77,6 +79,7 @@
                 Text="Email:" />
             <local:CustomEntryContentView
                 Grid.Row="7"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Email"
                 Text="{Binding Model.Email}" />
 

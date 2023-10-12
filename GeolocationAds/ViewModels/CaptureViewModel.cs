@@ -60,13 +60,13 @@ namespace GeolocationAds.ViewModels
             {
                 if (sender is CaptureTemplateViewModel model)
                 {
-                    var _toRemoveAdContent = this.CaptureTemplateViewModels.Where(v => v.Capture.ID == model.Capture.ID).FirstOrDefault();
+                    var _toRemoveAdContent = this.CaptureTemplateViewModels.FirstOrDefault(vm => vm.Capture.ID == model.Capture.ID);
 
                     if (!_toRemoveAdContent.IsObjectNull())
                     {
                         this.CaptureTemplateViewModels.Remove(_toRemoveAdContent);
 
-                        await Shell.Current.DisplayAlert("Error", "Capture Removed", "OK");
+                        await CommonsTool.DisplayAlert("Notification", "Capture has been successfully removed.");
                     }
                 }
             }
@@ -155,18 +155,16 @@ namespace GeolocationAds.ViewModels
 
                 if (_apiResponse.IsSuccess)
                 {
-                    //foreach (var item in _apiResponse.Data)
-                    //{
-                    //    var _item = new CaptureTemplateViewModel(item, this.service);
-
-                    //    this.CaptureTemplateViewModels.Add(_item);
-                    //}
-
                     this.CaptureTemplateViewModels
                        .AddRange(_apiResponse.Data
                        .Select(s =>
                        new CaptureTemplateViewModel(s, this.service))
                        .ToList());
+
+                    foreach (var viewModel in this.CaptureTemplateViewModels)
+                    {
+                        await viewModel.InitializeAsync();
+                    }
                 }
                 else
                 {

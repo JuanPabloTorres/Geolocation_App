@@ -155,21 +155,6 @@ namespace GeolocationAds.ViewModels
 
                 foreach (var item in this.Model.Contents)
                 {
-                    //if (item.Type == ContentVisualType.Image)
-                    //{
-                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
-
-                    //    this.ContentTypesTemplate.Add(_template);
-                    //}
-                    //else
-                    //{
-                    //    var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
-
-                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
-
-                    //    this.ContentTypesTemplate.Add(_template);
-                    //}
-
                     var _template = await AppToolCommon.ProcessContentItem(item);
 
                     this.ContentTypesTemplate.Add(_template);
@@ -197,20 +182,35 @@ namespace GeolocationAds.ViewModels
                 {
                     AdTypesSettings.AddRange(_apiResponse.Data);
 
-                    foreach (var item in AdTypesSettings)
-                    {
-                        if (this.Model.Settings.IsNotNullOrCountGreaterZero())
-                        {
-                            foreach (var modelsetting in this.Model.Settings)
-                            {
-                                if (modelsetting.SettingId == item.ID)
-                                {
-                                    this.SelectedAdType = item;
+                    //foreach (var item in AdTypesSettings)
+                    //{
+                    //    if (this.Model.Settings.IsNotNullOrCountGreaterZero())
+                    //    {
+                    //        foreach (var modelsetting in this.Model.Settings)
+                    //        {
+                    //            if (modelsetting.SettingId == item.ID)
+                    //            {
+                    //                this.SelectedAdType = item;
 
-                                    return;
-                                }
-                            }
-                        }
+                    //                return;
+                    //            }
+                    //        }
+
+                    //        //this.SelectedAdType = this.Model.Settings
+                    //        //    .Where(v => v.SettingId == item.ID)
+                    //        //    .Select(s =>
+                    //        //    new AppSetting()
+                    //        //    {
+                    //        //        ID = s.SettingId
+                    //        //    }).FirstOrDefault();
+                    //    }
+                    //}
+
+                    var matchingSetting = this.Model.Settings.FirstOrDefault(modelsetting => AdTypesSettings.Any(item => modelsetting.SettingId == item.ID));
+
+                    if (!matchingSetting.IsObjectNull())
+                    {
+                        this.SelectedAdType = AdTypesSettings.First(item => matchingSetting.SettingId == item.ID);
                     }
                 }
                 else

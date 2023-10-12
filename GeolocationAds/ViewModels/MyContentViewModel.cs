@@ -54,8 +54,6 @@ namespace GeolocationAds.ViewModels
 
             MangeContentTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
-            //this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
-
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -123,6 +121,11 @@ namespace GeolocationAds.ViewModels
                         .Select(s =>
                         new MangeContentTemplateViewModel(this.advertisementService, this.service, s))
                         .ToList());
+
+                    foreach (var item in this.CollectionModel)
+                    {
+                        await item.InitializeAsync();
+                    }
                 }
                 else
                 {
@@ -187,8 +190,6 @@ namespace GeolocationAds.ViewModels
 
             this.IsLoading = false;
         }
-
-
 
         protected override async void OpenFilterPopUp()
         {

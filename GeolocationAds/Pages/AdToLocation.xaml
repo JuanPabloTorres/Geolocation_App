@@ -47,7 +47,7 @@
             <CarouselView.EmptyView>
 
                 <Grid>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="My Content Goes Here" />
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Load Content To Display." />
                 </Grid>
             </CarouselView.EmptyView>
 

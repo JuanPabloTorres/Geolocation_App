@@ -55,13 +55,14 @@
                 Style="{StaticResource globalLabel}"
                 Text="Distance: (M)" />
 
-            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}" />
+            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}"   IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"/>
 
             <Label
                 HorizontalOptions="Start"
                 Style="{StaticResource globalLabel}"
                 Text="Type:" />
             <localControl:CustomPickerContentView
+                  IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
                 ItemDisplayBindingPath="Value"
                 ItemsSource="{Binding AdTypesSettings}"

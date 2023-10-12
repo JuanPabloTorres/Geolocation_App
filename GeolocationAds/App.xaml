@@ -285,8 +285,9 @@
                     <toolkit:MediaElement
                         Grid.Row="1"
                         Aspect="Fill"
-                        ShouldAutoPlay="False"
-                        ShouldKeepScreenOn="False"
+                        ShouldAutoPlay="True"
+                        ShouldKeepScreenOn="True"
+                        ShouldLoopPlayback="True"
                         ShouldShowPlaybackControls="True"
                         Source="{Binding MediaSource}" />
 

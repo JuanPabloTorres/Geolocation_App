@@ -97,7 +97,7 @@
                                 Text="{Binding Advertisement.Title}"
                                 TextColor="White" />
 
-                            <Button
+                            <!--<Button
                                 Command="{Binding OpenActionPopUpCommand}"
                                 CommandParameter="{Binding CurrentAdvertisement}"
                                 IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -106,7 +106,7 @@
                                 <Button.ImageSource>
                                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
                                 </Button.ImageSource>
-                            </Button>
+                            </Button>-->
 
                             <Button
                                 Command="{Binding CaptureCommand}"
