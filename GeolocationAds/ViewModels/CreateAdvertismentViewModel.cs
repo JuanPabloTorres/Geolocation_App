@@ -20,41 +20,9 @@ namespace GeolocationAds.ViewModels
     {
         private byte[] fileBytes;
 
-        //private ObservableCollection<AppSetting> _adTypesSettings;
-
-        //public ObservableCollection<AppSetting> AdTypesSettings
-        //{
-        //    get => _adTypesSettings;
-        //    set
-        //    {
-        //        if (_adTypesSettings != value)
-        //        {
-        //            _adTypesSettings = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
-
-        //private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
-
-        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        //{
-        //    get => _contentTypestemplate;
-        //    set
-        //    {
-        //        if (_contentTypestemplate != value)
-        //        {
-        //            _contentTypestemplate = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
 
         private AppSetting _selectedAdType;
 
@@ -98,6 +66,8 @@ namespace GeolocationAds.ViewModels
         {
             this.appSettingService = appSettingService;
 
+            this.SelectedAdType = new AppSetting();
+
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
 
             this.Model.Settings = new List<AdvertisementSettings>();
@@ -112,27 +82,36 @@ namespace GeolocationAds.ViewModels
 
             this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
 
+            this.InitializeSettings();
+
+            this.SetDefault();
+
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    this.ContentTypesTemplate.Clear();
-
-                    SetDefault();
+                    this.SetDefault();
                 });
             });
         }
 
-        private void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
+        private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
         {
             this.IsLoading = true;
 
-            if (sender is ContentTypeTemplateViewModel template)
+            try
             {
-                if (!template.IsObjectNull())
+                if (sender is ContentTypeTemplateViewModel template)
                 {
-                    this.ContentTypesTemplate.Remove(template);
+                    if (!template.IsObjectNull())
+                    {
+                        this.ContentTypesTemplate.Remove(template);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             this.IsLoading = false;
@@ -146,10 +125,7 @@ namespace GeolocationAds.ViewModels
                 {
                     if (!this.Model.Contents.IsObjectNull())
                     {
-                        if (this.Model.Contents.Count > 0)
-                        {
-                            this.Model.Contents.Clear();
-                        }
+                        this.Model.Contents.Clear();
 
                         foreach (var item in contents)
                         {
@@ -160,44 +136,73 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
-        public void SetDefault()
+        public async void SetDefault()
         {
-            var _adSetting = new AdvertisementSettings()
+            try
             {
-                CreateDate = DateTime.Now,
-                CreateBy = this.LogUserPerfilTool.LogUser.ID,
-                SettingId = this.SelectedAdType.ID,
-            };
+                this.ContentTypesTemplate.Clear();
 
-            this.Model.Settings = new List<AdvertisementSettings>() { _adSetting };
+                this.ValidationResults.Clear();
 
-            this.Model.Contents = new List<ContentType>();
+                var _adSetting = new AdvertisementSettings()
+                {
+                    CreateDate = DateTime.Now,
+                    CreateBy = this.LogUserPerfilTool.LogUser.ID,
+                    SettingId = this.SelectedAdType.ID,
+                };
 
-            this.GetImageSourceFromFile();
+                this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
 
-            this.Model.UserId = this.LogUserPerfilTool.GetLogUserPropertyValue<int>("ID");
+                this.Model.Settings = new List<AdvertisementSettings>() { _adSetting };
+
+                this.Model.Contents = new List<ContentType>();
+
+                await this.GetImageSourceFromFile();
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
         }
 
         public async Task LoadSetting()
         {
-            var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
-            this.AdTypesSettings.Clear();
-
-            if (_apiResponse.IsSuccess)
+            try
             {
-                AdTypesSettings.AddRange(_apiResponse.Data);
+                this.IsLoading = true;
 
-                this.SelectedAdType = AdTypesSettings.FirstOrDefault();
+                var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+
+                this.AdTypesSettings.Clear();
+
+                if (_apiResponse.IsSuccess)
+                {
+                    AdTypesSettings.AddRange(_apiResponse.Data);
+
+                    this.SelectedAdType = AdTypesSettings.FirstOrDefault();
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
+            finally
+            {
+                this.IsLoading = false;
+            }
+        }
+
+        public async void InitializeSettings()
+        {
+            await LoadSetting();
         }
 
         [ICommand]
@@ -205,6 +210,8 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
+                this.IsLoading = true;
+
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
@@ -222,24 +229,22 @@ namespace GeolocationAds.ViewModels
 
                 FileResult result = _optionsResult;
 
-                if (result != null)
+                if (!result.IsObjectNull())
                 {
                     fileBytes = await CommonsTool.GetFileBytesAsync(result);
 
-                    var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
-                                          result.FileName.ToLower().EndsWith(".png") ||
-                                          result.FileName.ToLower().EndsWith(".gif") ||
-                                          result.FileName.ToLower().EndsWith(".jpeg");
+                    var _contentType = CommonsTool.GetContentType(result.FileName);
 
-                    if (isImageSelected)
+                    if (_contentType == ContentVisualType.Image)
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+                        var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
                         this.ContentTypesTemplate.Add(_template);
                     }
-                    else
+
+                    if (_contentType == ContentVisualType.Video)
                     {
                         var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
@@ -253,51 +258,28 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
             }
         }
 
-        public async void TakePhoto()
-        {
-            try
-            {
-                FileResult photo = await MediaPicker.Default.PickVideoAsync();
-
-                if (photo != null)
-                {
-                    // save the file into local storage
-                    string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-
-                    using Stream sourceStream = await photo.OpenReadAsync();
-
-                    using FileStream localFileStream = File.OpenWrite(localFilePath);
-
-                    await sourceStream.CopyToAsync(localFileStream);
-
-                    var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
-
-                    var _template = ContentTypeTemplateFactory.BuilContentType(_content, localFilePath);
-
-                    this.ContentTypesTemplate.Add(_template);
-                }
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-            }
-        }
-
-        private async void GetImageSourceFromFile()
+        private async Task GetImageSourceFromFile()
         {
             const string FILENAME = "mediacontent.png";
 
             var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(FILENAME);
 
-            var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+            if (!_defaulMedia.IsObjectNull())
+            {
+                var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
-            var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+                var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
-            this.ContentTypesTemplate.Add(_template);
+                this.ContentTypesTemplate.Add(_template);
+            }
         }
 
         private async void SelectedTypeChange(AppSetting value)
@@ -320,7 +302,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
     }

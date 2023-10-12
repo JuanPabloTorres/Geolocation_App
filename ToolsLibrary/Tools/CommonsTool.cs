@@ -36,6 +36,53 @@ namespace ToolsLibrary.Tools
             }
         }
 
+        public static async Task DisplayAlert(string title, string message)
+        {
+            await Shell.Current.DisplayAlert(title, message, "OK");
+        }
+
+        public static byte[] ExtractFirstFrame(byte[] videoBytes)
+        {
+            // Find the start of the video data in the byte array
+            int startIndex = FindVideoStartIndex(videoBytes);
+
+            if (startIndex == -1)
+            {
+                throw new InvalidOperationException("Video data not found in the byte array.");
+            }
+
+            // Extract the video data starting from the identified index
+            byte[] videoData = new byte[videoBytes.Length - startIndex];
+            Array.Copy(videoBytes, startIndex, videoData, 0, videoData.Length);
+
+            return videoData;
+        }
+
+        public static int FindVideoStartIndex(byte[] data)
+        {
+            // Search for the video data start marker in the byte array
+            byte[] startMarker = { 0x00, 0x00, 0x00, 0x01 };
+            for (int i = 0; i < data.Length - startMarker.Length; i++)
+            {
+                bool foundMarker = true;
+                for (int j = 0; j < startMarker.Length; j++)
+                {
+                    if (data[i + j] != startMarker[j])
+                    {
+                        foundMarker = false;
+                        break;
+                    }
+                }
+                if (foundMarker)
+                {
+                    return i;
+                }
+            }
+            return -1; // Start marker not found
+        }
+
+
+
         public static string GenerateRandomCode(int length)
         {
             string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -52,6 +99,25 @@ namespace ToolsLibrary.Tools
             }
 
             return new string(code);
+        }
+
+        public static ContentVisualType GetContentType(string fileName)
+        {
+            switch (Path.GetExtension(fileName))
+            {
+                case ".jpg":
+                case ".png":
+                case ".gif":
+                case ".jpeg":
+                    return ContentVisualType.Image;
+
+                case ".mp4":
+                    return ContentVisualType.Video;
+
+                default:
+                    // Handle other file types or return a default value if necessary.
+                    return ContentVisualType.Unknown;
+            }
         }
 
         public static async Task<byte[]> GetFileBytesAsync(FileResult fileResult)
@@ -186,7 +252,6 @@ namespace ToolsLibrary.Tools
 
         //    return tempFilePath;
         //}
-
         public static async Task<string> SaveByteArrayToTempFile(byte[] byteArray)
         {
             try
@@ -206,26 +271,10 @@ namespace ToolsLibrary.Tools
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             return string.Empty;
-        }
-
-        private static async void CleanUpTempFiles(string folderPath)
-        {
-            try
-            {
-                foreach (string filePath in Directory.GetFiles(folderPath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions that occur during cleanup
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-            }
         }
 
         public static async Task SendEmailAsync(EmailRequest emailRequest, IConfiguration configuration)
@@ -257,46 +306,21 @@ namespace ToolsLibrary.Tools
             await smtpClient.SendMailAsync(mailMessage);
         }
 
-        public static byte[] ExtractFirstFrame(byte[] videoBytes)
+        private static async void CleanUpTempFiles(string folderPath)
         {
-            // Find the start of the video data in the byte array
-            int startIndex = FindVideoStartIndex(videoBytes);
-
-            if (startIndex == -1)
+            try
             {
-                throw new InvalidOperationException("Video data not found in the byte array.");
-            }
-
-            // Extract the video data starting from the identified index
-            byte[] videoData = new byte[videoBytes.Length - startIndex];
-            Array.Copy(videoBytes, startIndex, videoData, 0, videoData.Length);
-
-            return videoData;
-        }
-
-        public static int FindVideoStartIndex(byte[] data)
-        {
-            // Search for the video data start marker in the byte array
-            byte[] startMarker = { 0x00, 0x00, 0x00, 0x01 };
-            for (int i = 0; i < data.Length - startMarker.Length; i++)
-            {
-                bool foundMarker = true;
-                for (int j = 0; j < startMarker.Length; j++)
+                foreach (string filePath in Directory.GetFiles(folderPath))
                 {
-                    if (data[i + j] != startMarker[j])
-                    {
-                        foundMarker = false;
-                        break;
-                    }
-                }
-                if (foundMarker)
-                {
-                    return i;
+                    File.Delete(filePath);
                 }
             }
-            return -1; // Start marker not found
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during cleanup
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
         }
-
         //public  static Image ByteArrayToImage(byte[] byteArray)
         // {
         //     using (MemoryStream stream = new MemoryStream(byteArray))

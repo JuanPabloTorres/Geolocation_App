@@ -20,12 +20,12 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId)
+        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId)
         {
             try
             {
                 // Build the full API endpoint URL for the specific resource
-                var apiUrl = $"{this.BaseApiUri}/{nameof(GetMyCaptures)}/{userId}";
+                var apiUrl = $"{this.BaseApiUri}/{nameof(GetMyCaptures)}/{userId}/{typeId}";
 
                 // Send the GET request to the API
                 var response = await _httpClient.GetAsync(apiUrl);

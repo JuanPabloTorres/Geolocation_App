@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
@@ -71,9 +72,22 @@ namespace GeolocationAds.TemplateViewModel
             RemoveCommand = new Command(RemoveCurrentItem);
         }
 
-        public override void RemoveCurrentItem()
+        public override async void RemoveCurrentItem()
         {
-            OnDeleteType(EventArgs.Empty);
+            try
+            {
+                this.IsLoading = true;
+
+                OnDeleteType(EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         //public void Dispose()

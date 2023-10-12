@@ -29,7 +29,7 @@
         <DataTemplate x:Key="ImageDataTemplateCreate">
 
             <Grid>
-                <Image Aspect="Fill" Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
+                <Image Aspect="Fill" Source="{Binding Image, Mode=TwoWay}" />
 
                 <!--  Button Container Grid  -->
                 <Grid>
@@ -46,7 +46,6 @@
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
-                        TextColor="#3e4144"
                         VerticalOptions="Start">
 
                         <Button.Shadow>
@@ -58,10 +57,7 @@
                         </Button.Shadow>
 
                         <Button.ImageSource>
-                            <FontImageSource
-                                FontFamily="MaterialIconsOutlined-Regular"
-                                Glyph="&#xe5cd;"
-                                Color="#3e4144" />
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
                     </Button>
                 </Grid>
@@ -93,7 +89,6 @@
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
-                        TextColor="#3e4144"
                         VerticalOptions="Start">
 
                         <Button.Shadow>
@@ -105,10 +100,7 @@
                         </Button.Shadow>
 
                         <Button.ImageSource>
-                            <FontImageSource
-                                FontFamily="MaterialIconsOutlined-Regular"
-                                Glyph="&#xe5cd;"
-                                Color="#3e4144" />
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
                     </Button>
                 </Grid>
@@ -121,7 +113,7 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
     </ContentPage.Resources>
 
-    <Frame Style="{StaticResource cardFrame}">
+    <Frame Padding="8" Style="{StaticResource cardFrame}">
 
         <Grid>
 
@@ -149,11 +141,13 @@
 
             <local:CustomEntryContentView
                 Grid.Row="1"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Title"
                 Text="{Binding Model.Title}" />
 
             <local:CustomEntryContentView
                 Grid.Row="2"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Description"
                 Text="{Binding Model.Description}" />
 
@@ -161,6 +155,7 @@
                 Grid.Row="3"
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
                 HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 ItemDisplayBindingPath="Value"
                 ItemsSource="{Binding AdTypesSettings}"
                 SelectValue="{Binding SelectedAdType}"
@@ -168,11 +163,10 @@
 
             <CarouselView
                 Grid.Row="4"
-                IsBounceEnabled="False"
                 IsScrollAnimated="False"
                 ItemTemplate="{StaticResource typeSelector}"
-                ItemsSource="{Binding ContentTypesTemplate}"
-                ItemsUpdatingScrollMode="KeepScrollOffset"
+                ItemsSource="{Binding ContentTypesTemplate, Mode=TwoWay}"
+                ItemsUpdatingScrollMode="KeepLastItemInView"
                 Loop="False">
 
                 <CarouselView.ItemsLayout>

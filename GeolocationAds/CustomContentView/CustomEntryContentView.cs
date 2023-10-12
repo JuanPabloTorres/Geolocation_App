@@ -28,6 +28,15 @@ public class CustomEntryContentView : ContentView
         get => (bool)GetValue(IsPasswordProperty);
         set => SetValue(IsPasswordProperty, value);
     }
+    public static readonly BindableProperty IsEnabledProperty =
+       BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomEntryContentView), default(bool), BindingMode.TwoWay);
+
+    public bool IsEnabled
+    {
+        get => (bool)GetValue(IsEnabledProperty);
+        set => SetValue(IsEnabledProperty, value);
+    }
+
 
     public CustomEntryContentView()
     {
@@ -42,6 +51,8 @@ public class CustomEntryContentView : ContentView
         entry.SetBinding(Entry.IsPasswordProperty, new Binding(nameof(IsPassword), source: this));
 
         entry.SetBinding(Entry.PlaceholderProperty, new Binding(nameof(Placeholder), source: this));
+
+        entry.SetBinding(Entry.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
 
         var frame = new Frame
         {

@@ -1,4 +1,5 @@
 using GeolocationAds.ViewModels;
+using ToolsLibrary.Extensions;
 
 namespace GeolocationAds.Pages;
 
@@ -15,10 +16,13 @@ public partial class CreateAdvertisment : ContentPage
         BindingContext = createGeolocationViewModel;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
-        await viewModel.LoadSetting();
+        //await viewModel.LoadSetting();
 
-        this.viewModel.SetDefault();
+        if (this.viewModel.AdTypesSettings.Count() > 0 && !this.viewModel.AdTypesSettings.IsObjectNull())
+        {
+            this.viewModel.SetDefault();
+        }
     }
 }

@@ -47,8 +47,8 @@ namespace GeolocationAds.ViewModels
                                 {
                                     Location = location,
                                     Label = adsGeoItem.Title,
-                                    Address = $"LA:{location.Latitude} Lo:{location.Longitude}",
-                                    Type = Microsoft.Maui.Controls.Maps.PinType.SavedPin,
+                                    Address = adsGeoItem.Description,
+                                    Type = Microsoft.Maui.Controls.Maps.PinType.Generic,
                                 });
                             }
 

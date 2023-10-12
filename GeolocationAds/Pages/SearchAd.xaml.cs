@@ -1,4 +1,5 @@
 using GeolocationAds.ViewModels;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages;
 
@@ -13,12 +14,6 @@ public partial class SearchAd : ContentPage
 
     private async void NextItemButton_Clicked(object sender, EventArgs e)
     {
-        //if (carouselView.Position < (carouselView.ItemsSource?.Count - 1))
-        //{
-        //    carouselView.Position++;
-        //}
-
-        //carouselView.IsSwipeEnabled = true;
         try
         {
             if (carouselView.ItemsSource != null && carouselView.Position < (carouselView.ItemsSource.Cast<object>().ToList().Count - 1))
@@ -40,9 +35,8 @@ public partial class SearchAd : ContentPage
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
-        //carouselView.IsSwipeEnabled = false;
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
@@ -69,7 +63,7 @@ public partial class SearchAd : ContentPage
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
     }
 }

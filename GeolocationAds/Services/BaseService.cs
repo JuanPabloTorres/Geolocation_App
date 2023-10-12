@@ -15,7 +15,7 @@ namespace GeolocationAds.Services
 
         protected Uri BaseApiUri;
 
-        private const int TIMEOUT = 60;
+        private const int TIMEOUT = 150;
 
         private const int BUFFER_SIZE = 1000000;
 

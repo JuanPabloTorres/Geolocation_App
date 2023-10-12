@@ -36,12 +36,14 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId)
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId)
         {
             try
             {
-                var _dataFoundResult = await _context.Advertisements
-                    .Where(v => v.UserId == userId)
+                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings)
+                    .Where(v =>
+                    v.UserId == userId &&
+                    v.Settings.Any(s => s.SettingId == typeId))
                     .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
                     .Select(s => new Advertisement
                     {

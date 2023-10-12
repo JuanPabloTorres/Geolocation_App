@@ -105,7 +105,7 @@ public static class MauiProgram
 
         builder.Services.AddScoped<MangeContentTemplateViewModel>();
 
-        builder.Services.AddScoped<AdToLocationViewModel>();
+        builder.Services.AddScoped<MyContentViewModel>();
 
         builder.Services.AddScoped<SearchAdViewModel>();
 

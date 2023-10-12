@@ -5,6 +5,6 @@ namespace GeolocationAdsAPI.Repositories
 {
     public interface ICaptureRepository : IBaseRepository<Capture>
     {
-        Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId);
+        Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId);
     }
 }

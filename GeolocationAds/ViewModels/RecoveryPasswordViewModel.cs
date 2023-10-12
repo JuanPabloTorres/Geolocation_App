@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using ToolsLibrary.Dto;
 using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
@@ -190,10 +191,12 @@ namespace GeolocationAds.ViewModels
 
         public async void OnSubmit()
         {
-            IsLoading = true;
+
 
             try
             {
+                IsLoading = true;
+
                 ValidationResults.Clear();
 
                 this.NewPassword.Code = this.Code;
@@ -220,10 +223,14 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                IsLoading = false;
             }
 
-            IsLoading = false;
+
         }
     }
 }

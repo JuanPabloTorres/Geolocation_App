@@ -29,7 +29,7 @@
 
 
             <Grid>
-                <Image Aspect="Fill" Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}" />
+                <Image Aspect="Fill" Source="{Binding Image, Mode=TwoWay}" />
 
                 <!--  Button Container Grid  -->
                 <Grid>
@@ -46,7 +46,6 @@
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
-                        TextColor="#3e4144"
                         VerticalOptions="Start">
 
                         <Button.Shadow>
@@ -58,10 +57,7 @@
                         </Button.Shadow>
 
                         <Button.ImageSource>
-                            <FontImageSource
-                                FontFamily="MaterialIconsOutlined-Regular"
-                                Glyph="&#xe5cd;"
-                                Color="#3e4144" />
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
 
                     </Button>
@@ -97,7 +93,6 @@
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
-                        TextColor="#3e4144"
                         VerticalOptions="Start">
 
                         <Button.Shadow>
@@ -110,10 +105,7 @@
 
 
                         <Button.ImageSource>
-                            <FontImageSource
-                                FontFamily="MaterialIconsOutlined-Regular"
-                                Glyph="&#xe5cd;"
-                                Color="#3e4144" />
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
 
                     </Button>
@@ -161,16 +153,19 @@
 
         <local:CustomEntryContentView
             Grid.Row="1"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Placeholder="Title"
             Text="{Binding Model.Title}" />
 
         <local:CustomEntryContentView
             Grid.Row="2"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Placeholder="Description"
             Text="{Binding Model.Description}" />
 
         <local:CustomPickerContentView
             Grid.Row="3"
+             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
             HorizontalOptions="FillAndExpand"
             ItemDisplayBindingPath="Value"
@@ -207,7 +202,7 @@
             IsScrollAnimated="False"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}"
-            ItemsUpdatingScrollMode="KeepScrollOffset"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
             Loop="False">
 
             <CarouselView.ItemsLayout>

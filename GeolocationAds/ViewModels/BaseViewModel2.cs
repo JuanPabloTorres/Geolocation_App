@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
+using GeolocationAds.PopUps;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -21,6 +22,10 @@ namespace GeolocationAds.ViewModels
         public ObservableCollection<T> CollectionModel { get; set; }
 
         private ICollection<ValidationContext> ValidationContexts;
+
+        protected FilterPopUpForSearch _filterPopUpForSearch;
+
+        protected FilterPopUp _filterPopUp;
 
         private bool isLoading;
 
@@ -60,6 +65,8 @@ namespace GeolocationAds.ViewModels
         public ICommand SubmitUpdateCommand { get; set; }
 
         public ICommand SearchCommand { get; set; }
+
+        public ICommand OpenFilterPopUpCommand { get; set; }
 
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
@@ -117,7 +124,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
@@ -267,7 +274,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             IsLoading = false;
@@ -383,6 +390,8 @@ namespace GeolocationAds.ViewModels
                                 if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
                                 {
                                     Activator.CreateInstance<T>();
+
+                                    WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                                 }
                                 else
                                 {
@@ -404,7 +413,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             IsLoading = false;
@@ -536,7 +545,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             IsLoading = false;
@@ -552,7 +561,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             this.IsLoading = false;
@@ -568,7 +577,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             this.IsLoading = false;
@@ -606,8 +615,22 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
+
+        protected virtual async void OpenFilterPopUp()
+        {
+            try
+            {
+                await Shell.Current.DisplayAlert("Notification", "Filter Pop Up Must Override.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+
     }
 }

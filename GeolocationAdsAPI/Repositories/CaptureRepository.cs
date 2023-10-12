@@ -12,13 +12,18 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId)
+        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId)
         {
             try
             {
                 var result = await _context.Captures
                     .Include(a => a.Advertisements).ThenInclude(c => c.Contents)
-                    .Where(v => v.UserId == userId)
+                    .Include(s => s.Advertisements.Settings)
+                    .Include(s => s.Advertisements.GeolocationAds)
+                    .Where(v =>
+                    v.UserId == userId &&
+                    v.Advertisements.GeolocationAds.Any(g => DateTime.Now <= g.ExpirationDate) &&
+                    v.Advertisements.Settings.Any(s => s.SettingId == typeId))
                     .Select(s =>
                     new Capture()
                     {

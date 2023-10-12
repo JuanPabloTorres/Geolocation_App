@@ -5,7 +5,7 @@ namespace GeolocationAdsAPI.Repositories
 {
     public interface IAdvertisementRepository : IBaseRepository<Advertisement>
     {
-        Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId);
+        Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId);
 
         Task<ResponseTool<IEnumerable<Advertisement>>> VerifyExpiredAdvertimentOfUser(int userId);
     }

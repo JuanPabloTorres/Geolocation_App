@@ -1,4 +1,4 @@
-﻿using GeolocationAds.App_ViewModel_Factory;
+﻿using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Extensions;
@@ -70,21 +70,25 @@ namespace GeolocationAds.TemplateViewModel
             {
                 foreach (var item in this.CurrentAdvertisement.Contents)
                 {
-                    if (item.Type == ContentVisualType.Image)
-                    {
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
+                    //if (item.Type == ContentVisualType.Image)
+                    //{
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
-                        this.ContentTypesTemplate.Add(_template);
-                    }
+                    //    this.ContentTypesTemplate.Add(_template);
+                    //}
 
-                    if (item.Type == ContentVisualType.Video)
-                    {
-                        var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
+                    //if (item.Type == ContentVisualType.Video)
+                    //{
+                    //    var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
 
-                        this.ContentTypesTemplate.Add(_template);
-                    }
+                    //    this.ContentTypesTemplate.Add(_template);
+                    //}
+
+                    var _template = await AppToolCommon.ProcessContentItem(item);
+
+                    this.ContentTypesTemplate.Add(_template);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace GeolocationAds.TemplateViewModel
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
     }

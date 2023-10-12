@@ -1,4 +1,5 @@
 using GeolocationAds.ViewModels;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages;
 
@@ -13,11 +14,6 @@ public partial class MyFavorites : ContentPage
         viewModel = captureViewModel;
 
         this.BindingContext = captureViewModel;
-    }
-
-    protected override void OnAppearing()
-    {
-        this.viewModel.Initialize();
     }
 
     private async void NextItemButton_Clicked(object sender, EventArgs e)
@@ -43,7 +39,7 @@ public partial class MyFavorites : ContentPage
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
     }
 
@@ -71,7 +67,7 @@ public partial class MyFavorites : ContentPage
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
     }
 }

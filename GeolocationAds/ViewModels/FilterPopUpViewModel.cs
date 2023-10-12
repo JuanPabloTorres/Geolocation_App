@@ -57,9 +57,20 @@ namespace GeolocationAds.ViewModels
             this.FilterCommand = new Command(OnsubmitFilter);
         }
 
+        public FilterPopUpViewModel(IEnumerable<AppSetting> appSettings)
+        {
+            this.AdTypesSettings = new ObservableCollection<AppSetting>(appSettings);
+
+            SelectedAdType = AdTypesSettings.FirstOrDefault();
+
+            this.FilterCommand = new Command(OnsubmitFilter);
+        }
+
         public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
 
-        public static event SubmitFilterEventHandler OnFilterItem;
+        public event SubmitFilterEventHandler OnFilterItem;
+
+
 
         public virtual void FilterItemInvoke(EventArgs e)
         {

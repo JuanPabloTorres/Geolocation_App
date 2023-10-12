@@ -25,7 +25,7 @@ namespace GeolocationAds.App_ViewModel_Factory
             return _template;
         }
 
-        public static ContentTypeTemplateViewModel BuilContentType(ContentType contentType, MediaSource? mediaSource = null)
+        public static ContentTypeTemplateViewModel BuilContentType(ContentType contentType, MediaSource mediaSource = null)
         {
             var _template = new ContentTypeTemplateViewModel()
             {

@@ -33,11 +33,13 @@
 
 
                 <local:CustomEntryContentView
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="False"
                     Placeholder="Username"
                     Text="{Binding Model.Username}" />
 
                 <local:CustomEntryContentView
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="True"
                     Placeholder="Password"
                     Text="{Binding Model.Password}" />

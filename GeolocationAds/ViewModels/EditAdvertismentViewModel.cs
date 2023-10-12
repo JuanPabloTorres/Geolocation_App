@@ -1,4 +1,5 @@
 ﻿using GeolocationAds.App_ViewModel_Factory;
+using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -16,39 +17,7 @@ namespace GeolocationAds.ViewModels
     {
         private byte[] fileBytes;
 
-        //private ObservableCollection<AppSetting> _adTypesSettings;
-
-        //public ObservableCollection<AppSetting> AdTypesSettings
-        //{
-        //    get => _adTypesSettings;
-        //    set
-        //    {
-        //        if (_adTypesSettings != value)
-        //        {
-        //            _adTypesSettings = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
-
-        //private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
-
-        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        //{
-        //    get => _contentTypestemplate;
-        //    set
-        //    {
-        //        if (_contentTypestemplate != value)
-        //        {
-        //            _contentTypestemplate = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
 
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
 
@@ -102,7 +71,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
@@ -125,8 +94,6 @@ namespace GeolocationAds.ViewModels
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
 
             ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-            //this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
         }
 
         private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -137,10 +104,7 @@ namespace GeolocationAds.ViewModels
                 {
                     if (!this.Model.Contents.IsObjectNull())
                     {
-                        if (this.Model.Contents.Count > 0)
-                        {
-                            this.Model.Contents.Clear();
-                        }
+                        this.Model.Contents.Clear();
 
                         foreach (var item in contents)
                         {
@@ -151,72 +115,76 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
         private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
         {
-            this.IsLoading = true;
-
             try
             {
+                this.IsLoading = true;
+
                 if (sender is ContentTypeTemplateViewModel template)
                 {
                     if (!template.IsObjectNull())
                     {
                         this.ContentTypesTemplate.Remove(template);
-
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
-            this.IsLoading = false;
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
         {
-            this.IsLoading = true;
-
             try
             {
+                this.IsLoading = true;
+
                 this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
 
                 await this.LoadSetting();
 
                 foreach (var item in this.Model.Contents)
                 {
-                    if (item.Type == ContentVisualType.Image)
-                    {
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
+                    //if (item.Type == ContentVisualType.Image)
+                    //{
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
-                        this.ContentTypesTemplate.Add(_template);
-                    }
-                    else
-                    {
-                        var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
+                    //    this.ContentTypesTemplate.Add(_template);
+                    //}
+                    //else
+                    //{
+                    //    var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
 
-                        this.ContentTypesTemplate.Add(_template);
-                    }
+                    //    this.ContentTypesTemplate.Add(_template);
+                    //}
 
+                    var _template = await AppToolCommon.ProcessContentItem(item);
 
+                    this.ContentTypesTemplate.Add(_template);
                 }
 
                 this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
-            this.IsLoading = false;
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         public async Task LoadSetting()
@@ -252,17 +220,17 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
         [ICommand]
         private async void OnUploadCommandExecuted2()
         {
-            this.IsLoading = true;
-
             try
             {
+                this.IsLoading = true;
+
                 var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>();
 
                 fileTypes.Add(DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" });
@@ -313,10 +281,12 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
-            this.IsLoading = false;
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
     }
 }

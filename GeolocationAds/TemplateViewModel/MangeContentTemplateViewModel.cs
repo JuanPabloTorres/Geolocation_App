@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Maui.Views;
-using GeolocationAds.App_ViewModel_Factory;
+using GeolocationAds.AppTools;
 using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
@@ -68,21 +68,23 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
+        //private ObservableCollection<ContentTypeTemplateViewModel> _contentTypestemplate;
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
-        {
-            get => _contentTypestemplate;
-            set
-            {
-                if (_contentTypestemplate != value)
-                {
-                    _contentTypestemplate = value;
+        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
+        //{
+        //    get => _contentTypestemplate;
+        //    set
+        //    {
+        //        if (_contentTypestemplate != value)
+        //        {
+        //            _contentTypestemplate = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
 
         public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
@@ -116,20 +118,25 @@ namespace ToolsLibrary.TemplateViewModel
             {
                 foreach (var item in this.CurrentAdvertisement.Contents)
                 {
-                    if (item.Type == ContentVisualType.Image)
-                    {
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
+                    //if (item.Type == ContentVisualType.Image)
+                    //{
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
-                        this.ContentTypesTemplate.Add(_template);
-                    }
-                    else
-                    {
-                        var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
+                    //    this.ContentTypesTemplate.Add(_template);
+                    //}
 
-                        var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+                    //if (item.Type == ContentVisualType.Video)
+                    //{
+                    //    var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
 
-                        this.ContentTypesTemplate.Add(_template);
-                    }
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
+
+                    //    this.ContentTypesTemplate.Add(_template);
+                    //}
+
+                    var _template = await AppToolCommon.ProcessContentItem(item);
+
+                    this.ContentTypesTemplate.Add(_template);
                 }
             }
         }
@@ -204,7 +211,7 @@ namespace ToolsLibrary.TemplateViewModel
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
 
             this.IsLoading = false;
@@ -244,7 +251,7 @@ namespace ToolsLibrary.TemplateViewModel
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
@@ -252,7 +259,7 @@ namespace ToolsLibrary.TemplateViewModel
         {
             if (!selectAd.IsObjectNull())
             {
-                var response = await Shell.Current.DisplayAlert("Notification", $"Set Location To:{selectAd.Title}", "Yes", "No");
+                var response = await Shell.Current.DisplayAlert("Notification", $"Do you want to set the current location to {selectAd.Title} ?", "Yes", "No");
 
                 if (response)
                 {
@@ -265,7 +272,7 @@ namespace ToolsLibrary.TemplateViewModel
         {
             if (!selectAd.IsObjectNull())
             {
-                var response = await Shell.Current.DisplayAlert("Notification", $" Remove:{selectAd.Title}", "Yes", "No");
+                var response = await Shell.Current.DisplayAlert("Notification", $"Do you want to Remove:{selectAd.Title} ?", "Yes", "No");
 
                 if (response)
                 {

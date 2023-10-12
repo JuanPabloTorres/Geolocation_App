@@ -63,14 +63,14 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpGet("[action]/{userId}")]
-        public async Task<IActionResult> GetAdvertisementsOfUser(int userId)
+        [HttpGet("[action]/{userId}/{typeId}")]
+        public async Task<IActionResult> GetAdvertisementsOfUser(int userId, int typeId)
         {
             ResponseTool<IEnumerable<Advertisement>> response;
 
             try
             {
-                response = await this.advertisementRepository.GetAdvertisementsOfUser(userId);
+                response = await this.advertisementRepository.GetAdvertisementsOfUser(userId, typeId);
 
                 return Ok(response);
             }

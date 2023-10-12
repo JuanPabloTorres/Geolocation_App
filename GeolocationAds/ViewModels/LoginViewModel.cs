@@ -28,7 +28,7 @@ namespace GeolocationAds.ViewModels
 
             this.Model.Username = "test";
 
-            this.Model.Password = "1234";
+            this.Model.Password = "123";
 
             WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             {
@@ -72,10 +72,13 @@ namespace GeolocationAds.ViewModels
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)
         {
-            IsLoading = true;
+
 
             try
             {
+                IsLoading = true;
+
+
                 var _apiResponse = await this.service.VerifyCredential(credential);
 
                 if (_apiResponse.IsSuccess)
@@ -100,10 +103,14 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                IsLoading = false;
             }
 
-            IsLoading = false;
+
         }
     }
 }

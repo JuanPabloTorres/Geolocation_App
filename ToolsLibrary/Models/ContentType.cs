@@ -24,5 +24,6 @@ namespace ToolsLibrary.Models
     {
         Image,
         Video,
+        Unknown
     }
 }

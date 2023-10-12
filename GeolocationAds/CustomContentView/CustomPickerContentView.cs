@@ -60,6 +60,15 @@ public class CustomPickerContentView : ContentView
         get => (string)GetValue(SelectValueProperty);
         set => SetValue(SelectValueProperty, value);
     }
+    public static readonly BindableProperty IsEnabledProperty =
+     BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomEntryContentView), default(bool), BindingMode.TwoWay);
+
+    public bool IsEnabled
+    {
+        get => (bool)GetValue(IsEnabledProperty);
+        set => SetValue(IsEnabledProperty, value);
+    }
+
 
     private Picker picker;
 
@@ -73,6 +82,8 @@ public class CustomPickerContentView : ContentView
         picker.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(SelectedItem), source: this));
 
         picker.SetBinding(Picker.ItemsSourceProperty, new Binding(nameof(ItemsSource), source: this));
+
+        picker.SetBinding(Picker.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
 
         var frame = new Frame
         {

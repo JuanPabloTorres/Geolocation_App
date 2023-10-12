@@ -1,12 +1,13 @@
 using GeolocationAds.ViewModels;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages;
 
 public partial class AdToLocation : ContentPage
 {
-    private AdToLocationViewModel viewModel;
+    private MyContentViewModel viewModel;
 
-    public AdToLocation(AdToLocationViewModel adToLocationViewModel)
+    public AdToLocation(MyContentViewModel adToLocationViewModel)
     {
         InitializeComponent();
 
@@ -15,47 +16,12 @@ public partial class AdToLocation : ContentPage
         BindingContext = adToLocationViewModel;
     }
 
-    protected override void OnAppearing()
-    {
-        viewModel.Initialize();
-    }
-
-    //private void NextItemButton_Clicked(object sender, EventArgs e)
-    //{
-    //    //if (carouselView.Position < (carouselView.ItemsSource?.Count - 1))
-    //    //{
-    //    //    carouselView.Position++;
-    //    //}
-
-    //    //carouselView.IsSwipeEnabled = true;
-
-    //    if (carouselView.ItemsSource != null && carouselView.Position < (carouselView.ItemsSource.Cast<object>().ToList().Count - 1))
-    //    {
-    //        carouselView.Position++;
-    //    }
-
-    //    //carouselView.IsSwipeEnabled = false;
-
-    //}
-
-    //private void BackItemButton_Clicked(object sender, EventArgs e)
-    //{
-    //    if (carouselView.Position > 0)
-    //    {
-    //        carouselView.Position--;
-    //    }
-    //}
-
     private async void NextItemButton_Clicked(object sender, EventArgs e)
     {
-        //if (carouselView.Position < (carouselView.ItemsSource?.Count - 1))
-        //{
-        //    carouselView.Position++;
-        //}
-
-        //carouselView.IsSwipeEnabled = true;
         try
         {
+            viewModel.IsLoading = true;
+
             if (carouselView.ItemsSource != null && carouselView.Position < (carouselView.ItemsSource.Cast<object>().ToList().Count - 1))
             {
                 carouselView.Position++;
@@ -75,15 +41,20 @@ public partial class AdToLocation : ContentPage
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
-        //carouselView.IsSwipeEnabled = false;
+        finally
+        {
+            viewModel.IsLoading = false;
+        }
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
     {
         try
         {
+            viewModel.IsLoading = true;
+
             if (carouselView.Position > 0)
             {
                 carouselView.Position--;
@@ -104,7 +75,11 @@ public partial class AdToLocation : ContentPage
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
+        }
+        finally
+        {
+            viewModel.IsLoading = false;
         }
     }
 }
