@@ -163,10 +163,10 @@
 
             <CarouselView
                 Grid.Row="4"
-                IsScrollAnimated="False"
+                IsScrollAnimated="True"
                 ItemTemplate="{StaticResource typeSelector}"
-                ItemsSource="{Binding ContentTypesTemplate, Mode=TwoWay}"
-                ItemsUpdatingScrollMode="KeepLastItemInView"
+                ItemsSource="{Binding ContentTypesTemplate}"
+                ItemsUpdatingScrollMode="KeepScrollOffset"
                 Loop="False">
 
                 <CarouselView.ItemsLayout>

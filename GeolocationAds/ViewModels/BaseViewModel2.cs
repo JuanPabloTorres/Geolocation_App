@@ -486,7 +486,7 @@ namespace GeolocationAds.ViewModels
 
                             if (_apiResponse.IsSuccess)
                             {
-                                //WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
+                                WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
 
                                 await Shell.Current.Navigation.PopToRootAsync();
 
@@ -533,11 +533,11 @@ namespace GeolocationAds.ViewModels
 
                                 //this.Image.Source = null;
 
-                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                                await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
                             }
                             else
                             {
-                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                                await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                             }
                         }
                     }

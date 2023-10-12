@@ -35,8 +35,6 @@ namespace GeolocationAds.TemplateViewModel
                 {
                     _mediaSource = value;
 
-                    //SelectedTypeChange(_selectedAdType);
-
                     OnPropertyChanged();
                 }
             }
@@ -60,7 +58,7 @@ namespace GeolocationAds.TemplateViewModel
 
         public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
 
-        public static event ApplyQueryAttributesEventHandler ContentTypeDeleted;
+        public event ApplyQueryAttributesEventHandler ContentTypeDeleted;
 
         protected virtual void OnDeleteType(EventArgs e)
         {
@@ -69,6 +67,24 @@ namespace GeolocationAds.TemplateViewModel
 
         public ContentTypeTemplateViewModel()
         {
+            RemoveCommand = new Command(RemoveCurrentItem);
+        }
+
+        public ContentTypeTemplateViewModel(ContentType contentType, MediaSource mediaSource)
+        {
+            this.ContentType = contentType;
+
+            this.MediaSource = mediaSource;
+
+            RemoveCommand = new Command(RemoveCurrentItem);
+        }
+
+        public ContentTypeTemplateViewModel(ContentType contentType, ImageSource imageSource)
+        {
+            this.ContentType = contentType;
+
+            this.Image = imageSource;
+
             RemoveCommand = new Command(RemoveCurrentItem);
         }
 

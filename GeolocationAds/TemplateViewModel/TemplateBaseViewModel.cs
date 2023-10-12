@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using ToolsLibrary.Extensions;
 
 namespace ToolsLibrary.TemplateViewModel
 {
@@ -60,6 +61,20 @@ namespace ToolsLibrary.TemplateViewModel
 
         public virtual void RemoveCurrentItem()
         {
+        }
+
+        public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
+        {
+            var queryString = string.Empty;
+
+            if (!queryParameters.IsObjectNull() && queryParameters.Count > 0)
+            {
+                queryString = string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"));
+
+                queryString = "?" + queryString;
+            }
+
+            await Shell.Current.GoToAsync($"{pageName}{queryString}");
         }
     }
 }

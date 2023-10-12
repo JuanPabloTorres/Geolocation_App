@@ -173,7 +173,11 @@ namespace GeolocationAds.ViewModels
                     {
                         foreach (var item in _apiResponse.Data)
                         {
-                            this.NearByTemplateViewModels.Add(new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool));
+                            var _templateViewModel = new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool);
+
+                            await _templateViewModel.InitializeAsync();
+
+                            this.NearByTemplateViewModels.Add(_templateViewModel);
                         }
                     }
                     else

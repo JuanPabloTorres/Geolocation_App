@@ -80,13 +80,23 @@ namespace GeolocationAdsAPI.Repositories
                     return ResponseFactory<Advertisement>.BuildFail("Not Found", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
-                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings).Include(c => c.Contents).Where(v => v.ID == Id)
+                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings).Include(g => g.GeolocationAds).Include(c => c.Contents).Where(v => v.ID == Id)
                     .Select(s => new Advertisement
                     {
                         ID = s.ID,
                         Description = s.Description,
                         Title = s.Title,
                         UserId = s.UserId,
+                        GeolocationAds = s.GeolocationAds
+                        .Select(s =>
+                        new GeolocationAd()
+                        {
+                            ID = s.ID,
+                            ExpirationDate = s.ExpirationDate,
+                            Latitude = s.Latitude,
+                            Longitude = s.Longitude,
+                            AdvertisingId = s.AdvertisingId
+                        }).ToList(),
                         Settings = s.Settings
                         .Select(s => new AdvertisementSettings()
                         {
@@ -113,51 +123,105 @@ namespace GeolocationAdsAPI.Repositories
 
         public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
         {
+            //try
+            //{
+            //    var existingAdvertisement = await _context.Advertisements
+            //        .Include(a => a.Contents) // Include the Contents collection if needed
+            //        .Include(a => a.Settings) // Include the Settings collection if needed
+            //        .FirstOrDefaultAsync(a => a.ID == id);
+
+            //    if (!existingAdvertisement.IsObjectNull())
+            //    {
+            //        updatedAdvertisement.CreateDate = existingAdvertisement.CreateDate;
+
+            //        // Update scalar properties
+            //        _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
+
+            //        // Update nested collections (e.g., Contents, GeolocationAds, Settings)
+
+            //        if (!updatedAdvertisement.Contents.IsObjectNull())
+            //        {
+            //            UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+            //        }
+            //        else
+            //        {
+            //            updatedAdvertisement.Contents = existingAdvertisement.Contents;
+            //        }
+
+            //        if (!updatedAdvertisement.Settings.IsObjectNull())
+            //        {
+            //            //UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+
+            //            UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
+            //        }
+            //        else
+            //        {
+            //            updatedAdvertisement.Settings = existingAdvertisement.Settings;
+            //        }
+
+            //        // Update scalar properties
+            //        _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
+
+            //        //UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
+
+            //        await _context.SaveChangesAsync();
+
+            //        return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
+            //    }
+
+            //    return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            //}
+
             try
             {
                 var existingAdvertisement = await _context.Advertisements
-                    .Include(a => a.Contents) // Include the Contents collection if needed
-                    .Include(a => a.Settings) // Include the Settings collection if needed
+                    .Include(a => a.Contents)
+                    .Include(a => a.Settings)
                     .FirstOrDefaultAsync(a => a.ID == id);
 
-                if (!existingAdvertisement.IsObjectNull())
+                if (existingAdvertisement == null)
                 {
-                    // Update scalar properties
-                    _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
-
-                    // Update nested collections (e.g., Contents, GeolocationAds, Settings)
-
-                    if (!updatedAdvertisement.Contents.IsObjectNull())
-                    {
-                        UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
-                    }
-                    else
-                    {
-                        updatedAdvertisement.Contents = existingAdvertisement.Contents;
-                    }
-
-                    if (!updatedAdvertisement.Settings.IsObjectNull())
-                    {
-                        //UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
-
-                        UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
-                    }
-                    else
-                    {
-                        updatedAdvertisement.Settings = existingAdvertisement.Settings;
-                    }
-
-                    // Update scalar properties
-                    _context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
-
-                    //UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
-
-                    await _context.SaveChangesAsync();
-
-                    return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
+                    return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
                 }
 
-                return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+                // Copy scalar properties
+                existingAdvertisement.Title = updatedAdvertisement.Title;
+
+                existingAdvertisement.Description = updatedAdvertisement.Description;
+
+                existingAdvertisement.UpdateDate = DateTime.Now;
+
+                existingAdvertisement.UpdateBy = updatedAdvertisement.UpdateBy;
+                // Add more properties as needed
+
+                // Update nested collections (Contents, Settings)
+                if (!updatedAdvertisement.Contents.IsObjectNull())
+                {
+                    UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+                }
+                else
+                {
+                    updatedAdvertisement.Contents = existingAdvertisement.Contents;
+                }
+
+                if (!updatedAdvertisement.Settings.IsObjectNull())
+                {
+                    //UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+
+                    UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
+                }
+                else
+                {
+                    updatedAdvertisement.Settings = existingAdvertisement.Settings;
+                }
+
+                await _context.SaveChangesAsync();
+
+                return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
             }
             catch (Exception ex)
             {

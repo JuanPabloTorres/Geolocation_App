@@ -78,13 +78,9 @@ namespace GeolocationAds.ViewModels
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
-            ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+            //this.ContentTypesTemplate.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
-            this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
-
-            this.InitializeSettings();
-
-            this.SetDefault();
+            //this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
@@ -97,31 +93,30 @@ namespace GeolocationAds.ViewModels
 
         private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
         {
-            this.IsLoading = true;
-
             try
             {
+                this.IsLoading = true;
+
                 if (sender is ContentTypeTemplateViewModel template)
                 {
-                    if (!template.IsObjectNull())
-                    {
-                        this.ContentTypesTemplate.Remove(template);
-                    }
+                    this.ContentTypesTemplate.Remove(template);
                 }
             }
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
-            this.IsLoading = false;
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             try
             {
-                if (sender is IList<ContentTypeTemplateViewModel> contents)
+                if (sender is IEnumerable<ContentTypeTemplateViewModel> contents)
                 {
                     if (!this.Model.Contents.IsObjectNull())
                     {
@@ -175,9 +170,9 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
                 this.AdTypesSettings.Clear();
+
+                var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -187,7 +182,7 @@ namespace GeolocationAds.ViewModels
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
             }
             catch (Exception ex)
@@ -200,7 +195,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public async void InitializeSettings()
+        public async Task InitializeSettings()
         {
             await LoadSetting();
         }
@@ -241,7 +236,11 @@ namespace GeolocationAds.ViewModels
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
+                        _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                         this.ContentTypesTemplate.Add(_template);
+
+                        this.Model.Contents.Add(_content);
                     }
 
                     if (_contentType == ContentVisualType.Video)
@@ -252,7 +251,11 @@ namespace GeolocationAds.ViewModels
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
+                        _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                         this.ContentTypesTemplate.Add(_template);
+
+                        this.Model.Contents.Add(_content);
                     }
                 }
             }
@@ -277,6 +280,8 @@ namespace GeolocationAds.ViewModels
                 var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
                 var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
+
+                _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                 this.ContentTypesTemplate.Add(_template);
             }

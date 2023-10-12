@@ -93,7 +93,7 @@ namespace GeolocationAds.ViewModels
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
 
-            ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+            //ContentTypeTemplateViewModel.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
         }
 
         private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -127,10 +127,9 @@ namespace GeolocationAds.ViewModels
 
                 if (sender is ContentTypeTemplateViewModel template)
                 {
-                    if (!template.IsObjectNull())
-                    {
-                        this.ContentTypesTemplate.Remove(template);
-                    }
+                    this.ContentTypesTemplate.Remove(template);
+
+                    this.Model.Contents.Remove(this.Model.Contents.Where(v => v.ID == template.ContentType.ID).FirstOrDefault());
                 }
             }
             catch (Exception ex)
@@ -149,7 +148,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
+                //this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
 
                 await this.LoadSetting();
 
@@ -157,10 +156,12 @@ namespace GeolocationAds.ViewModels
                 {
                     var _template = await AppToolCommon.ProcessContentItem(item);
 
+                    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                     this.ContentTypesTemplate.Add(_template);
                 }
 
-                this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
+                //this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
             }
             catch (Exception ex)
             {
@@ -265,7 +266,11 @@ namespace GeolocationAds.ViewModels
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content);
 
+                        _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                         this.ContentTypesTemplate.Add(_template);
+
+                        this.Model.Contents.Add(_content);
                     }
                     else
                     {
@@ -275,7 +280,11 @@ namespace GeolocationAds.ViewModels
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
+                        _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                         this.ContentTypesTemplate.Add(_template);
+
+                        this.Model.Contents.Add(_content);
                     }
                 }
             }

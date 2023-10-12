@@ -73,19 +73,15 @@ namespace ToolsLibrary.TemplateViewModel
 
         public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
+            this.CurrentAdvertisement = advertisement;
+
             SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
 
             RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
 
             OpenActionPopUpCommand = new Command(async () => { await OpenActionPopUp(); });
 
-            //this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
-
-            this.CurrentAdvertisement = advertisement;
-
             this.onNavigate = new Command<int>(Navigate);
-
-            //FillTemplate();
         }
 
         public async Task InitializeAsync()
@@ -132,7 +128,9 @@ namespace ToolsLibrary.TemplateViewModel
 
                     case "Manage Location":
 
-                        await CommonsTool.DisplayAlert("Notification", "On Development.");
+                        var navigationParameter = new Dictionary<string, object> { { "ID", this.CurrentAdvertisement.ID } };
+
+                        await NavigateAsync(nameof(ManageLocation), navigationParameter);
 
                         break;
 

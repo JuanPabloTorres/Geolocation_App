@@ -38,8 +38,6 @@ namespace GeolocationAds.TemplateViewModel
 
         public NearByTemplateViewModel(ICaptureService captureService, Advertisement advertisement, LogUserPerfilTool logUser)
         {
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
-
             this.LogUser = logUser;
 
             this.Advertisement = advertisement;
@@ -47,11 +45,16 @@ namespace GeolocationAds.TemplateViewModel
             this.service = captureService;
 
             CaptureCommand = new Command<Advertisement>(CaptureItem);
-
-            FillTemplate();
         }
 
-        public async void FillTemplate()
+        public async Task InitializeAsync()
+        {
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+
+            await FillTemplate();
+        }
+
+        public async Task FillTemplate()
         {
             try
             {
@@ -59,21 +62,6 @@ namespace GeolocationAds.TemplateViewModel
                 {
                     foreach (var item in this.Advertisement.Contents)
                     {
-                        //if (item.Type == ContentVisualType.Image)
-                        //{
-                        //    var _template = ContentTypeTemplateFactory.BuilContentType(item, item.Content);
-
-                        //    this.ContentTypesTemplate.Add(_template);
-                        //}
-                        //if (item.Type == ContentVisualType.Video)
-                        //{
-                        //    var _file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
-
-                        //    var _template = ContentTypeTemplateFactory.BuilContentType(item, _file);
-
-                        //    this.ContentTypesTemplate.Add(_template);
-                        //}
-
                         var _template = await AppToolCommon.ProcessContentItem(item);
 
                         this.ContentTypesTemplate.Add(_template);
@@ -102,11 +90,11 @@ namespace GeolocationAds.TemplateViewModel
 
                 if (_apiResponse.IsSuccess)
                 {
-                    await Shell.Current.DisplayAlert("Notification", "Captured", "OK");
+                    await CommonsTool.DisplayAlert("Notification", "Capture completed successfully.");
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
             }
             catch (Exception ex)

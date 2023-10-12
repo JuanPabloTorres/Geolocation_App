@@ -39,6 +39,9 @@
     <MauiXaml Update="Login.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Pages\ManageLocation.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Pages\MyFavorites.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

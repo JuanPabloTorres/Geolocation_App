@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.ManageLocation"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    Title="Manage Location">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SearchCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding OpenFilterPopUpCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Frame Padding="5" Style="{StaticResource cardFrame}">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Margin="10">
+                <Label Text="{Binding Model.Title}" />
+
+            </StackLayout>
+
+
+            <ContentView
+                x:Name="LoadingIndicatorContainer"
+                Grid.Row="1"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand">
+                <ContentView.Content>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                </ContentView.Content>
+            </ContentView>
+
+
+
+            <maps:Map
+                x:Name="googleMap"
+                Grid.Row="1"
+                IsScrollEnabled="True"
+                IsShowingUser="True"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                IsZoomEnabled="True"
+                MapType="Hybrid" />
+
+            <CollectionView Grid.Row="2" ItemsSource="{Binding Model.GeolocationAds}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--  Display Geolocation Ad properties  -->
+                        <StackLayout Margin="10">
+                            <Label Text="{Binding Latitude, StringFormat='Latitude: {0:F2}'}" />
+                            <Label Text="{Binding Longitude, StringFormat='Longitude: {0:F2}'}" />
+                            <Label Text="{Binding ExpirationDate, StringFormat='Expiration Date: {0:MM/dd/yyyy}'}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Style="{StaticResource emptyCollectionLabel}" Text="No Location available." />
+
+
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+    </Frame>
+</ContentPage>

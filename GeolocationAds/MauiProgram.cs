@@ -131,6 +131,8 @@ public static class MauiProgram
 
         builder.Services.AddScoped<CaptureViewModel>();
 
+        builder.Services.AddScoped<ManageLocationViewModel>();
+
         #endregion ViewModels
 
         #region Pages
@@ -162,6 +164,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<RecoveryPasswordPopUp>();
 
         builder.Services.AddSingleton<MyFavorites>();
+
+        builder.Services.AddSingleton<ManageLocation>();
 
         #endregion Pages
 
