@@ -37,21 +37,6 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (response.IsSuccess)
                 {
-                    //_currentAdToPost.IsPosted = true;
-
-                    //_currentAdToPost.GeolocationAdId = response.Data.ID;
-
-                    //var _adPostedResponse = await this.advertisementRepository.UpdateAsync(_currentAdToPost.ID, _currentAdToPost);
-
-                    //if (!_adPostedResponse.IsSuccess)
-                    //{
-                    //    newGeolocationAd.Advertisement = _currentAdToPost;
-
-                    //    response = ResponseFactory<GeolocationAd>.BuildSusccess("Content Posted Correctly.", newGeolocationAd, ToolsLibrary.Tools.Type.Added);
-
-                    //    return Ok(response);
-                    //}
-
                     return Ok(response);
                 }
                 else
@@ -182,7 +167,6 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (_geoAd_Response.IsSuccess)
                 {
-
                     //foreach (var item in _geoAd_Response.Data)
                     //{
                     //    _adsNear.Add(item);
@@ -213,7 +197,6 @@ namespace GeolocationAdsAPI.Controllers
                     //    .ToList();
 
                     //_adsNear.AddRange(_geoAd_Response.Data.Where(v => v.GeolocationAds.Any(geo => adsNear.Any(n => n.ID == geo.ID))).ToList());
-
 
                     //var adsNear = _geoAd_Response.Data
                     //    .Where(advertisement => advertisement.GeolocationAds.Any(geo =>
@@ -273,6 +256,25 @@ namespace GeolocationAdsAPI.Controllers
             catch (Exception ex)
             {
                 response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            ResponseTool<GeolocationAd> response;
+
+            try
+            {
+                response = await this.geolocationAdRepository.Remove(id);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response = ResponseFactory<GeolocationAd>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
                 return Ok(response);
             }

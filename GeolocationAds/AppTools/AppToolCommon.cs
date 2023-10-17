@@ -39,38 +39,6 @@ namespace GeolocationAds.AppTools
             }
         }
 
-        [Obsolete]
-        public static async Task<byte[]> ImageSourceToByteArrayAsync(ImageSource imageSource)
-        {
-            var _completePath = $"GeolocationAds.Resources.Images.{imageSource}";
-
-            if (imageSource is FileImageSource fileImageSource)
-            {
-                var assem = Assembly.GetExecutingAssembly();
-
-                string resourceName = fileImageSource.File;
-
-                using Stream stream = assem.GetManifestResourceStream(_completePath);
-
-                if (stream != null)
-                {
-                    using MemoryStream memoryStream = new MemoryStream();
-
-                    await stream.CopyToAsync(memoryStream);
-
-                    return memoryStream.ToArray();
-                }
-                else
-                {
-                    throw new FileNotFoundException($"Resource '{resourceName}' not found in assembly.");
-                }
-            }
-            else
-            {
-                throw new ArgumentException("Unsupported ImageSource type.");
-            }
-        }
-
         public static async Task<ContentTypeTemplateViewModel> ProcessContentItem(ContentType item)
         {
             try
@@ -85,7 +53,6 @@ namespace GeolocationAds.AppTools
 
                         return ContentTypeTemplateFactory.BuilContentType(item, file);
 
-                    // Add more cases for other content types as needed
                     default:
                         // Handle other content types or provide a default action.
                         return null;

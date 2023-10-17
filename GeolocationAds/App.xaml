@@ -18,6 +18,10 @@
             <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
+            <Color x:Key="AppGray">#3e4144</Color>
+
+            <Color x:Key="AppBlack">#242124</Color>
+
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
@@ -25,7 +29,7 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="TextColor" Value="#242124" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="5" />
             </Style>
 
@@ -35,7 +39,7 @@
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="TextColor" Value="#242124" />
+                <Setter Property="TextColor" Value="{StaticResource AppGray}" />
                 <Setter Property="Margin" Value="5" />
             </Style>
 
@@ -45,7 +49,7 @@
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="TextColor" Value="#242124" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="5" />
             </Style>
 
@@ -55,7 +59,7 @@
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="#242124" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
                 <Setter Property="Margin" Value="5" />
             </Style>
@@ -66,7 +70,7 @@
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="#242124" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="5" />
             </Style>
 
@@ -80,7 +84,7 @@
 
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="TextColor" Value="#242124" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="LineBreakMode" Value="MiddleTruncation" />
             </Style>
@@ -94,7 +98,7 @@
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BackgroundColor" Value="#3e4144" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AppGray}" />
             </Style>
 
             <Style x:Key="pagingBtn" TargetType="Button">
@@ -108,7 +112,7 @@
                 <Setter Property="CornerRadius" Value="0" />
                 <Setter Property="BorderColor" Value="White" />
                 <Setter Property="BorderWidth" Value="1" />
-                <Setter Property="BackgroundColor" Value="#3e4144" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AppGray}" />
             </Style>
 
             <Style x:Key="globalLoading" TargetType="ActivityIndicator">
@@ -238,6 +242,29 @@
                 <Setter Property="CornerRadius" Value="0" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="XButtonGray" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="End" />
+
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="RobotoBold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="TextColor" Value="{StaticResource AppGray}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+
+                <Setter Property="ImageSource">
+                    <Setter.Value>
+                        <FontImageSource
+                            FontFamily="MaterialIconsOutlined-Regular"
+                            Glyph="&#xe5cd;"
+                            Size="25"
+                            Color="{StaticResource AppGray}" />
+                    </Setter.Value>
+                </Setter>
+
+
             </Style>
 
             <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">

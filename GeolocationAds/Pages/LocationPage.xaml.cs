@@ -191,7 +191,7 @@ namespace GeolocationAds.Pages
         }
 
         // Evento para abrir la página de Google Maps
-        private async void googleMapClick(object sender, EventArgs e)
+        private void googleMapClick(object sender, EventArgs e)
         {
             if (GeolocationRegistered.Count() > 0 || FoundLocations.Count() > 0)
             {

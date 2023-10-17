@@ -165,7 +165,9 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<MyFavorites>();
 
-        builder.Services.AddSingleton<ManageLocation>();
+        //builder.Services.AddSingleton<ManageLocation>();
+
+        builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel>($"{nameof(ManageLocation)}");
 
         #endregion Pages
 

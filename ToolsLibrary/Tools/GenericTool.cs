@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using ToolsLibrary.Extensions;
 
 namespace ToolsLibrary.Tools
 {
@@ -39,17 +40,39 @@ namespace ToolsLibrary.Tools
             }
         }
 
-        public static TValue GetPropertyValueFromObject<TValue>(object obj, string propertyName)
+        public static PValue GetPropertyValueFromObject<PValue>(object obj, string propertyName)
         {
             var property = obj.GetType().GetProperty(propertyName);
 
             if (property != null && property.CanRead)
             {
-                return (TValue)property.GetValue(obj);
+                return (PValue)property.GetValue(obj);
             }
 
-            return default(TValue);
+            return default(PValue);
         }
 
+        public static async Task<RValue> InvokeMethodName<RValue>(object service, string methodName, object[] parameters)
+        {
+            try
+            {
+                MethodInfo _method = service.GetType().GetMethod(methodName);
+
+                if (!_method.IsObjectNull())
+                {
+                    return await (Task<RValue>)_method.Invoke(service, parameters);
+                }
+                else
+                {
+                    return default(RValue);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+
+                return default(RValue); ;
+            }
+        }
     }
 }

@@ -16,5 +16,17 @@ namespace ToolsLibrary.Factories
                 ExpirationDate = DateTime.Now.AddDays(7)
             };
         }
+
+        public static GeolocationAd CreateGeolocationAd(int adId, Location locationData)
+        {
+            return new GeolocationAd()
+            {
+                AdvertisingId = adId,
+                CreateDate = DateTime.Now,
+                Latitude = locationData.Latitude,
+                Longitude = locationData.Longitude,
+                ExpirationDate = DateTime.Now.AddDays(7)
+            };
+        }
     }
 }

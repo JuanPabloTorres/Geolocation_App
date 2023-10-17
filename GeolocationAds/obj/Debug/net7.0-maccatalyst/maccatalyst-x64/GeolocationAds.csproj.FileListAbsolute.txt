@@ -1,3 +1,4 @@
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\Resources\Images\mediacontent.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\GeolocationAds.runtimeconfig.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\GeolocationAds.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net7.0-maccatalyst\maccatalyst-x64\GeolocationAds.pdb
@@ -290,7 +291,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\filebox.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\gbook03.jpg
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\map.png
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\mediacontent.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\plus.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\setting.png
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net7.0-maccatalyst\maccatalyst-x64\resizetizer\r\Resources\star.png
