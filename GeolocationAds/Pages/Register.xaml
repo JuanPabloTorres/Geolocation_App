@@ -21,7 +21,7 @@
         <Grid VerticalOptions="CenterAndExpand">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -35,13 +35,9 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label
-                Grid.Row="0"
-                FontSize="30"
-                Style="{StaticResource globalLabel}"
-                Text="Complete Registration" />
 
-            <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
+
+            <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -57,72 +53,61 @@
             </CollectionView>
 
             <Label
-                Grid.Row="2"
+                Grid.Row="1"
                 Style="{StaticResource globalLabel}"
                 Text="FullName:" />
             <local:CustomEntryContentView
-                Grid.Row="3"
+                Grid.Row="2"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="FullName"
                 Text="{Binding Model.FullName}" />
 
             <Label
-                Grid.Row="4"
+                Grid.Row="3"
                 Style="{StaticResource globalLabel}"
                 Text="Phone:" />
             <local:CustomEntryContentView
-                Grid.Row="5"
+                Grid.Row="4"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Phone"
                 Text="{Binding Model.Phone}" />
 
             <Label
-                Grid.Row="6"
+                Grid.Row="5"
                 Style="{StaticResource globalLabel}"
                 Text="Email:" />
             <local:CustomEntryContentView
-                Grid.Row="7"
+                Grid.Row="6"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Email"
                 Text="{Binding Model.Email}" />
 
             <Label
-                Grid.Row="8"
+                Grid.Row="7"
                 Style="{StaticResource globalLabel}"
                 Text="Username:" />
             <local:CustomEntryContentView
-                Grid.Row="9"
+                Grid.Row="8"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Username"
                 Text="{Binding Model.Login.Username}" />
 
             <Label
-                Grid.Row="10"
+                Grid.Row="9"
                 Style="{StaticResource globalLabel}"
                 Text="Password:" />
             <local:CustomEntryContentView
-                Grid.Row="11"
+                Grid.Row="10"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 IsPassword="True"
                 Placeholder="Password"
                 Text="{Binding Model.Login.Password}" />
 
-            <!--  Submit Button  -->
-            <!--<Button
-                x:Name="SubmitButton"
-                Command="{Binding SubmitCommand}"
-                CommandParameter="{Binding Model}"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButton}"
-                Text="Complete">
 
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-            </Button>-->
 
             <ContentView
                 x:Name="LoadingIndicatorContainer"
-                Grid.Row="12"
+                Grid.Row="11"
                 IsVisible="{Binding IsLoading}"
                 VerticalOptions="FillAndExpand">
                 <ContentView.Content>

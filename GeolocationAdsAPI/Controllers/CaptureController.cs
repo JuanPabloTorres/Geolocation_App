@@ -1,4 +1,5 @@
 ﻿using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using ToolsLibrary.Factories;
@@ -8,6 +9,7 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CaptureController : ControllerBase
     {
         private readonly ICaptureRepository captureRepository;
@@ -22,6 +24,13 @@ namespace GeolocationAdsAPI.Controllers
         {
             try
             {
+                var _havaCaptureResponse = await this.captureRepository.CaptureExist(capture.UserId, capture.AdvertisementId);
+
+                if (_havaCaptureResponse.ResponseType == ToolsLibrary.Tools.Type.Exist)
+                {
+                    return Ok(ResponseFactory<Capture>.BuildFail(_havaCaptureResponse.Message, null, _havaCaptureResponse.ResponseType));
+                }
+
                 var response = await this.captureRepository.CreateAsync(capture);
 
                 return Ok(response);

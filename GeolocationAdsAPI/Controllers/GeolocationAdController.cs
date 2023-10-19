@@ -1,5 +1,6 @@
 ﻿using GeolocationAds.Tools;
 using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -9,6 +10,7 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GeolocationAdController : ControllerBase
     {
         private readonly IAdvertisementRepository advertisementRepository;
@@ -154,112 +156,78 @@ namespace GeolocationAdsAPI.Controllers
         //    }
         //}
 
+        //[HttpPost("[action]/{distance}/{settinTypeId}")]
+        //public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settinTypeId)
+        //{
+        //    ResponseTool<IEnumerable<Advertisement>> response;
+
+        //    IList<Advertisement> _adsNear = new List<Advertisement>();
+
+        //    try
+        //    {
+        //        var _geoAd_Response = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settinTypeId);
+
+        //        if (_geoAd_Response.IsSuccess)
+        //        {
+        //            if (_geoAd_Response.Data.Count() > 0)
+        //            {
+        //                _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
+
+        //                _geoAd_Response.Data = _geoAd_Response.Data.OrderBy(o => o.CreateDate).Reverse().ToList();
+
+        //                response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", _geoAd_Response.Data, ToolsLibrary.Tools.Type.DataFound);
+        //            }
+        //            else
+        //            {
+        //                response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Nearby Content.", _geoAd_Response.Data, ToolsLibrary.Tools.Type.NotFound);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess(_geoAd_Response.Message, null, ToolsLibrary.Tools.Type.Fail);
+        //        }
+
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //        return Ok(response);
+        //    }
+        //}
+
         [HttpPost("[action]/{distance}/{settinTypeId}")]
         public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settinTypeId)
         {
-            ResponseTool<IEnumerable<Advertisement>> response;
-
-            IList<Advertisement> _adsNear = new List<Advertisement>();
-
             try
             {
-                var _geoAd_Response = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settinTypeId);
+                var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settinTypeId);
 
-                if (_geoAd_Response.IsSuccess)
+                if (geoAdResponse.IsSuccess)
                 {
-                    //foreach (var item in _geoAd_Response.Data)
-                    //{
-                    //    _adsNear.Add(item);
-                    //}
-
-                    //foreach (var item in _geoAd_Response.Data)
-                    //{
-                    //    foreach (var geo in item.GeolocationAds)
-                    //    {
-                    //        double meterDistance = GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude);
-
-                    //        if (meterDistance <= distance)
-                    //        {
-                    //            _adsNear.Add(item);
-                    //        }
-                    //    }
-                    //}
-
-                    //var adsNear = _geoAd_Response.Data
-                    //    .SelectMany(item => item.GeolocationAds)
-                    //    .Where(geo =>
-                    //    {
-                    //        double meterDistance = GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude);
-
-                    //        return meterDistance <= distance;
-                    //    })
-                    //    .Distinct()
-                    //    .ToList();
-
-                    //_adsNear.AddRange(_geoAd_Response.Data.Where(v => v.GeolocationAds.Any(geo => adsNear.Any(n => n.ID == geo.ID))).ToList());
-
-                    //var adsNear = _geoAd_Response.Data
-                    //    .Where(advertisement => advertisement.GeolocationAds.Any(geo =>
-                    //    {
-                    //        double meterDistance = GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude);
-
-                    //        return meterDistance <= distance;
-
-                    //    })).ToList();
-
-                    // Define a batch size (adjust as needed)
-                    //int batchSize = 1000;
-
-                    //foreach (var item in _geoAd_Response.Data)
-                    //{
-                    //    var geolocationAds = item.GeolocationAds.ToList(); // Convert to a list for indexing
-
-                    //    for (int i = 0; i < geolocationAds.Count; i += batchSize)
-                    //    {
-                    //        var batch = geolocationAds.Skip(i).Take(batchSize);
-
-                    //        // Calculate distances for the current batch in parallel
-                    //        var distances = batch.AsParallel().Select(geo =>
-                    //        {
-                    //            return GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude);
-                    //        }).ToList();
-
-                    //        // Check if any distance in the batch is less than or equal to the specified distance
-                    //        if (distances.Any(distance => distance <= distance))
-                    //        {
-                    //            _adsNear.Add(item);
-                    //            break; // Exit the inner loop once a match is found for this item
-                    //        }
-                    //    }
-                    //}
-
-                    if (_geoAd_Response.Data.Count() > 0)
+                    if (geoAdResponse.Data.Count() > 0)
                     {
-                        _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
+                        var adsNear = geoAdResponse.Data.OrderByDescending(o => o.CreateDate).ToList();
 
-                        _geoAd_Response.Data = _geoAd_Response.Data.OrderBy(o => o.CreateDate).Reverse().ToList();
-
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", _geoAd_Response.Data, ToolsLibrary.Tools.Type.DataFound);
+                        return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
                     }
                     else
                     {
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Nearby Content.", null, ToolsLibrary.Tools.Type.NotFound);
+                        return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("No nearby content found.", geoAdResponse.Data, ToolsLibrary.Tools.Type.NotFound));
                     }
                 }
                 else
                 {
-                    response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess(_geoAd_Response.Message, null, ToolsLibrary.Tools.Type.Fail);
+                    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
                 }
-
-                return Ok(response);
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-                return Ok(response);
+                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception));
             }
         }
+
 
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> Remove(int id)

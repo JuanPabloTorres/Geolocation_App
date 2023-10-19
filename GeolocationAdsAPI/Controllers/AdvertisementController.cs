@@ -1,4 +1,5 @@
 ﻿using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -9,6 +10,7 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AdvertisementController : ControllerBase
     {
         private readonly IAdvertisementRepository advertisementRepository;
@@ -140,29 +142,6 @@ namespace GeolocationAdsAPI.Controllers
 
                     return Ok(response);
                 }
-
-                //var _adSetting = advertisement.Settings.Where(v => v.GetType() == typeof(AdvertisementSettings)).FirstOrDefault();
-
-                //var _settingResponse = await this.advertisementSettingsRepository.UpdateAsync(_adSetting.ID, _adSetting);
-
-                //if (!_settingResponse.IsSuccess)
-                //{
-                //    response = ResponseFactory<Advertisement>.BuildFail(_settingResponse.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-                //    return Ok(response);
-                //}
-
-                //if (response.Data.Contents.Count() > 0)
-                //{
-                //    var _removeAllResponse = await this.contentTypeRepository.RemoveAllContentOfAdvertisement(Id);
-
-                //    if (!_removeAllResponse.IsSuccess)
-                //    {
-                //        return Ok(ResponseFactory<Advertisement>.BuildFail(_removeAllResponse.Message, null, ToolsLibrary.Tools.Type.Exception));
-                //    }
-
-                //    await this.contentTypeRepository.CreateRangeAsync(response.Data.Contents);
-                //}
 
                 return Ok(response);
             }

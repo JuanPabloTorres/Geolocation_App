@@ -54,13 +54,13 @@ namespace GeolocationAds.ViewModels
 
             MangeContentTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
-            WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    this.CollectionModel.Clear();
-                });
-            });
+            //WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
+            //{
+            //    MainThread.BeginInvokeOnMainThread(() =>
+            //    {
+            //        this.CollectionModel.Clear();
+            //    });
+            //});
 
             WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
             {

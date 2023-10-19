@@ -541,3 +541,4 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net7.0\GeolocationAdsAPI.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net7.0\GeolocationAdsAPI.genruntimeconfig.cache
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net7.0\ref\GeolocationAdsAPI.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

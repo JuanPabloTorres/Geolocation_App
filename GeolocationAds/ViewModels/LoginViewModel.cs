@@ -30,18 +30,18 @@ namespace GeolocationAds.ViewModels
 
             this.Model.Password = "123";
 
-            WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
-            {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    this.LogUserPerfilTool.LogUser = null;
+            //WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
+            //{
+            //    MainThread.BeginInvokeOnMainThread(async () =>
+            //    {
+            //        this.LogUserPerfilTool.LogUser = null;
 
-                    await Shell.Current.GoToAsync(nameof(Login));
+            //        await Shell.Current.GoToAsync(nameof(Login));
 
-                    // Manually close the flyout
-                    Shell.Current.FlyoutIsPresented = false;
-                });
-            });
+            //        // Manually close the flyout
+            //        Shell.Current.FlyoutIsPresented = false;
+            //    });
+            //});
 
             WeakReferenceMessenger.Default.Register<UpdateMessage<ForgotPassword>>(this, (r, m) =>
             {
@@ -72,20 +72,56 @@ namespace GeolocationAds.ViewModels
 
         private async void VerifyCredential(ToolsLibrary.Models.Login credential)
         {
+            //try
+            //{
+            //    IsLoading = true;
 
+            //    var _apiResponse = await this.service.VerifyCredential(credential);
+
+            //    if (_apiResponse.IsSuccess)
+            //    {
+            //        if (_apiResponse.Data.UserStatus != ToolsLibrary.Models.UserStatus.ResetPassword)
+            //        {
+            //            this.LogUserPerfilTool.LogUser = _apiResponse.Data;
+
+            //            WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
+
+            //            await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+            //        }
+            //        else
+            //        {
+            //            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    await CommonsTool.DisplayAlert("Error", ex.Message);
+            //}
+            //finally
+            //{
+            //    IsLoading = false;
+            //}
 
             try
             {
                 IsLoading = true;
 
-
-                var _apiResponse = await this.service.VerifyCredential(credential);
+                var _apiResponse = await this.service.VerifyCredential2(credential);
 
                 if (_apiResponse.IsSuccess)
                 {
-                    if (_apiResponse.Data.UserStatus != ToolsLibrary.Models.UserStatus.ResetPassword)
+                    if (_apiResponse.Data.LogUser.UserStatus != ToolsLibrary.Models.UserStatus.ResetPassword)
                     {
-                        this.LogUserPerfilTool.LogUser = _apiResponse.Data;
+                        this.LogUserPerfilTool.JsonToken = _apiResponse.Data.JsonToken;
+
+                        this.LogUserPerfilTool.LogUser = _apiResponse.Data.LogUser;
+
+                        this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
 
                         WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
 
@@ -109,8 +145,6 @@ namespace GeolocationAds.ViewModels
             {
                 IsLoading = false;
             }
-
-
         }
     }
 }

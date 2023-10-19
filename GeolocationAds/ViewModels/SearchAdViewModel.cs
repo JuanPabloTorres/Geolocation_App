@@ -1,13 +1,10 @@
 ﻿using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.Messaging;
-using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.Tools;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
-using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -79,15 +76,17 @@ namespace GeolocationAds.ViewModels
 
             this.SelectedAdType = new AppSetting();
 
+            //this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
+
             InitializeSettingsAsync();
 
-            WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    this.NearByTemplateViewModels.Clear();
-                });
-            });
+            //WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
+            //{
+            //    MainThread.BeginInvokeOnMainThread(() =>
+            //    {
+            //        this.NearByTemplateViewModels.Clear();
+            //    });
+            //});
         }
 
         private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
@@ -161,33 +160,37 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                //this.NearByTemplateViewModels.Clear();
-
-                var currentLocation = extraData as CurrentLocation;
-
-                var _apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
-
-                if (_apiResponse.IsSuccess)
+                if (!(extraData is CurrentLocation currentLocation))
                 {
-                    if (!_apiResponse.Data.IsObjectNull())
-                    {
-                        foreach (var item in _apiResponse.Data)
-                        {
-                            var _templateViewModel = new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool);
+                    // Handle invalid 'extraData' if needed.
+                    await Shell.Current.DisplayAlert("Error", "Failed to retrieve location information. Please check your settings and try again.", "OK");
 
-                            await _templateViewModel.InitializeAsync();
-
-                            this.NearByTemplateViewModels.Add(_templateViewModel);
-                        }
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                    }
+                    return;
                 }
-                else
+
+                var apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
+
+                if (!apiResponse.IsSuccess)
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
+
+                    return;
+                }
+
+                if (apiResponse.Data.Count() == 0)
+                {
+                    await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
+
+                    return;
+                }
+
+                foreach (var item in apiResponse.Data)
+                {
+                    var templateViewModel = new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool);
+
+                    await templateViewModel.InitializeAsync();
+
+                    this.NearByTemplateViewModels.Add(templateViewModel);
                 }
             }
             catch (Exception ex)
@@ -198,24 +201,33 @@ namespace GeolocationAds.ViewModels
 
         public async Task InitializeAsync()
         {
-            this.IsLoading = true;
-
-            this.NearByTemplateViewModels.Clear();
-
-            var locationReponse = await GeolocationTool.GetLocation();
-
-            if (locationReponse.IsSuccess)
+            try
             {
-                var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
+                this.IsLoading = true;
 
-                await LoadData(_currentLocation);
+                this.NearByTemplateViewModels.Clear();
+
+                var locationReponse = await GeolocationTool.GetLocation();
+
+                if (locationReponse.IsSuccess)
+                {
+                    var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
+
+                    await LoadData(_currentLocation);
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
-            this.IsLoading = false;
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         public async void InitializeSettingsAsync()

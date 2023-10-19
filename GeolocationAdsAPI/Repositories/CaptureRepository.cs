@@ -12,6 +12,29 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
+        public async Task<ResponseTool<bool>> CaptureExist(int userId, int advertisingId)
+        {
+            try
+            {
+                var result = await _context.Captures.AnyAsync(v => v.UserId == userId && v.AdvertisementId == advertisingId);
+
+                if (result)
+                {
+                    return ResponseFactory<bool>.BuildSusccess("You've already captured it.", true, ToolsLibrary.Tools.Type.Exist);
+                }
+                else
+                {
+                    return ResponseFactory<bool>.BuildFail("You haven't captured it.", false, ToolsLibrary.Tools.Type.NotExist);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
         public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId)
         {
             try

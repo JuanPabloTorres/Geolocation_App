@@ -83,6 +83,16 @@ public static class MauiProgram
 
         builder.Services.AddTransient<ICaptureService, CaptureService>();
 
+        builder.Services.AddSingleton<HttpClient>((provider) =>
+        {
+            var _httpClient = new HttpClient()
+            {
+                Timeout = TimeSpan.FromSeconds(ConstantsTools.TIMEOUT)
+            };
+
+            return _httpClient;
+        });
+
         #endregion Api Service
 
         #region Models
@@ -139,31 +149,31 @@ public static class MauiProgram
 
         builder.Services.AddTransient<FilterPopUp>();
 
-        builder.Services.AddSingleton<CreateAdvertisment>();
+        //builder.Services.AddSingleton<CreateAdvertisment>();
 
-        //builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
+        builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
 
-        builder.Services.AddSingleton<AdToLocation>();
+        builder.Services.AddScoped<AdToLocation>();
 
-        builder.Services.AddSingleton<SearchAd>();
+        builder.Services.AddScoped<SearchAd>();
 
-        builder.Services.AddSingleton<Login>();
+        builder.Services.AddScoped<Login>();
 
-        builder.Services.AddSingleton<Register>();
+        builder.Services.AddScoped<Register>();
 
-        builder.Services.AddSingleton<GoogleMapPage>();
+        builder.Services.AddScoped<GoogleMapPage>();
 
-        builder.Services.AddSingleton<UserSetting>();
+        builder.Services.AddScoped<UserSetting>();
 
         builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel>($"{nameof(EditAdvertisment)}");
 
-        builder.Services.AddSingleton<EditUserPerfil>();
+        builder.Services.AddScoped<EditUserPerfil>();
 
-        builder.Services.AddSingleton<EditLoginCredential>();
+        builder.Services.AddScoped<EditLoginCredential>();
 
-        builder.Services.AddSingleton<RecoveryPasswordPopUp>();
+        builder.Services.AddScoped<RecoveryPasswordPopUp>();
 
-        builder.Services.AddSingleton<MyFavorites>();
+        builder.Services.AddScoped<MyFavorites>();
 
         //builder.Services.AddSingleton<ManageLocation>();
 

@@ -1,4 +1,5 @@
 ﻿using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -8,6 +9,7 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AppSettingController : ControllerBase
     {
         private IAppSettingRepository appSettingRepository;

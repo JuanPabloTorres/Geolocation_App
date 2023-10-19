@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Xkx2ljcBB4H+PPR45RkseAeDsj8YJBRZwjHAspkZWdCX6GLiZoiZyWWAahqFIuU4BhT6/QbTKdRS8AzRa8XRPQ==",
+  "dgSpecHash": "1GZNGTr6yLk8wqdGOWWDK+fGY0axHbuBH8CY494689EGi9W8a+FK7N1eHLdjav8U4qXLQ5UatBdYucn2h1RtrA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,7 @@
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.11\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",

@@ -9,14 +9,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(CaptureService);
 
-        public CaptureService()
-        { }
-
-        public CaptureService(string _apiSuffix) : base(_apiSuffix)
-        {
-        }
-
-        public CaptureService(HttpClient htppClient, string _apiSuffix) : base(htppClient, _apiSuffix)
+        public CaptureService(HttpClient htppClient) : base(htppClient)
         {
         }
 

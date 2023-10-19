@@ -10,14 +10,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(GeolocationAd);
 
-        public GeolocationAdService()
-        { }
-
-        public GeolocationAdService(string _apiSuffix) : base(_apiSuffix)
-        {
-        }
-
-        public GeolocationAdService(HttpClient htppClient, string _apiSuffix) : base(htppClient, _apiSuffix)
+        public GeolocationAdService(HttpClient htppClient) : base(htppClient)
         {
         }
 
@@ -82,7 +75,7 @@ namespace GeolocationAds.Services
                 var apiUrl = APIPrefix + ApiSuffix;
 
                 // Send the POST request to the API
-                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdNear2)}/{distance}/{settinTypeId}", content);
+                var response = await this._httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdNear2)}/{distance}/{settinTypeId}", content);
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)
@@ -91,11 +84,6 @@ namespace GeolocationAds.Services
                     var responseJson = await response.Content.ReadAsStringAsync();
 
                     var responseData = JsonConvert.DeserializeObject<ResponseTool<IEnumerable<Advertisement>>>(responseJson);
-
-                    // Build a success response with the data
-                    //var successResponse = ResponseFactory<T>.BuildSusccess("Successfully added.", responseData);
-
-                    //return successResponse;
 
                     return responseData;
                 }
@@ -109,8 +97,6 @@ namespace GeolocationAds.Services
             }
             catch (Exception ex)
             {
-                // If an exception occurs, build a fail response with the error message
-
                 var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail($"An error occurred: {ex.Message}", null);
 
                 return failResponse;

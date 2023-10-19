@@ -1,6 +1,9 @@
 using GeolocationAdsAPI.Context;
 using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +49,36 @@ builder.Services.AddTransient<IContentTypeRepository, ContentTypeRepository>();
 
 builder.Services.AddTransient<ICaptureRepository, CaptureRepository>();
 
+// In ConfigureServices method
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            //// The issuer (iss) and audience (aud) that the token is valid for.
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+
+            ValidAudience = builder.Configuration["Jwt:Issuer"],
+
+            // Your signing key to validate the token's signature.
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+
+            // Validate the token's lifetime
+            ValidateLifetime = true,
+
+            // Clock skew to account for server/client time differences (optional)
+            ClockSkew = TimeSpan.Zero,
+
+            // Additional security settings (customize as needed)
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true
+        };
+    });
+
+builder.Services.AddAuthorization();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -55,6 +88,8 @@ if (app.Environment.IsDevelopment())
 
     app.UseSwaggerUI();
 }
+
+
 
 //app.UseHttpsRedirection();
 

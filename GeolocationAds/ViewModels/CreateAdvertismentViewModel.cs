@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
@@ -18,8 +17,6 @@ namespace GeolocationAds.ViewModels
 {
     public partial class CreateAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
     {
-        private byte[] fileBytes;
-
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
@@ -42,23 +39,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private MediaSource _mediaSource;
-
-        public MediaSource MediaSource
-        {
-            get => _mediaSource;
-            set
-            {
-                if (_mediaSource != value)
-                {
-                    _mediaSource = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private IAppSettingService appSettingService;
+        private readonly IAppSettingService appSettingService;
 
         public ICommand UploadContentCommand { get; set; }
 
@@ -78,10 +59,6 @@ namespace GeolocationAds.ViewModels
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
-            //this.ContentTypesTemplate.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-            //this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
-
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -99,7 +76,14 @@ namespace GeolocationAds.ViewModels
 
                 if (sender is ContentTypeTemplateViewModel template)
                 {
-                    this.ContentTypesTemplate.Remove(template);
+                    if (this.ContentTypesTemplate.Count() == 1)
+                    {
+                        await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
+                    }
+                    else
+                    {
+                        this.ContentTypesTemplate.Remove(template);
+                    }
                 }
             }
             catch (Exception ex)
@@ -112,33 +96,12 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            try
-            {
-                if (sender is IEnumerable<ContentTypeTemplateViewModel> contents)
-                {
-                    if (!this.Model.Contents.IsObjectNull())
-                    {
-                        this.Model.Contents.Clear();
-
-                        foreach (var item in contents)
-                        {
-                            this.Model.Contents.Add(item.ContentType);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-        }
-
         public async void SetDefault()
         {
             try
             {
+                this.IsLoading = true;
+
                 this.ContentTypesTemplate.Clear();
 
                 this.ValidationResults.Clear();
@@ -161,6 +124,10 @@ namespace GeolocationAds.ViewModels
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
             }
         }
 
@@ -219,20 +186,19 @@ namespace GeolocationAds.ViewModels
                 FileResult _optionsResult = await FilePicker.PickAsync(new PickOptions
                 {
                     FileTypes = customFileTypes,
-                    PickerTitle = "Select an image or video"
                 });
 
                 FileResult result = _optionsResult;
 
                 if (!result.IsObjectNull())
                 {
-                    fileBytes = await CommonsTool.GetFileBytesAsync(result);
+                    var _fileBytes = await CommonsTool.GetFileBytesAsync(result);
 
                     var _contentType = CommonsTool.GetContentType(result.FileName);
 
                     if (_contentType == ContentVisualType.Image)
                     {
-                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
@@ -245,9 +211,9 @@ namespace GeolocationAds.ViewModels
 
                     if (_contentType == ContentVisualType.Video)
                     {
-                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
+                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        var _file = CommonsTool.SaveByteArrayToTempFile(fileBytes);
+                        var _file = CommonsTool.SaveByteArrayToTempFile(_fileBytes);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
@@ -284,6 +250,8 @@ namespace GeolocationAds.ViewModels
                 _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                 this.ContentTypesTemplate.Add(_template);
+
+                this.Model.Contents.Add(_content);
             }
         }
 

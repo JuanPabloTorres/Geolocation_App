@@ -148,8 +148,6 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                //this.ContentTypesTemplate.CollectionChanged -= ContentTypes_CollectionChanged;
-
                 await this.LoadSetting();
 
                 foreach (var item in this.Model.Contents)
@@ -160,8 +158,6 @@ namespace GeolocationAds.ViewModels
 
                     this.ContentTypesTemplate.Add(_template);
                 }
-
-                //this.ContentTypesTemplate.CollectionChanged += ContentTypes_CollectionChanged;
             }
             catch (Exception ex)
             {
@@ -251,20 +247,51 @@ namespace GeolocationAds.ViewModels
 
                 if (result != null)
                 {
-                    fileBytes = await CommonsTool.GetFileBytesAsync(result);
+                    //fileBytes = await CommonsTool.GetFileBytesAsync(result);
 
-                    var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
-                        result.FileName.ToLower().EndsWith(".png") ||
-                        result.FileName.ToLower().EndsWith(".gif") ||
-                        result.FileName.ToLower().EndsWith(".jpeg");
+                    //var isImageSelected = result.FileName.ToLower().EndsWith(".jpg") ||
+                    //    result.FileName.ToLower().EndsWith(".png") ||
+                    //    result.FileName.ToLower().EndsWith(".gif") ||
+                    //    result.FileName.ToLower().EndsWith(".jpeg");
 
-                    if (isImageSelected)
+                    //if (isImageSelected)
+                    //{
+                    //    var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+
+                    //    //this.Model.Contents.Add(_content);
+
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+
+                    //    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+                    //    this.ContentTypesTemplate.Add(_template);
+
+                    //    this.Model.Contents.Add(_content);
+                    //}
+                    //else
+                    //{
+                    //    var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
+
+                    //    //this.Model.Contents.Add(_content);
+
+                    //    var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
+
+                    //    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+                    //    this.ContentTypesTemplate.Add(_template);
+
+                    //    this.Model.Contents.Add(_content);
+                    //}
+
+                    var _fileBytes = await CommonsTool.GetFileBytesAsync(result);
+
+                    var _contentType = CommonsTool.GetContentType(result.FileName);
+
+                    if (_contentType == ContentVisualType.Image)
                     {
-                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        //this.Model.Contents.Add(_content);
-
-                        var _template = ContentTypeTemplateFactory.BuilContentType(_content);
+                        var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
                         _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
@@ -272,11 +299,12 @@ namespace GeolocationAds.ViewModels
 
                         this.Model.Contents.Add(_content);
                     }
-                    else
-                    {
-                        var _content = ContentTypeFactory.BuilContentType(fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
 
-                        //this.Model.Contents.Add(_content);
+                    if (_contentType == ContentVisualType.Video)
+                    {
+                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
+
+                        var _file = CommonsTool.SaveByteArrayToTempFile(_fileBytes);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 

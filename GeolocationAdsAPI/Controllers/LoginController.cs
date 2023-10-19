@@ -1,4 +1,6 @@
-﻿using GeolocationAdsAPI.Repositories;
+﻿using GeolocationAdsAPI.ApiTools;
+using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -8,17 +10,22 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LoginController : ControllerBase
     {
-        private ILoginRespository loginRespository;
+        private readonly ILoginRespository loginRespository;
 
-        private IForgotPasswordRepository forgotPasswordRepository;
+        private readonly IForgotPasswordRepository forgotPasswordRepository;
 
-        public LoginController(ILoginRespository loginRespository, IForgotPasswordRepository forgotPasswordRepository)
+        private readonly IConfiguration _config;
+
+        public LoginController(ILoginRespository loginRespository, IForgotPasswordRepository forgotPasswordRepository, IConfiguration config)
         {
             this.loginRespository = loginRespository;
 
             this.forgotPasswordRepository = forgotPasswordRepository;
+
+            _config = config;
         }
 
         [HttpGet("[action]/{id}")]
@@ -60,6 +67,7 @@ namespace GeolocationAdsAPI.Controllers
         }
 
         [HttpPost("[action]")]
+        [AllowAnonymous]
         public async Task<IActionResult> VerifyCredential(Login loginCredential)
         {
             try
@@ -68,7 +76,48 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (response.IsSuccess)
                 {
+                    // Authenticate the user and generate a JWT token.
+                    var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
+
                     return Ok(response);
+                }
+                else
+                {
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(_exceptionResponse);
+            }
+        }
+
+        [HttpPost("[action]")]
+        [AllowAnonymous]
+        public async Task<IActionResult> VerifyCredential2(Login loginCredential)
+        {
+            try
+            {
+                var response = await this.loginRespository.VerifyCredential(loginCredential);
+
+                if (response.IsSuccess)
+                {
+                    // Authenticate the user and generate a JWT token.
+                    //var token = JwtTool.GenerateJwtToken(response.Data.ID.ToString());
+
+                    var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
+
+                    var _userPerfil = new LogUserPerfilTool()
+                    {
+                        JsonToken = token,
+                        LogUser = response.Data
+                    };
+
+                    var _perfilResponse = ResponseFactory<LogUserPerfilTool>.BuildSusccess(response.Message, _userPerfil);
+
+                    return Ok(_perfilResponse);
                 }
                 else
                 {

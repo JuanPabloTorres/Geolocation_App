@@ -11,14 +11,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(ForgotPasswordService);
 
-        public ForgotPasswordService()
-        { }
-
-        public ForgotPasswordService(string _apiSuffix) : base(_apiSuffix)
-        {
-        }
-
-        public ForgotPasswordService(HttpClient htppClient, string _apiSuffix) : base(htppClient, _apiSuffix)
+        public ForgotPasswordService(HttpClient htppClient) : base(htppClient)
         {
         }
 

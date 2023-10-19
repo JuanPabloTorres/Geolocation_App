@@ -1,4 +1,5 @@
 ﻿using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Dto;
 using ToolsLibrary.Factories;
@@ -9,6 +10,7 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ForgotPasswordController : ControllerBase
     {
         private IForgotPasswordRepository forgotPasswordRepository;

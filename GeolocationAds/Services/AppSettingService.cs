@@ -10,14 +10,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(AppSettingService);
 
-        public AppSettingService()
-        { }
-
-        public AppSettingService(string _apiSuffix) : base(_apiSuffix)
-        {
-        }
-
-        public AppSettingService(HttpClient htppClient, string _apiSuffix) : base(htppClient, _apiSuffix)
+        public AppSettingService(HttpClient htppClient) : base(htppClient)
         {
         }
 

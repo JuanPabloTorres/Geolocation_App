@@ -81,8 +81,6 @@ namespace ToolsLibrary.Tools
             return -1; // Start marker not found
         }
 
-
-
         public static string GenerateRandomCode(int length)
         {
             string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -122,19 +120,32 @@ namespace ToolsLibrary.Tools
 
         public static async Task<byte[]> GetFileBytesAsync(FileResult fileResult)
         {
-            if (fileResult != null)
-            {
-                using (var stream = await fileResult.OpenReadAsync())
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        await stream.CopyToAsync(ms);
+            //if (fileResult != null)
+            //{
+            //    using (var stream = await fileResult.OpenReadAsync())
+            //    {
+            //        using (MemoryStream ms = new MemoryStream())
+            //        {
+            //            await stream.CopyToAsync(ms);
 
-                        return ms.ToArray();
-                    }
-                }
+            //            return ms.ToArray();
+            //        }
+            //    }
+            //}
+            //return null;
+
+            if (fileResult is null)
+            {
+                return null;
             }
-            return null;
+
+            using var stream = await fileResult.OpenReadAsync();
+
+            using var ms = new MemoryStream();
+
+            await stream.CopyToAsync(ms);
+
+            return ms.ToArray();
         }
 
         public static string HashPassword(string password)
@@ -321,6 +332,7 @@ namespace ToolsLibrary.Tools
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
+
         //public  static Image ByteArrayToImage(byte[] byteArray)
         // {
         //     using (MemoryStream stream = new MemoryStream(byteArray))

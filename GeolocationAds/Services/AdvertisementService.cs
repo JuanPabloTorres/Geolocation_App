@@ -5,11 +5,11 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Services
 {
-    internal class AdvertisementService : BaseService<Advertisement>, IAdvertisementService
+    public class AdvertisementService : BaseService<Advertisement>, IAdvertisementService
     {
-
-        public AdvertisementService()
-        { }
+        public AdvertisementService(HttpClient htppClient) : base(htppClient)
+        {
+        }
 
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId)
         {

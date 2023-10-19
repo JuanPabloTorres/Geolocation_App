@@ -45,8 +45,6 @@ namespace GeolocationAds.TemplateViewModel
 
                 if (_removeAlertResponse)
                 {
-                    //var _id = item.GetType().GetProperties().Where(n => n.Name == nameof(BaseModel.ID)).FirstOrDefault().GetValue(item);
-
                     var _id = GenericTool<M>.GetPropertyValueFromObject<int>(item, nameof(BaseModel.ID));
 
                     object[] parameters = new object[] { _id };
@@ -56,8 +54,6 @@ namespace GeolocationAds.TemplateViewModel
                     if (_apiResponse.IsSuccess)
                     {
                         await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
-
-                        //OnDeleteItem(EventArgs.Empty);
 
                         OnItemDeleted2();
                     }

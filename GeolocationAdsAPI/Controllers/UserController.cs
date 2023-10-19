@@ -1,4 +1,5 @@
 ﻿using GeolocationAdsAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 using ToolsLibrary.Extensions;
@@ -10,6 +11,7 @@ namespace GeolocationAdsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private IUserRepository userRepository;
@@ -24,6 +26,7 @@ namespace GeolocationAdsAPI.Controllers
         }
 
         [HttpPost("[action]")]
+        [AllowAnonymous]
         public async Task<IActionResult> Add(User user)
         {
             try

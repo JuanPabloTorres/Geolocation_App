@@ -70,9 +70,13 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-        private void SignOut()
+        private async void SignOut()
         {
-            WeakReferenceMessenger.Default.Send(new LogOffMessage(null));
+            //WeakReferenceMessenger.Default.Send(new LogOffMessage(null));
+
+            await Shell.Current.GoToAsync(nameof(Login));
+
+            Shell.Current.FlyoutIsPresented = false;
         }
     }
 }

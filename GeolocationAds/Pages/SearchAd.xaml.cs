@@ -5,9 +5,13 @@ namespace GeolocationAds.Pages;
 
 public partial class SearchAd : ContentPage
 {
+    SearchAdViewModel viewModel;
+
     public SearchAd(SearchAdViewModel searchAdViewModel)
     {
         InitializeComponent();
+
+        this.viewModel = searchAdViewModel;
 
         BindingContext = searchAdViewModel;
     }
@@ -37,6 +41,12 @@ public partial class SearchAd : ContentPage
         {
             await CommonsTool.DisplayAlert("Error", ex.Message);
         }
+    }
+
+
+    protected override void OnAppearing()
+    {
+        this.viewModel.NearByTemplateViewModels.Clear();
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Tools;
@@ -15,11 +16,7 @@ namespace GeolocationAds.Services
 
         protected Uri BaseApiUri;
 
-        private const int TIMEOUT = 150;
-
-        private const int BUFFER_SIZE = 1000000;
-
-        public BaseService()
+        public BaseService(HttpClient httpClient)
         {
             string _httpResourceName = string.Empty;
 
@@ -28,43 +25,23 @@ namespace GeolocationAds.Services
 #endif
 
 #if IIS
-              _httpResourceName = "IISBackendUrl";
+                          _httpResourceName = "IISBackendUrl";
 #endif
 
 #if Release
-            _httpResourceName = "ProdBackendUrl";
+                        _httpResourceName = "ProdBackendUrl";
 #endif
 
-            this._httpClient = new HttpClient();
+            this._httpClient = httpClient;
 
             var backendUrl = Application.Current.Resources[_httpResourceName] as string;
 
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);
-
-            // Other HttpClient configurations can be done here if needed
-            _httpClient.Timeout = TimeSpan.FromSeconds(TIMEOUT);
         }
 
-        public BaseService(string apiSuffix)
+        public void SetJwtToken(string jwtToken)
         {
-            this.ApiSuffix = apiSuffix;
-        }
-
-        public BaseService(HttpClient httpClient, string apiSuffix)
-        {
-            this._httpClient = new HttpClient();
-
-            // Access the backend URL from the resource dictionary in App.xaml
-            var backendUrl = Application.Current.Resources["BackendUrl"] as string;
-
-            _httpClient = httpClient;
-
-            ApiSuffix = apiSuffix;
-
-            _httpClient.BaseAddress = new Uri($"{backendUrl}/{apiSuffix}");
-
-            // Other HttpClient configurations can be done here if needed
-            _httpClient.Timeout = TimeSpan.FromSeconds(TIMEOUT);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
         }
 
         public async Task<ResponseTool<T>> Add(T data)
@@ -89,11 +66,6 @@ namespace GeolocationAds.Services
                     var responseJson = await response.Content.ReadAsStringAsync();
 
                     var responseData = JsonConvert.DeserializeObject<ResponseTool<T>>(responseJson);
-
-                    // Build a success response with the data
-                    //var successResponse = ResponseFactory<T>.BuildSusccess("Successfully added.", responseData);
-
-                    //return successResponse;
 
                     return responseData;
                 }

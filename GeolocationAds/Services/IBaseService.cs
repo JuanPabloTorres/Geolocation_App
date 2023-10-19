@@ -4,6 +4,8 @@ namespace GeolocationAds.Services
 {
     public interface IBaseService<T> where T : class
     {
+        void SetJwtToken(string jwtToken);
+
         Task<ResponseTool<T>> Add(T data);
 
         Task<ResponseTool<T>> Get(int Id);
