@@ -60,12 +60,11 @@
                 WidthRequest="60">
 
                 <toolkit:AvatarView
-                    BackgroundColor="CadetBlue"
                     FontAttributes="Bold"
                     FontSize="Large"
                     HeightRequest="90"
                     Text="{Binding Avatar}"
-                    TextColor="White"
+                    TextColor="Black"
                     VerticalOptions="CenterAndExpand"
                     WidthRequest="90" />
             </Frame>

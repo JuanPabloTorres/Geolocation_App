@@ -1,4 +1,6 @@
+
 using CommunityToolkit.Maui.Views;
+
 using GeolocationAds.ViewModels;
 
 namespace GeolocationAds.PopUps;

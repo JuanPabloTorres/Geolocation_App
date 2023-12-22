@@ -113,80 +113,80 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
     </ContentPage.Resources>
 
-    <Frame Padding="8" Style="{StaticResource cardFrame}">
 
-        <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="100*" />
-            </Grid.RowDefinitions>
+    <Grid>
 
-            <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
 
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
-
-            <local:CustomEntryContentView
-                Grid.Row="1"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Title"
-                Text="{Binding Model.Title}" />
-
-            <local:CustomEntryContentView
-                Grid.Row="2"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Description"
-                Text="{Binding Model.Description}" />
-
-            <local:CustomPickerContentView
-                Grid.Row="3"
-                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                HorizontalOptions="FillAndExpand"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                ItemDisplayBindingPath="Value"
-                ItemsSource="{Binding AdTypesSettings}"
-                SelectValue="{Binding SelectedAdType}"
-                SelectedItem="{Binding SelectedAdType}" />
-
-            <CarouselView
-                Grid.Row="4"
-                IsScrollAnimated="True"
-                ItemTemplate="{StaticResource typeSelector}"
-                ItemsSource="{Binding ContentTypesTemplate}"
-                ItemsUpdatingScrollMode="KeepScrollOffset"
-                Loop="False">
-
-                <CarouselView.ItemsLayout>
-                    <LinearItemsLayout
-                        Orientation="Horizontal"
-                        SnapPointsAlignment="Start"
-                        SnapPointsType="MandatorySingle" />
-                </CarouselView.ItemsLayout>
-
-                <CarouselView.EmptyView>
+        <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
                     <StackLayout>
-                        <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                        <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
                     </StackLayout>
-                </CarouselView.EmptyView>
-            </CarouselView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-            <ActivityIndicator
-                Grid.Row="4"
-                IsRunning="{Binding IsLoading}"
-                Style="{StaticResource globalLoading}" />
-        </Grid>
-    </Frame>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+
+        <local:CustomEntryContentView
+            Grid.Row="1"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Placeholder="Title"
+            Text="{Binding Model.Title, Mode=TwoWay}" />
+
+        <local:CustomEntryContentView
+            Grid.Row="2"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Placeholder="Description"
+            Text="{Binding Model.Description, Mode=TwoWay}" />
+
+        <local:CustomPickerContentView
+            Grid.Row="3"
+            DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+            HorizontalOptions="FillAndExpand"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            ItemDisplayBindingPath="Value"
+            ItemsSource="{Binding AdTypesSettings}"
+            SelectValue="{Binding SelectedAdType}"
+            SelectedItem="{Binding SelectedAdType}" />
+
+        <CarouselView
+            Grid.Row="4"
+            IsScrollAnimated="True"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding ContentTypesTemplate}"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
+            Loop="False">
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Horizontal"
+                    SnapPointsAlignment="Start"
+                    SnapPointsType="MandatorySingle" />
+            </CarouselView.ItemsLayout>
+
+            <CarouselView.EmptyView>
+                <StackLayout>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
+                </StackLayout>
+            </CarouselView.EmptyView>
+        </CarouselView>
+
+        <ActivityIndicator
+            Grid.Row="4"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
+    </Grid>
+
 </ContentPage>

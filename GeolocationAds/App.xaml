@@ -14,8 +14,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--  URLs  -->
-            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
-            <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
+            <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
+            <!--<x:String x:Key="BackendUrl">http://192.168.0.3:5160/api</x:String>-->
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <Color x:Key="AppGray">#3e4144</Color>

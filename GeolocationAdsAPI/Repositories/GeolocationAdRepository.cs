@@ -98,32 +98,6 @@ namespace GeolocationAdsAPI.Repositories
                 GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
                 v.Settings.Any(s => s.SettingId == settingId);
 
-                //var allEntities = await _context.Advertisements.Include(c => c.Contents).Include(g => g.GeolocationAds).Include(s => s.Settings)
-                //    .Where(v =>
-
-                //    v.GeolocationAds.Any(g => DateTime.Now <= g.ExpirationDate &&
-                //    GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
-                //    v.Settings.Any(s => s.SettingId == settingId))
-                //    .Select(s =>
-
-                //         new Advertisement
-                //         {
-                //             ID = s.ID,
-                //             Description = s.Description,
-                //             Title = s.Title,
-                //             UserId = s.UserId,
-                //             Contents = s.Contents
-                //            .Select(cs => new ContentType
-                //            {
-                //                Type = cs.Type,
-                //                Content = cs.Content
-                //            }).ToList(),
-
-                //             GeolocationAds = s.GeolocationAds,
-                //         }
-                //    )
-                //    .ToListAsync();
-
                 var allEntities = _context.Advertisements.Include(c => c.Contents).Include(g => g.GeolocationAds).Include(s => s.Settings)
                    .Where(filterCondition)
                    .Select(s =>
@@ -140,8 +114,6 @@ namespace GeolocationAdsAPI.Repositories
                                Type = cs.Type,
                                Content = cs.Content
                            }).ToList(),
-
-
                         }
                    ).ToList();
 
@@ -152,6 +124,7 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
 
         public async Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id)
         {

@@ -105,14 +105,5 @@ namespace GeolocationAds.TemplateViewModel
                 this.IsLoading = false;
             }
         }
-
-        //public void Dispose()
-        //{
-        //    this.Image = null;
-
-        //    this.MediaSource = null;
-
-        //    this.ContentType = null;
-        //}
     }
 }

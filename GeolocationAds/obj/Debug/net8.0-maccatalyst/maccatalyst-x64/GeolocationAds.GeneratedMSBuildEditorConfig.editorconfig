@@ -1,0 +1,137 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GeolocationAds
+build_property.ProjectDir = C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Login.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Login.xaml
+build_metadata.AdditionalFiles.TargetPath = Login.xaml
+build_metadata.AdditionalFiles.RelativePath = Login.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/AdToLocation.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.AdToLocation.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\AdToLocation.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\AdToLocation.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/CreateAdvertisement.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.CreateAdvertisement.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\CreateAdvertisement.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\CreateAdvertisement.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/EditAdvertisment.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditAdvertisment.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EditAdvertisment.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EditAdvertisment.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/EditLoginCredential.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditLoginCredential.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EditLoginCredential.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EditLoginCredential.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/EditUserPerfil.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.EditUserPerfil.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\EditUserPerfil.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\EditUserPerfil.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/GoogleMapPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.GoogleMapPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\GoogleMapPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\GoogleMapPage.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/LocationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.LocationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\LocationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\LocationPage.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/ManageLocation.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.ManageLocation.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\ManageLocation.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\ManageLocation.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/MyFavorites.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.MyFavorites.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\MyFavorites.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\MyFavorites.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/Register.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.Register.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\Register.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\Register.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/SearchAd.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.SearchAd.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\SearchAd.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\SearchAd.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/UserSetting.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.UserSetting.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\UserSetting.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\UserSetting.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/FilterPopUp.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.FilterPopUp.xaml
+build_metadata.AdditionalFiles.TargetPath = PopUps\FilterPopUp.xaml
+build_metadata.AdditionalFiles.RelativePath = PopUps\FilterPopUp.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/FilterPopUpForSearch.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.FilterPopUpForSearch.xaml
+build_metadata.AdditionalFiles.TargetPath = PopUps\FilterPopUpForSearch.xaml
+build_metadata.AdditionalFiles.RelativePath = PopUps\FilterPopUpForSearch.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/RecoveryPasswordPopUp.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.RecoveryPasswordPopUp.xaml
+build_metadata.AdditionalFiles.TargetPath = PopUps\RecoveryPasswordPopUp.xaml
+build_metadata.AdditionalFiles.RelativePath = PopUps\RecoveryPasswordPopUp.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml

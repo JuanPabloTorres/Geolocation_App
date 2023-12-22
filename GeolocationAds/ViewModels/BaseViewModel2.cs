@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
-using Microsoft.IdentityModel.Tokens;
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -114,7 +114,7 @@ namespace GeolocationAds.ViewModels
                 {
                     ID = query["ID"].ToString();
 
-                    if (!ID.IsNullOrEmpty() && Convert.ToInt32(this.ID) > 0)
+                    if (!string.IsNullOrEmpty(ID) && Convert.ToInt32(this.ID) > 0)
                     {
                         await this.Get(Convert.ToInt32(ID));
 
@@ -282,10 +282,10 @@ namespace GeolocationAds.ViewModels
 
         public async void OnSubmit2(T obj)
         {
-            IsLoading = true;
-
             try
             {
+                IsLoading = true;
+
                 ValidationResults.Clear();
 
                 DateTime now = DateTime.Now;
@@ -344,7 +344,9 @@ namespace GeolocationAds.ViewModels
                             {
                                 if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
                                 {
-                                    this.Model = Activator.CreateInstance<T>();
+                                    //this.Model = Activator.CreateInstance<T>();
+
+                                    this.ValidationResults.Clear();
 
                                     WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                                 }
@@ -389,7 +391,9 @@ namespace GeolocationAds.ViewModels
                             {
                                 if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
                                 {
-                                    Activator.CreateInstance<T>();
+                                    //Activator.CreateInstance<T>();
+
+                                    this.ValidationResults.Clear();
 
                                     WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                                 }
@@ -415,8 +419,10 @@ namespace GeolocationAds.ViewModels
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
-            IsLoading = false;
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         public async void OnSubmitUpdate(T obj)
@@ -630,7 +636,5 @@ namespace GeolocationAds.ViewModels
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
-
-
     }
 }

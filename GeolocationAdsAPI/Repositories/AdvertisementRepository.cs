@@ -69,6 +69,50 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
+        //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId)
+        //{
+        //    try
+        //    {
+        //        // Use AsNoTracking for read-only scenarios to improve performance
+        //        var advertisements = _context.Advertisements
+        //            .AsNoTracking()
+        //            .Where(v => v.UserId == userId)
+        //            .OrderByDescending(s => s.CreateDate); // Keep ordering by CreateDate or any other relevant property
+
+        //        // Filter Settings in a separate query to avoid loading unnecessary data
+        //        var settingIds = await _context.Settings
+        //            .AsNoTracking()
+        //            .Where(s => s.ID == typeId)
+        //            .Select(s => s.ID)
+        //            .ToListAsync();
+
+        //        var filteredAdvertisements = await advertisements
+        //            .Where(a => settingIds.Contains(a.ID))
+        //            .Select(s => new Advertisement
+        //            {
+        //                ID = s.ID,
+        //                Description = s.Description,
+        //                Title = s.Title,
+        //                UserId = s.UserId,
+        //                Contents = s.Contents
+        //                    .Select(cs => new ContentType
+        //                    {
+        //                        Type = cs.Type,
+        //                        Content = cs.Content
+        //                    })
+        //                    .ToList()
+        //            })
+        //            .ToListAsync();
+
+        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", filteredAdvertisements, ToolsLibrary.Tools.Type.DataFound);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+
         public override async Task<ResponseTool<Advertisement>> Get(int Id)
         {
             try

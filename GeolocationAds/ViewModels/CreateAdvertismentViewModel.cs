@@ -4,7 +4,7 @@ using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
-using Microsoft.Toolkit.Mvvm.Input;
+
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToolsLibrary.Enums;
@@ -17,6 +17,8 @@ namespace GeolocationAds.ViewModels
 {
     public partial class CreateAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
     {
+        private const string FILENAME = "mediacontent.png";
+
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
@@ -51,20 +53,13 @@ namespace GeolocationAds.ViewModels
 
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
 
-            this.Model.Settings = new List<AdvertisementSettings>();
-
-            this.Model.Contents = new List<ContentType>();
-
             this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
-            WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, (r, m) =>
+            WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, async (r, m) =>
             {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    this.SetDefault();
-                });
+                this.SetDefault();
             });
         }
 
@@ -102,10 +97,6 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                this.ContentTypesTemplate.Clear();
-
-                this.ValidationResults.Clear();
-
                 var _adSetting = new AdvertisementSettings()
                 {
                     CreateDate = DateTime.Now,
@@ -113,11 +104,13 @@ namespace GeolocationAds.ViewModels
                     SettingId = this.SelectedAdType.ID,
                 };
 
-                this.Model.UserId = this.LogUserPerfilTool.GetUserId();
-
-                this.Model.Settings = new List<AdvertisementSettings>() { _adSetting };
-
-                this.Model.Contents = new List<ContentType>();
+                this.Model = new Advertisement()
+                {
+                    UserId = this.LogUserPerfilTool.GetUserId(),
+                    CreateDate = DateTime.Now,
+                    Settings = new List<AdvertisementSettings>() { _adSetting },
+                    Contents = new List<ContentType>()
+                };
 
                 await this.GetImageSourceFromFile();
             }
@@ -167,7 +160,6 @@ namespace GeolocationAds.ViewModels
             await LoadSetting();
         }
 
-        [ICommand]
         private async void OnUploadCommandExecuted2()
         {
             try
@@ -223,6 +215,13 @@ namespace GeolocationAds.ViewModels
 
                         this.Model.Contents.Add(_content);
                     }
+
+                    var _defaultImg = this.ContentTypesTemplate.Where(v => v.ContentType.ContentName == FILENAME).FirstOrDefault();
+
+                    if (!_defaultImg.IsObjectNull())
+                    {
+                        this.ContentTypesTemplate.Remove(_defaultImg);
+                    }
                 }
             }
             catch (Exception ex)
@@ -237,21 +236,30 @@ namespace GeolocationAds.ViewModels
 
         private async Task GetImageSourceFromFile()
         {
-            const string FILENAME = "mediacontent.png";
-
-            var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(FILENAME);
-
-            if (!_defaulMedia.IsObjectNull())
+            try
             {
-                var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+                var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(FILENAME);
 
-                var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
+                if (!_defaulMedia.IsObjectNull())
+                {
+                    this.ContentTypesTemplate.Clear();
 
-                _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+                    var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
 
-                this.ContentTypesTemplate.Add(_template);
+                    _content.ContentName = FILENAME;
 
-                this.Model.Contents.Add(_content);
+                    var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
+
+                    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+                    this.ContentTypesTemplate.Add(_template);
+
+                    this.Model.Contents.Add(_content);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 

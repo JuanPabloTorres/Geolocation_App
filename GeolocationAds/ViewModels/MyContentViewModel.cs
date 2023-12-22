@@ -108,6 +108,8 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
+                this.IsLoading = true;
+
                 this.CollectionModel.Clear();
 
                 var _userId = this.LogUserPerfilTool.GetUserId();
@@ -135,6 +137,10 @@ namespace GeolocationAds.ViewModels
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
             }
         }
 
@@ -184,11 +190,11 @@ namespace GeolocationAds.ViewModels
 
         public async void Initialize()
         {
-            this.IsLoading = true;
+
 
             await LoadData();
 
-            this.IsLoading = false;
+
         }
 
         protected override async void OpenFilterPopUp()

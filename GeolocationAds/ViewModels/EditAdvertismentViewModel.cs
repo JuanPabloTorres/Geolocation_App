@@ -2,7 +2,7 @@
 using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
-using Microsoft.Toolkit.Mvvm.Input;
+
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToolsLibrary.Enums;
@@ -221,7 +221,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        [ICommand]
+
         private async void OnUploadCommandExecuted2()
         {
             try

@@ -18,8 +18,8 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
-            .UseMauiCommunityToolkitMediaElement()
             .UseMauiCommunityToolkit()
+            .UseMauiCommunityToolkitMediaElement()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -111,7 +111,7 @@ public static class MauiProgram
 
         #region ViewModels
 
-        builder.Services.AddScoped<CreateAdvertismentViewModel>();
+        builder.Services.AddTransient<CreateAdvertismentViewModel>();
 
         builder.Services.AddScoped<MangeContentTemplateViewModel>();
 

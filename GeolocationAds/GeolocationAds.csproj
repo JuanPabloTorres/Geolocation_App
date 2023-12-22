@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-maccatalyst;net7.0-ios;net7.0-android33.0</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-maccatalyst;net8.0-ios;net8.0-android34.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -29,6 +29,8 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<Configurations>Debug;Release;IIS</Configurations>
+		<TargetPlatformAndroid>True</TargetPlatformAndroid>
+		<TargetRuntimeAndroid>net8.0</TargetRuntimeAndroid>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -54,49 +56,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\AppIcon\home.png" />
-	  <None Remove="Resources\AppIcon\radar.png" />
-	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
-	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
-	  <None Remove="Resources\Fonts\Sunshine.ttf" />
-	  <None Remove="Resources\Images\filebox.png" />
-	  <None Remove="Resources\Images\gbook03.jpg" />
-	  <None Remove="Resources\Images\map.png" />
-	  <None Remove="Resources\Images\mediacontent.png" />
-	  <None Remove="Resources\Images\plus.png" />
-	  <None Remove="Resources\Images\setting.png" />
-	  <None Remove="Resources\Images\star.png" />
-	  <None Remove="Resources\Images\travelexplore.png" />
-	  <None Remove="Resources\Splash\splash01.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
-	  <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="2.0.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+	  <EmbeddedResource Include="Resources\Images\mediacontent.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+	  <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.0.1" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 	  <PackageReference Include="GoogleMapsApi" Version="1.2.1" />
-	  <PackageReference Include="MailKit" Version="4.2.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	    <PrivateAssets>all</PrivateAssets>
-	  </PackageReference>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
-	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.92" />
-	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-	  <PackageReference Include="MimeKit" Version="4.2.0" />
+	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ToolsLibrary\ToolsLibrary.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\mediacontent.png">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -112,66 +90,15 @@
 	  <MauiXaml Update="Pages\CreateAdvertisement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\EditAdvertisment.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\EditLoginCredential.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\EditUserPerfil.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\GoogleMapPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\LocationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Login.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\ManageLocation.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\MyFavorites.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\Register.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchAd.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\UserSetting.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="PopUps\FilterPopUp.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="PopUps\FilterPopUpForSearch.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="PopUps\RecoveryPasswordPopUp.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
-	  <PackageReference Include="CommunityToolkit.Maui">
-	    <Version>5.3.0</Version>
-	  </PackageReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android33.0'">
-	  <PackageReference Include="CommunityToolkit.Maui">
-	    <Version>5.3.0</Version>
-	  </PackageReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows10.0.19041.0'">
-	  <PackageReference Include="CommunityToolkit.Maui">
-	    <Version>5.3.0</Version>
-	  </PackageReference>
 	</ItemGroup>
 
 </Project>
