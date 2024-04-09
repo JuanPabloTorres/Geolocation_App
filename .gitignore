@@ -2,4 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Geolocation_App/FileContentIndex/43558e15-4ba1-470c-9f67-a7937b05707f.vsidx
+# /.vs/Geolocation_App/FileContentIndex/43558e15-4ba1-470c-9f67-a7937b05707f.vsidx
+
+.vs/
