@@ -11,14 +11,14 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId)
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
         {
             try
             {
                 // Build the full API endpoint URL for the "all" endpoint
 
                 // Send an HTTP GET request to the "all" endpoint of your API
-                HttpResponseMessage response = await this._httpClient.GetAsync($"{this.BaseApiUri}/{nameof(GetAdvertisementsOfUser)}/{userId}/{typeId}");
+                HttpResponseMessage response = await this._httpClient.GetAsync($"{this.BaseApiUri}/{nameof(GetAdvertisementsOfUser)}/{userId}/{typeId}/{pageIndex}");
 
                 // Ensure the request was successful
                 response.EnsureSuccessStatusCode();

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yfz7H30HbOEXW3AGmpCB23cpEqWPhm9RTsfJ7004EjYZ+/oGPTRUOcvAjvq4Nfc93s2YspZwlQQYOKKI00gOqA==",
+  "dgSpecHash": "v/q+iM7TCAkZgxktzB8xwQBLE3ZOfke0dLghNWc0JtaOIm0iEhtrvKHMDmyJhQAMiZ7zfvVmyNQQ4PqsMOeiMg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAds\\GeolocationAds.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,12 @@
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.11\\microsoft.entityframeworkcore.analyzers.7.0.11.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.11\\microsoft.entityframeworkcore.relational.7.0.11.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Juan Pablo Torres\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",

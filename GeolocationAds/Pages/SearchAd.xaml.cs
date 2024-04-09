@@ -5,7 +5,7 @@ namespace GeolocationAds.Pages;
 
 public partial class SearchAd : ContentPage
 {
-    SearchAdViewModel viewModel;
+    private SearchAdViewModel viewModel;
 
     public SearchAd(SearchAdViewModel searchAdViewModel)
     {
@@ -16,34 +16,6 @@ public partial class SearchAd : ContentPage
         BindingContext = searchAdViewModel;
     }
 
-    private async void NextItemButton_Clicked(object sender, EventArgs e)
-    {
-        try
-        {
-            if (carouselView.ItemsSource != null && carouselView.Position < (carouselView.ItemsSource.Cast<object>().ToList().Count - 1))
-            {
-                carouselView.Position++;
-            }
-            if (carouselView.Position == carouselView.ItemsSource.Cast<object>().ToList().Count - 1)
-            {
-                this.NextBtn.IsEnabled = false;
-
-                this.BackBtn.IsEnabled = true;
-            }
-            else
-            {
-                this.NextBtn.IsEnabled = true;
-
-                this.BackBtn.IsEnabled = true;
-            }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-    }
-
-
     protected override void OnAppearing()
     {
         this.viewModel.NearByTemplateViewModels.Clear();
@@ -51,29 +23,47 @@ public partial class SearchAd : ContentPage
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
     {
+        await ChangePositionBy(-1);
+    }
+
+    private async void NextItemButton_Clicked(object sender, EventArgs e)
+    {
+        await ChangePositionBy(1);
+    }
+
+    private async Task ChangePositionBy(int delta)
+    {
         try
         {
-            if (carouselView.Position > 0)
-            {
-                carouselView.Position--;
-            }
+            viewModel.IsLoading = true;
 
-            if (carouselView.Position == 0)
-            {
-                this.BackBtn.IsEnabled = false;
+            // Cache the item count to avoid multiple enumerations
+            var itemCount = carouselView.ItemsSource?.Cast<object>().Count() ?? 0;
 
-                this.NextBtn.IsEnabled = true;
-            }
-            else
-            {
-                this.BackBtn.IsEnabled = true;
+            if (itemCount == 0) return; // Exit if there are no items
 
-                this.NextBtn.IsEnabled = true;
-            }
+            var newPosition = carouselView.Position + delta;
+
+            newPosition = Math.Max(0, Math.Min(newPosition, itemCount - 1)); // Clamp to valid range
+
+            carouselView.Position = newPosition;
+
+            UpdateButtonStates(newPosition, itemCount);
         }
         catch (Exception ex)
         {
             await CommonsTool.DisplayAlert("Error", ex.Message);
         }
+        finally
+        {
+            viewModel.IsLoading = false;
+        }
+    }
+
+    private void UpdateButtonStates(int currentPosition, int itemCount)
+    {
+        this.BackBtn.IsEnabled = currentPosition > 0;
+
+        this.NextBtn.IsEnabled = currentPosition < itemCount - 1;
     }
 }

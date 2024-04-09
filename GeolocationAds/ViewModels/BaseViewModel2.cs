@@ -17,18 +17,38 @@ namespace GeolocationAds.ViewModels
 {
     public partial class BaseViewModel2<T, S> : INotifyPropertyChanged, IQueryAttributable
     {
-        public ObservableCollection<ValidationResult> ValidationResults { get; set; }
+        //public ObservableCollection<ValidationResult> ValidationResults { get; set; }
 
-        public ObservableCollection<T> CollectionModel { get; set; }
-
-        private ICollection<ValidationContext> ValidationContexts;
-
-        protected FilterPopUpForSearch _filterPopUpForSearch;
+        //public ObservableCollection<T> CollectionModel { get; set; }
 
         protected FilterPopUp _filterPopUp;
+        protected FilterPopUpForSearch _filterPopUpForSearch;
+
+        private T _model;
 
         private bool isLoading;
 
+        private ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
+        public BaseViewModel2(T model, S service, LogUserPerfilTool logUserPerfil = null)
+        {
+            Model = model;
+
+            this.service = service;
+
+            LogUserPerfilTool = logUserPerfil;
+
+            InitializeCommands();
+        }
+
+        public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
+
+        public event ApplyQueryAttributesEventHandler ApplyQueryAttributesCompleted;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<T> CollectionModel { get; set; } = new ObservableCollection<T>();
+        public string ID { get; private set; }
+        //protected FilterPopUp _filterPopUp;
         public bool IsLoading
         {
             get => isLoading;
@@ -42,8 +62,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private T _model;
-
+        //protected FilterPopUpForSearch _filterPopUpForSearch;
         public T Model
         {
             get => _model;
@@ -58,53 +77,48 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        protected S service { get; set; }
-
+        public ICommand OpenFilterPopUpCommand { get; set; }
+        public ICommand ResetCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public ICommand SubmitCommand { get; set; }
-
         public ICommand SubmitUpdateCommand { get; set; }
 
-        public ICommand SearchCommand { get; set; }
-
-        public ICommand OpenFilterPopUpCommand { get; set; }
+        public ObservableCollection<ValidationResult> ValidationResults { get; set; } = new ObservableCollection<ValidationResult>();
 
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
-        public BaseViewModel2(T model, S service)
-        {
-            this.Model = model;
+        //private ICollection<ValidationContext> ValidationContexts;
+        protected S service { get; set; }
+        //public BaseViewModel2(T model, S service)
+        //{
+        //    this.Model = model;
 
-            this.service = service;
+        //    this.service = service;
 
-            this.ValidationResults = new ObservableCollection<ValidationResult>();
+        //    this.ValidationResults = new ObservableCollection<ValidationResult>();
 
-            this.CollectionModel = new ObservableCollection<T>();
+        //    this.CollectionModel = new ObservableCollection<T>();
 
-            this.ValidationContexts = new List<ValidationContext>();
+        //    this.ValidationContexts = new List<ValidationContext>();
 
-            SubmitCommand = new Command<T>(OnSubmit2);
-        }
+        //    SubmitCommand = new Command<T>(OnSubmit2);
+        //}
 
-        public BaseViewModel2(T model, S service, LogUserPerfilTool logUserPerfil)
-        {
-            this.Model = model;
+        //public BaseViewModel2(T model, S service, LogUserPerfilTool logUserPerfil)
+        //{
+        //    this.Model = model;
 
-            this.service = service;
+        //    this.service = service;
 
-            this.ValidationResults = new ObservableCollection<ValidationResult>();
+        //    this.ValidationResults = new ObservableCollection<ValidationResult>();
 
-            this.CollectionModel = new ObservableCollection<T>();
+        //    this.CollectionModel = new ObservableCollection<T>();
 
-            this.ValidationContexts = new List<ValidationContext>();
+        //    this.ValidationContexts = new List<ValidationContext>();
 
-            SubmitCommand = new Command<T>(OnSubmit2);
+        //    SubmitCommand = new Command<T>(OnSubmit2);
 
-            SubmitUpdateCommand = new Command<T>(OnSubmitUpdate);
-
-            this.LogUserPerfilTool = logUserPerfil;
-        }
-
-        public string ID { get; private set; }
+        //    SubmitUpdateCommand = new Command<T>(OnSubmitUpdate);
 
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -128,18 +142,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
-
-        public event ApplyQueryAttributesEventHandler ApplyQueryAttributesCompleted;
-
-        protected virtual void OnApplyQueryAttributesCompleted(EventArgs e)
-        {
-            ApplyQueryAttributesCompleted?.Invoke(this, e);
-        }
 
         public async void OnSubmit(T obj)
         {
@@ -280,7 +283,7 @@ namespace GeolocationAds.ViewModels
             IsLoading = false;
         }
 
-        public async void OnSubmit2(T obj)
+        public async Task OnSubmit2(T obj)
         {
             try
             {
@@ -425,7 +428,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public async void OnSubmitUpdate(T obj)
+        public async Task OnSubmitUpdate(T obj)
         {
             IsLoading = true;
 
@@ -557,38 +560,6 @@ namespace GeolocationAds.ViewModels
             IsLoading = false;
         }
 
-        protected virtual async Task LoadData()
-        {
-            this.IsLoading = true;
-
-            try
-            {
-                await Shell.Current.DisplayAlert("Error", "To Load Data Logic...", "OK");
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-
-            this.IsLoading = false;
-        }
-
-        protected virtual async Task LoadData(object extraData)
-        {
-            this.IsLoading = true;
-
-            try
-            {
-                await Shell.Current.DisplayAlert("Error", "To Load Data Logic with extra data...", "OK");
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-
-            this.IsLoading = false;
-        }
-
         protected virtual async Task Get(int id)
         {
             try
@@ -625,7 +596,44 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        protected virtual async void OpenFilterPopUp()
+        protected virtual async Task LoadData()
+        {
+            this.IsLoading = true;
+
+            try
+            {
+                await Shell.Current.DisplayAlert("Error", "To Load Data Logic...", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+
+            this.IsLoading = false;
+        }
+
+        protected virtual async Task LoadData(object extraData)
+        {
+            this.IsLoading = true;
+
+            try
+            {
+                await Shell.Current.DisplayAlert("Error", "To Load Data Logic with extra data...", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+
+            this.IsLoading = false;
+        }
+
+        protected virtual void OnApplyQueryAttributesCompleted(EventArgs e)
+        {
+            ApplyQueryAttributesCompleted?.Invoke(this, e);
+        }
+
+        protected virtual async Task OpenFilterPopUpAsync()
         {
             try
             {
@@ -635,6 +643,14 @@ namespace GeolocationAds.ViewModels
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
+        }
+
+
+        private void InitializeCommands()
+        {
+            SubmitCommand = new Command<T>(async (obj) => await OnSubmit2(obj));
+            SubmitUpdateCommand = new Command<T>(async (obj) => await OnSubmitUpdate(obj));
+            // Initialize other commands similarly
         }
     }
 }

@@ -137,7 +137,6 @@
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-
             </Style>
 
             <Style x:Key="dataTemplateFrame" TargetType="Frame">
@@ -149,9 +148,6 @@
                 <Setter Property="HasShadow" Value="True" />
                 <!--<Setter Property="HeightRequest" Value="250" />-->
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
-
-
-
             </Style>
 
             <Style x:Key="imageFrame" TargetType="Frame">
@@ -263,8 +259,6 @@
                             Color="{StaticResource AppGray}" />
                     </Setter.Value>
                 </Setter>
-
-
             </Style>
 
             <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
@@ -277,11 +271,8 @@
                 <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
             </Style>
 
-
-
             <DataTemplate x:Key="ImageDataTemplateForDisplay">
 
-                <!--<Frame IsClippedToBounds="True" Style="{StaticResource dataTemplateFrame}">-->
                 <Grid>
 
                     <Grid.RowDefinitions>
@@ -292,17 +283,11 @@
                         Grid.Row="1"
                         Aspect="Fill"
                         Source="{Binding Image, Mode=TwoWay}" />
-
                 </Grid>
-
-
-
-                <!--</Frame>-->
             </DataTemplate>
 
             <DataTemplate x:Key="VideoDataTemplateForDisplay">
 
-                <!--<Frame IsClippedToBounds="True" Style="{StaticResource dataTemplateFrame}">-->
                 <Grid>
 
                     <Grid.RowDefinitions>
@@ -312,15 +297,12 @@
                     <toolkit:MediaElement
                         Grid.Row="1"
                         Aspect="Fill"
-                        ShouldAutoPlay="True"
+                        ShouldAutoPlay="False"
                         ShouldKeepScreenOn="True"
-                        ShouldLoopPlayback="True"
+                        ShouldLoopPlayback="False"
                         ShouldShowPlaybackControls="True"
                         Source="{Binding MediaSource}" />
-
                 </Grid>
-
-                <!--</Frame>-->
             </DataTemplate>
 
             <DataTemplate x:Key="ImageDataTemplate2">

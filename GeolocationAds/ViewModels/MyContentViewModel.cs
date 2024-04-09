@@ -14,6 +14,8 @@ namespace GeolocationAds.ViewModels
 {
     public partial class MyContentViewModel : BaseViewModel2<MangeContentTemplateViewModel, IGeolocationAdService>
     {
+        public static int PageIndex { get; set; } = 1;
+
         private IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
 
         private readonly IAdvertisementService advertisementService;
@@ -48,29 +50,28 @@ namespace GeolocationAds.ViewModels
 
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
 
-            this.SearchCommand = new Command(Initialize);
+            this.SearchCommand = new Command(async () =>
+            {
+                PageIndex = 1;
 
-            this.OpenFilterPopUpCommand = new Command(OpenFilterPopUp);
+                this.CollectionModel.Clear();
+
+                await Initialize();
+            });
+
+            //this.OpenFilterPopUpCommand = new Command(OpenFilterPopUpAsync);
+
+            OpenFilterPopUpCommand = new Command(async () => await OpenFilterPopUpAsync());
 
             MangeContentTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
-            //WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
-            //{
-            //    MainThread.BeginInvokeOnMainThread(() =>
-            //    {
-            //        this.CollectionModel.Clear();
-            //    });
-            //});
-
             WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
             {
-                MainThread.BeginInvokeOnMainThread(() =>
+                MainThread.BeginInvokeOnMainThread(async () =>
                 {
-                    this.Initialize();
+                    await this.Initialize();
                 });
             });
-
-            InitializeSettingsAsync();
         }
 
         private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
@@ -104,34 +105,66 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        //protected override async Task LoadData()
+        //{
+        //    try
+        //    {
+        //        this.IsLoading = true;
+
+        //        var _userId = this.LogUserPerfilTool.GetUserId();
+
+        //        var _apiResponse = await this.advertisementService.GetAdvertisementsOfUser(_userId, this.SelectedAdType.ID, PageIndex);
+
+        //        if (_apiResponse.IsSuccess)
+        //        {
+        //            this.CollectionModel
+        //                .AddRange(_apiResponse.Data
+        //                .Select(s =>
+        //                new MangeContentTemplateViewModel(this.advertisementService, this.service, s))
+        //                .ToList());
+
+        //            foreach (var item in this.CollectionModel)
+        //            {
+        //                await item.InitializeAsync();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        this.IsLoading = false;
+        //    }
+        //}
+
         protected override async Task LoadData()
         {
             try
             {
                 this.IsLoading = true;
 
-                this.CollectionModel.Clear();
+                var userId = this.LogUserPerfilTool.GetUserId();
 
-                var _userId = this.LogUserPerfilTool.GetUserId();
+                var apiResponse = await this.advertisementService.GetAdvertisementsOfUser(userId, this.SelectedAdType.ID, PageIndex);
 
-                var _apiResponse = await this.advertisementService.GetAdvertisementsOfUser(_userId, this.SelectedAdType.ID);
-
-                if (_apiResponse.IsSuccess)
+                if (apiResponse.IsSuccess)
                 {
-                    this.CollectionModel
-                        .AddRange(_apiResponse.Data
-                        .Select(s =>
-                        new MangeContentTemplateViewModel(this.advertisementService, this.service, s))
-                        .ToList());
+                    var viewModels = apiResponse.Data.Select(ad => new MangeContentTemplateViewModel(this.advertisementService, this.service, ad));
 
-                    foreach (var item in this.CollectionModel)
-                    {
-                        await item.InitializeAsync();
-                    }
+                    this.CollectionModel.AddRange(viewModels);
+
+                    // Parallel initialization
+                    await Task.WhenAll(this.CollectionModel.Select(item => item.InitializeAsync()));
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
                 }
             }
             catch (Exception ex)
@@ -183,21 +216,17 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public async void InitializeSettingsAsync()
+        public async Task InitializeSettingsAsync()
         {
             await LoadSettings2Async();
         }
 
-        public async void Initialize()
+        public async Task Initialize()
         {
-
-
             await LoadData();
-
-
         }
 
-        protected override async void OpenFilterPopUp()
+        protected override async Task OpenFilterPopUpAsync()
         {
             try
             {

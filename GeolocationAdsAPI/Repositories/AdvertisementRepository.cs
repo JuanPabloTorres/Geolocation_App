@@ -18,12 +18,12 @@ namespace GeolocationAdsAPI.Repositories
             try
             {
                 // Add the advertisement entity to the DbSet
-                _context.Advertisements.Add(advertisement);
+                await _context.Advertisements.AddAsync(advertisement);
 
                 // Optionally, you can also add related entities in a similar way if needed.
-                _context.ContentTypes.AddRange(advertisement.Contents);
+                await _context.ContentTypes.AddRangeAsync(advertisement.Contents);
 
-                _context.AdvertisementSettings.AddRange(advertisement.Settings);
+                await _context.AdvertisementSettings.AddRangeAsync(advertisement.Settings);
 
                 // Save changes asynchronously
                 await _context.SaveChangesAsync();
@@ -36,7 +36,7 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId)
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
         {
             try
             {
@@ -59,6 +59,9 @@ namespace GeolocationAdsAPI.Repositories
                             })
                             .ToList()
                     })
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
+                    .AsSplitQuery()
                     .ToListAsync();
 
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
@@ -112,57 +115,85 @@ namespace GeolocationAdsAPI.Repositories
         //    }
         //}
 
-
         public override async Task<ResponseTool<Advertisement>> Get(int Id)
         {
+
             try
             {
-                var _exist = await this._context.Advertisements.FindAsync(Id);
+                var advertisement = await _context.Advertisements
+                    .Include(s => s.Settings)
+                    .Include(g => g.GeolocationAds)
+                    .Include(c => c.Contents)
+                    .Where(v => v.ID == Id)
+                    .AsSplitQuery()
+                    .FirstOrDefaultAsync();
 
-                if (_exist.IsObjectNull())
+                if (advertisement == null)
                 {
                     return ResponseFactory<Advertisement>.BuildFail("Not Found", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
-                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings).Include(g => g.GeolocationAds).Include(c => c.Contents).Where(v => v.ID == Id)
-                    .Select(s => new Advertisement
-                    {
-                        ID = s.ID,
-                        Description = s.Description,
-                        Title = s.Title,
-                        UserId = s.UserId,
-                        GeolocationAds = s.GeolocationAds
-                        .Select(s =>
-                        new GeolocationAd()
-                        {
-                            ID = s.ID,
-                            ExpirationDate = s.ExpirationDate,
-                            Latitude = s.Latitude,
-                            Longitude = s.Longitude,
-                            AdvertisingId = s.AdvertisingId
-                        }).ToList(),
-                        Settings = s.Settings
-                        .Select(s => new AdvertisementSettings()
-                        {
-                            ID = s.ID,
-                            SettingId = s.SettingId
-                        }).ToList(),
-                        Contents = s.Contents
-                            .Select(cs => new ContentType
-                            {
-                                ID = cs.ID,
-                                Type = cs.Type,
-                                Content = cs.Content
-                            })
-                            .ToList()
-                    }).FirstOrDefaultAsync();
+                // If the Advertisement class closely matches the desired structure, you might not need to project to a new Advertisement.
+                // If you need to transform the data (e.g., for a DTO), do it here.
 
-                return ResponseFactory<Advertisement>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<Advertisement>.BuildSusccess("Data Found", advertisement, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
-                return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                // Consider logging the exception here
+                return ResponseFactory<Advertisement>.BuildFail("An error occurred while retrieving the advertisement.", null, ToolsLibrary.Tools.Type.Exception);
             }
+
+            //try
+            //{
+            //    var _exist = await this._context.Advertisements.FindAsync(Id);
+
+            //    if (_exist.IsObjectNull())
+            //    {
+            //        return ResponseFactory<Advertisement>.BuildFail("Not Found", null, ToolsLibrary.Tools.Type.NotFound);
+            //    }
+
+            //    var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings).Include(g => g.GeolocationAds).Include(c => c.Contents).Where(v => v.ID == Id)
+            //        .Select(s => new Advertisement
+            //        {
+            //            ID = s.ID,
+            //            Description = s.Description,
+            //            Title = s.Title,
+            //            UserId = s.UserId,
+            //            GeolocationAds = s.GeolocationAds
+            //            .Select(s =>
+            //            new GeolocationAd()
+            //            {
+            //                ID = s.ID,
+            //                ExpirationDate = s.ExpirationDate,
+            //                Latitude = s.Latitude,
+            //                Longitude = s.Longitude,
+            //                AdvertisingId = s.AdvertisingId
+            //            }).ToList(),
+            //            Settings = s.Settings
+            //            .Select(s => new AdvertisementSettings()
+            //            {
+            //                ID = s.ID,
+            //                SettingId = s.SettingId
+            //            }).ToList(),
+            //            Contents = s.Contents
+            //                .Select(cs => new ContentType
+            //                {
+            //                    ID = cs.ID,
+            //                    Type = cs.Type,
+            //                    Content = cs.Content
+            //                })
+            //                .ToList()
+            //        })
+            //        .AsSplitQuery()
+            //        .FirstOrDefaultAsync();
+
+            //    return ResponseFactory<Advertisement>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            //}
         }
 
         public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)

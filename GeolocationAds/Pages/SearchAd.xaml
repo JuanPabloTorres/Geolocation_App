@@ -62,13 +62,12 @@
                         </Grid.RowDefinitions>
                         <CarouselView
                             Grid.Row="0"
-                            IsBounceEnabled="False"
+                            IsBounceEnabled="true"
                             IsScrollAnimated="False"
                             ItemTemplate="{StaticResource typeSelector}"
                             ItemsSource="{Binding ContentTypesTemplate}"
                             ItemsUpdatingScrollMode="KeepScrollOffset"
-                            Loop="False"
-                            ZIndex="1">
+                            Loop="False">
 
                             <CarouselView.ItemsLayout>
                                 <LinearItemsLayout

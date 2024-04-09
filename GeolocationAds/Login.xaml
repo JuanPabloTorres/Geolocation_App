@@ -27,7 +27,7 @@
                     FontFamily="Roboto"
                     FontSize="40"
                     Style="{StaticResource globalTitle}"
-                    Text="G-Book"
+                    Text="GeoConnect"
                     TextColor="#3e4144" />
 
 

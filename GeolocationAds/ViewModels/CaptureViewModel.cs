@@ -47,7 +47,9 @@ namespace GeolocationAds.ViewModels
 
             this.SearchCommand = new Command(Initialize);
 
-            this.OpenFilterPopUpCommand = new Command(OpenFilterPopUp);
+            //this.OpenFilterPopUpCommand = new Command(OpenFilterPopUpAsync);
+
+            this.OpenFilterPopUpCommand = new Command(async () => await OpenFilterPopUpAsync());
 
             CaptureTemplateViewModel.ItemDeleted += CaptureTemplateViewModel_ItemDeleted;
 
@@ -186,7 +188,7 @@ namespace GeolocationAds.ViewModels
             await LoadData();
         }
 
-        protected override async void OpenFilterPopUp()
+        protected override async Task OpenFilterPopUpAsync()
         {
             try
             {

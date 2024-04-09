@@ -4097,6 +4097,7 @@
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.11",
           "MimeKit": "4.2.0"
         },
         "compile": {

@@ -8,8 +8,8 @@
 
         public CurrentLocation()
         {
-
         }
+
         public CurrentLocation(double latitud, double longitude)
         {
             this.Latitude = latitud;

@@ -6,7 +6,7 @@ namespace GeolocationAds.Services
     public interface IAdvertisementService : IBaseService<Advertisement>
     {
 
-        Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId);
+        Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex);
 
     }
 }

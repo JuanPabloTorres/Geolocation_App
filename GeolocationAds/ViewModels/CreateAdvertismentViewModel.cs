@@ -221,6 +221,8 @@ namespace GeolocationAds.ViewModels
                     if (!_defaultImg.IsObjectNull())
                     {
                         this.ContentTypesTemplate.Remove(_defaultImg);
+
+                        this.Model.Contents.Remove(_defaultImg.ContentType);
                     }
                 }
             }

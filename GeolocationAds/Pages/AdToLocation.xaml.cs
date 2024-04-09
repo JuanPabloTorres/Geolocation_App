@@ -16,9 +16,15 @@ public partial class AdToLocation : ContentPage
         BindingContext = adToLocationViewModel;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
+        MyContentViewModel.PageIndex = 1;
+
         this.viewModel.CollectionModel.Clear();
+
+        await this.viewModel.InitializeSettingsAsync();
+
+        await this.viewModel.Initialize();
     }
 
     private async void NextItemButton_Clicked(object sender, EventArgs e)
@@ -27,21 +33,29 @@ public partial class AdToLocation : ContentPage
         {
             viewModel.IsLoading = true;
 
+            this.NextBtn.IsEnabled = false;
+
+            this.BackBtn.IsEnabled = false;
+
             if (carouselView.ItemsSource != null && carouselView.Position < (carouselView.ItemsSource.Cast<object>().ToList().Count - 1))
             {
                 carouselView.Position++;
             }
             if (carouselView.Position == carouselView.ItemsSource.Cast<object>().ToList().Count - 1)
             {
-                this.NextBtn.IsEnabled = false;
+                MyContentViewModel.PageIndex++;
 
-                this.BackBtn.IsEnabled = true;
+                await this.viewModel.Initialize();
+
+                //this.NextBtn.IsEnabled = false;
+
+                //this.BackBtn.IsEnabled = true;
             }
             else
             {
-                this.NextBtn.IsEnabled = true;
+                //this.NextBtn.IsEnabled = true;
 
-                this.BackBtn.IsEnabled = true;
+                //this.BackBtn.IsEnabled = true;
             }
         }
         catch (Exception ex)
@@ -51,6 +65,10 @@ public partial class AdToLocation : ContentPage
         finally
         {
             viewModel.IsLoading = false;
+
+            this.NextBtn.IsEnabled = true;
+
+            this.BackBtn.IsEnabled = true;
         }
     }
 
@@ -87,4 +105,6 @@ public partial class AdToLocation : ContentPage
             viewModel.IsLoading = false;
         }
     }
+
+
 }

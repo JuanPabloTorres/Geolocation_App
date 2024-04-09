@@ -27,8 +27,20 @@ namespace GeolocationAdsAPI.Context
 
         public DbSet<User> Users { get; set; }
 
+        [DbFunction("VincentyFormulaSQL2", "dbo")]
+        public static double VincentyFormulaSQL2(double lat1, double lon1, double lat2, double lon2)
+        {
+            throw new NotSupportedException();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder.UseSqlServer(_connectionString).ConfigureWarnings(warnings =>
+            //            warnings.Throw(RelationalEventId.MultipleCollectionIncludeWarning))
+            //        .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+            //}
         }
 
         // Seed method to populate initial AppSetting values

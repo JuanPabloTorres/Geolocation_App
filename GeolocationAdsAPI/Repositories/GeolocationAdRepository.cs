@@ -1,6 +1,6 @@
-﻿using GeolocationAds.Tools;
-using GeolocationAdsAPI.Context;
+﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -92,30 +92,31 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                Func<Advertisement, bool> filterCondition = v =>
+                Expression<Func<Advertisement, bool>> filterCondition = v =>
                 v.GeolocationAds.Any(g =>
-                DateTime.Now <= g.ExpirationDate &&
-                GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
+                DateTime.UtcNow <= g.ExpirationDate &&
+                GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
                 v.Settings.Any(s => s.SettingId == settingId);
 
-                var allEntities = _context.Advertisements.Include(c => c.Contents).Include(g => g.GeolocationAds).Include(s => s.Settings)
-                   .Where(filterCondition)
-                   .Select(s =>
-
-                        new Advertisement
+                var allEntities = await _context.Advertisements
+                    .Include(c => c.Contents)
+                    .Include(g => g.GeolocationAds)
+                    .Include(s => s.Settings)
+                    .Where(filterCondition)
+                    .AsSplitQuery() // Splitting the query here
+                    .Select(s => new Advertisement
+                    {
+                        ID = s.ID,
+                        Description = s.Description,
+                        Title = s.Title,
+                        UserId = s.UserId,
+                        Contents = s.Contents.Select(cs => new ContentType
                         {
-                            ID = s.ID,
-                            Description = s.Description,
-                            Title = s.Title,
-                            UserId = s.UserId,
-                            Contents = s.Contents
-                           .Select(cs => new ContentType
-                           {
-                               Type = cs.Type,
-                               Content = cs.Content
-                           }).ToList(),
-                        }
-                   ).ToList();
+                            Type = cs.Type,
+                            Content = cs.Content
+                        }).ToList(),
+                    })
+                    .ToListAsync();
 
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", allEntities);
             }
@@ -124,7 +125,6 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
 
         public async Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id)
         {

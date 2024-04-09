@@ -295,6 +295,21 @@
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.aspnetcore.http.features\5.0.17\lib\net5.0\Microsoft.AspNetCore.Http.Features.dll">
       <PackagePath>Microsoft.AspNetCore.Http.Features.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.abstractions\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.Abstractions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.entityframeworkcore.relational\7.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.Relational.dll">
+      <PackagePath>Microsoft.EntityFrameworkCore.Relational.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.extensions.caching.abstractions\7.0.0\lib\net7.0\Microsoft.Extensions.Caching.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Caching.Abstractions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.extensions.caching.memory\7.0.0\lib\net7.0\Microsoft.Extensions.Caching.Memory.dll">
+      <PackagePath>Microsoft.Extensions.Caching.Memory.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Juan Pablo Torres\.nuget\packages\microsoft.extensions.configuration\8.0.0\lib\net8.0\Microsoft.Extensions.Configuration.dll">
       <PackagePath>Microsoft.Extensions.Configuration.dll</PackagePath>
     </AppxPackagedFile>

@@ -10,39 +10,6 @@ namespace ToolsLibrary.TemplateViewModel
     {
         private bool isLoading;
 
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                if (isLoading != value)
-                {
-                    isLoading = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        protected IAdvertisementService advertisementService { get; set; }
-
-        protected IGeolocationAdService geolocationAdService { get; set; }
-
-        public ICommand RemoveCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
-
-        public static event RemoveItemEventHandler ItemDeleted;
-
-        public virtual void OnDeleteItem(EventArgs e)
-        {
-            ItemDeleted?.Invoke(this, e);
-        }
-
         public TemplateBaseViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService)
         {
             this.geolocationAdService = geolocationAdService;
@@ -59,9 +26,30 @@ namespace ToolsLibrary.TemplateViewModel
         {
         }
 
-        public virtual void RemoveCurrentItem()
+        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
+
+        public static event RemoveItemEventHandler ItemDeleted;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool IsLoading
         {
+            get => isLoading;
+            set
+            {
+                if (isLoading != value)
+                {
+                    isLoading = value;
+
+                    OnPropertyChanged();
+                }
+            }
         }
+
+        public ICommand RemoveCommand { get; set; }
+        protected IAdvertisementService advertisementService { get; set; }
+
+        protected IGeolocationAdService geolocationAdService { get; set; }
 
         public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
         {
@@ -75,6 +63,17 @@ namespace ToolsLibrary.TemplateViewModel
             }
 
             await Shell.Current.GoToAsync($"{pageName}{queryString}");
+        }
+
+        public virtual void OnDeleteItem(EventArgs e)
+        {
+            ItemDeleted?.Invoke(this, e);
+        }
+
+        public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        public virtual void RemoveCurrentItem()
+        {
         }
     }
 }

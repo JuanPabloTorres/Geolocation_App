@@ -1235,4 +1235,9 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_GenerateJavaStubs.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\Microsoft.EntityFrameworkCore.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.CoreLib.dll

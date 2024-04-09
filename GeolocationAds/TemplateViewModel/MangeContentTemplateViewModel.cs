@@ -15,11 +15,21 @@ namespace ToolsLibrary.TemplateViewModel
 {
     public class MangeContentTemplateViewModel : TemplateBaseViewModel
     {
-        public ICommand SetLocationCommand { get; set; }
+        //public ICommand SetLocationCommand { get; set; }
 
-        public ICommand OpenActionPopUpCommand { get; set; }
+        //public ICommand OpenActionPopUpCommand { get; set; }
 
-        public ICommand onNavigate { get; set; }
+        //public ICommand onNavigate { get; set; }
+
+        private ICommand _setLocationCommand;
+        public ICommand SetLocationCommand => _setLocationCommand ??= new Command<Advertisement>(SetLocationYesOrNoAlert);
+
+        private ICommand _openActionPopUpCommand;
+        public ICommand OpenActionPopUpCommand => _openActionPopUpCommand ??= new Command(async () => await OpenActionPopUp());
+
+        private ICommand _onNavigate;
+        public ICommand OnNavigate => _onNavigate ??= new Command<int>(Navigate);
+
 
         private Advertisement _currentAdvertisement;
 
@@ -69,24 +79,27 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
+        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
+
+        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; } = new ObservableCollection<ContentTypeTemplateViewModel>();
+
 
         public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
             this.CurrentAdvertisement = advertisement;
 
-            SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
+            //SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
 
             RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
 
-            OpenActionPopUpCommand = new Command(async () => { await OpenActionPopUp(); });
+            //OpenActionPopUpCommand = new Command(async () => { await OpenActionPopUp(); });
 
-            this.onNavigate = new Command<int>(Navigate);
+            //this.OnNavigate = new Command<int>(Navigate);
         }
 
         public async Task InitializeAsync()
         {
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+            //this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
 
             await FillTemplate();
         }
@@ -256,15 +269,6 @@ namespace ToolsLibrary.TemplateViewModel
             OnDeleteItem(EventArgs.Empty);
         }
 
-        //public void Dispose()
-        //{
-        //    this.ContentTypesTemplate.Clear();
 
-        //    this.CurrentAdvertisement = null;
-
-        //    this.MediaSource = null;
-
-        //    this.Image = null;
-        //}
     }
 }

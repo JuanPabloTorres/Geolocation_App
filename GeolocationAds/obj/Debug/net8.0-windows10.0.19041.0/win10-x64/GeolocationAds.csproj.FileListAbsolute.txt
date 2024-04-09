@@ -209,3 +209,8 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.EntityFrameworkCore.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Caching.Memory.dll

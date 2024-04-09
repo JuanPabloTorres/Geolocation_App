@@ -191,6 +191,10 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
@@ -234,6 +238,10 @@
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
@@ -281,6 +289,10 @@
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
@@ -335,6 +347,10 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
@@ -388,6 +404,10 @@
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",

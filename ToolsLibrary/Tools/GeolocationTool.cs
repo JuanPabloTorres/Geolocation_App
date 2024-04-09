@@ -5,6 +5,25 @@ namespace GeolocationAds.Tools
 {
     public static class GeolocationTool
     {
+        public static (double lat, double lon) CalculateDestinationPoint(double lat, double lon, double distanceKm, double bearing)
+        {
+            double EarthRadiusKm = 6371;
+
+            var φ1 = lat * Math.PI / 180;
+
+            var λ1 = lon * Math.PI / 180;
+
+            var θ = bearing * Math.PI / 180;
+
+            var δ = distanceKm / EarthRadiusKm;
+
+            var φ2 = Math.Asin(Math.Sin(φ1) * Math.Cos(δ) + Math.Cos(φ1) * Math.Sin(δ) * Math.Cos(θ));
+
+            var λ2 = λ1 + Math.Atan2(Math.Sin(θ) * Math.Sin(δ) * Math.Cos(φ1), Math.Cos(δ) - Math.Sin(φ1) * Math.Sin(φ2));
+
+            return (φ2 * 180 / Math.PI, λ2 * 180 / Math.PI);
+        }
+
         public static Location CalculateLocation(Location startLocation, double distanceInMeters, double bearingInDegrees)
         {
             double lat1 = startLocation.Latitude * Math.PI / 180.0;
@@ -20,6 +39,42 @@ namespace GeolocationAds.Tools
             double lon2 = lon1 + Math.Atan2(Math.Sin(brng) * Math.Sin(distanceInMeters / R) * Math.Cos(lat1), Math.Cos(distanceInMeters / R) - Math.Sin(lat1) * Math.Sin(lat2));
 
             return new Location(lat2 * 180.0 / Math.PI, lon2 * 180.0 / Math.PI);
+        }
+
+        public static async Task<ResponseTool<Location>> GetLocation()
+        {
+            try
+            {
+                // Solicita permiso para acceder a la ubicación del usuario
+                var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+
+                if (status == PermissionStatus.Granted)
+                {
+                    // Obtiene la ubicación del usuario
+                    var request = new GeolocationRequest(GeolocationAccuracy.Best);
+
+                    var location = await Geolocation.GetLocationAsync(request);
+
+                    if (location != null)
+                    {
+                        return ResponseFactory<Location>.BuildSusccess("Location Found", location);
+                    }
+                    else
+                    {
+                        // No se pudo obtener la ubicación del usuario
+
+                        return ResponseFactory<Location>.BuildFail("Location could not found", null);
+                    }
+                }
+                else
+                {
+                    return ResponseFactory<Location>.BuildFail("Not have permission for access location.", null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Location>.BuildFail(ex.Message, null);
+            }
         }
 
         public static double Haversineformula(double lat1, double lon1, double lat2, double lon2)
@@ -51,9 +106,36 @@ namespace GeolocationAds.Tools
             return distance;
         }
 
-        private static double ToRadians(double degrees)
+        public static bool IsInPerimeter(Location centerLocation, double perimeterRadiusInMeters, Location currentLocation, out double distanceDisplay)
         {
-            return degrees * Math.PI / 180;
+            // Radius of the Earth in meters
+            const double earthRadiusMeters = 6371000.0;
+
+            // Convert latitude and longitude values to radians
+            var lat1Rad = ToRadians(centerLocation.Latitude);
+
+            var lon1Rad = ToRadians(centerLocation.Longitude);
+
+            var lat2Rad = ToRadians(currentLocation.Latitude);
+
+            var lon2Rad = ToRadians(currentLocation.Longitude);
+
+            // Calculate the differences between the latitudes and longitudes
+            var deltaLat = lat2Rad - lat1Rad;
+
+            var deltaLon = lon2Rad - lon1Rad;
+
+            // Apply the Haversine formula
+            var a = Math.Pow(Math.Sin(deltaLat / 2), 2) + Math.Cos(lat1Rad) * Math.Cos(lat2Rad) * Math.Pow(Math.Sin(deltaLon / 2), 2);
+
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+            var distance = earthRadiusMeters * c;
+
+            distanceDisplay = distance;
+
+            // Check if distance is less than or equal to 1 meter
+            return distance <= perimeterRadiusInMeters;
         }
 
         public static bool IsLocationInsidePerimeter(Location centerLocation, double perimeterRadiusInMeters, Location otherLocation, out double distance)
@@ -96,57 +178,6 @@ namespace GeolocationAds.Tools
             distance = distanceInMeters;
 
             return distanceInMeters <= perimeterRadiusInMeters;
-        }
-
-        public static bool IsInPerimeter(Location centerLocation, double perimeterRadiusInMeters, Location currentLocation, out double distanceDisplay)
-        {
-            // Radius of the Earth in meters
-            const double earthRadiusMeters = 6371000.0;
-
-            // Convert latitude and longitude values to radians
-            var lat1Rad = ToRadians(centerLocation.Latitude);
-
-            var lon1Rad = ToRadians(centerLocation.Longitude);
-
-            var lat2Rad = ToRadians(currentLocation.Latitude);
-
-            var lon2Rad = ToRadians(currentLocation.Longitude);
-
-            // Calculate the differences between the latitudes and longitudes
-            var deltaLat = lat2Rad - lat1Rad;
-
-            var deltaLon = lon2Rad - lon1Rad;
-
-            // Apply the Haversine formula
-            var a = Math.Pow(Math.Sin(deltaLat / 2), 2) + Math.Cos(lat1Rad) * Math.Cos(lat2Rad) * Math.Pow(Math.Sin(deltaLon / 2), 2);
-
-            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-
-            var distance = earthRadiusMeters * c;
-
-            distanceDisplay = distance;
-
-            // Check if distance is less than or equal to 1 meter
-            return distance <= perimeterRadiusInMeters;
-        }
-
-        public static (double lat, double lon) CalculateDestinationPoint(double lat, double lon, double distanceKm, double bearing)
-        {
-            double EarthRadiusKm = 6371;
-
-            var φ1 = lat * Math.PI / 180;
-
-            var λ1 = lon * Math.PI / 180;
-
-            var θ = bearing * Math.PI / 180;
-
-            var δ = distanceKm / EarthRadiusKm;
-
-            var φ2 = Math.Asin(Math.Sin(φ1) * Math.Cos(δ) + Math.Cos(φ1) * Math.Sin(δ) * Math.Cos(θ));
-
-            var λ2 = λ1 + Math.Atan2(Math.Sin(θ) * Math.Sin(δ) * Math.Cos(φ1), Math.Cos(δ) - Math.Sin(φ1) * Math.Sin(φ2));
-
-            return (φ2 * 180 / Math.PI, λ2 * 180 / Math.PI);
         }
 
         public static bool IsPointInsidePolygon((double lat, double lon)[] polygon, double lat, double lon)
@@ -440,40 +471,9 @@ namespace GeolocationAds.Tools
             return distance;
         }
 
-        public static async Task<ResponseTool<Location>> GetLocation()
+        private static double ToRadians(double degrees)
         {
-            try
-            {
-                // Solicita permiso para acceder a la ubicación del usuario
-                var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-
-                if (status == PermissionStatus.Granted)
-                {
-                    // Obtiene la ubicación del usuario
-                    var request = new GeolocationRequest(GeolocationAccuracy.Best);
-
-                    var location = await Geolocation.GetLocationAsync(request);
-
-                    if (location != null)
-                    {
-                        return ResponseFactory<Location>.BuildSusccess("Location Found", location);
-                    }
-                    else
-                    {
-                        // No se pudo obtener la ubicación del usuario
-
-                        return ResponseFactory<Location>.BuildFail("Location could not found", null);
-                    }
-                }
-                else
-                {
-                    return ResponseFactory<Location>.BuildFail("Not have permission for access location.", null);
-                }
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<Location>.BuildFail(ex.Message, null);
-            }
+            return degrees * Math.PI / 180;
         }
     }
 }
