@@ -24,7 +24,7 @@ public partial class AdToLocation : ContentPage
 
         await this.viewModel.InitializeSettingsAsync();
 
-        await this.viewModel.Initialize();
+        await this.viewModel.InitializeAsync();
     }
 
     private async void NextItemButton_Clicked(object sender, EventArgs e)
@@ -45,7 +45,7 @@ public partial class AdToLocation : ContentPage
             {
                 MyContentViewModel.PageIndex++;
 
-                await this.viewModel.Initialize();
+                await this.viewModel.InitializeAsync(MyContentViewModel.PageIndex);
 
                 //this.NextBtn.IsEnabled = false;
 

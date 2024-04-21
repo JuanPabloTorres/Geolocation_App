@@ -103,11 +103,6 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        //public void Dispose()
-        //{
-        //    this.ContentTypesTemplate.Clear();
-
-        //    this.Advertisement = null;
-        //}
+       
     }
 }

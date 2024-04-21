@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:tVm="clr-namespace:GeolocationAds.TemplateViewModel"
+             x:Class="GeolocationAds.Pages.MyContentPage"
+             xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+              xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+             Title="My Content">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SearchCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding OpenFilterPopUpCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="ImageDataTemplateForDisplay2">
+
+            <displayer:ImageDisplayer  IsMyContentStackHeaderVisible="True"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplateForDisplay2">
+
+            <displayer:VideoDisplayer  IsMyContentStackHeaderVisible="True"/>
+        </DataTemplate>
+
+        <templateSelector:ContentViewTemplateSelector
+        x:Key="typeSelector"
+        ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
+        VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CarouselView
+        x:Name="carouselView"
+        Grid.Row="0"
+        IsSwipeEnabled="False"
+            ItemTemplate="{StaticResource typeSelector}"
+        ItemsSource="{Binding CollectionModel}">
+
+            <CarouselView.EmptyView>
+
+                <Grid>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Load Content To Display." />
+                </Grid>
+            </CarouselView.EmptyView>
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+        </CarouselView>
+
+        <displayer:PaginControls x:Name="paginControls" Grid.Row="1"  IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
+
+        <ActivityIndicator
+        Grid.Row="1"
+        IsRunning="{Binding IsLoading}"
+        Style="{StaticResource globalLoading}" />
+    </Grid>
+</ContentPage>

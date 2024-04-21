@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Maui;
+using FFImageLoading.Maui;
 using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
 using Microsoft.Maui.Controls.Maps;
 using ToolsLibrary.Models;
@@ -18,6 +20,7 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
+             .UseFFImageLoading()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMediaElement()
             .ConfigureFonts(fonts =>
@@ -118,6 +121,8 @@ public static class MauiProgram
         builder.Services.AddScoped<MyContentViewModel>();
 
         builder.Services.AddScoped<SearchAdViewModel>();
+        
+        builder.Services.AddScoped<SearchAdViewModel2>();
 
         builder.Services.AddScoped<LoginViewModel>();
 
@@ -126,6 +131,8 @@ public static class MauiProgram
         builder.Services.AddScoped<AppShellViewModel>();
 
         builder.Services.AddScoped<GoogleMapViewModel>();
+        
+        builder.Services.AddScoped<GoogleMapViewModel2>();
 
         builder.Services.AddScoped<EditAdvertismentViewModel>();
 
@@ -142,6 +149,8 @@ public static class MauiProgram
         builder.Services.AddScoped<CaptureViewModel>();
 
         builder.Services.AddScoped<ManageLocationViewModel>();
+        
+        builder.Services.AddScoped<ContentViewTemplateViewModel>();
 
         #endregion ViewModels
 
@@ -156,6 +165,8 @@ public static class MauiProgram
         builder.Services.AddScoped<AdToLocation>();
 
         builder.Services.AddScoped<SearchAd>();
+        
+        builder.Services.AddScoped<MyContentPage>();
 
         builder.Services.AddScoped<Login>();
 

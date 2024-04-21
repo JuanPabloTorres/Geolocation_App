@@ -9,7 +9,7 @@ namespace GeolocationAdsAPI.Repositories
 
         Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo(int settingId);
 
-        Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId);
+        Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId,int pageIndex);
 
         Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id);
 

@@ -4,6 +4,89 @@
         <name>GeolocationAds</name>
     </assembly>
     <members>
+        <member name="T:GeolocationAds.TemplateViewModel.BaseTemplateViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.BaseTemplateViewModel.IsLoading">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.BaseTemplateViewModel.isLoading"/>
+        </member>
+        <member name="T:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.CurrentAdvertisement">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel._currentAdvertisement"/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.MediaSource">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.mediaSource"/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.Image">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.image"/>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.openActionPopUpCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.OpenActionPopUpCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.OpenActionPopUpCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.OpenActionPopUp"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.removeContentYesOrNoAlertCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.RemoveContentYesOrNoAlertCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.RemoveContentYesOrNoAlertCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.RemoveContentYesOrNoAlert(ToolsLibrary.Models.Advertisement)"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.Advertisement">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.advertisement"/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaSource">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.mediaSource"/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.Image">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.image"/>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.captureItemCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItemCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItemCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItem(ToolsLibrary.Models.Advertisement)"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.BaseViewModel3`2">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.Model">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2._model"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.IsLoading">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2.isLoading"/>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.SelectedDistance">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.selectedDistance"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.SelectedAdType">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.selectedAdType"/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.SearchAdViewModel2.searchCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.SearchAdViewModel2.SearchCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.SearchCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.SearchAdViewModel2.Search"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.SearchAdViewModel2.openFilterPopUpCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.SearchAdViewModel2.OpenFilterPopUpCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.OpenFilterPopUpCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.SearchAdViewModel2.OpenFilterPopUp"/>.</summary>
+        </member>
         <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
             <summary>
             Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
@@ -123,6 +206,66 @@
             <param name = "easing">The easing function to be used in the animation</param>
             <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
             <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLoading" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CurrentAdvertisement">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CurrentAdvertisement" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.MediaSource">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "MediaSource" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Image">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Image" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Advertisement">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Advertisement" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Model">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Model" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedAdType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLoading" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CurrentAdvertisement">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CurrentAdvertisement" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.MediaSource">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "MediaSource" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Image">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Image" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Advertisement">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Advertisement" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Model">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Model" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedAdType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
         </member>
     </members>
 </doc>

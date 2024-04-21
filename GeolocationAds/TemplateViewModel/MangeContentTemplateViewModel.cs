@@ -2,25 +2,22 @@
 using GeolocationAds.AppTools;
 using GeolocationAds.Pages;
 using GeolocationAds.Services;
-using GeolocationAds.TemplateViewModel;
+
 using GeolocationAds.Tools;
+using GeolocationAds.ViewTemplates;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
+using ToolsLibrary.TemplateViewModel;
 using ToolsLibrary.Tools;
 
-namespace ToolsLibrary.TemplateViewModel
+namespace GeolocationAds.TemplateViewModel
 {
     public class MangeContentTemplateViewModel : TemplateBaseViewModel
     {
-        //public ICommand SetLocationCommand { get; set; }
-
-        //public ICommand OpenActionPopUpCommand { get; set; }
-
-        //public ICommand onNavigate { get; set; }
-
         private ICommand _setLocationCommand;
         public ICommand SetLocationCommand => _setLocationCommand ??= new Command<Advertisement>(SetLocationYesOrNoAlert);
 
@@ -29,7 +26,6 @@ namespace ToolsLibrary.TemplateViewModel
 
         private ICommand _onNavigate;
         public ICommand OnNavigate => _onNavigate ??= new Command<int>(Navigate);
-
 
         private Advertisement _currentAdvertisement;
 
@@ -63,9 +59,11 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        private Image _image;
+      
 
-        public Image Image
+        private ImageSource _image;
+
+        public ImageSource Image
         {
             get => _image;
             set
@@ -79,28 +77,17 @@ namespace ToolsLibrary.TemplateViewModel
             }
         }
 
-        //public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
-
         public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; } = new ObservableCollection<ContentTypeTemplateViewModel>();
-
 
         public MangeContentTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
             this.CurrentAdvertisement = advertisement;
 
-            //SetLocationCommand = new Command<Advertisement>(SetLocationYesOrNoAlert);
-
             RemoveCommand = new Command<Advertisement>(RemoveContentYesOrNoAlert);
-
-            //OpenActionPopUpCommand = new Command(async () => { await OpenActionPopUp(); });
-
-            //this.OnNavigate = new Command<int>(Navigate);
         }
 
         public async Task InitializeAsync()
         {
-            //this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
-
             await FillTemplate();
         }
 
@@ -108,13 +95,25 @@ namespace ToolsLibrary.TemplateViewModel
         {
             if (!this.CurrentAdvertisement.Contents.IsObjectNull())
             {
-                foreach (var item in this.CurrentAdvertisement.Contents)
+                if (this.CurrentAdvertisement.Contents.FirstOrDefault().Type == ContentVisualType.Image)
                 {
-                    var _template = await AppToolCommon.ProcessContentItem(item);
+                    var _content = this.CurrentAdvertisement.Contents.FirstOrDefault().Content;
 
-                    this.ContentTypesTemplate.Add(_template);
+                    this.Image = ImageSource.FromStream(() => new MemoryStream(_content));
+                }
+
+                if (this.CurrentAdvertisement.Contents.FirstOrDefault().Type == ContentVisualType.Video)
+                {
+                    var file = await CommonsTool.SaveByteArrayToTempFile2(this.CurrentAdvertisement.Contents.FirstOrDefault().Content);
+
+                    this.MediaSource = file;
                 }
             }
+        }
+
+        private async Task<ContentTypeTemplateViewModel> ProcessItemAsync(ContentType item)
+        {
+            return await AppToolCommon.ProcessContentItem(item);
         }
 
         public async Task OpenActionPopUp()
@@ -268,7 +267,5 @@ namespace ToolsLibrary.TemplateViewModel
         {
             OnDeleteItem(EventArgs.Empty);
         }
-
-
     }
 }

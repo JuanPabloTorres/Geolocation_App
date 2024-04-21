@@ -5,6 +5,7 @@ using GeolocationAds.TemplateViewModel;
 using GeolocationAds.Tools;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -21,16 +22,17 @@ namespace GeolocationAds.ViewModels
         private ObservableCollection<string> _distanceSettings;
         public ObservableCollection<string> DistanceSettings => _distanceSettings ?? (_distanceSettings = new ObservableCollection<string>());
 
-
         private ObservableCollection<AppSetting> _adTypesSettings;
         public ObservableCollection<AppSetting> AdTypesSettings => _adTypesSettings ?? (_adTypesSettings = new ObservableCollection<AppSetting>());
 
+        //private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
+        //public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels => _nearByTemplateViewModels ?? (_nearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel>());
 
-        private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
-        public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels => _nearByTemplateViewModels ?? (_nearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel>());
-
+        private ObservableCollection<NearByTemplateViewModel2> _nearByTemplateViewModels;
+        public ObservableCollection<NearByTemplateViewModel2> NearByTemplateViewModels => _nearByTemplateViewModels ?? (_nearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel2>());
 
         private string _selectedDistance;
+
         public string SelectedDistance
         {
             get => _selectedDistance;
@@ -45,6 +47,7 @@ namespace GeolocationAds.ViewModels
         }
 
         private AppSetting _selectedAdType;
+
         public AppSetting SelectedAdType
         {
             get => _selectedAdType;
@@ -62,27 +65,6 @@ namespace GeolocationAds.ViewModels
 
         public SearchAdViewModel(Advertisement advertisement, ICaptureService captureService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUser) : base(advertisement, geolocationAdService, logUser)
         {
-            //this.appSettingService = appSettingService;
-
-            //this.captureService = captureService;
-
-            //this.DistanceSettings = new ObservableCollection<string>();
-
-            //this.AdTypesSettings = new ObservableCollection<AppSetting>();
-
-            //this.NearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel>();
-
-            //this.SearchCommand = new Command(async () => await InitializeAsync());
-
-            //this.OpenFilterPopUpCommand = new Command(OpenFilterPopUp);
-
-            //this.SelectedAdType = new AppSetting();
-
-            ////this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
-
-            //InitializeSettingsAsync();
-
-
             _appSettingService = appSettingService;
 
             _captureService = captureService;
@@ -94,7 +76,6 @@ namespace GeolocationAds.ViewModels
             SelectedAdType = new AppSetting();
 
             InitializeSettingsAsync();
-
         }
 
         private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
@@ -109,7 +90,7 @@ namespace GeolocationAds.ViewModels
 
                     this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
 
-                    await InitializeAsync();
+                    await InitializeAsync(PageIndex,isReset:true); 
                 }
             }
             catch (Exception ex)
@@ -164,103 +145,139 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        //protected override async Task LoadData(object extraData)
+        //protected override async Task LoadData(object extraData, int? pageIndex = 1)
         //{
+        //    ResponseTool<IEnumerable<Advertisement>> apiResponse;
+
+        //    if (!(extraData is CurrentLocation currentLocation))
+        //    {
+        //        await DisplayError("Failed to retrieve location information. Please check your settings and try again.");
+
+        //        return;
+        //    }
+
         //    try
         //    {
-        //        if (!(extraData is CurrentLocation currentLocation))
-        //        {
-        //            // Handle invalid 'extraData' if needed.
-        //            await Shell.Current.DisplayAlert("Error", "Failed to retrieve location information. Please check your settings and try again.", "OK");
-
-        //            return;
-        //        }
-
-        //        var apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
-
-        //        if (!apiResponse.IsSuccess)
-        //        {
-        //            await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
-
-        //            return;
-        //        }
-
-        //        if (apiResponse.Data.Count() == 0)
-        //        {
-        //            await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
-
-        //            return;
-        //        }
-
-        //        foreach (var item in apiResponse.Data)
-        //        {
-        //            var templateViewModel = new NearByTemplateViewModel(this.captureService, item, this.LogUserPerfilTool);
-
-        //            await templateViewModel.InitializeAsync();
-
-        //            this.NearByTemplateViewModels.Add(templateViewModel);
-        //        }
+        //        apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
         //    }
         //    catch (Exception ex)
         //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //        await DisplayError($"Error loading data: {ex.Message}");
+
+        //        return;
         //    }
+
+        //    if (!apiResponse.IsSuccess || !apiResponse.Data.Any())
+        //    {
+        //        await DisplayError(string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message);
+
+        //        return;
+        //    }
+
+        //    //var tasks = apiResponse.Data.Select(async item =>
+        //    //{
+        //    //    var templateViewModel = new NearByTemplateViewModel(this._captureService, item, this.LogUserPerfilTool);
+
+        //    //    await templateViewModel.InitializeAsync();
+
+        //    //    return templateViewModel;
+        //    //});
+
+        //    //var tasks = apiResponse.Data.Select(async item =>
+        //    //{
+        //    //    var templateViewModel = new NearByTemplateViewModel2(this._captureService, item, this.LogUserPerfilTool);
+
+        //    //    await templateViewModel.InitializeAsync();
+
+        //    //    return templateViewModel;
+        //    //});
+
+        //    try
+        //    {
+        //        var viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, ad, this.LogUserPerfilTool));
+
+        //        this.NearByTemplateViewModels.AddRange(viewModels);
+
+        //        // Parallel initialization
+        //        await Task.WhenAll(this.NearByTemplateViewModels.Select(async item => await item.InitializeAsync()));
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        // Consider how to handle partial failures and communicate them to the user
+        //        await DisplayError($"An error occurred while loading ads: {ex.Message}");
+        //    }
+
+        //    //var viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, ad,this.LogUserPerfilTool));
+
+        //    //this.NearByTemplateViewModels.AddRange(viewModels);
+
+        //    //// Parallel initialization
+        //    //await Task.WhenAll(this.NearByTemplateViewModels.Select(async item => await item.InitializeAsync()));
+
+        //    //try
+        //    //{
+        //    //    // Execute all initializations in parallel and then add them to the collection
+        //    //    var results = await Task.WhenAll(tasks);
+
+        //    //    foreach (var viewModel in results)
+        //    //    {
+        //    //        this.NearByTemplateViewModels.Add(viewModel);
+        //    //    }
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    // Consider how to handle partial failures and communicate them to the user
+        //    //    await DisplayError($"An error occurred while loading ads: {ex.Message}");
+        //    //}
         //}
 
-        protected override async Task LoadData(object extraData)
+        protected override async Task LoadData(object extraData, int? pageIndex = 1)
         {
-            ResponseTool<IEnumerable<Advertisement>> apiResponse;
-
             if (!(extraData is CurrentLocation currentLocation))
             {
                 await DisplayError("Failed to retrieve location information. Please check your settings and try again.");
-
                 return;
             }
 
+            ResponseTool<IEnumerable<Advertisement>> apiResponse;
             try
             {
                 apiResponse = await this.service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID);
-            }
-            catch (Exception ex)
-            {
-                await DisplayError($"Error loading data: {ex.Message}");
 
-                return;
-            }
-
-            if (!apiResponse.IsSuccess || !apiResponse.Data.Any())
-            {
-                await DisplayError(string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message);
-
-                return;
-            }
-
-            var tasks = apiResponse.Data.Select(async item =>
-            {
-                var templateViewModel = new NearByTemplateViewModel(this._captureService, item, this.LogUserPerfilTool);
-
-                await templateViewModel.InitializeAsync();
-
-                return templateViewModel;
-            });
-
-            try
-            {
-                // Execute all initializations in parallel and then add them to the collection
-                var results = await Task.WhenAll(tasks);
-
-                foreach (var viewModel in results)
+                if (!apiResponse.IsSuccess || !apiResponse.Data.Any())
                 {
-                    this.NearByTemplateViewModels.Add(viewModel);
+                    string message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
+
+                    await DisplayError(message);
+
+                    return;
                 }
             }
             catch (Exception ex)
             {
-                // Consider how to handle partial failures and communicate them to the user
+                await DisplayError($"Error loading data: {ex.Message}");
+                return;
+            }
+
+            List<NearByTemplateViewModel2> viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, ad, this.LogUserPerfilTool)).ToList();
+
+            try
+            {
+                // Parallel initialization of view models
+                await Task.WhenAll(viewModels.Select(vm => vm.InitializeAsync()));
+
+                // Safely add to collection if all initializations succeed
+                this.NearByTemplateViewModels.AddRange(viewModels);
+            }
+            catch (Exception ex)
+            {
+                // Handle partial failures here if necessary
                 await DisplayError($"An error occurred while loading ads: {ex.Message}");
+                // Decide how to handle already initialized viewModels if needed
             }
         }
+
 
         private static Task DisplayError(string message) => Shell.Current.DisplayAlert("Error", message, "OK");
 
@@ -295,11 +312,14 @@ namespace GeolocationAds.ViewModels
         //    }
         //}
 
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(int? pageIndex = 1, bool? isReset = false)
         {
             this.IsLoading = true;
 
-            this.NearByTemplateViewModels.Clear();
+            if (isReset.HasValue && isReset.Value)
+            {
+                this.NearByTemplateViewModels.Clear();
+            }
 
             try
             {
@@ -314,7 +334,7 @@ namespace GeolocationAds.ViewModels
 
                 var _currentLocation = new CurrentLocation(locationResponse.Data.Latitude, locationResponse.Data.Longitude);
 
-                await LoadData(_currentLocation);
+                await LoadData(_currentLocation, pageIndex);
             }
             catch (Exception ex)
             {
@@ -345,18 +365,6 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        //public void Dispose()
-        //{
-        //    WeakReferenceMessenger.Default.Unregister<LogOffMessage>(this);
-
-        //    // Clear collections or other resources
-        //    NearByTemplateViewModels.Clear();
-
-        //    // Optionally, you can also dispose of any disposable objects here if applicable.
-        //    // For example, if captureService implements IDisposable:
-        //    // captureService.Dispose();
-
-        //    GC.SuppressFinalize(this);
-        //}
+       
     }
 }

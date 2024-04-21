@@ -1,16 +1,12 @@
-# Proguard rules specific to the extractor module.
+# Proguard rules specific to the DataSource module.
 
-# Methods accessed via reflection in DefaultExtractorsFactory
--dontnote com.google.android.exoplayer2.ext.flac.FlacExtractor
--keepclassmembers class com.google.android.exoplayer2.ext.flac.FlacExtractor {
-  <init>(int);
-}
--dontnote com.google.android.exoplayer2.ext.flac.FlacLibrary
--keepclassmembers class com.google.android.exoplayer2.ext.flac.FlacLibrary {
-  public static boolean isAvailable();
+# Constant folding for resource integers may mean that a resource passed to this method appears to be unused. Keep the method to prevent this from happening.
+-keepclassmembers class com.google.android.exoplayer2.upstream.RawResourceDataSource {
+  public static android.net.Uri buildRawResourceUri(int);
 }
 
-# Don't warn about checkerframework and Kotlin annotations
--dontwarn org.checkerframework.**
--dontwarn kotlin.annotations.jvm.**
--dontwarn javax.annotation.**
+# Constructors accessed via reflection in DefaultDataSource
+-dontnote com.google.android.exoplayer2.ext.rtmp.RtmpDataSource
+-keepclassmembers class com.google.android.exoplayer2.ext.rtmp.RtmpDataSource {
+  <init>();
+}

@@ -288,6 +288,30 @@ namespace ToolsLibrary.Tools
             return string.Empty;
         }
 
+        public static async Task<string> SaveByteArrayToTempFile2(byte[] byteArray)
+        {
+            try
+            {
+                // Generate a unique file name, e.g., using a GUID or a timestamp
+                var uniqueFileName = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".tmp");
+
+                // Write the byte array to the newly created file
+                await File.WriteAllBytesAsync(uniqueFileName, byteArray);
+
+                return uniqueFileName;
+            }
+            catch (Exception ex)
+            {
+
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+
+                return string.Empty;
+            }
+            
+          
+        }
+
+
         public static async Task SendEmailAsync(EmailRequest emailRequest, IConfiguration configuration)
         {
             var _port = int.Parse(configuration["Smtp:Port"]);

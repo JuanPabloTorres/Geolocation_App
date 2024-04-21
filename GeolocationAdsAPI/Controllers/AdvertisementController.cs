@@ -1,6 +1,7 @@
 ﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -37,6 +38,73 @@ namespace GeolocationAdsAPI.Controllers
 
                 return Ok(response);
             }
+        }
+
+        // You can name this action method as per your routing preferences.
+        [HttpPost("Add2")]
+        public async Task<IActionResult> AddAdvertisement()
+        {
+            if (!Request.HasFormContentType)
+            {
+                return BadRequest("Unsupported media type");
+            }
+
+            var formCollection = await Request.ReadFormAsync();
+
+            var advertisementJson = formCollection["advertisementMetadata"];
+
+            var advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
+
+
+            
+            //advertisement?.Contents.Clear();
+
+            // Assuming ContentType has IFormFile or similar for Content
+            //foreach (var file in formCollection.Files)
+            //{
+            //    var content = new ContentType
+            //    {
+            //        ContentName = file.FileName,
+            //        Type = GetContentVisualType(file.ContentType),
+            //        Content = await ConvertToByteArray(file)
+            //        // Assign other properties as needed
+            //    };
+
+            //    advertisement?.Contents.Add(content);
+            //}
+
+            // TODO: Handle GeolocationAds and Settings if they are part of the form
+
+            try
+            {
+                var response = await this.advertisementRepository.CreateAsync(advertisement);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null);
+
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+        }
+
+        private ContentVisualType GetContentVisualType(string contentType)
+        {
+            return contentType switch
+            {
+                "image/jpeg" => ContentVisualType.Image,
+                "image/png" => ContentVisualType.Image,
+                "video/mp4" => ContentVisualType.Video,
+                _ => ContentVisualType.Unknown
+            };
+        }
+
+        private async Task<byte[]> ConvertToByteArray(IFormFile file)
+        {
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            return memoryStream.ToArray();
         }
 
         [HttpGet("[action]/{id}")]

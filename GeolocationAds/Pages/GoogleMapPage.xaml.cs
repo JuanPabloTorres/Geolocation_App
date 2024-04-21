@@ -5,9 +5,9 @@ namespace GeolocationAds.Pages;
 
 public partial class GoogleMapPage : ContentPage
 {
-    private GoogleMapViewModel _viewModel;
+    private GoogleMapViewModel2 _viewModel;
 
-    public GoogleMapPage(GoogleMapViewModel googleMapViewModel)
+    public GoogleMapPage(GoogleMapViewModel2 googleMapViewModel)
     {
         InitializeComponent();
 

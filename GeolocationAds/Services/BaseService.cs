@@ -44,7 +44,7 @@ namespace GeolocationAds.Services
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
         }
 
-        public async Task<ResponseTool<T>> Add(T data)
+        public virtual async Task<ResponseTool<T>> Add(T data)
         {
             try
             {

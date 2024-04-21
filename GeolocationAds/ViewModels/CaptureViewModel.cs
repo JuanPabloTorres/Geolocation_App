@@ -145,7 +145,7 @@ namespace GeolocationAds.ViewModels
             await LoadSettings2Async();
         }
 
-        protected override async Task LoadData()
+        protected override async Task LoadData(int? pageIndex = 1)
         {
             try
             {

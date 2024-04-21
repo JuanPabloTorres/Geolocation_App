@@ -2,6 +2,7 @@
 using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -197,37 +198,66 @@ namespace GeolocationAdsAPI.Controllers
         //    }
         //}
 
-        [HttpPost("[action]/{distance}/{settinTypeId}")]
-        public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settinTypeId)
+        [HttpPost("[action]/{distance}/{settingTypeId}/{pageIndex}")]
+        public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settingTypeId, int pageIndex)
         {
             try
             {
-                var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settinTypeId);
+                var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settingTypeId, pageIndex);
 
-                if (geoAdResponse.IsSuccess)
-                {
-                    if (geoAdResponse.Data.Count() > 0)
-                    {
-                        var adsNear = geoAdResponse.Data.OrderByDescending(o => o.CreateDate).ToList();
-
-                        return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
-                    }
-                    else
-                    {
-                        return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("No nearby content found.", geoAdResponse.Data, ToolsLibrary.Tools.Type.NotFound));
-                    }
-                }
-                else
+                if (!geoAdResponse.IsSuccess)
                 {
                     return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
                 }
+
+                var advertisements = geoAdResponse.Data;
+
+                if (advertisements.IsObjectNull() || !advertisements.Any())
+                {
+                    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("No nearby content found.", advertisements, ToolsLibrary.Tools.Type.NotFound));
+                }
+
+                var adsNear = advertisements.OrderByDescending(o => o.CreateDate).ToList();
+
+                // Assuming the data is ordered in the repository method itself
+                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
             }
             catch (Exception ex)
             {
+                // Consider logging the exception details here
                 return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception));
             }
         }
 
+        //public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settinTypeId,int pageIndex)
+        //{
+        //    try
+        //    {
+        //        var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settinTypeId,pageIndex);
+
+        //        if (geoAdResponse.IsSuccess)
+        //        {
+        //            if (!geoAdResponse.Data.IsObjectNull() && geoAdResponse.Data.Count() > 0)
+        //            {
+        //                var adsNear = geoAdResponse.Data.OrderByDescending(o => o.CreateDate).ToList();
+
+        //                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
+        //            }
+        //            else
+        //            {
+        //                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("No nearby content found.", geoAdResponse.Data, ToolsLibrary.Tools.Type.NotFound));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception));
+        //    }
+        //}
 
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> Remove(int id)

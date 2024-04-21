@@ -68,9 +68,12 @@
 	  <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 	  <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.0.1" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	  <PackageReference Include="FFImageLoading.Maui" Version="1.2.0" />
+	  <PackageReference Include="FFmpeg.AutoGen" Version="7.0.0" />
 	  <PackageReference Include="GoogleMapsApi" Version="1.2.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
 	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.3" />
+	  <PackageReference Include="Xabe.FFmpeg" Version="5.2.6" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -96,7 +99,31 @@
 	  <MauiXaml Update="Pages\LocationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\MyContentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SearchAd.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\ContentDisplayer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\ContentHeaderView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\FindedContentDisplayer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\HomeContentItemHeaderView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\ImageDisplayer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\PaginControls.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\VideoDisplayer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

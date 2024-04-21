@@ -15,7 +15,9 @@ ExoPlayer.Rtsp.dll
 ExoPlayer.SmoothStreaming.dll
 ExoPlayer.Transformer.dll
 ExoPlayer.UI.dll
+FFImageLoading.Maui.dll
 GoogleGson.dll
+HarfBuzzSharp.dll
 Jsr305Binding.dll
 Microsoft.Maui.Controls.Compatibility.dll
 Microsoft.Maui.Controls.dll
@@ -25,6 +27,7 @@ Microsoft.Maui.dll
 Microsoft.Maui.Essentials.dll
 Microsoft.Maui.Graphics.dll
 Microsoft.Maui.Maps.dll
+SkiaSharp.dll
 ToolsLibrary.dll
 Xamarin.Android.Glide.Annotations.dll
 Xamarin.Android.Glide.DiskLruCache.dll

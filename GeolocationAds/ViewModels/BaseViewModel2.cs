@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -21,7 +22,10 @@ namespace GeolocationAds.ViewModels
 
         //public ObservableCollection<T> CollectionModel { get; set; }
 
+        public static int PageIndex { get; set; } = 1;
+
         protected FilterPopUp _filterPopUp;
+
         protected FilterPopUpForSearch _filterPopUpForSearch;
 
         private T _model;
@@ -48,7 +52,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<T> CollectionModel { get; set; } = new ObservableCollection<T>();
         public string ID { get; private set; }
-        //protected FilterPopUp _filterPopUp;
+       
         public bool IsLoading
         {
             get => isLoading;
@@ -62,7 +66,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        //protected FilterPopUpForSearch _filterPopUpForSearch;
+     
         public T Model
         {
             get => _model;
@@ -283,143 +287,224 @@ namespace GeolocationAds.ViewModels
             IsLoading = false;
         }
 
+        //public async Task OnSubmit2(T obj)
+        //{
+        //    try
+        //    {
+        //        IsLoading = true;
+
+        //        ValidationResults.Clear();
+
+        //        DateTime now = DateTime.Now;
+
+        //        ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.CreateDate), now);
+
+        //        var validationContextCurrentType = new ValidationContext(obj);
+
+        //        var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
+
+        //        PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
+
+        //        var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
+
+        //        var _validatedSubProperty = new List<bool>();
+
+        //        foreach (var item in _propertyIntances)
+        //        {
+        //            if (!item.IsObjectNull())
+        //            {
+        //                var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
+
+        //                var validationContextSubProperty = new ValidationContext(item);
+
+        //                this.ValidationContexts.Add(validationContextSubProperty);
+
+        //                _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
+
+        //                this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
+        //            }
+        //        }
+
+        //        if (_validatedSubProperty.Count >= 0)
+        //        {
+        //            bool _allSubPropetyValueAreValid = _validatedSubProperty.All(v => v == true);
+
+        //            if (isValiteObj && _allSubPropetyValueAreValid)
+        //            {
+        //                MethodInfo addMethod = this.service.GetType().GetMethod("Add");
+
+        //                if (addMethod != null)
+        //                {
+        //                    // Parameters to pass to the "Add" method
+        //                    object[] parameters = new object[] { obj };
+
+        //                    // Call the "Add" method on the userService instance
+        //                    Task<ResponseTool<T>> addTask = Task.Run(async () =>
+        //                    {
+        //                        return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
+        //                    });
+
+        //                    // Wait for the asynchronous task to complete
+        //                    ResponseTool<T> _apiResponse = await addTask;
+
+        //                    if (_apiResponse.IsSuccess)
+        //                    {
+        //                        if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
+        //                        {
+        //                            //this.Model = Activator.CreateInstance<T>();
+
+        //                            this.ValidationResults.Clear();
+
+        //                            WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
+        //                        }
+        //                        else
+        //                        {
+        //                            // Handle cases where T doesn't have a parameterless constructor
+        //                            //throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
+
+        //                            await Shell.Current.DisplayAlert("Error", $"Type {typeof(T).FullName} does not have a parameterless constructor.", "OK");
+        //                        }
+
+        //                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+        //                    }
+        //                    else
+        //                    {
+        //                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (isValiteObj)
+        //            {
+        //                MethodInfo addMethod = this.service.GetType().GetMethod("Add");
+
+        //                if (addMethod != null)
+        //                {
+        //                    // Parameters to pass to the "Add" method
+        //                    object[] parameters = new object[] { obj };
+
+        //                    // Call the "Add" method on the userService instance
+        //                    Task<ResponseTool<T>> addTask = Task.Run(async () =>
+        //                    {
+        //                        return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
+        //                    });
+
+        //                    // Wait for the asynchronous task to complete
+        //                    ResponseTool<T> _apiResponse = await addTask;
+
+        //                    if (_apiResponse.IsSuccess)
+        //                    {
+        //                        if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
+        //                        {
+        //                            //Activator.CreateInstance<T>();
+
+        //                            this.ValidationResults.Clear();
+
+        //                            WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
+        //                        }
+        //                        else
+        //                        {
+        //                            // Handle cases where T doesn't have a parameterless constructor
+        //                            throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
+        //                        }
+
+        //                        //this.Image.Source = null;
+
+        //                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+        //                    }
+        //                    else
+        //                    {
+        //                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        IsLoading = false;
+        //    }
+        //}
+
         public async Task OnSubmit2(T obj)
         {
+            IsLoading = true;
+
+            ValidationResults.Clear();
+
             try
             {
-                IsLoading = true;
-
-                ValidationResults.Clear();
-
                 DateTime now = DateTime.Now;
 
                 ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.CreateDate), now);
 
                 var validationContextCurrentType = new ValidationContext(obj);
 
-                var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
+                bool isObjValid = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
 
-                PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
+                var propertyInstances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
 
-                var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
+                bool allSubPropertyValid = true;
 
-                var _validatedSubProperty = new List<bool>();
-
-                foreach (var item in _propertyIntances)
+                foreach (var item in propertyInstances)
                 {
                     if (!item.IsObjectNull())
                     {
-                        var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
+                        var tempValidationResultsSubProperty = new List<ValidationResult>();
 
                         var validationContextSubProperty = new ValidationContext(item);
 
                         this.ValidationContexts.Add(validationContextSubProperty);
 
-                        _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
-
-                        this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
-                    }
-                }
-
-                if (_validatedSubProperty.Count >= 0)
-                {
-                    bool _allSubPropetyValueAreValid = _validatedSubProperty.All(v => v == true);
-
-                    if (isValiteObj && _allSubPropetyValueAreValid)
-                    {
-                        MethodInfo addMethod = this.service.GetType().GetMethod("Add");
-
-                        if (addMethod != null)
+                        if (!Validator.TryValidateObject(item, validationContextSubProperty, tempValidationResultsSubProperty, true))
                         {
-                            // Parameters to pass to the "Add" method
-                            object[] parameters = new object[] { obj };
-
-                            // Call the "Add" method on the userService instance
-                            Task<ResponseTool<T>> addTask = Task.Run(async () =>
-                            {
-                                return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
-                            });
-
-                            // Wait for the asynchronous task to complete
-                            ResponseTool<T> _apiResponse = await addTask;
-
-                            if (_apiResponse.IsSuccess)
-                            {
-                                if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
-                                {
-                                    //this.Model = Activator.CreateInstance<T>();
-
-                                    this.ValidationResults.Clear();
-
-                                    WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
-                                }
-                                else
-                                {
-                                    // Handle cases where T doesn't have a parameterless constructor
-                                    //throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
-
-                                    await Shell.Current.DisplayAlert("Error", $"Type {typeof(T).FullName} does not have a parameterless constructor.", "OK");
-                                }
-
-                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
-                            }
-                            else
-                            {
-                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                            }
+                            allSubPropertyValid = false;
                         }
+                        ValidationResults.AddRange(tempValidationResultsSubProperty);
                     }
                 }
-                else
+
+                if (isObjValid && allSubPropertyValid)
                 {
-                    if (isValiteObj)
+                    var addMethod = this.service.GetType().GetMethod("Add");
+
+                    if (addMethod != null)
                     {
-                        MethodInfo addMethod = this.service.GetType().GetMethod("Add");
+                        ResponseTool<T> apiResponse = await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, new object[] { obj });
 
-                        if (addMethod != null)
+                        if (apiResponse.IsSuccess)
                         {
-                            // Parameters to pass to the "Add" method
-                            object[] parameters = new object[] { obj };
-
-                            // Call the "Add" method on the userService instance
-                            Task<ResponseTool<T>> addTask = Task.Run(async () =>
+                            if (Activator.CreateInstance<T>() is T newInstance)
                             {
-                                return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
-                            });
+                                this.ValidationResults.Clear();
 
-                            // Wait for the asynchronous task to complete
-                            ResponseTool<T> _apiResponse = await addTask;
-
-                            if (_apiResponse.IsSuccess)
-                            {
-                                if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
-                                {
-                                    //Activator.CreateInstance<T>();
-
-                                    this.ValidationResults.Clear();
-
-                                    WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
-                                }
-                                else
-                                {
-                                    // Handle cases where T doesn't have a parameterless constructor
-                                    throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
-                                }
-
-                                //this.Image.Source = null;
-
-                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                                WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                             }
                             else
                             {
-                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                                await Shell.Current.DisplayAlert("Error", $"Type {typeof(T).FullName} does not have a parameterless constructor.", "OK");
                             }
+
+                            await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+                        }
+                        else
+                        {
+                            await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Consider using a logging framework to log the full details of the exception.
+                Debug.WriteLine($"An error occurred: {ex}");
+
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
             finally
@@ -427,6 +512,7 @@ namespace GeolocationAds.ViewModels
                 IsLoading = false;
             }
         }
+
 
         public async Task OnSubmitUpdate(T obj)
         {
@@ -596,7 +682,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        protected virtual async Task LoadData()
+        protected virtual async Task LoadData(int? pageIndex=1)
         {
             this.IsLoading = true;
 
@@ -612,7 +698,7 @@ namespace GeolocationAds.ViewModels
             this.IsLoading = false;
         }
 
-        protected virtual async Task LoadData(object extraData)
+        protected virtual async Task LoadData(object extraData, int? pageIndex = 1)
         {
             this.IsLoading = true;
 

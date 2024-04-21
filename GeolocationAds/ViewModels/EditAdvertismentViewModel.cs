@@ -289,7 +289,7 @@ namespace GeolocationAds.ViewModels
 
                     if (_contentType == ContentVisualType.Image)
                     {
-                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID);
+                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID, result.FileName);
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
@@ -302,7 +302,7 @@ namespace GeolocationAds.ViewModels
 
                     if (_contentType == ContentVisualType.Video)
                     {
-                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID);
+                        var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID, result.FileName);
 
                         var _file = CommonsTool.SaveByteArrayToTempFile(_fileBytes);
 

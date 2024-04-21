@@ -12,12 +12,15 @@
           "CommunityToolkit.Maui": "7.0.1",
           "CommunityToolkit.Maui.MediaElement": "3.0.1",
           "CommunityToolkit.Mvvm": "8.2.2",
+          "FFImageLoading.Maui": "1.2.0",
+          "FFmpeg.AutoGen": "7.0.0",
           "GoogleMapsApi": "1.2.1",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Maui.Controls": "8.0.3",
           "Microsoft.Maui.Controls.Compatibility": "8.0.3",
           "Microsoft.Maui.Controls.Maps": "8.0.3",
           "ToolsLibrary": "1.0.0",
+          "Xabe.FFmpeg": "5.2.6",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.31"
         },
         "runtime": {
@@ -96,6 +99,33 @@
           }
         }
       },
+      "ExCSS/4.2.3": {
+        "runtime": {
+          "lib/net7.0/ExCSS.dll": {
+            "assemblyVersion": "4.2.3.0",
+            "fileVersion": "4.2.3.0"
+          }
+        }
+      },
+      "FFImageLoading.Maui/1.2.0": {
+        "dependencies": {
+          "Svg.Skia": "1.0.0.10"
+        },
+        "runtime": {
+          "lib/net8.0-windows10.0.19041/FFImageLoading.Maui.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "FFmpeg.AutoGen/7.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
@@ -105,6 +135,26 @@
           "lib/net6.0/GoogleMapsApi.dll": {
             "assemblyVersion": "1.2.1.0",
             "fileVersion": "1.2.1.0"
+          }
+        }
+      },
+      "HarfBuzzSharp/7.3.0": {
+        "dependencies": {
+          "HarfBuzzSharp.NativeAssets.Win32": "7.3.0",
+          "HarfBuzzSharp.NativeAssets.macOS": "7.3.0"
+        },
+        "runtime": {
+          "lib/net6.0/HarfBuzzSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "7.3.0.0"
+          }
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.macOS/7.3.0": {},
+      "HarfBuzzSharp.NativeAssets.Win32/7.3.0": {
+        "native": {
+          "runtimes/win-x64/native/libHarfBuzzSharp.dll": {
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -799,6 +849,83 @@
         }
       },
       "runtime.win7.System.Private.Uri/4.3.0": {},
+      "ShimSkiaSharp/1.0.0.10": {
+        "runtime": {
+          "lib/net8.0/ShimSkiaSharp.dll": {
+            "assemblyVersion": "1.0.0.10",
+            "fileVersion": "1.0.0.10"
+          }
+        }
+      },
+      "SkiaSharp/2.88.6": {
+        "dependencies": {
+          "SkiaSharp.NativeAssets.Win32": "2.88.6",
+          "SkiaSharp.NativeAssets.macOS": "2.88.6"
+        },
+        "runtime": {
+          "lib/net6.0/SkiaSharp.dll": {
+            "assemblyVersion": "2.88.0.0",
+            "fileVersion": "2.88.6.0"
+          }
+        }
+      },
+      "SkiaSharp.HarfBuzz/2.88.6": {
+        "dependencies": {
+          "HarfBuzzSharp": "7.3.0",
+          "SkiaSharp": "2.88.6"
+        },
+        "runtime": {
+          "lib/net6.0/SkiaSharp.HarfBuzz.dll": {
+            "assemblyVersion": "2.88.0.0",
+            "fileVersion": "2.88.6.0"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.macOS/2.88.6": {},
+      "SkiaSharp.NativeAssets.Win32/2.88.6": {
+        "native": {
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Svg.Custom/1.0.0.10": {
+        "dependencies": {
+          "ExCSS": "4.2.3"
+        },
+        "runtime": {
+          "lib/net8.0/Svg.Custom.dll": {
+            "assemblyVersion": "1.0.0.10",
+            "fileVersion": "1.0.0.10"
+          }
+        }
+      },
+      "Svg.Model/1.0.0.10": {
+        "dependencies": {
+          "ShimSkiaSharp": "1.0.0.10",
+          "Svg.Custom": "1.0.0.10"
+        },
+        "runtime": {
+          "lib/net8.0/Svg.Model.dll": {
+            "assemblyVersion": "1.0.0.10",
+            "fileVersion": "1.0.0.10"
+          }
+        }
+      },
+      "Svg.Skia/1.0.0.10": {
+        "dependencies": {
+          "SkiaSharp": "2.88.6",
+          "SkiaSharp.HarfBuzz": "2.88.6",
+          "Svg.Custom": "1.0.0.10",
+          "Svg.Model": "1.0.0.10"
+        },
+        "runtime": {
+          "lib/net8.0/Svg.Skia.dll": {
+            "assemblyVersion": "1.0.0.10",
+            "fileVersion": "1.0.0.10"
+          }
+        }
+      },
       "System.Buffers/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1228,6 +1355,17 @@
           "runtime.any.System.Threading.Tasks": "4.3.0"
         }
       },
+      "Xabe.FFmpeg/5.2.6": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Xabe.FFmpeg.dll": {
+            "assemblyVersion": "5.2.6.0",
+            "fileVersion": "5.2.6.0"
+          }
+        }
+      },
       "ToolsLibrary/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
@@ -1294,12 +1432,54 @@
       "path": "communitytoolkit.mvvm/8.2.2",
       "hashPath": "communitytoolkit.mvvm.8.2.2.nupkg.sha512"
     },
+    "ExCSS/4.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SyeAfu2wL5247sipJoPUzQfjiwQtfSd8hN4IbgoyVcDx4PP6Dud4znwPRibWQzLtTlUxYYcbf5f4p+EfFC7KtQ==",
+      "path": "excss/4.2.3",
+      "hashPath": "excss.4.2.3.nupkg.sha512"
+    },
+    "FFImageLoading.Maui/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q3RB2PYKhcHbesLzSV2QoPQWQxs424lv32hjbOYbKQe1W4ppUBmmt2n3nvnTPUktuL+aR4wRsbL10M4ZhAB/Jg==",
+      "path": "ffimageloading.maui/1.2.0",
+      "hashPath": "ffimageloading.maui.1.2.0.nupkg.sha512"
+    },
+    "FFmpeg.AutoGen/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RzSgOmHWzEpYzA3zl2Ac3iOdkk1ZCDgJBlRjHBIlaXHJg9aWEmPCzo0qDgEESZDNA7RaD2g4xn7yrKvT1q0Paw==",
+      "path": "ffmpeg.autogen/7.0.0",
+      "hashPath": "ffmpeg.autogen.7.0.0.nupkg.sha512"
+    },
     "GoogleMapsApi/1.2.1": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-3wpsCV8Kxdix4Id9Wmx1L0NBa8rfpiYaPKutmrmJSYCK2UrwInGTn1c5SMGxp4VEVl+xlgePzoJeDkfouFvP7g==",
       "path": "googlemapsapi/1.2.1",
       "hashPath": "googlemapsapi.1.2.1.nupkg.sha512"
+    },
+    "HarfBuzzSharp/7.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OrQLaxtZMIeS2yHSUtsKzeSdk9CPaCpyJ/JCs+wLfRGatjE8MLUS6LGj6vdbGRxqRavcXs79C9O3oWe6FJR0JQ==",
+      "path": "harfbuzzsharp/7.3.0",
+      "hashPath": "harfbuzzsharp.7.3.0.nupkg.sha512"
+    },
+    "HarfBuzzSharp.NativeAssets.macOS/7.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LWcFJ39j+dN0KK8c/GJJZPPZPL9TqT2FA42/LRGqzUMmSm5LYbINOMnPvUr7RuLR6RFSmKIrgrlgObR8G5ho2A==",
+      "path": "harfbuzzsharp.nativeassets.macos/7.3.0",
+      "hashPath": "harfbuzzsharp.nativeassets.macos.7.3.0.nupkg.sha512"
+    },
+    "HarfBuzzSharp.NativeAssets.Win32/7.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ulEewLMk+dNmbmpy15ny/YusI6JNUWqchF080TV2jgfFBXPXjWm767JleDi/S7hp8eDeEN6GYIIxpvNr5fLvIw==",
+      "path": "harfbuzzsharp.nativeassets.win32/7.3.0",
+      "hashPath": "harfbuzzsharp.nativeassets.win32.7.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
       "type": "package",
@@ -1826,6 +2006,62 @@
       "path": "runtime.win7.system.private.uri/4.3.0",
       "hashPath": "runtime.win7.system.private.uri.4.3.0.nupkg.sha512"
     },
+    "ShimSkiaSharp/1.0.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2WpgWZeukprXyzD9mzGhkOtxW37ne3zd4+YgmZtYVO4UNPAmFQU2KdNBsV0Pk3whcksjVzoWXFrvTfC/FIu0yg==",
+      "path": "shimskiasharp/1.0.0.10",
+      "hashPath": "shimskiasharp.1.0.0.10.nupkg.sha512"
+    },
+    "SkiaSharp/2.88.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wdfeBAQrEQCbJIRgAiargzP1Uy+0grZiG4CSgBnhAgcJTsPzlifIaO73JRdwIlT3TyBoeU9jEqzwFUhl4hTYnQ==",
+      "path": "skiasharp/2.88.6",
+      "hashPath": "skiasharp.2.88.6.nupkg.sha512"
+    },
+    "SkiaSharp.HarfBuzz/2.88.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-s5yZTHdqbXKiTL06ns6zW3asELfX60dEceA4ZdYmNlOkz/OyWDfdjHAuu4HGDA7Mxx5iaUEzDZgPkEe+OVr/jg==",
+      "path": "skiasharp.harfbuzz/2.88.6",
+      "hashPath": "skiasharp.harfbuzz.2.88.6.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.macOS/2.88.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Sko9LFxRXSjb3OGh5/RxrVRXxYo48tr5NKuuSy6jB85GrYt8WRqVY1iLOLwtjPiVAt4cp+pyD4i30azanS64dw==",
+      "path": "skiasharp.nativeassets.macos/2.88.6",
+      "hashPath": "skiasharp.nativeassets.macos.2.88.6.nupkg.sha512"
+    },
+    "SkiaSharp.NativeAssets.Win32/2.88.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7TzFO0u/g2MpQsTty4fyCDdMcfcWI+aLswwfnYXr3gtNS6VLKdMXPMeKpJa3pJSLnUBN6wD0JjuCe8OoLBQ6cQ==",
+      "path": "skiasharp.nativeassets.win32/2.88.6",
+      "hashPath": "skiasharp.nativeassets.win32.2.88.6.nupkg.sha512"
+    },
+    "Svg.Custom/1.0.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e3L/rozxoMVgcS0uov0/YZm5b1WAIYA2p20J3Yfc6hCV+e1X4CktwcGK+dV7F2Y7CtYldzYXm+f0b2shl1R4eA==",
+      "path": "svg.custom/1.0.0.10",
+      "hashPath": "svg.custom.1.0.0.10.nupkg.sha512"
+    },
+    "Svg.Model/1.0.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8J4uVAMNAoqqyvkoumA3N+P6oAEElsH2mh8ZHIVVAzh1+WdeDvDqLUp8n6yc+1AA2dCZJ+8An/HaylkcfUvPQg==",
+      "path": "svg.model/1.0.0.10",
+      "hashPath": "svg.model.1.0.0.10.nupkg.sha512"
+    },
+    "Svg.Skia/1.0.0.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gAhlxk46kl4IU488sWCOJX0/snCVWrq70KVMEnA9lnvUEQlwlcVMfWrWP4v+wlFGKh2O6/fXmfILcJGBr65h0g==",
+      "path": "svg.skia/1.0.0.10",
+      "hashPath": "svg.skia.1.0.0.10.nupkg.sha512"
+    },
     "System.Buffers/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -2126,6 +2362,13 @@
       "sha512": "sha512-LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
+    },
+    "Xabe.FFmpeg/5.2.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AFT06eHAZ4OV3s6H2dZWeRQ6kkdWkY1dGq76iFprlOG6quB7V7Nm8wWhEF63As1txsh/8kwAbybtffrgqfQ0dg==",
+      "path": "xabe.ffmpeg/5.2.6",
+      "hashPath": "xabe.ffmpeg.5.2.6.nupkg.sha512"
     },
     "ToolsLibrary/1.0.0": {
       "type": "project",

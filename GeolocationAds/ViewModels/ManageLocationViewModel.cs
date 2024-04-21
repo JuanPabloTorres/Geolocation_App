@@ -252,7 +252,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        protected override async Task LoadData()
+        protected override async Task LoadData(int? pageIndex = 1)
         {
             try
             {

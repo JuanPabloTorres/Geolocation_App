@@ -32,7 +32,7 @@
             Icon="plus.png" />
         <ShellContent
             Title="My Content"
-            ContentTemplate="{DataTemplate pages:AdToLocation}"
+            ContentTemplate="{DataTemplate pages:MyContentPage}"
             Icon="filebox.png" />
 
         <ShellContent

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
+      xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+      x:Class="GeolocationAds.ViewTemplates.ImageDisplayer">
+
+    <ffimageloading:CachedImage  Source="{Binding Image.Source}" Aspect="Fill" ></ffimageloading:CachedImage>
+
+    <StackLayout x:Name="myContentStackHeader" Grid.Row="0">
+
+        <headerView:ContentHeaderView />
+    </StackLayout>
+
+    <StackLayout x:Name="searchContentStackHeader" Grid.Row="0">
+        <headerView:HomeContentItemHeaderView />
+    </StackLayout>
+
+    <StackLayout x:Name="searchContentStackHeaderBtn" Grid.Row="0" VerticalOptions="End" HorizontalOptions="CenterAndExpand">
+        <Button
+            HorizontalOptions="FillAndExpand"
+        WidthRequest="300"
+            BackgroundColor="Orange"
+            Margin="5"
+            CornerRadius="15"
+        Command="{Binding CaptureItemCommand}"
+        CommandParameter="{Binding Advertisement}"
+            Text="Detail"
+        Style="{StaticResource  cardButton}">
+        </Button>
+    </StackLayout>
+
+
+
+    <ActivityIndicator
+     Grid.Row="0"
+     IsRunning="{Binding IsLoading}"
+     IsVisible="{Binding IsLoading}"
+     Style="{StaticResource globalLoading}" />
+</Grid>

@@ -11,3 +11,16 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\refint\ToolsLibrary.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ref\ToolsLibrary.dll
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\bin\Debug\net8.0\ToolsLibrary.deps.json
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\bin\Debug\net8.0\ToolsLibrary.dll
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\bin\Debug\net8.0\ToolsLibrary.pdb
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.csproj.AssemblyReference.cache
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.AssemblyInfoInputs.cache
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.AssemblyInfo.cs
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.sourcelink.json
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.dll
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\refint\ToolsLibrary.dll
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.pdb
+C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0\ref\ToolsLibrary.dll

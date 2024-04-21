@@ -49,7 +49,7 @@ namespace GeolocationAds.AppTools
                         return ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
                     case ContentVisualType.Video:
-                        var file = await CommonsTool.SaveByteArrayToTempFile(item.Content);
+                        var file = await CommonsTool.SaveByteArrayToTempFile2(item.Content);
 
                         return ContentTypeTemplateFactory.BuilContentType(item, file);
 
@@ -63,6 +63,15 @@ namespace GeolocationAds.AppTools
                 await CommonsTool.DisplayAlert("Error", ex.Message);
 
                 return null;
+            }
+        }
+
+        public static ImageSource LoadImageFromBytes(byte[] imageBytes)
+        {
+            //Immediately create, use, and dispose the stream within this scope
+            using (var imageStream = new MemoryStream(imageBytes))
+            {
+                return ImageSource.FromStream(() => new MemoryStream(imageStream.ToArray()));
             }
         }
     }

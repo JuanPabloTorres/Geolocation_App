@@ -26,9 +26,9 @@ namespace GeolocationAds.ViewModels
 
             this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
 
-            this.Model.Username = "test";
+            this.Model.Username = "test01";
 
-            this.Model.Password = "123";
+            this.Model.Password = "12345";
 
             //WeakReferenceMessenger.Default.Register<LogOffMessage>(this, (r, m) =>
             //{

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -11,7 +12,7 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int? pageIndex)
         {
             try
             {
@@ -40,6 +41,73 @@ namespace GeolocationAds.Services
 
                 return failResponse;
             }
+        }
+
+        public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        {
+            try
+            {
+                using var multipartContent = new MultipartFormDataContent();
+
+                // Add the Advertisement metadata as JSON
+                var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+                multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+                // Add the contents (images, videos, etc.)
+                foreach (var content in data.Contents)
+                {
+                    if (content.Content != null && content.Content.Length > 0)
+                    {
+                        var contentStream = new MemoryStream(content.Content);
+
+                        var contentName = content.ContentName ?? "file"; // Default file name if not specified
+
+                        var mediaType = GetMediaType(content.Type);
+
+                        multipartContent.Add(new StreamContent(contentStream), "contents", contentName);
+                    }
+                }
+
+                // TODO: Add GeolocationAds and Settings if needed, similar to Contents
+
+                // Send the request to the API
+                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Handle successful response
+                    var responseJson = await response.Content.ReadAsStringAsync();
+
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+
+                    return responseData;
+                }
+                else
+                {
+                    // Handle failure
+                    var failResponse = ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+
+                    return failResponse;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                var failResponse = ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+
+                return failResponse;
+            }
+        }
+
+        private string GetMediaType(ContentVisualType type)
+        {
+            return type switch
+            {
+                ContentVisualType.Image => "image/jpeg", // assuming jpeg, change as necessary
+                ContentVisualType.Video => "video/mp4", // assuming mp4, change as necessary
+                _ => "application/octet-stream"
+            };
         }
     }
 }

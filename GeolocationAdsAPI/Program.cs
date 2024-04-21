@@ -1,6 +1,7 @@
 using GeolocationAdsAPI.Context;
 using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -30,6 +31,12 @@ builder.Services.AddDbContext<GeolocationContext>(options =>
 
     });
 });
+
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.Limits.MaxRequestBodySize = int.MaxValue; // Or another higher limit
+});
+
 
 builder.Services.AddTransient<IAdvertisementRepository, AdvertisementRepository>();
 

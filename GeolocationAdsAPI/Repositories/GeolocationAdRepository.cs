@@ -52,7 +52,10 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(c => c.Contents).Include(s => s.Advertisement.Settings)
+                var allEntities = await _context.GeolocationAds
+                    .Include(v => v.Advertisement)
+                    .ThenInclude(c => c.Contents)
+                    .Include(s => s.Advertisement.Settings)
                     .Where(v =>
                     DateTime.Now <= v.ExpirationDate &&
                     v.Advertisement.Settings.Any(s => s.SettingId == settingId))
@@ -88,42 +91,124 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId)
+        //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
+        //{
+        //    try
+        //    {
+        //        Expression<Func<Advertisement, bool>> filterCondition = v =>
+        //        v.GeolocationAds.Any(g =>
+        //        DateTime.UtcNow <= g.ExpirationDate &&
+        //        GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
+        //        v.Settings.Any(s => s.SettingId == settingId);
+
+        //        var allEntities = await _context.Advertisements
+        //            .Include(c => c.Contents)
+        //            .Include(g => g.GeolocationAds)
+        //            .Include(s => s.Settings)
+        //            .Where(filterCondition)
+        //            .AsSingleQuery() 
+        //            .Select(s => new Advertisement
+        //            {
+        //                ID = s.ID,
+        //                Description = s.Description,
+        //                Title = s.Title,
+        //                UserId = s.UserId,
+        //                Contents = s.Contents.Select(cs => new ContentType
+        //                {
+        //                    Type = cs.Type,
+        //                    Content = cs.Content
+        //                }).Take(1).ToList(),
+        //            })
+        //             .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+        //            .Take(ConstantsTools.PageSize)                   
+        //            .ToListAsync();
+
+        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", allEntities);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
         {
+            //try
+            //{
+            //    Expression<Func<Advertisement, bool>> filterCondition = ad =>
+            //        ad.GeolocationAds.Any(geo =>
+            //        DateTime.UtcNow <= geo.ExpirationDate &&
+            //        GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance) &&
+            //        ad.Settings.Any(s => s.SettingId == settingId);
+
+            //    var query = _context.Advertisements
+            //        .Where(filterCondition)
+            //        .Include(ad => ad.Contents.Take(1))  // Assuming Contents has a lot of data, take only the necessary parts
+            //        .Include(ad => ad.GeolocationAds.Take(1))
+            //        .Include(ad => ad.Settings)
+            //        .Select(ad => new Advertisement
+            //        {
+            //            ID = ad.ID,
+            //            Description = ad.Description,
+            //            Title = ad.Title,
+            //            UserId = ad.UserId,
+            //            Contents = ad.Contents.Select(content => new ContentType
+            //            {
+            //                Type = content.Type,
+            //                Content = content.Content
+            //            }).ToList(),
+            //        });
+
+            //    var paginatedResult = await query
+            //        .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+            //        .Take(ConstantsTools.PageSize)
+            //        .ToListAsync();
+
+            //    return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", paginatedResult);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            //}
+
             try
             {
-                Expression<Func<Advertisement, bool>> filterCondition = v =>
-                v.GeolocationAds.Any(g =>
-                DateTime.UtcNow <= g.ExpirationDate &&
-                GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
-                v.Settings.Any(s => s.SettingId == settingId);
+                // Assume pre-calculation or efficient distance filtering
+                var relevantAdIds = _context.GeolocationAds
+                    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance)
+                    .Select(geo => geo.AdvertisingId)
+                    .Distinct();
 
-                var allEntities = await _context.Advertisements
-                    .Include(c => c.Contents)
-                    .Include(g => g.GeolocationAds)
-                    .Include(s => s.Settings)
-                    .Where(filterCondition)
-                    .AsSplitQuery() // Splitting the query here
-                    .Select(s => new Advertisement
+                var filteredAds = _context.Advertisements
+                    .Where(ad => relevantAdIds.Contains(ad.ID) && ad.Settings.Any(s => s.SettingId == settingId))
+                    .AsNoTracking();
+
+                var paginatedResult = await filteredAds
+                    .OrderBy(ad => ad.CreateDate)  // Consider ordering by a meaningful field
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
+                    .Select(ad => new Advertisement
                     {
-                        ID = s.ID,
-                        Description = s.Description,
-                        Title = s.Title,
-                        UserId = s.UserId,
-                        Contents = s.Contents.Select(cs => new ContentType
+                        ID = ad.ID,
+                        Description = ad.Description,
+                        Title = ad.Title,
+                        UserId = ad.UserId,
+                        Contents = ad.Contents.Select(content => new ContentType
                         {
-                            Type = cs.Type,
-                            Content = cs.Content
-                        }).ToList(),
+                            Type = content.Type,
+                            Content = content.Content
+                        }).Take(1).ToList(),  // Only take necessary content
                     })
                     .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", allEntities);
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", paginatedResult);
             }
             catch (Exception ex)
             {
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
+
         }
 
         public async Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id)
