@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GeolocationAds.ViewTemplates.ContentHeaderView"
-              BackgroundColor="Black"
- Opacity="0.5"
- Orientation="Horizontal"
- VerticalOptions="Start">
-    
+<StackLayout
+    x:Class="GeolocationAds.ViewTemplates.ContentHeaderView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Black"
+    Opacity="0.5"
+    Orientation="Horizontal"
+    VerticalOptions="Start">
 
-        <Label
-      HorizontalOptions="StartAndExpand"
-      Style="{StaticResource globalLabel}"
+    <Label
+        HorizontalOptions="StartAndExpand"
+        Style="{StaticResource globalLabel}"
+        Text="{Binding CurrentAdvertisement.Title}"
+        TextColor="White" />
 
-      Text="{Binding CurrentAdvertisement.Title}"
-      TextColor="White" />
+    <Button
+        Command="{Binding OpenActionPopUpCommand}"
+        CommandParameter="{Binding CurrentAdvertisement}"
+        CornerRadius="0"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
 
-        <Button
-      Command="{Binding OpenActionPopUpCommand}"
-      CommandParameter="{Binding CurrentAdvertisement}"
-      CornerRadius="0"
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
+        </Button.ImageSource>
+    </Button>
 
-      IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-      Style="{StaticResource XButton}">
+    <Button CommandParameter="{Binding Advertisement}" Style="{StaticResource XButton}">
 
-            <Button.ImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
-            </Button.ImageSource>
-        </Button>
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe88e;" />
+        </Button.ImageSource>
+    </Button>
 
-        <Button
-      Command="{Binding RemoveContentYesOrNoAlertCommand}"
-      CommandParameter="{Binding CurrentAdvertisement}"
-      CornerRadius="0"
-      IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-      Style="{StaticResource XButton}">
+    <Button
+        Command="{Binding RemoveContentYesOrNoAlertCommand}"
+        CommandParameter="{Binding CurrentAdvertisement}"
+        CornerRadius="0"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
 
-            <Button.ImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
-            </Button.ImageSource>
-        </Button>
-    
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+        </Button.ImageSource>
+    </Button>
 </StackLayout>

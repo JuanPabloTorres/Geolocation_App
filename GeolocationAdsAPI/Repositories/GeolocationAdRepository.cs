@@ -114,8 +114,11 @@ namespace GeolocationAdsAPI.Repositories
                         Description = ad.Description,
                         Title = ad.Title,
                         UserId = ad.UserId,
+                        CreateDate = ad.CreateDate,
+
                         Contents = ad.Contents.Select(content => new ContentType
                         {
+                            CreateDate = content.CreateDate,
                             ID = content.ID,
                             FileSize = content.FileSize,
                             Type = content.Type,

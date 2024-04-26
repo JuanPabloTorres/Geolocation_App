@@ -50,17 +50,17 @@
         <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.Image">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.image"/>
         </member>
-        <member name="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.mediaStateChangedCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaStateChangedCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaStateChangedCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaStateChanged(CommunityToolkit.Maui.Core.Primitives.MediaStateChangedEventArgs)"/>.</summary>
-        </member>
         <member name="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.captureItemCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItemCommand"/>.</summary>
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItemCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItem(ToolsLibrary.Models.Advertisement)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.openMetaDataPopUpCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.OpenMetaDataPopUpCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.OpenMetaDataPopUpCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.OpenMetaDataPopUp"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.BaseViewModel3`2">
             <inheritdoc/>
@@ -104,6 +104,9 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.CarouselViewPosition">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.carouselViewPosition"/>
         </member>
         <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.SelectedDistance">
             <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.selectedDistance"/>
@@ -270,6 +273,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CarouselViewPosition">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
         </member>
@@ -299,6 +305,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CarouselViewPosition">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>

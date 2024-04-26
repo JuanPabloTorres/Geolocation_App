@@ -20,6 +20,9 @@ namespace GeolocationAds.ViewModels
 {
     public partial class SearchAdViewModel2 : BaseViewModel3<Advertisement, IGeolocationAdService>
     {
+        [ObservableProperty]
+        private int carouselViewPosition;
+
         private readonly IAppSettingService _appSettingService;
 
         private readonly ICaptureService _captureService;
@@ -109,9 +112,22 @@ namespace GeolocationAds.ViewModels
 
                 if (!apiResponse.IsSuccess || !apiResponse.Data.Any())
                 {
-                    string message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
+                    //if (CarouselViewPosition == (NearByTemplateViewModels.Count - 1))
+                    //{
+                    //    message = string.IsNullOrEmpty(apiResponse.Message) ? "No more ads found." : apiResponse.Message;
 
-                    await CommonsTool.DisplayAlert("Error", message);
+                    //    message = "No more ads found.";
+                    //}
+                    //else
+                    //{
+                    //    message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
+                    //}
+
+                    string message = (CarouselViewPosition == (NearByTemplateViewModels.Count - 1)) ? "No more ads found." : apiResponse.Message;
+
+                    //string message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
+
+                    await CommonsTool.DisplayAlert("Notification", message);
 
                     return;
                 }

@@ -22,6 +22,8 @@ namespace GeolocationAds.ViewModels
 
         protected FilterPopUpForSearch _filterPopUpForSearch;
 
+        protected MetaDataPopUp _metaDataPopUp;
+
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
         public static int PageIndex { get; set; } = 1;
@@ -34,7 +36,7 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                await Shell.Current.DisplayAlert("Notification", "Filter Pop Up Must Override.", "OK");
+                await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
             }
             catch (Exception ex)
             {
@@ -87,7 +89,19 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                await Shell.Current.DisplayAlert("Notification", "Filter Pop Up Must Override.", "OK");
+                await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+        public virtual async Task OpenMetaDataPopUp()
+        {
+            try
+            {
+                await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
             }
             catch (Exception ex)
             {

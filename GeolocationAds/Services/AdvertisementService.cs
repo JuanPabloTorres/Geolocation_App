@@ -234,7 +234,7 @@ namespace GeolocationAds.Services
             try
             {
                 // Send an HTTP GET request to the "StreamingVideo" endpoint of your API
-                HttpResponseMessage response = await _httpClient.GetAsync($"{BaseApiUri}/StreamingVideo/{id}");
+                HttpResponseMessage response = await _httpClient.GetAsync($"{BaseApiUri}/{nameof(GetStreamingVideoUrl)}/{id}");
 
                 // Ensure the request was successful
                 response.EnsureSuccessStatusCode();

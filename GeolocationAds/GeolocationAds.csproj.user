@@ -29,6 +29,9 @@
     <MauiXaml Update="Pages\SearchAd.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="PopUps\MetaDataPopUp.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="ViewTemplates\ContentDisplayer.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

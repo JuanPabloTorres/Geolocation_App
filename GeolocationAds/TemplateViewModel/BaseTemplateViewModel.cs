@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using GeolocationAds.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
@@ -66,6 +60,18 @@ namespace GeolocationAds.TemplateViewModel
 
         public virtual void RemoveCurrentItem()
         {
+        }
+
+        public virtual async Task OpenMetaDataPopUp()
+        {
+            try
+            {
+                await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
         }
     }
 }

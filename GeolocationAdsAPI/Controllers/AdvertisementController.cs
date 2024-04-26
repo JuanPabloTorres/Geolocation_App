@@ -184,18 +184,16 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> StreamingVideo(int id)
+        [HttpGet("[action]/{contentId}")]
+        public async Task<IActionResult> GetStreamingVideoUrl(int contentId)
         {
             try
             {
-                var responseResult = await contentTypeRepository.GetContentById(id); // Método para obtener los bytes del video de la base de datos
+                var responseResult = await contentTypeRepository.GetContentById(contentId); // Método para obtener los bytes del video de la base de datos
 
                 if (responseResult.Data.IsObjectNull())
                 {
                     return Ok(ResponseFactory<string>.BuildFail("Data Not Found", null, ToolsLibrary.Tools.Type.NotFound));
-
-                    return;
                 }
 
                 byte[] videoBytes = responseResult.Data.Content;

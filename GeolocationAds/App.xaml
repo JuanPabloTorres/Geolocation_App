@@ -15,7 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--  URLs  -->
-            <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
+            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
+
+            <x:String x:Key="BackendUrl">http://192.168.0.11:5160/api</x:String>
 
             <x:String x:Key="BaseStreamingUrl">http://192.168.0.11:5160/hls</x:String>
             <!--<x:String x:Key="BackendUrl">http://192.168.0.3:5160/api</x:String>-->

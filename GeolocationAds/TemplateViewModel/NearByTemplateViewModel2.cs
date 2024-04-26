@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -57,27 +58,27 @@ namespace GeolocationAds.TemplateViewModel
         //    MediaElementPlaying.Invoke(this,  null);
         //}
 
-        [RelayCommand]
-        private void MediaStateChanged(MediaStateChangedEventArgs args)
-        {
-            if (
-                args.NewState == MediaElementState.Opening
+        //[RelayCommand]
+        //private void MediaStateChanged(MediaStateChangedEventArgs args)
+        //{
+        //    if (
+        //        args.NewState == MediaElementState.Opening
 
-               )
-            {
-                System.Diagnostics.Debug.WriteLine($"New State (Inside If):{args.NewState}");
+        //       )
+        //    {
+        //        System.Diagnostics.Debug.WriteLine($"New State (Inside If):{args.NewState}");
 
-                System.Diagnostics.Debug.WriteLine($"Prevoius State (Inside If):{args.PreviousState}");
+        //        System.Diagnostics.Debug.WriteLine($"Prevoius State (Inside If):{args.PreviousState}");
 
-                //MediaElementPlaying.Invoke(this, args);
-            }
+        //        //MediaElementPlaying.Invoke(this, args);
+        //    }
 
-            System.Diagnostics.Debug.WriteLine($"New State:{args.NewState}");
+        //    System.Diagnostics.Debug.WriteLine($"New State:{args.NewState}");
 
-            System.Diagnostics.Debug.WriteLine($"Prevoius State:{args.PreviousState}");
+        //    System.Diagnostics.Debug.WriteLine($"Prevoius State:{args.PreviousState}");
 
-            //MediaState = args.State; // Set the property to the new state
-        }
+        //    //MediaState = args.State; // Set the property to the new state
+        //}
 
         public async Task InitializeAsync()
         {
@@ -189,6 +190,21 @@ namespace GeolocationAds.TemplateViewModel
                 {
                     await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        public override async Task OpenMetaDataPopUp()
+        {
+            try
+            {
+                var _metadataPopUp = new MetaDataPopUp(this.Advertisement);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(_metadataPopUp);
             }
             catch (Exception ex)
             {
