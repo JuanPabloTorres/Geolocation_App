@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rzydAYs4BCigJez97BDQwmKdcxp9WAV5mhvXqmNAxUv++omAnzwe6V9C2k4gRMjtaMjwVwR+mXcW82FsY/nXxg==",
+  "dgSpecHash": "d6h7mo9PibE8OFhxHnT4I8FB/lCzQiFoYg3nWpsbgqbLYWFokPuA3hDpz4nhvqRIQ9CJB68iDKoTa7dAS4/Qfw==",
   "success": true,
   "projectFilePath": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAds\\GeolocationAds.csproj",
   "expectedPackageFiles": [
@@ -158,6 +158,8 @@
     "C:\\Users\\estju\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\estju\\.nuget\\packages\\system.threading.overlapped\\4.3.0\\system.threading.overlapped.4.3.0.nupkg.sha512",
     "C:\\Users\\estju\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
+    "C:\\Users\\estju\\.nuget\\packages\\videolan.libvlc.android\\3.5.3\\videolan.libvlc.android.3.5.3.nupkg.sha512",
+    "C:\\Users\\estju\\.nuget\\packages\\videolan.libvlc.windows\\3.0.20\\videolan.libvlc.windows.3.0.20.nupkg.sha512",
     "C:\\Users\\estju\\.nuget\\packages\\xabe.ffmpeg\\5.2.6\\xabe.ffmpeg.5.2.6.nupkg.sha512",
     "C:\\Users\\estju\\.nuget\\packages\\xam.plugins.android.exoplayer\\2.19.1\\xam.plugins.android.exoplayer.2.19.1.nupkg.sha512",
     "C:\\Users\\estju\\.nuget\\packages\\xam.plugins.android.exoplayer.common\\2.19.1\\xam.plugins.android.exoplayer.common.2.19.1.nupkg.sha512",

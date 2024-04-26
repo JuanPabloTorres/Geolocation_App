@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewTemplates;
 
@@ -95,11 +96,14 @@ public partial class VideoDisplayer : Grid
 
     private void videoPlayer_MediaEnded(object sender, EventArgs e)
     {
-
     }
 
     private void videoPlayer_SeekCompleted(object sender, EventArgs e)
     {
+    }
 
+    private async void videoPlayer_MediaFailed(object sender, CommunityToolkit.Maui.Core.Primitives.MediaFailedEventArgs e)
+    {
+        await CommonsTool.DisplayAlert("Error", e.ErrorMessage);
     }
 }

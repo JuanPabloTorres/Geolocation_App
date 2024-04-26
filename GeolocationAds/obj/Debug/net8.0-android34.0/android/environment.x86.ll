@@ -111,7 +111,7 @@ target triple = "i686-unknown-linux-android21"
 	i32 366, ; uint32_t number_of_assemblies_in_apk (0x16e)
 	i32 70, ; uint32_t bundled_assembly_name_width (0x46)
 	i32 2, ; uint32_t number_of_assembly_store_files (0x2)
-	i32 44, ; uint32_t number_of_dso_cache_entries (0x2c)
+	i32 52, ; uint32_t number_of_dso_cache_entries (0x34)
 	i32 33560135, ; uint32_t android_runtime_jnienv_class_token (0x2001647)
 	i32 100757451, ; uint32_t jnienv_initialize_method_token (0x6016fcb)
 	i32 100757450, ; uint32_t jnienv_registerjninatives_method_token (0x6016fca)
@@ -122,271 +122,319 @@ target triple = "i686-unknown-linux-android21"
 }, align 4
 
 ; DSO cache entries
-@dso_cache = dso_local local_unnamed_addr global [44 x %struct.DSOCacheEntry] [
+@dso_cache = dso_local local_unnamed_addr global [52 x %struct.DSOCacheEntry] [
 	%struct.DSOCacheEntry {
-		i64 98567696, ; hash 0x5e00610, from name: libxamarin-debug-app-helper.so
+		i64 58302817, ; hash 0x379a161, from name: libc++_shared.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.8_name, ; name: libxamarin-debug-app-helper.so
+		ptr @.DSOCacheEntry.1_name, ; name: libc++_shared.so
 		ptr null; void* handle (0x0)
 	}, ; 0
 	%struct.DSOCacheEntry {
-		i64 154543565, ; hash 0x93625cd, from name: libSystem.Security.Cryptography.Native.Android
+		i64 98567696, ; hash 0x5e00610, from name: libxamarin-debug-app-helper.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.2_name, ; name: libSystem.Security.Cryptography.Native.Android.so
+		ptr @.DSOCacheEntry.10_name, ; name: libxamarin-debug-app-helper.so
 		ptr null; void* handle (0x0)
 	}, ; 1
 	%struct.DSOCacheEntry {
-		i64 229294244, ; hash 0xdaac0a4, from name: monodroid.so
+		i64 154543565, ; hash 0x93625cd, from name: libSystem.Security.Cryptography.Native.Android
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.7_name, ; name: libmonodroid.so
+		ptr @.DSOCacheEntry.4_name, ; name: libSystem.Security.Cryptography.Native.Android.so
 		ptr null; void* handle (0x0)
 	}, ; 2
 	%struct.DSOCacheEntry {
-		i64 289063585, ; hash 0x113ac2a1, from name: libmono-component-debugger
+		i64 229294244, ; hash 0xdaac0a4, from name: monodroid.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.3_name, ; name: libmono-component-debugger.so
+		ptr @.DSOCacheEntry.9_name, ; name: libmonodroid.so
 		ptr null; void* handle (0x0)
 	}, ; 3
 	%struct.DSOCacheEntry {
-		i64 391888984, ; hash 0x175bc058, from name: mono-component-marshal-ilgen.so
+		i64 289063585, ; hash 0x113ac2a1, from name: libmono-component-debugger
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-marshal-ilgen.so
+		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-debugger.so
 		ptr null; void* handle (0x0)
 	}, ; 4
 	%struct.DSOCacheEntry {
-		i64 500609955, ; hash 0x1dd6b3a3, from name: System.Native.so
+		i64 391888984, ; hash 0x175bc058, from name: mono-component-marshal-ilgen.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.1_name, ; name: libSystem.Native.so
+		ptr @.DSOCacheEntry.7_name, ; name: libmono-component-marshal-ilgen.so
 		ptr null; void* handle (0x0)
 	}, ; 5
 	%struct.DSOCacheEntry {
-		i64 713151617, ; hash 0x2a81d481, from name: libxamarin-debug-app-helper
+		i64 500609955, ; hash 0x1dd6b3a3, from name: System.Native.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.8_name, ; name: libxamarin-debug-app-helper.so
+		ptr @.DSOCacheEntry.3_name, ; name: libSystem.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 6
 	%struct.DSOCacheEntry {
-		i64 748366034, ; hash 0x2c9b28d2, from name: monodroid
+		i64 713151617, ; hash 0x2a81d481, from name: libxamarin-debug-app-helper
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.7_name, ; name: libmonodroid.so
+		ptr @.DSOCacheEntry.10_name, ; name: libxamarin-debug-app-helper.so
 		ptr null; void* handle (0x0)
 	}, ; 7
 	%struct.DSOCacheEntry {
-		i64 782594815, ; hash 0x2ea572ff, from name: SkiaSharp.so
+		i64 748366034, ; hash 0x2c9b28d2, from name: monodroid
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.10_name, ; name: libSkiaSharp.so
+		ptr @.DSOCacheEntry.9_name, ; name: libmonodroid.so
 		ptr null; void* handle (0x0)
 	}, ; 8
 	%struct.DSOCacheEntry {
-		i64 808873553, ; hash 0x30366e51, from name: libmono-component-hot_reload.so
+		i64 782594815, ; hash 0x2ea572ff, from name: SkiaSharp.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.4_name, ; name: libmono-component-hot_reload.so
+		ptr @.DSOCacheEntry.12_name, ; name: libSkiaSharp.so
 		ptr null; void* handle (0x0)
 	}, ; 9
 	%struct.DSOCacheEntry {
-		i64 870587408, ; hash 0x33e41c10, from name: System.Security.Cryptography.Native.Android.so
+		i64 803389241, ; hash 0x2fe2bf39, from name: c++_shared.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.2_name, ; name: libSystem.Security.Cryptography.Native.Android.so
+		ptr @.DSOCacheEntry.1_name, ; name: libc++_shared.so
 		ptr null; void* handle (0x0)
 	}, ; 10
 	%struct.DSOCacheEntry {
-		i64 1358324080, ; hash 0x50f66170, from name: mono-component-hot_reload
+		i64 808873553, ; hash 0x30366e51, from name: libmono-component-hot_reload.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.4_name, ; name: libmono-component-hot_reload.so
+		ptr @.DSOCacheEntry.6_name, ; name: libmono-component-hot_reload.so
 		ptr null; void* handle (0x0)
 	}, ; 11
 	%struct.DSOCacheEntry {
-		i64 1398864029, ; hash 0x5360f89d, from name: System.Security.Cryptography.Native.Android
+		i64 870587408, ; hash 0x33e41c10, from name: System.Security.Cryptography.Native.Android.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.2_name, ; name: libSystem.Security.Cryptography.Native.Android.so
+		ptr @.DSOCacheEntry.4_name, ; name: libSystem.Security.Cryptography.Native.Android.so
 		ptr null; void* handle (0x0)
 	}, ; 12
 	%struct.DSOCacheEntry {
-		i64 1460674409, ; hash 0x57101f69, from name: libHarfBuzzSharp.so
+		i64 1358324080, ; hash 0x50f66170, from name: mono-component-hot_reload
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.9_name, ; name: libHarfBuzzSharp.so
+		ptr @.DSOCacheEntry.6_name, ; name: libmono-component-hot_reload.so
 		ptr null; void* handle (0x0)
 	}, ; 13
 	%struct.DSOCacheEntry {
-		i64 1478865992, ; hash 0x5825b448, from name: libmono-component-marshal-ilgen
+		i64 1398864029, ; hash 0x5360f89d, from name: System.Security.Cryptography.Native.Android
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-marshal-ilgen.so
+		ptr @.DSOCacheEntry.4_name, ; name: libSystem.Security.Cryptography.Native.Android.so
 		ptr null; void* handle (0x0)
 	}, ; 14
 	%struct.DSOCacheEntry {
-		i64 1516058787, ; hash 0x5a5d38a3, from name: xamarin-debug-app-helper.so
+		i64 1429933275, ; hash 0x553b0cdb, from name: libc++_shared
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.8_name, ; name: libxamarin-debug-app-helper.so
+		ptr @.DSOCacheEntry.1_name, ; name: libc++_shared.so
 		ptr null; void* handle (0x0)
 	}, ; 15
 	%struct.DSOCacheEntry {
-		i64 1536876128, ; hash 0x5b9ade60, from name: libSystem.Native
+		i64 1460674409, ; hash 0x57101f69, from name: libHarfBuzzSharp.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.1_name, ; name: libSystem.Native.so
+		ptr @.DSOCacheEntry.11_name, ; name: libHarfBuzzSharp.so
 		ptr null; void* handle (0x0)
 	}, ; 16
 	%struct.DSOCacheEntry {
-		i64 1802533490, ; hash 0x6b707a72, from name: libHarfBuzzSharp
+		i64 1478865992, ; hash 0x5825b448, from name: libmono-component-marshal-ilgen
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.9_name, ; name: libHarfBuzzSharp.so
+		ptr @.DSOCacheEntry.7_name, ; name: libmono-component-marshal-ilgen.so
 		ptr null; void* handle (0x0)
 	}, ; 17
 	%struct.DSOCacheEntry {
-		i64 1959705688, ; hash 0x74cebc58, from name: System.IO.Compression.Native
+		i64 1516058787, ; hash 0x5a5d38a3, from name: xamarin-debug-app-helper.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.0_name, ; name: libSystem.IO.Compression.Native.so
+		ptr @.DSOCacheEntry.10_name, ; name: libxamarin-debug-app-helper.so
 		ptr null; void* handle (0x0)
 	}, ; 18
 	%struct.DSOCacheEntry {
-		i64 2044108986, ; hash 0x79d6a0ba, from name: libSystem.Native.so
+		i64 1536876128, ; hash 0x5b9ade60, from name: libSystem.Native
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.1_name, ; name: libSystem.Native.so
+		ptr @.DSOCacheEntry.3_name, ; name: libSystem.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 19
 	%struct.DSOCacheEntry {
-		i64 2072777569, ; hash 0x7b8c1361, from name: System.IO.Compression.Native.so
+		i64 1691134348, ; hash 0x64cca98c, from name: vlc.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.0_name, ; name: libSystem.IO.Compression.Native.so
+		ptr @.DSOCacheEntry.0_name, ; name: libvlc.so
 		ptr null; void* handle (0x0)
 	}, ; 20
 	%struct.DSOCacheEntry {
-		i64 2078610628, ; hash 0x7be514c4, from name: libmono-component-marshal-ilgen.so
+		i64 1802533490, ; hash 0x6b707a72, from name: libHarfBuzzSharp
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-marshal-ilgen.so
+		ptr @.DSOCacheEntry.11_name, ; name: libHarfBuzzSharp.so
 		ptr null; void* handle (0x0)
 	}, ; 21
 	%struct.DSOCacheEntry {
-		i64 2101192894, ; hash 0x7d3da8be, from name: libSystem.Security.Cryptography.Native.Android.so
+		i64 1959705688, ; hash 0x74cebc58, from name: System.IO.Compression.Native
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.2_name, ; name: libSystem.Security.Cryptography.Native.Android.so
+		ptr @.DSOCacheEntry.2_name, ; name: libSystem.IO.Compression.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 22
 	%struct.DSOCacheEntry {
-		i64 2229681966, ; hash 0x84e63f2e, from name: xamarin-debug-app-helper
+		i64 2044108986, ; hash 0x79d6a0ba, from name: libSystem.Native.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.8_name, ; name: libxamarin-debug-app-helper.so
+		ptr @.DSOCacheEntry.3_name, ; name: libSystem.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 23
 	%struct.DSOCacheEntry {
-		i64 2496112763, ; hash 0x94c7a87b, from name: libmonosgen-2.0
+		i64 2072777569, ; hash 0x7b8c1361, from name: System.IO.Compression.Native.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.6_name, ; name: libmonosgen-2.0.so
+		ptr @.DSOCacheEntry.2_name, ; name: libSystem.IO.Compression.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 24
 	%struct.DSOCacheEntry {
-		i64 2578174356, ; hash 0x99abd194, from name: System.Native
+		i64 2078610628, ; hash 0x7be514c4, from name: libmono-component-marshal-ilgen.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.1_name, ; name: libSystem.Native.so
+		ptr @.DSOCacheEntry.7_name, ; name: libmono-component-marshal-ilgen.so
 		ptr null; void* handle (0x0)
 	}, ; 25
 	%struct.DSOCacheEntry {
-		i64 2658598962, ; hash 0x9e770032, from name: monosgen-2.0.so
+		i64 2101192894, ; hash 0x7d3da8be, from name: libSystem.Security.Cryptography.Native.Android.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.6_name, ; name: libmonosgen-2.0.so
+		ptr @.DSOCacheEntry.4_name, ; name: libSystem.Security.Cryptography.Native.Android.so
 		ptr null; void* handle (0x0)
 	}, ; 26
 	%struct.DSOCacheEntry {
-		i64 2938740861, ; hash 0xaf29a07d, from name: libSystem.IO.Compression.Native.so
+		i64 2229681966, ; hash 0x84e63f2e, from name: xamarin-debug-app-helper
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.0_name, ; name: libSystem.IO.Compression.Native.so
+		ptr @.DSOCacheEntry.10_name, ; name: libxamarin-debug-app-helper.so
 		ptr null; void* handle (0x0)
 	}, ; 27
 	%struct.DSOCacheEntry {
-		i64 2950894636, ; hash 0xafe3142c, from name: libSystem.IO.Compression.Native
+		i64 2446201760, ; hash 0x91ce13a0, from name: vlc
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.0_name, ; name: libSystem.IO.Compression.Native.so
+		ptr @.DSOCacheEntry.0_name, ; name: libvlc.so
 		ptr null; void* handle (0x0)
 	}, ; 28
 	%struct.DSOCacheEntry {
-		i64 3040983544, ; hash 0xb541b9f8, from name: libSkiaSharp
+		i64 2496112763, ; hash 0x94c7a87b, from name: libmonosgen-2.0
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.10_name, ; name: libSkiaSharp.so
+		ptr @.DSOCacheEntry.8_name, ; name: libmonosgen-2.0.so
 		ptr null; void* handle (0x0)
 	}, ; 29
 	%struct.DSOCacheEntry {
-		i64 3050332087, ; hash 0xb5d05fb7, from name: libSkiaSharp.so
+		i64 2578174356, ; hash 0x99abd194, from name: System.Native
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.10_name, ; name: libSkiaSharp.so
+		ptr @.DSOCacheEntry.3_name, ; name: libSystem.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 30
 	%struct.DSOCacheEntry {
-		i64 3185845700, ; hash 0xbde425c4, from name: libmono-component-hot_reload
+		i64 2639042895, ; hash 0x9d4c994f, from name: libvlc
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.4_name, ; name: libmono-component-hot_reload.so
+		ptr @.DSOCacheEntry.0_name, ; name: libvlc.so
 		ptr null; void* handle (0x0)
 	}, ; 31
 	%struct.DSOCacheEntry {
-		i64 3340387945, ; hash 0xc71a4669, from name: SkiaSharp
+		i64 2658598962, ; hash 0x9e770032, from name: monosgen-2.0.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.10_name, ; name: libSkiaSharp.so
+		ptr @.DSOCacheEntry.8_name, ; name: libmonosgen-2.0.so
 		ptr null; void* handle (0x0)
 	}, ; 32
 	%struct.DSOCacheEntry {
-		i64 3422266863, ; hash 0xcbfba5ef, from name: libmonodroid.so
+		i64 2731618641, ; hash 0xa2d13151, from name: c++_shared
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.7_name, ; name: libmonodroid.so
+		ptr @.DSOCacheEntry.1_name, ; name: libc++_shared.so
 		ptr null; void* handle (0x0)
 	}, ; 33
 	%struct.DSOCacheEntry {
-		i64 3636393175, ; hash 0xd8bef4d7, from name: libmonodroid
+		i64 2930051901, ; hash 0xaea50b3d, from name: libvlc.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.7_name, ; name: libmonodroid.so
+		ptr @.DSOCacheEntry.0_name, ; name: libvlc.so
 		ptr null; void* handle (0x0)
 	}, ; 34
 	%struct.DSOCacheEntry {
-		i64 3732899189, ; hash 0xde7f8575, from name: mono-component-hot_reload.so
+		i64 2938740861, ; hash 0xaf29a07d, from name: libSystem.IO.Compression.Native.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.4_name, ; name: libmono-component-hot_reload.so
+		ptr @.DSOCacheEntry.2_name, ; name: libSystem.IO.Compression.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 35
 	%struct.DSOCacheEntry {
-		i64 3790421216, ; hash 0xe1ed3ce0, from name: monosgen-2.0
+		i64 2950894636, ; hash 0xafe3142c, from name: libSystem.IO.Compression.Native
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.6_name, ; name: libmonosgen-2.0.so
+		ptr @.DSOCacheEntry.2_name, ; name: libSystem.IO.Compression.Native.so
 		ptr null; void* handle (0x0)
 	}, ; 36
 	%struct.DSOCacheEntry {
-		i64 3792835768, ; hash 0xe21214b8, from name: HarfBuzzSharp
+		i64 3040983544, ; hash 0xb541b9f8, from name: libSkiaSharp
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.9_name, ; name: libHarfBuzzSharp.so
+		ptr @.DSOCacheEntry.12_name, ; name: libSkiaSharp.so
 		ptr null; void* handle (0x0)
 	}, ; 37
 	%struct.DSOCacheEntry {
-		i64 3817984437, ; hash 0xe391d1b5, from name: libmonosgen-2.0.so
+		i64 3050332087, ; hash 0xb5d05fb7, from name: libSkiaSharp.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.6_name, ; name: libmonosgen-2.0.so
+		ptr @.DSOCacheEntry.12_name, ; name: libSkiaSharp.so
 		ptr null; void* handle (0x0)
 	}, ; 38
 	%struct.DSOCacheEntry {
-		i64 4019183577, ; hash 0xef8fdfd9, from name: HarfBuzzSharp.so
+		i64 3185845700, ; hash 0xbde425c4, from name: libmono-component-hot_reload
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.9_name, ; name: libHarfBuzzSharp.so
+		ptr @.DSOCacheEntry.6_name, ; name: libmono-component-hot_reload.so
 		ptr null; void* handle (0x0)
 	}, ; 39
 	%struct.DSOCacheEntry {
-		i64 4087202641, ; hash 0xf39dc351, from name: mono-component-marshal-ilgen
+		i64 3340387945, ; hash 0xc71a4669, from name: SkiaSharp
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-marshal-ilgen.so
+		ptr @.DSOCacheEntry.12_name, ; name: libSkiaSharp.so
 		ptr null; void* handle (0x0)
 	}, ; 40
 	%struct.DSOCacheEntry {
-		i64 4152357740, ; hash 0xf77ff36c, from name: libmono-component-debugger.so
+		i64 3422266863, ; hash 0xcbfba5ef, from name: libmonodroid.so
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.3_name, ; name: libmono-component-debugger.so
+		ptr @.DSOCacheEntry.9_name, ; name: libmonodroid.so
 		ptr null; void* handle (0x0)
 	}, ; 41
 	%struct.DSOCacheEntry {
-		i64 4184302796, ; hash 0xf96764cc, from name: mono-component-debugger.so
+		i64 3636393175, ; hash 0xd8bef4d7, from name: libmonodroid
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.3_name, ; name: libmono-component-debugger.so
+		ptr @.DSOCacheEntry.9_name, ; name: libmonodroid.so
 		ptr null; void* handle (0x0)
 	}, ; 42
 	%struct.DSOCacheEntry {
+		i64 3732899189, ; hash 0xde7f8575, from name: mono-component-hot_reload.so
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.6_name, ; name: libmono-component-hot_reload.so
+		ptr null; void* handle (0x0)
+	}, ; 43
+	%struct.DSOCacheEntry {
+		i64 3790421216, ; hash 0xe1ed3ce0, from name: monosgen-2.0
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.8_name, ; name: libmonosgen-2.0.so
+		ptr null; void* handle (0x0)
+	}, ; 44
+	%struct.DSOCacheEntry {
+		i64 3792835768, ; hash 0xe21214b8, from name: HarfBuzzSharp
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.11_name, ; name: libHarfBuzzSharp.so
+		ptr null; void* handle (0x0)
+	}, ; 45
+	%struct.DSOCacheEntry {
+		i64 3817984437, ; hash 0xe391d1b5, from name: libmonosgen-2.0.so
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.8_name, ; name: libmonosgen-2.0.so
+		ptr null; void* handle (0x0)
+	}, ; 46
+	%struct.DSOCacheEntry {
+		i64 4019183577, ; hash 0xef8fdfd9, from name: HarfBuzzSharp.so
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.11_name, ; name: libHarfBuzzSharp.so
+		ptr null; void* handle (0x0)
+	}, ; 47
+	%struct.DSOCacheEntry {
+		i64 4087202641, ; hash 0xf39dc351, from name: mono-component-marshal-ilgen
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.7_name, ; name: libmono-component-marshal-ilgen.so
+		ptr null; void* handle (0x0)
+	}, ; 48
+	%struct.DSOCacheEntry {
+		i64 4152357740, ; hash 0xf77ff36c, from name: libmono-component-debugger.so
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-debugger.so
+		ptr null; void* handle (0x0)
+	}, ; 49
+	%struct.DSOCacheEntry {
+		i64 4184302796, ; hash 0xf96764cc, from name: mono-component-debugger.so
+		i8 0, ; bool ignore
+		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-debugger.so
+		ptr null; void* handle (0x0)
+	}, ; 50
+	%struct.DSOCacheEntry {
 		i64 4288261976, ; hash 0xff99af58, from name: mono-component-debugger
 		i8 0, ; bool ignore
-		ptr @.DSOCacheEntry.3_name, ; name: libmono-component-debugger.so
+		ptr @.DSOCacheEntry.5_name, ; name: libmono-component-debugger.so
 		ptr null; void* handle (0x0)
-	} ; 43
+	} ; 51
 ], align 8
 
 @_XamarinAndroidBundledAssembly_name_0_0 = internal dso_local global [70 x i8] zeroinitializer, align 1
@@ -3703,7 +3751,7 @@ target triple = "i686-unknown-linux-android21"
 @.env.4 = private unnamed_addr constant [15 x i8] c"MONO_LOG_LEVEL\00", align 1
 @.env.5 = private unnamed_addr constant [5 x i8] c"info\00", align 1
 @.env.6 = private unnamed_addr constant [17 x i8] c"XAMARIN_BUILD_ID\00", align 1
-@.env.7 = private unnamed_addr constant [37 x i8] c"17e1af81-1e1b-4692-91b1-de5b36c3ca88\00", align 1
+@.env.7 = private unnamed_addr constant [37 x i8] c"acd60287-591c-46b3-881e-38b1820ad513\00", align 1
 @.env.8 = private unnamed_addr constant [28 x i8] c"XA_HTTP_CLIENT_HANDLER_TYPE\00", align 1
 @.env.9 = private unnamed_addr constant [42 x i8] c"Xamarin.Android.Net.AndroidMessageHandler\00", align 1
 @.env.10 = private unnamed_addr constant [29 x i8] c"__XA_PACKAGE_NAMING_POLICY__\00", align 1
@@ -3713,17 +3761,19 @@ target triple = "i686-unknown-linux-android21"
 @.ApplicationConfig.0_android_package_name = private unnamed_addr constant [31 x i8] c"com.companyname.geolocationads\00", align 1
 
 ;DSOCacheEntry
-@.DSOCacheEntry.0_name = private unnamed_addr constant [35 x i8] c"libSystem.IO.Compression.Native.so\00", align 1
-@.DSOCacheEntry.1_name = private unnamed_addr constant [20 x i8] c"libSystem.Native.so\00", align 1
-@.DSOCacheEntry.2_name = private unnamed_addr constant [50 x i8] c"libSystem.Security.Cryptography.Native.Android.so\00", align 1
-@.DSOCacheEntry.3_name = private unnamed_addr constant [30 x i8] c"libmono-component-debugger.so\00", align 1
-@.DSOCacheEntry.4_name = private unnamed_addr constant [32 x i8] c"libmono-component-hot_reload.so\00", align 1
-@.DSOCacheEntry.5_name = private unnamed_addr constant [35 x i8] c"libmono-component-marshal-ilgen.so\00", align 1
-@.DSOCacheEntry.6_name = private unnamed_addr constant [19 x i8] c"libmonosgen-2.0.so\00", align 1
-@.DSOCacheEntry.7_name = private unnamed_addr constant [16 x i8] c"libmonodroid.so\00", align 1
-@.DSOCacheEntry.8_name = private unnamed_addr constant [31 x i8] c"libxamarin-debug-app-helper.so\00", align 1
-@.DSOCacheEntry.9_name = private unnamed_addr constant [20 x i8] c"libHarfBuzzSharp.so\00", align 1
-@.DSOCacheEntry.10_name = private unnamed_addr constant [16 x i8] c"libSkiaSharp.so\00", align 1
+@.DSOCacheEntry.0_name = private unnamed_addr constant [10 x i8] c"libvlc.so\00", align 1
+@.DSOCacheEntry.1_name = private unnamed_addr constant [17 x i8] c"libc++_shared.so\00", align 1
+@.DSOCacheEntry.2_name = private unnamed_addr constant [35 x i8] c"libSystem.IO.Compression.Native.so\00", align 1
+@.DSOCacheEntry.3_name = private unnamed_addr constant [20 x i8] c"libSystem.Native.so\00", align 1
+@.DSOCacheEntry.4_name = private unnamed_addr constant [50 x i8] c"libSystem.Security.Cryptography.Native.Android.so\00", align 1
+@.DSOCacheEntry.5_name = private unnamed_addr constant [30 x i8] c"libmono-component-debugger.so\00", align 1
+@.DSOCacheEntry.6_name = private unnamed_addr constant [32 x i8] c"libmono-component-hot_reload.so\00", align 1
+@.DSOCacheEntry.7_name = private unnamed_addr constant [35 x i8] c"libmono-component-marshal-ilgen.so\00", align 1
+@.DSOCacheEntry.8_name = private unnamed_addr constant [19 x i8] c"libmonosgen-2.0.so\00", align 1
+@.DSOCacheEntry.9_name = private unnamed_addr constant [16 x i8] c"libmonodroid.so\00", align 1
+@.DSOCacheEntry.10_name = private unnamed_addr constant [31 x i8] c"libxamarin-debug-app-helper.so\00", align 1
+@.DSOCacheEntry.11_name = private unnamed_addr constant [20 x i8] c"libHarfBuzzSharp.so\00", align 1
+@.DSOCacheEntry.12_name = private unnamed_addr constant [16 x i8] c"libSkiaSharp.so\00", align 1
 
 ; Metadata
 !llvm.module.flags = !{!0, !1, !7}

@@ -325,7 +325,7 @@ namespace GeolocationAdsAPI.Controllers
 
            
 
-            var outputFilePath = Path.Combine(outputDirectory);
+            var outputFilePath = Path.Combine(outputDirectory, "output.m3u8");
             var startInfo = new ProcessStartInfo
             {
                 FileName = "ffmpeg",

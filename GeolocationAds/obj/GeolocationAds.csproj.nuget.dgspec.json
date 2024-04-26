@@ -123,6 +123,14 @@
               "version": "[8.0.0, )",
               "autoReferenced": true
             },
+            "VideoLAN.LibVLC.Android": {
+              "target": "Package",
+              "version": "[3.5.3, )"
+            },
+            "VideoLAN.LibVLC.Windows": {
+              "target": "Package",
+              "version": "[3.0.20, )"
+            },
             "Xabe.FFmpeg": {
               "target": "Package",
               "version": "[5.2.6, )"
@@ -197,6 +205,14 @@
               "target": "Package",
               "version": "[8.0.0, )",
               "autoReferenced": true
+            },
+            "VideoLAN.LibVLC.Android": {
+              "target": "Package",
+              "version": "[3.5.3, )"
+            },
+            "VideoLAN.LibVLC.Windows": {
+              "target": "Package",
+              "version": "[3.0.20, )"
             },
             "Xabe.FFmpeg": {
               "target": "Package",
@@ -273,6 +289,14 @@
               "version": "[8.0.0, )",
               "autoReferenced": true
             },
+            "VideoLAN.LibVLC.Android": {
+              "target": "Package",
+              "version": "[3.5.3, )"
+            },
+            "VideoLAN.LibVLC.Windows": {
+              "target": "Package",
+              "version": "[3.0.20, )"
+            },
             "Xabe.FFmpeg": {
               "target": "Package",
               "version": "[5.2.6, )"
@@ -342,6 +366,14 @@
             "Microsoft.Maui.Controls.Maps": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "VideoLAN.LibVLC.Android": {
+              "target": "Package",
+              "version": "[3.5.3, )"
+            },
+            "VideoLAN.LibVLC.Windows": {
+              "target": "Package",
+              "version": "[3.0.20, )"
             },
             "Xabe.FFmpeg": {
               "target": "Package",

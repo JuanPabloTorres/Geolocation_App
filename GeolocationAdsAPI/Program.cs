@@ -2,6 +2,7 @@ using GeolocationAdsAPI.Context;
 using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -28,15 +29,36 @@ builder.Services.AddDbContext<GeolocationContext>(options =>
         sqlServerOptions.EnableRetryOnFailure(3); // Enable retry on failure, if needed
         sqlServerOptions.CommandTimeout(150); // Set the connection timeout to 30 seconds
         sqlServerOptions.UseRelationalNulls();
-
     });
 });
+
+// Configure CORS policy
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("DefaultCorsPolicy", builder =>
+//    {
+//        builder.AllowAnyOrigin() // Replace with your .NET MAUI app's origin
+//               .AllowAnyHeader()
+//               .AllowAnyMethod();
+//    });
+//});
 
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
     options.Limits.MaxRequestBodySize = int.MaxValue; // Or another higher limit
 });
 
+// Add custom MIME types
+builder.Services.Configure<StaticFileOptions>(options =>
+{
+    options.ContentTypeProvider = new FileExtensionContentTypeProvider(
+        new Dictionary<string, string>
+        {
+                { ".m3u8", "application/vnd.apple.mpegurl" },
+                { ".ts", "video/MP2T" }
+            // Add any additional file types here
+        });
+});
 
 builder.Services.AddTransient<IAdvertisementRepository, AdvertisementRepository>();
 
@@ -85,7 +107,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -96,12 +117,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.UseStaticFiles(); // Asegúrate de que puedes servir archivos estáticos, incluyendo .ts y .m3u8
+
+// Enable CORS with the defined policy
+//app.UseCors("DefaultCorsPolicy");
+
+app.UseAuthentication(); // Make sure authentication comes before authorization
+
+app.UseAuthorization();
 
 //app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
