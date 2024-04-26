@@ -90,55 +90,8 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
-        //{
-        //    try
-        //    {
-        //        Expression<Func<Advertisement, bool>> filterCondition = v =>
-        //        v.GeolocationAds.Any(g =>
-        //        DateTime.UtcNow <= g.ExpirationDate &&
-        //        GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, g.Latitude, g.Longitude) <= distance) &&
-        //        v.Settings.Any(s => s.SettingId == settingId);
-
-        //        var allEntities = await _context.Advertisements
-        //            .Include(c => c.Contents)
-        //            .Include(g => g.GeolocationAds)
-        //            .Include(s => s.Settings)
-        //            .Where(filterCondition)
-        //            .AsSingleQuery()
-        //            .Select(s => new Advertisement
-        //            {
-        //                ID = s.ID,
-        //                Description = s.Description,
-        //                Title = s.Title,
-        //                UserId = s.UserId,
-        //                Contents = s.Contents.Select(cs => new ContentType
-        //                {
-        //                    Type = cs.Type,
-        //                    Content = cs.Content
-        //                }).Take(1).ToList(),
-        //            })
-        //             .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-        //            .Take(ConstantsTools.PageSize)
-        //            .ToListAsync();
-
-        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", allEntities);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
-
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
         {
-            // Define byte range
-            int byteStartIndex = 0;
-
-            int byteLength = 1048576;  // This will take up to 1 MB
-
-            //int byteLength = 5097152;  // This will take up to 2 MB
-
             try
             {
                 // Assume pre-calculation or efficient distance filtering
@@ -166,7 +119,7 @@ namespace GeolocationAdsAPI.Repositories
                             ID = content.ID,
                             FileSize = content.FileSize,
                             Type = content.Type,
-                            Content = content.Type == ContentVisualType.Video ? content.Content.Skip(byteStartIndex).Take(byteLength).ToArray() : content.Content// Apply byte range here
+                            Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content// Apply byte range here
                         }).Take(1).ToList(),  // Only take necessary content
                     })
                     .ToListAsync();

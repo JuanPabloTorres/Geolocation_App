@@ -121,17 +121,19 @@ public static class MauiProgram
         builder.Services.AddScoped<MyContentViewModel>();
 
         builder.Services.AddScoped<SearchAdViewModel>();
-        
+
         builder.Services.AddScoped<SearchAdViewModel2>();
 
         builder.Services.AddScoped<LoginViewModel>();
+
+        builder.Services.AddScoped<LoginViewModel2>();
 
         builder.Services.AddScoped<RegisterViewModel>();
 
         builder.Services.AddScoped<AppShellViewModel>();
 
         builder.Services.AddScoped<GoogleMapViewModel>();
-        
+
         builder.Services.AddScoped<GoogleMapViewModel2>();
 
         builder.Services.AddScoped<EditAdvertismentViewModel>();
@@ -149,7 +151,7 @@ public static class MauiProgram
         builder.Services.AddScoped<CaptureViewModel>();
 
         builder.Services.AddScoped<ManageLocationViewModel>();
-        
+
         builder.Services.AddScoped<ContentViewTemplateViewModel>();
 
         #endregion ViewModels
@@ -165,10 +167,10 @@ public static class MauiProgram
         builder.Services.AddScoped<AdToLocation>();
 
         builder.Services.AddScoped<SearchAd>();
-        
+
         builder.Services.AddScoped<MyContentPage>();
 
-        builder.Services.AddScoped<Login>();
+        builder.Services.AddTransient<Login>();
 
         builder.Services.AddScoped<Register>();
 

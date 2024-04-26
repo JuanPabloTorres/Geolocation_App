@@ -30,8 +30,6 @@
                     Text="GeoConnect"
                     TextColor="#3e4144" />
 
-
-
                 <local:CustomEntryContentView
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="False"
@@ -45,7 +43,7 @@
                     Text="{Binding Model.Password}" />
 
                 <Button
-                    Command="{Binding LoginCommand}"
+                    Command="{Binding VerifyCredentialCommand}"
                     CommandParameter="{Binding Model}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
@@ -54,19 +52,18 @@
                     <Button.ImageSource>
                         <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xea77;" />
                     </Button.ImageSource>
-
                 </Button>
 
                 <Button
                     BackgroundColor="CadetBlue"
-                    Command="{Binding RegisterCommand}"
+                    Command="{Binding GoToRegisterCommand}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Do you want to Sign Up?" />
 
                 <Button
                     BackgroundColor="Transparent"
-                    Command="{Binding ForgotPasswordCommand}"
+                    Command="{Binding OpenRecoveryPopUpCommand}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Forgot Password?"

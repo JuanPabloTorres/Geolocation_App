@@ -1,0 +1,98 @@
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using GeolocationAds.Pages;
+using GeolocationAds.PopUps;
+using GeolocationAds.Services;
+using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
+
+namespace GeolocationAds.ViewModels
+{
+    public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login, ILoginService>
+    {
+        private RecoveryPasswordPopUp passwordRecoveryPage;
+
+        private RecoveryPasswordViewModel RecoveryPasswordViewModel;
+
+        public LoginViewModel2(RecoveryPasswordViewModel recoveryPasswordViewModel, ToolsLibrary.Models.Login model, ILoginService service, LogUserPerfilTool logUserPerfil = null) : base(model, service, logUserPerfil)
+        {
+            this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
+
+            this.Model.Username = "test01";
+
+            this.Model.Password = "12345";
+
+            WeakReferenceMessenger.Default.Register<UpdateMessage<ForgotPassword>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    await this.passwordRecoveryPage.CloseAsync();
+                });
+            });
+        }
+
+        [RelayCommand]
+        private async Task GoToRegister()
+        {
+            await Shell.Current.GoToAsync(nameof(Register));
+        }
+
+        [RelayCommand]
+        private async Task OpenRecoveryPopUp()
+        {
+            this.passwordRecoveryPage = new RecoveryPasswordPopUp(this.RecoveryPasswordViewModel);
+
+            await Shell.Current.CurrentPage.ShowPopupAsync(this.passwordRecoveryPage);
+        }
+
+        [RelayCommand]
+        private async Task VerifyCredential(ToolsLibrary.Models.Login credential)
+        {
+            try
+            {
+                IsLoading = true;
+
+                var _apiResponse = await this.service.VerifyCredential2(credential);
+
+                if (!_apiResponse.IsSuccess)
+                {
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                    return;
+                }
+
+                switch (_apiResponse.Data.LogUser.UserStatus)
+                {
+                    case ToolsLibrary.Models.UserStatus.ResetPassword:
+
+                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                        break;
+
+                    default:
+                        this.LogUserPerfilTool.JsonToken = _apiResponse.Data.JsonToken;
+
+                        this.LogUserPerfilTool.LogUser = _apiResponse.Data.LogUser;
+
+                        this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
+
+                        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
+
+                        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+    }
+}

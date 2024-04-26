@@ -4,8 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds"
-     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <Application.Resources>
         <ResourceDictionary>
@@ -16,6 +16,8 @@
 
             <!--  URLs  -->
             <x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>
+
+            <x:String x:Key="BaseStreamingUrl">http://192.168.0.11:5160/hls</x:String>
             <!--<x:String x:Key="BackendUrl">http://192.168.0.3:5160/api</x:String>-->
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
@@ -104,7 +106,7 @@
 
             <Style x:Key="pagingBtn" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <!--<Setter Property="VerticalOptions" Value="FillAndExpand" />-->
+
                 <Setter Property="FontSize" Value="25" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
@@ -147,7 +149,7 @@
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="HasShadow" Value="True" />
-                <!--<Setter Property="HeightRequest" Value="250" />-->
+
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
 
@@ -280,13 +282,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <!--<Image
-                        Grid.Row="1"
-                        Aspect="Fill"
-                        Source="{Binding Image}" />-->
-
-                    <ffimageloading:CachedImage  Source="{Binding Image}" Aspect="Fill" ></ffimageloading:CachedImage>
-
+                    <ffimageloading:CachedImage Aspect="Fill" Source="{Binding Image}" />
                 </Grid>
             </DataTemplate>
 

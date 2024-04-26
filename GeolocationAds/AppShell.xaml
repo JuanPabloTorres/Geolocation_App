@@ -44,8 +44,6 @@
             Title="Settings"
             ContentTemplate="{DataTemplate pages:UserSetting}"
             Icon="setting.png" />
-
-
     </FlyoutItem>
 
     <Shell.FlyoutHeader>
@@ -87,9 +85,7 @@
                 <Button.ImageSource>
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
                 </Button.ImageSource>
-
             </Button>
-
         </StackLayout>
     </Shell.FlyoutFooter>
 </Shell>

@@ -16,7 +16,7 @@ namespace GeolocationAds.ViewModels
         private readonly IAppSettingService _appSettingService;
 
         private readonly ICaptureService _captureService;
-        
+
         private readonly IAdvertisementService _ad;
 
         private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
@@ -67,7 +67,6 @@ namespace GeolocationAds.ViewModels
             _appSettingService = appSettingService;
 
             _captureService = captureService;
-          
 
             SearchCommand = new Command(async () => await InitializeAsync());
 
@@ -259,22 +258,22 @@ namespace GeolocationAds.ViewModels
                 return;
             }
 
-            List<NearByTemplateViewModel2> viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, ad, this.LogUserPerfilTool)).ToList();
+            //List<NearByTemplateViewModel2> viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, this,ad, this.LogUserPerfilTool)).ToList();
 
-            try
-            {
-                // Parallel initialization of view models
-                await Task.WhenAll(viewModels.Select(vm => vm.InitializeAsync()));
+            //try
+            //{
+            //    // Parallel initialization of view models
+            //    await Task.WhenAll(viewModels.Select(vm => vm.InitializeAsync()));
 
-                // Safely add to collection if all initializations succeed
-                this.NearByTemplateViewModels.AddRange(viewModels);
-            }
-            catch (Exception ex)
-            {
-                // Handle partial failures here if necessary
-                await DisplayError($"An error occurred while loading ads: {ex.Message}");
-                // Decide how to handle already initialized viewModels if needed
-            }
+            //    // Safely add to collection if all initializations succeed
+            //    this.NearByTemplateViewModels.AddRange(viewModels);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Handle partial failures here if necessary
+            //    await DisplayError($"An error occurred while loading ads: {ex.Message}");
+            //    // Decide how to handle already initialized viewModels if needed
+            //}
         }
 
         private static Task DisplayError(string message) => Shell.Current.DisplayAlert("Error", message, "OK");

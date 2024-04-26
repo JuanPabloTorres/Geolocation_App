@@ -16,7 +16,7 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private bool isLoading;
 
-        protected  IAdvertisementService advertisementService { get; set; }
+        protected IAdvertisementService advertisementService { get; set; }
 
         protected IGeolocationAdService geolocationAdService { get; set; }
 
@@ -30,6 +30,11 @@ namespace GeolocationAds.TemplateViewModel
         public BaseTemplateViewModel(IAdvertisementService advertisementService)
         {
             this.advertisementService = advertisementService;
+        }
+
+        public BaseTemplateViewModel(IGeolocationAdService geolocationAdService)
+        {
+            this.geolocationAdService = geolocationAdService;
         }
 
         public BaseTemplateViewModel()

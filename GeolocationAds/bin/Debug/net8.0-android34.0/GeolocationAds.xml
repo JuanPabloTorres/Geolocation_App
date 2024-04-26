@@ -77,6 +77,29 @@
         <member name="P:GeolocationAds.ViewModels.GoogleMapViewModel2.SelectedAdType">
             <inheritdoc cref="F:GeolocationAds.ViewModels.GoogleMapViewModel2.selectedAdType"/>
         </member>
+        <member name="T:GeolocationAds.ViewModels.LoginViewModel2">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.goToRegisterCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.GoToRegisterCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.GoToRegisterCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.GoToRegister"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.openRecoveryPopUpCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.OpenRecoveryPopUpCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.OpenRecoveryPopUpCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.OpenRecoveryPopUp"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.verifyCredentialCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredentialCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredentialCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredential(ToolsLibrary.Models.Login)"/>.</summary>
+        </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>
             <inheritdoc/>

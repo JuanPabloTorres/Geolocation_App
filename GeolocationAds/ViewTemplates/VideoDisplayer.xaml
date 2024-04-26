@@ -7,12 +7,23 @@
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <Grid.Resources>
+    <!--<Grid.Resources>
 
         <converter:MediaStateChangedEventArgsConverter x:Key="MediaStateConverter" />
         <converter:MediaFailedEventArgsConverter x:Key="MediaFailedConverter" />
         <converter:MediaEventArgsConverter x:Key="MediaEventArgsConverter" />
-    </Grid.Resources>
+    </Grid.Resources>-->
+
+    <!--<toolkit:MediaElement
+        x:Name="videoPlayer"
+        Grid.Row="0"
+        Aspect="Fill"
+        MediaFailed="videoPlayer_MediaFailed"
+        ShouldAutoPlay="false"
+        ShouldKeepScreenOn="True"
+        ShouldLoopPlayback="False"
+        ShouldShowPlaybackControls="True"
+        Source="http://192.168.0.11:5160/hls/7f3ee83f-662d-464c-872b-abc7327c5ff1/output.m3u8" />-->
 
     <toolkit:MediaElement
         x:Name="videoPlayer"
@@ -23,7 +34,7 @@
         ShouldKeepScreenOn="True"
         ShouldLoopPlayback="False"
         ShouldShowPlaybackControls="True"
-        Source="http://192.168.0.11:5160/hls/7f3ee83f-662d-464c-872b-abc7327c5ff1/output.m3u8" />
+        Source="{Binding MediaSource}" />
 
     <StackLayout x:Name="myContentStackHeader" Grid.Row="0">
 

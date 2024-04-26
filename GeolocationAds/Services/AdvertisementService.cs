@@ -223,10 +223,37 @@ namespace GeolocationAds.Services
             response.EnsureSuccessStatusCode();
 
             // Read the response content as a string
-            var  responseContent = await response.Content.ReadAsByteArrayAsync();
+            var responseContent = await response.Content.ReadAsByteArrayAsync();
 
             // Return the response content as a stream
             return responseContent;
+        }
+
+        public async Task<ResponseTool<string>> GetStreamingVideoUrl(int id)
+        {
+            try
+            {
+                // Send an HTTP GET request to the "StreamingVideo" endpoint of your API
+                HttpResponseMessage response = await _httpClient.GetAsync($"{BaseApiUri}/StreamingVideo/{id}");
+
+                // Ensure the request was successful
+                response.EnsureSuccessStatusCode();
+
+                // Read the response content as a string
+                string videoUrl = await response.Content.ReadAsStringAsync();
+
+                // If needed, adjust the deserialization based on the actual response
+                var result = JsonConvert.DeserializeObject<ResponseTool<string>>(videoUrl);
+
+                return result ?? ResponseFactory<string>.BuildFail("Video not found", null);
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during the request
+                var failResponse = ResponseFactory<string>.BuildFail($"An error occurred: {ex.Message}", null);
+
+                return failResponse;
+            }
         }
 
         private string GetMediaType(ContentVisualType type)

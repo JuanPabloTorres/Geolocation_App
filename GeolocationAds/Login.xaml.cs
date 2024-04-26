@@ -4,7 +4,7 @@ namespace GeolocationAds;
 
 public partial class Login : ContentPage
 {
-    public Login(LoginViewModel loginViewModel)
+    public Login(LoginViewModel2 loginViewModel)
     {
         InitializeComponent();
 

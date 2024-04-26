@@ -34,7 +34,7 @@ namespace GeolocationAds.TemplateViewModel
 
         public string VideoFilePath { get; set; }
 
-        public NearByTemplateViewModel2(ICaptureService captureService, Advertisement advertisement, LogUserPerfilTool logUser)
+        public NearByTemplateViewModel2(ICaptureService captureService, IAdvertisementService advertisementService, Advertisement advertisement, LogUserPerfilTool logUser) : base(advertisementService)
         {
             this.LogUser = logUser;
 
@@ -57,14 +57,11 @@ namespace GeolocationAds.TemplateViewModel
         //    MediaElementPlaying.Invoke(this,  null);
         //}
 
-            [RelayCommand]
+        [RelayCommand]
         private void MediaStateChanged(MediaStateChangedEventArgs args)
         {
-            if (args.NewState == MediaElementState.Buffering ||             
-                args.NewState == MediaElementState.Opening ||
-                args.NewState == MediaElementState.Playing
-              
-               
+            if (
+                args.NewState == MediaElementState.Opening
 
                )
             {
@@ -73,8 +70,6 @@ namespace GeolocationAds.TemplateViewModel
                 System.Diagnostics.Debug.WriteLine($"Prevoius State (Inside If):{args.PreviousState}");
 
                 //MediaElementPlaying.Invoke(this, args);
-
-              
             }
 
             System.Diagnostics.Debug.WriteLine($"New State:{args.NewState}");
@@ -104,11 +99,14 @@ namespace GeolocationAds.TemplateViewModel
 
                         case ContentVisualType.Video:
 
-                            //var file = await SaveToTempAsync(content.Content);
+                            var _streamingResponse = await this.advertisementService.GetStreamingVideoUrl(content.ID);
 
-                            //this.MediaSource = file;
+                            if (!_streamingResponse.IsSuccess)
+                            {
+                                await CommonsTool.DisplayAlert("Error", _streamingResponse.Message);
+                            }
 
-                            //InitializeCommands();
+                            this.MediaSource = _streamingResponse.Data;
 
                             break;
                     }

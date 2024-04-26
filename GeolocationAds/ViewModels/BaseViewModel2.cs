@@ -33,6 +33,7 @@ namespace GeolocationAds.ViewModels
         private bool isLoading;
 
         private ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
+
         public BaseViewModel2(T model, S service, LogUserPerfilTool logUserPerfil = null)
         {
             Model = model;
@@ -52,7 +53,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<T> CollectionModel { get; set; } = new ObservableCollection<T>();
         public string ID { get; private set; }
-       
+
         public bool IsLoading
         {
             get => isLoading;
@@ -66,7 +67,6 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-     
         public T Model
         {
             get => _model;
@@ -93,6 +93,7 @@ namespace GeolocationAds.ViewModels
 
         //private ICollection<ValidationContext> ValidationContexts;
         protected S service { get; set; }
+
         //public BaseViewModel2(T model, S service)
         //{
         //    this.Model = model;
@@ -513,7 +514,6 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-
         public async Task OnSubmitUpdate(T obj)
         {
             IsLoading = true;
@@ -682,7 +682,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        protected virtual async Task LoadData(int? pageIndex=1)
+        protected virtual async Task LoadData(int? pageIndex = 1)
         {
             this.IsLoading = true;
 
@@ -730,7 +730,6 @@ namespace GeolocationAds.ViewModels
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
-
 
         private void InitializeCommands()
         {
