@@ -36,81 +36,6 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
-        //{
-        //    try
-        //    {
-        //        var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings)
-        //            .Where(v =>
-        //            v.UserId == userId &&
-        //            v.Settings.Any(s => s.SettingId == typeId))
-        //            .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
-        //            .Select(s => new Advertisement
-        //            {
-        //                ID = s.ID,
-        //                Description = s.Description,
-        //                Title = s.Title,
-        //                UserId = s.UserId,
-        //                Contents = s.Contents
-        //                    .Select(cs => new ContentType
-        //                    {
-        //                        Type = cs.Type,
-        //                        Content = cs.Content,
-        //                        ContentName = cs.ContentName ?? string.Empty
-        //                    })
-        //                    .ToList()
-        //            })
-        //            .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-        //            .Take(ConstantsTools.PageSize)
-        //            .AsSplitQuery()
-        //            .ToListAsync();
-
-        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
-
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
-        {
-            try
-            {
-                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings)
-                    .Where(v =>
-                    v.UserId == userId &&
-                    v.Settings.Any(s => s.SettingId == typeId))
-                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
-                    .AsSplitQuery()
-                    .Select(s => new Advertisement
-                    {
-                        ID = s.ID,
-                        Description = s.Description,
-                        Title = s.Title,
-                        UserId = s.UserId,
-                        Contents = s.Contents
-                            .Select(cs => new ContentType
-                            {
-                                Type = cs.Type,
-                                Content = cs.Content,
-                                ContentName = cs.ContentName ?? string.Empty
-                            })
-                            .Take(1)
-                            .ToList()
-                    })
-                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                    .Take(ConstantsTools.PageSize)
-                    .ToListAsync();
-
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
-            }
-            catch (Exception ex)
-            {
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-            }
-        }
-
         public override async Task<ResponseTool<Advertisement>> Get(int Id)
         {
             try
@@ -162,6 +87,44 @@ namespace GeolocationAdsAPI.Repositories
             catch (Exception ex)
             {
                 return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
+        {
+            try
+            {
+                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings)
+                    .Where(v =>
+                    v.UserId == userId &&
+                    v.Settings.Any(s => s.SettingId == typeId))
+                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
+                    .AsSplitQuery()
+                    .Select(s => new Advertisement
+                    {
+                        ID = s.ID,
+                        Description = s.Description,
+                        Title = s.Title,
+                        UserId = s.UserId,
+                        Contents = s.Contents
+                            .Select(cs => new ContentType
+                            {
+                                Type = cs.Type,
+                                Content = cs.Content,
+                                ContentName = cs.ContentName ?? string.Empty
+                            })
+                            .Take(1)
+                            .ToList()
+                    })
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
+                    .ToListAsync();
+
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
 

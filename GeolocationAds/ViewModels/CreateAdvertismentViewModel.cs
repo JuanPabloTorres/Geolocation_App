@@ -215,7 +215,9 @@ namespace GeolocationAds.ViewModels
                     break;
 
                 case ContentVisualType.Video:
+
                     await ProcessVideoContent(fileBytes, result);
+
                     break;
             }
 

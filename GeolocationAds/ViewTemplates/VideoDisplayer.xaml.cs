@@ -1,3 +1,5 @@
+using System.Windows.Input;
+
 namespace GeolocationAds.ViewTemplates;
 
 public partial class VideoDisplayer : Grid
@@ -29,9 +31,9 @@ public partial class VideoDisplayer : Grid
     }
 
     public VideoDisplayer()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     private static void IsMyContentStackHeaderVisibleChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -45,9 +47,33 @@ public partial class VideoDisplayer : Grid
             {
                 view.searchContentStackHeader.IsVisible = false;
 
-                view.searchContentStackHeaderBtn.IsVisible = false;
+                //view.searchContentStackHeaderBtn.IsVisible = false;
             }
         }
+    }
+
+    public static readonly BindableProperty MediaOpenedCommandProperty = BindableProperty.Create(
+        "MediaOpenedCommand",
+        typeof(ICommand),
+        typeof(VideoDisplayer),
+        default(ICommand));
+
+    public ICommand MediaOpenedCommand
+    {
+        get => (ICommand)GetValue(MediaOpenedCommandProperty);
+        set => SetValue(MediaOpenedCommandProperty, value);
+    }
+
+    public static readonly BindableProperty SeekCompletedCommandProperty = BindableProperty.Create(
+      "SeekCompletedCommand",
+      typeof(ICommand),
+      typeof(VideoDisplayer),
+      default(ICommand));
+
+    public ICommand SeekCompletedCommand
+    {
+        get => (ICommand)GetValue(SeekCompletedCommandProperty);
+        set => SetValue(SeekCompletedCommandProperty, value);
     }
 
     private static void IsSearchContentStackHeaderVisibleChanged(BindableObject bindable, object oldValue, object newValue)
@@ -60,10 +86,20 @@ public partial class VideoDisplayer : Grid
 
             if (view.searchContentStackHeader.IsVisible)
             {
-                view.searchContentStackHeaderBtn.IsVisible = true;
+                //view.searchContentStackHeaderBtn.IsVisible = true;
 
                 view.myContentStackHeader.IsVisible = false;
             }
         }
+    }
+
+    private void videoPlayer_MediaEnded(object sender, EventArgs e)
+    {
+
+    }
+
+    private void videoPlayer_SeekCompleted(object sender, EventArgs e)
+    {
+
     }
 }

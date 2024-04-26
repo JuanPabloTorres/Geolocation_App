@@ -39,6 +39,7 @@
         <member name="T:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2">
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.Advertisement">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.advertisement"/>
@@ -48,6 +49,12 @@
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.Image">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.image"/>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.mediaStateChangedCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaStateChangedCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaStateChangedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.MediaStateChanged(CommunityToolkit.Maui.Core.Primitives.MediaStateChangedEventArgs)"/>.</summary>
         </member>
         <member name="F:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.captureItemCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2.CaptureItemCommand"/>.</summary>
@@ -63,6 +70,12 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.IsLoading">
             <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2.isLoading"/>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.GoogleMapViewModel2">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.GoogleMapViewModel2.SelectedAdType">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.GoogleMapViewModel2.selectedAdType"/>
         </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>
@@ -231,11 +244,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Model">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Model" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
         </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
@@ -261,11 +274,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Model">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Model" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
         </member>
     </members>
 </doc>

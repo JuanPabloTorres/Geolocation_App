@@ -97,6 +97,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
+app.UseStaticFiles(); // Asegúrate de que puedes servir archivos estáticos, incluyendo .ts y .m3u8
 
 //app.UseHttpsRedirection();
 

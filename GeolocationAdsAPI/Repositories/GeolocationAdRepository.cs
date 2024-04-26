@@ -1,6 +1,5 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -106,7 +105,7 @@ namespace GeolocationAdsAPI.Repositories
         //            .Include(g => g.GeolocationAds)
         //            .Include(s => s.Settings)
         //            .Where(filterCondition)
-        //            .AsSingleQuery() 
+        //            .AsSingleQuery()
         //            .Select(s => new Advertisement
         //            {
         //                ID = s.ID,
@@ -120,7 +119,7 @@ namespace GeolocationAdsAPI.Repositories
         //                }).Take(1).ToList(),
         //            })
         //             .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-        //            .Take(ConstantsTools.PageSize)                   
+        //            .Take(ConstantsTools.PageSize)
         //            .ToListAsync();
 
         //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", allEntities);
@@ -131,46 +130,14 @@ namespace GeolocationAdsAPI.Repositories
         //    }
         //}
 
-
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
         {
-            //try
-            //{
-            //    Expression<Func<Advertisement, bool>> filterCondition = ad =>
-            //        ad.GeolocationAds.Any(geo =>
-            //        DateTime.UtcNow <= geo.ExpirationDate &&
-            //        GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance) &&
-            //        ad.Settings.Any(s => s.SettingId == settingId);
+            // Define byte range
+            int byteStartIndex = 0;
 
-            //    var query = _context.Advertisements
-            //        .Where(filterCondition)
-            //        .Include(ad => ad.Contents.Take(1))  // Assuming Contents has a lot of data, take only the necessary parts
-            //        .Include(ad => ad.GeolocationAds.Take(1))
-            //        .Include(ad => ad.Settings)
-            //        .Select(ad => new Advertisement
-            //        {
-            //            ID = ad.ID,
-            //            Description = ad.Description,
-            //            Title = ad.Title,
-            //            UserId = ad.UserId,
-            //            Contents = ad.Contents.Select(content => new ContentType
-            //            {
-            //                Type = content.Type,
-            //                Content = content.Content
-            //            }).ToList(),
-            //        });
+            int byteLength = 1048576;  // This will take up to 1 MB
 
-            //    var paginatedResult = await query
-            //        .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-            //        .Take(ConstantsTools.PageSize)
-            //        .ToListAsync();
-
-            //    return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", paginatedResult);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-            //}
+            //int byteLength = 5097152;  // This will take up to 2 MB
 
             try
             {
@@ -196,8 +163,10 @@ namespace GeolocationAdsAPI.Repositories
                         UserId = ad.UserId,
                         Contents = ad.Contents.Select(content => new ContentType
                         {
+                            ID = content.ID,
+                            FileSize = content.FileSize,
                             Type = content.Type,
-                            Content = content.Content
+                            Content = content.Type == ContentVisualType.Video ? content.Content.Skip(byteStartIndex).Take(byteLength).ToArray() : content.Content// Apply byte range here
                         }).Take(1).ToList(),  // Only take necessary content
                     })
                     .ToListAsync();
@@ -208,7 +177,6 @@ namespace GeolocationAdsAPI.Repositories
             {
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
-
         }
 
         public async Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id)

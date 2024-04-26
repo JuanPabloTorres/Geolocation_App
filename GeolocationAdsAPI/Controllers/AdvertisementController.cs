@@ -1,7 +1,12 @@
-﻿using GeolocationAdsAPI.Repositories;
+﻿using Azure;
+using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -16,9 +21,13 @@ namespace GeolocationAdsAPI.Controllers
     {
         private readonly IAdvertisementRepository advertisementRepository;
 
-        public AdvertisementController(IAdvertisementRepository advertisementRepository)
+        private readonly IContentTypeRepository contentTypeRepository;
+
+        public AdvertisementController(IAdvertisementRepository advertisementRepository, IContentTypeRepository contentTypeRepository)
         {
             this.advertisementRepository = advertisementRepository;
+
+            this.contentTypeRepository = contentTypeRepository;
         }
 
         [HttpPost("[action]")]
@@ -55,8 +64,6 @@ namespace GeolocationAdsAPI.Controllers
 
             var advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
 
-
-            
             //advertisement?.Contents.Clear();
 
             // Assuming ContentType has IFormFile or similar for Content
@@ -220,5 +227,214 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
+
+        [HttpGet("[action]/{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetContentVideo(int id)
+        {
+            var responseResult = await contentTypeRepository.GetContentById(id); // Método para obtener los bytes del video de la base de datos
+
+            byte[] videoBytes = responseResult.Data.Content;
+
+            // Lee la cabecera 'Range' enviada por el cliente
+            HttpContext.Request.Headers.TryGetValue("Range", out StringValues range);
+
+            if (StringValues.IsNullOrEmpty(range))
+            {
+                // Si no hay rango especificado, envía todo el contenido
+                return File(videoBytes, "video/mp4");
+            }
+
+            // Parsea la cabecera 'Range': "bytes=200-1000"
+            var rangeString = range.ToString().Replace("bytes=", "").Split('-');
+
+            long start = Convert.ToInt64(rangeString[0]);
+
+            long end = (rangeString.Length > 1) ? Convert.ToInt64(rangeString[1]) : videoBytes.Length - 1;
+
+            MemoryStream memoryStream = new MemoryStream(videoBytes, (int)start, (int)(end - start + 1));
+
+            // Establece el código de estado y la cabecera 'Content-Range'
+            Response.StatusCode = 206; // Partial Content
+
+            Response.Headers.Add("Content-Range", $"bytes {start}-{end}/{videoBytes.Length}");
+
+            return new FileStreamResult(memoryStream, "video/mp4");
+        }
+
+
+        [HttpGet("[action]/{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetVideo2(int id)
+        {
+            var responseResult = await contentTypeRepository.GetContentById(id); // Método para obtener los bytes del video de la base de datos
+
+            byte[] videoBytes = responseResult.Data.Content;
+
+            var videoFile = SaveBytesToFile(videoBytes);
+
+            var hlsOutput = ConvertVideoToHLS3(videoFile);
+
+            // Cleanup: Elimina el archivo de video temporal
+            System.IO.File.Delete(videoFile);
+
+            return Ok($"{Request.Scheme}://{Request.Host}/{hlsOutput}");
+        }
+
+
+
+
+        private string SaveBytesToFile(byte[] videoBytes)
+        {
+            var tempFilePath = Path.GetTempFileName();
+
+            System.IO.File.WriteAllBytes(tempFilePath, videoBytes);
+
+            return tempFilePath;
+        }
+
+        private string ConvertVideoToHLS(string videoFilePath)
+        {
+            var outputDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+
+            Directory.CreateDirectory(outputDirectory);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "ffmpeg",
+                Arguments = $"-i {videoFilePath} -codec: copy -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {Path.Combine(outputDirectory, "output.m3u8")}",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using (var process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+            }
+
+            return outputDirectory;
+        }
+
+        private string ConvertVideoToHLS3(string videoFilePath)
+        {
+            // Assuming wwwroot exists at the root of the web project and 'hls' is a folder inside it for videos.
+            var outputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "hls", Guid.NewGuid().ToString());
+
+            Directory.CreateDirectory(outputDirectory);
+
+           
+
+            var outputFilePath = Path.Combine(outputDirectory);
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "ffmpeg",
+                Arguments = $"-i \"{videoFilePath}\" -codec: copy -start_number 0 -hls_time 10 -hls_list_size 0 -f hls \"{outputFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using (var process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+            }
+
+            // Return the relative path to the wwwroot directory.
+            return outputFilePath.Substring(Directory.GetCurrentDirectory().Length).Replace("\\", "/").Replace("//", "/");
+        }
+
+
+        private string ConvertVideoToHLS2(string videoFilePath)
+        {
+            var outputDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(outputDirectory);
+
+            //var startInfo = new ProcessStartInfo
+            //{
+            //    FileName = "C:\ffmpeg\bin", // Asegúrate de que "ffmpeg" se puede llamar directamente
+            //    Arguments = $"-i \"{videoFilePath}\" -codec: copy -start_number 0 -hls_time 10 -hls_list_size 0 -f hls \"{Path.Combine(outputDirectory, "output.m3u8")}\"",
+            //    RedirectStandardOutput = true,
+            //    RedirectStandardError = true,
+            //    UseShellExecute = false,
+            //    CreateNoWindow = true
+            //};
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "ffmpeg",
+                Arguments = "-version",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using (var process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+                string output = process.StandardOutput.ReadToEnd();
+                Console.WriteLine(output);
+            }
+
+
+            Debug.WriteLine("PATH is: " + Environment.GetEnvironmentVariable("PATH"));
+
+
+            using (var process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+
+                // Asegúrate de capturar y revisar la salida de error
+                string stderr = process.StandardError.ReadToEnd();
+                if (!string.IsNullOrEmpty(stderr))
+                {
+                    // Maneja el error aquí
+                    throw new Exception(stderr);
+                }
+            }
+
+            return outputDirectory;
+        }
+
+
+        //[HttpGet("[action]/{id}")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GetContentVideo(int id)
+        //{
+        //    ResponseTool<byte[]> response;
+        //    try
+        //    {
+        //        // Lee la cabecera 'Range' enviada por el cliente
+        //        HttpContext.Request.Headers.TryGetValue("Range", out StringValues range);
+
+        //        var responseResult = await contentTypeRepository.GetContentById(id); // Método para obtener los bytes del video de la base de datos
+
+        //        if (StringValues.IsNullOrEmpty(range))
+        //        {
+        //            // Parsea la cabecera 'Range': "bytes=200-1000"
+        //            var rangeString = range.ToString().Replace("bytes=", "").Split('-');
+
+        //            int start = Convert.ToInt32(rangeString[0]);
+
+        //            int end = (rangeString.Length > 1) ? Convert.ToInt32(rangeString[1]) : responseResult.Data.Content.Length - 1;
+
+        //            byte[] videoBytes = responseResult.Data.Content.Skip(start).Take(end).ToArray();
+
+        //            response = ResponseFactory<byte[]>.BuildSusccess("Segment", videoBytes, ToolsLibrary.Tools.Type.Succesfully);
+
+        //            return Ok(response);
+        //        }
+
+        //        response = ResponseFactory<byte[]>.BuildSusccess("Segment", responseResult.Data.Content, ToolsLibrary.Tools.Type.Succesfully);
+
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response = ResponseFactory<byte[]>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //        return Ok(response);
+        //    }
+        //}
     }
 }

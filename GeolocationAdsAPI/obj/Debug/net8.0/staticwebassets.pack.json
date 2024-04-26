@@ -1,0 +1,321 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output10.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output10.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output11.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output11.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output12.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output12.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output13.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output13.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output2.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output2.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output3.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output3.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output4.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output4.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output5.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output5.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output6.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output6.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output7.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output7.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output8.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output8.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output9.ts",
+      "PackagePath": "staticwebassets\\hls\\34262e42-0e1d-4f54-9644-d93ce2a41baf\\output9.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output10.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output10.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output11.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output11.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output12.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output12.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output13.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output13.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output2.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output2.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output3.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output3.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output4.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output4.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output5.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output5.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output6.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output6.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output7.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output7.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output8.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output8.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output9.ts",
+      "PackagePath": "staticwebassets\\hls\\7f3ee83f-662d-464c-872b-abc7327c5ff1\\output9.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output10.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output10.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output11.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output11.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output12.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output12.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output13.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output13.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output2.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output2.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output3.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output3.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output4.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output4.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output5.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output5.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output6.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output6.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output7.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output7.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output8.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output8.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output9.ts",
+      "PackagePath": "staticwebassets\\hls\\8dfdd34a-55f0-41f0-8961-4444e85ea86b\\output9.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc.tmp",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc.tmp"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc0.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc0.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc1.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc1.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc10.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc10.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc11.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc11.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc12.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc12.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc13.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc13.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc2.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc2.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc3.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc3.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc4.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc4.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc5.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc5.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc6.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc6.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc7.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc7.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc8.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc8.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc9.ts",
+      "PackagePath": "staticwebassets\\hls\\93b95e9c-4c0d-4cd6-beb4-17e670747fdc9.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a.tmp",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a.tmp"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a0.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a0.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a1.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a1.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a10.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a10.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a11.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a11.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a12.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a12.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a13.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a13.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a2.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a2.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a3.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a3.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a4.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a4.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a5.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a5.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a6.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a6.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a7.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a7.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a8.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a8.ts"
+    },
+    {
+      "Id": "C:\\Users\\estju\\source\\repos\\GeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\98dc263a-daee-4559-9cff-a67466090e0a9.ts",
+      "PackagePath": "staticwebassets\\hls\\98dc263a-daee-4559-9cff-a67466090e0a9.ts"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GeolocationAdsAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.GeolocationAdsAPI.props",
+      "PackagePath": "build\\GeolocationAdsAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GeolocationAdsAPI.props",
+      "PackagePath": "buildMultiTargeting\\GeolocationAdsAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.GeolocationAdsAPI.props",
+      "PackagePath": "buildTransitive\\GeolocationAdsAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

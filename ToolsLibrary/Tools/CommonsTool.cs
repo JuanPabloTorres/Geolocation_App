@@ -255,14 +255,6 @@ namespace ToolsLibrary.Tools
             }
         }
 
-        //public static string SaveByteArrayToTempFile(byte[] byteArray)
-        //{
-        //    string tempFilePath = Path.GetTempFileName();
-
-        //    File.WriteAllBytes(tempFilePath, byteArray);
-
-        //    return tempFilePath;
-        //}
         public static async Task<string> SaveByteArrayToTempFile(byte[] byteArray)
         {
             try
@@ -302,13 +294,157 @@ namespace ToolsLibrary.Tools
             }
             catch (Exception ex)
             {
-
                 await CommonsTool.DisplayAlert("Error", ex.Message);
 
                 return string.Empty;
             }
-            
-          
+        }
+
+        public static async Task<string> SaveByteArrayToFile(byte[] byteArray, string filePath = null)
+        {
+            try
+            {
+                // If filePath is null, generate a new unique file name
+                if (string.IsNullOrEmpty(filePath))
+                {
+                    filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp4");  // Using .mp4 for clarity
+                }
+
+                // Append the byte array to the file using FileMode.Append
+                using (var fileStream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.None))
+                {
+                    await fileStream.WriteAsync(byteArray, 0, byteArray.Length);
+                }
+
+                return filePath;
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+                return string.Empty;
+            }
+        }
+
+
+        //public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock=0, long endBlock=ConstantsTools.SegmentSize)
+        //{
+        //    try
+        //    {
+        //        // If no file path is provided, generate a unique file name
+        //        if (string.IsNullOrEmpty(filePath))
+        //        {
+        //            filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp4");  // Using .mp4 as the extension for clarity
+        //        }
+
+        //        // Append the byte array to the file
+        //        using (var stream = new FileStream(filePath, FileMode.Append, FileAccess.Write))
+        //        {
+        //            await stream.WriteAsync(byteArray, 0, byteArray.Length);
+        //        }
+
+        //        return filePath;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+
+        //        return string.Empty;
+        //    }
+        //}
+
+        //public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock = 0, long endBlock = ConstantsTools.SegmentSize)
+        //{
+        //    try
+        //    {
+        //        // If no file path is provided, generate a unique file name
+        //        if (string.IsNullOrEmpty(filePath))
+        //        {
+        //            filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp4");  // Using .mp4 as the extension for clarity
+        //        }
+
+        //        // Ensure the file exists, if not create it
+        //        if (!File.Exists(filePath))
+        //        {
+        //            using (var createStream = File.Create(filePath))
+        //            {
+        //                // Optionally initialize file to expected size to optimize disk allocation
+        //                if (endBlock > 0)
+        //                {
+        //                    createStream.SetLength(endBlock);
+        //                }
+        //            }
+        //        }
+
+        //        // Open the file with the ability to seek, then write the bytes at the specific start block position
+        //        using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Write, FileShare.None))
+        //        {
+        //            stream.Seek(startBlock, SeekOrigin.Begin);
+
+        //            await stream.WriteAsync(byteArray, 0, byteArray.Length);
+        //        }
+
+        //        return filePath;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+
+        //        return string.Empty;
+        //    }
+        //}
+
+        public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock = 0, long endBlock = ConstantsTools.SegmentSize)
+        {
+            int maxRetries = 5;
+
+            int attempt = 0;
+
+            while (attempt < maxRetries)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(filePath))
+                    {
+                        filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp4");
+                    }
+
+                    if (!File.Exists(filePath))
+                    {
+                        using (var createStream = File.Create(filePath))
+                        {
+                            if (endBlock > 0)
+                            {
+                                createStream.SetLength(endBlock);
+                            }
+                        }
+                    }
+
+                    using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Write, FileShare.Read))
+                    {
+                        stream.Seek(startBlock, SeekOrigin.Begin);
+
+                        await stream.WriteAsync(byteArray, 0, byteArray.Length);
+                    }
+
+                    return filePath;
+                }
+                catch (IOException ex)
+                {
+                    attempt++;
+
+                    if (attempt >= maxRetries)
+                    {
+                        await CommonsTool.DisplayAlert("Error", "Failed to write to file after several attempts: " + ex.Message);
+
+                        return string.Empty;
+                    }
+
+                    // Wait for a bit before retrying
+                    await Task.Delay(200 * attempt);
+                }
+            }
+
+            return string.Empty; // This should be unreachable
         }
 
 
@@ -357,12 +493,9 @@ namespace ToolsLibrary.Tools
             }
         }
 
-        //public  static Image ByteArrayToImage(byte[] byteArray)
-        // {
-        //     using (MemoryStream stream = new MemoryStream(byteArray))
-        //     {
-        //         return Image.From(stream);
-        //     }
-        // }
+        public static long GetFileSize(byte[] fileBytes)
+        {
+            return fileBytes.Length;
+        }
     }
 }

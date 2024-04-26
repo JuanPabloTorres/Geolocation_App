@@ -24,7 +24,7 @@ public partial class SearchAd : ContentPage
 
     protected override void OnAppearing()
     {
-        SearchAdViewModel.PageIndex = 1;
+        SearchAdViewModel2.PageIndex = 1;
 
         this.viewModel.NearByTemplateViewModels.Clear();
 
@@ -86,9 +86,9 @@ public partial class SearchAd : ContentPage
             {
                 var _oldCount = GetSourceLastIndexCount();
 
-                MyContentViewModel.PageIndex++;
+                SearchAdViewModel2.PageIndex++;
 
-                await this.viewModel.InitializeAsync(SearchAdViewModel.PageIndex);
+                await this.viewModel.InitializeAsync(SearchAdViewModel2.PageIndex);
 
                 var _newCount = GetSourceLastIndexCount();
 

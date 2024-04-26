@@ -16,6 +16,8 @@ namespace GeolocationAds.ViewModels
         private readonly IAppSettingService _appSettingService;
 
         private readonly ICaptureService _captureService;
+        
+        private readonly IAdvertisementService _ad;
 
         private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
 
@@ -24,9 +26,6 @@ namespace GeolocationAds.ViewModels
 
         private ObservableCollection<AppSetting> _adTypesSettings;
         public ObservableCollection<AppSetting> AdTypesSettings => _adTypesSettings ?? (_adTypesSettings = new ObservableCollection<AppSetting>());
-
-        //private ObservableCollection<NearByTemplateViewModel> _nearByTemplateViewModels;
-        //public ObservableCollection<NearByTemplateViewModel> NearByTemplateViewModels => _nearByTemplateViewModels ?? (_nearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel>());
 
         private ObservableCollection<NearByTemplateViewModel2> _nearByTemplateViewModels;
         public ObservableCollection<NearByTemplateViewModel2> NearByTemplateViewModels => _nearByTemplateViewModels ?? (_nearByTemplateViewModels = new ObservableCollection<NearByTemplateViewModel2>());
@@ -63,11 +62,12 @@ namespace GeolocationAds.ViewModels
 
         private FilterPopUpViewModel filterPopUpViewModel;
 
-        public SearchAdViewModel(Advertisement advertisement, ICaptureService captureService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUser) : base(advertisement, geolocationAdService, logUser)
+        public SearchAdViewModel(Advertisement advertisement, ICaptureService captureService, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUser) : base(advertisement, geolocationAdService, logUser)
         {
             _appSettingService = appSettingService;
 
             _captureService = captureService;
+          
 
             SearchCommand = new Command(async () => await InitializeAsync());
 
@@ -90,7 +90,7 @@ namespace GeolocationAds.ViewModels
 
                     this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
 
-                    await InitializeAsync(PageIndex,isReset:true); 
+                    await InitializeAsync(PageIndex, isReset: true);
                 }
             }
             catch (Exception ex)
@@ -203,7 +203,6 @@ namespace GeolocationAds.ViewModels
         //    }
         //    catch (Exception ex)
         //    {
-
         //        // Consider how to handle partial failures and communicate them to the user
         //        await DisplayError($"An error occurred while loading ads: {ex.Message}");
         //    }
@@ -277,7 +276,6 @@ namespace GeolocationAds.ViewModels
                 // Decide how to handle already initialized viewModels if needed
             }
         }
-
 
         private static Task DisplayError(string message) => Shell.Current.DisplayAlert("Error", message, "OK");
 
@@ -364,7 +362,5 @@ namespace GeolocationAds.ViewModels
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
-
-       
     }
 }

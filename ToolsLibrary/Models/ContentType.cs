@@ -15,6 +15,8 @@ namespace ToolsLibrary.Models
 
         public string FilePath { get; set; }
 
+        public long FileSize { get; set; }
+
         [ForeignKey(nameof(AdvertisingId))]
         [JsonIgnore]
         public Advertisement Advertisement { get; set; }

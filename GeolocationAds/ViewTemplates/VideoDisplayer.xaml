@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
                       xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+
+      xmlns:converter="clr-namespace:GeolocationAds.App_Converter"
        xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
              x:Class="GeolocationAds.ViewTemplates.VideoDisplayer">
 
+    <Grid.Resources>
+
+        <converter:MediaStateChangedEventArgsConverter x:Key="MediaStateConverter" />
+        <converter:MediaFailedEventArgsConverter x:Key="MediaFailedConverter" />
+        <converter:MediaEventArgsConverter x:Key="MediaEventArgsConverter" />
+    </Grid.Resources>
+
     <toolkit:MediaElement
+        x:Name="videoPlayer"
          Grid.Row="0"
          Aspect="Fill"
+        Source="https://localhost:7043/hls/7f3ee83f-662d-464c-872b-abc7327c5ff1/output.m3u8"
          ShouldAutoPlay="False"
          ShouldKeepScreenOn="True"
          ShouldLoopPlayback="False"
          ShouldShowPlaybackControls="True"
-         Source="{Binding MediaSource}" />
+       >
+
+        <!--<toolkit:MediaElement.Behaviors>
+            <toolkit:EventToCommandBehavior
+            EventName="StateChanged"
+            Command="{Binding MediaStateChangedCommand}"
+            EventArgsConverter="{StaticResource MediaStateConverter}" />
+
+        
+
+        
+        </toolkit:MediaElement.Behaviors>-->
+    </toolkit:MediaElement>
 
     <StackLayout x:Name="myContentStackHeader" Grid.Row="0">
 
@@ -23,7 +47,7 @@
         <headerView:HomeContentItemHeaderView />
     </StackLayout>
 
-    <StackLayout x:Name="searchContentStackHeaderBtn" Grid.Row="0" VerticalOptions="End" HorizontalOptions="CenterAndExpand">
+    <!--<StackLayout x:Name="searchContentStackHeaderBtn" Grid.Row="0" VerticalOptions="End" HorizontalOptions="CenterAndExpand">
         <Button
          HorizontalOptions="FillAndExpand"
      WidthRequest="300"
@@ -35,7 +59,7 @@
          Text="Detail"
      Style="{StaticResource  cardButton}">
         </Button>
-    </StackLayout>
+    </StackLayout>-->
 
     <!--<headerView:ContentHeaderView Grid.Row="0" />-->
 

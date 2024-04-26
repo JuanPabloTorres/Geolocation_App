@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ExCSS;
+using Newtonsoft.Json;
+using System;
 using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -100,6 +102,133 @@ namespace GeolocationAds.Services
             }
         }
 
+        //public async Task<Stream> GetVideoContentAsync(int id, string range)
+        //{
+        //    // Send an HTTP GET request to the "all" endpoint of your API
+        //    HttpResponseMessage response = await this._httpClient.GetAsync($"{this.BaseApiUri}/{nameof(GetVideoContentAsync)}/{id}");
+
+        //    // Ensure the request was successful
+        //    response.EnsureSuccessStatusCode();
+
+        //    // Read the response content as a string
+        //    //string responseContent = await response.Content.ReadAsByteArrayAsync();
+
+        //    byte[] videoBytes = await response.Content.ReadAsByteArrayAsync();
+
+        //    if (string.IsNullOrEmpty(range))
+        //    {
+        //        return new MemoryStream(videoBytes);
+        //    }
+
+        //    var rangeParts = range.Replace("bytes=", "").Split('-');
+        //    long start = Convert.ToInt64(rangeParts[0]);
+        //    long end = rangeParts.Length > 1 ? Convert.ToInt64(rangeParts[1]) : videoBytes.Length - 1;
+
+        //    return new MemoryStream(videoBytes, (int)start, (int)(end - start + 1));
+        //}
+
+        //public async Task<Stream> GetContentVideoAsync(int id, string range)
+        //{
+        //    // Send an HTTP GET request to the appropriate endpoint of your API
+        //    HttpResponseMessage response = await this._httpClient.GetAsync($"{this.BaseApiUri}/{nameof(GetContentVideoAsync).Replace("Async","")}/{id}");
+
+        //    // Ensure the request was successful
+        //    response.EnsureSuccessStatusCode();
+
+        //    // Read the response content as a byte array
+        //    byte[] videoBytes = await response.Content.ReadAsByteArrayAsync();
+
+        //    if (string.IsNullOrEmpty(range))
+        //    {
+        //        // If no range is specified, return the entire video content
+        //        return new MemoryStream(videoBytes);
+        //    }
+
+        //    // Parse the 'Range' header: "bytes=200-1000"
+        //    var rangeParts = range.Replace("bytes=", "").Split('-');
+
+        //    long start = Convert.ToInt64(rangeParts[0]);
+
+        //    long end = rangeParts.Length > 1 ? Convert.ToInt64(rangeParts[1]) : videoBytes.Length - 1;
+
+        //    // Return the specified range of the video content
+        //    return new MemoryStream(videoBytes, (int)start, (int)(end - start + 1));
+        //}
+
+        //public async Task<Stream> GetContentVideoAsync(int id, string range)
+        //{
+        //    // Create the request message
+        //    var requestUri = $"{this.BaseApiUri}/{nameof(GetContentVideoAsync).Replace("Async", "")}/{id}";
+        //    using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+
+        //    // Add Range header if specified
+        //    if (!string.IsNullOrEmpty(range))
+        //    {
+        //        request.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(
+        //            long.Parse(range.Split('-')[0]), // start of range
+        //            (range.Contains('-') && range.Split('-')[1] != "") ? (long?)long.Parse(range.Split('-')[1]) : null // end of range, if specified
+        //        );
+        //    }
+
+        //    // Send the HTTP request
+        //    using HttpResponseMessage response = await _httpClient.SendAsync(request);
+
+        //    // Ensure the request was successful
+        //    response.EnsureSuccessStatusCode();
+
+        //    // Read the response content as a byte array
+        //    byte[] videoBytes = await response.Content.ReadAsByteArrayAsync();
+
+        //    // If no range was specified in the input, return the entire video content
+        //    if (string.IsNullOrEmpty(range))
+        //    {
+        //        return new MemoryStream(videoBytes);
+        //    }
+
+        //    // Parse the 'Range' header: "bytes=200-1000"
+        //    var rangeParts = range.Replace("bytes=", "").Split('-');
+
+        //    long start = Convert.ToInt64(rangeParts[0]);
+
+        //    long end = rangeParts.Length > 1 ? Convert.ToInt64(rangeParts[1]) : videoBytes.Length - 1;
+
+        //    // Return the specified range of the video content
+        //    return new MemoryStream(videoBytes, (int)start, (int)(end - start + 1));
+        //}
+
+        public async Task<byte[]> GetContentVideoAsync(int id, string range)
+        {
+            // Create the request message
+            var requestUri = $"{this.BaseApiUri}/{nameof(GetContentVideoAsync).Replace("Async", "")}/{id}";
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+
+            // Add Range header if specified
+            if (!string.IsNullOrEmpty(range))
+            {
+                range = range.Replace("bytes=", ""); // Strip the 'bytes=' prefix if present
+
+                long start = long.Parse(range.Split('-')[0]); // Parse start of range
+
+                long? end = (range.Contains('-') && range.Split('-')[1] != "") ? long.Parse(range.Split('-')[1]) : null; // Parse end of range if specified
+
+                // Set the range header
+                request.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(start, end);
+            }
+
+            // Send the HTTP request
+            using HttpResponseMessage response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+
+            // Ensure the request was successful
+            response.EnsureSuccessStatusCode();
+
+            // Read the response content as a string
+            var  responseContent = await response.Content.ReadAsByteArrayAsync();
+
+            // Return the response content as a stream
+            return responseContent;
+        }
+
         private string GetMediaType(ContentVisualType type)
         {
             return type switch
@@ -109,5 +238,89 @@ namespace GeolocationAds.Services
                 _ => "application/octet-stream"
             };
         }
+
+        //public async Task DownloadVideoAsync(string outputPath)
+        //{
+        //    try
+        //    {
+        //        // Obtener el tamaño total del contenido
+        //        var totalSize = await GetContentLengthAsync();
+
+        //        if (totalSize == null)
+        //        {
+        //            Console.WriteLine("No se pudo obtener el tamaño del contenido.");
+        //            return;
+        //        }
+
+        //        using (var fileStream = new FileStream(outputPath, FileMode.Create, FileAccess.Write, FileShare.None))
+        //        {
+        //            for (int start = 0; start < totalSize; start += ConstantsTools.SegmentSize)
+        //            {
+        //                int end = start + ConstantsTools.SegmentSize - 1;
+
+        //                if (end >= totalSize)
+        //                {
+        //                    end = (totalSize ?? 0) - 1;
+        //                }
+
+        //                // Descargar el segmento
+        //                var buffer = await DownloadSegmentAsync(start, end);
+
+        //                if (buffer != null)
+        //                {
+        //                    // Escribir en archivo
+        //                    await fileStream.WriteAsync(buffer, 0, buffer.Length);
+
+        //                    Console.WriteLine($"Segmento {start}-{end} descargado y escrito.");
+        //                }
+        //                else
+        //                {
+        //                    Console.WriteLine($"Error descargando el segmento {start}-{end}.");
+        //                    return;
+        //                }
+        //            }
+        //        }
+
+        //        Console.WriteLine("Descarga completada con éxito.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error durante la descarga: {ex.Message}");
+        //    }
+        //}
+
+        //private async Task<byte[]> DownloadSegmentAsync(int start, int end)
+        //{
+        //    try
+        //    {
+        //        var request = new HttpRequestMessage(HttpMethod.Get, _url);
+
+        //        request.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(start, end);
+
+        //        var response = await _httpClient.SendAsync(request);
+
+        //        response.EnsureSuccessStatusCode();
+
+        //        return await response.Content.ReadAsByteArrayAsync();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error al descargar el segmento {start}-{end}: {ex.Message}");
+
+        //        return null;
+        //    }
+        //}
+
+        //private async Task<int?> GetContentLengthAsync()
+        //{
+        //    var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Head, _url));
+
+        //    if (response.IsSuccessStatusCode && response.Content.Headers.ContentLength.HasValue)
+        //    {
+        //        return (int)response.Content.Headers.ContentLength.Value;
+        //    }
+
+        //    return null;
+        //}
     }
 }

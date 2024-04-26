@@ -60,8 +60,6 @@ namespace GeolocationAds.ViewModels
                 await InitializeAsync();
             });
 
-            //this.OpenFilterPopUpCommand = new Command(OpenFilterPopUpAsync);
-
             OpenFilterPopUpCommand = new Command(async () => await OpenFilterPopUpAsync());
 
             MangeContentTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;

@@ -12,23 +12,6 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
-        //public async Task<ResponseTool<bool>> CreateRangeAsync(IEnumerable<ContentType> contentTypes)
-        //{
-        //    try
-        //    {
-        //        await _context.ContentTypes.AddRangeAsync(contentTypes);
-
-        //        await this._context.SaveChangesAsync();
-
-
-        //        return ResponseFactory<bool>.BuildSusccess("Created.", true, ToolsLibrary.Tools.Type.Added);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
-
         public async Task<ResponseTool<bool>> CreateRangeAsync(IEnumerable<ContentType> contentTypes)
         {
             try
@@ -56,6 +39,19 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
+        public async Task<ResponseTool<ContentType>> GetContentById(int contentId)
+        {
+            try
+            {
+                var _contentResult = await _context.ContentTypes.FindAsync(contentId);
+
+                return ResponseFactory<ContentType>.BuildSusccess("Entity found.", _contentResult, ToolsLibrary.Tools.Type.Found);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<ContentType>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
 
         public async Task<ResponseTool<IEnumerable<ContentType>>> GetContentsOfAdById(int id)
         {

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui.Views;
+﻿using CommunityToolkit.Maui.Core.Primitives;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
@@ -27,6 +28,12 @@ namespace GeolocationAds.TemplateViewModel
 
         protected readonly ICaptureService service;
 
+        public delegate void MediaElementPlayingEventHandler(object sender, MediaStateChangedEventArgs e);
+
+        public static event MediaElementPlayingEventHandler MediaElementPlaying;
+
+        public string VideoFilePath { get; set; }
+
         public NearByTemplateViewModel2(ICaptureService captureService, Advertisement advertisement, LogUserPerfilTool logUser)
         {
             this.LogUser = logUser;
@@ -34,6 +41,47 @@ namespace GeolocationAds.TemplateViewModel
             this.Advertisement = advertisement;
 
             this.service = captureService;
+        }
+
+        //[RelayCommand]
+        //private void OnMediaElementEnd(EventArgs args)
+        //{
+        //    // Code to execute after seek completes
+
+        //    System.Diagnostics.Debug.WriteLine($"Completed....!");
+        //}
+
+        //[RelayCommand]
+        //private void MediaStateChangedFailed(MediaFailedEventArgs args)
+        //{
+        //    MediaElementPlaying.Invoke(this,  null);
+        //}
+
+            [RelayCommand]
+        private void MediaStateChanged(MediaStateChangedEventArgs args)
+        {
+            if (args.NewState == MediaElementState.Buffering ||             
+                args.NewState == MediaElementState.Opening ||
+                args.NewState == MediaElementState.Playing
+              
+               
+
+               )
+            {
+                System.Diagnostics.Debug.WriteLine($"New State (Inside If):{args.NewState}");
+
+                System.Diagnostics.Debug.WriteLine($"Prevoius State (Inside If):{args.PreviousState}");
+
+                //MediaElementPlaying.Invoke(this, args);
+
+              
+            }
+
+            System.Diagnostics.Debug.WriteLine($"New State:{args.NewState}");
+
+            System.Diagnostics.Debug.WriteLine($"Prevoius State:{args.PreviousState}");
+
+            //MediaState = args.State; // Set the property to the new state
         }
 
         public async Task InitializeAsync()
@@ -56,9 +104,11 @@ namespace GeolocationAds.TemplateViewModel
 
                         case ContentVisualType.Video:
 
-                            var file = await SaveToTempAsync(content.Content);
+                            //var file = await SaveToTempAsync(content.Content);
 
-                            this.MediaSource = file;
+                            //this.MediaSource = file;
+
+                            //InitializeCommands();
 
                             break;
                     }
@@ -77,7 +127,13 @@ namespace GeolocationAds.TemplateViewModel
 
         private async Task<MediaSource> SaveToTempAsync(byte[] videoData)
         {
-            return await CommonsTool.SaveByteArrayToTempFile2(videoData);
+            //return await CommonsTool.SaveByteArrayToTempFile2(videoData);
+
+            VideoFilePath = await CommonsTool.SaveByteArrayToPartialFile3(videoData, string.Empty);
+
+            //return await CommonsTool.SaveByteArrayToPartialFile3(videoData, string.Empty);
+
+            return VideoFilePath;
         }
 
         public async Task FillTemplate()
