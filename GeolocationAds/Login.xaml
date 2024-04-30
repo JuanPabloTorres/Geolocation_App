@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="Login"
-    BackgroundImageSource="gbook03.jpg"
+    BackgroundImageSource="loginbackground.jpeg"
     Routing.Route="Login"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -18,7 +18,11 @@
         <!--  Header Section  -->
 
         <!--  Form Section  -->
-        <Frame Grid.Row="1" Style="{StaticResource cardLogoFrame}">
+        <Border
+            Grid.Row="1"
+            StrokeShape="RoundRectangle 40,5,5,40"
+            StrokeThickness="0.4"
+            Style="{StaticResource CustomBorderStyle}">
 
             <StackLayout>
 
@@ -27,7 +31,7 @@
                     FontFamily="Roboto"
                     FontSize="40"
                     Style="{StaticResource globalTitle}"
-                    Text="GeoConnect"
+                    Text="Geo-Connect"
                     TextColor="#3e4144" />
 
                 <local:CustomEntryContentView
@@ -55,7 +59,7 @@
                 </Button>
 
                 <Button
-                    BackgroundColor="CadetBlue"
+                    BackgroundColor="{StaticResource BrightOrangeRed}"
                     Command="{Binding GoToRegisterCommand}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
@@ -67,13 +71,13 @@
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Style="{StaticResource globalButton}"
                     Text="Forgot Password?"
-                    TextColor="SteelBlue" />
+                    TextColor="{StaticResource Burgundy}" />
 
                 <ActivityIndicator
                     IsRunning="{Binding IsLoading}"
                     IsVisible="{Binding IsLoading}"
                     Style="{StaticResource globalLoading}" />
             </StackLayout>
-        </Frame>
+        </Border>
     </Grid>
 </ContentPage>

@@ -36,6 +36,32 @@ public partial class PaginControls : StackLayout
         set => SetValue(IsNextButtonEnabledProperty, value);
     }
 
+    public static readonly BindableProperty IsNextButtonVisibleProperty = BindableProperty.Create(
+         "IsNextButtonVisible",
+         typeof(bool),
+         typeof(Button),
+         defaultValue: true,
+         propertyChanged: OnNextButtonVisibleChanged);
+
+    public bool IsNextButtonVisible
+    {
+        get => (bool)GetValue(IsNextButtonVisibleProperty);
+        set => SetValue(IsNextButtonVisibleProperty, value);
+    }
+
+    public static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(
+      "IsBackButtonVisible",
+      typeof(bool),
+      typeof(Button),
+      defaultValue: true,
+      propertyChanged: OnBackButtonVisibleChanged);
+
+    public bool IsBackButtonVisible
+    {
+        get => (bool)GetValue(IsBackButtonVisibleProperty);
+        set => SetValue(IsBackButtonVisibleProperty, value);
+    }
+
     public PaginControls()
     {
         InitializeComponent();
@@ -68,6 +94,26 @@ public partial class PaginControls : StackLayout
         if (view != null)
         {
             view.NextBtn.IsEnabled = (bool)newValue;
+        }
+    }
+
+    private static void OnNextButtonVisibleChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var view = bindable as PaginControls;
+
+        if (view != null)
+        {
+            view.NextBtn.IsVisible = (bool)newValue;
+        }
+    }
+
+    private static void OnBackButtonVisibleChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var view = bindable as PaginControls;
+
+        if (view != null)
+        {
+            view.BackBtn.IsVisible = (bool)newValue;
         }
     }
 }

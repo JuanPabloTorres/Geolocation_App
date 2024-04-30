@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             VerticalOptions="End"
-            
-               HorizontalOptions="FillAndExpand"
-  
-  Orientation="Horizontal"
-             x:Class="GeolocationAds.ViewTemplates.PaginControls">
-    
-        <Button
-            x:Name="BackBtn"
-         
-            Clicked="BackItemButton_Clicked"
-            Style="{StaticResource pagingBtn}">
+<StackLayout
+    x:Class="GeolocationAds.ViewTemplates.PaginControls"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HorizontalOptions="FillAndExpand"
+    Orientation="Horizontal"
+    VerticalOptions="End">
 
-            <Button.ImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
-            </Button.ImageSource>
-        </Button>
-        <Button
-            x:Name="NextBtn"
-          
-            Clicked="NextItemButton_Clicked"
-            Style="{StaticResource pagingBtn}">
+    <Button
+        x:Name="BackBtn"
+        BackgroundColor="{StaticResource BrightOrangeRed}"
+        Clicked="BackItemButton_Clicked"
+        Style="{StaticResource pagingBtn}">
 
-            <Button.ImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
-            </Button.ImageSource>
-        </Button>
-  
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
+        </Button.ImageSource>
+    </Button>
+    <Button
+        x:Name="NextBtn"
+        BackgroundColor="{StaticResource DarkFuchsia}"
+        Clicked="NextItemButton_Clicked"
+        Style="{StaticResource pagingBtn}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
+        </Button.ImageSource>
+    </Button>
+
 </StackLayout>

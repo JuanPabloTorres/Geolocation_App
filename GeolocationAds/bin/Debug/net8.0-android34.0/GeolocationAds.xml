@@ -117,6 +117,18 @@
         <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.CarouselViewPosition">
             <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.carouselViewPosition"/>
         </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.IsNextVisible">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.isNextVisible"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.IsBackVisible">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.isBackVisible"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.IsNextEnabled">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.isNextEnabled"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.IsBackEnabled">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.isBackEnabled"/>
+        </member>
         <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.SelectedDistance">
             <inheritdoc cref="F:GeolocationAds.ViewModels.SearchAdViewModel2.selectedDistance"/>
         </member>
@@ -291,6 +303,18 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CarouselViewPosition">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsNextVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsNextVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBackVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsBackVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsNextEnabled">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsNextEnabled" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBackEnabled">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsBackEnabled" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
         </member>
@@ -329,6 +353,18 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CarouselViewPosition">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsNextVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsNextVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBackVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsBackVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsNextEnabled">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsNextEnabled" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBackEnabled">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsBackEnabled" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>

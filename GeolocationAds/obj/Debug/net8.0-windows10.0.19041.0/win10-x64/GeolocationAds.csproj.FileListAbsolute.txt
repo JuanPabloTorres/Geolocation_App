@@ -1078,7 +1078,6 @@ C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.1
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\plus.scale-100.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\setting.scale-100.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\star.scale-100.png
-C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gbook03.scale-100.jpg
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\filebox.scale-100.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\travelexplore.scale-100.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\map.scale-100.png
@@ -1161,3 +1160,5 @@ C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.1
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
+C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\nearby2.scale-100.jpeg
+C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\loginbackground.scale-100.jpeg

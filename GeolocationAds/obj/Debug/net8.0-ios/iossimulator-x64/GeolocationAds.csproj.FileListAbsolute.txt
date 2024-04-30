@@ -1250,7 +1250,6 @@ C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimula
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\travelexplore.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\filebox.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\star.png
-C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\gbook03.jpg
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appiconItunesArtwork.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon83.5x83.5@2x.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon76x76@2x.png
@@ -1299,3 +1298,5 @@ C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimula
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\GeolocationAds.pdb
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\GeolocationAds.genruntimeconfig.cache
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\ref\GeolocationAds.dll
+C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\nearby2.jpeg
+C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Resources\loginbackground.jpeg

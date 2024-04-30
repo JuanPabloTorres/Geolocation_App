@@ -11,6 +11,7 @@ using Org.BouncyCastle.Utilities;
 using SkiaSharp;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -22,6 +23,18 @@ namespace GeolocationAds.ViewModels
     {
         [ObservableProperty]
         private int carouselViewPosition;
+
+        [ObservableProperty]
+        private bool isNextVisible;
+
+        [ObservableProperty]
+        private bool isBackVisible;
+
+        [ObservableProperty]
+        private bool isNextEnabled;
+
+        [ObservableProperty]
+        private bool isBackEnabled;
 
         private readonly IAppSettingService _appSettingService;
 
@@ -123,11 +136,11 @@ namespace GeolocationAds.ViewModels
                     //    message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
                     //}
 
-                    string message = (CarouselViewPosition == (NearByTemplateViewModels.Count - 1)) ? "No more ads found." : apiResponse.Message;
+                    //string message = (CarouselViewPosition == (NearByTemplateViewModels.Count - 1)) ? "No more ads found." : apiResponse.Message;
 
-                    //string message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
+                    ////string message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
 
-                    await CommonsTool.DisplayAlert("Notification", message);
+                    //await CommonsTool.DisplayAlert("Notification", message);
 
                     return;
                 }
@@ -155,6 +168,16 @@ namespace GeolocationAds.ViewModels
                 // Handle partial failures here if necessary
                 await CommonsTool.DisplayAlert("Error", $"An error occurred while loading ads: {ex.Message}");
                 // Decide how to handle already initialized viewModels if needed
+            }
+            finally
+            {
+                this.IsNextVisible = true;
+
+                this.IsBackVisible = true;
+
+                this.IsBackEnabled = false;
+
+                this.IsNextEnabled = true;
             }
         }
 

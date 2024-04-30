@@ -7,6 +7,17 @@
     Title="New Registration"
     Routing.Route="Register">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Shadow
+                x:Key="MyShadow"
+                Brush="#99000000"
+                Opacity="0.8"
+                Radius="10"
+                Offset="10,10" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems>
 
         <ToolbarItem Command="{Binding SubmitCommand}" CommandParameter="{Binding Model}">
@@ -16,7 +27,72 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <Frame Padding="10" Style="{StaticResource cardFrame}">
+    <Border Style="{StaticResource CustomBorderStyle}">
+        <ScrollView HorizontalScrollBarVisibility="Never">
+            <StackLayout Orientation="Vertical" Spacing="20">
+
+                <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+
+                <!--  Section Title for Personal Information  -->
+                <Label Style="{StaticResource globalLabel}" Text="Personal Information" />
+                <BoxView HeightRequest="0.1" />
+
+                <!--  FullName Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="2"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="FullName"
+                    Text="{Binding Model.FullName}" />
+
+                <!--  Phone Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="4"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Phone"
+                    Text="{Binding Model.Phone}" />
+
+                <!--  Section Title for Account Information  -->
+                <Label Style="{StaticResource globalLabel}" Text="Account Information" />
+                <BoxView HeightRequest="0.1" />
+
+                <!--  Email Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="6"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Email"
+                    Text="{Binding Model.Email}" />
+
+                <!--  Username Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="8"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Username"
+                    Text="{Binding Model.Login.Username}" />
+
+                <!--  Password Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="10"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Text="{Binding Model.Login.Password}" />
+            </StackLayout>
+        </ScrollView>
+    </Border>
+
+    <!--<Frame Padding="10" Style="{StaticResource cardFrame}">
 
         <Grid VerticalOptions="CenterAndExpand">
 
@@ -35,8 +111,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-
-
             <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -49,7 +123,6 @@
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
-
             </CollectionView>
 
             <Label
@@ -103,8 +176,6 @@
                 Placeholder="Password"
                 Text="{Binding Model.Login.Password}" />
 
-
-
             <ContentView
                 x:Name="LoadingIndicatorContainer"
                 Grid.Row="11"
@@ -115,5 +186,5 @@
                 </ContentView.Content>
             </ContentView>
         </Grid>
-    </Frame>
+    </Frame>-->
 </ContentPage>

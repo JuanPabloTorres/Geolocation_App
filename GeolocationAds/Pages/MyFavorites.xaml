@@ -3,6 +3,7 @@
     x:Class="GeolocationAds.Pages.MyFavorites"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controlDisplayer="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -82,8 +83,6 @@
                                 <CarouselView.EmptyView>
                                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                         <Label Style="{StaticResource emptyCollectionLabel}" Text="No content available." />
-
-
                                     </StackLayout>
                                 </CarouselView.EmptyView>
                             </CarouselView>
@@ -140,30 +139,10 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <StackLayout
+        <controlDisplayer:PaginControls
+            x:Name="paginControls"
             Grid.Row="1"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Orientation="Horizontal">
-            <Button
-                x:Name="BackBtn"
-                Clicked="BackItemButton_Clicked"
-                Style="{StaticResource pagingBtn}">
-
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c4;" />
-                </Button.ImageSource>
-            </Button>
-            <Button
-                x:Name="NextBtn"
-                Clicked="NextItemButton_Clicked"
-                Style="{StaticResource pagingBtn}">
-
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
-                </Button.ImageSource>
-            </Button>
-        </StackLayout>
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
 
         <ActivityIndicator
             Grid.Row="1"

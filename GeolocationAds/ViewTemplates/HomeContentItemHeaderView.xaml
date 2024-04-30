@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<StackLayout
+<VerticalStackLayout
     x:Class="GeolocationAds.ViewTemplates.HomeContentItemHeaderView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="Black"
-    Opacity="0.5"
-    Orientation="Horizontal"
-    VerticalOptions="Start">
+    Margin="5"
+    Padding="5"
+    BackgroundColor="{StaticResource AppBlack}"
+    HorizontalOptions="End"
+    Opacity="{StaticResource OpacityValue}"
+    VerticalOptions="Center">
 
     <Label
-        HorizontalOptions="StartAndExpand"
+        HorizontalOptions="Start"
         Style="{StaticResource globalLabel}"
         Text="{Binding Advertisement.Title}"
         TextColor="White" />
@@ -17,20 +19,36 @@
     <Button
         Command="{Binding CaptureItemCommand}"
         CommandParameter="{Binding Advertisement}"
+        FlexLayout.AlignSelf="End"
+        HorizontalOptions="Start"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
         Style="{StaticResource XButton}">
 
         <Button.ImageSource>
-            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe666;" />
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe87d;" />
+        </Button.ImageSource>
+    </Button>
+
+    <Button
+        CommandParameter="{Binding Advertisement.ID}"
+        HorizontalOptions="Start"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe619;" />
         </Button.ImageSource>
     </Button>
 
     <Button
         Command="{Binding OpenMetaDataPopUpCommand}"
         CommandParameter="{Binding Advertisement}"
+        HorizontalOptions="Start"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
         Style="{StaticResource XButton}">
 
         <Button.ImageSource>
             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe88e;" />
         </Button.ImageSource>
     </Button>
-</StackLayout>
+</VerticalStackLayout>

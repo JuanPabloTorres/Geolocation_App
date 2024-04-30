@@ -27,6 +27,21 @@
 
             <Color x:Key="AppBlack">#242124</Color>
 
+            <Color x:Key="DeepBlue">#1c1447</Color>
+            <!--  Un azul oscuro profundo  -->
+            <Color x:Key="MediumPurple">#7f2481</Color>
+            <!--  Un púrpura medio  -->
+            <Color x:Key="BrightOrangeRed">#e1482b</Color>
+            <!--  Un rojo anaranjado brillante  -->
+            <Color x:Key="Burgundy">#961e52</Color>
+            <!--  Un rojo burdeos  -->
+            <Color x:Key="DarkViolet">#5a1b60</Color>
+            <!--  Un violeta oscuro  -->
+            <Color x:Key="DarkFuchsia">#bf1d57</Color>
+            <!--  Un fucsia oscuro  -->
+
+            <x:Double x:Key="OpacityValue">0.5</x:Double>
+
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
@@ -60,13 +75,12 @@
 
             <Style x:Key="globalEntry" TargetType="Entry">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
-                <Setter Property="Margin" Value="5" />
+                <Setter Property="Margin" Value="0" />
             </Style>
 
             <Style x:Key="globalPicker" TargetType="Picker">
@@ -76,7 +90,7 @@
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
-                <Setter Property="Margin" Value="5" />
+                <Setter Property="Margin" Value="0" />
             </Style>
 
             <Style x:Key="globalFormContainer" TargetType="StackLayout">
@@ -103,7 +117,7 @@
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BackgroundColor" Value="{StaticResource AppGray}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkViolet}" />
             </Style>
 
             <Style x:Key="pagingBtn" TargetType="Button">
@@ -136,6 +150,52 @@
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="HasShadow" Value="True" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <Style x:Key="cardBorder" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
+
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <!--  Define the Shadow resource first  -->
+            <Shadow
+                x:Key="MyShadow"
+                Brush="#99000000"
+                Opacity="0.8"
+                Radius="4"
+                Offset="0,4" />
+
+            <!--  Define the Border style  -->
+            <Style x:Key="CustomBorderStyle" TargetType="Border">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="#F5F5F5" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="#961e52" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="1" />
+            </Style>
+
+            <Style x:Key="CustomBorderStyleOrange" TargetType="Border">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="#F5F5F5" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="{StaticResource BrightOrangeRed}" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="1" />
             </Style>
 
             <Style x:Key="verticalStandarStyle" TargetType="VerticalStackLayout">
@@ -173,14 +233,25 @@
                 <Setter Property="WidthRequest" Value="200" />
             </Style>
 
-            <Style x:Key="entryFrame" TargetType="Frame">
+            <!--<Style x:Key="entryFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="BorderColor" Value="LightGray" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="HasShadow" Value="True" />
-                <Setter Property="BorderColor" Value="#ffc340" />
+                <Setter Property="BorderColor" Value="LightGray" />
+            </Style>-->
+
+            <Style x:Key="entryFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#F5F5F5" />
+                <!--  Gris Claro para el fondo  -->
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderColor" Value="#003C8F" />
+                <!--  Azul Marino Profundo para el borde  -->
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="HasShadow" Value="True" />
             </Style>
 
             <Style x:Key="cardLogoFrame" TargetType="Frame">
@@ -235,7 +306,8 @@
             </Style>
 
             <Style x:Key="XButton" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="Start" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="RobotoBold" />

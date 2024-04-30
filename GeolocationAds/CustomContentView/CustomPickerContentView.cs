@@ -60,6 +60,7 @@ public class CustomPickerContentView : ContentView
         get => (string)GetValue(SelectValueProperty);
         set => SetValue(SelectValueProperty, value);
     }
+
     public static readonly BindableProperty IsEnabledProperty =
      BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomEntryContentView), default(bool), BindingMode.TwoWay);
 
@@ -68,7 +69,6 @@ public class CustomPickerContentView : ContentView
         get => (bool)GetValue(IsEnabledProperty);
         set => SetValue(IsEnabledProperty, value);
     }
-
 
     private Picker picker;
 
@@ -85,17 +85,15 @@ public class CustomPickerContentView : ContentView
 
         picker.SetBinding(Picker.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
 
-        var frame = new Frame
+        var frame = new Border
         {
-            Style = (Style)Application.Current.Resources["entryFrame"],
+            Style = (Style)Application.Current.Resources["CustomBorderStyleOrange"],
             Content = picker
         };
 
-        Content = new StackLayout
+        Content = new VerticalStackLayout
         {
             Margin = 5,
-            HorizontalOptions = LayoutOptions.FillAndExpand,
-            Orientation = StackOrientation.Vertical,
             Children = { frame }
         };
     }

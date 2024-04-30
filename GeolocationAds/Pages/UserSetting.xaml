@@ -9,14 +9,10 @@
 
     <Grid VerticalOptions="CenterAndExpand">
 
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-
-
         </Grid.RowDefinitions>
-
 
         <Button
             Grid.Row="0"

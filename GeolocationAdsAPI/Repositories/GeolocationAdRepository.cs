@@ -37,12 +37,6 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                // Assume pre-calculation or efficient distance filtering
-                //var relevantAdIds = _context.GeolocationAds
-                //    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <= geo.ExpirationDate)
-                //    .Select(geo => geo.AdvertisingId)
-                //    .Distinct();
-
                 var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance && DateTime.Now <= v.ExpirationDate).OrderBy(c => c.Advertisement.CreateDate)
                     .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
                    .Distinct().ToListAsync();

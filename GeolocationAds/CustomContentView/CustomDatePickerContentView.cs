@@ -30,22 +30,20 @@ public class CustomDatePickerContentView : ContentView
         };
         datePicker.SetBinding(DatePicker.DateProperty, new Binding(nameof(SelectedDate), source: this));
 
-        var frame = new Frame
+        var frame = new Border
         {
             Style = (Style)Application.Current.Resources["entryFrame"],
 
-            Content = new StackLayout
+            Content = new VerticalStackLayout
             {
-                Orientation = StackOrientation.Horizontal,
                 Children = { datePicker }
             }
         };
 
-        Content = new StackLayout
+        Content = new VerticalStackLayout
         {
             Margin = 5,
             HorizontalOptions = LayoutOptions.FillAndExpand,
-            Orientation = StackOrientation.Vertical,
             Children = { frame }
         };
     }

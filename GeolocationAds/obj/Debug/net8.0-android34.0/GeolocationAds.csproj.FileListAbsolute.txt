@@ -971,7 +971,6 @@ C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\r
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\filebox.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\travelexplore.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\star.png
-C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\gbook03.jpg
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\map.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\plus.png
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png
@@ -2192,3 +2191,5 @@ C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\s
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.CoreLib.dll
+C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\nearby2.jpeg
+C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\resizetizer\r\drawable\loginbackground.jpeg

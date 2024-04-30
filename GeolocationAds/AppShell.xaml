@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:GeolocationAds"
     xmlns:pages="clr-namespace:GeolocationAds.Pages"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Shell.BackgroundColor="#454546"
+    Shell.BackgroundColor="{StaticResource MediumPurple}"
     Shell.TabBarIsVisible="False">
 
     <ShellContent
@@ -17,26 +17,26 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
-            Title="Find Content"
+            Title="Search and Discover"
             ContentTemplate="{DataTemplate pages:SearchAd}"
             Icon="travelexplore.png" />
 
         <ShellContent
-            Title="Captues"
+            Title="My Captures"
             ContentTemplate="{DataTemplate pages:MyFavorites}"
             Icon="star.png" />
 
         <ShellContent
-            Title="Create"
+            Title="Content Creation"
             ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
             Icon="plus.png" />
         <ShellContent
-            Title="My Content"
+            Title="Created by Me"
             ContentTemplate="{DataTemplate pages:MyContentPage}"
             Icon="filebox.png" />
 
         <ShellContent
-            Title="Nearby Content Map"
+            Title="Near You: Explore Now"
             ContentTemplate="{DataTemplate pages:GoogleMapPage}"
             Icon="map.png" />
 

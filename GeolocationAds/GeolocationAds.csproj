@@ -58,6 +58,8 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
+	  <None Remove="Resources\Images\loginbackground.jpeg" />
+	  <None Remove="Resources\Images\nearby2.jpeg" />
 	</ItemGroup>
 
 	<ItemGroup>

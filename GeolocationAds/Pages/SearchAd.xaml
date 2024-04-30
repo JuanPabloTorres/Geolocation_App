@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
-    Title="Find Content"
+    Title="Search and Discover"
     Routing.Route="SearchAd">
 
     <ContentPage.ToolbarItems>
@@ -59,7 +59,12 @@
             <CarouselView.EmptyView>
 
                 <Grid>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Are You Look For Something?" />
+                    <!--<Label Style="{StaticResource emptyCollectionLabel}" Text="Find Your Next Favorite" />-->
+
+                    <Image
+                        Aspect="AspectFit"
+                        HeightRequest="100"
+                        Source="nearby2.jpeg" />
                 </Grid>
             </CarouselView.EmptyView>
 
@@ -79,6 +84,10 @@
         <displayer:PaginControls
             x:Name="paginControls"
             Grid.Row="1"
+            IsBackButtonEnabled="{Binding IsBackEnabled, Mode=TwoWay}"
+            IsBackButtonVisible="{Binding IsBackVisible, Mode=TwoWay}"
+            IsNextButtonEnabled="{Binding IsNextEnabled, Mode=TwoWay}"
+            IsNextButtonVisible="{Binding IsNextVisible, Mode=TwoWay}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
 
         <ActivityIndicator

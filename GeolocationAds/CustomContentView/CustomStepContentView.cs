@@ -2,7 +2,7 @@ namespace GeolocationAds.CustomContentView;
 
 public class CustomStepContentView : ContentView
 {
-    public static new readonly BindableProperty IsVisibleProperty =
+    public new static readonly BindableProperty IsVisibleProperty =
          BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(CustomEntryContentView), default(bool), BindingMode.TwoWay);
 
     public new bool IsVisible

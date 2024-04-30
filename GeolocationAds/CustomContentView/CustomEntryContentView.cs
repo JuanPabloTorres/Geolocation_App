@@ -28,6 +28,7 @@ public class CustomEntryContentView : ContentView
         get => (bool)GetValue(IsPasswordProperty);
         set => SetValue(IsPasswordProperty, value);
     }
+
     public static readonly BindableProperty IsEnabledProperty =
        BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomEntryContentView), default(bool), BindingMode.TwoWay);
 
@@ -37,12 +38,10 @@ public class CustomEntryContentView : ContentView
         set => SetValue(IsEnabledProperty, value);
     }
 
-
     public CustomEntryContentView()
     {
         var entry = new Entry
         {
-
             Keyboard = Keyboard.Text,
             Style = (Style)Application.Current.Resources["globalEntry"]
         };
@@ -54,22 +53,19 @@ public class CustomEntryContentView : ContentView
 
         entry.SetBinding(Entry.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
 
-        var frame = new Frame
+        var frame = new Border
         {
-            Style = (Style)Application.Current.Resources["entryFrame"],
+            Style = (Style)Application.Current.Resources["CustomBorderStyle"],
 
-            Content = new StackLayout
+            Content = new VerticalStackLayout
             {
-                Orientation = StackOrientation.Horizontal,
                 Children = { entry }
             }
         };
 
-        Content = new StackLayout
+        Content = new VerticalStackLayout
         {
             Margin = 5,
-            HorizontalOptions = LayoutOptions.FillAndExpand,
-            Orientation = StackOrientation.Vertical,
             Children = { frame }
         };
     }

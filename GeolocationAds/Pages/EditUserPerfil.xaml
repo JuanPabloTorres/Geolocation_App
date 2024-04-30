@@ -15,10 +15,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <Frame
-        Padding="15"
-        Style="{StaticResource cardFrame}"
-        VerticalOptions="CenterAndExpand">
+    <Border Style="{StaticResource CustomBorderStyle}">
 
         <Grid VerticalOptions="CenterAndExpand">
 
@@ -83,33 +80,6 @@
                 Placeholder="Email"
                 Text="{Binding Model.Email}" />
 
-            <!--<Label Style="{StaticResource globalLabel}" Text="Username:" />
-                <local:CustomEntryContentView Placeholder="Username" Text="{Binding Model.Login.Username}" />
-
-                <Label Style="{StaticResource globalLabel}" Text="Passowrd:" />
-                <local:CustomEntryContentView
-                    IsPassword="True"
-                    Placeholder="Password"
-                    Text="{Binding Model.Login.Password}" />-->
-
-            <!--  Submit Button  -->
-            <!--<Button
-                x:Name="SubmitButton"
-                Command="{Binding SubmitUpdateCommand}"
-                CommandParameter="{Binding Model}"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButton}"
-                Text="Complete">
-
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-            </Button>-->
-
             <ContentView
                 x:Name="LoadingIndicatorContainer"
                 Grid.Row="8"
@@ -120,5 +90,5 @@
                 </ContentView.Content>
             </ContentView>
         </Grid>
-    </Frame>
+    </Border>
 </ContentPage>

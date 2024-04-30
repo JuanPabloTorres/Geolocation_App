@@ -235,11 +235,14 @@
     <AppxPackagedFile Include="C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\filebox.scale-100.png">
       <PackagePath>filebox.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\gbook03.scale-100.jpg">
-      <PackagePath>gbook03.scale-100.jpg</PackagePath>
+    <AppxPackagedFile Include="C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\loginbackground.scale-100.jpeg">
+      <PackagePath>loginbackground.scale-100.jpeg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\map.scale-100.png">
       <PackagePath>map.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\nearby2.scale-100.jpeg">
+      <PackagePath>nearby2.scale-100.jpeg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\plus.scale-100.png">
       <PackagePath>plus.scale-100.png</PackagePath>

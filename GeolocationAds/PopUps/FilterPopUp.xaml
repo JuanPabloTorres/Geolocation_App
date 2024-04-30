@@ -57,8 +57,8 @@
                 Style="{StaticResource globalLabel}"
                 Text="Type:" />
             <localControl:CustomPickerContentView
-                  IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 ItemDisplayBindingPath="Value"
                 ItemsSource="{Binding AdTypesSettings}"
                 SelectValue="{Binding SelectedAdType}"
@@ -69,8 +69,18 @@
             Grid.Row="2"
             Command="{Binding FilterCommand}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Search" />
+            Style="{StaticResource globalButton}">
+
+
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe8b6;"
+                    Color="#3e4144" />
+            </Button.ImageSource>
+
+
+        </Button>
 
         <ActivityIndicator
             Grid.Row="2"

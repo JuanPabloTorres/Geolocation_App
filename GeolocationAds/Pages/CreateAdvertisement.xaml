@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Title="Create Content"
+    Title="Content Creation"
     Routing.Route="CreateAdvertisement">
 
     <ContentPage.ToolbarItems>
@@ -113,8 +113,6 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
     </ContentPage.Resources>
 
-
-
     <Grid>
 
         <Grid.RowDefinitions>
@@ -188,5 +186,4 @@
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
     </Grid>
-
 </ContentPage>

@@ -55,15 +55,18 @@
                 Style="{StaticResource globalLabel}"
                 Text="Distance: (M)" />
 
-            <localControl:CustomPickerContentView ItemsSource="{Binding DistanceSettings}" SelectedItem="{Binding SelectedDistance}"   IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"/>
+            <localControl:CustomPickerContentView
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                ItemsSource="{Binding DistanceSettings}"
+                SelectedItem="{Binding SelectedDistance}" />
 
             <Label
                 HorizontalOptions="Start"
                 Style="{StaticResource globalLabel}"
                 Text="Type:" />
             <localControl:CustomPickerContentView
-                  IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 ItemDisplayBindingPath="Value"
                 ItemsSource="{Binding AdTypesSettings}"
                 SelectValue="{Binding SelectedAdType}"
@@ -73,9 +76,19 @@
         <Button
             Grid.Row="2"
             Command="{Binding FilterCommand}"
+            HorizontalOptions="Center"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Search" />
+            Style="{StaticResource globalButton}">
+
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe8b6;"
+                    Color="White" />
+            </Button.ImageSource>
+
+
+        </Button>
 
         <ActivityIndicator
             Grid.Row="2"

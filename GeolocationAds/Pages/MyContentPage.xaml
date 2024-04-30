@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:tVm="clr-namespace:GeolocationAds.TemplateViewModel"
-             x:Class="GeolocationAds.Pages.MyContentPage"
-             xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
-              xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
-             Title="My Content">
+<ContentPage
+    x:Class="GeolocationAds.Pages.MyContentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:tVm="clr-namespace:GeolocationAds.TemplateViewModel"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    Title="Created by Me">
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding SearchCommand}">
             <ToolbarItem.IconImageSource>
@@ -24,18 +25,18 @@
 
         <DataTemplate x:Key="ImageDataTemplateForDisplay2">
 
-            <displayer:ImageDisplayer  IsMyContentStackHeaderVisible="True"/>
+            <displayer:ImageDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplateForDisplay2">
 
-            <displayer:VideoDisplayer  IsMyContentStackHeaderVisible="True"/>
+            <displayer:VideoDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
         <templateSelector:ContentViewTemplateSelector
-        x:Key="typeSelector"
-        ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
-        VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
+            VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
     </ContentPage.Resources>
 
     <Grid>
@@ -46,11 +47,11 @@
         </Grid.RowDefinitions>
 
         <CarouselView
-        x:Name="carouselView"
-        Grid.Row="0"
-        IsSwipeEnabled="False"
+            x:Name="carouselView"
+            Grid.Row="0"
+            IsSwipeEnabled="False"
             ItemTemplate="{StaticResource typeSelector}"
-        ItemsSource="{Binding CollectionModel}">
+            ItemsSource="{Binding CollectionModel}">
 
             <CarouselView.EmptyView>
 
@@ -64,11 +65,14 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <displayer:PaginControls x:Name="paginControls" Grid.Row="1"  IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
+        <displayer:PaginControls
+            x:Name="paginControls"
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
 
         <ActivityIndicator
-        Grid.Row="1"
-        IsRunning="{Binding IsLoading}"
-        Style="{StaticResource globalLoading}" />
+            Grid.Row="1"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
     </Grid>
 </ContentPage>

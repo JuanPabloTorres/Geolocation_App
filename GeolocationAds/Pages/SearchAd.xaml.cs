@@ -18,8 +18,6 @@ public partial class SearchAd : ContentPage
         this.paginControls.NextClicked += NextItemButton_Clicked;
 
         this.paginControls.BackClicked += BackItemButton_Clicked;
-
-        
     }
 
     protected override void OnAppearing()
@@ -31,6 +29,10 @@ public partial class SearchAd : ContentPage
         this.paginControls.IsBackButtonEnabled = false;
 
         this.paginControls.IsNextButtonEnabled = true;
+
+        this.paginControls.IsNextButtonVisible = false;
+
+        this.paginControls.IsBackButtonVisible = false;
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
