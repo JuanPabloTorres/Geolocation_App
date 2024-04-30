@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using GeolocationAds.ViewModels;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ToolsLibrary.Extensions;
@@ -202,7 +203,13 @@ namespace GeolocationAds.TemplateViewModel
         {
             try
             {
-                var _metadataPopUp = new MetaDataPopUp(this.Advertisement);
+                var _metaDataViewModel = new MetaDataViewModel()
+                {
+                    CreateDate = this.Advertisement.CreateDate,
+                    DataSize = this.Advertisement.Contents.FirstOrDefault().FileSize
+                };
+
+                var _metadataPopUp = new MetaDataPopUp(_metaDataViewModel);
 
                 await Shell.Current.CurrentPage.ShowPopupAsync(_metadataPopUp);
             }

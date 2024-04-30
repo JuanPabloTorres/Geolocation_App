@@ -100,6 +100,15 @@
         <member name="P:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredentialCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredential(ToolsLibrary.Models.Login)"/>.</summary>
         </member>
+        <member name="T:GeolocationAds.ViewModels.MetaDataViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.MetaDataViewModel.CreateDate">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.MetaDataViewModel.createDate"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.MetaDataViewModel.DataSize">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.MetaDataViewModel.dataSize"/>
+        </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -273,6 +282,12 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CreateDate">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CreateDate" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DataSize">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DataSize" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CarouselViewPosition">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>
         </member>
@@ -305,6 +320,12 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CreateDate">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CreateDate" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DataSize">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DataSize" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CarouselViewPosition">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>

@@ -39,7 +39,7 @@ namespace GeolocationAdsAPI.Repositories
 
                     await _context.SaveChangesAsync();
 
-                    return ResponseFactory<ForgotPassword>.BuildSusccess("Succesffully.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
+                    return ResponseFactory<ForgotPassword>.BuildSuccess("Succesffully.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (!entity.IsObjectNull())
                 {
-                    return ResponseFactory<ForgotPassword>.BuildSusccess("Code Confirmed.", entity, ToolsLibrary.Tools.Type.Found);
+                    return ResponseFactory<ForgotPassword>.BuildSuccess("Code Confirmed.", entity, ToolsLibrary.Tools.Type.Found);
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace GeolocationAdsAPI.Repositories
 
                     await _context.SaveChangesAsync();
 
-                    return ResponseFactory<IEnumerable<ForgotPassword>>.BuildSusccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
+                    return ResponseFactory<IEnumerable<ForgotPassword>>.BuildSuccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
                 }
                 else
                 {
@@ -109,7 +109,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (!entity.IsObjectNull())
                 {
-                    return ResponseFactory<ForgotPassword>.BuildSusccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
+                    return ResponseFactory<ForgotPassword>.BuildSuccess("Reset Password.", entity, ToolsLibrary.Tools.Type.IsRecoveryPassword);
                 }
                 else
                 {

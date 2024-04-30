@@ -207,7 +207,7 @@ namespace GeolocationAdsAPI.Controllers
 
                 //var _response = ResponseFactory<string>.BuildSusccess("Streaming Path", $"{Request.Scheme}://{Request.Host}/{hlsOutput}");
 
-                var _response = ResponseFactory<string>.BuildSusccess("Streaming Path", $"{Request.Scheme}://192.168.0.11:5160{hlsOutput.Replace("wwwroot", "")}");
+                var _response = ResponseFactory<string>.BuildSuccess("Streaming Path", $"{Request.Scheme}://192.168.0.11:5160{hlsOutput.Replace("wwwroot", "")}");
 
                 //return Ok($"{Request.Scheme}://{Request.Host}/{hlsOutput}");
 

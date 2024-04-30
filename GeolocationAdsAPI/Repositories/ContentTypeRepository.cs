@@ -31,7 +31,7 @@ namespace GeolocationAdsAPI.Repositories
                 // Re-enable change tracking
                 _context.ChangeTracker.AutoDetectChangesEnabled = true;
 
-                return ResponseFactory<bool>.BuildSusccess("Created.", true, ToolsLibrary.Tools.Type.Added);
+                return ResponseFactory<bool>.BuildSuccess("Created.", true, ToolsLibrary.Tools.Type.Added);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 var _contentResult = await _context.ContentTypes.FindAsync(contentId);
 
-                return ResponseFactory<ContentType>.BuildSusccess("Entity found.", _contentResult, ToolsLibrary.Tools.Type.Found);
+                return ResponseFactory<ContentType>.BuildSuccess("Entity found.", _contentResult, ToolsLibrary.Tools.Type.Found);
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace GeolocationAdsAPI.Repositories
                     .Select(s => new ContentType() { ID = s.ID, AdvertisingId = s.AdvertisingId, Content = s.Content })
                     .ToListAsync();
 
-                return ResponseFactory<IEnumerable<ContentType>>.BuildSusccess("Entity found.", result);
+                return ResponseFactory<IEnumerable<ContentType>>.BuildSuccess("Entity found.", result);
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 await this._context.SaveChangesAsync();
 
-                return ResponseFactory<bool>.BuildSusccess("Entity found.", true);
+                return ResponseFactory<bool>.BuildSuccess("Entity found.", true);
             }
             catch (Exception ex)
             {

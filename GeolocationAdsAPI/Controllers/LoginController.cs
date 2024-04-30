@@ -115,7 +115,7 @@ namespace GeolocationAdsAPI.Controllers
                         LogUser = response.Data
                     };
 
-                    var _perfilResponse = ResponseFactory<LogUserPerfilTool>.BuildSusccess(response.Message, _userPerfil);
+                    var _perfilResponse = ResponseFactory<LogUserPerfilTool>.BuildSuccess(response.Message, _userPerfil);
 
                     return Ok(_perfilResponse);
                 }

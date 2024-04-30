@@ -176,7 +176,7 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(response);
                 }
 
-                response = ResponseFactory<ForgotPassword>.BuildSusccess("Email was sent.", null, ToolsLibrary.Tools.Type.Succesfully);
+                response = ResponseFactory<ForgotPassword>.BuildSuccess("Email was sent.", null, ToolsLibrary.Tools.Type.Succesfully);
 
                 return Ok(response);
             }

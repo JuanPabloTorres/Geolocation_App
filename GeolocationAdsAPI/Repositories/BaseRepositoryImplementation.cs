@@ -25,7 +25,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             await _context.SaveChangesAsync();
 
-            return ResponseFactory<T>.BuildSusccess("Created successfully.", entity, ToolsLibrary.Tools.Type.Added);
+            return ResponseFactory<T>.BuildSuccess("Created successfully.", entity, ToolsLibrary.Tools.Type.Added);
         }
         catch (Exception ex)
         {
@@ -47,7 +47,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             await _context.SaveChangesAsync();
 
-            return ResponseFactory<T>.BuildSusccess("Created successfully.", entity);
+            return ResponseFactory<T>.BuildSuccess("Created successfully.", entity);
         }
         catch (Exception ex)
         {
@@ -63,7 +63,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (entity != null)
             {
-                return ResponseFactory<T>.BuildSusccess("Found.", entity);
+                return ResponseFactory<T>.BuildSuccess("Found.", entity);
             }
 
             return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
@@ -93,7 +93,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (entity != null)
             {
-                return ResponseFactory<T>.BuildSusccess("Found.", entity, ToolsLibrary.Tools.Type.Found);
+                return ResponseFactory<T>.BuildSuccess("Found.", entity, ToolsLibrary.Tools.Type.Found);
             }
 
             return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
@@ -110,7 +110,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         {
             var allEntities = await _context.Set<T>().ToListAsync();
 
-            return ResponseFactory<IEnumerable<T>>.BuildSusccess("Data Found successfully.", allEntities);
+            return ResponseFactory<IEnumerable<T>>.BuildSuccess("Data Found successfully.", allEntities);
         }
         catch (Exception ex)
         {
@@ -137,7 +137,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
             if (entity != null)
             {
-                return ResponseFactory<IEnumerable<T>>.BuildSusccess("Entities found.", entity, ToolsLibrary.Tools.Type.Found);
+                return ResponseFactory<IEnumerable<T>>.BuildSuccess("Entities found.", entity, ToolsLibrary.Tools.Type.Found);
             }
 
             return ResponseFactory<IEnumerable<T>>.BuildFail("Entities not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
@@ -160,7 +160,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<T>.BuildSusccess("Removed successfully.", entity);
+                return ResponseFactory<T>.BuildSuccess("Removed successfully.", entity);
             }
 
             return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
@@ -219,7 +219,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<T>.BuildSusccess("Updated successfully.", entity);
+                return ResponseFactory<T>.BuildSuccess("Updated successfully.", entity);
             }
 
             return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
@@ -258,7 +258,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<T>.BuildSusccess("Entity updated successfully.", existingEntity);
+                return ResponseFactory<T>.BuildSuccess("Entity updated successfully.", existingEntity);
             }
 
             return ResponseFactory<T>.BuildFail("Entity not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);

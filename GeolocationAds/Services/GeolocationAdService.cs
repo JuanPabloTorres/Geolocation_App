@@ -14,7 +14,7 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear(CurrentLocation currentLocation, string distance)
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> FindAdsNearby(CurrentLocation currentLocation, string distance)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace GeolocationAds.Services
                 var apiUrl = APIPrefix + ApiSuffix;
 
                 // Send the POST request to the API
-                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdNear)}/{distance}", content);
+                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdsNearby)}/{distance}", content);
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)
@@ -35,7 +35,7 @@ namespace GeolocationAds.Services
                     // Read the response content and deserialize it to the appropriate type T
                     var responseJson = await response.Content.ReadAsStringAsync();
 
-                    var responseData = JsonConvert.DeserializeObject<ResponseTool<IEnumerable<Advertisement>>>(responseJson);
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<IEnumerable<GeolocationAd>>>(responseJson);
 
                     // Build a success response with the data
                     //var successResponse = ResponseFactory<T>.BuildSusccess("Successfully added.", responseData);
@@ -47,7 +47,7 @@ namespace GeolocationAds.Services
                 else
                 {
                     // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail("Request Error.", null);
+                    var failResponse = ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail("Request Error.", null);
 
                     return failResponse;
                 }
@@ -56,13 +56,13 @@ namespace GeolocationAds.Services
             {
                 // If an exception occurs, build a fail response with the error message
 
-                var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail($"An error occurred: {ex.Message}", null);
+                var failResponse = ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail($"An error occurred: {ex.Message}", null);
 
                 return failResponse;
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear2(CurrentLocation currentLocation, string distance, int settinTypeId,int? pageIndex=1)
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear2(CurrentLocation currentLocation, string distance, int settinTypeId, int? pageIndex = 1)
         {
             try
             {

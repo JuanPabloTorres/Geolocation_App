@@ -28,7 +28,7 @@ namespace GeolocationAdsAPI.Repositories
                 // Save changes asynchronously
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<Advertisement>.BuildSusccess("Created", null, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<Advertisement>.BuildSuccess("Created", null, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@ namespace GeolocationAdsAPI.Repositories
                     .AsSplitQuery()
                     .FirstOrDefaultAsync();
 
-                return ResponseFactory<Advertisement>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<Advertisement>.BuildSuccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
@@ -120,7 +120,7 @@ namespace GeolocationAdsAPI.Repositories
                     .Take(ConstantsTools.PageSize)
                     .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
@@ -175,7 +175,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<Advertisement>.BuildSusccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
+                return ResponseFactory<Advertisement>.BuildSuccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
             }
             catch (Exception ex)
             {
@@ -191,7 +191,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {

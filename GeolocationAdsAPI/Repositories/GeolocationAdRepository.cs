@@ -20,11 +20,11 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (_exist)
                 {
-                    return ResponseFactory<bool>.BuildSusccess("Exist.", true, ToolsLibrary.Tools.Type.Exist);
+                    return ResponseFactory<bool>.BuildSuccess("Exist.", true, ToolsLibrary.Tools.Type.Exist);
                 }
                 else
                 {
-                    return ResponseFactory<bool>.BuildSusccess("Exist.", false, ToolsLibrary.Tools.Type.NotExist);
+                    return ResponseFactory<bool>.BuildSuccess("Exist.", false, ToolsLibrary.Tools.Type.NotExist);
                 }
             }
             catch (Exception ex)
@@ -33,13 +33,21 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync()
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync(double latitud, double longitude, int distance)
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => DateTime.Now <= v.ExpirationDate).ToListAsync();
+                // Assume pre-calculation or efficient distance filtering
+                //var relevantAdIds = _context.GeolocationAds
+                //    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <= geo.ExpirationDate)
+                //    .Select(geo => geo.AdvertisingId)
+                //    .Distinct();
 
-                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance && DateTime.Now <= v.ExpirationDate).OrderBy(c => c.Advertisement.CreateDate)
+                    .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
+                   .Distinct().ToListAsync();
+
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
             }
             catch (Exception ex)
             {
@@ -82,7 +90,7 @@ namespace GeolocationAdsAPI.Repositories
                     })
                     .ToListAsync();
 
-                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
             }
             catch (Exception ex)
             {
@@ -96,7 +104,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 // Assume pre-calculation or efficient distance filtering
                 var relevantAdIds = _context.GeolocationAds
-                    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance)
+                    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <= geo.ExpirationDate)
                     .Select(geo => geo.AdvertisingId)
                     .Distinct();
 
@@ -127,7 +135,7 @@ namespace GeolocationAdsAPI.Repositories
                     })
                     .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Entities fetched successfully.", paginatedResult);
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", paginatedResult);
             }
             catch (Exception ex)
             {
@@ -148,7 +156,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 await _context.SaveChangesAsync();
 
-                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Entities fetched successfully.", allEntities);
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
             }
             catch (Exception ex)
             {

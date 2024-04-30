@@ -25,7 +25,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 await _context.SaveChangesAsync();
 
-                response = ResponseFactory<Login>.BuildSusccess("Entity created successfully.", credential, ToolsLibrary.Tools.Type.Added);
+                response = ResponseFactory<Login>.BuildSuccess("Entity created successfully.", credential, ToolsLibrary.Tools.Type.Added);
 
                 return response;
             }
@@ -51,7 +51,7 @@ namespace GeolocationAdsAPI.Repositories
 
                     await _context.SaveChangesAsync();
 
-                    response = ResponseFactory<User>.BuildSusccess("Setting Added.", _user, ToolsLibrary.Tools.Type.Added);
+                    response = ResponseFactory<User>.BuildSuccess("Setting Added.", _user, ToolsLibrary.Tools.Type.Added);
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (!_user.IsObjectNull())
                 {
-                    response = ResponseFactory<User>.BuildSusccess("Entity Found successfully.", _user, ToolsLibrary.Tools.Type.Added);
+                    response = ResponseFactory<User>.BuildSuccess("Entity Found successfully.", _user, ToolsLibrary.Tools.Type.Added);
                 }
                 else
                 {

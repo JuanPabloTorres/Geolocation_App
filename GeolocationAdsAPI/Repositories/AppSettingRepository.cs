@@ -19,7 +19,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 var _result = await _context.Settings.Where(v => v.SettingName == settingName).ToListAsync();
 
-                return ResponseFactory<IEnumerable<AppSetting>>.BuildSusccess("Data Found", _result, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<IEnumerable<AppSetting>>.BuildSuccess("Data Found", _result, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace GeolocationAdsAPI.Repositories
                     appSettings.AddRange(_result);
                 }
 
-                return ResponseFactory<IEnumerable<AppSetting>>.BuildSusccess("Data Found", appSettings, ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<IEnumerable<AppSetting>>.BuildSuccess("Data Found", appSettings, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {

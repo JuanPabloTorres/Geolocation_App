@@ -41,7 +41,7 @@ namespace GeolocationAdsAPI.Repositories
                         return response;
                     }
 
-                    response = ResponseFactory<User>.BuildSusccess("Valid Credentail", _foundUser, ToolsLibrary.Tools.Type.Found);
+                    response = ResponseFactory<User>.BuildSuccess("Valid Credentail", _foundUser, ToolsLibrary.Tools.Type.Found);
                 }
                 else
                 {

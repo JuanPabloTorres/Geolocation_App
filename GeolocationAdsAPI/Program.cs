@@ -1,5 +1,6 @@
 using GeolocationAdsAPI.Context;
 using GeolocationAdsAPI.Repositories;
+using GeolocationAdsAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.StaticFiles;
@@ -19,8 +20,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AdsGeolocationConnectionString");
-
-//builder.Services.AddDbContext<GeolocationContext>(opt => opt.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 
 builder.Services.AddDbContext<GeolocationContext>(options =>
 {
@@ -77,6 +76,8 @@ builder.Services.AddTransient<IAdvertisementSettingsRepository, AdvertisementSet
 builder.Services.AddTransient<IContentTypeRepository, ContentTypeRepository>();
 
 builder.Services.AddTransient<ICaptureRepository, CaptureRepository>();
+
+builder.Services.AddHostedService<CleanupService>();
 
 // In ConfigureServices method
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -20,14 +20,12 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (result)
                 {
-                    return ResponseFactory<bool>.BuildSusccess("You've already captured it.", true, ToolsLibrary.Tools.Type.Exist);
+                    return ResponseFactory<bool>.BuildSuccess("You've already captured it.", true, ToolsLibrary.Tools.Type.Exist);
                 }
                 else
                 {
                     return ResponseFactory<bool>.BuildFail("You haven't captured it.", false, ToolsLibrary.Tools.Type.NotExist);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -61,7 +59,7 @@ namespace GeolocationAdsAPI.Repositories
                     })
                    .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Capture>>.BuildSusccess("Entity found.", result);
+                return ResponseFactory<IEnumerable<Capture>>.BuildSuccess("Entity found.", result);
             }
             catch (Exception ex)
             {

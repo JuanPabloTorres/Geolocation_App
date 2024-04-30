@@ -38,7 +38,7 @@ namespace GeolocationAds.ViewModels
             {
                 var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
 
-                var _apiResponse = await this.service.FindAdNear(_currentLocation, DISTANCE_METER.ToString());
+                var _apiResponse = await this.service.FindAdsNearby(_currentLocation, DISTANCE_METER.ToString());
 
                 this.CollectionModel.Clear();
 
@@ -48,22 +48,19 @@ namespace GeolocationAds.ViewModels
                     {
                         foreach (var adsGeoItem in _apiResponse.Data)
                         {
-                            foreach (var geo in adsGeoItem.GeolocationAds)
+                            Location location = new Location()
                             {
-                                Location location = new Location()
-                                {
-                                    Latitude = geo.Latitude,
-                                    Longitude = geo.Longitude,
-                                };
+                                Latitude = adsGeoItem.Latitude,
+                                Longitude = adsGeoItem.Longitude,
+                            };
 
-                                this.CollectionModel.Add(new Microsoft.Maui.Controls.Maps.Pin()
-                                {
-                                    Location = location,
-                                    Label = adsGeoItem.Title,
-                                    Address = adsGeoItem.Description,
-                                    Type = Microsoft.Maui.Controls.Maps.PinType.Generic,
-                                });
-                            }
+                            this.CollectionModel.Add(new Microsoft.Maui.Controls.Maps.Pin()
+                            {
+                                Location = location,
+                                Label = adsGeoItem.Advertisement.Title,
+                                Address = adsGeoItem.Advertisement.Description,
+                                Type = Microsoft.Maui.Controls.Maps.PinType.Generic,
+                            });
                         }
                     }
                     else

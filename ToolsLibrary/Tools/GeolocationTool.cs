@@ -57,7 +57,7 @@ namespace GeolocationAds.Tools
 
                     if (location != null)
                     {
-                        return ResponseFactory<Location>.BuildSusccess("Location Found", location);
+                        return ResponseFactory<Location>.BuildSuccess("Location Found", location);
                     }
                     else
                     {

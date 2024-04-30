@@ -1,5 +1,4 @@
-﻿using GeolocationAds.Tools;
-using GeolocationAdsAPI.Repositories;
+﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToolsLibrary.Extensions;
@@ -55,52 +54,70 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpPost("[action]/{distance}")]
-        public async Task<IActionResult> FindAdNear(CurrentLocation currentLocation, int distance)
-        {
-            ResponseTool<IEnumerable<Advertisement>> response;
+        //[HttpPost("[action]/{distance}")]
+        //public async Task<IActionResult> FindAdNear(CurrentLocation currentLocation, int distance)
+        //{
+        //    ResponseTool<IEnumerable<GeolocationAd>> response;
 
-            IList<Advertisement> _adsNear = new List<Advertisement>();
+        //    try
+        //    {
+        //        var _geoAd_Response = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsync(currentLocation.Latitude, currentLocation.Longitude, distance);
+
+        //        if (_geoAd_Response.IsSuccess)
+        //        {
+        //            if (_geoAd_Response.Data.Count() > 0)
+        //            {
+        //                response = ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Content Found.", _geoAd_Response.Data, ToolsLibrary.Tools.Type.DataFound);
+        //            }
+        //            else
+        //            {
+        //                response = ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess("Not Nearby Content.", null, ToolsLibrary.Tools.Type.NotFound);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            response = ResponseFactory<IEnumerable<GeolocationAd>>.BuildSusccess(_geoAd_Response.Message, null, ToolsLibrary.Tools.Type.Fail);
+        //        }
+
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response = ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //        return Ok(response);
+        //    }
+        //}
+
+        [HttpPost("[action]/{distance}")]
+        public async Task<IActionResult> FindAdsNearby(CurrentLocation currentLocation, int distance)
+        {
+            ResponseTool<IEnumerable<GeolocationAd>> response;
+
+            if (currentLocation == null)
+            {
+                return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail("Current location must be provided.", null, ToolsLibrary.Tools.Type.Fail));
+            }
 
             try
             {
-                var _geoAd_Response = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsync();
+                var geoAdResponse = await geolocationAdRepository.GetAllWithNavigationPropertyAsync(currentLocation.Latitude, currentLocation.Longitude, distance);
 
-                if (_geoAd_Response.IsSuccess)
+                if (!geoAdResponse.IsSuccess)
                 {
-                    foreach (var item in _geoAd_Response.Data)
-                    {
-                        double meterDistance = GeolocationTool.VincentyFormula4(currentLocation.Latitude, currentLocation.Longitude, item.Latitude, item.Longitude);
-
-                        if (meterDistance <= distance)
-                        {
-                            item.Advertisement.GeolocationAds = item.Advertisement.GeolocationAds.Select(g => new GeolocationAd() { ID = g.ID, Latitude = g.Latitude, Longitude = g.Longitude }).ToList();
-
-                            _adsNear.Add(item.Advertisement);
-                        }
-                    }
-
-                    if (_adsNear.Count > 0)
-                    {
-                        _adsNear = _adsNear.OrderBy(o => o.CreateDate).Reverse().ToList();
-
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", _adsNear, ToolsLibrary.Tools.Type.DataFound);
-                    }
-                    else
-                    {
-                        response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Not Nearby Content.", null, ToolsLibrary.Tools.Type.NotFound);
-                    }
-                }
-                else
-                {
-                    response = ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess(_geoAd_Response.Message, null, ToolsLibrary.Tools.Type.Fail);
+                    return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
                 }
 
-                return Ok(response);
+                if (!geoAdResponse.Data.Any())
+                {
+                    return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("No nearby content.", null, ToolsLibrary.Tools.Type.NotFound));
+                }
+
+                return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Content found.", geoAdResponse.Data, ToolsLibrary.Tools.Type.DataFound));
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                response = ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
                 return Ok(response);
             }
@@ -214,13 +231,13 @@ namespace GeolocationAdsAPI.Controllers
 
                 if (advertisements.IsObjectNull() || !advertisements.Any())
                 {
-                    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("No nearby content found.", advertisements, ToolsLibrary.Tools.Type.NotFound));
+                    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("No nearby content found.", advertisements, ToolsLibrary.Tools.Type.NotFound));
                 }
 
                 var adsNear = advertisements.OrderByDescending(o => o.CreateDate).ToList();
 
                 // Assuming the data is ordered in the repository method itself
-                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSusccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
+                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
             }
             catch (Exception ex)
             {

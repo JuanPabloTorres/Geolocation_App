@@ -50,6 +50,10 @@
                 HorizontalOptions="Start"
                 Style="{StaticResource globalLabel}"
                 Text="{Binding CreateDate}" />
+            <Label
+                HorizontalOptions="Start"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding DataSize}" />
         </VerticalStackLayout>
     </Grid>
 </mct:Popup>
