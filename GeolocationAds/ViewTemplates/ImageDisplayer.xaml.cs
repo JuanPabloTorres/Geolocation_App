@@ -44,8 +44,6 @@ public partial class ImageDisplayer : Grid
             if (view.myContentStackHeader.IsVisible)
             {
                 view.searchContentStackHeader.IsVisible = false;
-
-                view.searchContentStackHeaderBtn.IsVisible = false;
             }
         }
     }
@@ -60,8 +58,6 @@ public partial class ImageDisplayer : Grid
 
             if (view.searchContentStackHeader.IsVisible)
             {
-                view.searchContentStackHeaderBtn.IsVisible = true;
-
                 view.myContentStackHeader.IsVisible = false;
             }
         }

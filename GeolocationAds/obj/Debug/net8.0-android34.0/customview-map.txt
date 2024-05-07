@@ -5,6 +5,10 @@
 {urn:oasis:names:tc:xliff:document:1.2}g;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\214\jl\res\values\values.xml
 adaptive-icon;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 adaptive-icon;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
+adaptive-icon;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon.xml
+adaptive-icon;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon_round.xml
+adaptive-icon;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512.xml
+adaptive-icon;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512_round.xml
 alpha;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\207\jl\res\anim\enterfromleft.xml
 alpha;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\207\jl\res\anim\exittoleft.xml
 alpha;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\209\jl\res\anim\nav_default_enter_anim.xml
@@ -24,6 +28,10 @@ attr;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android3
 attr;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\215\jl\res\values\values.xml
 background;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 background;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
+background;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon.xml
+background;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon_round.xml
+background;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512.xml
+background;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512_round.xml
 bitmap;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\213\jl\res\drawable\common_google_signin_btn_icon_dark_normal.xml
 bitmap;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\213\jl\res\drawable\common_google_signin_btn_icon_disabled.xml
 bitmap;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\213\jl\res\drawable\common_google_signin_btn_icon_light_normal.xml
@@ -236,6 +244,10 @@ external-path;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0
 flag;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\202\jl\res\values\values.xml
 foreground;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 foreground;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
+foreground;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon.xml
+foreground;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon_round.xml
+foreground;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512.xml
+foreground;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512_round.xml
 FrameLayout;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\202\jl\res\layout\exo_player_view.xml
 FrameLayout;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\202\jl\res\layout\exo_styled_player_control_ffwd_button.xml
 FrameLayout;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\202\jl\res\layout\exo_styled_player_control_rewind_button.xml
@@ -382,6 +394,10 @@ merge;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android
 microsoft.maui.controls.platform.compatibility.ShellFlyoutLayout;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\207\jl\res\layout\flyoutcontent.xml
 monochrome;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon.xml
 monochrome;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\appicon_round.xml
+monochrome;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon.xml
+monochrome;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\geoappicon_round.xml
+monochrome;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512.xml
+monochrome;obj\Debug\net8.0-android34.0\resizetizer\r\mipmap-anydpi-v26\play_store_512_round.xml
 network-security-config;obj\Debug\net8.0-android34.0\res\xml\network_security_config.xml
 padding;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\213\jl\res\drawable\common_google_signin_btn_icon_disabled.xml
 padding;C:\Users\estju\source\repos\GeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\lp\213\jl\res\drawable\common_google_signin_btn_text_disabled.xml

@@ -52,7 +52,16 @@ namespace GeolocationAdsAPI.Repositories
                         Advertisements = new Advertisement()
                         {
                             ID = s.Advertisements.ID,
-                            Contents = s.Advertisements.Contents,
+                            Contents = s.Advertisements.Contents
+                            .Select(ct => new ContentType
+                            {
+                                ID = ct.ID,
+                                Type = ct.Type,
+                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
+                                ContentName = ct.ContentName ?? string.Empty
+                            })
+                            .Take(1)
+                            .ToList(),
                             Title = s.Advertisements.Title,
                             Description = s.Advertisements.Description
                         }

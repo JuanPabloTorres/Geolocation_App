@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Maui;
 using FFImageLoading.Maui;
+using GeolocationAds.CustomCotrols;
 using GeolocationAds.Pages;
+using GeolocationAds.PlatformService;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
 using Microsoft.Maui.Controls.Maps;
 using ToolsLibrary.Models;
-using ToolsLibrary.TemplateViewModel;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds;
@@ -40,36 +41,6 @@ public static class MauiProgram
                 fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
             }).UseMauiMaps();
 
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
-        {
-#if ANDROID
-            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
-#endif
-        });
-
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Editor), (handler, view) =>
-        {
-#if ANDROID
-            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
-#endif
-        });
-
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(DatePicker), (handler, view) =>
-        {
-#if ANDROID
-
-            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
-#endif
-        });
-
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Picker), (handler, view) =>
-        {
-#if ANDROID
-
-            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
-#endif
-        });
-
         #region Api Service
 
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
@@ -90,7 +61,7 @@ public static class MauiProgram
         {
             var _httpClient = new HttpClient()
             {
-                Timeout = TimeSpan.FromSeconds(ConstantsTools.TIMEOUT)
+                Timeout = TimeSpan.FromMinutes(ConstantsTools.TIMEOUT)
             };
 
             return _httpClient;
@@ -116,9 +87,13 @@ public static class MauiProgram
 
         builder.Services.AddTransient<CreateAdvertismentViewModel>();
 
+        builder.Services.AddTransient<CreateAdvertismentViewModel2>();
+
         builder.Services.AddScoped<MangeContentTemplateViewModel>();
 
         builder.Services.AddScoped<MyContentViewModel>();
+
+        builder.Services.AddScoped<MyContentViewModel2>();
 
         builder.Services.AddScoped<SearchAdViewModel>();
 
@@ -132,11 +107,15 @@ public static class MauiProgram
 
         builder.Services.AddScoped<AppShellViewModel>();
 
+        builder.Services.AddScoped<AppShellViewModel2>();
+
         builder.Services.AddScoped<GoogleMapViewModel>();
 
         builder.Services.AddScoped<GoogleMapViewModel2>();
 
         builder.Services.AddScoped<EditAdvertismentViewModel>();
+
+        builder.Services.AddScoped<EditAdvertismentViewModel2>();
 
         builder.Services.AddScoped<UserSettingViewModel>();
 
@@ -162,7 +141,9 @@ public static class MauiProgram
 
         //builder.Services.AddSingleton<CreateAdvertisment>();
 
-        builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
+        //builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
+
+        builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
 
         builder.Services.AddScoped<AdToLocation>();
 

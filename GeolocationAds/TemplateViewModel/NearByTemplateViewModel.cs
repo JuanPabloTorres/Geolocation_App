@@ -34,7 +34,7 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
+        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; }
 
         public NearByTemplateViewModel(ICaptureService captureService, Advertisement advertisement, LogUserPerfilTool logUser)
         {
@@ -49,7 +49,7 @@ namespace GeolocationAds.TemplateViewModel
 
         public async Task InitializeAsync()
         {
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
             await FillTemplate();
         }
@@ -102,7 +102,5 @@ namespace GeolocationAds.TemplateViewModel
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
-
-       
     }
 }

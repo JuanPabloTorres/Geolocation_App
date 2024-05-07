@@ -14,8 +14,6 @@ using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
-using Xabe.FFmpeg;
-
 namespace GeolocationAds.ViewModels
 {
     public partial class CreateAdvertismentViewModel : BaseViewModel2<Advertisement, IAdvertisementService>
@@ -24,7 +22,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
+        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; }
 
         private AppSetting _selectedAdType;
 
@@ -56,13 +54,13 @@ namespace GeolocationAds.ViewModels
 
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
 
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
             UploadContentCommand = new Command(OnUploadCommandExecuted2);
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, async (r, m) =>
             {
-                this.SetDefault();
+                //this.SetDefault();
             });
         }
 
@@ -72,7 +70,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                if (sender is ContentTypeTemplateViewModel template)
+                if (sender is ContentTypeTemplateViewModel2 template)
                 {
                     if (this.ContentTypesTemplate.Count() == 1)
                     {
@@ -81,6 +79,8 @@ namespace GeolocationAds.ViewModels
                     else
                     {
                         this.ContentTypesTemplate.Remove(template);
+
+                        this.Model.Contents.Remove(template.ContentType);
                     }
                 }
             }
@@ -232,7 +232,7 @@ namespace GeolocationAds.ViewModels
 
             if (_contentType == ContentVisualType.Image)
             {
-                var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID, result.FileName);
+                var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID, result.FileName, result.FullPath);
 
                 var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
@@ -250,7 +250,7 @@ namespace GeolocationAds.ViewModels
 
             var _contentType = CommonsTool.GetContentType(result.FileName);
 
-            var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID, result.FileName);
+            var _content = ContentTypeFactory.BuilContentType(_fileBytes, ContentVisualType.Video, null, this.LogUserPerfilTool.LogUser.ID, result.FileName, result.FullPath);
 
             var _file = CommonsTool.SaveByteArrayToTempFile(_fileBytes);
 

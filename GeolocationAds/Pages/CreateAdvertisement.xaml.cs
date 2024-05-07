@@ -4,9 +4,9 @@ namespace GeolocationAds.Pages;
 
 public partial class CreateAdvertisment : ContentPage
 {
-    private CreateAdvertismentViewModel viewModel;
+    private CreateAdvertismentViewModel2 viewModel;
 
-    public CreateAdvertisment(CreateAdvertismentViewModel createGeolocationViewModel)
+    public CreateAdvertisment(CreateAdvertismentViewModel2 createGeolocationViewModel)
     {
         InitializeComponent();
 

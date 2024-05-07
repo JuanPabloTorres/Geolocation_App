@@ -8,5 +8,7 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex);
 
         Task<ResponseTool<IEnumerable<Advertisement>>> VerifyExpiredAdvertimentOfUser(int userId);
+
+        Task<ResponseTool<bool>> RemoveAdvertisement(int advertisementId);
     }
 }

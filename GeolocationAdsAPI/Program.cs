@@ -2,11 +2,13 @@ using GeolocationAdsAPI.Context;
 using GeolocationAdsAPI.Repositories;
 using GeolocationAdsAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ToolsLibrary.Tools;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,9 +44,17 @@ builder.Services.AddDbContext<GeolocationContext>(options =>
 //    });
 //});
 
+// In Startup.cs or wherever you configure your services
+builder.Services.Configure<FormOptions>(x =>
+{
+    x.ValueLengthLimit = ConstantsTools.MaxFileSize; ;
+    x.MultipartBodyLengthLimit = ConstantsTools.MaxFileSize; // Adjust as necessary
+    x.MultipartHeadersLengthLimit = ConstantsTools.MaxFileSize;
+});
+
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-    options.Limits.MaxRequestBodySize = int.MaxValue; // Or another higher limit
+    options.Limits.MaxRequestBodySize = long.MaxValue;
 });
 
 // Add custom MIME types

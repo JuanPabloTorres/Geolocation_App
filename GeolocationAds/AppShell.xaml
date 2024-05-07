@@ -49,25 +49,23 @@
     <Shell.FlyoutHeader>
         <!--  Custom navigation header  -->
         <StackLayout Orientation="Horizontal">
-            <Frame
-                Margin="10"
-                CornerRadius="50"
-                HeightRequest="60"
-                HorizontalOptions="Start"
-                VerticalOptions="CenterAndExpand"
-                WidthRequest="60">
+            <Border
+                HeightRequest="50"
+                Style="{StaticResource CustomBorderStyle}"
+                WidthRequest="50">
 
                 <toolkit:AvatarView
                     FontAttributes="Bold"
                     FontSize="Large"
                     HeightRequest="90"
-                    Text="{Binding Avatar}"
+                    Text="{Binding Avatar, Mode=TwoWay}"
                     TextColor="Black"
                     VerticalOptions="CenterAndExpand"
                     WidthRequest="90" />
-            </Frame>
+            </Border>
 
             <Label
+                FontAttributes="Bold"
                 HorizontalOptions="CenterAndExpand"
                 Style="{StaticResource globalTitle}"
                 Text="{Binding UserName, Mode=TwoWay}" />

@@ -1,3 +1,6 @@
+YourAppName.Droid.CustomEntryRenderer, GeolocationAds;crc64f5049268d353676a.CustomEntryRenderer
+YourAppName.Droid.CustomEntryRenderer;crc64f5049268d353676a.CustomEntryRenderer
+yourappname.droid.CustomEntryRenderer;crc64f5049268d353676a.CustomEntryRenderer
 GeolocationAds.MainActivity, GeolocationAds;crc646d254120c5b615c9.MainActivity
 GeolocationAds.MainActivity;crc646d254120c5b615c9.MainActivity
 geolocationads.MainActivity;crc646d254120c5b615c9.MainActivity

@@ -8,7 +8,7 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        var viewModel = new AppShellViewModel();
+        var viewModel = new AppShellViewModel2();
 
         MainPage = new AppShell(viewModel);
     }

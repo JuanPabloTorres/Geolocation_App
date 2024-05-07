@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-      xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
-      xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
-      x:Class="GeolocationAds.ViewTemplates.ImageDisplayer">
+<Grid
+    x:Class="GeolocationAds.ViewTemplates.ImageDisplayer"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates">
 
-    <ffimageloading:CachedImage  Source="{Binding Image.Source}" Aspect="Fill" ></ffimageloading:CachedImage>
+    <ffimageloading:CachedImage Aspect="Fill" Source="{Binding Image.Source}" />
 
-    <StackLayout x:Name="myContentStackHeader" Grid.Row="0">
+    <Border
+        x:Name="myContentStackHeader"
+        Grid.Row="0"
+        Style="{StaticResource borderOnHeaderControls}">
 
         <headerView:ContentHeaderView />
-    </StackLayout>
+    </Border>
 
-    <StackLayout x:Name="searchContentStackHeader" Grid.Row="0">
+    <Border
+        x:Name="searchContentStackHeader"
+        Grid.Row="0"
+        Style="{StaticResource borderOnHeaderControls}">
+
         <headerView:HomeContentItemHeaderView />
-    </StackLayout>
-
-    <StackLayout x:Name="searchContentStackHeaderBtn" Grid.Row="0" VerticalOptions="End" HorizontalOptions="CenterAndExpand">
-        <Button
-            HorizontalOptions="FillAndExpand"
-        WidthRequest="300"
-            BackgroundColor="Orange"
-            Margin="5"
-            CornerRadius="15"
-        Command="{Binding CaptureItemCommand}"
-        CommandParameter="{Binding Advertisement}"
-            Text="Detail"
-        Style="{StaticResource  cardButton}">
-        </Button>
-    </StackLayout>
-
-
+    </Border>
 
     <ActivityIndicator
-     Grid.Row="0"
-     IsRunning="{Binding IsLoading}"
-     IsVisible="{Binding IsLoading}"
-     Style="{StaticResource globalLoading}" />
+        Grid.Row="0"
+        IsRunning="{Binding IsLoading}"
+        IsVisible="{Binding IsLoading}"
+        Style="{StaticResource globalLoading}" />
 </Grid>

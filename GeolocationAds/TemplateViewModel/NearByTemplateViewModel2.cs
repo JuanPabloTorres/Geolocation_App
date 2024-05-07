@@ -43,6 +43,11 @@ namespace GeolocationAds.TemplateViewModel
             this.Advertisement = advertisement;
 
             this.service = captureService;
+
+            Task.Run(async () =>
+            {
+                await InitializeAsync();
+            });
         }
 
         //[RelayCommand]

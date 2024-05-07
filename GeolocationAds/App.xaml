@@ -40,7 +40,7 @@
             <Color x:Key="DarkFuchsia">#bf1d57</Color>
             <!--  Un fucsia oscuro  -->
 
-            <x:Double x:Key="OpacityValue">0.5</x:Double>
+            <x:Double x:Key="OpacityValue">0.8</x:Double>
 
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
@@ -176,6 +176,23 @@
                 <Setter Property="Background" Value="#F5F5F5" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
                 <Setter Property="Stroke" Value="#961e52" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="1" />
+            </Style>
+
+            <Style x:Key="borderOnHeaderControls" TargetType="Border">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Background" Value="#F5F5F5" />
+                <Setter Property="Opacity" Value="{StaticResource OpacityValue}" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="{StaticResource AppBlack}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
                         <RoundRectangle CornerRadius="5" />

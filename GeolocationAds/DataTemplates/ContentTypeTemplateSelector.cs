@@ -1,4 +1,5 @@
-﻿using GeolocationAds.TemplateViewModel;
+﻿using GeolocationAds.AppTools;
+using GeolocationAds.TemplateViewModel;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.DataTemplates
@@ -11,7 +12,7 @@ namespace GeolocationAds.DataTemplates
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (item is ContentTypeTemplateViewModel contentType)
+            if (item is ContentTypeTemplateViewModel2 contentType)
             {
                 if (contentType.ContentType.Type == ContentVisualType.Video)
                 {
@@ -25,7 +26,7 @@ namespace GeolocationAds.DataTemplates
             }
 
             // Return a default template or null if needed
-            return null;
+            return ImageDataTemplate;
         }
     }
 }

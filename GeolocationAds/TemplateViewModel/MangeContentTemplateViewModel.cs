@@ -59,8 +59,6 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-      
-
         private ImageSource _image;
 
         public ImageSource Image
@@ -111,7 +109,7 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        private async Task<ContentTypeTemplateViewModel> ProcessItemAsync(ContentType item)
+        private async Task<ContentTypeTemplateViewModel2> ProcessItemAsync(ContentType item)
         {
             return await AppToolCommon.ProcessContentItem(item);
         }

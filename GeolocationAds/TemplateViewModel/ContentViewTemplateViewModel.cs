@@ -32,39 +32,64 @@ namespace GeolocationAds.TemplateViewModel
         public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
             this.CurrentAdvertisement = advertisement;
+
+            Task.Run(async () =>
+            {
+                await InitializeAsync();
+            });
         }
 
         public async Task InitializeAsync()
         {
-            await FillTemplate();
-        }
-
-        public async Task FillTemplate()
-        {
-            if (!this.CurrentAdvertisement.Contents.IsObjectNull())
+            try
             {
-                if (this.CurrentAdvertisement.Contents.FirstOrDefault().Type == ContentVisualType.Image)
+                var contents = this.CurrentAdvertisement.Contents.FirstOrDefault();
+
+                if (contents == null)
                 {
-                    if (this.Image.IsObjectNull())
-                    {
-                        this.Image = new Image();
-                    }
-
-                    var _imageBytes = this.CurrentAdvertisement.Contents.FirstOrDefault().Content;
-
-                    Image.Source = AppToolCommon.LoadImageFromBytes(_imageBytes);
+                    contents = await AppToolCommon.GetDefaultContentType(this.CurrentAdvertisement.CreateBy);
                 }
 
-                if (this.CurrentAdvertisement.Contents.FirstOrDefault().Type == ContentVisualType.Video)
+                switch (contents.Type)
                 {
-                    var file = await CommonsTool.SaveByteArrayToTempFile2(this.CurrentAdvertisement.Contents.FirstOrDefault().Content);
+                    case ContentVisualType.Image:
 
-                    this.MediaSource = file;
+                        if (this.Image.IsObjectNull())
+                        {
+                            this.Image = new Image();
+                        }
+
+                        byte[] imageBytes = contents.Content;
+
+                        this.Image.Source = AppToolCommon.LoadImageFromBytes(imageBytes);
+
+                        break;
+
+                    case ContentVisualType.Video:
+
+                        var streamingResponse = await this.advertisementService.GetStreamingVideoUrl(contents.ID);
+
+                        if (!streamingResponse.IsSuccess)
+                        {
+                            await CommonsTool.DisplayAlert("Error", streamingResponse.Message);
+
+                            return;
+                        }
+
+                        this.MediaSource = streamingResponse.Data;
+
+                        break;
                 }
             }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
-
-      
 
         [RelayCommand]
         public async Task OpenActionPopUp()

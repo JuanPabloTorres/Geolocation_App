@@ -19,7 +19,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate { get; set; }
+        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; }
 
         private AppSetting _selectedAdType;
 
@@ -85,7 +85,7 @@ namespace GeolocationAds.ViewModels
 
             this.AdTypesSettings = new ObservableCollection<AppSetting>();
 
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
             this.SelectedAdType = new AppSetting();
 
@@ -125,7 +125,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                if (sender is ContentTypeTemplateViewModel template)
+                if (sender is ContentTypeTemplateViewModel2 template)
                 {
                     this.ContentTypesTemplate.Remove(template);
 
@@ -220,7 +220,6 @@ namespace GeolocationAds.ViewModels
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
-
 
         private async void OnUploadCommandExecuted2()
         {

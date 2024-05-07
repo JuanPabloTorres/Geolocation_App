@@ -34,6 +34,8 @@ namespace GeolocationAds.Services
 
             this._httpClient = httpClient;
 
+            //_httpClient.Timeout = TimeSpan.FromMinutes(30); // Set the timeout here
+
             var backendUrl = Application.Current.Resources[_httpResourceName] as string;
 
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);

@@ -12,7 +12,7 @@ namespace GeolocationAds.TemplateViewModel
     {
         public ICaptureService Service { get; set; }
 
-        public ObservableCollection<ContentTypeTemplateViewModel> ContentTypesTemplate
+        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate
         {
             get; set;
         }
@@ -79,7 +79,7 @@ namespace GeolocationAds.TemplateViewModel
 
         public async Task InitializeAsync()
         {
-            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel>();
+            this.ContentTypesTemplate = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
             await FillTemplate();
         }

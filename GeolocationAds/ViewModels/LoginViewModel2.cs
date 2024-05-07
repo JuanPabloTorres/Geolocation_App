@@ -36,6 +36,8 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         private async Task GoToRegister()
         {
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+
             await Shell.Current.GoToAsync(nameof(Register));
         }
 
@@ -79,6 +81,8 @@ namespace GeolocationAds.ViewModels
                         this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
 
                         WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
+
+                        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
 
                         await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
 

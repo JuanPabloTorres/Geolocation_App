@@ -4143,6 +4143,14 @@ int mipmap appicon 0x7f0f0000
 int mipmap appicon_background 0x7f0f0001
 int mipmap appicon_foreground 0x7f0f0002
 int mipmap appicon_round 0x7f0f0003
+int mipmap geoappicon 0x7f0f0004
+int mipmap geoappicon_background 0x7f0f0005
+int mipmap geoappicon_foreground 0x7f0f0006
+int mipmap geoappicon_round 0x7f0f0007
+int mipmap play_store_512 0x7f0f0008
+int mipmap play_store_512_background 0x7f0f0009
+int mipmap play_store_512_foreground 0x7f0f000a
+int mipmap play_store_512_round 0x7f0f000b
 int plurals exo_controls_fastforward_by_amount_description 0x7f100000
 int plurals exo_controls_rewind_by_amount_description 0x7f100001
 int plurals mtrl_badge_content_description 0x7f100002

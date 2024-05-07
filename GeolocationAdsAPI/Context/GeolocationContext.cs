@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeolocationAdsAPI.DBConfigurations;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using ToolsLibrary.Models;
 
 namespace GeolocationAdsAPI.Context
@@ -33,6 +35,14 @@ namespace GeolocationAdsAPI.Context
             throw new NotSupportedException();
         }
 
+        // Define a method to execute the stored procedure
+        public async Task<int> RemoveAdvertisement(int advertisementId)
+        {
+            var advertisementIdParameter = new SqlParameter("@AdvertisementId", advertisementId);
+
+            return await Database.ExecuteSqlRawAsync("EXEC RemoveAdvertisement @AdvertisementId", advertisementIdParameter);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //if (!optionsBuilder.IsConfigured)
@@ -52,15 +62,17 @@ namespace GeolocationAdsAPI.Context
                 .HasForeignKey<Login>(l => l.UserId)
                 .IsRequired(true); // Optional, depending on your requirements
 
-            modelBuilder.Entity<Advertisement>()
-                  .HasMany(a => a.Contents)// Advertisement has many ContentTypes
-                  .WithOne(c => c.Advertisement)  // ContentType has one Advertisement
-                  .HasForeignKey(c => c.AdvertisingId);  // Use AdvertisementId as the foreign key
+            //modelBuilder.Entity<Advertisement>()
+            //      .HasMany(a => a.Contents)// Advertisement has many ContentTypes
+            //      .WithOne(c => c.Advertisement)  // ContentType has one Advertisement
+            //      .HasForeignKey(c => c.AdvertisingId);  // Use AdvertisementId as the foreign key
 
             modelBuilder.Entity<Advertisement>()
                 .HasMany(a => a.Settings)
                 .WithOne()
                 .HasForeignKey(ad => ad.AdvertisementId);
+
+            modelBuilder.ApplyConfiguration(new AdvertisementConfiguration());
 
             modelBuilder.Entity<AdvertisementSettings>()
                 .HasOne(ads => ads.Setting);

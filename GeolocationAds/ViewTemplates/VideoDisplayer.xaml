@@ -18,14 +18,21 @@
         ShouldShowPlaybackControls="True"
         Source="{Binding MediaSource}" />
 
-    <StackLayout x:Name="myContentStackHeader" Grid.Row="0">
+    <Border
+        x:Name="myContentStackHeader"
+        Grid.Row="0"
+        Style="{StaticResource borderOnHeaderControls}">
 
         <headerView:ContentHeaderView />
-    </StackLayout>
+    </Border>
 
-    <StackLayout x:Name="searchContentStackHeader" Grid.Row="0">
+    <Border
+        x:Name="searchContentStackHeader"
+        Grid.Row="0"
+        Style="{StaticResource borderOnHeaderControls}">
+
         <headerView:HomeContentItemHeaderView />
-    </StackLayout>
+    </Border>
 
     <ActivityIndicator
         Grid.Row="0"

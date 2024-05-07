@@ -42,7 +42,7 @@
                     <Button
                         Grid.Row="0"
                         Grid.Column="0"
-                        Command="{Binding RemoveCommand}"
+                        Command="{Binding RemoveCurrentItemCommand}"
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
@@ -73,7 +73,7 @@
                     Grid.RowSpan="2"
                     Aspect="Fill"
                     ShouldShowPlaybackControls="True"
-                    Source="{Binding MediaSource}" />
+                    Source="{Binding MediaSource, Mode=TwoWay}" />
 
                 <!--  Button Container Grid  -->
                 <Grid>
@@ -85,7 +85,7 @@
                     <!--  Button  -->
                     <Button
                         Grid.Row="0"
-                        Command="{Binding RemoveCommand}"
+                        Command="{Binding RemoveCurrentItemCommand}"
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
@@ -121,6 +121,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="100*" />
+
         </Grid.RowDefinitions>
 
         <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
@@ -159,8 +160,11 @@
             SelectValue="{Binding SelectedAdType}"
             SelectedItem="{Binding SelectedAdType}" />
 
+
+
         <CarouselView
             Grid.Row="4"
+            IndicatorView="indicatorView"
             IsScrollAnimated="True"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}"
@@ -180,6 +184,18 @@
                 </StackLayout>
             </CarouselView.EmptyView>
         </CarouselView>
+        <IndicatorView
+            x:Name="indicatorView"
+            Grid.Row="4"
+            Margin="5"
+            Padding="5"
+            HorizontalOptions="Center"
+            IndicatorColor="{StaticResource DarkViolet}"
+            IndicatorSize="18"
+            SelectedIndicatorColor="{StaticResource BrightOrangeRed}"
+            VerticalOptions="End" />
+
+
 
         <ActivityIndicator
             Grid.Row="4"

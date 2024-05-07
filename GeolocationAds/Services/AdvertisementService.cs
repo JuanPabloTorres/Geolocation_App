@@ -1,6 +1,8 @@
 ﻿using ExCSS;
 using Newtonsoft.Json;
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -45,62 +47,537 @@ namespace GeolocationAds.Services
             }
         }
 
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    try
+        //    {
+        //        var json = JsonConvert.SerializeObject(data);
+
+        //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //        var apiUrl = $"{BaseApiUri}/{APIPrefix}/{ApiSuffix}";
+
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add", content);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+
+        //            var responseData = JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+
+        //            return responseData;
+        //        }
+        //        else
+        //        {
+        //            var failResponse = ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+
+        //            return failResponse;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var failResponse = ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+
+        //        return failResponse;
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    try
+        //    {
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        // Add the Advertisement metadata as JSON
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        // Add the contents (images, videos, etc.)
+        //        foreach (var content in data.Contents)
+        //        {
+        //            if (content.Content != null && content.Content.Length > 0)
+        //            {
+        //                var contentStream = new MemoryStream(content.Content);
+
+        //                var contentName = content.ContentName ?? "file"; // Default file name if not specified
+
+        //                var mediaType = GetMediaType(content.Type);
+
+        //                multipartContent.Add(new StreamContent(contentStream), "contents", contentName);
+        //            }
+        //        }
+
+        //        // TODO: Add GeolocationAds and Settings if needed, similar to Contents
+
+        //        // Send the request to the API
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            // Handle successful response
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+
+        //            var responseData = JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+
+        //            return responseData;
+        //        }
+        //        else
+        //        {
+        //            // Handle failure
+        //            var failResponse = ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+
+        //            return failResponse;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exception
+        //        var failResponse = ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+
+        //        return failResponse;
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    try
+        //    {
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        // Agregar el contenido usando StreamContent para transmitir directamente
+        //        foreach (var content in data.Contents)
+        //        {
+        //            if (content.Content != null && content.Content.Length > 0)
+        //            {
+        //                var contentStream = new MemoryStream(content.Content);
+
+        //                var contentName = content.ContentName ?? "file";
+
+        //                multipartContent.Add(new StreamContent(contentStream), "contents", contentName);
+        //            }
+        //        }
+
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+
+        //            return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+        //        }
+        //        else
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    try
+        //    {
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        foreach (var content in data.Contents)
+        //        {
+        //            if (content.Content != null && content.Content.Length > 0)
+        //            {
+        //                // Use a StreamContent directly from a file or another stream source
+        //                using var fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read);
+
+        //                var contentStream = new StreamContent(fileStream);
+
+        //                contentStream.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
+
+        //                multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+        //            }
+        //        }
+
+        //        // Send the request to the API
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+
+        //            return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+        //        }
+        //        else
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    List<StreamContent> streamContents = new List<StreamContent>(); // To hold all StreamContent objects
+
+        //    try
+        //    {
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        //foreach (var content in data.Contents)
+        //        //{
+        //        //    if (content.Content != null && content.Content.Length > 0)
+        //        //    {
+        //        //        var fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read);
+        //        //        var contentStream = new StreamContent(fileStream);
+        //        //        contentStream.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
+        //        //        multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+        //        //        streamContents.Add(contentStream); // Add to list to keep track
+        //        //    }
+        //        //}
+
+        //        // Send the request to the API
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+        //            return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+        //        }
+        //        else
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //    finally
+        //    {
+        //        // Ensure all file streams are properly disposed after the upload operation is completed
+        //        foreach (var content in streamContents)
+        //        {
+        //            content.Dispose();
+        //        }
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    List<StreamContent> streamContents = new List<StreamContent>(); // To hold all StreamContent objects
+
+        //    try
+        //    {
+        //        this._httpClient.Timeout = TimeSpan.FromMinutes(30); // Set an appropriate timeout
+
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        foreach (var content in data.Contents)
+        //        {
+        //            if (content.Content != null && content.Content.Length > 0)
+        //            {
+        //                // Check file size here if necessary
+        //                var fileInfo = new FileInfo(content.FilePath);
+
+        //                if (fileInfo.Length > ConstantsTools.MaxFileSize) // Define someSizeLimit according to your requirements
+        //                {
+        //                    throw new InvalidOperationException($"File size {fileInfo.Length} exceeds the limit.");
+        //                }
+
+        //                var fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true);
+
+        //                var contentStream = new StreamContent(fileStream);
+
+        //                contentStream.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
+
+        //                multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+
+        //                streamContents.Add(contentStream); // Add to list to keep track
+        //            }
+        //        }
+
+        //        // Send the request to the API
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+
+        //            return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+        //        }
+        //        else
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //    finally
+        //    {
+        //        // Ensure all file streams are properly disposed after the upload operation is completed
+        //        foreach (var content in streamContents)
+        //        {
+        //            content.Dispose();
+        //        }
+        //    }
+        //}
+
         public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
         {
             try
             {
                 using var multipartContent = new MultipartFormDataContent();
 
-                // Add the Advertisement metadata as JSON
-                var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
 
                 multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
 
-                // Add the contents (images, videos, etc.)
-                foreach (var content in data.Contents)
+                List<Stream> openStreams = new List<Stream>();
+
+                try
                 {
-                    if (content.Content != null && content.Content.Length > 0)
+                    foreach (var content in data.Contents)
                     {
-                        var contentStream = new MemoryStream(content.Content);
+                        if (content.Content != null && content.Content.Length > 0)
+                        {
+                            var fileInfo = new FileInfo(content.FilePath);
+                            if (fileInfo.Length > ConstantsTools.MaxFileSize)
+                            {
+                                throw new InvalidOperationException($"File size {fileInfo.Length} exceeds the limit.");
+                            }
 
-                        var contentName = content.ContentName ?? "file"; // Default file name if not specified
+                            var fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                            openStreams.Add(fileStream);
 
-                        var mediaType = GetMediaType(content.Type);
+                            const int bufferSize = 4096; // Adjust the buffer size as needed
+                            var contentStream = new StreamContent(fileStream, bufferSize)
+                            {
+                                Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
+                            };
 
-                        multipartContent.Add(new StreamContent(contentStream), "contents", contentName);
+                            multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+                        }
+                    }
+
+                    var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseJson = await response.Content.ReadAsStringAsync();
+
+                        return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+                    }
+                    else
+                    {
+                        var errorResponse = await response.Content.ReadAsStringAsync();
+
+                        return ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}", null);
                     }
                 }
-
-                // TODO: Add GeolocationAds and Settings if needed, similar to Contents
-
-                // Send the request to the API
-                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
-
-                if (response.IsSuccessStatusCode)
+                finally
                 {
-                    // Handle successful response
-                    var responseJson = await response.Content.ReadAsStringAsync();
-
-                    var responseData = JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
-
-                    return responseData;
-                }
-                else
-                {
-                    // Handle failure
-                    var failResponse = ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
-
-                    return failResponse;
+                    foreach (var stream in openStreams)
+                    {
+                        stream.Close();
+                        stream.Dispose();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Handle exception
-                var failResponse = ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
-
-                return failResponse;
+                return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
             }
         }
+
+        public async Task<ResponseTool<Advertisement>> UploadFileInChunks(string filePath, int chunkSize = 1048576) // Default chunk size is 1 MB
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            long totalChunks = (fileInfo.Length + chunkSize - 1) / chunkSize; // Calculate total number of chunks
+            List<Task> uploadTasks = new List<Task>();
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                byte[] buffer = new byte[chunkSize];
+                int chunkNumber = 0;
+                int bytesRead;
+                while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    // Ensure the last buffer is right-sized for remaining content
+                    byte[] chunkToSend = buffer;
+                    if (bytesRead < chunkSize)
+                    {
+                        chunkToSend = new byte[bytesRead];
+                        Array.Copy(buffer, chunkToSend, bytesRead);
+                    }
+
+                    // Create a separate scope for the captured variables
+                    int capturedChunkNumber = chunkNumber;
+                    uploadTasks.Add(Task.Run(() => UploadChunk(capturedChunkNumber, chunkToSend, totalChunks)));
+
+                    chunkNumber++;
+                }
+            }
+
+            await Task.WhenAll(uploadTasks); // Wait for all chunks to be uploaded
+
+            return new ResponseTool<Advertisement> { IsSuccess = true, Message = "File uploaded in chunks successfully." };
+        }
+
+        private async Task UploadChunk(int chunkNumber, byte[] chunk, long totalChunks)
+        {
+            using (var content = new MultipartFormDataContent())
+            {
+                content.Add(new ByteArrayContent(chunk), "fileChunk", $"chunk_{chunkNumber}");
+                // Add additional form data as needed
+
+                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    // Handle failure per your application's needs
+                    throw new InvalidOperationException("Failed to upload chunk.");
+                }
+            }
+        }
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    try
+        //    {
+        //        //this._httpClient.Timeout = TimeSpan.FromMinutes(30); // Set an appropriate timeout
+
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        var _contens = data.Contents;
+
+        //        //data.Contents.Clear();
+
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
+        //        {
+        //            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        //        });
+
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        foreach (var content in _contens)
+        //        {
+        //            if (content.Content != null && content.Content.Length > 0)
+        //            {
+        //                var fileInfo = new FileInfo(content.FilePath);
+
+        //                if (fileInfo.Length > ConstantsTools.MaxFileSize)
+        //                {
+        //                    throw new InvalidOperationException($"File size {fileInfo.Length} exceeds the limit.");
+        //                }
+
+        //                // Read directly from the file stream
+        //                var fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        //                var contentStream = new StreamContent(fileStream)
+        //                {
+        //                    Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
+        //                };
+
+        //                multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+        //            }
+        //        }
+
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+
+        //            return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+        //        }
+        //        else
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception as needed
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
+        //{
+        //    try
+        //    {
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        //        // Serialize Advertisement metadata with efficient handling of reference loops
+        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+
+        //        // Stream content directly to reduce memory usage
+        //        foreach (var content in data.Contents)
+        //        {
+        //            if (content.Content != null && content.Content.Length > 0)
+        //            {
+        //                // Use PushStreamContent to allow streaming of data directly
+        //                var contentStream = new PushStreamContent(async (stream, httpContent, transportContext) =>
+        //                {
+        //                    using (var memoryStream = new MemoryStream(content.Content))
+        //                    {
+        //                        await memoryStream.CopyToAsync(stream);
+        //                    }
+        //                });
+
+        //                var contentName = content.ContentName ?? "file";
+        //                var mediaType = GetMediaType(content.Type);
+        //                multipartContent.Add(contentStream, "contents", contentName);
+        //            }
+        //        }
+
+        //        // Configure the HttpClient request to have a timeout
+        //        _httpClient.Timeout = TimeSpan.FromMinutes(5);  // Adjust timeout based on expected upload size and network conditions
+
+        //        // Send the request to the API
+        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var responseJson = await response.Content.ReadAsStringAsync();
+        //            var responseData = JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
+        //            return responseData;
+        //        }
+        //        else
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildFail("Bad Request.", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "Error in Add operation");
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //}
 
         //public async Task<Stream> GetVideoContentAsync(int id, string range)
         //{

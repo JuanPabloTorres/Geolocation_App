@@ -5,9 +5,9 @@ namespace GeolocationAds.Pages;
 
 public partial class MyContentPage : ContentPage
 {
-    private MyContentViewModel _viewModel;
+    private MyContentViewModel2 _viewModel;
 
-    public MyContentPage(MyContentViewModel vm)
+    public MyContentPage(MyContentViewModel2 vm)
     {
         InitializeComponent();
 
@@ -18,13 +18,11 @@ public partial class MyContentPage : ContentPage
         this.paginControls.NextClicked += NextItemButton_Clicked;
 
         this.paginControls.BackClicked += BackItemButton_Clicked;
-
-        
     }
 
     protected override async void OnAppearing()
     {
-        MyContentViewModel.PageIndex = 1;
+        MyContentViewModel2.PageIndex = 1;
 
         this._viewModel.CollectionModel.Clear();
 
@@ -61,9 +59,9 @@ public partial class MyContentPage : ContentPage
             {
                 var _oldCount = GetSourceLastIndexCount();
 
-                MyContentViewModel.PageIndex++;
+                MyContentViewModel2.PageIndex++;
 
-                await this._viewModel.InitializeAsync(MyContentViewModel.PageIndex);
+                await this._viewModel.InitializeAsync(MyContentViewModel2.PageIndex);
 
                 var _newCount = GetSourceLastIndexCount();
 

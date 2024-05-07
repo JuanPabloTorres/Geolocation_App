@@ -55,7 +55,7 @@ namespace GeolocationAds.ViewModels
                 {
                     this.UserName = m.Value;
 
-                    this.Avatar = this.UserName.FirstOrDefault().ToString();
+                    this.Avatar = this.UserName[0].ToString();
                 });
             });
 
@@ -65,14 +65,14 @@ namespace GeolocationAds.ViewModels
                 {
                     this.UserName = m.Value.FullName;
 
-                    this.Avatar = this.UserName.FirstOrDefault().ToString();
+                    this.Avatar = this.UserName[0].ToString();
                 });
             });
         }
 
         private async void SignOut()
         {
-            //WeakReferenceMessenger.Default.Send(new LogOffMessage(null));
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
 
             await Shell.Current.GoToAsync(nameof(Login));
 

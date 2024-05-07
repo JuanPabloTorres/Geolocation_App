@@ -152,13 +152,12 @@ namespace GeolocationAds.ViewModels
                 return;
             }
 
-            List<NearByTemplateViewModel2> viewModels = apiResponse.Data
-                .Select(ad => new NearByTemplateViewModel2(this._captureService, this._advertisementService, ad, this.LogUserPerfilTool)).ToList();
+            List<NearByTemplateViewModel2> viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, this._advertisementService, ad, this.LogUserPerfilTool)).ToList();
 
             try
             {
                 // Parallel initialization of view models
-                await Task.WhenAll(viewModels.Select(vm => vm.InitializeAsync()));
+                //await Task.WhenAll(viewModels.Select(vm => vm.InitializeAsync()));
 
                 // Safely add to collection if all initializations succeed
                 this.NearByTemplateViewModels.AddRange(viewModels);

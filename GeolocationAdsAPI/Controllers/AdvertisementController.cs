@@ -1,6 +1,7 @@
 ﻿using Azure;
 using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Primitives;
@@ -31,7 +32,9 @@ namespace GeolocationAdsAPI.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Add(Advertisement advertisement)
+        [RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
+        [RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
+        public async Task<IActionResult> Add([FromBody] Advertisement advertisement)
         {
             ResponseTool<Advertisement> response;
 
@@ -49,8 +52,9 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        // You can name this action method as per your routing preferences.
         [HttpPost("Add2")]
+        [RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
+        [RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
         public async Task<IActionResult> AddAdvertisement()
         {
             if (!Request.HasFormContentType)
@@ -58,42 +62,109 @@ namespace GeolocationAdsAPI.Controllers
                 return BadRequest("Unsupported media type");
             }
 
-            var formCollection = await Request.ReadFormAsync();
+            IFormCollection formCollection;
+            try
+            {
+                formCollection = await Request.ReadFormAsync();
+            }
+            catch (InvalidDataException ide)
+            {
+                return BadRequest($"Form data is too large: {ide.Message}");
+            }
+
+            if (!formCollection.ContainsKey("advertisementMetadata"))
+            {
+                return BadRequest("Advertisement metadata is required.");
+            }
 
             var advertisementJson = formCollection["advertisementMetadata"];
+            Advertisement advertisement;
+            try
+            {
+                advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
+                if (advertisement == null)
+                {
+                    return BadRequest("Invalid advertisement data.");
+                }
+            }
+            catch (JsonException je)
+            {
+                return BadRequest($"Invalid JSON data: {je.Message}");
+            }
 
-            var advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
-
-            //advertisement?.Contents.Clear();
-
-            // Assuming ContentType has IFormFile or similar for Content
-            //foreach (var file in formCollection.Files)
-            //{
-            //    var content = new ContentType
-            //    {
-            //        ContentName = file.FileName,
-            //        Type = GetContentVisualType(file.ContentType),
-            //        Content = await ConvertToByteArray(file)
-            //        // Assign other properties as needed
-            //    };
-
-            //    advertisement?.Contents.Add(content);
-            //}
-
-            // TODO: Handle GeolocationAds and Settings if they are part of the form
+            advertisement.Contents = new List<ContentType>(); // Ensuring the Contents collection is initialized
 
             try
             {
-                var response = await this.advertisementRepository.CreateAsync(advertisement);
+                foreach (var formFile in formCollection.Files)
+                {
+                    if (formFile.Length == 0)
+                    {
+                        continue; // Skip empty files
+                    }
 
+                    if (formFile.Length > ConstantsTools.MaxFileSize)
+                    {
+                        return BadRequest($"File size exceeds the limit: {formFile.FileName}");
+                    }
+
+                    byte[] fileBytes;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await formFile.CopyToAsync(memoryStream);
+
+                        fileBytes = memoryStream.ToArray();
+                    }
+
+                    var savedFilePath = await SaveFileAsync(formFile); // Abstracting file saving to a method
+                                                                       // Create a ContentType object and associate it with the advertisement
+                    var content = new ContentType
+                    {
+                        Content = fileBytes,
+                        FilePath = savedFilePath,
+                        FileSize = formFile.Length,
+                        ContentName = formFile.FileName,
+                        Type = DetermineContentType(formFile.ContentType) // Implement this based on your logic
+                    };
+                    advertisement.Contents.Add(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error processing files: {ex.Message}");
+            }
+
+            try
+            {
+                var response = await advertisementRepository.CreateAsync(advertisement);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                var response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null);
-
-                return StatusCode(StatusCodes.Status500InternalServerError, response);
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+        }
+
+        private async Task<string> SaveFileAsync(IFormFile file)
+        {
+            var filePath = Path.Combine("uploads", file.FileName);
+            var directoryPath = Path.GetDirectoryName(filePath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            return filePath;
+        }
+
+        private ContentVisualType DetermineContentType(string mimeType)
+        {
+            // Placeholder for actual implementation
+            return mimeType.StartsWith("image") ? ContentVisualType.Image : ContentVisualType.Video;
         }
 
         [HttpGet("[action]/{id}")]

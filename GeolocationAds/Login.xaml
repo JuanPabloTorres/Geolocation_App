@@ -3,6 +3,7 @@
     x:Class="GeolocationAds.Login"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControl="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="Login"
     BackgroundImageSource="loginbackground.jpeg"

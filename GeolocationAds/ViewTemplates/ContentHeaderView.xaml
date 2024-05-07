@@ -3,7 +3,7 @@
     x:Class="GeolocationAds.ViewTemplates.ContentHeaderView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Margin="5"
+    Margin="0"
     Padding="5"
     BackgroundColor="{StaticResource AppBlack}"
     HorizontalOptions="End"

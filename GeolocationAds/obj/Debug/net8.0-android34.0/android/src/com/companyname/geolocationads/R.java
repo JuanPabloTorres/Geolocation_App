@@ -13065,6 +13065,14 @@ public final class R {
     public static final int appicon_background=0x7f0f0001;
     public static final int appicon_foreground=0x7f0f0002;
     public static final int appicon_round=0x7f0f0003;
+    public static final int geoappicon=0x7f0f0004;
+    public static final int geoappicon_background=0x7f0f0005;
+    public static final int geoappicon_foreground=0x7f0f0006;
+    public static final int geoappicon_round=0x7f0f0007;
+    public static final int play_store_512=0x7f0f0008;
+    public static final int play_store_512_background=0x7f0f0009;
+    public static final int play_store_512_foreground=0x7f0f000a;
+    public static final int play_store_512_round=0x7f0f000b;
   }
   public static final class plurals {
     public static final int exo_controls_fastforward_by_amount_description=0x7f100000;

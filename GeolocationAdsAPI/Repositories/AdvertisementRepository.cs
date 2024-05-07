@@ -1,4 +1,5 @@
 ﻿using GeolocationAdsAPI.Context;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -20,10 +21,10 @@ namespace GeolocationAdsAPI.Repositories
                 // Add the advertisement entity to the DbSet
                 await _context.Advertisements.AddAsync(advertisement);
 
-                // Optionally, you can also add related entities in a similar way if needed.
-                await _context.ContentTypes.AddRangeAsync(advertisement.Contents);
+                //// Optionally, you can also add related entities in a similar way if needed.
+                //await _context.ContentTypes.AddRangeAsync(advertisement.Contents);
 
-                await _context.AdvertisementSettings.AddRangeAsync(advertisement.Settings);
+                //await _context.AdvertisementSettings.AddRangeAsync(advertisement.Settings);
 
                 // Save changes asynchronously
                 await _context.SaveChangesAsync();
@@ -71,11 +72,11 @@ namespace GeolocationAdsAPI.Repositories
                             SettingId = s.SettingId
                         }).ToList(),
                         Contents = s.Contents
-                            .Select(cs => new ContentType
+                            .Select(ct => new ContentType
                             {
-                                ID = cs.ID,
-                                Type = cs.Type,
-                                Content = cs.Content
+                                ID = ct.ID,
+                                Type = ct.Type,
+                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content// Apply byte range here
                             })
                             .ToList()
                     })
@@ -107,11 +108,12 @@ namespace GeolocationAdsAPI.Repositories
                         Title = s.Title,
                         UserId = s.UserId,
                         Contents = s.Contents
-                            .Select(cs => new ContentType
+                            .Select(ct => new ContentType
                             {
-                                Type = cs.Type,
-                                Content = cs.Content,
-                                ContentName = cs.ContentName ?? string.Empty
+                                ID = ct.ID,
+                                Type = ct.Type,
+                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
+                                ContentName = ct.ContentName ?? string.Empty
                             })
                             .Take(1)
                             .ToList()
@@ -127,6 +129,189 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+        //public override async Task<ResponseTool<Advertisement>> Remove(int id)
+        //{
+        //    try
+        //    {
+        //        var _itemToRemove = await _context.Advertisements.FindAsync(id);
+
+        //        if (_itemToRemove != null)
+        //        {
+        //            var _contentToRemove = _context.ContentTypes.Where(v => v.AdvertisingId == id);
+
+        //            if (_contentToRemove.Any())
+        //            {
+        //                _context.RemoveRange(_contentToRemove);
+        //            }
+        //            _context.Advertisements.Remove(_itemToRemove);
+
+        //            await _context.SaveChangesAsync();
+
+        //            return ResponseFactory<Advertisement>.BuildSuccess("Item Removed.", null, ToolsLibrary.Tools.Type.DataFound);
+        //        }
+        //        return ResponseFactory<Advertisement>.BuildFail("Item could not be removed.", null, ToolsLibrary.Tools.Type.NotFound);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Remove(int id)
+        //{
+        //    try
+        //    {
+        //        int rowsAffected = await _context.RemoveAdvertisement(id);
+
+        //        if (rowsAffected > 0)
+        //        {
+        //            return ResponseFactory<Advertisement>.BuildSuccess("Item Removed.", null, ToolsLibrary.Tools.Type.Delete);
+        //        }
+
+        //        return ResponseFactory<Advertisement>.BuildFail("Item could not be removed.", null, ToolsLibrary.Tools.Type.NotFound);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+        public override async Task<ResponseTool<Advertisement>> Remove(int id)
+        {
+            try
+            {
+                var _toRemoved = await _context.Advertisements.FindAsync(id);
+
+                if (!_toRemoved.IsObjectNull())
+                {
+                    _context.Advertisements.Remove(_toRemoved);
+
+                    await _context.SaveChangesAsync();
+
+                    return ResponseFactory<Advertisement>.BuildSuccess("Item Removed.", null, ToolsLibrary.Tools.Type.Delete);
+                }
+
+                return ResponseFactory<Advertisement>.BuildFail("Item could not be removed.", null, ToolsLibrary.Tools.Type.NotFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<bool>> RemoveAdvertisement(int advertisementId)
+        {
+            var strategy = _context.Database.CreateExecutionStrategy();
+
+            // Execute the transactional logic within the retry policy
+            await strategy.ExecuteAsync(async () =>
+            {
+                using (var transaction = await _context.Database.BeginTransactionAsync())
+                {
+                    try
+                    {
+                        var advertisement = await _context.Advertisements
+                                                          .Include(ad => ad.Contents)
+                                                          .Include(ad => ad.GeolocationAds)
+                                                          .Include(ad => ad.Settings)
+                                                          .FirstOrDefaultAsync(ad => ad.ID == advertisementId);
+
+                        if (advertisement == null)
+                        {
+                            return ResponseFactory<bool>.BuildFail("Advertisement not found.", false, ToolsLibrary.Tools.Type.EntityNotFound);
+                        }
+
+                        // Delete related Contents
+                        _context.ContentTypes.RemoveRange(advertisement.Contents);
+                        await _context.SaveChangesAsync();
+
+                        // Delete related GeolocationAds
+                        _context.GeolocationAds.RemoveRange(advertisement.GeolocationAds);
+                        await _context.SaveChangesAsync();
+
+                        // Delete related Settings
+                        _context.AdvertisementSettings.RemoveRange(advertisement.Settings);
+                        await _context.SaveChangesAsync();
+
+                        // Finally, remove the main Advertisement entity
+                        _context.Advertisements.Remove(advertisement);
+                        await _context.SaveChangesAsync();
+
+                        await transaction.CommitAsync();
+
+                        return ResponseFactory<bool>.BuildSuccess("Advertisement removed successfully.", true);
+                    }
+                    catch (Exception ex)
+                    {
+                        await transaction.RollbackAsync();
+
+                        return ResponseFactory<bool>.BuildFail($"An error occurred: {ex.Message}", false, ToolsLibrary.Tools.Type.Exception);
+                    }
+                }
+            });
+
+            return ResponseFactory<bool>.BuildSuccess("Operation completed successfully", true);
+        }
+
+        //public async Task<ResponseTool<bool>> RemoveAdvertisement(int advertisementId)
+        //{
+        //    const int BatchSize = 100; // Define the batch size
+
+        //    var transaction = _context.Database.BeginTransaction();
+        //    try
+        //    {
+        //        var advertisement = await _context.Advertisements
+        //                                          .Include(ad => ad.Contents)
+        //                                          .Include(ad => ad.GeolocationAds)
+        //                                          .Include(ad => ad.Settings)
+        //                                          .FirstOrDefaultAsync(ad => ad.ID == advertisementId);
+
+        //        if (advertisement == null)
+        //        {
+        //            return ResponseFactory<bool>.BuildFail("Advertisement not found.", false, ToolsLibrary.Tools.Type.EntityNotFound);
+        //        }
+
+        //        // Delete related Contents
+        //        foreach (var batch in advertisement.Contents.Batch(BatchSize))
+        //        {
+        //            _context.ContentTypes.RemoveRange(batch);
+
+        //            await _context.SaveChangesAsync();
+        //        }
+
+        //        // Delete related GeolocationAds
+        //        foreach (var batch in advertisement.GeolocationAds.Batch(BatchSize))
+        //        {
+        //            _context.GeolocationAds.RemoveRange(batch);
+
+        //            await _context.SaveChangesAsync();
+        //        }
+
+        //        // Delete related Settings
+        //        foreach (var batch in advertisement.Settings.Batch(BatchSize))
+        //        {
+        //            _context.AdvertisementSettings.RemoveRange(batch);
+
+        //            await _context.SaveChangesAsync();
+        //        }
+
+        //        // Finally, remove the main Advertisement entity
+        //        _context.Advertisements.Remove(advertisement);
+
+        //        await _context.SaveChangesAsync();
+
+        //        await transaction.CommitAsync();
+
+        //        return ResponseFactory<bool>.BuildSuccess("Advertisement removed successfully.", true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await transaction.RollbackAsync();
+
+        //        return ResponseFactory<bool>.BuildFail($"An error occurred: {ex.Message}", false, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
 
         public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
         {

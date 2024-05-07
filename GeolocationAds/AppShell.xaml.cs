@@ -5,7 +5,7 @@ namespace GeolocationAds;
 
 public partial class AppShell : Shell
 {
-    public AppShell(AppShellViewModel appShellViewModel)
+    public AppShell(AppShellViewModel2 appShellViewModel)
     {
         InitializeComponent();
 
@@ -23,6 +23,4 @@ public partial class AppShell : Shell
 
         BindingContext = appShellViewModel;
     }
-
-
 }

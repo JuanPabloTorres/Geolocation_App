@@ -2,6 +2,7 @@
 using GeolocationAdsAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Storage;
 using NuGet.Packaging;
 using System.Collections;
 using System.Linq.Expressions;
@@ -148,7 +149,7 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
-    public async Task<ResponseTool<T>> Remove(int id)
+    public virtual async Task<ResponseTool<T>> Remove(int id)
     {
         try
         {
@@ -170,6 +171,40 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
             return ResponseFactory<T>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
         }
     }
+
+    //public async Task<ResponseTool<T>> RemoveInBatches(int id, int batchSize = 100)
+    //{
+    //    try
+    //    {
+    //        // Load the entity with related data
+    //        var entity = await _context.Set<T>()
+    //                                   .Include(e => e.RelatedData) // Adjust this line to match your data model
+    //                                   .FirstOrDefaultAsync(e => e.Id == id);
+
+    //        if (entity == null)
+    //        {
+    //            return ResponseFactory<T>.BuildFail("Not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
+    //        }
+
+    //        // Handling related data deletion in batches
+    //        while (entity.RelatedData.Any())
+    //        {
+    //            var batch = entity.RelatedData.Take(batchSize).ToList();
+    //            _context.RelatedDataSet.RemoveRange(batch); // Adjust this line to your context and entities
+    //            await _context.SaveChangesAsync();
+    //        }
+
+    //        // Finally, remove the main entity
+    //        _context.Set<T>().Remove(entity);
+    //        await _context.SaveChangesAsync();
+
+    //        return ResponseFactory<T>.BuildSuccess("Removed successfully in batches.", entity);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return ResponseFactory<T>.BuildFail($"An error occurred: {ex.Message}", null, ToolsLibrary.Tools.Type.Exception);
+    //    }
+    //}
 
     //public async Task<ResponseTool<T>> UpdateAsync(int id, T entity)
     //{
