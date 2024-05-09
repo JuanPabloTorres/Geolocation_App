@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using FFImageLoading.Maui;
-using GeolocationAds.CustomCotrols;
 using GeolocationAds.Pages;
-using GeolocationAds.PlatformService;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
@@ -85,35 +83,21 @@ public static class MauiProgram
 
         #region ViewModels
 
-        builder.Services.AddTransient<CreateAdvertismentViewModel>();
-
         builder.Services.AddTransient<CreateAdvertismentViewModel2>();
 
         builder.Services.AddScoped<MangeContentTemplateViewModel>();
 
-        builder.Services.AddScoped<MyContentViewModel>();
-
         builder.Services.AddScoped<MyContentViewModel2>();
 
-        builder.Services.AddScoped<SearchAdViewModel>();
-
         builder.Services.AddScoped<SearchAdViewModel2>();
-
-        builder.Services.AddScoped<LoginViewModel>();
 
         builder.Services.AddScoped<LoginViewModel2>();
 
         builder.Services.AddScoped<RegisterViewModel>();
 
-        builder.Services.AddScoped<AppShellViewModel>();
-
         builder.Services.AddScoped<AppShellViewModel2>();
 
-        builder.Services.AddScoped<GoogleMapViewModel>();
-
         builder.Services.AddScoped<GoogleMapViewModel2>();
-
-        builder.Services.AddScoped<EditAdvertismentViewModel>();
 
         builder.Services.AddScoped<EditAdvertismentViewModel2>();
 
@@ -145,7 +129,7 @@ public static class MauiProgram
 
         builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
 
-        builder.Services.AddScoped<AdToLocation>();
+
 
         builder.Services.AddScoped<SearchAd>();
 
@@ -159,7 +143,7 @@ public static class MauiProgram
 
         builder.Services.AddScoped<UserSetting>();
 
-        builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel>($"{nameof(EditAdvertisment)}");
+        builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel2>($"{nameof(EditAdvertisment)}");
 
         builder.Services.AddScoped<EditUserPerfil>();
 

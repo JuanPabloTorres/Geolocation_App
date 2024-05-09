@@ -27,9 +27,11 @@
 
         <DataTemplate x:Key="ImageDataTemplate2">
 
-
             <Grid>
-                <Image Aspect="Fill" Source="{Binding Image, Mode=TwoWay}" />
+                <Image
+                    Aspect="Fill"
+                    IsAnimationPlaying="{Binding IsAnimation}"
+                    Source="{Binding Image}" />
 
                 <!--  Button Container Grid  -->
                 <Grid>
@@ -59,15 +61,12 @@
                         <Button.ImageSource>
                             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
-
                     </Button>
                 </Grid>
             </Grid>
-
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplate2">
-
 
             <Grid>
 
@@ -84,7 +83,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
 
                     <!--  Button  -->
                     <Button
@@ -103,15 +101,12 @@
                                 Offset="5,5" />
                         </Button.Shadow>
 
-
                         <Button.ImageSource>
                             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
-
                     </Button>
                 </Grid>
             </Grid>
-
         </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
@@ -119,8 +114,6 @@
             ImageDataTemplate="{StaticResource ImageDataTemplate2}"
             VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
     </ContentPage.Resources>
-
-
 
     <Grid>
 
@@ -131,11 +124,7 @@
             <RowDefinition Height="Auto" />
 
             <RowDefinition Height="100*" />
-
         </Grid.RowDefinitions>
-
-
-
 
         <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
             <CollectionView.ItemTemplate>
@@ -165,38 +154,16 @@
 
         <local:CustomPickerContentView
             Grid.Row="3"
-             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
             HorizontalOptions="FillAndExpand"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ItemDisplayBindingPath="Value"
             ItemsSource="{Binding AdTypesSettings}"
             SelectValue="{Binding SelectedAdType}"
             SelectedItem="{Binding SelectedAdType}" />
 
-        <!--  ... Choose File ...  -->
-        <!--<Button
-            x:Name="UploadButton"
-            Grid.Row="4"
-            Command="{Binding UploadContentCommand}"
-            Style="{StaticResource globalButton}"
-            Text="Choose Image">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>-->
-
-        <!--<CarouselView
-            Grid.Row="4"
-            ItemTemplate="{StaticResource typeSelector}"
-            ItemsSource="{Binding ContentTypesTemplate}"
-            VerticalOptions="FillAndExpand" />-->
-
         <CarouselView
+            x:Name="contentCollection"
             Grid.Row="4"
             IsBounceEnabled="False"
             IsScrollAnimated="False"
@@ -238,16 +205,9 @@
             </Button.Shadow>
         </Button>-->
 
-
-
         <ActivityIndicator
             Grid.Row="4"
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
-
-
     </Grid>
-
-
-
 </ContentPage>

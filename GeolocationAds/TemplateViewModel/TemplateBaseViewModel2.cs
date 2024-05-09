@@ -1,11 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using GeolocationAds.Services;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
@@ -51,6 +46,11 @@ namespace GeolocationAds.TemplateViewModel
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
+        }
+
+        protected virtual void OnDeleteType(EventArgs e)
+        {
+            ItemDeleted?.Invoke(this, e);
         }
     }
 }

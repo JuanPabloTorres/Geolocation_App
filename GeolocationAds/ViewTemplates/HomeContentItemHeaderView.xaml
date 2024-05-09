@@ -10,12 +10,6 @@
     Opacity="{StaticResource OpacityValue}"
     VerticalOptions="Center">
 
-    <Label
-        HorizontalOptions="Start"
-        Style="{StaticResource globalLabel}"
-        Text="{Binding Advertisement.Title}"
-        TextColor="White" />
-
     <Button
         Command="{Binding CaptureItemCommand}"
         CommandParameter="{Binding Advertisement}"

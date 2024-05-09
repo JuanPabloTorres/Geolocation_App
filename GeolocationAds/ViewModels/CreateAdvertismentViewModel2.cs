@@ -6,12 +6,7 @@ using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -34,6 +29,8 @@ namespace GeolocationAds.ViewModels
         public CreateAdvertismentViewModel2(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool, IAppSettingService appSettingService) : base(advertisement, advertisementService, logUserPerfilTool)
         {
             this.appSettingService = appSettingService;
+
+            ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, async (r, m) =>
             {
@@ -83,6 +80,8 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
+                ContentTypesTemplate.Clear();
+
                 var _adSetting = new AdvertisementSettings()
                 {
                     CreateDate = DateTime.Now,
@@ -98,7 +97,7 @@ namespace GeolocationAds.ViewModels
                     Contents = new List<ContentType>()
                 };
 
-                await this.GetImageSourceFromFile();
+                await this.GetImageSourceFromFile2();
             }
             catch (Exception ex)
             {
@@ -116,6 +115,13 @@ namespace GeolocationAds.ViewModels
             try
             {
                 this.IsLoading = true;
+
+                if (this.Model.Contents.Count == 3)
+                {
+                    await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
+
+                    return;
+                }
 
                 var customFileTypes = GetCommonFileTypes();
 
@@ -135,6 +141,13 @@ namespace GeolocationAds.ViewModels
             }
             finally
             {
+                //ContentTypesTemplate.Select(async v => await v.SetAnimation());
+
+                foreach (var item in ContentTypesTemplate)
+                {
+                    await item.SetAnimation();
+                }
+
                 this.IsLoading = false;
             }
         }
@@ -195,6 +208,13 @@ namespace GeolocationAds.ViewModels
                     {
                         this.ContentTypesTemplate.Remove(template);
 
+                        //ContentTypesTemplate.Select(async v => await v.SetAnimation());
+
+                        foreach (var item in ContentTypesTemplate)
+                        {
+                            await item.SetAnimation();
+                        }
+
                         this.Model.Contents.Remove(template.ContentType);
                     }
                 }
@@ -223,8 +243,6 @@ namespace GeolocationAds.ViewModels
 
                     var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
-                    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
                     this.ContentTypesTemplate.Add(_template);
 
                     this.Model.Contents.Add(_content);
@@ -242,7 +260,7 @@ namespace GeolocationAds.ViewModels
             {
                 var _fileBytes = await CommonsTool.GetFileBytesAsync(result);
 
-                if (_fileBytes.Length > ConstantsTools.MaxFileSize)
+                if (_fileBytes.Length > ConstantsTools.MB50)
                 {
                     await CommonsTool.DisplayAlert("Error", "File Size is to heavy.");
 
@@ -256,8 +274,6 @@ namespace GeolocationAds.ViewModels
                 var _file = CommonsTool.SaveByteArrayToTempFile(_fileBytes);
 
                 var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
-
-                _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                 this.ContentTypesTemplate.Add(_template);
 
@@ -299,8 +315,6 @@ namespace GeolocationAds.ViewModels
 
                     var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
-                    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
                     this.ContentTypesTemplate.Add(_template);
 
                     this.Model.Contents.Add(_content);
@@ -318,30 +332,9 @@ namespace GeolocationAds.ViewModels
             {
                 var _defaultTemplate = await AppToolCommon.GetDefaultContentTypeTemplateViewModel(this.LogUserPerfilTool.GetUserId());
 
-                _defaultTemplate.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
                 this.ContentTypesTemplate.Add(_defaultTemplate);
 
                 this.Model.Contents.Add(_defaultTemplate.ContentType);
-
-                //var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(ConstantsTools.FILENAME);
-
-                //if (!_defaulMedia.IsObjectNull())
-                //{
-                //    this.ContentTypesTemplate.Clear();
-
-                //    var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID, ConstantsTools.FILENAME);
-
-                //    _content.ContentName = ConstantsTools.FILENAME;
-
-                //    var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
-
-                //    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-                //    this.ContentTypesTemplate.Add(_template);
-
-                //    this.Model.Contents.Add(_content);
-                //}
             }
             catch (Exception ex)
             {
@@ -349,7 +342,21 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private async void SelectedTypeChange(AppSetting value)
+        partial void OnSelectedAdTypeChanged(AppSetting value)
+        {
+            // Invoke the asynchronous method and forget it
+            HandleAdTypeChangeAsync(value).ContinueWith(task =>
+            {
+                // Handle exceptions if task fails
+                if (task.Exception != null)
+                {
+                    // Log or handle the exception as needed
+                    Console.WriteLine($"Exception occurred: {task.Exception.Flatten()}");
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext()); // Ensure any continuation runs on the UI thread
+        }
+
+        private async Task HandleAdTypeChangeAsync(AppSetting value)
         {
             try
             {
@@ -369,6 +376,7 @@ namespace GeolocationAds.ViewModels
             }
             catch (Exception ex)
             {
+                // If DisplayAlert is truly asynchronous
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }

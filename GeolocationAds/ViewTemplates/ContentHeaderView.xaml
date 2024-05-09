@@ -9,11 +9,7 @@
     HorizontalOptions="End"
     Opacity="{StaticResource OpacityValue}"
     VerticalOptions="Center">
-    <Label
-        HorizontalOptions="StartAndExpand"
-        Style="{StaticResource globalLabel}"
-        Text="{Binding CurrentAdvertisement.Title}"
-        TextColor="White" />
+
 
     <Button
         Command="{Binding OpenActionPopUpCommand}"

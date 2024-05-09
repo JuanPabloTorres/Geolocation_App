@@ -18,21 +18,57 @@
         ShouldShowPlaybackControls="True"
         Source="{Binding MediaSource}" />
 
-    <Border
-        x:Name="myContentStackHeader"
-        Grid.Row="0"
-        Style="{StaticResource borderOnHeaderControls}">
+    <Grid x:Name="myContentStackHeader">
 
-        <headerView:ContentHeaderView />
-    </Border>
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
 
-    <Border
-        x:Name="searchContentStackHeader"
-        Grid.Row="0"
-        Style="{StaticResource borderOnHeaderControls}">
+            <Label
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding CurrentAdvertisement.Title}"
+                TextColor="White"
+                VerticalOptions="Start" />
 
-        <headerView:HomeContentItemHeaderView />
-    </Border>
+            <Label
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding CurrentAdvertisement.Description}"
+                TextColor="White"
+                VerticalOptions="Start" />
+        </VerticalStackLayout>
+
+        <Border Grid.Column="1" Style="{StaticResource borderOnHeaderControls}">
+            <Grid>
+
+                <headerView:ContentHeaderView Grid.Column="1" />
+            </Grid>
+        </Border>
+    </Grid>
+
+    <Grid x:Name="searchContentStackHeader">
+
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+
+            <Label
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding CurrentAdvertisement.Title}"
+                TextColor="White"
+                VerticalOptions="Start" />
+
+            <Label
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding CurrentAdvertisement.Description}"
+                TextColor="White"
+                VerticalOptions="Start" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" Style="{StaticResource borderOnHeaderControls}">
+
+            <headerView:HomeContentItemHeaderView />
+        </Border>
+    </Grid>
 
     <ActivityIndicator
         Grid.Row="0"

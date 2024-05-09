@@ -59,7 +59,6 @@
             <CarouselView.EmptyView>
 
                 <Grid>
-                    <!--<Label Style="{StaticResource emptyCollectionLabel}" Text="Find Your Next Favorite" />-->
 
                     <Image
                         Aspect="AspectFit"
@@ -68,13 +67,7 @@
                 </Grid>
             </CarouselView.EmptyView>
 
-            <!--<CarouselView.ItemTemplate>
 
-                <DataTemplate>
-
-                    <displayer:FindedContentDisplayer />
-                </DataTemplate>
-            </CarouselView.ItemTemplate>-->
 
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" />

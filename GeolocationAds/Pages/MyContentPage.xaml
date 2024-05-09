@@ -33,8 +33,14 @@
             <displayer:VideoDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
+        <DataTemplate x:Key="DefaultDataTemplateForDisplay">
+
+            <displayer:ImageDisplayer IsMyContentStackHeaderVisible="True" />
+        </DataTemplate>
+
         <templateSelector:ContentViewTemplateSelector
             x:Key="typeSelector"
+            DefaultDataTemplate="{StaticResource DefaultDataTemplateForDisplay}"
             ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
             VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
     </ContentPage.Resources>

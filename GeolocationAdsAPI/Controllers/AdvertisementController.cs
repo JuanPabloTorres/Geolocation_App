@@ -1,12 +1,7 @@
-﻿using Azure;
-using GeolocationAdsAPI.Repositories;
+﻿using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -20,15 +15,23 @@ namespace GeolocationAdsAPI.Controllers
     [Authorize]
     public class AdvertisementController : ControllerBase
     {
+        private readonly string _serviceIP;
+
+        private readonly string _servicePort;
+
         private readonly IAdvertisementRepository advertisementRepository;
 
         private readonly IContentTypeRepository contentTypeRepository;
 
-        public AdvertisementController(IAdvertisementRepository advertisementRepository, IContentTypeRepository contentTypeRepository)
+        public AdvertisementController(IAdvertisementRepository advertisementRepository, IContentTypeRepository contentTypeRepository, IConfiguration configuration)
         {
             this.advertisementRepository = advertisementRepository;
 
             this.contentTypeRepository = contentTypeRepository;
+
+            _serviceIP = configuration["ApplicationSettings:ServiceIPAddress"];
+
+            _servicePort = configuration["ApplicationSettings:ServicePort"];
         }
 
         [HttpPost("[action]")]
@@ -63,6 +66,7 @@ namespace GeolocationAdsAPI.Controllers
             }
 
             IFormCollection formCollection;
+
             try
             {
                 formCollection = await Request.ReadFormAsync();
@@ -78,10 +82,13 @@ namespace GeolocationAdsAPI.Controllers
             }
 
             var advertisementJson = formCollection["advertisementMetadata"];
+
             Advertisement advertisement;
+
             try
             {
                 advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
+
                 if (advertisement == null)
                 {
                     return BadRequest("Invalid advertisement data.");
@@ -108,26 +115,29 @@ namespace GeolocationAdsAPI.Controllers
                         return BadRequest($"File size exceeds the limit: {formFile.FileName}");
                     }
 
-                    byte[] fileBytes;
+                    // Instead of converting to a byte array, we can directly use the stream for further processing if needed
                     using (var memoryStream = new MemoryStream())
                     {
                         await formFile.CopyToAsync(memoryStream);
 
-                        fileBytes = memoryStream.ToArray();
-                    }
+                        // Reset the position of the MemoryStream to the beginning for any further reading
+                        memoryStream.Position = 0;
 
-                    var savedFilePath = await SaveFileAsync(formFile); // Abstracting file saving to a method
-                                                                       // Create a ContentType object and associate it with the advertisement
-                    var content = new ContentType
-                    {
-                        Content = fileBytes,
-                        FilePath = savedFilePath,
-                        FileSize = formFile.Length,
-                        ContentName = formFile.FileName,
-                        Type = DetermineContentType(formFile.ContentType) // Implement this based on your logic
-                    };
-                    advertisement.Contents.Add(content);
+                        // Create a ContentType object and associate it with the advertisement
+                        var content = new ContentType
+                        {
+                            Content = memoryStream.ToArray(), // Still converting to array for ContentType object usage
+                            FilePath = string.Empty, // Directly using the FileName here, adjust as necessary
+                            FileSize = formFile.Length,
+                            ContentName = formFile.FileName,
+                            Type = DetermineContentType(formFile.ContentType)
+                        };
+
+                        // Process the content further as needed, e.g., add to a list, etc.
+                        advertisement.Contents.Add(content);
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -137,6 +147,7 @@ namespace GeolocationAdsAPI.Controllers
             try
             {
                 var response = await advertisementRepository.CreateAsync(advertisement);
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -164,7 +175,18 @@ namespace GeolocationAdsAPI.Controllers
         private ContentVisualType DetermineContentType(string mimeType)
         {
             // Placeholder for actual implementation
-            return mimeType.StartsWith("image") ? ContentVisualType.Image : ContentVisualType.Video;
+            switch (mimeType.ToLower())
+            {
+                case "image/jpeg":
+                case "image/png":
+                case "image/gif":
+                    return ContentVisualType.Image;
+                case "video/mp4":
+                case "video/mpeg":
+                    return ContentVisualType.Video;
+                default:
+                    return ContentVisualType.Unknown;
+            }
         }
 
         [HttpGet("[action]/{id}")]
@@ -278,7 +300,7 @@ namespace GeolocationAdsAPI.Controllers
 
                 //var _response = ResponseFactory<string>.BuildSusccess("Streaming Path", $"{Request.Scheme}://{Request.Host}/{hlsOutput}");
 
-                var _response = ResponseFactory<string>.BuildSuccess("Streaming Path", $"{Request.Scheme}://192.168.0.11:5160{hlsOutput.Replace("wwwroot", "")}");
+                var _response = ResponseFactory<string>.BuildSuccess("Streaming Path", $"{Request.Scheme}://{GetServiceEndpoint()}{hlsOutput.Replace("wwwroot", "")}");
 
                 //return Ok($"{Request.Scheme}://{Request.Host}/{hlsOutput}");
 
@@ -288,6 +310,16 @@ namespace GeolocationAdsAPI.Controllers
             {
                 return Ok(ResponseFactory<string>.BuildFail(ex.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
             }
+        }
+
+        // Method to get combined IP and port
+        public string GetServiceEndpoint()
+        {
+            string ip = _serviceIP;
+
+            string port = _servicePort;
+
+            return $"{ip}:{port}";
         }
 
         [HttpPut("[action]/{Id}")]
@@ -321,78 +353,6 @@ namespace GeolocationAdsAPI.Controllers
             using var memoryStream = new MemoryStream();
             await file.CopyToAsync(memoryStream);
             return memoryStream.ToArray();
-        }
-
-        private string ConvertVideoToHLS(string videoFilePath)
-        {
-            var outputDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-
-            Directory.CreateDirectory(outputDirectory);
-
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = "ffmpeg",
-                Arguments = $"-i {videoFilePath} -codec: copy -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {Path.Combine(outputDirectory, "output.m3u8")}",
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-
-            using (var process = Process.Start(startInfo))
-            {
-                process.WaitForExit();
-            }
-
-            return outputDirectory;
-        }
-
-        private string ConvertVideoToHLS2(string videoFilePath)
-        {
-            var outputDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(outputDirectory);
-
-            //var startInfo = new ProcessStartInfo
-            //{
-            //    FileName = "C:\ffmpeg\bin", // Asegúrate de que "ffmpeg" se puede llamar directamente
-            //    Arguments = $"-i \"{videoFilePath}\" -codec: copy -start_number 0 -hls_time 10 -hls_list_size 0 -f hls \"{Path.Combine(outputDirectory, "output.m3u8")}\"",
-            //    RedirectStandardOutput = true,
-            //    RedirectStandardError = true,
-            //    UseShellExecute = false,
-            //    CreateNoWindow = true
-            //};
-
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = "ffmpeg",
-                Arguments = "-version",
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-
-            using (var process = Process.Start(startInfo))
-            {
-                process.WaitForExit();
-                string output = process.StandardOutput.ReadToEnd();
-                Console.WriteLine(output);
-            }
-
-            Debug.WriteLine("PATH is: " + Environment.GetEnvironmentVariable("PATH"));
-
-            using (var process = Process.Start(startInfo))
-            {
-                process.WaitForExit();
-
-                // Asegúrate de capturar y revisar la salida de error
-                string stderr = process.StandardError.ReadToEnd();
-                if (!string.IsNullOrEmpty(stderr))
-                {
-                    // Maneja el error aquí
-                    throw new Exception(stderr);
-                }
-            }
-
-            return outputDirectory;
         }
 
         private string ConvertVideoToHLS3(string videoFilePath)

@@ -1,11 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -22,14 +17,13 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private ImageSource image;
 
-        public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
+        [ObservableProperty]
+        private Image image0 = new Image();
 
-        public event ApplyQueryAttributesEventHandler ContentTypeDeleted;
+        [ObservableProperty]
+        private bool isAnimation;
 
-        protected virtual void OnDeleteType(EventArgs e)
-        {
-            ContentTypeDeleted?.Invoke(this, e);
-        }
+        public ContentVisualType ContentVisualType;
 
         public ContentTypeTemplateViewModel2()
         {
@@ -40,6 +34,8 @@ namespace GeolocationAds.TemplateViewModel
             this.ContentType = contentType;
 
             this.MediaSource = mediaSource;
+
+            ContentVisualType = ContentVisualType.Video;
         }
 
         public ContentTypeTemplateViewModel2(ContentType contentType, ImageSource imageSource)
@@ -47,6 +43,30 @@ namespace GeolocationAds.TemplateViewModel
             this.ContentType = contentType;
 
             this.Image = imageSource;
+
+            ContentVisualType = ContentVisualType.Image;
+
+
+        }
+
+        //public async Task InitAnimation()
+        //{
+        //    IsAnimation = false;
+
+        //    await Task.Delay(1000);  // Delay for 1 second or however long you need
+
+        //    IsAnimation = true;      // Set to true after delay
+        //                             // Trigger any necessary PropertyChanged events if using INotifyPropertyChanged
+        //}
+
+        public async Task SetAnimation()
+        {
+
+            this.IsAnimation = false;
+
+            await Task.Delay(1000);  // Delay for 1 second or however long you need
+
+            this.IsAnimation = true;      // Set to true after delay
         }
 
         [RelayCommand]

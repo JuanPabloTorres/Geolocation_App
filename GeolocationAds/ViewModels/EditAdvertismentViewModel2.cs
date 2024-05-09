@@ -4,12 +4,7 @@ using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -34,6 +29,8 @@ namespace GeolocationAds.ViewModels
         public EditAdvertismentViewModel2(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil, IAppSettingService appSettingService) : base(model, service, logUserPerfil)
         {
             this.appSettingService = appSettingService;
+
+            ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
         }
@@ -80,6 +77,12 @@ namespace GeolocationAds.ViewModels
             }
             finally
             {
+
+                foreach (var item in ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image))
+                {
+                    await item.SetAnimation();
+                }
+
                 this.IsLoading = false;
             }
         }
@@ -95,8 +98,6 @@ namespace GeolocationAds.ViewModels
                 foreach (var item in this.Model.Contents)
                 {
                     var _template = await AppToolCommon.ProcessContentItem(item);
-
-                    _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                     this.ContentTypesTemplate.Add(_template);
                 }
@@ -175,8 +176,6 @@ namespace GeolocationAds.ViewModels
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
-                        _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
                         this.ContentTypesTemplate.Add(_template);
 
                         this.Model.Contents.Add(_content);
@@ -190,8 +189,6 @@ namespace GeolocationAds.ViewModels
 
                         var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
 
-                        _template.ContentTypeDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
                         this.ContentTypesTemplate.Add(_template);
 
                         this.Model.Contents.Add(_content);
@@ -204,6 +201,12 @@ namespace GeolocationAds.ViewModels
             }
             finally
             {
+
+                foreach (var item in ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image))
+                {
+                    await item.SetAnimation();
+                }
+
                 this.IsLoading = false;
             }
         }

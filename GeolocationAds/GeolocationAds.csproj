@@ -99,9 +99,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AdToLocation.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\CreateAdvertisement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -126,7 +123,7 @@
 	  <MauiXaml Update="ViewTemplates\ContentHeaderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewTemplates\FindedContentDisplayer.xaml">
+	  <MauiXaml Update="ViewTemplates\DefaultDisplayer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ViewTemplates\HomeContentItemHeaderView.xaml">

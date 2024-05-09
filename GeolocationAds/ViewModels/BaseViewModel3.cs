@@ -1,15 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using ToolsLibrary.Tools;
-using CommunityToolkit.Mvvm.Messaging;
-using GeolocationAds.Messages;
+using System.Reflection;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
-using CommunityToolkit.Mvvm.Input;
-using System.ComponentModel;
-using System.Reflection;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
@@ -98,42 +97,6 @@ namespace GeolocationAds.ViewModels
         {
             ApplyQueryAttributesCompleted?.Invoke(this, e);
         }
-
-        //protected virtual async Task Get(int id)
-        //{
-        //    try
-        //    {
-        //        MethodInfo getMethod = this.service.GetType().GetMethod(nameof(Get));
-
-        //        if (getMethod != null)
-        //        {
-        //            // Parameters to pass to the "Add" method
-        //            object[] parameters = new object[] { id };
-
-        //            // Call the "Add" method on the userService instance
-        //            Task<ResponseTool<T>> getTask = Task.Run(async () =>
-        //            {
-        //                return await (Task<ResponseTool<T>>)getMethod.Invoke(this.service, parameters);
-        //            });
-
-        //            // Wait for the asynchronous task to complete
-        //            ResponseTool<T> _apiResponse = await getTask;
-
-        //            if (_apiResponse.IsSuccess)
-        //            {
-        //                this.Model = _apiResponse.Data;
-        //            }
-        //            else
-        //            {
-        //                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-        //    }
-        //}
 
         protected virtual async Task Get(int id)
         {
@@ -318,6 +281,139 @@ namespace GeolocationAds.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        [RelayCommand]
+        public virtual async Task SubmitUpdate(T obj)
+        {
+            IsLoading = true;
+
+            try
+            {
+                ValidationResults.Clear();
+
+                DateTime now = DateTime.Now;
+
+                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
+
+                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
+
+                var validationContextCurrentType = new ValidationContext(obj);
+
+                var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
+
+                PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
+
+                var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
+
+                var _validatedSubProperty = new List<bool>();
+
+                foreach (var item in _propertyIntances)
+                {
+                    if (!item.IsObjectNull())
+                    {
+                        var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
+
+                        var validationContextSubProperty = new ValidationContext(item);
+
+                        this.ValidationContexts.Add(validationContextSubProperty);
+
+                        _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
+
+                        this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
+                    }
+                }
+
+                if (_validatedSubProperty.Count >= 0)
+                {
+                    bool _allSubPropetyValueAreValid = _validatedSubProperty.All(v => v == true);
+
+                    if (isValiteObj && _allSubPropetyValueAreValid)
+                    {
+                        MethodInfo updateMethod = this.service.GetType().GetMethod("Update");
+
+                        if (updateMethod != null)
+                        {
+                            // Parameters to pass to the "Add" method
+
+                            var _id = obj.GetType().GetProperties().Where(p => p.Name == "ID").FirstOrDefault().GetValue(obj);
+
+                            object[] parameters = new object[] { obj, _id };
+
+                            // Call the "Add" method on the userService instance
+                            Task<ResponseTool<T>> updateTask = Task.Run(async () =>
+                            {
+                                return await (Task<ResponseTool<T>>)updateMethod.Invoke(this.service, parameters);
+                            });
+
+                            // Wait for the asynchronous task to complete
+                            ResponseTool<T> _apiResponse = await updateTask;
+
+                            if (_apiResponse.IsSuccess)
+                            {
+                                WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
+
+                                await Shell.Current.Navigation.PopToRootAsync();
+
+                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                            }
+                            else
+                            {
+                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (isValiteObj)
+                    {
+                        MethodInfo addMethod = this.service.GetType().GetMethod("Add");
+
+                        if (addMethod != null)
+                        {
+                            // Parameters to pass to the "Add" method
+                            object[] parameters = new object[] { obj };
+
+                            // Call the "Add" method on the userService instance
+                            Task<ResponseTool<T>> addTask = Task.Run(async () =>
+                            {
+                                return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
+                            });
+
+                            // Wait for the asynchronous task to complete
+                            ResponseTool<T> _apiResponse = await addTask;
+
+                            if (_apiResponse.IsSuccess)
+                            {
+                                if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
+                                {
+                                    Activator.CreateInstance<T>();
+                                }
+                                else
+                                {
+                                    // Handle cases where T doesn't have a parameterless constructor
+                                    throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
+                                }
+
+                                //this.Image.Source = null;
+
+                                await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
+                            }
+                            else
+                            {
+                                await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+
+            IsLoading = false;
         }
     }
 }
