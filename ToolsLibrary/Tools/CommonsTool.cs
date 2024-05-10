@@ -120,19 +120,7 @@ namespace ToolsLibrary.Tools
 
         public static async Task<byte[]> GetFileBytesAsync(FileResult fileResult)
         {
-            //if (fileResult != null)
-            //{
-            //    using (var stream = await fileResult.OpenReadAsync())
-            //    {
-            //        using (MemoryStream ms = new MemoryStream())
-            //        {
-            //            await stream.CopyToAsync(ms);
 
-            //            return ms.ToArray();
-            //        }
-            //    }
-            //}
-            //return null;
 
             if (fileResult is null)
             {
@@ -325,7 +313,6 @@ namespace ToolsLibrary.Tools
             }
         }
 
-
         //public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock=0, long endBlock=ConstantsTools.SegmentSize)
         //{
         //    try
@@ -446,7 +433,6 @@ namespace ToolsLibrary.Tools
 
             return string.Empty; // This should be unreachable
         }
-
 
         public static async Task SendEmailAsync(EmailRequest emailRequest, IConfiguration configuration)
         {

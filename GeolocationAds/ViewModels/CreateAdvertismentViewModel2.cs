@@ -128,6 +128,7 @@ namespace GeolocationAds.ViewModels
                 FileResult result = await FilePicker.PickAsync(new PickOptions
                 {
                     FileTypes = customFileTypes,
+
                 });
 
                 if (!result.IsObjectNull())
@@ -282,6 +283,10 @@ namespace GeolocationAds.ViewModels
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
             }
         }
 

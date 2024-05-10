@@ -11,7 +11,7 @@
         FadeAnimationEnabled="True"
         Source="{Binding Image.Source}" />
 
-    <!--<Image IsAnimationPlaying="True" Source="{Binding Image.Source, Mode=TwoWay}" />-->
+
 
     <Grid x:Name="myContentStackHeader">
 
@@ -47,14 +47,14 @@
             <Label
                 HorizontalOptions="StartAndExpand"
                 Style="{StaticResource globalLabel}"
-                Text="{Binding CurrentAdvertisement.Title}"
+                Text="{Binding Advertisement.Title}"
                 TextColor="White"
                 VerticalOptions="Start" />
 
             <Label
                 HorizontalOptions="StartAndExpand"
                 Style="{StaticResource globalLabel}"
-                Text="{Binding CurrentAdvertisement.Description}"
+                Text="{Binding Advertisement.Description}"
                 TextColor="White"
                 VerticalOptions="Start" />
         </VerticalStackLayout>

@@ -64,8 +64,13 @@
 	  <None Remove="Resources\AppIcon\play_store_512.svg" />
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
+	  <None Remove="Resources\Images\facebook.png" />
+	  <None Remove="Resources\Images\instagram.png" />
 	  <None Remove="Resources\Images\loginbackground.jpeg" />
 	  <None Remove="Resources\Images\nearby2.jpeg" />
+	  <None Remove="Resources\Images\radar.gif" />
+	  <None Remove="Resources\Images\tiktok.png" />
+	  <None Remove="Resources\Images\youtube.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,7 +83,7 @@
 	  <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 	  <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.0.1" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-	  <PackageReference Include="FFImageLoading.Maui" Version="1.2.0" />
+	  <PackageReference Include="FFImageLoading.Maui" Version="1.2.3" />
 	  <PackageReference Include="FFmpeg.AutoGen" Version="7.0.0" />
 	  <PackageReference Include="GoogleMapsApi" Version="1.2.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />

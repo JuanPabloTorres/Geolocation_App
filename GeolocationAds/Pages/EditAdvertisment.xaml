@@ -3,6 +3,7 @@
     x:Class="GeolocationAds.Pages.EditAdvertisment"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -28,9 +29,10 @@
         <DataTemplate x:Key="ImageDataTemplate2">
 
             <Grid>
-                <Image
+
+                <ffimageloading:CachedImage
                     Aspect="Fill"
-                    IsAnimationPlaying="{Binding IsAnimation}"
+                    FadeAnimationEnabled="True"
                     Source="{Binding Image}" />
 
                 <!--  Button Container Grid  -->
@@ -44,7 +46,7 @@
                     <Button
                         Grid.Row="0"
                         Grid.Column="0"
-                        Command="{Binding RemoveCommand}"
+                        Command="{Binding RemoveCurrentItemCommand}"
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
@@ -52,7 +54,7 @@
 
                         <Button.Shadow>
                             <Shadow
-                                Brush="Black"
+                                Brush="{StaticResource AppBlack}"
                                 Opacity="0.5"
                                 Radius="40"
                                 Offset="5,5" />
@@ -87,7 +89,7 @@
                     <!--  Button  -->
                     <Button
                         Grid.Row="0"
-                        Command="{Binding RemoveCommand}"
+                        Command="{Binding RemoveCurrentItemCommand}"
                         CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
@@ -95,7 +97,7 @@
 
                         <Button.Shadow>
                             <Shadow
-                                Brush="Black"
+                                Brush="{StaticResource AppBlack}"
                                 Opacity="0.5"
                                 Radius="40"
                                 Offset="5,5" />
@@ -122,7 +124,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
 
@@ -165,8 +166,8 @@
         <CarouselView
             x:Name="contentCollection"
             Grid.Row="4"
-            IsBounceEnabled="False"
-            IsScrollAnimated="False"
+            IndicatorView="indicatorView"
+            IsScrollAnimated="True"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}"
             ItemsUpdatingScrollMode="KeepLastItemInView"
@@ -186,24 +187,16 @@
             </CarouselView.EmptyView>
         </CarouselView>
 
-        <!--  Submit Button  -->
-        <!--<Button
-            x:Name="SubmitButton"
-            Grid.Row="6"
-            Command="{Binding SubmitUpdateCommand}"
-            CommandParameter="{Binding Model}"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Save">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-        </Button>-->
+        <IndicatorView
+            x:Name="indicatorView"
+            Grid.Row="4"
+            Margin="5"
+            Padding="5"
+            HorizontalOptions="Center"
+            IndicatorColor="{StaticResource DarkViolet}"
+            IndicatorSize="18"
+            SelectedIndicatorColor="{StaticResource BrightOrangeRed}"
+            VerticalOptions="End" />
 
         <ActivityIndicator
             Grid.Row="4"

@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
@@ -60,14 +61,13 @@
 
                 <Grid>
 
-                    <Image
+                    <ffimageloading:CachedImage
                         Aspect="AspectFit"
+                        FadeAnimationEnabled="True"
                         HeightRequest="100"
-                        Source="nearby2.jpeg" />
+                        Source="radar.gif" />
                 </Grid>
             </CarouselView.EmptyView>
-
-
 
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" />

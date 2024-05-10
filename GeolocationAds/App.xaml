@@ -42,7 +42,7 @@
             <Color x:Key="DarkFuchsia">#bf1d57</Color>
             <!--  Un fucsia oscuro  -->
 
-            <x:Double x:Key="OpacityValue">0.5</x:Double>
+            <x:Double x:Key="OpacityValue">0.9</x:Double>
 
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">

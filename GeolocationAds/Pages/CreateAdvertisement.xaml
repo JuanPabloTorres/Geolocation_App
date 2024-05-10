@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:GeolocationAds.App_Converter"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -32,9 +33,14 @@
         <DataTemplate x:Key="ImageDataTemplateCreate">
 
             <Grid>
-                <Image
+                <!--<Image
                     Aspect="Fill"
                     IsAnimationPlaying="{Binding IsAnimation}"
+                    Source="{Binding Image}" />-->
+
+                <ffimageloading:CachedImage
+                    Aspect="Fill"
+                    FadeAnimationEnabled="True"
                     Source="{Binding Image}" />
 
                 <!--  Button Container Grid  -->
@@ -126,8 +132,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="100*" />
-
         </Grid.RowDefinitions>
 
         <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
@@ -166,11 +172,93 @@
             SelectValue="{Binding SelectedAdType}"
             SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
 
+        <HorizontalStackLayout Grid.Row="4" HorizontalOptions="EndAndExpand">
 
+            <ImageButton
+                HeightRequest="50"
+                Source="instagram.png"
+                WidthRequest="50">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+            <ImageButton
+                HeightRequest="50"
+                Source="facebook.png"
+                WidthRequest="50">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+            <ImageButton
+                HeightRequest="50"
+                Source="youtube.png"
+                WidthRequest="50">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+            <ImageButton
+                HeightRequest="50"
+                Source="tiktok.png"
+                WidthRequest="50">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+        </HorizontalStackLayout>
 
         <CarouselView
             x:Name="contentCollection"
-            Grid.Row="4"
+            Grid.Row="5"
             IndicatorView="indicatorView"
             IsScrollAnimated="True"
             ItemTemplate="{StaticResource typeSelector}"
@@ -193,7 +281,7 @@
         </CarouselView>
         <IndicatorView
             x:Name="indicatorView"
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="5"
             Padding="5"
             HorizontalOptions="Center"
@@ -202,10 +290,8 @@
             SelectedIndicatorColor="{StaticResource BrightOrangeRed}"
             VerticalOptions="End" />
 
-
-
         <ActivityIndicator
-            Grid.Row="4"
+            Grid.Row="5"
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
     </Grid>
