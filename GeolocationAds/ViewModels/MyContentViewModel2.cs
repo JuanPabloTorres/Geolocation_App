@@ -6,12 +6,7 @@ using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -40,7 +35,7 @@ namespace GeolocationAds.ViewModels
 
             this.appSettingService = appSettingService;
 
-            ContentViewTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
+            BaseTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
             WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
             {
@@ -67,12 +62,14 @@ namespace GeolocationAds.ViewModels
             {
                 await this._filterPopUp.CloseAsync();
 
-                this.CollectionModel.Clear();
+
 
                 var _sender = sender as FilterPopUpViewModel;
 
                 if (sender is FilterPopUpViewModel filterPopUpViewModel)
                 {
+                    this.CollectionModel.Clear();
+
                     this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
 
                     await InitializeAsync();
@@ -88,7 +85,7 @@ namespace GeolocationAds.ViewModels
         {
             if (sender is ContentViewTemplateViewModel model)
             {
-                var _toRemoveAdContent = this.CollectionModel.Where(v => v.CurrentAdvertisement.ID == model.CurrentAdvertisement.ID).FirstOrDefault();
+                var _toRemoveAdContent = this.CollectionModel.Where(v => v.Advertisement.ID == model.Advertisement.ID).FirstOrDefault();
 
                 this.CollectionModel.Remove(_toRemoveAdContent);
             }

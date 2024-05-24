@@ -2,6 +2,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\appsettings.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.staticwebassets.runtime.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.exe
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\GlobalSettings.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.deps.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.runtimeconfig.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.dll
@@ -233,12 +234,11 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\ToolsLibrary.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\bin\Debug\net8.0\ToolsLibrary.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\GeolocationAdsAPI.csproj.AssemblyReference.cache
@@ -257,7 +257,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.GeolocationAdsAPI.props
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\scopedcss\bundle\GeolocationAdsAPI.styles.css
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\GeolocationAdsAPI.csproj.CopyComplete
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\Geolocat.BD6E6F69.Up2Date
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\GeolocationAdsAPI.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\refint\GeolocationAdsAPI.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\GeolocationAdsAPI.pdb

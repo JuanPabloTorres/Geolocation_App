@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Tools;
@@ -9,7 +11,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(LoginService);
 
-        public LoginService(HttpClient htppClient) : base(htppClient)
+        public LoginService(HttpClient htppClient, IConfiguration configuration) : base(htppClient, configuration)
         {
         }
 

@@ -36,5 +36,22 @@ namespace ToolsLibrary.Factories
 
             return _contentType;
         }
+
+        public static ContentType BuilContentType(string url, ContentVisualType visualType, int? advertisingId, int? createdById, string? contentName, string filePath)
+        {
+            var _contentType = new ContentType()
+            {
+                Content = null,
+                AdvertisingId = advertisingId.HasValue ? advertisingId.Value : 0,
+                Type = visualType,
+                CreateDate = DateTime.Now,
+                CreateBy = createdById.HasValue ? createdById.Value : 0,
+                ContentName = contentName,
+                Url = url
+
+            };
+
+            return _contentType;
+        }
     }
 }

@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
@@ -17,12 +18,10 @@
             <!--  URLs  -->
             <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
 
-            <!--<x:String x:Key="BackendUrl">http://192.168.0.11:5160/api</x:String>-->
-
             <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
 
-            <x:String x:Key="BaseStreamingUrl">http://192.168.0.2:5160/hls</x:String>
-            <!--<x:String x:Key="BackendUrl">http://192.168.0.3:5160/api</x:String>-->
+            <!--<x:String x:Key="BackendUrl">http://ip:port/api</x:String>-->
+
             <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <Color x:Key="AppGray">#3e4144</Color>
@@ -85,6 +84,19 @@
                 <Setter Property="Margin" Value="0" />
             </Style>
 
+            <Style x:Key="globalEditor" TargetType="Editor">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="MaxLength" Value="180" />
+                <Setter Property="HeightRequest" Value="150" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Keyboard" Value="Text" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
             <Style x:Key="globalPicker" TargetType="Picker">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -94,8 +106,6 @@
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="0" />
             </Style>
-
-
 
             <Style x:Key="globalDescriptionLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
@@ -140,8 +150,6 @@
                 <Setter Property="Margin" Value="5" />
             </Style>
 
-
-
             <Style x:Key="cardBorder" TargetType="Border">
                 <Setter Property="BackgroundColor" Value="WhiteSmoke" />
 
@@ -161,7 +169,7 @@
 
             <!--  Define the Border style  -->
             <Style x:Key="CustomBorderStyle" TargetType="Border">
-                <Setter Property="Margin" Value="8" />
+                <Setter Property="Margin" Value="4" />
                 <Setter Property="Padding" Value="6" />
                 <Setter Property="Background" Value="#F5F5F5" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
@@ -215,7 +223,7 @@
                 <Setter Property="Stroke" Value="{StaticResource White}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
-                        <RoundRectangle CornerRadius="40,5,5,40" />
+                        <RoundRectangle CornerRadius="10,10,0,0" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="StrokeThickness" Value="2" />
@@ -226,14 +234,6 @@
                 <Setter Property="Padding" Value="10" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
-
-
-
-
-
-
-
-
 
             <!--  Labels  -->
 
@@ -403,6 +403,11 @@
                             Style="{StaticResource globalLoading}" />
                     </StackLayout>
                 </Frame>
+            </DataTemplate>
+
+            <DataTemplate x:Key="WebViewDataTemplateForDisplay">
+
+                <displayer:WebViewDisplayer IsMyContentStackHeaderVisible="True" />
             </DataTemplate>
 
             <!--  Converters  -->

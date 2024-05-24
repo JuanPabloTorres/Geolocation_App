@@ -5,9 +5,12 @@ using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Controls.Maps;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
+
 
 namespace GeolocationAds;
 
@@ -22,6 +25,7 @@ public static class MauiProgram
              .UseFFImageLoading()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMediaElement()
+             .UseSkiaSharp()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -38,6 +42,10 @@ public static class MauiProgram
 
                 fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
             }).UseMauiMaps();
+
+        var configuration = CommonsTool.ConfigurationLoader.LoadConfiguration();
+
+        builder.Services.AddSingleton<IConfiguration>(configuration);
 
         #region Api Service
 
@@ -111,7 +119,9 @@ public static class MauiProgram
 
         builder.Services.AddScoped<FilterPopUpViewModel>();
 
-        builder.Services.AddScoped<CaptureViewModel>();
+        builder.Services.AddScoped<FilterPopUpViewModel2>();
+
+        builder.Services.AddScoped<CaptureViewModel2>();
 
         builder.Services.AddScoped<ManageLocationViewModel>();
 
@@ -128,8 +138,6 @@ public static class MauiProgram
         //builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
 
         builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
-
-
 
         builder.Services.AddScoped<SearchAd>();
 

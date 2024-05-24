@@ -28,6 +28,13 @@ Microsoft.Maui.Essentials.dll
 Microsoft.Maui.Graphics.dll
 Microsoft.Maui.Maps.dll
 SkiaSharp.dll
+SkiaSharp.Extended.UI.dll
+SkiaSharp.SceneGraph.dll
+SkiaSharp.Skottie.dll
+SkiaSharp.Views.Android.dll
+SkiaSharp.Views.Maui.Controls.Compatibility.dll
+SkiaSharp.Views.Maui.Controls.dll
+SkiaSharp.Views.Maui.Core.dll
 ToolsLibrary.dll
 Xamarin.Android.Glide.Annotations.dll
 Xamarin.Android.Glide.DiskLruCache.dll
@@ -209,6 +216,8 @@ Microsoft.Maui.Controls.aar
 maui.aar
 Microsoft.Maui.aar
 Microsoft.Maui.Essentials.aar
+SkiaSharp.Extended.UI.aar
+SkiaSharp.Views.Android.aar
 Xamarin.Google.Crypto.Tink.Android.aar
 Xamarin.Google.ErrorProne.Annotations.aar
 play-services-base.aar

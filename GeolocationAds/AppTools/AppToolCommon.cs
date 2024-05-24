@@ -65,7 +65,7 @@ namespace GeolocationAds.AppTools
         public static Stream GetEmbeddedResourceStream(string resourceFileName)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName =$"GeolocationAds.Resources.Images.{resourceFileName}";
+            var resourceName = $"GeolocationAds.Resources.Images.{resourceFileName}";
 
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             if (resourceStream == null)
@@ -73,7 +73,7 @@ namespace GeolocationAds.AppTools
             return resourceStream;
         }
 
-        public static async Task<ContentTypeTemplateViewModel2> ProcessContentItem(ContentType item)
+        public static async Task<ContentTypeTemplateViewModel2> ProcessContentItem(ContentType item, IAdvertisementService advertisementService)
         {
             try
             {
@@ -82,10 +82,25 @@ namespace GeolocationAds.AppTools
                     case ContentVisualType.Image:
                         return ContentTypeTemplateFactory.BuilContentType(item, item.Content);
 
-                    case ContentVisualType.Video:
-                        var file = await CommonsTool.SaveByteArrayToTempFile2(item.Content);
+                    case ContentVisualType.URL:
 
-                        return ContentTypeTemplateFactory.BuilContentType(item, file);
+                        var _url = new Uri(item.Url);
+
+                        return ContentTypeTemplateFactory.BuilContentType(item, _url);
+
+                    case ContentVisualType.Video:
+
+
+                        var streamingResponse = await advertisementService.GetStreamingVideoUrl(item.ID);
+
+                        if (!streamingResponse.IsSuccess)
+                        {
+                            await CommonsTool.DisplayAlert("Error", streamingResponse.Message);
+
+                            return null;
+                        }
+
+                        return ContentTypeTemplateFactory.BuilContentType(item, streamingResponse.Data);
 
                     default:
                         // Handle other content types or provide a default action.

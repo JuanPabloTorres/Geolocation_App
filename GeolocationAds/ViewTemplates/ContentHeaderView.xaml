@@ -13,7 +13,7 @@
 
     <Button
         Command="{Binding OpenActionPopUpCommand}"
-        CommandParameter="{Binding CurrentAdvertisement}"
+        CommandParameter="{Binding Advertisement}"
         CornerRadius="0"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
         Style="{StaticResource XButton}">
@@ -35,7 +35,7 @@
 
     <Button
         Command="{Binding RemoveContentYesOrNoAlertCommand}"
-        CommandParameter="{Binding CurrentAdvertisement}"
+        CommandParameter="{Binding Advertisement}"
         CornerRadius="0"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
         Style="{StaticResource XButton}">

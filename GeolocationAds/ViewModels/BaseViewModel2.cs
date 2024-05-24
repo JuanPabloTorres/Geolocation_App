@@ -28,6 +28,8 @@ namespace GeolocationAds.ViewModels
 
         protected FilterPopUpForSearch _filterPopUpForSearch;
 
+        protected FilterPopUpViewModel filterPopUpViewModel;
+
         private T _model;
 
         private bool isLoading;

@@ -23,6 +23,11 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private bool isAnimation;
 
+        [ObservableProperty]
+        private WebViewSource urlSource;
+
+        private Uri _uri;
+
         public ContentVisualType ContentVisualType;
 
         public ContentTypeTemplateViewModel2()
@@ -45,8 +50,31 @@ namespace GeolocationAds.TemplateViewModel
             this.Image = imageSource;
 
             ContentVisualType = ContentVisualType.Image;
+        }
 
+        public ContentTypeTemplateViewModel2(ContentType contentType, Uri url)
+        {
+            this.ContentType = contentType;
 
+            this.UrlSource = url;
+
+            this._uri = url;
+
+            ContentVisualType = ContentVisualType.URL;
+        }
+
+        [RelayCommand]
+        public async Task OpenUrl(string url)
+        {
+            try
+            {
+                await Browser.Default.OpenAsync(this._uri, BrowserLaunchMode.SystemPreferred);  // Open the URL in the system preferred browser.
+            }
+            catch (Exception ex)
+            {
+                // Handle or log exceptions that might occur (e.g., invalid URL format)
+                Console.WriteLine($"Could not open URL: {ex.Message}");
+            }
         }
 
         //public async Task InitAnimation()
@@ -61,7 +89,6 @@ namespace GeolocationAds.TemplateViewModel
 
         public async Task SetAnimation()
         {
-
             this.IsAnimation = false;
 
             await Task.Delay(1000);  // Delay for 1 second or however long you need

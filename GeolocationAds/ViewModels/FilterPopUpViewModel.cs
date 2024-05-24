@@ -70,8 +70,6 @@ namespace GeolocationAds.ViewModels
 
         public event SubmitFilterEventHandler OnFilterItem;
 
-
-
         public virtual void FilterItemInvoke(EventArgs e)
         {
             OnFilterItem?.Invoke(this, e);

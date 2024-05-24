@@ -12,7 +12,7 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:allowBackup="true" android:supportsRtl="true" android:networkSecurityConfig="@xml/network_security_config" android:icon="@mipmap/appicon" android:name="crc646d254120c5b615c9.MainApplication" android:label="Geo-Connect" android:debuggable="true" android:extractNativeLibs="true">
+  <application android:allowBackup="true" android:supportsRtl="true" android:networkSecurityConfig="@xml/network_security_config" android:icon="@mipmap/appicon" android:label="Geo-Connect" android:name="crc646d254120c5b615c9.MainApplication" android:debuggable="true" android:extractNativeLibs="true">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCFxOUdXCkK-ilbhH-td_IrCuGfedwzyY8" />
     <uses-library android:name="org.apache.http.legacy" android:required="false" />
     <activity android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:theme="@style/Maui.SplashTheme" android:name="crc646d254120c5b615c9.MainActivity" android:exported="true">
@@ -21,12 +21,12 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:configChanges="orientation|screenSize" android:exported="true" android:name="crc6468b6408a11370c2f.WebAuthenticatorIntermediateActivity" />
+    <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="crc6468b6408a11370c2f.WebAuthenticatorIntermediateActivity" />
     <provider android:authorities="com.companyname.geolocationads.fileProvider" android:exported="false" android:grantUriPermissions="true" android:name="microsoft.maui.essentials.fileProvider">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/microsoft_maui_essentials_fileprovider_file_paths" />
     </provider>
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Connectivity Broadcast Receiver" android:name="crc64e53d2f592022988e.ConnectivityBroadcastReceiver" />
-    <activity android:configChanges="orientation|screenSize" android:exported="true" android:name="crc64ba438d8f48cf7e75.IntermediateActivity" />
+    <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="crc64ba438d8f48cf7e75.IntermediateActivity" />
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Battery Broadcast Receiver" android:name="crc640a8d9a12ddbf2cf2.BatteryBroadcastReceiver" />
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Energy Saver Broadcast Receiver" android:name="crc640a8d9a12ddbf2cf2.EnergySaverBroadcastReceiver" />
     <service android:name="crc64396a3fe5f8138e3f.KeepAliveService" />

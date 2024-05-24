@@ -5,6 +5,20 @@ namespace GeolocationAds.ViewTemplates;
 
 public partial class VideoDisplayer : Grid
 {
+
+    public static readonly BindableProperty IsMyCaptureHeaderVisibleProperty = BindableProperty.Create(
+        "IsMyCaptureHeaderVisible",
+        typeof(bool),
+        typeof(VideoDisplayer),
+        defaultValue: false,
+        propertyChanged: IsMyCaptureHeaderVisibleChanged);
+
+    public bool IsMyCaptureHeaderVisible
+    {
+        get => (bool)GetValue(IsMyCaptureHeaderVisibleProperty);
+        set => SetValue(IsMyCaptureHeaderVisibleProperty, value);
+    }
+
     public static readonly BindableProperty IsMyContentStackHeaderVisibleProperty = BindableProperty.Create(
           "IsMyContentStackHeaderVisible",
           typeof(bool),
@@ -48,7 +62,7 @@ public partial class VideoDisplayer : Grid
             {
                 view.searchContentStackHeader.IsVisible = false;
 
-                //view.searchContentStackHeaderBtn.IsVisible = false;
+                view.myCaptureHeader.IsVisible = false;
             }
         }
     }
@@ -87,7 +101,24 @@ public partial class VideoDisplayer : Grid
 
             if (view.searchContentStackHeader.IsVisible)
             {
-                //view.searchContentStackHeaderBtn.IsVisible = true;
+                view.myCaptureHeader.IsVisible = false;
+
+                view.myContentStackHeader.IsVisible = false;
+            }
+        }
+    }
+
+    private static void IsMyCaptureHeaderVisibleChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var view = bindable as VideoDisplayer;
+
+        if (view != null)
+        {
+            view.myCaptureHeader.IsVisible = (bool)newValue;
+
+            if (view.myCaptureHeader.IsVisible)
+            {
+                view.searchContentStackHeader.IsVisible = false;
 
                 view.myContentStackHeader.IsVisible = false;
             }

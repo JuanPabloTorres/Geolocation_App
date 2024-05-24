@@ -1,16 +1,10 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using FFImageLoading.Maui;
 using GeolocationAds.AppTools;
 using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -21,7 +15,7 @@ namespace GeolocationAds.TemplateViewModel
     public partial class ContentViewTemplateViewModel : BaseTemplateViewModel
     {
         [ObservableProperty]
-        private Advertisement _currentAdvertisement;
+        private Advertisement advertisement;
 
         [ObservableProperty]
         private MediaSource mediaSource;
@@ -29,9 +23,12 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private Image image;
 
+        [ObservableProperty]
+        private WebViewSource urlSource;
+
         public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {
-            this.CurrentAdvertisement = advertisement;
+            this.advertisement = advertisement;
 
             Task.Run(async () =>
             {
@@ -43,15 +40,21 @@ namespace GeolocationAds.TemplateViewModel
         {
             try
             {
-                var contents = this.CurrentAdvertisement.Contents.FirstOrDefault();
+                var contents = this.advertisement.Contents.FirstOrDefault();
 
                 if (contents == null)
                 {
-                    contents = await AppToolCommon.GetDefaultContentType(this.CurrentAdvertisement.CreateBy);
+                    contents = await AppToolCommon.GetDefaultContentType(this.Advertisement.CreateBy);
                 }
 
                 switch (contents.Type)
                 {
+                    case ContentVisualType.URL:
+
+                        this.UrlSource = new Uri(contents.Url);
+
+                        break;
+
                     case ContentVisualType.Image:
 
                         if (this.Image.IsObjectNull())
@@ -104,19 +107,19 @@ namespace GeolocationAds.TemplateViewModel
                 {
                     case "Detail":
 
-                        await Navigate(this.CurrentAdvertisement.ID);
+                        await Navigate(this.Advertisement.ID);
 
                         break;
 
                     case "Set Location":
 
-                        await SetLocationYesOrNoAlert(this.CurrentAdvertisement);
+                        await SetLocationYesOrNoAlert(this.Advertisement);
 
                         break;
 
                     case "Manage Location":
 
-                        var navigationParameter = new Dictionary<string, object> { { "ID", this.CurrentAdvertisement.ID } };
+                        var navigationParameter = new Dictionary<string, object> { { "ID", this.Advertisement.ID } };
 
                         await NavigateAsync(nameof(ManageLocation), navigationParameter);
 
@@ -158,7 +161,7 @@ namespace GeolocationAds.TemplateViewModel
 
                 if (_apiResponse.IsSuccess)
                 {
-                    this.CurrentAdvertisement = ad;
+                    this.Advertisement = ad;
 
                     await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
                 }

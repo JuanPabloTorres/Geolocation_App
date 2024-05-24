@@ -20,24 +20,17 @@
 
     <Grid x:Name="myContentStackHeader">
 
-        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Label
-                HorizontalOptions="StartAndExpand"
-                Style="{StaticResource globalLabel}"
-                Text="{Binding CurrentAdvertisement.Title}"
-                TextColor="White"
-                VerticalOptions="Start" />
+        <headerView:ContentInformationDisplayer Grid.Row="0" Grid.Column="0" />
 
-            <Label
-                HorizontalOptions="StartAndExpand"
-                Style="{StaticResource globalLabel}"
-                Text="{Binding CurrentAdvertisement.Description}"
-                TextColor="White"
-                VerticalOptions="Start" />
-        </VerticalStackLayout>
-
-        <Border Grid.Column="1" Style="{StaticResource borderOnHeaderControls}">
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            Style="{StaticResource borderOnHeaderControls}">
             <Grid>
 
                 <headerView:ContentHeaderView Grid.Column="1" />
@@ -47,26 +40,37 @@
 
     <Grid x:Name="searchContentStackHeader">
 
-        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Label
-                HorizontalOptions="StartAndExpand"
-                Style="{StaticResource globalLabel}"
-                Text="{Binding CurrentAdvertisement.Title}"
-                TextColor="White"
-                VerticalOptions="Start" />
+        <headerView:ContentInformationDisplayer Grid.Row="0" Grid.Column="0" />
 
-            <Label
-                HorizontalOptions="StartAndExpand"
-                Style="{StaticResource globalLabel}"
-                Text="{Binding CurrentAdvertisement.Description}"
-                TextColor="White"
-                VerticalOptions="Start" />
-        </VerticalStackLayout>
-
-        <Border Grid.Row="1" Style="{StaticResource borderOnHeaderControls}">
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            Style="{StaticResource borderOnHeaderControls}">
 
             <headerView:HomeContentItemHeaderView />
+        </Border>
+    </Grid>
+
+    <Grid x:Name="myCaptureHeader">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <headerView:ContentInformationDisplayer Grid.Row="0" Grid.Column="0" />
+
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            Style="{StaticResource borderOnHeaderControls}">
+
+            <headerView:CaptureHeaderDisplayer />
         </Border>
     </Grid>
 

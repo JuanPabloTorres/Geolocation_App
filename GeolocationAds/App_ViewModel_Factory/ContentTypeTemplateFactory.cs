@@ -13,6 +13,13 @@ namespace GeolocationAds.App_ViewModel_Factory
             return _template;
         }
 
+        public static ContentTypeTemplateViewModel2 BuilContentType(ContentType contentType, Uri url)
+        {
+            var _template = new ContentTypeTemplateViewModel2(contentType, url);
+
+            return _template;
+        }
+
         public static ContentTypeTemplateViewModel2 BuilContentType(ContentType contentType, byte[] image)
         {
             var _img = ImageSource.FromStream(() => new MemoryStream(image));

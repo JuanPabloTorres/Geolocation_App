@@ -1,5 +1,4 @@
-﻿using GeolocationAds.AppTools;
-using GeolocationAds.TemplateViewModel;
+﻿using GeolocationAds.TemplateViewModel;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.DataTemplates
@@ -9,6 +8,8 @@ namespace GeolocationAds.DataTemplates
         public DataTemplate VideoDataTemplate { get; set; }
 
         public DataTemplate ImageDataTemplate { get; set; }
+
+        public DataTemplate UrlDataTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
@@ -23,6 +24,12 @@ namespace GeolocationAds.DataTemplates
                 {
                     return ImageDataTemplate;
                 }
+
+                if (contentType.ContentType.Type == ContentVisualType.URL)
+                {
+                    return UrlDataTemplate;
+                }
+
             }
 
             // Return a default template or null if needed

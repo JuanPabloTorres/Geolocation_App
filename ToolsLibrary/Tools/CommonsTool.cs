@@ -10,6 +10,30 @@ namespace ToolsLibrary.Tools
 {
     public static class CommonsTool
     {
+
+        public static class ConfigurationLoader
+        {
+            public static IConfiguration LoadConfiguration()
+            {
+                var assembly = typeof(ConfigurationLoader).Assembly;
+
+                var resourceName = "ToolsLibrary.GlobalSettings.json";
+
+                using var stream = assembly.GetManifestResourceStream(resourceName);
+                if (stream == null)
+                {
+                    throw new FileNotFoundException($"The embedded resource '{resourceName}' was not found.");
+                }
+
+                var configuration = new ConfigurationBuilder()
+                    .AddJsonStream(stream)
+                    .Build();
+
+                return configuration;
+            }
+        }
+
+
         // Compress a byte array using GZip compression
         public static byte[] Compress(byte[] data)
         {
@@ -483,5 +507,39 @@ namespace ToolsLibrary.Tools
         {
             return fileBytes.Length;
         }
+
+        //        public static bool IsValidUrl(string url)
+        //        {
+        //            try
+        //            {
+        //                //string urlPattern = @"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*(\?[\w=&]+)?(#\w*)?$";
+
+        //                string urlPattern = @"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(:[0-9]+)?([\/\w \.-]*)*\/?(\?[\w=&%]+)?(#\w*)?$
+        //";
+
+
+        //                if (string.IsNullOrWhiteSpace(url))
+        //                    return false;
+
+        //                Regex regex = new Regex(urlPattern, RegexOptions.IgnoreCase);
+
+        //                return regex.IsMatch(url);
+        //            }
+        //            catch (Exception ex)
+        //            {
+
+        //                return false;
+        //            }
+
+        //        }
+
+        public static bool IsValidUrl(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                return false;
+
+            return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+        }
+
     }
 }

@@ -1,23 +1,4 @@
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\bin\Debug\net8.0-ios\ToolsLibrary.dll
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\bin\Debug\net8.0-ios\ToolsLibrary.pdb
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\actool\_PartialAppManifest.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\actool\_BundleResourceWithLogicalName.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\actool\_ProcessedImageAssetsPath.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\coremlc\_PartialAppManifest.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\coremlc\_BundleResourceWithLogicalName.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\coremlc\_ProcessedCoreMLModelsPath.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\_ProcessedBundleResourcesPath.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\_ProcessedContentPath.items
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.csproj.AssemblyReference.cache
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.AssemblyInfoInputs.cache
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.AssemblyInfo.cs
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.csproj.CoreCompileInputs.cache
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.sourcelink.json
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.dll
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\refint\ToolsLibrary.dll
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ToolsLibrary.pdb
-C:\Users\estju\source\repos\GeoApp\ToolsLibrary\obj\Debug\net8.0-ios\ref\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0-ios\GlobalSettings.json
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0-ios\ToolsLibrary.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0-ios\ToolsLibrary.pdb
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0-ios\actool\_PartialAppManifest.items

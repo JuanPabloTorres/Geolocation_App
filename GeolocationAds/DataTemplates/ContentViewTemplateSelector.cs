@@ -12,23 +12,28 @@ namespace GeolocationAds.DataTemplates
 
         public DataTemplate DefaultDataTemplate { get; set; }
 
+        public DataTemplate UrlDataTemplate { get; set; }
+
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             if (item is ContentViewTemplateViewModel contentType)
             {
-                if (contentType.CurrentAdvertisement.Contents.Count == 0 || contentType.CurrentAdvertisement.Contents.IsObjectNull())
+                if (contentType.Advertisement.Contents.Count == 0 || contentType.Advertisement.Contents.IsObjectNull())
                 {
                     return DefaultDataTemplate;
                 }
 
-
-                if (contentType.CurrentAdvertisement.Contents.FirstOrDefault().Type == ContentVisualType.Video)
+                if (contentType.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.Video)
                 {
                     return VideoDataTemplate;
                 }
-                else if (contentType.CurrentAdvertisement.Contents.FirstOrDefault().Type == ContentVisualType.Image)
+                else if (contentType.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.Image)
                 {
                     return ImageDataTemplate;
+                }
+                else if (contentType.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.URL)
+                {
+                    return UrlDataTemplate;
                 }
             }
 

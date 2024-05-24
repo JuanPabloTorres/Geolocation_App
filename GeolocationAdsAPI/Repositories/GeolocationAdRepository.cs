@@ -33,11 +33,15 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync(double latitud, double longitude, int distance)
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync(double latitud, double longitude, int distance, int settinTypeId)
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance && DateTime.Now <= v.ExpirationDate).OrderBy(c => c.Advertisement.CreateDate)
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement)
+                    .ThenInclude(a => a.Settings)
+                    .Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
+                    DateTime.Now <= v.ExpirationDate &&
+                    v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId)).OrderBy(c => c.Advertisement.CreateDate)
                     .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
                    .Distinct().ToListAsync();
 
@@ -124,7 +128,8 @@ namespace GeolocationAdsAPI.Repositories
                             ID = content.ID,
                             FileSize = content.FileSize,
                             Type = content.Type,
-                            Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content// Apply byte range here
+                            Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,// Apply byte range here
+                            Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
                         }).Take(1).ToList(),  // Only take necessary content
                     })
                     .ToListAsync();

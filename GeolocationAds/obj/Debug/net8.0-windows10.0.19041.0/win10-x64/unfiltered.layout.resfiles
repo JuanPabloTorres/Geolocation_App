@@ -985,6 +985,7 @@ appiconWideTile.scale-125.png
 appiconWideTile.scale-150.png
 appiconWideTile.scale-200.png
 appiconWideTile.scale-400.png
+complete01.scale-100.gif
 dotnet_bot.scale-100.png
 dotnet_bot.scale-125.png
 dotnet_bot.scale-150.png
@@ -992,6 +993,11 @@ dotnet_bot.scale-200.png
 dotnet_bot.scale-400.png
 facebook.scale-100.png
 filebox.scale-100.png
+fullscreen.scale-100.png
+fullscreen.scale-125.png
+fullscreen.scale-150.png
+fullscreen.scale-200.png
+fullscreen.scale-400.png
 geoappicon.ico
 geoappiconLargeTile.scale-100.png
 geoappiconLargeTile.scale-125.png
@@ -1089,6 +1095,7 @@ play_store_512WideTile.scale-200.png
 play_store_512WideTile.scale-400.png
 plus.scale-100.png
 radar.scale-100.gif
+radar01.scale-100.gif
 setting.scale-100.png
 star.scale-100.png
 tiktok.scale-100.png
@@ -1100,3 +1107,12 @@ splashSplashScreen.scale-150.png
 splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
 AboutAssets.txt
+c1.json
+c2.json
+c3.json
+c4.json
+c5.json
+complete_1.json
+complete5.json
+loading.json
+radar.json

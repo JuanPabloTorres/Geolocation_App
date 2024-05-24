@@ -6,20 +6,25 @@
     xmlns:converters="clr-namespace:GeolocationAds.App_Converter"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewTemplate="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Content Creation"
     Routing.Route="CreateAdvertisement">
 
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem Command="{Binding UploadContentCommand}">
+        <ToolbarItem Command="{Binding UploadContentCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe8a7;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
-        <ToolbarItem Command="{Binding SubmitCommand}" CommandParameter="{Binding Model}">
+        <ToolbarItem
+            Command="{Binding SubmitCommand}"
+            CommandParameter="{Binding Model}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
             </ToolbarItem.IconImageSource>
@@ -29,14 +34,76 @@
     <ContentPage.Resources>
 
         <converters:AnimationConverter x:Key="AnimationConverter" />
+        <converters:LenghtCountConverter x:Key="LenghtCountConverter" />
+
+        <DataTemplate x:Key="WebViewDataTemplateCreate">
+
+            <Grid>
+
+                <WebView Navigating="WebView_Navigating" Source="{Binding UrlSource, Mode=TwoWay}" />
+
+                <!--  Button Container Grid  -->
+                <Grid>
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Button  -->
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding RemoveCurrentItemCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+                        </Button.ImageSource>
+                    </Button>
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding OpenUrlCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DataTemplate>
 
         <DataTemplate x:Key="ImageDataTemplateCreate">
 
             <Grid>
-                <!--<Image
-                    Aspect="Fill"
-                    IsAnimationPlaying="{Binding IsAnimation}"
-                    Source="{Binding Image}" />-->
 
                 <ffimageloading:CachedImage
                     Aspect="Fill"
@@ -122,6 +189,7 @@
         <templateSelector:ContentTypeTemplateSelector
             x:Key="typeSelector"
             ImageDataTemplate="{StaticResource ImageDataTemplateCreate}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateCreate}"
             VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
     </ContentPage.Resources>
 
@@ -156,7 +224,7 @@
             Placeholder="Title"
             Text="{Binding Model.Title, Mode=TwoWay}" />
 
-        <local:CustomEntryContentView
+        <local:CustomEditorContentView
             Grid.Row="2"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Placeholder="Description"
@@ -172,122 +240,42 @@
             SelectValue="{Binding SelectedAdType}"
             SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
 
-        <HorizontalStackLayout Grid.Row="4" HorizontalOptions="EndAndExpand">
+        <HorizontalStackLayout Grid.Row="4" HorizontalOptions="FillAndExpand">
+            <local:CustomEntryContentView
+                x:Name="urlValue"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="URL"
+                Text="{Binding Model.Title, Mode=TwoWay}"
+                WidthRequest="320" />
 
-            <ImageButton
-                HeightRequest="50"
-                Source="instagram.png"
-                WidthRequest="50">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </ImageButton>
+            <Button
+                Command="{Binding SetURLCommand}"
+                CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}">
 
-            <ImageButton
-                HeightRequest="50"
-                Source="facebook.png"
-                WidthRequest="50">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </ImageButton>
-
-            <ImageButton
-                HeightRequest="50"
-                Source="youtube.png"
-                WidthRequest="50">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </ImageButton>
-
-            <ImageButton
-                HeightRequest="50"
-                Source="tiktok.png"
-                WidthRequest="50">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale" Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </ImageButton>
-
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                </Button.ImageSource>
+            </Button>
         </HorizontalStackLayout>
 
-        <CarouselView
+        <viewTemplate:EditAndCreateCarousel
             x:Name="contentCollection"
             Grid.Row="5"
             IndicatorView="indicatorView"
-            IsScrollAnimated="True"
             ItemTemplate="{StaticResource typeSelector}"
-            ItemsSource="{Binding ContentTypesTemplate}"
-            ItemsUpdatingScrollMode="KeepLastItemInView"
-            Loop="False">
+            ItemsSource="{Binding ContentTypesTemplate}" />
 
-            <CarouselView.ItemsLayout>
-                <LinearItemsLayout
-                    Orientation="Horizontal"
-                    SnapPointsAlignment="Start"
-                    SnapPointsType="MandatorySingle" />
-            </CarouselView.ItemsLayout>
-
-            <CarouselView.EmptyView>
-                <StackLayout>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Content goes here." />
-                </StackLayout>
-            </CarouselView.EmptyView>
-        </CarouselView>
         <IndicatorView
             x:Name="indicatorView"
             Grid.Row="5"
             Margin="5"
             Padding="5"
             HorizontalOptions="Center"
-            IndicatorColor="{StaticResource DarkViolet}"
-            IndicatorSize="18"
-            SelectedIndicatorColor="{StaticResource BrightOrangeRed}"
+            IndicatorColor="{StaticResource AppBlack}"
+            IndicatorSize="15"
+            SelectedIndicatorColor="{StaticResource AppGray}"
             VerticalOptions="End" />
 
         <ActivityIndicator

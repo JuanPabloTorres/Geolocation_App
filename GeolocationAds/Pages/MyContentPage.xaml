@@ -38,10 +38,16 @@
             <displayer:ImageDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
+        <DataTemplate x:Key="WebViewDataTemplateForDisplay">
+
+            <displayer:WebViewDisplayer IsMyContentStackHeaderVisible="True" />
+        </DataTemplate>
+
         <templateSelector:ContentViewTemplateSelector
             x:Key="typeSelector"
             DefaultDataTemplate="{StaticResource DefaultDataTemplateForDisplay}"
             ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateForDisplay}"
             VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
     </ContentPage.Resources>
 

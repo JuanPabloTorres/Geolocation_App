@@ -13,12 +13,12 @@
 
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem Command="{Binding SearchCommand}">
+        <ToolbarItem Command="{Binding SearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xf04e;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
-        <ToolbarItem Command="{Binding OpenFilterPopUpCommand}">
+        <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
             </ToolbarItem.IconImageSource>
@@ -27,20 +27,26 @@
 
     <ContentPage.Resources>
 
-        <DataTemplate x:Key="ImageDataTemplateForDisplay2">
+        <DataTemplate x:Key="ImageDataTemplateForDisplayHome">
 
             <displayer:ImageDisplayer IsSearchContentStackHeaderVisible="True" />
         </DataTemplate>
 
-        <DataTemplate x:Key="VideoDataTemplateForDisplay2">
+        <DataTemplate x:Key="VideoDataTemplateForDisplayHome">
 
             <displayer:VideoDisplayer IsSearchContentStackHeaderVisible="True" />
         </DataTemplate>
 
+        <DataTemplate x:Key="WebViewDataTemplateForDisplayHome">
+
+            <displayer:WebViewDisplayer IsSearchContentStackHeaderVisible="True" />
+        </DataTemplate>
+
         <templateSelector:ContentViewHomeListItemSelector
             x:Key="typeSelector"
-            ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
-            VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
+            ImageDataTemplate="{StaticResource ImageDataTemplateForDisplayHome}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateForDisplayHome}"
+            VideoDataTemplate="{StaticResource VideoDataTemplateForDisplayHome}" />
     </ContentPage.Resources>
 
     <Grid>
@@ -65,6 +71,7 @@
                         Aspect="AspectFit"
                         FadeAnimationEnabled="True"
                         HeightRequest="100"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Source="radar.gif" />
                 </Grid>
             </CarouselView.EmptyView>

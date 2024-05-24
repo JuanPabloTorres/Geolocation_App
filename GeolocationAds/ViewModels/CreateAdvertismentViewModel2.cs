@@ -22,9 +22,9 @@ namespace GeolocationAds.ViewModels
 
         private readonly IAppSettingService appSettingService;
 
-        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting> { };
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
 
-        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2> { };
+        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
         public CreateAdvertismentViewModel2(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool, IAppSettingService appSettingService) : base(advertisement, advertisementService, logUserPerfilTool)
         {
@@ -34,9 +34,10 @@ namespace GeolocationAds.ViewModels
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, async (r, m) =>
             {
-                this.SetDefault();
+                await this.SetDefault();
             });
         }
+
 
         public async Task LoadSetting()
         {
@@ -74,13 +75,13 @@ namespace GeolocationAds.ViewModels
             await LoadSetting();
         }
 
-        public async void SetDefault()
+        public async Task SetDefault()
         {
             try
             {
                 this.IsLoading = true;
 
-                ContentTypesTemplate.Clear();
+                this.ContentTypesTemplate.Clear();
 
                 var _adSetting = new AdvertisementSettings()
                 {
@@ -89,13 +90,7 @@ namespace GeolocationAds.ViewModels
                     SettingId = this.SelectedAdType.ID,
                 };
 
-                this.Model = new Advertisement()
-                {
-                    UserId = this.LogUserPerfilTool.GetUserId(),
-                    CreateDate = DateTime.Now,
-                    Settings = new List<AdvertisementSettings>() { _adSetting },
-                    Contents = new List<ContentType>()
-                };
+                this.Model = new Advertisement(this.LogUserPerfilTool.GetUserId(), _adSetting);
 
                 await this.GetImageSourceFromFile2();
             }
@@ -128,7 +123,6 @@ namespace GeolocationAds.ViewModels
                 FileResult result = await FilePicker.PickAsync(new PickOptions
                 {
                     FileTypes = customFileTypes,
-
                 });
 
                 if (!result.IsObjectNull())
@@ -208,8 +202,6 @@ namespace GeolocationAds.ViewModels
                     else
                     {
                         this.ContentTypesTemplate.Remove(template);
-
-                        //ContentTypesTemplate.Select(async v => await v.SetAnimation());
 
                         foreach (var item in ContentTypesTemplate)
                         {
@@ -292,42 +284,16 @@ namespace GeolocationAds.ViewModels
 
         private void RemoveDefaultImageIfPresent()
         {
-            var defaultImg = this.ContentTypesTemplate.FirstOrDefault(v => v.ContentType.ContentName == ConstantsTools.FILENAME);
-
-            if (defaultImg != null)
+            if (this.ContentTypesTemplate.Count > 0)
             {
-                this.ContentTypesTemplate.Remove(defaultImg);
+                var defaultImg = this.ContentTypesTemplate.FirstOrDefault(v => v.ContentType.ContentName == ConstantsTools.FILENAME);
 
-                this.Model.Contents.Remove(defaultImg.ContentType);
-            }
-        }
-
-        private async Task GetImageSourceFromFile()
-        {
-            try
-            {
-                var _defaulMedia = await AppToolCommon.ImageSourceToByteArrayAsync(ConstantsTools.FILENAME);
-
-                if (!_defaulMedia.IsObjectNull())
+                if (defaultImg != null)
                 {
-                    this.ContentTypesTemplate.Clear();
+                    this.ContentTypesTemplate.Remove(defaultImg);
 
-                    var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, this.LogUserPerfilTool.LogUser.ID, ConstantsTools.FILENAME);
-
-                    _content.ContentName = ConstantsTools.FILENAME;
-
-                    _content.FilePath = AppToolCommon.EnsureImageFile(ConstantsTools.FILENAME);
-
-                    var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
-
-                    this.ContentTypesTemplate.Add(_template);
-
-                    this.Model.Contents.Add(_content);
+                    this.Model.Contents.Remove(defaultImg.ContentType);
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
@@ -359,6 +325,51 @@ namespace GeolocationAds.ViewModels
                     Console.WriteLine($"Exception occurred: {task.Exception.Flatten()}");
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext()); // Ensure any continuation runs on the UI thread
+        }
+
+        [RelayCommand]
+        public async Task SetURL(string url)
+        {
+            try
+            {
+                this.IsLoading = true;
+
+                if (this.Model.Contents.Count == 3)
+                {
+                    await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
+
+                    return;
+                }
+
+                RemoveDefaultImageIfPresent();
+
+                var _isValidUrl = CommonsTool.IsValidUrl(url);
+
+                if (_isValidUrl)
+                {
+                    var _uri = new Uri(url);
+
+                    var _content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null, this.LogUserPerfilTool.LogUser.ID, null, null);
+
+                    var _template = ContentTypeTemplateFactory.BuilContentType(_content, _uri);
+
+                    this.ContentTypesTemplate.Add(_template);
+
+                    this.Model.Contents.Add(_content);
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", "Url invalid.");
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         private async Task HandleAdTypeChangeAsync(AppSetting value)

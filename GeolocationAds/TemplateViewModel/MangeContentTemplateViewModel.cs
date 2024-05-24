@@ -4,9 +4,7 @@ using GeolocationAds.Pages;
 using GeolocationAds.Services;
 
 using GeolocationAds.Tools;
-using GeolocationAds.ViewTemplates;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -111,7 +109,7 @@ namespace GeolocationAds.TemplateViewModel
 
         private async Task<ContentTypeTemplateViewModel2> ProcessItemAsync(ContentType item)
         {
-            return await AppToolCommon.ProcessContentItem(item);
+            return await AppToolCommon.ProcessContentItem(item, null);
         }
 
         public async Task OpenActionPopUp()

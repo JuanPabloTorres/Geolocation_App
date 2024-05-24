@@ -1,19 +1,16 @@
 ﻿using GeolocationAds.TemplateViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.DataTemplates
 {
-    class ContentViewHomeListItemSelector:DataTemplateSelector
+    internal class ContentViewHomeListItemSelector : DataTemplateSelector
     {
         public DataTemplate VideoDataTemplate { get; set; }
 
         public DataTemplate ImageDataTemplate { get; set; }
+
+        public DataTemplate UrlDataTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
@@ -21,9 +18,8 @@ namespace GeolocationAds.DataTemplates
             {
                 if (contentType.Advertisement.Contents.Count == 0 || contentType.Advertisement.Contents.IsObjectNull())
                 {
-                    return null;
+                    return ImageDataTemplate;
                 }
-
 
                 if (contentType.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.Video)
                 {
@@ -33,10 +29,14 @@ namespace GeolocationAds.DataTemplates
                 {
                     return ImageDataTemplate;
                 }
+                if (contentType.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.URL)
+                {
+                    return UrlDataTemplate;
+                }
             }
 
             // Return a default template or null if needed
-            return null;
+            return ImageDataTemplate;
         }
     }
 }

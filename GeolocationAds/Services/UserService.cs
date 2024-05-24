@@ -1,4 +1,5 @@
-﻿using ToolsLibrary.Models;
+﻿using Microsoft.Extensions.Configuration;
+using ToolsLibrary.Models;
 
 namespace GeolocationAds.Services
 {
@@ -6,7 +7,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(UserService);
 
-        public UserService(HttpClient htppClient) : base(htppClient)
+        public UserService(HttpClient htppClient, IConfiguration configuration) : base(htppClient, configuration)
         {
         }
     }

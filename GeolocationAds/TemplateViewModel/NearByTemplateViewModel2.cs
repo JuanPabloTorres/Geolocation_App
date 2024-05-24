@@ -6,11 +6,8 @@ using GeolocationAds.AppTools;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
-using ToolsLibrary.TemplateViewModel;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
@@ -25,6 +22,9 @@ namespace GeolocationAds.TemplateViewModel
 
         [ObservableProperty]
         private Image image;
+
+        [ObservableProperty]
+        private WebViewSource urlSource;
 
         protected readonly LogUserPerfilTool LogUser;
 
@@ -50,41 +50,7 @@ namespace GeolocationAds.TemplateViewModel
             });
         }
 
-        //[RelayCommand]
-        //private void OnMediaElementEnd(EventArgs args)
-        //{
-        //    // Code to execute after seek completes
 
-        //    System.Diagnostics.Debug.WriteLine($"Completed....!");
-        //}
-
-        //[RelayCommand]
-        //private void MediaStateChangedFailed(MediaFailedEventArgs args)
-        //{
-        //    MediaElementPlaying.Invoke(this,  null);
-        //}
-
-        //[RelayCommand]
-        //private void MediaStateChanged(MediaStateChangedEventArgs args)
-        //{
-        //    if (
-        //        args.NewState == MediaElementState.Opening
-
-        //       )
-        //    {
-        //        System.Diagnostics.Debug.WriteLine($"New State (Inside If):{args.NewState}");
-
-        //        System.Diagnostics.Debug.WriteLine($"Prevoius State (Inside If):{args.PreviousState}");
-
-        //        //MediaElementPlaying.Invoke(this, args);
-        //    }
-
-        //    System.Diagnostics.Debug.WriteLine($"New State:{args.NewState}");
-
-        //    System.Diagnostics.Debug.WriteLine($"Prevoius State:{args.PreviousState}");
-
-        //    //MediaState = args.State; // Set the property to the new state
-        //}
 
         public async Task InitializeAsync()
         {
@@ -96,6 +62,12 @@ namespace GeolocationAds.TemplateViewModel
                 {
                     switch (content.Type)
                     {
+                        case ContentVisualType.URL:
+
+                            this.UrlSource = new Uri(content.Url);
+
+                            break;
+
                         case ContentVisualType.Image:
 
                             this.Image = new Image();
@@ -132,11 +104,11 @@ namespace GeolocationAds.TemplateViewModel
 
         private async Task<MediaSource> SaveToTempAsync(byte[] videoData)
         {
-            //return await CommonsTool.SaveByteArrayToTempFile2(videoData);
+
 
             VideoFilePath = await CommonsTool.SaveByteArrayToPartialFile3(videoData, string.Empty);
 
-            //return await CommonsTool.SaveByteArrayToPartialFile3(videoData, string.Empty);
+
 
             return VideoFilePath;
         }

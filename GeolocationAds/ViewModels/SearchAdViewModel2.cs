@@ -1,17 +1,9 @@
-﻿using CommunityToolkit.Maui.Core.Primitives;
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using FFImageLoading;
-using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.Tools;
-using Org.BouncyCastle.Utilities;
-using SkiaSharp;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Runtime.CompilerServices;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
@@ -50,8 +42,6 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private AppSetting selectedAdType = new AppSetting();
 
-        private FilterPopUpViewModel filterPopUpViewModel;
-
         public ObservableCollection<string> DistanceSettings { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
         public ObservableCollection<NearByTemplateViewModel2> NearByTemplateViewModels { get; set; } = new ObservableCollection<NearByTemplateViewModel2>();
@@ -66,16 +56,16 @@ namespace GeolocationAds.ViewModels
 
             SelectedAdType = new AppSetting();
 
-            Task.Run(async () => { await InitializeSettingsAsync(); });
+            Task.Run(async () => { await InitializeDataLoadingSettingsAsync(); });
         }
 
         [RelayCommand]
         public async Task Search()
         {
-            await InitializeAsync(1, true);
+            await InitializeDataLoadingAsync(1, true);
         }
 
-        public async Task InitializeAsync(int? pageIndex = 1, bool? isReset = false)
+        public async Task InitializeDataLoadingAsync(int? pageIndex = 1, bool? isReset = false)
         {
             this.IsLoading = true;
 
@@ -125,23 +115,6 @@ namespace GeolocationAds.ViewModels
 
                 if (!apiResponse.IsSuccess || !apiResponse.Data.Any())
                 {
-                    //if (CarouselViewPosition == (NearByTemplateViewModels.Count - 1))
-                    //{
-                    //    message = string.IsNullOrEmpty(apiResponse.Message) ? "No more ads found." : apiResponse.Message;
-
-                    //    message = "No more ads found.";
-                    //}
-                    //else
-                    //{
-                    //    message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
-                    //}
-
-                    //string message = (CarouselViewPosition == (NearByTemplateViewModels.Count - 1)) ? "No more ads found." : apiResponse.Message;
-
-                    ////string message = string.IsNullOrEmpty(apiResponse.Message) ? "No ads found." : apiResponse.Message;
-
-                    //await CommonsTool.DisplayAlert("Notification", message);
-
                     return;
                 }
             }
@@ -156,10 +129,6 @@ namespace GeolocationAds.ViewModels
 
             try
             {
-                // Parallel initialization of view models
-                //await Task.WhenAll(viewModels.Select(vm => vm.InitializeAsync()));
-
-                // Safely add to collection if all initializations succeed
                 this.NearByTemplateViewModels.AddRange(viewModels);
             }
             catch (Exception ex)
@@ -180,7 +149,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public async Task InitializeSettingsAsync()
+        public async Task InitializeDataLoadingSettingsAsync()
         {
             await LoadSettings2Async();
         }
@@ -191,13 +160,15 @@ namespace GeolocationAds.ViewModels
             {
                 await this._filterPopUpForSearch.CloseAsync();
 
-                if (sender is FilterPopUpViewModel filterPopUpViewModel)
+                PageIndex = 1;
+
+                if (sender is FilterPopUpViewModel2 filterPopUpViewModel)
                 {
                     this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
 
                     this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
 
-                    await InitializeAsync(PageIndex, isReset: true);
+                    await InitializeDataLoadingAsync(PageIndex, isReset: true);
                 }
             }
             catch (Exception ex)
@@ -233,7 +204,7 @@ namespace GeolocationAds.ViewModels
 
                     SelectedDistance = DistanceSettings.FirstOrDefault();
 
-                    filterPopUpViewModel = new FilterPopUpViewModel(this.AdTypesSettings, this.DistanceSettings);
+                    filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings, this.DistanceSettings);
 
                     this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
                 }
@@ -249,21 +220,6 @@ namespace GeolocationAds.ViewModels
             finally
             {
                 this.IsLoading = false;
-            }
-        }
-
-        [RelayCommand]
-        public override async Task OpenFilterPopUp()
-        {
-            try
-            {
-                this._filterPopUpForSearch = new FilterPopUpForSearch(this.filterPopUpViewModel);
-
-                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUpForSearch);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -10,11 +11,11 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(GeolocationAd);
 
-        public GeolocationAdService(HttpClient htppClient) : base(htppClient)
+        public GeolocationAdService(HttpClient htppClient, IConfiguration configuration) : base(htppClient, configuration)
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> FindAdsNearby(CurrentLocation currentLocation, string distance)
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> FindAdsNearby(CurrentLocation currentLocation, string distance, int settinTypeId)
         {
             try
             {
@@ -27,7 +28,7 @@ namespace GeolocationAds.Services
                 var apiUrl = APIPrefix + ApiSuffix;
 
                 // Send the POST request to the API
-                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdsNearby)}/{distance}", content);
+                var response = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(FindAdsNearby)}/{distance}/{settinTypeId}", content);
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)

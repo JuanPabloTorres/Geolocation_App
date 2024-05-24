@@ -70,7 +70,7 @@ namespace GeolocationAds.TemplateViewModel
             {
                 foreach (var item in this.CurrentAdvertisement.Contents)
                 {
-                    var _template = await AppToolCommon.ProcessContentItem(item);
+                    var _template = await AppToolCommon.ProcessContentItem(item, null);
 
                     this.ContentTypesTemplate.Add(_template);
                 }

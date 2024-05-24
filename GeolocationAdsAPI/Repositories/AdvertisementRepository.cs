@@ -1,5 +1,4 @@
 ﻿using GeolocationAdsAPI.Context;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -76,7 +75,8 @@ namespace GeolocationAdsAPI.Repositories
                             {
                                 ID = ct.ID,
                                 Type = ct.Type,
-                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content// Apply byte range here
+                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,
+                                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
                             })
                             .ToList()
                     })
@@ -113,7 +113,8 @@ namespace GeolocationAdsAPI.Repositories
                                 ID = ct.ID,
                                 Type = ct.Type,
                                 Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
-                                ContentName = ct.ContentName ?? string.Empty
+                                ContentName = ct.ContentName ?? string.Empty,
+                                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty
                             })
                             .Take(1)
                             .ToList()
@@ -129,53 +130,6 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
-        //public override async Task<ResponseTool<Advertisement>> Remove(int id)
-        //{
-        //    try
-        //    {
-        //        var _itemToRemove = await _context.Advertisements.FindAsync(id);
-
-        //        if (_itemToRemove != null)
-        //        {
-        //            var _contentToRemove = _context.ContentTypes.Where(v => v.AdvertisingId == id);
-
-        //            if (_contentToRemove.Any())
-        //            {
-        //                _context.RemoveRange(_contentToRemove);
-        //            }
-        //            _context.Advertisements.Remove(_itemToRemove);
-
-        //            await _context.SaveChangesAsync();
-
-        //            return ResponseFactory<Advertisement>.BuildSuccess("Item Removed.", null, ToolsLibrary.Tools.Type.DataFound);
-        //        }
-        //        return ResponseFactory<Advertisement>.BuildFail("Item could not be removed.", null, ToolsLibrary.Tools.Type.NotFound);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
-
-        //public override async Task<ResponseTool<Advertisement>> Remove(int id)
-        //{
-        //    try
-        //    {
-        //        int rowsAffected = await _context.RemoveAdvertisement(id);
-
-        //        if (rowsAffected > 0)
-        //        {
-        //            return ResponseFactory<Advertisement>.BuildSuccess("Item Removed.", null, ToolsLibrary.Tools.Type.Delete);
-        //        }
-
-        //        return ResponseFactory<Advertisement>.BuildFail("Item could not be removed.", null, ToolsLibrary.Tools.Type.NotFound);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
 
         public override async Task<ResponseTool<Advertisement>> Remove(int id)
         {
@@ -253,65 +207,6 @@ namespace GeolocationAdsAPI.Repositories
 
             return ResponseFactory<bool>.BuildSuccess("Operation completed successfully", true);
         }
-
-        //public async Task<ResponseTool<bool>> RemoveAdvertisement(int advertisementId)
-        //{
-        //    const int BatchSize = 100; // Define the batch size
-
-        //    var transaction = _context.Database.BeginTransaction();
-        //    try
-        //    {
-        //        var advertisement = await _context.Advertisements
-        //                                          .Include(ad => ad.Contents)
-        //                                          .Include(ad => ad.GeolocationAds)
-        //                                          .Include(ad => ad.Settings)
-        //                                          .FirstOrDefaultAsync(ad => ad.ID == advertisementId);
-
-        //        if (advertisement == null)
-        //        {
-        //            return ResponseFactory<bool>.BuildFail("Advertisement not found.", false, ToolsLibrary.Tools.Type.EntityNotFound);
-        //        }
-
-        //        // Delete related Contents
-        //        foreach (var batch in advertisement.Contents.Batch(BatchSize))
-        //        {
-        //            _context.ContentTypes.RemoveRange(batch);
-
-        //            await _context.SaveChangesAsync();
-        //        }
-
-        //        // Delete related GeolocationAds
-        //        foreach (var batch in advertisement.GeolocationAds.Batch(BatchSize))
-        //        {
-        //            _context.GeolocationAds.RemoveRange(batch);
-
-        //            await _context.SaveChangesAsync();
-        //        }
-
-        //        // Delete related Settings
-        //        foreach (var batch in advertisement.Settings.Batch(BatchSize))
-        //        {
-        //            _context.AdvertisementSettings.RemoveRange(batch);
-
-        //            await _context.SaveChangesAsync();
-        //        }
-
-        //        // Finally, remove the main Advertisement entity
-        //        _context.Advertisements.Remove(advertisement);
-
-        //        await _context.SaveChangesAsync();
-
-        //        await transaction.CommitAsync();
-
-        //        return ResponseFactory<bool>.BuildSuccess("Advertisement removed successfully.", true);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await transaction.RollbackAsync();
-
-        //        return ResponseFactory<bool>.BuildFail($"An error occurred: {ex.Message}", false, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
 
         public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
         {

@@ -9,6 +9,8 @@ namespace ToolsLibrary.Models
 
         public ContentVisualType Type { get; set; }
 
+        public string? Url { get; set; }
+
         public int AdvertisingId { get; set; }
 
         public string ContentName { get; set; }
@@ -26,6 +28,7 @@ namespace ToolsLibrary.Models
     {
         Image,
         Video,
+        URL,
         Unknown
     }
 }

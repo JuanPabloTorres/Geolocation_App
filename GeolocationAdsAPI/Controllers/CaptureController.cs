@@ -43,12 +43,12 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        [HttpGet("[action]/{userId}/{typeId}")]
-        public async Task<IActionResult> GetMyCaptures(int userId, int typeId)
+        [HttpGet("[action]/{userId}/{typeId}/{pageIndex}")]
+        public async Task<IActionResult> GetMyCaptures(int userId, int typeId, int pageIndex)
         {
             try
             {
-                var response = await this.captureRepository.GetMyCaptures(userId, typeId);
+                var response = await this.captureRepository.GetMyCaptures(userId, typeId, pageIndex);
 
                 if (!response.IsSuccess)
                 {

@@ -24,6 +24,11 @@ builder.Services.AddEndpointsApiExplorer();
 //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 //});
 
+// Assuming GlobalSettings.json is copied to the output directory
+var configuration = CommonsTool.ConfigurationLoader.LoadConfiguration();
+
+builder.Configuration.AddConfiguration(configuration);
+
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AdsGeolocationConnectionString");
@@ -149,8 +154,6 @@ app.UseStaticFiles(); // Asegúrate de que puedes servir archivos estáticos, incl
 app.UseAuthentication(); // Make sure authentication comes before authorization
 
 app.UseAuthorization();
-
-
 
 //app.UseAuthorization();
 

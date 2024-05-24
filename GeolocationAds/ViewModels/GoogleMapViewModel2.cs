@@ -1,17 +1,13 @@
-﻿using GeolocationAds.Services;
-using Microsoft.Maui.Controls.Maps;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToolsLibrary.Tools;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.Services;
 using GeolocationAds.Tools;
-using ToolsLibrary.Models;
+using Microsoft.Maui.Controls.Maps;
+using System.Collections.ObjectModel;
+using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
-using GeolocationAds.PopUps;
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
+using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
@@ -19,48 +15,76 @@ namespace GeolocationAds.ViewModels
     {
         public IList<Pin> FoundLocations = new List<Pin>();
 
-        private FilterPopUpViewModel filterPopUpViewModel;
+        private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
 
-        private const int DISTANCE_METER = 1000;
+        private readonly IAppSettingService _appSettingService;
 
         [ObservableProperty]
         private AppSetting selectedAdType;
 
-        public GoogleMapViewModel2(Pin model, IGeolocationAdService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
+        [ObservableProperty]
+        private string selectedDistance;
+
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
+
+        public ObservableCollection<string> DistanceSettings { get; set; } = new ObservableCollection<string>();
+
+        public delegate void PinsUpdatedEventHandler(object sender, EventArgs e);
+
+        public event PinsUpdatedEventHandler PinsUpdated;
+
+        public GoogleMapViewModel2(Pin model, IAppSettingService appSettingService, IGeolocationAdService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
+            this._appSettingService = appSettingService;
+
+            Task.Run(async () =>
+            {
+                await InitializeSettingsAsync();
+            });
         }
 
         protected override async Task LoadData(int? pageIndex = 1)
         {
-            var locationReponse = await GeolocationTool.GetLocation();
-
-            if (locationReponse.IsSuccess)
+            try
             {
-                var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
+                this.IsLoading = true;
 
-                var _apiResponse = await this.service.FindAdsNearby(_currentLocation, DISTANCE_METER.ToString());
+                var locationReponse = await GeolocationTool.GetLocation();
 
-                this.CollectionModel.Clear();
-
-                if (_apiResponse.IsSuccess)
+                if (locationReponse.IsSuccess)
                 {
-                    if (!_apiResponse.Data.IsObjectNull())
-                    {
-                        foreach (var adsGeoItem in _apiResponse.Data)
-                        {
-                            Location location = new Location()
-                            {
-                                Latitude = adsGeoItem.Latitude,
-                                Longitude = adsGeoItem.Longitude,
-                            };
+                    var _currentLocation = new CurrentLocation(locationReponse.Data.Latitude, locationReponse.Data.Longitude);
 
-                            this.CollectionModel.Add(new Microsoft.Maui.Controls.Maps.Pin()
+                    var _apiResponse = await this.service.FindAdsNearby(_currentLocation, this.SelectedDistance, SelectedAdType.ID);
+
+                    this.CollectionModel.Clear();
+
+                    if (_apiResponse.IsSuccess)
+                    {
+                        if (!_apiResponse.Data.IsObjectNull())
+                        {
+                            foreach (var adsGeoItem in _apiResponse.Data)
                             {
-                                Location = location,
-                                Label = adsGeoItem.Advertisement.Title,
-                                Address = adsGeoItem.Advertisement.Description,
-                                Type = Microsoft.Maui.Controls.Maps.PinType.Generic,
-                            });
+                                Location location = new Location()
+                                {
+                                    Latitude = adsGeoItem.Latitude,
+                                    Longitude = adsGeoItem.Longitude,
+                                };
+
+                                this.CollectionModel.Add(new Microsoft.Maui.Controls.Maps.Pin()
+                                {
+                                    Location = location,
+                                    Label = adsGeoItem.Advertisement.Title,
+                                    Address = adsGeoItem.Advertisement.Description,
+                                    Type = Microsoft.Maui.Controls.Maps.PinType.Generic,
+                                });
+                            }
+
+                            PinsUpdated.Invoke(this.CollectionModel, null);
+                        }
+                        else
+                        {
+                            await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                         }
                     }
                     else
@@ -70,16 +94,20 @@ namespace GeolocationAds.ViewModels
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Error", locationReponse.Message, "OK");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+            finally
+            {
+                this.IsLoading = false;
             }
         }
 
-        public async Task Initialize()
+        public async Task InitializeAsync()
         {
             await this.LoadData();
         }
@@ -89,34 +117,100 @@ namespace GeolocationAds.ViewModels
             return this.CollectionModel.ToList();
         }
 
-        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        public async Task InitializeSettingsAsync()
+        {
+            await LoadSettings2Async();
+        }
+
+        private async Task LoadSettings2Async()
         {
             try
             {
-                await this._filterPopUp.CloseAsync();
+                this.IsLoading = true;
 
-                var _sender = sender as FilterPopUpViewModel;
+                var _apiResponse = await this._appSettingService.GetAppSettingByNames(settings);
 
-                if (sender is FilterPopUpViewModel filterPopUpViewModel)
+                if (_apiResponse.IsSuccess)
                 {
-                    this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
+                    foreach (var item in _apiResponse.Data)
+                    {
+                        if (SettingName.MeterDistance.ToString() == item.SettingName)
+                        {
+                            DistanceSettings.Add(item.Value);
+                        }
 
-                    Initialize();
+                        if (SettingName.AdTypes.ToString() == item.SettingName)
+                        {
+                            AdTypesSettings.Add(item);
+                        }
+                    }
+
+                    SelectedAdType = AdTypesSettings.FirstOrDefault();
+
+                    SelectedDistance = DistanceSettings.FirstOrDefault();
+
+                    filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings, this.DistanceSettings);
+
+                    this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
             }
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
-        protected override async Task OpenFilterPopUpAsync()
+        [RelayCommand]
+        public async Task Search()
+        {
+            await InitializeAsync();
+        }
+
+        //private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        await this._filterPopUpForSearch.CloseAsync();
+
+        //        if (sender is FilterPopUpViewModel filterPopUpViewModel)
+        //        {
+        //            this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
+
+        //            this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
+
+        //            await LoadData();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //    }
+        //}
+
+        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
         {
             try
             {
-                this._filterPopUp = new FilterPopUp(this.filterPopUpViewModel);
+                await this._filterPopUpForSearch.CloseAsync();
 
-                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUp);
+                PageIndex = 1;
+
+                if (sender is FilterPopUpViewModel2 filterPopUpViewModel)
+                {
+                    this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
+
+                    this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
+
+                    await LoadData();
+                }
             }
             catch (Exception ex)
             {

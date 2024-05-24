@@ -16,21 +16,21 @@ public class MainApplication : MauiApplication
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
         });
 
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Editor), (handler, view) =>
+        Microsoft.Maui.Handlers.EditorHandler.Mapper.AppendToMapping(nameof(Editor), (handler, view) =>
         {
             handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
         });
 
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(DatePicker), (handler, view) =>
+        Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping(nameof(DatePicker), (handler, view) =>
         {
             handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
         });
 
-        Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Picker), (handler, view) =>
+        Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(nameof(Picker), (handler, view) =>
         {
             handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 

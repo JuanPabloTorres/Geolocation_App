@@ -26,7 +26,13 @@
     <MauiXaml Update="Pages\SearchAd.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="PopUps\CompletePopUp.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="PopUps\MetaDataPopUp.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewTemplates\CaptureHeaderDisplayer.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="ViewTemplates\ContentDisplayer.xaml">
@@ -35,7 +41,13 @@
     <MauiXaml Update="ViewTemplates\ContentHeaderView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="ViewTemplates\ContentInformationDisplayer.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="ViewTemplates\DefaultDisplayer.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewTemplates\EditAndCreateCarousel.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="ViewTemplates\HomeContentItemHeaderView.xaml">
@@ -48,6 +60,9 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="ViewTemplates\VideoDisplayer.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewTemplates\WebViewDisplayer.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>

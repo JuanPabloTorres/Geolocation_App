@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -9,16 +10,16 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(CaptureService);
 
-        public CaptureService(HttpClient htppClient) : base(htppClient)
+        public CaptureService(HttpClient htppClient, IConfiguration configuration) : base(htppClient, configuration)
         {
         }
 
-        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId)
+        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId, int? pageIndex)
         {
             try
             {
                 // Build the full API endpoint URL for the specific resource
-                var apiUrl = $"{this.BaseApiUri}/{nameof(GetMyCaptures)}/{userId}/{typeId}";
+                var apiUrl = $"{this.BaseApiUri}/{nameof(GetMyCaptures)}/{userId}/{typeId}/{pageIndex}";
 
                 // Send the GET request to the API
                 var response = await _httpClient.GetAsync(apiUrl);

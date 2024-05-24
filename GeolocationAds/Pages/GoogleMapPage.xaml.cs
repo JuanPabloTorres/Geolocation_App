@@ -1,5 +1,6 @@
 using GeolocationAds.ViewModels;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages;
 
@@ -14,6 +15,54 @@ public partial class GoogleMapPage : ContentPage
         this._viewModel = googleMapViewModel;
 
         BindingContext = googleMapViewModel;
+
+        this._viewModel.PinsUpdated += _viewModel_PinsUpdated;
+
+        //this._viewModel.CollectionModel.CollectionChanged += CollectionModel_CollectionChanged;
+    }
+
+    private async void _viewModel_PinsUpdated(object sender, EventArgs e)
+    {
+        try
+        {
+            this._viewModel.IsLoading = true;
+
+            this.googleMap.Pins.Clear();
+
+            var _pinData = this._viewModel.GetContentPins();
+
+            this.googleMap.Pins.AddRange(_pinData);
+        }
+        catch (Exception ex)
+        {
+            await CommonsTool.DisplayAlert("Error", ex.Message);
+        }
+        finally
+        {
+            this._viewModel.IsLoading = false;
+        }
+    }
+
+    private async void CollectionModel_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        try
+        {
+            this._viewModel.IsLoading = true;
+
+            this.googleMap.Pins.Clear();
+
+            var _pinData = this._viewModel.GetContentPins();
+
+            this.googleMap.Pins.AddRange(_pinData);
+        }
+        catch (Exception ex)
+        {
+            await CommonsTool.DisplayAlert("Error", ex.Message);
+        }
+        finally
+        {
+            this._viewModel.IsLoading = false;
+        }
     }
 
     protected override async void OnAppearing()
@@ -22,7 +71,7 @@ public partial class GoogleMapPage : ContentPage
 
         this._viewModel.IsLoading = true;
 
-        await _viewModel.Initialize();
+        await _viewModel.InitializeAsync();
 
         var _pinData = this._viewModel.GetContentPins();
 

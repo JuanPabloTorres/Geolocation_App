@@ -33,7 +33,7 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId)
+        public async Task<ResponseTool<IEnumerable<Capture>>> GetMyCaptures(int userId, int typeId, int pageIndex)
         {
             try
             {
@@ -58,7 +58,8 @@ namespace GeolocationAdsAPI.Repositories
                                 ID = ct.ID,
                                 Type = ct.Type,
                                 Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
-                                ContentName = ct.ContentName ?? string.Empty
+                                ContentName = ct.ContentName ?? string.Empty,
+                                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty
                             })
                             .Take(1)
                             .ToList(),
@@ -66,7 +67,9 @@ namespace GeolocationAdsAPI.Repositories
                             Description = s.Advertisements.Description
                         }
                     })
-                   .ToListAsync();
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
+                    .ToListAsync();
 
                 return ResponseFactory<IEnumerable<Capture>>.BuildSuccess("Entity found.", result);
             }

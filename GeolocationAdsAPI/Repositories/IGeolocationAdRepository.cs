@@ -5,7 +5,7 @@ namespace GeolocationAdsAPI.Repositories
 {
     public interface IGeolocationAdRepository : IBaseRepository<GeolocationAd>
     {
-        Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync(double latitud, double longitude, int distance);
+        Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync(double latitud, double longitude, int distance, int settinTypeId);
 
         Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo(int settingId);
 

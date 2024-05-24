@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 using ToolsLibrary.Factories;
@@ -16,8 +17,13 @@ namespace GeolocationAds.Services
 
         protected Uri BaseApiUri;
 
-        public BaseService(HttpClient httpClient)
+        public BaseService(HttpClient httpClient, IConfiguration configuration)
         {
+
+
+            var backendUrl = configuration.GetValue<string>("ApplicationSettings:GlobalLocalBackendUrl");
+
+
             string _httpResourceName = string.Empty;
 
 #if DEBUG
@@ -36,7 +42,7 @@ namespace GeolocationAds.Services
 
             //_httpClient.Timeout = TimeSpan.FromMinutes(30); // Set the timeout here
 
-            var backendUrl = Application.Current.Resources[_httpResourceName] as string;
+            //var backendUrl = Application.Current.Resources[_httpResourceName] as string;
 
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);
         }

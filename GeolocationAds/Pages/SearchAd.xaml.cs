@@ -90,7 +90,7 @@ public partial class SearchAd : ContentPage
 
                 SearchAdViewModel2.PageIndex++;
 
-                await this.viewModel.InitializeAsync(SearchAdViewModel2.PageIndex);
+                await this.viewModel.InitializeDataLoadingAsync(SearchAdViewModel2.PageIndex);
 
                 var _newCount = GetSourceLastIndexCount();
 

@@ -47,8 +47,6 @@ namespace GeolocationAds.ViewModels
 
             this.SearchCommand = new Command(Initialize);
 
-            //this.OpenFilterPopUpCommand = new Command(OpenFilterPopUpAsync);
-
             this.OpenFilterPopUpCommand = new Command(async () => await OpenFilterPopUpAsync());
 
             CaptureTemplateViewModel.ItemDeleted += CaptureTemplateViewModel_ItemDeleted;
@@ -109,14 +107,6 @@ namespace GeolocationAds.ViewModels
 
                 if (_apiResponse.IsSuccess)
                 {
-                    //foreach (var item in _apiResponse.Data)
-                    //{
-                    //    if (SettingName.AdTypes.ToString() == item.SettingName)
-                    //    {
-                    //        AdTypesSettings.Add(item);
-                    //    }
-                    //}
-
                     AdTypesSettings.AddRange(_apiResponse.Data.Where(item => item.SettingName == SettingName.AdTypes.ToString()).ToList());
 
                     SelectedAdType = AdTypesSettings.FirstOrDefault();
@@ -153,7 +143,7 @@ namespace GeolocationAds.ViewModels
 
                 this.CaptureTemplateViewModels.Clear();
 
-                var _apiResponse = await this.service.GetMyCaptures(LogUserPerfilTool.GetUserId(), this.SelectedAdType.ID);
+                var _apiResponse = await this.service.GetMyCaptures(LogUserPerfilTool.GetUserId(), this.SelectedAdType.ID, pageIndex);
 
                 if (_apiResponse.IsSuccess)
                 {

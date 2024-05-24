@@ -1,15 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
+
 namespace GeolocationAds.Services
 {
     public class AdvertisementService : BaseService<Advertisement>, IAdvertisementService
     {
-        public AdvertisementService(HttpClient htppClient) : base(htppClient)
+        public AdvertisementService(HttpClient htppClient, IConfiguration configuration) : base(htppClient, configuration)
         {
         }
 
@@ -77,11 +79,21 @@ namespace GeolocationAds.Services
         //    }
         //}
 
+
+
         public override async Task<ResponseTool<Advertisement>> Add(Advertisement data)
         {
             try
             {
                 using var multipartContent = new MultipartFormDataContent();
+
+                var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image || v.Type == ContentVisualType.Video).ToList();
+
+                foreach (var item in _videosAndImage)
+                {
+                    data.Contents.Remove(item);
+                }
+
 
                 var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
                 {
@@ -95,9 +107,22 @@ namespace GeolocationAds.Services
                 try
                 {
 
-                    foreach (var content in data.Contents)
+                    foreach (var content in _videosAndImage)
                     {
-                        if (!string.IsNullOrEmpty(content.FilePath) && content.Content != null && content.Content.Length > 0)
+                        //if (content.Type == ContentVisualType.URL)
+                        //{
+                        //    // Handle URLs as StringContent
+                        //    if (!string.IsNullOrEmpty(content.Url))
+                        //    {
+                        //        var urlContent = new StringContent(content.Url)
+                        //        {
+                        //            Headers = { ContentType = new MediaTypeHeaderValue("text/plain") }  // Sending URL as plain text
+                        //        };
+
+                        //        multipartContent.Add(urlContent, "url", content.ContentName ?? "url");
+                        //    }
+                        //}
+                        if (!string.IsNullOrEmpty(content.FilePath) && content.Content != null && content.Content.Length > 0 && (content.Type == ContentVisualType.Image || content.Type == ContentVisualType.Video))
                         {
                             var fileInfo = new FileInfo(content.FilePath);
 
@@ -114,12 +139,16 @@ namespace GeolocationAds.Services
                             }
                             memoryStream.Position = 0; // Reset the position after copying
 
+                            var byteContent = new ByteArrayContent(content.Content);
+
+                            byteContent.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
+
                             var contentStream = new StreamContent(memoryStream)
                             {
                                 Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
                             };
 
-                            multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+                            multipartContent.Add(byteContent, "contents", content.ContentName ?? "file");
 
                         }
                     }
@@ -479,6 +508,7 @@ namespace GeolocationAds.Services
             {
                 ContentVisualType.Image => "image/jpeg", // assuming jpeg, change as necessary
                 ContentVisualType.Video => "video/mp4", // assuming mp4, change as necessary
+                ContentVisualType.URL => "text/html", // assuming mp4, change as necessary
                 _ => "application/octet-stream"
             };
         }

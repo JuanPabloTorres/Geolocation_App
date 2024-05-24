@@ -9,30 +9,11 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Color="Transparent">
 
-
-    <!--<toolkit:Popup.Resources>
-        <ResourceDictionary>
-            <Style TargetType="mct:Popup">
-                <Setter Property="Color" Value="Transparent" />
-
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="CanBeDismissedByTappingOutsideOfPopup" Value="True" />
-            </Style>
-        </ResourceDictionary>
-    </toolkit:Popup.Resources>-->
-
     <Border Style="{StaticResource popUpBorder}">
-
-
 
         <VerticalStackLayout BackgroundColor="White">
 
-
-
             <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End">
-
-
 
                 <Button
                     Margin="5"
@@ -49,14 +30,12 @@
                             Offset="5,5" />
                     </Button.Shadow>
 
-
                     <Button.ImageSource>
                         <FontImageSource
                             FontFamily="MaterialIconsOutlined-Regular"
                             Glyph="&#xe5cd;"
                             Color="#3e4144" />
                     </Button.ImageSource>
-
                 </Button>
             </HorizontalStackLayout>
 
@@ -81,15 +60,12 @@
                 IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalButton}">
 
-
                 <Button.ImageSource>
                     <FontImageSource
                         FontFamily="MaterialIconsOutlined-Regular"
                         Glyph="&#xe8b6;"
                         Color="White" />
                 </Button.ImageSource>
-
-
             </Button>
 
             <ActivityIndicator

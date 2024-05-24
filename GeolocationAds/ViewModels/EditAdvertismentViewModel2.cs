@@ -97,9 +97,21 @@ namespace GeolocationAds.ViewModels
 
                 foreach (var item in this.Model.Contents)
                 {
-                    var _template = await AppToolCommon.ProcessContentItem(item);
 
-                    this.ContentTypesTemplate.Add(_template);
+
+                    if (item.Type == ContentVisualType.Video)
+                    {
+                        var _template = await AppToolCommon.ProcessContentItem(item, this.service);
+
+                        this.ContentTypesTemplate.Add(_template);
+                    }
+                    else
+                    {
+                        var _template = await AppToolCommon.ProcessContentItem(item, null);
+
+                        this.ContentTypesTemplate.Add(_template);
+                    }
+
                 }
             }
             catch (Exception ex)

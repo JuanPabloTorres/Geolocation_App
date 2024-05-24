@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
@@ -15,7 +16,7 @@ namespace GeolocationAds.ViewModels
     public partial class BaseViewModel3<T, S> : ObservableObject, IQueryAttributable
     {
         [ObservableProperty]
-        private T _model;
+        private T model;
 
         [ObservableProperty]
         private bool isLoading;
@@ -25,6 +26,10 @@ namespace GeolocationAds.ViewModels
         protected FilterPopUpForSearch _filterPopUpForSearch;
 
         protected MetaDataPopUp _metaDataPopUp;
+
+        protected CompletePopUp _completePopUp;
+
+        protected FilterPopUpViewModel2 filterPopUpViewModel;
 
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
@@ -49,6 +54,21 @@ namespace GeolocationAds.ViewModels
             try
             {
                 await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        public virtual async Task OpenFilterPopUpForSearch()
+        {
+            try
+            {
+                this._filterPopUpForSearch = new FilterPopUpForSearch(this.filterPopUpViewModel);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUpForSearch);
             }
             catch (Exception ex)
             {
@@ -209,7 +229,7 @@ namespace GeolocationAds.ViewModels
             {
                 DateTime now = DateTime.Now;
 
-                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.CreateDate), now);
+                //ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.CreateDate), now);
 
                 var validationContextCurrentType = new ValidationContext(obj);
 
@@ -254,6 +274,16 @@ namespace GeolocationAds.ViewModels
                                     this.ValidationResults.Clear();
                                 }
 
+                                this.IsLoading = false;
+
+                                _completePopUp = new CompletePopUp();
+
+                                await Shell.Current.CurrentPage.ShowPopupAsync(_completePopUp);
+
+                                //await _completePopUp.ShowStarAnimation();
+
+
+
                                 WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                             }
                             else
@@ -261,7 +291,7 @@ namespace GeolocationAds.ViewModels
                                 await Shell.Current.DisplayAlert("Error", $"Type {typeof(T).FullName} does not have a parameterless constructor.", "OK");
                             }
 
-                            await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+                            //await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
                         }
                         else
                         {
@@ -283,6 +313,13 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        private void SetUpdateMetadata(T obj)
+        {
+            DateTime now = DateTime.Now;
+            ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
+            ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
+        }
+
         [RelayCommand]
         public virtual async Task SubmitUpdate(T obj)
         {
@@ -292,17 +329,19 @@ namespace GeolocationAds.ViewModels
             {
                 ValidationResults.Clear();
 
-                DateTime now = DateTime.Now;
+                //DateTime now = DateTime.Now;
 
-                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
+                //ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
 
-                ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
+                //ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
+
+                SetUpdateMetadata(obj);
 
                 var validationContextCurrentType = new ValidationContext(obj);
 
                 var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
 
-                PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
+                //PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
 
                 var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
 
@@ -351,11 +390,11 @@ namespace GeolocationAds.ViewModels
 
                             if (_apiResponse.IsSuccess)
                             {
+                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+
                                 WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
 
                                 await Shell.Current.Navigation.PopToRootAsync();
-
-                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
                             }
                             else
                             {

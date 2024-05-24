@@ -102,6 +102,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.UserS
 build_metadata.AdditionalFiles.TargetPath = Pages\UserSetting.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\UserSetting.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/CompletePopUp.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.CompletePopUp.xaml
+build_metadata.AdditionalFiles.TargetPath = PopUps\CompletePopUp.xaml
+build_metadata.AdditionalFiles.RelativePath = PopUps\CompletePopUp.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/PopUps/FilterPopUp.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.PopUps.FilterPopUp.xaml
@@ -138,6 +144,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Resources.S
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/CaptureHeaderDisplayer.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.CaptureHeaderDisplayer.xaml
+build_metadata.AdditionalFiles.TargetPath = ViewTemplates\CaptureHeaderDisplayer.xaml
+build_metadata.AdditionalFiles.RelativePath = ViewTemplates\CaptureHeaderDisplayer.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/ContentDisplayer.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.ContentDisplayer.xaml
@@ -150,11 +162,23 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplat
 build_metadata.AdditionalFiles.TargetPath = ViewTemplates\ContentHeaderView.xaml
 build_metadata.AdditionalFiles.RelativePath = ViewTemplates\ContentHeaderView.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/ContentInformationDisplayer.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.ContentInformationDisplayer.xaml
+build_metadata.AdditionalFiles.TargetPath = ViewTemplates\ContentInformationDisplayer.xaml
+build_metadata.AdditionalFiles.RelativePath = ViewTemplates\ContentInformationDisplayer.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/DefaultDisplayer.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.DefaultDisplayer.xaml
 build_metadata.AdditionalFiles.TargetPath = ViewTemplates\DefaultDisplayer.xaml
 build_metadata.AdditionalFiles.RelativePath = ViewTemplates\DefaultDisplayer.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/EditAndCreateCarousel.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.EditAndCreateCarousel.xaml
+build_metadata.AdditionalFiles.TargetPath = ViewTemplates\EditAndCreateCarousel.xaml
+build_metadata.AdditionalFiles.RelativePath = ViewTemplates\EditAndCreateCarousel.xaml
 
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/HomeContentItemHeaderView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
@@ -179,3 +203,9 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.VideoDisplayer.xaml
 build_metadata.AdditionalFiles.TargetPath = ViewTemplates\VideoDisplayer.xaml
 build_metadata.AdditionalFiles.RelativePath = ViewTemplates\VideoDisplayer.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/WebViewDisplayer.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.WebViewDisplayer.xaml
+build_metadata.AdditionalFiles.TargetPath = ViewTemplates\WebViewDisplayer.xaml
+build_metadata.AdditionalFiles.RelativePath = ViewTemplates\WebViewDisplayer.xaml

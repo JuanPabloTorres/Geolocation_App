@@ -42,7 +42,7 @@
               }
             }
           },
-          "net8.0-ios17.0": {
+          "net8.0-ios17.2": {
             "targetAlias": "net8.0-ios",
             "projectReferences": {
               "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
@@ -50,7 +50,7 @@
               }
             }
           },
-          "net8.0-maccatalyst17.0": {
+          "net8.0-maccatalyst17.2": {
             "targetAlias": "net8.0-maccatalyst",
             "projectReferences": {
               "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\ToolsLibrary\\ToolsLibrary.csproj": {
@@ -71,6 +71,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -79,11 +84,11 @@
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[9.0.0, )"
             },
             "CommunityToolkit.Maui.MediaElement": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[3.1.1, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -91,7 +96,7 @@
             },
             "FFImageLoading.Maui": {
               "target": "Package",
-              "version": "[1.2.3, )"
+              "version": "[1.2.4, )"
             },
             "FFmpeg.AutoGen": {
               "target": "Package",
@@ -105,23 +110,43 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Maps": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "SkiaSharp.Views.Maui.Controls": {
+              "target": "Package",
+              "version": "[2.88.8, )"
+            },
+            "SkiaSharp.Views.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[2.88.8, )"
             },
             "VideoLAN.LibVLC.Android": {
               "target": "Package",
@@ -155,18 +180,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
-        "net8.0-ios17.0": {
+        "net8.0-ios17.2": {
           "targetAlias": "net8.0-ios",
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[9.0.0, )"
             },
             "CommunityToolkit.Maui.MediaElement": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[3.1.1, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -174,7 +199,7 @@
             },
             "FFImageLoading.Maui": {
               "target": "Package",
-              "version": "[1.2.3, )"
+              "version": "[1.2.4, )"
             },
             "FFmpeg.AutoGen": {
               "target": "Package",
@@ -188,23 +213,43 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Maps": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "SkiaSharp.Views.Maui.Controls": {
+              "target": "Package",
+              "version": "[2.88.8, )"
+            },
+            "SkiaSharp.Views.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[2.88.8, )"
             },
             "VideoLAN.LibVLC.Android": {
               "target": "Package",
@@ -238,18 +283,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
-        "net8.0-maccatalyst17.0": {
+        "net8.0-maccatalyst17.2": {
           "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[9.0.0, )"
             },
             "CommunityToolkit.Maui.MediaElement": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[3.1.1, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -257,7 +302,7 @@
             },
             "FFImageLoading.Maui": {
               "target": "Package",
-              "version": "[1.2.3, )"
+              "version": "[1.2.4, )"
             },
             "FFmpeg.AutoGen": {
               "target": "Package",
@@ -271,23 +316,43 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Maps": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "SkiaSharp.Views.Maui.Controls": {
+              "target": "Package",
+              "version": "[2.88.8, )"
+            },
+            "SkiaSharp.Views.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[2.88.8, )"
             },
             "VideoLAN.LibVLC.Android": {
               "target": "Package",
@@ -322,18 +387,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
           "dependencies": {
             "CommunityToolkit.Maui": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[9.0.0, )"
             },
             "CommunityToolkit.Maui.MediaElement": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[3.1.1, )"
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
@@ -341,7 +406,7 @@
             },
             "FFImageLoading.Maui": {
               "target": "Package",
-              "version": "[1.2.3, )"
+              "version": "[1.2.4, )"
             },
             "FFmpeg.AutoGen": {
               "target": "Package",
@@ -355,17 +420,37 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.0-preview.4.24266.19, )"
+            },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Maps": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.40, )"
+            },
+            "SkiaSharp.Extended.UI.Maui": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "SkiaSharp.Views.Maui.Controls": {
+              "target": "Package",
+              "version": "[2.88.8, )"
+            },
+            "SkiaSharp.Views.Maui.Controls.Compatibility": {
+              "target": "Package",
+              "version": "[2.88.8, )"
             },
             "VideoLAN.LibVLC.Android": {
               "target": "Package",
@@ -405,7 +490,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -452,7 +537,7 @@
         ],
         "originalTargetFrameworks": [
           "net8.0",
-          "net8.0-android",
+          "net8.0-android34.0",
           "net8.0-ios",
           "net8.0-maccatalyst",
           "net8.0-windows10.0.19041.0"
@@ -468,14 +553,14 @@
             "projectReferences": {}
           },
           "net8.0-android34.0": {
-            "targetAlias": "net8.0-android",
+            "targetAlias": "net8.0-android34.0",
             "projectReferences": {}
           },
-          "net8.0-ios17.0": {
+          "net8.0-ios17.2": {
             "targetAlias": "net8.0-ios",
             "projectReferences": {}
           },
-          "net8.0-maccatalyst17.0": {
+          "net8.0-maccatalyst17.2": {
             "targetAlias": "net8.0-maccatalyst",
             "projectReferences": {}
           },
@@ -488,6 +573,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -504,21 +594,25 @@
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.2.0, )"
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -537,10 +631,10 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-android34.0": {
-          "targetAlias": "net8.0-android",
+          "targetAlias": "net8.0-android34.0",
           "dependencies": {
             "BCrypt.Net-Core": {
               "target": "Package",
@@ -552,21 +646,25 @@
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.2.0, )"
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -588,9 +686,9 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
-        "net8.0-ios17.0": {
+        "net8.0-ios17.2": {
           "targetAlias": "net8.0-ios",
           "dependencies": {
             "BCrypt.Net-Core": {
@@ -603,27 +701,31 @@
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.2.0, )"
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -645,9 +747,9 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
-        "net8.0-maccatalyst17.0": {
+        "net8.0-maccatalyst17.2": {
           "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
             "BCrypt.Net-Core": {
@@ -660,27 +762,31 @@
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.2.0, )"
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -703,7 +809,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
@@ -718,21 +824,25 @@
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Maui.Controls": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.7, )"
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.2.0, )"
+              "version": "[4.5.0, )"
             }
           },
           "imports": [
@@ -760,7 +870,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205\\RuntimeIdentifierGraph.json"
         }
       }
     }

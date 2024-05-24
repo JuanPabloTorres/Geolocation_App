@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Text;
 using ToolsLibrary.Dto;
 using ToolsLibrary.Factories;
@@ -11,7 +12,7 @@ namespace GeolocationAds.Services
     {
         public static string _apiSuffix = nameof(ForgotPasswordService);
 
-        public ForgotPasswordService(HttpClient htppClient) : base(htppClient)
+        public ForgotPasswordService(HttpClient htppClient, IConfiguration configuration) : base(htppClient, configuration)
         {
         }
 
