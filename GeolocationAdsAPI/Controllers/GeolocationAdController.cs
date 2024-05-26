@@ -111,10 +111,10 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("No nearby content found.", advertisements, ToolsLibrary.Tools.Type.NotFound));
                 }
 
-                var adsNear = advertisements.OrderByDescending(o => o.CreateDate).ToList();
+                //var adsNear = advertisements.OrderByDescending(o => o.CreateDate).Reverse().ToList();
 
                 // Assuming the data is ordered in the repository method itself
-                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", adsNear, ToolsLibrary.Tools.Type.DataFound));
+                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", advertisements, ToolsLibrary.Tools.Type.DataFound));
             }
             catch (Exception ex)
             {

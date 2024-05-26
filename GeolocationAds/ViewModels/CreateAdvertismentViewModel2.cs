@@ -5,6 +5,7 @@ using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
+using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
@@ -20,17 +21,22 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private AppSetting selectedAdType = new AppSetting();
 
-        private readonly IAppSettingService appSettingService;
-
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
 
         public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
-        public CreateAdvertismentViewModel2(Advertisement advertisement, IAdvertisementService advertisementService, LogUserPerfilTool logUserPerfilTool, IAppSettingService appSettingService) : base(advertisement, advertisementService, logUserPerfilTool)
+        private readonly IContainerCreateAdvertisment ContainerCreateAdvertisment;
+
+        public CreateAdvertismentViewModel2(IContainerCreateAdvertisment ContainerCreateAdvertisment) : base(ContainerCreateAdvertisment.Model, ContainerCreateAdvertisment.AdvertisementService, ContainerCreateAdvertisment.LogUserPerfilTool)
         {
-            this.appSettingService = appSettingService;
+            this.ContainerCreateAdvertisment = ContainerCreateAdvertisment;
 
             ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+            Task.Run(async () =>
+            {
+                await DataInitialization();
+            });
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<Advertisement>>(this, async (r, m) =>
             {
@@ -38,6 +44,12 @@ namespace GeolocationAds.ViewModels
             });
         }
 
+        public async Task DataInitialization()
+        {
+            await InitializeSettings();
+
+            //await SetDefault();
+        }
 
         public async Task LoadSetting()
         {
@@ -47,7 +59,7 @@ namespace GeolocationAds.ViewModels
 
                 this.AdTypesSettings.Clear();
 
-                var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+                var _apiResponse = await this.ContainerCreateAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -81,7 +93,12 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                this.ContentTypesTemplate.Clear();
+                //this.ContentTypesTemplate.Clear();
+
+                if (this.ContentTypesTemplate.Any())
+                {
+                    this.ContentTypesTemplate.Clear();
+                }
 
                 var _adSetting = new AdvertisementSettings()
                 {
@@ -92,7 +109,20 @@ namespace GeolocationAds.ViewModels
 
                 this.Model = new Advertisement(this.LogUserPerfilTool.GetUserId(), _adSetting);
 
+                //this.Model.CreateDate = DateTime.Now;
+
+                //this.Model.CreateBy = this.LogUserPerfilTool.GetUserId();
+
+                //this.Model.Settings = new List<AdvertisementSettings>() { _adSetting };
+
+                //this.Model.Contents =  new List<ContentType>();
+
                 await this.GetImageSourceFromFile2();
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                // Específico para el error de índice fuera de rango
+                await CommonsTool.DisplayAlert("Index Error", "Please check collection operations.");
             }
             catch (Exception ex)
             {
@@ -301,6 +331,8 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
+
+
                 var _defaultTemplate = await AppToolCommon.GetDefaultContentTypeTemplateViewModel(this.LogUserPerfilTool.GetUserId());
 
                 this.ContentTypesTemplate.Add(_defaultTemplate);

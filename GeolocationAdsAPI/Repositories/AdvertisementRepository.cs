@@ -1,4 +1,5 @@
-﻿using GeolocationAdsAPI.Context;
+﻿using GeolocationAdsAPI.ApiTools;
+using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -9,8 +10,11 @@ namespace GeolocationAdsAPI.Repositories
 {
     public class AdvertisementRepository : BaseRepositoryImplementation<Advertisement>, IAdvertisementRepository
     {
-        public AdvertisementRepository(GeolocationContext context) : base(context)
+        private readonly IContentTypeRepository contentTypeRepository;
+
+        public AdvertisementRepository(GeolocationContext context, IContentTypeRepository contentTypeRepository) : base(context)
         {
+            this.contentTypeRepository = contentTypeRepository;
         }
 
         public override async Task<ResponseTool<Advertisement>> CreateAsync(Advertisement advertisement)
@@ -47,7 +51,7 @@ namespace GeolocationAdsAPI.Repositories
                     return ResponseFactory<Advertisement>.BuildFail("Not Found", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
-                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings).Include(g => g.GeolocationAds).Include(c => c.Contents).Where(v => v.ID == Id)
+                var _dataFoundResult = await _context.Advertisements.Where(v => v.ID == Id).Include(s => s.Settings).Include(g => g.GeolocationAds).Include(c => c.Contents)
                     .Select(s => new Advertisement
                     {
                         ID = s.ID,
@@ -210,17 +214,56 @@ namespace GeolocationAdsAPI.Repositories
 
         public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
         {
+
+
+
             try
             {
-                var existingAdvertisement = await _context.Advertisements
-                    .Include(a => a.Contents)
-                    .Include(a => a.Settings)
-                    .FirstOrDefaultAsync(a => a.ID == id);
+                var existingAdvertisement = await _context.Advertisements.AsTracking().Where(a => a.ID == id).Include(a => a.Contents).Include(a => a.Settings)
+                   .Select(s => new Advertisement
+                   {
+                       ID = s.ID,
+                       Title = s.Title,
+                       Description = s.Description,
+                       UserId = s.UserId,
+                       CreateBy = s.CreateBy,
+                       CreateDate = s.CreateDate,
+                       Contents = s.Contents.Select(c => new ContentType
+                       {
+                           ID = c.ID,
+                           ContentName = c.ContentName,
+                           FilePath = c.FilePath,
+                           FileSize = c.FileSize,
+                           Type = c.Type,
+                           Url = c.Url,
+                           AdvertisingId = c.AdvertisingId
+                       }).ToList(),
+                       Settings = s.Settings.Select(st => new AdvertisementSettings
+                       {
+                           ID = st.ID,
+                           AdvertisementId = st.AdvertisementId,
+                           SettingId = st.SettingId,
+                           Setting = new AppSetting // Assuming you want to include some properties of AppSetting
+                           {
+                               ID = st.Setting.ID,
+                               Value = st.Setting.Value // Replace 'Value' with actual property names you need
+                           }
+                       }).ToList(),
 
-                if (existingAdvertisement == null)
+
+                   }).FirstOrDefaultAsync();
+
+                //var existingAdvertisement = await _context.Advertisements
+                //        .Include(a => a.Contents)
+                //        .Include(a => a.Settings)
+                //        .FirstOrDefaultAsync(a => a.ID == id);
+
+                if (existingAdvertisement.IsObjectNull())
                 {
                     return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
                 }
+
+                //_context.Advertisements.Remove(existingAdvertisement);
 
                 // Copy scalar properties
                 existingAdvertisement.Title = updatedAdvertisement.Title;
@@ -235,6 +278,26 @@ namespace GeolocationAdsAPI.Repositories
                 // Update nested collections (Contents, Settings)
                 if (!updatedAdvertisement.Contents.IsObjectNull())
                 {
+                    foreach (var item in existingAdvertisement.Contents)
+                    {
+                        var _updatedItem = updatedAdvertisement.Contents.Where(v => v.ID == item.ID).Select(s => new ContentType() { ID = s.ID, Type = s.Type, FileSize = s.FileSize }).FirstOrDefault();
+
+                        if (!_updatedItem.IsObjectNull() && _updatedItem.Type == ContentVisualType.Video && Convert.ToUInt64(_updatedItem.FileSize) == 0)
+                        {
+                            updatedAdvertisement.Contents.Remove(_updatedItem);
+
+                            item.UpdateBy = updatedAdvertisement.UpdateBy;
+
+                            item.UpdateDate = DateTime.Now;
+
+                            var _contentBytes = await this.contentTypeRepository.GetContentById(item.ID);
+
+                            item.Content = ApiCommonsTools.Combine(_contentBytes.Data);
+
+                            updatedAdvertisement.Contents.Add(item);
+                        }
+                    }
+
                     UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
                 }
                 else
@@ -252,6 +315,8 @@ namespace GeolocationAdsAPI.Repositories
                 {
                     updatedAdvertisement.Settings = existingAdvertisement.Settings;
                 }
+
+                _context.Entry(existingAdvertisement).State = EntityState.Modified;
 
                 await _context.SaveChangesAsync();
 

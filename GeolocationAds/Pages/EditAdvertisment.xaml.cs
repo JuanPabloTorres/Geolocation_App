@@ -44,7 +44,6 @@ public partial class EditAdvertisment : ContentPage
 
     private async void WebView_Navigating(object sender, WebNavigatingEventArgs e)
     {
-
         if (e.Url.StartsWith("intent://"))
         {
             try
@@ -92,12 +91,10 @@ public partial class EditAdvertisment : ContentPage
             }
         }
 
-
         //if (e.Url.StartsWith("intent://"))
         //{
         //    try
         //    {
-
         //        Regex regex = new Regex(@"intent://(.*?)(;|$)");
 
         //        Match match = regex.Match(e.Url);

@@ -30,7 +30,7 @@ public partial class MyContentPage : ContentPage
 
         this.paginControls.IsNextButtonEnabled = true;
 
-        await this._viewModel.InitializeSettingsAsync();
+        //await this._viewModel.InitializeSettingsAsync();
 
         await this._viewModel.InitializeAsync();
     }

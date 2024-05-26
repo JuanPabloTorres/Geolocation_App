@@ -5,6 +5,13 @@ namespace GeolocationAds.PopUps;
 
 public partial class FilterPopUp : Popup
 {
+    public FilterPopUp(FilterPopUpViewModel2 filterPopUpViewModel)
+    {
+        InitializeComponent();
+
+        BindingContext = filterPopUpViewModel;
+    }
+
     public FilterPopUp(FilterPopUpViewModel filterPopUpViewModel)
     {
         InitializeComponent();

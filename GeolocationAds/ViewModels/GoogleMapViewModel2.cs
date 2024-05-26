@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.Services;
+using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.Tools;
 using Microsoft.Maui.Controls.Maps;
 using System.Collections.ObjectModel;
@@ -15,9 +16,7 @@ namespace GeolocationAds.ViewModels
     {
         public IList<Pin> FoundLocations = new List<Pin>();
 
-        private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
-
-        private readonly IAppSettingService _appSettingService;
+        private readonly IContainerMapServices containerMapServices;
 
         [ObservableProperty]
         private AppSetting selectedAdType;
@@ -33,9 +32,9 @@ namespace GeolocationAds.ViewModels
 
         public event PinsUpdatedEventHandler PinsUpdated;
 
-        public GoogleMapViewModel2(Pin model, IAppSettingService appSettingService, IGeolocationAdService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
+        public GoogleMapViewModel2(IContainerMapServices containerMapServices) : base(containerMapServices.Model, containerMapServices.GeolocationAdService, containerMapServices.LogUserPerfilTool)
         {
-            this._appSettingService = appSettingService;
+            this.containerMapServices = containerMapServices;
 
             Task.Run(async () =>
             {
@@ -124,11 +123,13 @@ namespace GeolocationAds.ViewModels
 
         private async Task LoadSettings2Async()
         {
+            IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
+
             try
             {
                 this.IsLoading = true;
 
-                var _apiResponse = await this._appSettingService.GetAppSettingByNames(settings);
+                var _apiResponse = await this.containerMapServices.AppSettingService.GetAppSettingByNames(settings);
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -173,27 +174,6 @@ namespace GeolocationAds.ViewModels
         {
             await InitializeAsync();
         }
-
-        //private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        await this._filterPopUpForSearch.CloseAsync();
-
-        //        if (sender is FilterPopUpViewModel filterPopUpViewModel)
-        //        {
-        //            this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
-
-        //            this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
-
-        //            await LoadData();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-        //    }
-        //}
 
         private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
         {

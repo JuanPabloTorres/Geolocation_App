@@ -7,7 +7,10 @@ namespace GeolocationAdsAPI.Repositories
     {
         Task<ResponseTool<bool>> CreateRangeAsync(IEnumerable<ContentType> contentTypes);
 
-        Task<ResponseTool<ContentType>> GetContentById(int contentId);
+        //Task<ResponseTool<ContentType>> GetContentById(int contentId);
+
+        Task<ResponseTool<List<byte[]>>> GetContentById(int contentId);
+
 
         Task<ResponseTool<IEnumerable<ContentType>>> GetContentsOfAdById(int id);
 

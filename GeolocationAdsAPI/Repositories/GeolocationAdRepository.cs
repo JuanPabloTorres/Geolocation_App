@@ -111,7 +111,7 @@ namespace GeolocationAdsAPI.Repositories
                     .AsNoTracking();
 
                 var paginatedResult = await filteredAds
-                    .OrderBy(ad => ad.CreateDate)  // Consider ordering by a meaningful field
+                    .OrderByDescending(ad => ad.CreateDate)  // Consider ordering by a meaningful field
                     .Skip((pageIndex - 1) * ConstantsTools.PageSize)
                     .Take(ConstantsTools.PageSize)
                     .Select(ad => new Advertisement

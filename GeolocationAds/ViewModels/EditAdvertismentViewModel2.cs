@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.AppTools;
 using GeolocationAds.Services;
+using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
@@ -17,7 +18,7 @@ namespace GeolocationAds.ViewModels
     {
         private byte[] fileBytes;
 
-        private IAppSettingService appSettingService;
+        private readonly IContainerEditAdvertisment containerEditAdvertisment;
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
 
@@ -26,13 +27,18 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private AppSetting selectedAdType = new AppSetting();
 
-        public EditAdvertismentViewModel2(Advertisement model, IAdvertisementService service, LogUserPerfilTool logUserPerfil, IAppSettingService appSettingService) : base(model, service, logUserPerfil)
+        public EditAdvertismentViewModel2(IContainerEditAdvertisment containerEditAdvertisment) : base(containerEditAdvertisment.Model, containerEditAdvertisment.AdvertisementService, containerEditAdvertisment.LogUserPerfilTool)
         {
-            this.appSettingService = appSettingService;
+            this.containerEditAdvertisment = containerEditAdvertisment;
 
             ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+
+            Task.Run(async () =>
+            {
+                await LoadSetting();
+            });
         }
 
         private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -77,7 +83,6 @@ namespace GeolocationAds.ViewModels
             }
             finally
             {
-
                 foreach (var item in ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image))
                 {
                     await item.SetAnimation();
@@ -93,12 +98,8 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                await this.LoadSetting();
-
                 foreach (var item in this.Model.Contents)
                 {
-
-
                     if (item.Type == ContentVisualType.Video)
                     {
                         var _template = await AppToolCommon.ProcessContentItem(item, this.service);
@@ -111,7 +112,6 @@ namespace GeolocationAds.ViewModels
 
                         this.ContentTypesTemplate.Add(_template);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -128,7 +128,7 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-                var _apiResponse = await this.appSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+                var _apiResponse = await this.containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -171,7 +171,6 @@ namespace GeolocationAds.ViewModels
                 FileResult result = await FilePicker.PickAsync(new PickOptions
                 {
                     FileTypes = customFileTypes,
-
                 });
 
                 if (!result.IsObjectNull())
@@ -227,8 +226,6 @@ namespace GeolocationAds.ViewModels
 
                         break;
                 }
-
-
             }
             catch (Exception ex)
             {

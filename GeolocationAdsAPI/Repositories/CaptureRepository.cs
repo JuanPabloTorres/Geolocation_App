@@ -49,6 +49,7 @@ namespace GeolocationAdsAPI.Repositories
                     new Capture()
                     {
                         ID = s.ID,
+                        CreateDate = s.CreateDate,
                         Advertisements = new Advertisement()
                         {
                             ID = s.Advertisements.ID,
@@ -67,6 +68,7 @@ namespace GeolocationAdsAPI.Repositories
                             Description = s.Advertisements.Description
                         }
                     })
+                    .OrderByDescending(ad => ad.CreateDate)
                     .Skip((pageIndex - 1) * ConstantsTools.PageSize)
                     .Take(ConstantsTools.PageSize)
                     .ToListAsync();

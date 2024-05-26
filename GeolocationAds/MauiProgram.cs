@@ -3,6 +3,7 @@ using FFImageLoading.Maui;
 using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
 using Microsoft.Extensions.Configuration;
@@ -128,6 +129,18 @@ public static class MauiProgram
         builder.Services.AddScoped<ContentViewTemplateViewModel>();
 
         #endregion ViewModels
+
+        #region Containers
+
+        builder.Services.AddScoped<IContainerMyContentServices, ContainerMyContentServices>();
+
+        builder.Services.AddScoped<IContainerMapServices, ContainerMapServices>();
+
+        builder.Services.AddScoped<IContainerEditAdvertisment, ContainerEditAdvertisment>();
+
+        builder.Services.AddScoped<IContainerCreateAdvertisment, ContainerCreateAdvertisment>();
+
+        #endregion
 
         #region Pages
 

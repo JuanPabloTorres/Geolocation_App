@@ -16,23 +16,13 @@ public partial class CreateAdvertisment : ContentPage
         BindingContext = createGeolocationViewModel;
     }
 
-    protected override async void OnAppearing()
+    protected async override void OnAppearing()
     {
-        if (this.viewModel.AdTypesSettings.Count() == 0)
-        {
-            await this.viewModel.InitializeSettings();
-
-            await this.viewModel.SetDefault();
-        }
-        else
-        {
-            await this.viewModel.SetDefault();
-        }
+        await this.viewModel.SetDefault();
     }
 
     private async void WebView_Navigating(object sender, WebNavigatingEventArgs e)
     {
-
         if (e.Url.StartsWith("intent://"))
         {
             try
@@ -80,12 +70,10 @@ public partial class CreateAdvertisment : ContentPage
             }
         }
 
-
         //if (e.Url.StartsWith("intent://"))
         //{
         //    try
         //    {
-
         //        Regex regex = new Regex(@"intent://(.*?)(;|$)");
 
         //        Match match = regex.Match(e.Url);

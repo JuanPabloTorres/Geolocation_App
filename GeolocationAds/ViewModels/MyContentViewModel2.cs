@@ -1,10 +1,9 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
@@ -16,34 +15,24 @@ namespace GeolocationAds.ViewModels
 {
     public partial class MyContentViewModel2 : BaseViewModel3<ContentViewTemplateViewModel, IGeolocationAdService>
     {
-        private IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
-
-        private readonly IAdvertisementService advertisementService;
-
-        private readonly IAppSettingService appSettingService;
-
-        private FilterPopUpViewModel filterPopUpViewModel;
+        private readonly IContainerMyContentServices containerMyContentServices;
 
         [ObservableProperty]
         private AppSetting selectedAdType;
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
 
-        public MyContentViewModel2(ContentViewTemplateViewModel adLocationTemplateViewModel, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, IAppSettingService appSettingService, LogUserPerfilTool logUserPerfilTool) : base(adLocationTemplateViewModel, geolocationAdService, logUserPerfilTool)
+        public MyContentViewModel2(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
         {
-            this.advertisementService = advertisementService;
-
-            this.appSettingService = appSettingService;
+            this.containerMyContentServices = myContentServices;
 
             BaseTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
-            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
+            Task.Run(async () =>
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    await this.InitializeAsync();
-                });
+                await InitializeSettingsAsync();
             });
+
         }
 
         [RelayCommand]
@@ -62,11 +51,9 @@ namespace GeolocationAds.ViewModels
             {
                 await this._filterPopUp.CloseAsync();
 
+                var _sender = sender as FilterPopUpViewModel2;
 
-
-                var _sender = sender as FilterPopUpViewModel;
-
-                if (sender is FilterPopUpViewModel filterPopUpViewModel)
+                if (sender is FilterPopUpViewModel2 filterPopUpViewModel)
                 {
                     this.CollectionModel.Clear();
 
@@ -99,12 +86,12 @@ namespace GeolocationAds.ViewModels
 
                 var userId = this.LogUserPerfilTool.GetUserId();
 
-                var apiResponse = await this.advertisementService.GetAdvertisementsOfUser(userId, this.SelectedAdType.ID, pageIndex);
+                var apiResponse = await this.containerMyContentServices.AdvertisementService.GetAdvertisementsOfUser(userId, this.SelectedAdType.ID, pageIndex);
 
                 if (apiResponse.IsSuccess)
                 {
                     // Convert the enumerable to a list to avoid multiple enumerations
-                    var viewModels = apiResponse.Data.Select(ad => new ContentViewTemplateViewModel(this.advertisementService, this.service, ad)).ToList();
+                    var viewModels = apiResponse.Data.Select(ad => new ContentViewTemplateViewModel(this.containerMyContentServices.AdvertisementService, this.service, ad)).ToList();
 
                     // Add the initialized viewModels to the collection
                     this.CollectionModel.AddRange(viewModels);
@@ -124,15 +111,17 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private async Task LoadSettings2Async()
+        private async Task LoadSettingsAsync()
         {
+            IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
+
             try
             {
                 this.IsLoading = true;
 
                 this.AdTypesSettings.Clear();
 
-                var _apiResponse = await this.appSettingService.GetAppSettingByNames(settings);
+                var _apiResponse = await this.containerMyContentServices.AppSettingService.GetAppSettingByNames(settings);
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -141,12 +130,13 @@ namespace GeolocationAds.ViewModels
                         if (SettingName.AdTypes.ToString() == item.SettingName)
                         {
                             AdTypesSettings.Add(item);
+
                         }
                     }
 
                     SelectedAdType = AdTypesSettings.FirstOrDefault();
 
-                    filterPopUpViewModel = new FilterPopUpViewModel(this.AdTypesSettings);
+                    filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings);
 
                     this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
                 }
@@ -167,7 +157,7 @@ namespace GeolocationAds.ViewModels
 
         public async Task InitializeSettingsAsync()
         {
-            await LoadSettings2Async();
+            await LoadSettingsAsync();
         }
 
         public async Task InitializeAsync(int? pageIndex = 1)
@@ -175,8 +165,8 @@ namespace GeolocationAds.ViewModels
             await LoadData(pageIndex);
         }
 
-        [RelayCommand]
-        public override async Task OpenFilterPopUp()
+
+        public override async Task OpenFilterPopUpForSearch()
         {
             try
             {

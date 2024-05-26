@@ -1,4 +1,5 @@
-﻿using GeolocationAdsAPI.Repositories;
+﻿using GeolocationAdsAPI.ApiTools;
+using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -42,26 +43,7 @@ namespace GeolocationAdsAPI.Controllers
             _globalLocalBackendUrl = configuration["ApplicationSettings:GlobalLocalBackendUrl"];
         }
 
-        //[HttpPost("[action]")]
-        //[RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
-        //[RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
-        //public async Task<IActionResult> Add([FromBody] Advertisement advertisement)
-        //{
-        //    ResponseTool<Advertisement> response;
 
-        //    try
-        //    {
-        //        response = await this.advertisementRepository.CreateAsync(advertisement);
-
-        //        return Ok(response);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-        //        return Ok(response);
-        //    }
-        //}
 
         [HttpPost("Add2")]
         [RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
@@ -109,24 +91,6 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
-                //// Handle text fields first, particularly for URLs
-                //foreach (var key in formCollection.Keys)
-                //{
-                //    if (key.StartsWith("url", StringComparison.OrdinalIgnoreCase))
-                //    {
-                //        var urlValue = formCollection[key];
-
-                //        if (!string.IsNullOrEmpty(urlValue))
-                //        {
-                //            advertisement.Contents.Add(new ContentType
-                //            {
-                //                Url = urlValue,
-                //                Type = ContentVisualType.URL
-                //            });
-                //        }
-                //    }
-                //}
-
                 foreach (var formFile in formCollection.Files)
                 {
                     if (formFile.Length == 0)
@@ -147,15 +111,23 @@ namespace GeolocationAdsAPI.Controllers
                         // Reset the position of the MemoryStream to the beginning for any further reading
                         memoryStream.Position = 0;
 
+                        // Extract metadata from headers if available or use default values
+                        var filePath = formFile.Headers["FilePath"].FirstOrDefault();  // Correct usage
+
+                        var createdBy = formFile.Headers["CreatedBy"].FirstOrDefault();  // Correct usage
+
+                        //var fileSize = formFile.Headers["FilePath"].FirstOrDefault();  // Correct usage
+
                         // Create a ContentType object and associate it with the advertisement
                         var content = new ContentType
                         {
                             Content = memoryStream.ToArray(), // Still converting to array for ContentType object usage
-                            FilePath = string.Empty, // Directly using the FileName here, adjust as necessary
+                            FilePath = filePath, // Directly using the FileName here, adjust as necessary
                             FileSize = formFile.Length,
                             ContentName = formFile.FileName,
                             Type = DetermineContentType(formFile.ContentType),
-                            CreateDate = DateTime.Now
+                            CreateDate = DateTime.Now,
+                            CreateBy = Convert.ToInt32(createdBy)
                         };
 
                         // Process the content further as needed, e.g., add to a list, etc.
@@ -303,6 +275,26 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
+        //public static byte[] Combine(List<byte[]> blocks)
+        //{
+        //    // Paso 1: Calcular el tamaño total
+        //    int totalSize = blocks.Sum(b => b.Length);
+
+        //    // Paso 2: Crear el array de bytes final
+        //    byte[] result = new byte[totalSize];
+
+        //    // Paso 3: Copiar cada bloque en el array final
+        //    int offset = 0;
+        //    foreach (byte[] block in blocks)
+        //    {
+        //        Array.Copy(block, 0, result, offset, block.Length);
+        //        offset += block.Length;
+        //    }
+
+        //    return result;
+        //}
+
+
         [HttpGet("[action]/{contentId}")]
         public async Task<IActionResult> GetStreamingVideoUrl(int contentId)
         {
@@ -315,7 +307,9 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(ResponseFactory<string>.BuildFail("Data Not Found", null, ToolsLibrary.Tools.Type.NotFound));
                 }
 
-                byte[] videoBytes = responseResult.Data.Content;
+                //byte[] videoBytes = responseResult.Data;
+
+                byte[] videoBytes = ApiCommonsTools.Combine(responseResult.Data);
 
                 var videoFile = SaveBytesToFile(videoBytes);
 
@@ -355,29 +349,139 @@ namespace GeolocationAdsAPI.Controllers
         //    return _globalLocalBackendUrl;
         //}
 
-        [HttpPut("[action]/{Id}")]
-        public async Task<IActionResult> Update(Advertisement advertisement, int Id)
+        //[HttpPut("[action]/{Id}")]
+        //public async Task<IActionResult> Update(Advertisement advertisement, int Id)
+        //{
+        //    ResponseTool<Advertisement> response;
+
+        //    try
+        //    {
+        //        response = await this.advertisementRepository.UpdateAsync(Id, advertisement);
+
+        //        if (!response.IsSuccess)
+        //        {
+        //            response = ResponseFactory<Advertisement>.BuildFail(response.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //            return Ok(response);
+        //        }
+
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //        return Ok(response);
+        //    }
+        //}
+
+        [HttpPut("Update2/{Id}")]
+        [RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
+        [RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
+        public async Task<IActionResult> Update2(int Id)
         {
-            ResponseTool<Advertisement> response;
+            if (!Request.HasFormContentType)
+            {
+                return BadRequest("Unsupported media type");
+            }
+
+            IFormCollection formCollection;
+
+            var formDataResponse = await ApiCommonsTools.GetFormDataFromHttpRequest(Request);
+
+            if (!formDataResponse.IsSuccess)
+            {
+                return Ok(formDataResponse);
+            }
+
+            formCollection = formDataResponse.Data;
+
+
+
+            if (!formCollection.ContainsKey("advertisementMetadata"))
+            {
+                return BadRequest("Advertisement metadata is required.");
+            }
+
+            var advertisementJson = formCollection["advertisementMetadata"];
+
+            Advertisement advertisement;
 
             try
             {
-                response = await this.advertisementRepository.UpdateAsync(Id, advertisement);
+                advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
 
-                if (!response.IsSuccess)
+                if (advertisement == null)
                 {
-                    response = ResponseFactory<Advertisement>.BuildFail(response.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-                    return Ok(response);
+                    return BadRequest("Invalid advertisement data.");
                 }
+            }
+            catch (JsonException je)
+            {
+                return BadRequest($"Invalid JSON data: {je.Message}");
+            }
+
+            try
+            {
+                foreach (var formFile in formCollection.Files)
+                {
+                    //if (formFile.Length == 0)
+                    //{
+                    //    continue; // Skip empty files
+                    //}
+
+                    if (formFile.Length > ConstantsTools.MaxFileSize)
+                    {
+                        return BadRequest($"File size exceeds the limit: {formFile.FileName}");
+                    }
+
+                    // We use the stream directly for further processing if needed
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await formFile.CopyToAsync(memoryStream);
+
+                        // Reset the position of the MemoryStream to the beginning for any further reading
+                        memoryStream.Position = 0;
+
+                        // Extract metadata from headers if available or use default values
+                        var filePath = formFile.Headers["FilePath"].FirstOrDefault();  // Correct usage
+
+                        var id = formFile.Headers["ID"].FirstOrDefault();  // Correct usage
+
+                        var adId = formFile.Headers["AdId"].FirstOrDefault();  // Correct usage
+
+                        // Create a ContentType object and associate it with the advertisement
+                        var content = new ContentType
+                        {
+                            Content = memoryStream.ToArray(), // Still converting to array for ContentType object usage
+                            FilePath = filePath,
+                            FileSize = formFile.Length,
+                            ContentName = formFile.FileName,
+                            Type = DetermineContentType(formFile.ContentType),
+                            CreateDate = DateTime.Now,
+                            ID = Convert.ToInt32(id), // Assuming ID is a string; adjust the type as necessary
+                            AdvertisingId = Convert.ToInt32(adId)
+                        };
+
+                        // Process the content further as needed, e.g., add to a list, etc.
+                        advertisement.Contents.Add(content);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error processing files: {ex.Message}");
+            }
+
+            try
+            {
+                var response = await advertisementRepository.UpdateAsync(Id, advertisement);
 
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-                return Ok(response);
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 

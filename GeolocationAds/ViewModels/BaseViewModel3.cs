@@ -49,33 +49,6 @@ namespace GeolocationAds.ViewModels
 
         public event ApplyQueryAttributesEventHandler ApplyQueryAttributesCompleted;
 
-        public virtual async Task OpenFilterPopUp()
-        {
-            try
-            {
-                await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-        }
-
-        [RelayCommand]
-        public virtual async Task OpenFilterPopUpForSearch()
-        {
-            try
-            {
-                this._filterPopUpForSearch = new FilterPopUpForSearch(this.filterPopUpViewModel);
-
-                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUpForSearch);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-        }
-
         public BaseViewModel3(T model, S service, LogUserPerfilTool logUserPerfil = null)
         {
             Model = model;
@@ -194,18 +167,6 @@ namespace GeolocationAds.ViewModels
             this.IsLoading = false;
         }
 
-        protected virtual async Task OpenFilterPopUpAsync()
-        {
-            try
-            {
-                await Shell.Current.DisplayAlert("Notification", "Pop Up Must Override.", "OK");
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-        }
-
         public virtual async Task OpenMetaDataPopUp()
         {
             try
@@ -218,6 +179,13 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        private void SetUpdateMetadata(T obj)
+        {
+            DateTime now = DateTime.Now;
+            ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
+            ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
+        }
+
         [RelayCommand]
         public virtual async Task Submit(T obj)
         {
@@ -228,8 +196,6 @@ namespace GeolocationAds.ViewModels
             try
             {
                 DateTime now = DateTime.Now;
-
-                //ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.CreateDate), now);
 
                 var validationContextCurrentType = new ValidationContext(obj);
 
@@ -261,7 +227,7 @@ namespace GeolocationAds.ViewModels
                 {
                     var addMethod = this.service.GetType().GetMethod("Add");
 
-                    if (addMethod != null)
+                    if (!addMethod.IsObjectNull())
                     {
                         ResponseTool<T> apiResponse = await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, new object[] { obj });
 
@@ -276,13 +242,13 @@ namespace GeolocationAds.ViewModels
 
                                 this.IsLoading = false;
 
-                                _completePopUp = new CompletePopUp();
+                                //_completePopUp = new CompletePopUp();
 
-                                await Shell.Current.CurrentPage.ShowPopupAsync(_completePopUp);
+                                await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
 
                                 //await _completePopUp.ShowStarAnimation();
 
-
+                                //this.Model = default(T);
 
                                 WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
                             }
@@ -290,8 +256,6 @@ namespace GeolocationAds.ViewModels
                             {
                                 await Shell.Current.DisplayAlert("Error", $"Type {typeof(T).FullName} does not have a parameterless constructor.", "OK");
                             }
-
-                            //await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
                         }
                         else
                         {
@@ -313,13 +277,6 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private void SetUpdateMetadata(T obj)
-        {
-            DateTime now = DateTime.Now;
-            ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
-            ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
-        }
-
         [RelayCommand]
         public virtual async Task SubmitUpdate(T obj)
         {
@@ -329,19 +286,11 @@ namespace GeolocationAds.ViewModels
             {
                 ValidationResults.Clear();
 
-                //DateTime now = DateTime.Now;
-
-                //ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
-
-                //ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
-
                 SetUpdateMetadata(obj);
 
                 var validationContextCurrentType = new ValidationContext(obj);
 
                 var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
-
-                //PropertyInfo[] properties = ToolsLibrary.Tools.GenericTool<T>.GetPropertiesOfType(obj).ToArray();
 
                 var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
 
@@ -453,6 +402,21 @@ namespace GeolocationAds.ViewModels
             }
 
             IsLoading = false;
+        }
+
+        [RelayCommand]
+        public virtual async Task OpenFilterPopUpForSearch()
+        {
+            try
+            {
+                this._filterPopUpForSearch = new FilterPopUpForSearch(this.filterPopUpViewModel);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUpForSearch);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
         }
     }
 }

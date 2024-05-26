@@ -172,8 +172,8 @@ namespace GeolocationAds.ViewModels
             await InitializeAsync();
         }
 
-        [RelayCommand]
-        public override async Task OpenFilterPopUp()
+
+        public override async Task OpenFilterPopUpForSearch()
         {
             try
             {

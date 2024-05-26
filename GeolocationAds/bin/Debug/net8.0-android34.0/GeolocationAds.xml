@@ -162,12 +162,6 @@
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.IsLoading">
             <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2.isLoading"/>
         </member>
-        <member name="F:GeolocationAds.ViewModels.BaseViewModel3`2.openFilterPopUpForSearchCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearchCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearchCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearch"/>.</summary>
-        </member>
         <member name="F:GeolocationAds.ViewModels.BaseViewModel3`2.submitCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel3`2.SubmitCommand"/>.</summary>
         </member>
@@ -180,8 +174,13 @@
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.SubmitUpdateCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel3`2.SubmitUpdate(`0)"/>.</summary>
         </member>
+        <member name="F:GeolocationAds.ViewModels.BaseViewModel3`2.openFilterPopUpForSearchCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearchCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearchCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearch"/>.</summary>
+        </member>
         <member name="T:GeolocationAds.ViewModels.CaptureViewModel2">
-            <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
         </member>
@@ -193,12 +192,6 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.CaptureViewModel2.SearchCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.CaptureViewModel2.Search"/>.</summary>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.CaptureViewModel2.openFilterPopUpCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.CaptureViewModel2.OpenFilterPopUpCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.CaptureViewModel2.OpenFilterPopUpCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.CaptureViewModel2.OpenFilterPopUp"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.CreateAdvertismentViewModel2">
             <inheritdoc/>
@@ -313,7 +306,6 @@
         <member name="T:GeolocationAds.ViewModels.MyContentViewModel2">
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.ViewModels.MyContentViewModel2.SelectedAdType">
             <inheritdoc cref="F:GeolocationAds.ViewModels.MyContentViewModel2.selectedAdType"/>
@@ -323,12 +315,6 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.MyContentViewModel2.SearchCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.MyContentViewModel2.Search"/>.</summary>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.MyContentViewModel2.openFilterPopUpCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.MyContentViewModel2.OpenFilterPopUpCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.MyContentViewModel2.OpenFilterPopUpCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.MyContentViewModel2.OpenFilterPopUp"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>

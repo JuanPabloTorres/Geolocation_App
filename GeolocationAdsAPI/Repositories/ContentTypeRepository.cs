@@ -1,5 +1,7 @@
 ﻿using GeolocationAdsAPI.Context;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -39,19 +41,123 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<ContentType>> GetContentById(int contentId)
+        //public async Task<ResponseTool<ContentType>> GetContentById(int contentId)
+        //{
+        //    try
+        //    {
+        //        var _contentResult = await _context.ContentTypes.Where(c => c.ID == contentId).Select(s => new ContentType() { Content = s.Content }).FirstOrDefaultAsync();
+
+        //        if (_contentResult.IsObjectNull())
+        //        {
+        //            return ResponseFactory<ContentType>.BuildFail("Error Data Not Found", null, ToolsLibrary.Tools.Type.Exception);
+        //        }
+
+        //        return ResponseFactory<ContentType>.BuildSuccess("Entity found.", _contentResult, ToolsLibrary.Tools.Type.Found);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<ContentType>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+
+        //public async Task<ResponseTool<List<byte[]>>> GetContentById(int contentId)
+        //{
+        //    List<byte[]> parts = new List<byte[]>();
+
+        //    int blockSize = 1024 * 1024; // 1MB
+
+        //    using (var connection = new SqlConnection(_context.Database.GetConnectionString()))
+        //    {
+        //        await connection.OpenAsync();
+
+        //        using (var command = new SqlCommand("SELECT Content FROM ContentTypes WHERE ID = @id", connection))
+        //        {
+        //            command.Parameters.AddWithValue("@id", contentId);
+
+        //            using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SequentialAccess))
+        //            {
+        //                if (await reader.ReadAsync())
+        //                {
+        //                    long dataIndex = 0; // Index in the DB field
+
+        //                    byte[] buffer = new byte[blockSize];
+
+        //                    long bytesRead;
+
+        //                    while ((bytesRead = reader.GetBytes(0, dataIndex, buffer, 0, buffer.Length)) > 0)
+        //                    {
+        //                        byte[] actualRead = new byte[bytesRead];
+        //                        Array.Copy(buffer, actualRead, bytesRead);
+        //                        parts.Add(actualRead);
+        //                        dataIndex += bytesRead;
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    return ResponseFactory<List<byte[]>>.BuildFail("Error Data Not Found", null, ToolsLibrary.Tools.Type.Exception);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return ResponseFactory<List<byte[]>>.BuildSuccess("Content loaded in parts.", parts, ToolsLibrary.Tools.Type.Found);
+        //}
+
+
+        public async Task<ResponseTool<List<byte[]>>> GetContentById(int contentId)
         {
+            List<byte[]> parts = new List<byte[]>();
+
+            int blockSize = 1024 * 1024; // 1MB
+
+            byte[] buffer = new byte[blockSize];  // Reuse this buffer
+
             try
             {
-                var _contentResult = await _context.ContentTypes.FindAsync(contentId);
+                using (var connection = new SqlConnection(_context.Database.GetConnectionString()))
+                {
+                    await connection.OpenAsync();
 
-                return ResponseFactory<ContentType>.BuildSuccess("Entity found.", _contentResult, ToolsLibrary.Tools.Type.Found);
+                    using (var command = new SqlCommand("SELECT Content FROM ContentTypes WHERE ID = @id", connection))
+                    {
+                        command.Parameters.AddWithValue("@id", contentId);
+
+                        using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SequentialAccess))
+                        {
+                            if (!await reader.ReadAsync())
+                            {
+                                return ResponseFactory<List<byte[]>>.BuildFail("Error Data Not Found", null, ToolsLibrary.Tools.Type.Exception);
+                            }
+
+                            long dataIndex = 0;  // Index in the DB field
+
+                            long bytesRead;
+
+                            while ((bytesRead = reader.GetBytes(0, dataIndex, buffer, 0, buffer.Length)) > 0)
+                            {
+                                byte[] actualRead = new byte[bytesRead];
+
+                                Array.Copy(buffer, actualRead, bytesRead);
+
+                                parts.Add(actualRead);
+
+                                dataIndex += bytesRead;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                return ResponseFactory<ContentType>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                return ResponseFactory<List<byte[]>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
+
+            return ResponseFactory<List<byte[]>>.BuildSuccess("Content loaded in parts.", parts, ToolsLibrary.Tools.Type.Found);
         }
+
+
+
 
         public async Task<ResponseTool<IEnumerable<ContentType>>> GetContentsOfAdById(int id)
         {

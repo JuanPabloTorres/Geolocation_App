@@ -215,7 +215,7 @@ namespace GeolocationAds.Services
             }
         }
 
-        public async Task<ResponseTool<T>> Update(T data, int currentId)
+        public virtual async Task<ResponseTool<T>> Update(T data, int currentId)
         {
             try
             {
