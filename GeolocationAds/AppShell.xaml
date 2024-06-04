@@ -15,6 +15,39 @@
         Route="login"
         Shell.FlyoutBehavior="Disabled" />
 
+    <!--  TabBar for main navigation  -->
+    <!--
+    <TabBar>
+
+    -->
+    <!--  Each Tab represents a group of related content or a feature area  -->
+    <!--
+        <Tab Title="Search" Icon="travelexplore.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:SearchAd}" />
+        </Tab>
+
+        <Tab Title="Favorites" Icon="star.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MyFavorites}" />
+        </Tab>
+
+        <Tab Title="Create" Icon="plus.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:CreateAdvertisment}" />
+        </Tab>
+
+        <Tab Title="My Content" Icon="filebox.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MyContentPage}" />
+        </Tab>
+
+        <Tab Title="Explore" Icon="map.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:GoogleMapPage}" />
+        </Tab>
+
+        <Tab Title="Settings" Icon="setting.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:UserSetting}" />
+        </Tab>
+
+    </TabBar>-->
+
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
             Title="Search and Discover"

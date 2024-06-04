@@ -139,13 +139,27 @@ namespace GeolocationAds.ViewModels
             }
             finally
             {
-                this.IsNextVisible = true;
+                // Update visibility and enabled state based on the count of NearByTemplateViewModels
+                if (this.NearByTemplateViewModels.Count > 0)
+                {
+                    this.IsNextVisible = true;
 
-                this.IsBackVisible = true;
+                    this.IsBackVisible = true;
 
-                this.IsBackEnabled = false;
+                    this.IsBackEnabled = false; // Assume this is the start where back should not be enabled
 
-                this.IsNextEnabled = true;
+                    this.IsNextEnabled = true; // Enable next as there are items in the collection
+                }
+                else
+                {
+                    IsBackEnabled = false;
+
+                    IsNextEnabled = true;
+
+                    IsNextVisible = false;
+
+                    IsBackVisible = false;
+                }
             }
         }
 
@@ -185,33 +199,33 @@ namespace GeolocationAds.ViewModels
 
                 var _apiResponse = await this._appSettingService.GetAppSettingByNames(settings);
 
-                if (_apiResponse.IsSuccess)
-                {
-                    foreach (var item in _apiResponse.Data)
-                    {
-                        if (SettingName.MeterDistance.ToString() == item.SettingName)
-                        {
-                            DistanceSettings.Add(item.Value);
-                        }
-
-                        if (SettingName.AdTypes.ToString() == item.SettingName)
-                        {
-                            AdTypesSettings.Add(item);
-                        }
-                    }
-
-                    SelectedAdType = AdTypesSettings.FirstOrDefault();
-
-                    SelectedDistance = DistanceSettings.FirstOrDefault();
-
-                    filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings, this.DistanceSettings);
-
-                    this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
-                }
-                else
+                if (!_apiResponse.IsSuccess)
                 {
                     await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+
+                    return;
                 }
+
+                foreach (var item in _apiResponse.Data)
+                {
+                    if (SettingName.MeterDistance.ToString() == item.SettingName)
+                    {
+                        DistanceSettings.Add(item.Value);
+                    }
+
+                    if (SettingName.AdTypes.ToString() == item.SettingName)
+                    {
+                        AdTypesSettings.Add(item);
+                    }
+                }
+
+                SelectedAdType = AdTypesSettings.FirstOrDefault();
+
+                SelectedDistance = DistanceSettings.FirstOrDefault();
+
+                filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings, this.DistanceSettings);
+
+                this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
             }
             catch (Exception ex)
             {

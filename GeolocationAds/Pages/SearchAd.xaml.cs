@@ -1,4 +1,7 @@
+using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
+using System.Collections.ObjectModel;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages;
@@ -18,21 +21,44 @@ public partial class SearchAd : ContentPage
         this.paginControls.NextClicked += NextItemButton_Clicked;
 
         this.paginControls.BackClicked += BackItemButton_Clicked;
+
+        this.viewModel.NearByTemplateViewModels.CollectionChanged += NearByTemplateViewModels_CollectionChanged;
+    }
+
+    private void NearByTemplateViewModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        var collection = sender as ObservableCollection<NearByTemplateViewModel2>;
+
+        if (!collection.IsObjectNull())
+        {
+            this.counterLabel.IsVisible = collection.Count > 0;
+
+            this.filterType.IsVisible = collection.Count > 0;
+
+            this.filterDistance.IsVisible = collection.Count > 0;
+        }
     }
 
     protected override void OnAppearing()
     {
-        SearchAdViewModel2.PageIndex = 1;
+        if (this.viewModel.NearByTemplateViewModels.Count == 0)
+        {
+            SearchAdViewModel2.PageIndex = 1;
 
-        //this.viewModel.NearByTemplateViewModels.Clear();
+            this.counterLabel.IsVisible = false;
 
-        this.paginControls.IsBackButtonEnabled = false;
+            this.filterType.IsVisible = false;
 
-        this.paginControls.IsNextButtonEnabled = true;
+            this.filterDistance.IsVisible = false;
 
-        this.paginControls.IsNextButtonVisible = false;
+            this.paginControls.IsBackButtonEnabled = false;
 
-        this.paginControls.IsBackButtonVisible = false;
+            this.paginControls.IsNextButtonEnabled = true;
+
+            this.paginControls.IsNextButtonVisible = false;
+
+            this.paginControls.IsBackButtonVisible = false;
+        }
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
@@ -102,6 +128,8 @@ public partial class SearchAd : ContentPage
                 if (_newCount == _oldCount)
                 {
                     this.paginControls.IsBackButtonEnabled = true;
+
+                    SearchAdViewModel2.PageIndex--;
                 }
             }
         }

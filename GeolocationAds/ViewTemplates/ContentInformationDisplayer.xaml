@@ -10,18 +10,20 @@
         HorizontalOptions="StartAndExpand"
         VerticalOptions="End">
 
+
+
         <Label
-            HorizontalOptions="StartAndExpand"
             Style="{StaticResource globalLabel}"
             Text="{Binding Advertisement.Title}"
             TextColor="White"
             VerticalOptions="Start" />
 
         <Label
-            HorizontalOptions="StartAndExpand"
-            Style="{StaticResource globalLabel}"
+            LineBreakMode="WordWrap"
+            LineHeight="1.8"
+            MaxLines="3"
+            Style="{StaticResource globalDescriptionLabel}"
             Text="{Binding Advertisement.Description}"
-            TextColor="White"
-            VerticalOptions="Start" />
+            TextColor="White" />
     </VerticalStackLayout>
 </Border>

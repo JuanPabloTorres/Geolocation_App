@@ -24,30 +24,6 @@ public partial class GoogleMapPage : ContentPage
         this._viewModel.PinsUpdated += _viewModel_PinsUpdated;
     }
 
-    //protected override async void OnAppearing()
-    //{
-    //    base.OnAppearing();
-
-    //    var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
-    //    if (status != PermissionStatus.Granted)
-    //    {
-    //        status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-    //    }
-
-    //    if (status == PermissionStatus.Granted)
-    //    {
-    //        var location = await Geolocation.GetLastKnownLocationAsync();
-    //        if (location != null)
-    //        {
-    //            myMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromKilometers(1)));
-    //        }
-    //    }
-    //    else
-    //    {
-    //        // Handle permission denied
-    //    }
-    //}
-
     private async void _viewModel_PinsUpdated(object sender, EventArgs e)
     {
         try
@@ -121,18 +97,5 @@ public partial class GoogleMapPage : ContentPage
         {
             this._viewModel.IsLoading = false;
         }
-
-        //await _viewModel.InitializeAsync();
-
-        //var _pinData = this._viewModel.GetContentPins();
-
-        //this.myMap.Pins.AddRange(_pinData);
-
-        //var _mapChildren = this.mapContainer.Children.Where(v => v.GetType() == typeof(Map)).FirstOrDefault();
-
-        //if (!_mapChildren.IsObjectNull())
-        //{
-        //    this.mapContainer.Children.Remove(_mapChildren);
-        //}
     }
 }

@@ -88,19 +88,37 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="100*" />
+            <RowDefinition Height="*" />
+
         </Grid.RowDefinitions>
 
-      
 
-        <local:CustomEditorContentView
+
+        <!--<local:CustomEditorContentView
             Grid.Row="2"
             IsEnabled="False"
             Placeholder="Description"
-            Text="{Binding Model.Description, Mode=TwoWay}" />
+            Text="{Binding Model.Description, Mode=TwoWay}" />-->
+
+        <Border
+            Grid.Row="0"
+            HorizontalOptions="StartAndExpand"
+            Style="{StaticResource borderOnHeaderControls}">
+            <VerticalStackLayout
+                Padding="5"
+                BackgroundColor="{StaticResource AppBlack}"
+                VerticalOptions="End">
+                <Label
+                    Grid.Row="0"
+                    LineBreakMode="WordWrap"
+                    MaxLines="2"
+                    Style="{StaticResource globalDescriptionLabel}"
+                    Text="{Binding Model.Description, Mode=TwoWay}"
+                    TextColor="White" />
+            </VerticalStackLayout>
+        </Border>
+
+
 
         <!--<local:CustomPickerContentView
             Grid.Row="3"
@@ -114,12 +132,12 @@
 
         <viewTemplate:NearByDetailItemsCollection
             x:Name="contentCollection"
-            Grid.Row="4"
+            Grid.Row="1"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}" />
 
         <ActivityIndicator
-            Grid.Row="4"
+            Grid.Row="1"
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
     </Grid>

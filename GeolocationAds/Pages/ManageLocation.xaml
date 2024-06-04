@@ -22,8 +22,6 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-
-
     <Grid>
 
         <Grid.RowDefinitions>
@@ -39,7 +37,6 @@
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ItemsSource="{Binding MapSettings}"
             SelectedItem="{Binding SeletedMapSetting}" />
-
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
@@ -61,21 +58,6 @@
             ItemsSource="{Binding Positions}"
             MapClicked="googleMap_MapClicked"
             MapType="{Binding SeletedMapSetting, Mode=TwoWay}">
-
-            <x:Arguments>
-                <maps:MapSpan x:Name="mapSpan">
-                    <x:Arguments>
-                        <sensors:Location x:Name="location">
-                            <x:Arguments>
-                                <x:Double x:Name="lat" />
-                                <x:Double x:Name="lon" />
-                            </x:Arguments>
-                        </sensors:Location>
-                        <x:Double>0.1</x:Double>
-                        <x:Double>0.1</x:Double>
-                    </x:Arguments>
-                </maps:MapSpan>
-            </x:Arguments>
 
             <maps:Map.ItemTemplate>
                 <DataTemplate>
@@ -162,5 +144,4 @@
             </CollectionView.EmptyView>
         </CollectionView>
     </Grid>
-
 </ContentPage>

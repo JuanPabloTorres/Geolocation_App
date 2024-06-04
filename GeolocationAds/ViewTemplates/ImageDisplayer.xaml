@@ -14,7 +14,7 @@
     <Grid x:Name="myContentStackHeader" HorizontalOptions="FillAndExpand">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -33,8 +33,10 @@
 
     <Grid x:Name="searchContentStackHeader">
 
+
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -52,7 +54,7 @@
     <Grid x:Name="myCaptureHeader">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
