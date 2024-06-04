@@ -31,22 +31,24 @@ namespace GeolocationAdsAPI.Controllers
         {
             try
             {
+                var _emailExist = await this.userRepository.IsEmailRegistered(user.Email);
+
+                if (_emailExist.ResponseType == ToolsLibrary.Tools.Type.Exist)
+                {
+                    var _emailExistResponse = ResponseFactory<User>.BuildFail("Email is registered.Use another one.", null, ToolsLibrary.Tools.Type.Fail);
+
+                    return Ok(_emailExistResponse);
+                }
+
                 user.Login.CreateDate = DateTime.Now;
 
                 user.UserStatus = UserStatus.Active;
 
-                user.Login.HashPassword = CommonsTool.HashPassword(user.Login.Password);
+                user.Login.HashPassword = CommonsTool.GenerateHashPassword(user.Login.Password);
 
                 var userAddResponse = await this.userRepository.CreateAsync(user);
 
-                if (userAddResponse.IsSuccess)
-                {
-                    return Ok(userAddResponse);
-                }
-                else
-                {
-                    return Ok(userAddResponse);
-                }
+                return Ok(userAddResponse);
             }
             catch (Exception ex)
             {

@@ -15,5 +15,7 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<IEnumerable<ContentType>>> GetContentsOfAdById(int id);
 
         Task<ResponseTool<bool>> RemoveAllContentOfAdvertisement(int id);
+
+        Task<ResponseTool<bool>> UpdateContentTypesOfAd(int adId, int updatedBy, IEnumerable<ContentType> newContentTypes);
     }
 }

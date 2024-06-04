@@ -101,40 +101,38 @@ namespace GeolocationAdsAPI.Repositories
             try
             {
                 // Assume pre-calculation or efficient distance filtering
-                var relevantAdIds = _context.GeolocationAds
+                var relevantAdIds = await _context.GeolocationAds
                     .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <= geo.ExpirationDate)
                     .Select(geo => geo.AdvertisingId)
-                    .Distinct();
-
-                var filteredAds = _context.Advertisements
-                    .Where(ad => relevantAdIds.Contains(ad.ID) && ad.Settings.Any(s => s.SettingId == settingId))
-                    .AsNoTracking();
-
-                var paginatedResult = await filteredAds
-                    .OrderByDescending(ad => ad.CreateDate)  // Consider ordering by a meaningful field
-                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                    .Take(ConstantsTools.PageSize)
-                    .Select(ad => new Advertisement
-                    {
-                        ID = ad.ID,
-                        Description = ad.Description,
-                        Title = ad.Title,
-                        UserId = ad.UserId,
-                        CreateDate = ad.CreateDate,
-
-                        Contents = ad.Contents.Select(content => new ContentType
-                        {
-                            CreateDate = content.CreateDate,
-                            ID = content.ID,
-                            FileSize = content.FileSize,
-                            Type = content.Type,
-                            Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,// Apply byte range here
-                            Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
-                        }).Take(1).ToList(),  // Only take necessary content
-                    })
+                    .Distinct()
                     .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", paginatedResult);
+                var filteredAds = _context.Advertisements
+                    .AsNoTracking()
+                    .Where(ad => relevantAdIds.Any(a => a == ad.ID) && ad.Settings.Any(s => s.SettingId == settingId))
+                    .OrderByDescending(ad => ad.CreateDate)  // Consider ordering by a meaningful field
+                     .Select(ad => new Advertisement
+                     {
+                         ID = ad.ID,
+                         Description = ad.Description,
+                         Title = ad.Title,
+                         UserId = ad.UserId,
+                         CreateDate = ad.CreateDate,
+
+                         Contents = ad.Contents.Select(content => new ContentType
+                         {
+                             CreateDate = content.CreateDate,
+                             ID = content.ID,
+                             FileSize = content.FileSize,
+                             Type = content.Type,
+                             Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,// Apply byte range here
+                             Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
+                         }).Take(1).ToList(),  // Only take necessary content
+                     })
+                     .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                     .Take(ConstantsTools.PageSize);
+
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", filteredAds);
             }
             catch (Exception ex)
             {

@@ -12,7 +12,6 @@ using SkiaSharp.Views.Maui.Controls.Hosting;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
-
 namespace GeolocationAds;
 
 public static class MauiProgram
@@ -126,7 +125,11 @@ public static class MauiProgram
 
         builder.Services.AddScoped<ManageLocationViewModel>();
 
+        builder.Services.AddScoped<ManageLocationViewModel2>();
+
         builder.Services.AddScoped<ContentViewTemplateViewModel>();
+
+        builder.Services.AddScoped<NearByItemDetailViewModel>();
 
         #endregion ViewModels
 
@@ -140,15 +143,15 @@ public static class MauiProgram
 
         builder.Services.AddScoped<IContainerCreateAdvertisment, ContainerCreateAdvertisment>();
 
-        #endregion
+        builder.Services.AddScoped<INearByItemDetailContainer, NearByItemDetailContainer>();
+
+        builder.Services.AddScoped<IContainerManageLocation, ContainerManageLocation>();
+
+        #endregion Containers
 
         #region Pages
 
         builder.Services.AddTransient<FilterPopUp>();
-
-        //builder.Services.AddSingleton<CreateAdvertisment>();
-
-        //builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel>($"{nameof(CreateAdvertisment)}");
 
         builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
 
@@ -166,6 +169,8 @@ public static class MauiProgram
 
         builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel2>($"{nameof(EditAdvertisment)}");
 
+        builder.Services.AddTransientWithShellRoute<NearByItemDetail, NearByItemDetailViewModel>($"{nameof(NearByItemDetail)}");
+
         builder.Services.AddScoped<EditUserPerfil>();
 
         builder.Services.AddScoped<EditLoginCredential>();
@@ -174,9 +179,7 @@ public static class MauiProgram
 
         builder.Services.AddScoped<MyFavorites>();
 
-        //builder.Services.AddSingleton<ManageLocation>();
-
-        builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel>($"{nameof(ManageLocation)}");
+        builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel2>($"{nameof(ManageLocation)}");
 
         #endregion Pages
 

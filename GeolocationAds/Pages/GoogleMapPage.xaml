@@ -21,36 +21,15 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-
-
-    <Grid x:Name="mapContainer" VerticalOptions="Fill">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <maps:Map
-            x:Name="googleMap"
-            Grid.Row="0"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            IsScrollEnabled="True"
-            IsShowingUser="True"
-            IsZoomEnabled="True"
-            MapType="Hybrid"
-            VerticalOptions="FillAndExpand" />
+    <Grid x:Name="mapContainer" VerticalOptions="FillAndExpand">
 
         <ContentView
             x:Name="LoadingIndicatorContainer"
-            Grid.Row="1"
             IsVisible="{Binding IsLoading}"
             VerticalOptions="FillAndExpand">
             <ContentView.Content>
                 <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
             </ContentView.Content>
         </ContentView>
-
-
     </Grid>
-
 </ContentPage>

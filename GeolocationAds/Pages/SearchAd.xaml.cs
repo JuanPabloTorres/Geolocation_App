@@ -24,7 +24,7 @@ public partial class SearchAd : ContentPage
     {
         SearchAdViewModel2.PageIndex = 1;
 
-        this.viewModel.NearByTemplateViewModels.Clear();
+        //this.viewModel.NearByTemplateViewModels.Clear();
 
         this.paginControls.IsBackButtonEnabled = false;
 

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using ToolsLibrary.Models;
 
 namespace ToolsLibrary.Extensions
 {
@@ -13,6 +14,27 @@ namespace ToolsLibrary.Extensions
             else
             {
                 return false;
+            }
+        }
+
+        public static void SetUpdateInformation(this object obj, int updatedBy)
+        {
+            var _objectProperties = obj.GetType().GetProperties().Where(v => v.Name == nameof(BaseModel.UpdateBy) || v.Name == nameof(BaseModel.UpdateDate)).ToList();
+
+            if (!_objectProperties.IsObjectNull())
+            {
+                foreach (var item in _objectProperties)
+                {
+                    if (item.Name == nameof(BaseModel.UpdateBy))
+                    {
+                        item.SetValue(obj, updatedBy);
+                    }
+
+                    if (item.Name == nameof(BaseModel.UpdateDate))
+                    {
+                        item.SetValue(obj, DateTime.Now);
+                    }
+                }
             }
         }
 

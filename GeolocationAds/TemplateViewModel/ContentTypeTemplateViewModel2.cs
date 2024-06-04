@@ -77,16 +77,6 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        //public async Task InitAnimation()
-        //{
-        //    IsAnimation = false;
-
-        //    await Task.Delay(1000);  // Delay for 1 second or however long you need
-
-        //    IsAnimation = true;      // Set to true after delay
-        //                             // Trigger any necessary PropertyChanged events if using INotifyPropertyChanged
-        //}
-
         public async Task SetAnimation()
         {
             this.IsAnimation = false;

@@ -15,6 +15,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(EditAdvertisment), typeof(EditAdvertisment));
 
+        Routing.RegisterRoute(nameof(NearByItemDetail), typeof(NearByItemDetail));
+
         Routing.RegisterRoute(nameof(EditUserPerfil), typeof(EditUserPerfil));
 
         Routing.RegisterRoute(nameof(EditLoginCredential), typeof(EditLoginCredential));

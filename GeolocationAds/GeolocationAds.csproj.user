@@ -23,6 +23,9 @@
     <MauiXaml Update="Pages\MyContentPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Pages\NearByItemDetail.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Pages\SearchAd.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
@@ -54,6 +57,9 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="ViewTemplates\ImageDisplayer.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewTemplates\NearByDetailItemsCollection.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="ViewTemplates\PaginControls.xaml">

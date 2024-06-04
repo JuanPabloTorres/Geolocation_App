@@ -84,6 +84,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.MyFav
 build_metadata.AdditionalFiles.TargetPath = Pages\MyFavorites.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\MyFavorites.xaml
 
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/NearByItemDetail.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.NearByItemDetail.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\NearByItemDetail.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\NearByItemDetail.xaml
+
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/Pages/Register.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.Pages.Register.xaml
@@ -191,6 +197,12 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.ImageDisplayer.xaml
 build_metadata.AdditionalFiles.TargetPath = ViewTemplates\ImageDisplayer.xaml
 build_metadata.AdditionalFiles.RelativePath = ViewTemplates\ImageDisplayer.xaml
+
+[C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/NearByDetailItemsCollection.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = GeolocationAds.ViewTemplates.NearByDetailItemsCollection.xaml
+build_metadata.AdditionalFiles.TargetPath = ViewTemplates\NearByDetailItemsCollection.xaml
+build_metadata.AdditionalFiles.RelativePath = ViewTemplates\NearByDetailItemsCollection.xaml
 
 [C:/Users/Juan Pablo Torres/source/repos/AdsGeoApp/GeolocationAds/ViewTemplates/PaginControls.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

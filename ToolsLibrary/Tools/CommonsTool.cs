@@ -160,7 +160,7 @@ namespace ToolsLibrary.Tools
             return ms.ToArray();
         }
 
-        public static string HashPassword(string password)
+        public static string GenerateHashPassword(string password)
         {
             // Generate a random salt
             string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // You can adjust the cost factor as needed

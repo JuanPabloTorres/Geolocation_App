@@ -38,13 +38,13 @@ namespace GeolocationAdsAPI.Repositories
             try
             {
                 var result = await _context.Captures
-                    .Include(a => a.Advertisements).ThenInclude(c => c.Contents)
-                    .Include(s => s.Advertisements.Settings)
-                    .Include(s => s.Advertisements.GeolocationAds)
                     .Where(v =>
                     v.UserId == userId &&
                     v.Advertisements.GeolocationAds.Any(g => DateTime.Now <= g.ExpirationDate) &&
                     v.Advertisements.Settings.Any(s => s.SettingId == typeId))
+                    .Include(a => a.Advertisements).ThenInclude(c => c.Contents)
+                    .Include(s => s.Advertisements.Settings)
+                    .Include(s => s.Advertisements.GeolocationAds)
                     .Select(s =>
                     new Capture()
                     {

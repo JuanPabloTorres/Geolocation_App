@@ -315,7 +315,6 @@ public class BaseRepositoryImplementation<T> : IBaseRepository<T> where T : clas
         }
     }
 
-
     private Expression<Func<T, bool>> GetIdPredicate(int id)
     {
         var parameter = Expression.Parameter(typeof(T), "e");

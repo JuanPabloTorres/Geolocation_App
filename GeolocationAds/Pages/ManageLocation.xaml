@@ -4,147 +4,163 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
-    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
     Title="{Binding Model.Title, StringFormat='Manage Location {0}'}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding RefreshCommand}">
+        <ToolbarItem Command="{Binding LoadDataCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
-        <ToolbarItem Command="{Binding CreateCommand}">
+        <ToolbarItem Command="{Binding CreateAdToLocationCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe567;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <Frame Padding="5" Style="{StaticResource cardFrame}">
-
-        <Grid>
-
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <localControl:CustomPickerContentView
-                Grid.Row="0"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                ItemsSource="{Binding MapSettings}"
-                SelectedItem="{Binding SeletedMapSetting}" />
 
 
-            <ContentView
-                x:Name="LoadingIndicatorContainer"
-                Grid.Row="1"
-                IsVisible="{Binding IsLoading}"
-                VerticalOptions="FillAndExpand">
-                <ContentView.Content>
-                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                </ContentView.Content>
-            </ContentView>
+    <Grid>
 
-            <maps:Map
-                x:Name="googleMap"
-                Grid.Row="2"
-                IsScrollEnabled="True"
-                IsShowingUser="True"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                IsZoomEnabled="True"
-                ItemsSource="{Binding Positions}"
-                MapClicked="googleMap_MapClicked"
-                MapType="{Binding SeletedMapSetting,Mode=TwoWay}">
+        <Grid.RowDefinitions>
 
-                <maps:Map.ItemTemplate>
-                    <DataTemplate>
-                        <maps:Pin
-                            Address="{Binding Address}"
-                            Label="{Binding Label}"
-                            Location="{Binding Location}" />
-                    </DataTemplate>
-                </maps:Map.ItemTemplate>
-            </maps:Map>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <CollectionView
-                Grid.Row="3"
-                ItemsSource="{Binding TemplateCardViewModel, Mode=TwoWay}"
-                SelectionMode="Single">
+        <localControl:CustomPickerContentView
+            Grid.Row="0"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            ItemsSource="{Binding MapSettings}"
+            SelectedItem="{Binding SeletedMapSetting}" />
 
-                <CollectionView.Header>
-                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-                        <Label Style="{StaticResource globalTitle}" Text="Pin Positions: " />
-                    </StackLayout>
-                </CollectionView.Header>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+        <ContentView
+            x:Name="LoadingIndicatorContainer"
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="FillAndExpand">
+            <ContentView.Content>
+                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+            </ContentView.Content>
+        </ContentView>
 
-                        <Frame Style="{StaticResource cardFrame}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+        <maps:Map
+            x:Name="myMap"
+            Grid.Row="2"
+            IsScrollEnabled="True"
+            IsShowingUser="True"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            IsZoomEnabled="True"
+            ItemsSource="{Binding Positions}"
+            MapClicked="googleMap_MapClicked"
+            MapType="{Binding SeletedMapSetting, Mode=TwoWay}">
 
-                                <Button
-                                    Grid.Row="0"
-                                    Command="{Binding RemoveCommand}"
-                                    CommandParameter="{Binding Model}"
-                                    HorizontalOptions="EndAndExpand"
-                                    Style="{StaticResource XButtonGray}">
+            <x:Arguments>
+                <maps:MapSpan x:Name="mapSpan">
+                    <x:Arguments>
+                        <sensors:Location x:Name="location">
+                            <x:Arguments>
+                                <x:Double x:Name="lat" />
+                                <x:Double x:Name="lon" />
+                            </x:Arguments>
+                        </sensors:Location>
+                        <x:Double>0.1</x:Double>
+                        <x:Double>0.1</x:Double>
+                    </x:Arguments>
+                </maps:MapSpan>
+            </x:Arguments>
 
-                                    <!--<Button.ImageSource>
+            <maps:Map.ItemTemplate>
+                <DataTemplate>
+                    <maps:Pin
+                        Address="{Binding Address}"
+                        Label="{Binding Label}"
+                        Location="{Binding Location}" />
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+
+        <CollectionView
+            Grid.Row="3"
+            ItemsSource="{Binding TemplateCardViewModel, Mode=TwoWay}"
+            SelectionMode="Single">
+
+            <CollectionView.Header>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                    <Label Style="{StaticResource globalTitle}" Text="Pin Positions: " />
+                </StackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Style="{StaticResource CustomBorderStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Button
+                                Grid.Row="0"
+                                Command="{Binding RemoveCommand}"
+                                CommandParameter="{Binding Model}"
+                                HorizontalOptions="EndAndExpand"
+                                Style="{StaticResource XButtonGray}">
+
+                                <!--<Button.ImageSource>
                                         <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" Color="{StaticResource AppGray}" />
                                     </Button.ImageSource>-->
-                                </Button>
+                            </Button>
 
-                                <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
-                                    <Label
-                                        Grid.Row="1"
-                                        HorizontalOptions="Start"
-                                        Style="{StaticResource globalTitle}"
-                                        Text="{Binding Model.Latitude, StringFormat='Latitude: {0:F2}'}" />
-
-                                    <Label
-                                        Grid.Row="2"
-                                        HorizontalOptions="Start"
-                                        Style="{StaticResource globalTitle}"
-                                        Text="{Binding Model.Longitude, StringFormat='Longitude: {0:F2}'}" />
-                                </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="Start"
+                                    Style="{StaticResource globalTitle}"
+                                    Text="{Binding Model.Latitude, StringFormat='Latitude: {0:F2}'}" />
 
                                 <Label
                                     Grid.Row="2"
-                                    HorizontalOptions="CenterAndExpand"
+                                    HorizontalOptions="Start"
                                     Style="{StaticResource globalTitle}"
-                                    Text="{Binding Model.ExpirationDate, StringFormat='Expiration Date: {0:MM/dd/yyyy}'}" />
+                                    Text="{Binding Model.Longitude, StringFormat='Longitude: {0:F2}'}" />
+                            </HorizontalStackLayout>
 
-                                <ContentView
-                                    Grid.Row="3"
-                                    IsVisible="{Binding IsLoading}"
-                                    VerticalOptions="FillAndExpand">
-                                    <ContentView.Content>
-                                        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                                    </ContentView.Content>
-                                </ContentView>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                            <Label
+                                Grid.Row="2"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource globalTitle}"
+                                Text="{Binding Model.ExpirationDate, StringFormat='Expiration Date: {0:MM/dd/yyyy}'}" />
 
-                <CollectionView.EmptyView>
-                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Style="{StaticResource emptyCollectionLabel}" Text="No Location available." />
-                    </StackLayout>
-                </CollectionView.EmptyView>
-            </CollectionView>
-        </Grid>
-    </Frame>
+                            <ContentView
+                                Grid.Row="3"
+                                IsVisible="{Binding IsLoading}"
+                                VerticalOptions="FillAndExpand">
+                                <ContentView.Content>
+                                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                                </ContentView.Content>
+                            </ContentView>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="No Location available." />
+                </StackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
+
 </ContentPage>

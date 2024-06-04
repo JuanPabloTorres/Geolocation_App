@@ -208,6 +208,7 @@ namespace GeolocationAds.ViewModels
             throw new NotImplementedException();
         }
 
+
         public async Task CreateAdToLocation()
         {
             try
@@ -251,6 +252,7 @@ namespace GeolocationAds.ViewModels
                 this.IsLoading = false;
             }
         }
+
 
         protected override async Task LoadData(int? pageIndex = 1)
         {

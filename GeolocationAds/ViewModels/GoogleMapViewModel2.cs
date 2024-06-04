@@ -84,11 +84,15 @@ namespace GeolocationAds.ViewModels
                         else
                         {
                             await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                            PinsUpdated.Invoke(this.CollectionModel, null);
                         }
                     }
                     else
                     {
                         await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                        PinsUpdated.Invoke(this.CollectionModel, null);
                     }
                 }
                 else

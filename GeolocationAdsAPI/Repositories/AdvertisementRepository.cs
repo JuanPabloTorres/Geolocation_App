@@ -12,9 +12,13 @@ namespace GeolocationAdsAPI.Repositories
     {
         private readonly IContentTypeRepository contentTypeRepository;
 
-        public AdvertisementRepository(GeolocationContext context, IContentTypeRepository contentTypeRepository) : base(context)
+        private readonly IAdvertisementSettingsRepository advertisementSettingsRepository;
+
+        public AdvertisementRepository(GeolocationContext context, IContentTypeRepository contentTypeRepository, IAdvertisementSettingsRepository advertisementSettingsRepository) : base(context)
         {
             this.contentTypeRepository = contentTypeRepository;
+
+            this.advertisementSettingsRepository = advertisementSettingsRepository;
         }
 
         public override async Task<ResponseTool<Advertisement>> CreateAsync(Advertisement advertisement)
@@ -52,6 +56,7 @@ namespace GeolocationAdsAPI.Repositories
                 }
 
                 var _dataFoundResult = await _context.Advertisements.Where(v => v.ID == Id).Include(s => s.Settings).Include(g => g.GeolocationAds).Include(c => c.Contents)
+                    .AsNoTracking()
                     .Select(s => new Advertisement
                     {
                         ID = s.ID,
@@ -72,7 +77,8 @@ namespace GeolocationAdsAPI.Repositories
                         .Select(s => new AdvertisementSettings()
                         {
                             ID = s.ID,
-                            SettingId = s.SettingId
+                            SettingId = s.SettingId,
+                            AdvertisementId = s.AdvertisementId,
                         }).ToList(),
                         Contents = s.Contents
                             .Select(ct => new ContentType
@@ -84,7 +90,6 @@ namespace GeolocationAdsAPI.Repositories
                             })
                             .ToList()
                     })
-                    .AsSplitQuery()
                     .FirstOrDefaultAsync();
 
                 return ResponseFactory<Advertisement>.BuildSuccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
@@ -212,58 +217,62 @@ namespace GeolocationAdsAPI.Repositories
             return ResponseFactory<bool>.BuildSuccess("Operation completed successfully", true);
         }
 
-        public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
+        public async Task<ResponseTool<bool>> UpdateAd(int Id, Advertisement toUpdate)
         {
-
-
-
             try
             {
-                var existingAdvertisement = await _context.Advertisements.AsTracking().Where(a => a.ID == id).Include(a => a.Contents).Include(a => a.Settings)
-                   .Select(s => new Advertisement
-                   {
-                       ID = s.ID,
-                       Title = s.Title,
-                       Description = s.Description,
-                       UserId = s.UserId,
-                       CreateBy = s.CreateBy,
-                       CreateDate = s.CreateDate,
-                       Contents = s.Contents.Select(c => new ContentType
-                       {
-                           ID = c.ID,
-                           ContentName = c.ContentName,
-                           FilePath = c.FilePath,
-                           FileSize = c.FileSize,
-                           Type = c.Type,
-                           Url = c.Url,
-                           AdvertisingId = c.AdvertisingId
-                       }).ToList(),
-                       Settings = s.Settings.Select(st => new AdvertisementSettings
-                       {
-                           ID = st.ID,
-                           AdvertisementId = st.AdvertisementId,
-                           SettingId = st.SettingId,
-                           Setting = new AppSetting // Assuming you want to include some properties of AppSetting
-                           {
-                               ID = st.Setting.ID,
-                               Value = st.Setting.Value // Replace 'Value' with actual property names you need
-                           }
-                       }).ToList(),
+                var existingAdvertisement = await _context.Advertisements.Include(s => s.Settings).FirstOrDefaultAsync(v => v.ID == Id);
 
+                if (existingAdvertisement.IsObjectNull())
+                    return ResponseFactory<bool>.BuildFail("Advertisement not found.", false, ToolsLibrary.Tools.Type.EntityNotFound);
 
-                   }).FirstOrDefaultAsync();
+                // Copy scalar properties
+                existingAdvertisement.Title = toUpdate.Title;
 
-                //var existingAdvertisement = await _context.Advertisements
-                //        .Include(a => a.Contents)
-                //        .Include(a => a.Settings)
-                //        .FirstOrDefaultAsync(a => a.ID == id);
+                existingAdvertisement.Description = toUpdate.Description;
+
+                existingAdvertisement.Settings = toUpdate.Settings;
+
+                existingAdvertisement.SetUpdateInformation(toUpdate.UpdateBy);
+
+                _context.Entry(existingAdvertisement).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+
+                return ResponseFactory<bool>.BuildSuccess("Advertisement updated successfully.", true, ToolsLibrary.Tools.Type.Updated);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        //public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
+        //{
+        //    try
+        //    {
+        //        await this.UpdateAd(id, updatedAdvertisement);
+
+        //        await this.contentTypeRepository.UpdateContentTypesOfAd(id, updatedAdvertisement.UpdateBy, updatedAdvertisement.Contents);
+
+        //        return ResponseFactory<Advertisement>.BuildSuccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+        public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
+        {
+            try
+            {
+                var existingAdvertisement = await _context.Advertisements.Include(a => a.Contents).Include(a => a.Settings).FirstOrDefaultAsync(a => a.ID == id);
 
                 if (existingAdvertisement.IsObjectNull())
                 {
                     return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
                 }
-
-                //_context.Advertisements.Remove(existingAdvertisement);
 
                 // Copy scalar properties
                 existingAdvertisement.Title = updatedAdvertisement.Title;
@@ -276,47 +285,56 @@ namespace GeolocationAdsAPI.Repositories
                 // Add more properties as needed
 
                 // Update nested collections (Contents, Settings)
-                if (!updatedAdvertisement.Contents.IsObjectNull())
+
+                // Handle the Contents collection updates carefully
+                var updatedContentsIds = updatedAdvertisement.Contents.Select(c => c.ID).ToList();
+
+                foreach (var existingContent in existingAdvertisement.Contents.ToList())
                 {
-                    foreach (var item in existingAdvertisement.Contents)
+                    var updatedContent = updatedAdvertisement.Contents.FirstOrDefault(c => c.ID == existingContent.ID);
+
+                    if (!updatedContent.IsObjectNull())
                     {
-                        var _updatedItem = updatedAdvertisement.Contents.Where(v => v.ID == item.ID).Select(s => new ContentType() { ID = s.ID, Type = s.Type, FileSize = s.FileSize }).FirstOrDefault();
+                        updatedContent.CreateDate = existingContent.CreateDate;
 
-                        if (!_updatedItem.IsObjectNull() && _updatedItem.Type == ContentVisualType.Video && Convert.ToUInt64(_updatedItem.FileSize) == 0)
-                        {
-                            updatedAdvertisement.Contents.Remove(_updatedItem);
+                        updatedContent.CreateBy = existingContent.CreateBy;
 
-                            item.UpdateBy = updatedAdvertisement.UpdateBy;
+                        //updatedContent.UpdateBy = updatedAdvertisement.UpdateBy;
 
-                            item.UpdateDate = DateTime.Now;
+                        //updatedContent.UpdateDate = DateTime.Now;
 
-                            var _contentBytes = await this.contentTypeRepository.GetContentById(item.ID);
+                        updatedContent.SetUpdateInformation(updatedAdvertisement.UpdateBy);
 
-                            item.Content = ApiCommonsTools.Combine(_contentBytes.Data);
+                        var _contentBytes = await this.contentTypeRepository.GetContentById(updatedContent.ID);
 
-                            updatedAdvertisement.Contents.Add(item);
-                        }
+                        updatedContent.Content = ApiCommonsTools.Combine(_contentBytes.Data);
+
+                        _context.Entry(existingContent).CurrentValues.SetValues(updatedContent);
                     }
-
-                    UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+                    else
+                    {
+                        _context.ContentTypes.Remove(existingContent);
+                    }
                 }
-                else
+
+                // Add new contents
+                foreach (var newContent in updatedAdvertisement.Contents)
                 {
-                    updatedAdvertisement.Contents = existingAdvertisement.Contents;
+                    if (!existingAdvertisement.Contents.Any(c => c.ID == newContent.ID))
+                    {
+                        newContent.SetUpdateInformation(updatedAdvertisement.UpdateBy);
+
+                        existingAdvertisement.Contents.Add(newContent);
+                    }
                 }
 
-                if (!updatedAdvertisement.Settings.IsObjectNull())
-                {
-                    //UpdateCollection(existingAdvertisement.Contents, updatedAdvertisement.Contents);
+                existingAdvertisement.Contents = updatedAdvertisement.Contents;
 
-                    UpdateCollection(existingAdvertisement.Settings, updatedAdvertisement.Settings);
-                }
-                else
-                {
-                    updatedAdvertisement.Settings = existingAdvertisement.Settings;
-                }
+                existingAdvertisement.Settings = updatedAdvertisement.Settings;
 
-                _context.Entry(existingAdvertisement).State = EntityState.Modified;
+                _context.Update(existingAdvertisement);
+
+                //_context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
 
                 await _context.SaveChangesAsync();
 
@@ -326,6 +344,48 @@ namespace GeolocationAdsAPI.Repositories
             {
                 return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
+        }
+
+        public async Task UpdateContentsAsync(IEnumerable<ContentType> existingContents, IEnumerable<ContentType> updatedContents, int updatedByUserId, int advertisingId)
+        {
+            foreach (var existingItem in existingContents)
+            {
+                var updatedItem = updatedContents.FirstOrDefault(u => u.ID == existingItem.ID);
+
+                if (updatedItem != null)
+                {
+                    await UpdateExistingContentAsync(existingItem, updatedItem, updatedByUserId, advertisingId);
+                }
+                else
+                {
+                    SetNewContentProperties(existingItem, updatedByUserId, advertisingId);
+                }
+
+                _context.Entry(existingItem).State = EntityState.Modified;
+            }
+        }
+
+        private async Task UpdateExistingContentAsync(ContentType existingItem, ContentType updatedItem, int updatedByUserId, int advertisingId)
+        {
+            if (!existingItem.IsObjectNull() && existingItem.Type == ContentVisualType.Video && Convert.ToUInt64(existingItem.FileSize) == 0)
+            {
+                existingItem.SetUpdateInformation(updatedByUserId);
+
+                existingItem.AdvertisingId = advertisingId;
+
+                var contentBytes = await this.contentTypeRepository.GetContentById(existingItem.ID);
+
+                existingItem.Content = ApiCommonsTools.Combine(contentBytes.Data);
+            }
+        }
+
+        private void SetNewContentProperties(ContentType existingItem, int updatedByUserId, int advertisingId)
+        {
+            existingItem.CreateDate = DateTime.Now;
+
+            existingItem.CreateBy = updatedByUserId;
+
+            existingItem.AdvertisingId = advertisingId;
         }
 
         public async Task<ResponseTool<IEnumerable<Advertisement>>> VerifyExpiredAdvertimentOfUser(int userId)

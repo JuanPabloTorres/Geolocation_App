@@ -34,11 +34,6 @@ namespace GeolocationAds.ViewModels
             ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
-
-            Task.Run(async () =>
-            {
-                await LoadSetting();
-            });
         }
 
         private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -97,6 +92,12 @@ namespace GeolocationAds.ViewModels
             try
             {
                 this.IsLoading = true;
+
+                await LoadSetting();
+
+                var _currentModelAdType = this.Model.Settings.FirstOrDefault();
+
+                this.SelectedAdType = AdTypesSettings.First(item => _currentModelAdType.SettingId == item.ID);
 
                 foreach (var item in this.Model.Contents)
                 {
@@ -320,6 +321,7 @@ namespace GeolocationAds.ViewModels
                         CreateDate = DateTime.Now,
                         CreateBy = this.LogUserPerfilTool.LogUser.ID,
                         SettingId = value.ID,
+                        AdvertisementId = this.Model.ID
                     };
 
                     this.Model.Settings.Add(_adSetting);

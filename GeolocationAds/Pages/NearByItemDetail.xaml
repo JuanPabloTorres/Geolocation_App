@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.NearByItemDetail"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewTemplate="clr-namespace:GeolocationAds.ViewTemplates"
+    Title="{Binding Model.Title}">
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="WebViewDataTemplateCreate">
+
+            <Grid>
+
+                <WebView Navigating="WebView_Navigating" Source="{Binding UrlSource, Mode=TwoWay}" />
+
+                <!--  Button Container Grid  -->
+                <Grid>
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding OpenUrlCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ImageDataTemplate2">
+
+            <Grid>
+
+                <ffimageloading:CachedImage
+                    Aspect="Fill"
+                    FadeAnimationEnabled="True"
+                    Source="{Binding Image}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplate2">
+
+            <Grid>
+
+                <toolkit:MediaElement
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Aspect="Fill"
+                    ShouldShowPlaybackControls="True"
+                    Source="{Binding MediaSource}" />
+            </Grid>
+        </DataTemplate>
+
+        <templateSelector:ContentTypeTemplateSelector
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplate2}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateCreate}"
+            VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
+
+      
+
+        <local:CustomEditorContentView
+            Grid.Row="2"
+            IsEnabled="False"
+            Placeholder="Description"
+            Text="{Binding Model.Description, Mode=TwoWay}" />
+
+        <!--<local:CustomPickerContentView
+            Grid.Row="3"
+            DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+            HorizontalOptions="FillAndExpand"
+            IsEnabled="False"
+            ItemDisplayBindingPath="Value"
+            ItemsSource="{Binding AdTypesSettings}"
+            SelectValue="{Binding SelectedAdType}"
+            SelectedItem="{Binding SelectedAdType}" />-->
+
+        <viewTemplate:NearByDetailItemsCollection
+            x:Name="contentCollection"
+            Grid.Row="4"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding ContentTypesTemplate}" />
+
+        <ActivityIndicator
+            Grid.Row="4"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
+    </Grid>
+</ContentPage>

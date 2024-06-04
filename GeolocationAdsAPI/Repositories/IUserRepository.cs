@@ -8,5 +8,7 @@ namespace GeolocationAdsAPI.Repositories
         public Task<ResponseTool<User>> GetUserByEmail(string email);
 
         public Task<ResponseTool<User>> ChangeStatus(int userId, UserStatus status);
+
+        Task<ResponseTool<bool>> IsEmailRegistered(string email);
     }
 }

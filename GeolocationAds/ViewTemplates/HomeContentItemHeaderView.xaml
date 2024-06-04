@@ -24,6 +24,7 @@
     </Button>
 
     <Button
+        Command="{Binding GoDetailCommand}"
         CommandParameter="{Binding Advertisement.ID}"
         HorizontalOptions="Start"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"

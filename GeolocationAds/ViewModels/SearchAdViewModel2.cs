@@ -125,7 +125,7 @@ namespace GeolocationAds.ViewModels
                 return;
             }
 
-            List<NearByTemplateViewModel2> viewModels = apiResponse.Data.Select(ad => new NearByTemplateViewModel2(this._captureService, this._advertisementService, ad, this.LogUserPerfilTool)).ToList();
+            List<NearByTemplateViewModel2> viewModels = apiResponse.Data.Distinct().Select(ad => new NearByTemplateViewModel2(this._captureService, this._advertisementService, ad, this.LogUserPerfilTool)).ToList();
 
             try
             {

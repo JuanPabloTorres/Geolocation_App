@@ -1,7 +1,9 @@
-﻿using GeolocationAdsAPI.Context;
+﻿using GeolocationAdsAPI.ApiTools;
+using GeolocationAdsAPI.Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -60,7 +62,6 @@ namespace GeolocationAdsAPI.Repositories
         //    }
         //}
 
-
         //public async Task<ResponseTool<List<byte[]>>> GetContentById(int contentId)
         //{
         //    List<byte[]> parts = new List<byte[]>();
@@ -103,7 +104,6 @@ namespace GeolocationAdsAPI.Repositories
 
         //    return ResponseFactory<List<byte[]>>.BuildSuccess("Content loaded in parts.", parts, ToolsLibrary.Tools.Type.Found);
         //}
-
 
         public async Task<ResponseTool<List<byte[]>>> GetContentById(int contentId)
         {
@@ -156,9 +156,6 @@ namespace GeolocationAdsAPI.Repositories
             return ResponseFactory<List<byte[]>>.BuildSuccess("Content loaded in parts.", parts, ToolsLibrary.Tools.Type.Found);
         }
 
-
-
-
         public async Task<ResponseTool<IEnumerable<ContentType>>> GetContentsOfAdById(int id)
         {
             try
@@ -185,6 +182,51 @@ namespace GeolocationAdsAPI.Repositories
                     .ToListAsync();
 
                 _context.ContentTypes.RemoveRange(result);
+
+                await this._context.SaveChangesAsync();
+
+                return ResponseFactory<bool>.BuildSuccess("Entity found.", true);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<bool>> UpdateContentTypesOfAd(int adId, int updatedBy, IEnumerable<ContentType> newContentTypes)
+        {
+            try
+            {
+                var _oldContents = await this.GetContentsOfAdById(adId);
+
+                foreach (var existTo_updatedItem in newContentTypes.ToList())
+                {
+                    existTo_updatedItem.Advertisement = null;
+
+                    if (_oldContents.Data.Any(v => v.ID == existTo_updatedItem.ID))
+                    {
+                        if (!existTo_updatedItem.IsObjectNull() && existTo_updatedItem.Type == ContentVisualType.Video && Convert.ToUInt64(existTo_updatedItem.FileSize) == 0)
+                        {
+                            existTo_updatedItem.SetUpdateInformation(updatedBy);
+
+                            existTo_updatedItem.AdvertisingId = adId;
+
+                            var _contentBytes = await this.GetContentById(existTo_updatedItem.ID);
+
+                            existTo_updatedItem.Content = ApiCommonsTools.Combine(_contentBytes.Data);
+                        }
+                    }
+                    else
+                    {
+                        existTo_updatedItem.CreateDate = DateTime.Now;
+
+                        existTo_updatedItem.CreateBy = updatedBy;
+
+                        existTo_updatedItem.AdvertisingId = adId;
+                    }
+                }
+
+                _context.ContentTypes.AddRange(newContentTypes);
 
                 await this._context.SaveChangesAsync();
 

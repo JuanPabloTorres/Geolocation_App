@@ -43,8 +43,6 @@ namespace GeolocationAdsAPI.Controllers
             _globalLocalBackendUrl = configuration["ApplicationSettings:GlobalLocalBackendUrl"];
         }
 
-
-
         [HttpPost("Add2")]
         [RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
         [RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
@@ -125,7 +123,7 @@ namespace GeolocationAdsAPI.Controllers
                             FilePath = filePath, // Directly using the FileName here, adjust as necessary
                             FileSize = formFile.Length,
                             ContentName = formFile.FileName,
-                            Type = DetermineContentType(formFile.ContentType),
+                            Type = ApiCommonsTools.DetermineContentType(formFile.ContentType),
                             CreateDate = DateTime.Now,
                             CreateBy = Convert.ToInt32(createdBy)
                         };
@@ -152,40 +150,24 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        private async Task<string> SaveFileAsync(IFormFile file)
-        {
-            var filePath = Path.Combine("uploads", file.FileName);
-            var directoryPath = Path.GetDirectoryName(filePath);
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
+        //private ContentVisualType DetermineContentType(string mimeType)
+        //{
+        //    // Placeholder for actual implementation
+        //    switch (mimeType.ToLower())
+        //    {
+        //        case "image/jpeg":
+        //        case "image/png":
+        //        case "image/gif":
+        //            return ContentVisualType.Image;
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-            return filePath;
-        }
+        //        case "video/mp4":
+        //        case "video/mpeg":
+        //            return ContentVisualType.Video;
 
-        private ContentVisualType DetermineContentType(string mimeType)
-        {
-            // Placeholder for actual implementation
-            switch (mimeType.ToLower())
-            {
-                case "image/jpeg":
-                case "image/png":
-                case "image/gif":
-                    return ContentVisualType.Image;
-
-                case "video/mp4":
-                case "video/mpeg":
-                    return ContentVisualType.Video;
-
-                default:
-                    return ContentVisualType.Unknown;
-            }
-        }
+        //        default:
+        //            return ContentVisualType.Unknown;
+        //    }
+        //}
 
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> Get(int id)
@@ -274,26 +256,6 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
-
-        //public static byte[] Combine(List<byte[]> blocks)
-        //{
-        //    // Paso 1: Calcular el tamaño total
-        //    int totalSize = blocks.Sum(b => b.Length);
-
-        //    // Paso 2: Crear el array de bytes final
-        //    byte[] result = new byte[totalSize];
-
-        //    // Paso 3: Copiar cada bloque en el array final
-        //    int offset = 0;
-        //    foreach (byte[] block in blocks)
-        //    {
-        //        Array.Copy(block, 0, result, offset, block.Length);
-        //        offset += block.Length;
-        //    }
-
-        //    return result;
-        //}
-
 
         [HttpGet("[action]/{contentId}")]
         public async Task<IActionResult> GetStreamingVideoUrl(int contentId)
@@ -396,8 +358,6 @@ namespace GeolocationAdsAPI.Controllers
 
             formCollection = formDataResponse.Data;
 
-
-
             if (!formCollection.ContainsKey("advertisementMetadata"))
             {
                 return BadRequest("Advertisement metadata is required.");
@@ -425,11 +385,6 @@ namespace GeolocationAdsAPI.Controllers
             {
                 foreach (var formFile in formCollection.Files)
                 {
-                    //if (formFile.Length == 0)
-                    //{
-                    //    continue; // Skip empty files
-                    //}
-
                     if (formFile.Length > ConstantsTools.MaxFileSize)
                     {
                         return BadRequest($"File size exceeds the limit: {formFile.FileName}");
@@ -457,7 +412,7 @@ namespace GeolocationAdsAPI.Controllers
                             FilePath = filePath,
                             FileSize = formFile.Length,
                             ContentName = formFile.FileName,
-                            Type = DetermineContentType(formFile.ContentType),
+                            Type = ApiCommonsTools.DetermineContentType(formFile.ContentType),
                             CreateDate = DateTime.Now,
                             ID = Convert.ToInt32(id), // Assuming ID is a string; adjust the type as necessary
                             AdvertisingId = Convert.ToInt32(adId)
@@ -485,13 +440,6 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-        private async Task<byte[]> ConvertToByteArray(IFormFile file)
-        {
-            using var memoryStream = new MemoryStream();
-            await file.CopyToAsync(memoryStream);
-            return memoryStream.ToArray();
-        }
-
         private string ConvertVideoToHLS3(string videoFilePath)
         {
             // Assuming wwwroot exists at the root of the web project and 'hls' is a folder inside it for videos.
@@ -516,17 +464,6 @@ namespace GeolocationAdsAPI.Controllers
 
             // Return the relative path to the wwwroot directory.
             return outputFilePath.Substring(Directory.GetCurrentDirectory().Length).Replace("\\", "/").Replace("//", "/");
-        }
-
-        private ContentVisualType GetContentVisualType(string contentType)
-        {
-            return contentType switch
-            {
-                "image/jpeg" => ContentVisualType.Image,
-                "image/png" => ContentVisualType.Image,
-                "video/mp4" => ContentVisualType.Video,
-                _ => ContentVisualType.Unknown
-            };
         }
 
         private string SaveBytesToFile(byte[] videoBytes)

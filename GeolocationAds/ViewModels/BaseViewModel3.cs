@@ -182,7 +182,9 @@ namespace GeolocationAds.ViewModels
         private void SetUpdateMetadata(T obj)
         {
             DateTime now = DateTime.Now;
+
             ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateDate), now);
+
             ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
         }
 

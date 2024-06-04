@@ -1,4 +1,5 @@
 ﻿using ToolsLibrary.Factories;
+using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAdsAPI.ApiTools
@@ -36,6 +37,25 @@ namespace GeolocationAdsAPI.ApiTools
             }
 
             return result;
+        }
+
+        public static ContentVisualType DetermineContentType(string mimeType)
+        {
+            // Placeholder for actual implementation
+            switch (mimeType.ToLower())
+            {
+                case "image/jpeg":
+                case "image/png":
+                case "image/gif":
+                    return ContentVisualType.Image;
+
+                case "video/mp4":
+                case "video/mpeg":
+                    return ContentVisualType.Video;
+
+                default:
+                    return ContentVisualType.Unknown;
+            }
         }
     }
 }

@@ -16,9 +16,13 @@ namespace GeolocationAds.ViewModels
 
         private RecoveryPasswordViewModel RecoveryPasswordViewModel;
 
-        public LoginViewModel2(RecoveryPasswordViewModel recoveryPasswordViewModel, ToolsLibrary.Models.Login model, ILoginService service, LogUserPerfilTool logUserPerfil = null) : base(model, service, logUserPerfil)
+        private readonly IForgotPasswordService forgotPasswordService;
+
+        public LoginViewModel2(RecoveryPasswordViewModel recoveryPasswordViewModel, ToolsLibrary.Models.Login model, IForgotPasswordService forgotPasswordService, ILoginService service, LogUserPerfilTool logUserPerfil = null) : base(model, service, logUserPerfil)
         {
             this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
+
+            this.forgotPasswordService = forgotPasswordService;
 
             this.Model.Username = "test";
 
@@ -29,6 +33,8 @@ namespace GeolocationAds.ViewModels
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     await this.passwordRecoveryPage.CloseAsync();
+
+                    this.RecoveryPasswordViewModel = new RecoveryPasswordViewModel(this.forgotPasswordService);
                 });
             });
         }
