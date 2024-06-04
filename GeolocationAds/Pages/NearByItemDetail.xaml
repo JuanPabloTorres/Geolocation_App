@@ -88,6 +88,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
@@ -115,29 +116,29 @@
                     Style="{StaticResource globalDescriptionLabel}"
                     Text="{Binding Model.Description, Mode=TwoWay}"
                     TextColor="White" />
+
+                <Label
+                    Grid.Row="0"
+                    LineBreakMode="WordWrap"
+                    MaxLines="2"
+                    Style="{StaticResource globalDescriptionLabel}"
+                    Text="{Binding SettingType}"
+                    TextColor="White" />
             </VerticalStackLayout>
         </Border>
 
 
 
-        <!--<local:CustomPickerContentView
-            Grid.Row="3"
-            DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-            HorizontalOptions="FillAndExpand"
-            IsEnabled="False"
-            ItemDisplayBindingPath="Value"
-            ItemsSource="{Binding AdTypesSettings}"
-            SelectValue="{Binding SelectedAdType}"
-            SelectedItem="{Binding SelectedAdType}" />-->
+
 
         <viewTemplate:NearByDetailItemsCollection
             x:Name="contentCollection"
-            Grid.Row="1"
+            Grid.Row="2"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}" />
 
         <ActivityIndicator
-            Grid.Row="1"
+            Grid.Row="2"
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
     </Grid>

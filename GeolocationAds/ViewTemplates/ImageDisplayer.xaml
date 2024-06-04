@@ -33,8 +33,6 @@
 
     <Grid x:Name="searchContentStackHeader">
 
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />

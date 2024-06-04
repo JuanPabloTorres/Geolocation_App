@@ -220,6 +220,7 @@
 
         <local:CustomEntryContentView
             Grid.Row="1"
+            IconSource="tag.png"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Placeholder="Title"
             Text="{Binding Model.Title, Mode=TwoWay}" />

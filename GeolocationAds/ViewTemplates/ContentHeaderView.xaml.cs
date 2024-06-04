@@ -1,6 +1,6 @@
 namespace GeolocationAds.ViewTemplates;
 
-public partial class ContentHeaderView : VerticalStackLayout
+public partial class ContentHeaderView : HorizontalStackLayout
 {
     public ContentHeaderView()
     {

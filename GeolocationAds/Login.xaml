@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:customControl="clr-namespace:GeolocationAds.CustomCotrols"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:lo="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
@@ -13,50 +14,131 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
-    <Grid VerticalOptions="CenterAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <VerticalStackLayout VerticalOptions="CenterAndExpand">
 
-        <!--  Header Section  -->
+        <!--<Border
+            Margin="0,0,0,50"
+            BackgroundColor="Transparent"
+            HorizontalOptions="FillAndExpand"
+            StrokeThickness="0"
+            VerticalOptions="Fill">
+            <Grid>
+                <GraphicsView HeightRequest="150">
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle2Drawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Geo-Connect"
+                    TextColor="{StaticResource White}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
-        <!--  Form Section  -->
-        <Border
-            Grid.Row="1"
-            StrokeShape="RoundRectangle 40,5,5,40"
-            StrokeThickness="0.4"
-            Style="{StaticResource CustomBorderStyle}">
-
-            <StackLayout>
-
-                <ffimageloading:CachedImage
+        -->
+        <!--<ffimageloading:CachedImage
                     Aspect="AspectFit"
                     FadeAnimationEnabled="True"
-                    HeightRequest="120"
-                    Source="radar01.gif"
-                    WidthRequest="200" />
+                    VerticalOptions="Center"
+                    HeightRequest="20"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Source="radar.gif" />-->
+        <!--
+            </Grid>
+        </Border>-->
+
+        <Label
+            Margin="5"
+            FontFamily="Roboto"
+            FontSize="40"
+            Style="{StaticResource globalTitle}"
+            Text="Geo-Connect"
+            TextColor="White" />
+
+
+
+        <Border
+            Grid.Row="1"
+            StrokeShape="RoundRectangle 12,12,12,12"
+            StrokeThickness="0.4"
+            Style="{StaticResource CustomBorderStyle}"
+            VerticalOptions="Center">
+
+            <VerticalStackLayout VerticalOptions="End">
 
                 <Label
                     Margin="5"
                     FontFamily="Roboto"
                     FontSize="40"
                     Style="{StaticResource globalTitle}"
-                    Text="Geo-Connect"
+                    Text="Welcome Back!"
+                    TextColor="#3e4144" />
+
+                <Label
+                    Margin="5"
+                    FontFamily="Roboto"
+                    FontSize="Medium"
+                    Style="{StaticResource globalsubTitle}"
+                    Text="Search And Discover"
                     TextColor="#3e4144" />
 
                 <local:CustomEntryContentView
+                    IconSource="user.png"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="False"
                     Placeholder="Username"
                     Text="{Binding Model.Username}" />
 
                 <local:CustomEntryContentView
+                    Title="Password"
+                    IconSource="padlock.png"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="True"
                     Placeholder="Password"
                     Text="{Binding Model.Password}" />
 
+                <HorizontalStackLayout HorizontalOptions="CenterAndExpand" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                    <HorizontalStackLayout HorizontalOptions="StartAndExpand">
+                        <!--  Checkbox for 'Remember Password'  -->
+                        <CheckBox
+                            IsChecked="false"
+                            VerticalOptions="Center"
+                            Color="Black" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource globalsubTitle}"
+                            Text="Remember Password"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Button
+                        BackgroundColor="Transparent"
+                        Command="{Binding OpenRecoveryPopUpCommand}"
+                        FontSize="Medium"
+                        HorizontalOptions="End"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource globalButton}"
+                        Text="Forgot Password?"
+                        TextColor="{StaticResource Burgundy}" />
+                </HorizontalStackLayout>
+
+                <!--<Button
+                    Margin="0,5,0,0"
+                    BackgroundColor="Transparent"
+                    Command="{Binding OpenRecoveryPopUpCommand}"
+                    FontSize="Medium"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButton}"
+                    Text="Forgot Password?"
+                    TextColor="{StaticResource Burgundy}" />-->
+
                 <Button
+                    Margin="20,0,20,0"
                     Command="{Binding VerifyCredentialCommand}"
                     CommandParameter="{Binding Model}"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -68,26 +150,107 @@
                     </Button.ImageSource>
                 </Button>
 
-                <Button
-                    BackgroundColor="{StaticResource BrightOrangeRed}"
-                    Command="{Binding GoToRegisterCommand}"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource globalButton}"
-                    Text="Do you want to Sign Up?" />
 
-                <Button
-                    BackgroundColor="Transparent"
-                    Command="{Binding OpenRecoveryPopUpCommand}"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource globalButton}"
-                    Text="Forgot Password?"
-                    TextColor="{StaticResource Burgundy}" />
+
+
+
+                <VerticalStackLayout
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand"
+                    Spacing="5"
+                    VerticalOptions="Center">
+
+                    <StackLayout
+                        HorizontalOptions="Fill"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <BoxView
+                            BackgroundColor="{StaticResource AppBlack}"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand" />
+                        <Label
+                            Margin="10,0"
+                            HorizontalOptions="Center"
+                            Text="OR"
+                            TextColor="{StaticResource AppBlack}"
+                            VerticalOptions="Center" />
+                        <BoxView
+                            BackgroundColor="{StaticResource AppBlack}"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+
+                    <!--<Label HorizontalOptions="Center" Text="Or sign in with" />-->
+
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
+                        <Button
+                            BackgroundColor="Transparent"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            ImageSource="google.png"
+                            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Text="Google"
+                            TextColor="Black"
+                            WidthRequest="130" />
+                        <!--  Ensure you have a Google logo in your Resources  -->
+
+                        <Button
+                            BackgroundColor="Transparent"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            ImageSource="facebook.png"
+                            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Text="Facebook"
+                            TextColor="Black"
+                            WidthRequest="130" />
+                        <!--  Ensure you have a Facebook logo in your Resources  -->
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+
+
+
+
 
                 <ActivityIndicator
                     IsRunning="{Binding IsLoading}"
                     IsVisible="{Binding IsLoading}"
                     Style="{StaticResource globalLoading}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </Border>
-    </Grid>
+
+        <HorizontalStackLayout
+            Padding="10"
+            BackgroundColor="Transparent"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <Label
+                Text="Don't have an account?"
+                TextColor="White"
+                VerticalOptions="Center" />
+            <Button
+                Padding="0"
+                BackgroundColor="Transparent"
+                Command="{Binding GoToRegisterCommand}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}"
+                Text="Sign Up"
+                TextColor="White" />
+
+
+
+
+        </HorizontalStackLayout>
+
+        <!--<Button
+            BackgroundColor="Transparent"
+            Command="{Binding GoToRegisterCommand}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Do you want to Sign Up?"
+            TextColor="White" />-->
+
+    </VerticalStackLayout>
 </ContentPage>

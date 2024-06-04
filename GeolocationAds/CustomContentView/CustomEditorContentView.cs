@@ -58,6 +58,7 @@
                 FontAttributes = FontAttributes.Bold,
                 HorizontalOptions = LayoutOptions.End,
                 VerticalOptions = LayoutOptions.End,
+                Padding = new Thickness(0, 0, 7, 0),
                 TextColor = (Color)Application.Current.Resources["AppBlack"]
             };
 

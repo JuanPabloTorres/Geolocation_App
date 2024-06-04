@@ -64,14 +64,20 @@
 	  <None Remove="Resources\AppIcon\play_store_512.svg" />
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
+	  <None Remove="Resources\Images\arrow.png" />
 	  <None Remove="Resources\Images\complete01.gif" />
 	  <None Remove="Resources\Images\facebook.png" />
+	  <None Remove="Resources\Images\google.png" />
 	  <None Remove="Resources\Images\instagram.png" />
 	  <None Remove="Resources\Images\loginbackground.jpeg" />
+	  <None Remove="Resources\Images\mail.png" />
 	  <None Remove="Resources\Images\nearby2.jpeg" />
+	  <None Remove="Resources\Images\padlock.png" />
+	  <None Remove="Resources\Images\phone.png" />
 	  <None Remove="Resources\Images\radar.gif" />
-	  <None Remove="Resources\Images\radar01.gif" />
+	  <None Remove="Resources\Images\tag.png" />
 	  <None Remove="Resources\Images\tiktok.png" />
+	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\youtube.png" />
 	  <None Remove="Resources\Raw\c1.json" />
 	  <None Remove="Resources\Raw\c2.json" />
@@ -198,5 +204,7 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadUnhandledDeviceExceptionGeolocationAdsHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

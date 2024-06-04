@@ -79,6 +79,7 @@ namespace GeolocationAdsAPI.Repositories
                             ID = s.ID,
                             SettingId = s.SettingId,
                             AdvertisementId = s.AdvertisementId,
+                            Setting = s.Setting
                         }).ToList(),
                         Contents = s.Contents
                             .Select(ct => new ContentType

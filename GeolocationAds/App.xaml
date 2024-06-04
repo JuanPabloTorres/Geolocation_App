@@ -65,9 +65,9 @@
             </Style>
 
             <Style x:Key="globalsubTitle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
@@ -125,8 +125,18 @@
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="15" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkViolet}" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkFuchsia}" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.3"
+                            Radius="10"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
+
             </Style>
 
             <Style x:Key="pagingBtn" TargetType="Button">
@@ -152,10 +162,8 @@
 
             <Style x:Key="cardBorder" TargetType="Border">
                 <Setter Property="BackgroundColor" Value="WhiteSmoke" />
-
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="Padding" Value="0" />
-
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
 
@@ -169,6 +177,20 @@
 
             <!--  Define the Border style  -->
             <Style x:Key="CustomBorderStyle" TargetType="Border">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="#961e52" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="20" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="avatarBorderStyle" TargetType="Border">
                 <Setter Property="Margin" Value="4" />
                 <Setter Property="Padding" Value="6" />
                 <Setter Property="Background" Value="#F5F5F5" />
@@ -202,6 +224,7 @@
             <Style x:Key="CustomBorderStyleOrange" TargetType="Border">
                 <Setter Property="Margin" Value="8" />
                 <Setter Property="Padding" Value="6" />
+
                 <Setter Property="Background" Value="#F5F5F5" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
                 <Setter Property="Stroke" Value="{StaticResource BrightOrangeRed}" />

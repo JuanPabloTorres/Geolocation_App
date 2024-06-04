@@ -1,4 +1,5 @@
-﻿using GeolocationAds.AppTools;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
@@ -11,6 +12,9 @@ namespace GeolocationAds.ViewModels
     public partial class NearByItemDetailViewModel : BaseViewModel3<Advertisement, IAdvertisementService>
     {
         private readonly INearByItemDetailContainer nearByItemDetailContainer;
+
+        [ObservableProperty]
+        private string? settingType;
 
         public NearByItemDetailViewModel(INearByItemDetailContainer nearByItemDetailContainer) : base(nearByItemDetailContainer.Model, nearByItemDetailContainer.AdvertisementService, nearByItemDetailContainer.LogUserPerfilTool)
         {
@@ -26,6 +30,8 @@ namespace GeolocationAds.ViewModels
             try
             {
                 this.IsLoading = true;
+
+                this.SettingType = this.Model.Settings.First().Setting.Value;
 
                 foreach (var item in this.Model.Contents)
                 {

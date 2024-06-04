@@ -10,8 +10,6 @@
         HorizontalOptions="StartAndExpand"
         VerticalOptions="End">
 
-
-
         <Label
             Style="{StaticResource globalLabel}"
             Text="{Binding Advertisement.Title}"
