@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
+using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -16,8 +17,6 @@ namespace GeolocationAds.ViewModels
 {
     public partial class EditAdvertismentViewModel2 : BaseViewModel3<Advertisement, IAdvertisementService>
     {
-        private byte[] fileBytes;
-
         private readonly IContainerEditAdvertisment containerEditAdvertisment;
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
@@ -31,33 +30,71 @@ namespace GeolocationAds.ViewModels
         {
             this.containerEditAdvertisment = containerEditAdvertisment;
 
-            ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+
+            // Subscribe to the ItemDeletedEvent
+            EventManager2.Instance.Subscribe<ContentTypeTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
         }
 
-        private async void ContentTypes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async Task HandleItemDeletedEventAsync(ContentTypeTemplateViewModel2 eventArgs)
         {
             try
             {
-                if (sender is IList<ContentTypeTemplateViewModel> contents)
-                {
-                    if (!this.Model.Contents.IsObjectNull())
-                    {
-                        this.Model.Contents.Clear();
+                this.IsLoading = true;
 
-                        foreach (var item in contents)
-                        {
-                            this.Model.Contents.Add(item.ContentType);
-                        }
+                if (this.ContentTypesTemplate.Count() == 1)
+                {
+                    await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
+                }
+                else
+                {
+                    this.ContentTypesTemplate.Remove(eventArgs);
+
+                    foreach (var item in ContentTypesTemplate)
+                    {
+                        await item.SetAnimation();
                     }
+
+                    this.Model.Contents.Remove(eventArgs.ContentType);
                 }
             }
             catch (Exception ex)
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
+
+        //private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        this.IsLoading = true;
+
+        //        if (sender is ContentTypeTemplateViewModel2 template)
+        //        {
+        //            this.ContentTypesTemplate.Remove(template);
+
+        //            this.Model.Contents.Remove(this.Model.Contents.Where(v => v.ID == template.ContentType.ID).FirstOrDefault());
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        foreach (var item in ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image))
+        //        {
+        //            await item.SetAnimation();
+        //        }
+
+        //        this.IsLoading = false;
+        //    }
+        //}
 
         private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
         {
@@ -67,9 +104,21 @@ namespace GeolocationAds.ViewModels
 
                 if (sender is ContentTypeTemplateViewModel2 template)
                 {
-                    this.ContentTypesTemplate.Remove(template);
+                    if (this.ContentTypesTemplate.Count() == 1)
+                    {
+                        await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
+                    }
+                    else
+                    {
+                        this.ContentTypesTemplate.Remove(template);
 
-                    this.Model.Contents.Remove(this.Model.Contents.Where(v => v.ID == template.ContentType.ID).FirstOrDefault());
+                        foreach (var item in ContentTypesTemplate)
+                        {
+                            await item.SetAnimation();
+                        }
+
+                        this.Model.Contents.Remove(template.ContentType);
+                    }
                 }
             }
             catch (Exception ex)
@@ -78,11 +127,6 @@ namespace GeolocationAds.ViewModels
             }
             finally
             {
-                foreach (var item in ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image))
-                {
-                    await item.SetAnimation();
-                }
-
                 this.IsLoading = false;
             }
         }
@@ -95,6 +139,8 @@ namespace GeolocationAds.ViewModels
 
                 await LoadSetting();
 
+                ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
+
                 var _currentModelAdType = this.Model.Settings.FirstOrDefault();
 
                 this.SelectedAdType = AdTypesSettings.First(item => _currentModelAdType.SettingId == item.ID);
@@ -105,15 +151,23 @@ namespace GeolocationAds.ViewModels
                     {
                         var _template = await AppToolCommon.ProcessContentItem(item, this.service);
 
+                        //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                         this.ContentTypesTemplate.Add(_template);
                     }
                     else
                     {
                         var _template = await AppToolCommon.ProcessContentItem(item, null);
 
+                        //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                         this.ContentTypesTemplate.Add(_template);
+
+                        //this.ContentTypesTemplate.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
                     }
                 }
+
+                //ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
             }
             catch (Exception ex)
             {

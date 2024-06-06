@@ -147,6 +147,8 @@ public static class MauiProgram
 
         builder.Services.AddScoped<IContainerManageLocation, ContainerManageLocation>();
 
+        builder.Services.AddScoped<IContainerCapture, ContainerCapture>();
+
         #endregion Containers
 
         #region Pages

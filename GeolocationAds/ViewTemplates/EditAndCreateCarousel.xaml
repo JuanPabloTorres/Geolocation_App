@@ -9,7 +9,7 @@
 
     <CarouselView.ItemsLayout>
         <LinearItemsLayout
-            Orientation="Vertical"
+            Orientation="Horizontal"
             SnapPointsAlignment="Start"
             SnapPointsType="MandatorySingle" />
     </CarouselView.ItemsLayout>

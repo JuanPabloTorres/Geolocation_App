@@ -49,9 +49,6 @@
         <member name="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.Image">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.image"/>
         </member>
-        <member name="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.Image0">
-            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.image0"/>
-        </member>
         <member name="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.IsAnimation">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.isAnimation"/>
         </member>
@@ -141,6 +138,19 @@
         <member name="P:GeolocationAds.TemplateViewModel.TemplateBaseViewModel2.IsLoading">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.TemplateBaseViewModel2.isLoading"/>
         </member>
+        <member name="T:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.Model">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.model"/>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.removeCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.RemoveCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.RemoveCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.Remove(`0)"/>.</summary>
+        </member>
         <member name="T:GeolocationAds.ViewModels.AppShellViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -156,6 +166,12 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.AppShellViewModel2.SignOutCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.AppShellViewModel2.SignOut"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.BaseViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel.IsLoading">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel.isLoading"/>
         </member>
         <member name="T:GeolocationAds.ViewModels.BaseViewModel3`2">
             <inheritdoc/>
@@ -242,6 +258,22 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.UploadContentCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.UploadContent"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.FilterPopUpViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.FilterPopUpViewModel.SelectedAdType">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.FilterPopUpViewModel.selectedAdType"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.FilterPopUpViewModel.SelectedDistance">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.FilterPopUpViewModel.selectedDistance"/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.FilterPopUpViewModel.filterCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.FilterPopUpViewModel.FilterCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.FilterPopUpViewModel.FilterCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.FilterPopUpViewModel.Filter"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.FilterPopUpViewModel2">
             <inheritdoc/>
@@ -527,20 +559,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ContentType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ContentType" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Image0">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Image0" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsAnimation">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsAnimation" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Model">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Model" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.UserName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "UserName" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Avatar">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Avatar" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Model">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Model" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>
@@ -602,20 +631,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ContentType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ContentType" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Image0">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Image0" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsAnimation">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsAnimation" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Model">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Model" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.UserName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "UserName" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Avatar">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Avatar" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Model">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Model" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedAdType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedAdType" generated properties.</summary>

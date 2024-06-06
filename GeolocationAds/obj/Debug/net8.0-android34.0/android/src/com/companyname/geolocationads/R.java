@@ -12238,12 +12238,14 @@ public final class R {
     public static final int star=0x7f080156;
     public static final int tag=0x7f080157;
     public static final int test_level_drawable=0x7f080158;
-    public static final int tiktok=0x7f080159;
-    public static final int tooltip_frame_dark=0x7f08015a;
-    public static final int tooltip_frame_light=0x7f08015b;
-    public static final int travelexplore=0x7f08015c;
-    public static final int user=0x7f08015d;
-    public static final int youtube=0x7f08015e;
+    public static final int text=0x7f080159;
+    public static final int tiktok=0x7f08015a;
+    public static final int tooltip_frame_dark=0x7f08015b;
+    public static final int tooltip_frame_light=0x7f08015c;
+    public static final int travelexplore=0x7f08015d;
+    public static final int url=0x7f08015e;
+    public static final int user=0x7f08015f;
+    public static final int youtube=0x7f080160;
   }
   public static final class font {
     public static final int roboto_medium_numbers=0x7f090000;

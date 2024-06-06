@@ -14,8 +14,10 @@ obj\Debug\net8.0-android34.0\resizetizer\r\drawable\radar.gif
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\setting.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\star.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\tag.png
+obj\Debug\net8.0-android34.0\resizetizer\r\drawable\text.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\tiktok.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\travelexplore.png
+obj\Debug\net8.0-android34.0\resizetizer\r\drawable\url.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\user.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable\youtube.png
 obj\Debug\net8.0-android34.0\resizetizer\r\drawable-hdpi\dotnet_bot.png

@@ -73,6 +73,39 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
+        <HorizontalStackLayout
+            Grid.Row="0"
+            BackgroundColor="{StaticResource AppGray}"
+            HorizontalOptions="EndAndExpand"
+            Opacity="0.6"
+            VerticalOptions="End">
+            <Label
+                x:Name="counterLabel"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding NearByTemplateViewModels.Count, StringFormat='Nearby: {0:N0}'}"
+                TextColor="White" />
+
+            <Label
+                x:Name="filterType"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedAdType.Value, StringFormat='{0}'}"
+                TextColor="White" />
+            <Label
+                x:Name="filterDistance"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedDistance, StringFormat='Distance: {0}'}"
+                TextColor="White" />
+        </HorizontalStackLayout>
+
         <controlDisplayer:PaginControls
             x:Name="paginControls"
             Grid.Row="1"

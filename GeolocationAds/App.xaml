@@ -98,7 +98,8 @@
             </Style>
 
             <Style x:Key="globalPicker" TargetType="Picker">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
@@ -130,7 +131,42 @@
                 <Setter Property="Shadow">
                     <Setter.Value>
                         <Shadow
-                            Brush="Black"
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.3"
+                            Radius="10"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+
+            <Style x:Key="downArrowglobalButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+
+
+            </Style>
+
+            <Style x:Key="globalButtonUrL" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkFuchsia}" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
                             Opacity="0.3"
                             Radius="10"
                             Offset="5,5" />
@@ -145,12 +181,22 @@
                 <Setter Property="FontSize" Value="25" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="0" />
+                <Setter Property="Margin" Value="3" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="0" />
-                <Setter Property="BorderColor" Value="White" />
-                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="CornerRadius" Value="5" />
+
+                <Setter Property="BorderWidth" Value="0.5" />
                 <Setter Property="BackgroundColor" Value="{StaticResource AppGray}" />
+
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.3"
+                            Radius="10"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style x:Key="globalLoading" TargetType="ActivityIndicator">
@@ -181,10 +227,24 @@
                 <Setter Property="Padding" Value="6" />
                 <Setter Property="Background" Value="White" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="#961e52" />
+                <Setter Property="Stroke" Value="{StaticResource AppGray}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
                         <RoundRectangle CornerRadius="20" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="CustomBorderStyle2" TargetType="Border">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="{StaticResource AppGray}" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="StrokeThickness" Value="0.5" />
@@ -201,7 +261,7 @@
                         <RoundRectangle CornerRadius="8" />
                     </Setter.Value>
                 </Setter>
-                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeThickness" Value="0.5" />
             </Style>
 
             <Style x:Key="borderOnHeaderControls" TargetType="Border">
@@ -218,7 +278,7 @@
                         <RoundRectangle CornerRadius="5" />
                     </Setter.Value>
                 </Setter>
-                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeThickness" Value="0.5" />
             </Style>
 
             <Style x:Key="CustomBorderStyleOrange" TargetType="Border">
@@ -227,13 +287,13 @@
 
                 <Setter Property="Background" Value="#F5F5F5" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="{StaticResource BrightOrangeRed}" />
+                <Setter Property="Stroke" Value="{StaticResource AppGray}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
-                        <RoundRectangle CornerRadius="8" />
+                        <RoundRectangle CornerRadius="20" />
                     </Setter.Value>
                 </Setter>
-                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="StrokeThickness" Value="0.5" />
             </Style>
 
             <Style x:Key="popUpBorder" TargetType="Border">

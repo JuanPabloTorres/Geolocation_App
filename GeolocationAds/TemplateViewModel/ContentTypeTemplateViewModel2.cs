@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -16,9 +17,6 @@ namespace GeolocationAds.TemplateViewModel
 
         [ObservableProperty]
         private ImageSource image;
-
-        [ObservableProperty]
-        private Image image0 = new Image();
 
         [ObservableProperty]
         private bool isAnimation;
@@ -93,7 +91,9 @@ namespace GeolocationAds.TemplateViewModel
             {
                 this.IsLoading = true;
 
-                OnDeleteType(EventArgs.Empty);
+                //OnDeleteType(EventArgs.Empty);
+
+                EventManager2.Instance.Publish(this, CurrentPageContext);
             }
             catch (Exception ex)
             {

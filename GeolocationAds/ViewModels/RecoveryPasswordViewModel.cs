@@ -12,22 +12,6 @@ namespace GeolocationAds.ViewModels
 {
     public partial class RecoveryPasswordViewModel : BaseViewModel
     {
-        //private ObservableCollection<ValidationResult> _validationResults;
-
-        //public ObservableCollection<ValidationResult> ValidationResults
-        //{
-        //    get => _validationResults;
-        //    set
-        //    {
-        //        if (_validationResults != value)
-        //        {
-        //            _validationResults = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         public ObservableCollection<ValidationResult> ValidationResults { get; set; }
 
         private const int StepTotal = 3;
@@ -191,8 +175,6 @@ namespace GeolocationAds.ViewModels
 
         public async void OnSubmit()
         {
-
-
             try
             {
                 IsLoading = true;
@@ -229,8 +211,6 @@ namespace GeolocationAds.ViewModels
             {
                 IsLoading = false;
             }
-
-
         }
     }
 }

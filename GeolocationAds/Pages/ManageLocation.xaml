@@ -34,6 +34,7 @@
 
         <localControl:CustomPickerContentView
             Grid.Row="0"
+            IconSource="arrow.png"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ItemsSource="{Binding MapSettings}"
             SelectedItem="{Binding SeletedMapSetting}" />
@@ -83,7 +84,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
 
-                    <Border Style="{StaticResource CustomBorderStyle}">
+                    <Border Style="{StaticResource CustomBorderStyle2}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />

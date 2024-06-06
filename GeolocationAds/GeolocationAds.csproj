@@ -76,7 +76,9 @@
 	  <None Remove="Resources\Images\phone.png" />
 	  <None Remove="Resources\Images\radar.gif" />
 	  <None Remove="Resources\Images\tag.png" />
+	  <None Remove="Resources\Images\text.png" />
 	  <None Remove="Resources\Images\tiktok.png" />
+	  <None Remove="Resources\Images\url.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\youtube.png" />
 	  <None Remove="Resources\Raw\c1.json" />

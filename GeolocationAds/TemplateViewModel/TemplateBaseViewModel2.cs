@@ -12,9 +12,11 @@ namespace GeolocationAds.TemplateViewModel
 
         public delegate void RemoveItemEventHandler(object sender, EventArgs e);
 
-        public static event RemoveItemEventHandler ItemDeleted;
+        public event RemoveItemEventHandler ItemDeleted;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public static string CurrentPageContext { get; set; }
 
         protected IAdvertisementService advertisementService { get; set; }
 

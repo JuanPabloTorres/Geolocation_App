@@ -16,9 +16,9 @@ namespace GeolocationAds.ViewModels
         {
             this.Model.FullName = "Test 02";
 
-            this.Model.Phone = "787-111-1111";
+            this.Model.Phone = "939-111-1111";
 
-            this.Model.Email = "est.juanpablotorres@mail.com";
+            this.Model.Email = "est.juanpablotorres@gmail.com";
 
             this.Model.Login.Username = "test";
 

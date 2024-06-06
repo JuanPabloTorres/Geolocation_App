@@ -47,6 +47,7 @@
                     Text="Type:" />
                 <localControl:CustomPickerContentView
                     DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                    IconSource="arrow.png"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     ItemDisplayBindingPath="Value"
                     ItemsSource="{Binding AdTypesSettings}"

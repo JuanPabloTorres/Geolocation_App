@@ -20,7 +20,6 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private MapType seletedMapSetting;
 
-
         public ObservableCollection<Pin> Positions { get; set; } = new ObservableCollection<Pin>();
 
         public ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>> TemplateCardViewModel { get; set; } = new ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>();
@@ -33,20 +32,14 @@ namespace GeolocationAds.ViewModels
         {
             this.containerManageLocation = containerManageLocation;
 
-            //var mapTypes = Enum.GetValues(typeof(MapType))
-            //            .Cast<MapType>()
-            //            .ToList();
-
-            //this.MapSettings = new ObservableCollection<MapType>(mapTypes);
-
             this.ApplyQueryAttributesCompleted += ManageLocationViewModel_ApplyQueryAttributesCompleted;
 
             // Subscribe to the ItemDeletedEvent
-            EventManager.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>
+            EventManager2.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>
             {
                 // Handle the item deleted event here.
                 await HandleItemDeletedEventAsync(eventArgs);
-            });
+            }, this);
         }
 
         private async Task HandleItemDeletedEventAsync(GeolocationAd eventArgs)
@@ -143,10 +136,6 @@ namespace GeolocationAds.ViewModels
             try
             {
                 this.IsLoading = true;
-
-                //this.Positions = new ObservableCollection<Pin>();
-
-                //this.TemplateCardViewModel = new ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>();
 
                 foreach (var geo in this.Model.GeolocationAds)
                 {

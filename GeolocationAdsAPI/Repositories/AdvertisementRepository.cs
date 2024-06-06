@@ -294,7 +294,7 @@ namespace GeolocationAdsAPI.Repositories
                 {
                     var updatedContent = updatedAdvertisement.Contents.FirstOrDefault(c => c.ID == existingContent.ID);
 
-                    if (!updatedContent.IsObjectNull())
+                    if (!updatedContent.IsObjectNull() && updatedContent.Type == ContentVisualType.Video)
                     {
                         updatedContent.CreateDate = existingContent.CreateDate;
 

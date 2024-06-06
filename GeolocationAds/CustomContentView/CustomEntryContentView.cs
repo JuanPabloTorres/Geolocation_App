@@ -56,9 +56,6 @@ public class CustomEntryContentView : ContentView
         set => SetValue(IconSourceProperty, value);
     }
 
-
-
-
     public CustomEntryContentView()
     {
         var entry = new Entry
@@ -66,7 +63,6 @@ public class CustomEntryContentView : ContentView
             Keyboard = Keyboard.Text,
             Style = (Style)Application.Current.Resources["globalEntry"]
         };
-
 
         entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), source: this));
 
@@ -78,7 +74,6 @@ public class CustomEntryContentView : ContentView
 
         var titleLabel = new Label
         {
-
             VerticalOptions = LayoutOptions.Center,
             Style = (Style)Application.Current.Resources["globalsubTitle"]
         };
@@ -95,31 +90,17 @@ public class CustomEntryContentView : ContentView
             HorizontalOptions = LayoutOptions.Start
         };
 
-        image.SetBinding(Image.SourceProperty, new Binding(nameof(IconSource), source: this));
+        // Set up the FontImageSource for the image
+        var fontImageSource = new FontImageSource
+        {
+            FontFamily = "MaterialIcons-Regular",
+            Color = (Color)Application.Current.Resources["AppBlack"]
+        };
 
-        //var frame = new Border
-        //{
-        //    Style = (Style)Application.Current.Resources["CustomBorderStyle"],
+        fontImageSource.SetBinding(FontImageSource.GlyphProperty, new Binding(nameof(IconSource), source: this));
 
-        //    Content = new VerticalStackLayout
-        //    {
-
-        //        Children = { entry }
-        //    }
-        //};
-
-        //var frame = new Border
-        //{
-        //    Style = (Style)Application.Current.Resources["CustomBorderStyle"],
-        //    HorizontalOptions = LayoutOptions.Fill,
-
-        //    Content = new HorizontalStackLayout
-        //    {
-        //        Spacing = 5,
-        //        HorizontalOptions = LayoutOptions.Fill,
-        //        Children = { image, entry }
-        //    }
-        //};
+        // Assign the FontImageSource to the image
+        image.Source = fontImageSource;
 
         // Create a new Grid
         var grid = new Grid

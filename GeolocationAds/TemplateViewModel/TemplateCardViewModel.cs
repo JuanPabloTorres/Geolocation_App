@@ -1,4 +1,6 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
 using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
@@ -6,23 +8,24 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public class TemplateCardViewModel<M, S> : BaseViewModel where M : class
+    public partial class TemplateCardViewModel<M, S> : BaseViewModel where M : class
     {
-        private M _model;
+        [ObservableProperty]
+        private M model;
 
-        public M Model
-        {
-            get => _model;
-            set
-            {
-                if (!EqualityComparer<M>.Default.Equals(_model, value))
-                {
-                    _model = value;
+        //public M Model
+        //{
+        //    get => _model;
+        //    set
+        //    {
+        //        if (!EqualityComparer<M>.Default.Equals(_model, value))
+        //        {
+        //            _model = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
         protected S service { get; set; }
 
@@ -32,10 +35,11 @@ namespace GeolocationAds.TemplateViewModel
 
             this.service = service;
 
-            this.RemoveCommand = new Command<M>(Remove);
+            //this.RemoveCommand = new Command<M>(Remove);
         }
 
-        public async void Remove(M item)
+        [RelayCommand]
+        public async Task Remove(M item)
         {
             try
             {
@@ -55,7 +59,10 @@ namespace GeolocationAds.TemplateViewModel
                     {
                         await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
 
-                        OnItemDeleted2();
+
+
+                        EventManager.Instance.Publish(this.Model);
+
                     }
                     else
                     {
@@ -73,11 +80,11 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        public void OnItemDeleted2()
-        {
-            // Do some work here.
-            // When the item is deleted, publish an event.
-            EventManager.Instance.Publish(this.Model);
-        }
+        //public void OnItemDeleted2()
+        //{
+        //    // Do some work here.
+        //    // When the item is deleted, publish an event.
+        //    EventManager.Instance.Publish(this.Model);
+        //}
     }
 }

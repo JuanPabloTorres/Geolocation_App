@@ -59,7 +59,6 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Command="{Binding RemoveCurrentItemCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
                         VerticalOptions="Start">
@@ -122,7 +121,6 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Command="{Binding RemoveCurrentItemCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
                         VerticalOptions="Start">
@@ -165,7 +163,6 @@
                     <Button
                         Grid.Row="0"
                         Command="{Binding RemoveCurrentItemCommand}"
-                        CommandParameter="{Binding CurrentAdvertisement}"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource XButton}"
                         VerticalOptions="Start">
@@ -220,7 +217,7 @@
 
         <local:CustomEntryContentView
             Grid.Row="1"
-            IconSource="tag.png"
+            IconSource="&#xf05b;"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Placeholder="Title"
             Text="{Binding Model.Title, Mode=TwoWay}" />
@@ -235,6 +232,7 @@
             Grid.Row="3"
             DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
             HorizontalOptions="FillAndExpand"
+            IconSource="arrow.png"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ItemDisplayBindingPath="Value"
             ItemsSource="{Binding AdTypesSettings}"
@@ -244,19 +242,21 @@
         <HorizontalStackLayout Grid.Row="4" HorizontalOptions="FillAndExpand">
             <local:CustomEntryContentView
                 x:Name="urlValue"
+                IconSource="&#xe157;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="URL"
                 Text="{Binding Model.Title, Mode=TwoWay}"
                 WidthRequest="320" />
 
             <Button
+                BackgroundColor="{StaticResource DarkViolet}"
                 Command="{Binding SetURLCommand}"
                 CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButton}">
+                Style="{StaticResource globalButtonUrL}">
 
                 <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe145;" />
                 </Button.ImageSource>
             </Button>
         </HorizontalStackLayout>

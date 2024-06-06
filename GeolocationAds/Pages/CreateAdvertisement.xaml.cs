@@ -16,7 +16,7 @@ public partial class CreateAdvertisment : ContentPage
         BindingContext = createGeolocationViewModel;
     }
 
-    protected async override void OnAppearing()
+    protected override async void OnAppearing()
     {
         await this.viewModel.SetDefault();
     }

@@ -3,10 +3,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -16,9 +18,11 @@ namespace GeolocationAds.ViewModels
     {
         private IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
 
-        private readonly IAppSettingService appSettingService;
+        //private readonly IAppSettingService appSettingService;
 
-        private readonly IAdvertisementService advertisementService;
+        //private readonly IAdvertisementService advertisementService;
+
+        private readonly IContainerCapture containerCapture;
 
         [ObservableProperty]
         private AppSetting selectedAdType = new AppSetting();
@@ -29,13 +33,9 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
 
-        public CaptureViewModel2(Capture model, IAdvertisementService advertisementService, IAppSettingService appSettingService, ICaptureService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
+        public CaptureViewModel2(IContainerCapture containerCapture) : base(containerCapture.Model, containerCapture.CaptureService, containerCapture.LogUserPerfilTool)
         {
-            this.appSettingService = appSettingService;
-
-            this.advertisementService = advertisementService;
-
-            CaptureTemplateViewModel2.ItemDeleted += CaptureTemplateViewModel_ItemDeleted;
+            this.containerCapture = containerCapture;
 
             Task.Run(async () =>
             {
@@ -43,6 +43,27 @@ namespace GeolocationAds.ViewModels
 
                 await InitializeAsync();
             });
+            // Subscribe to the ItemDeletedEvent
+            EventManager2.Instance.Subscribe<CaptureTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
+        }
+
+        private async Task HandleItemDeletedEventAsync(CaptureTemplateViewModel2 eventArgs)
+        {
+            try
+            {
+                var _toRemoveAdContent = this.CaptureTemplateViewModels.FirstOrDefault(vm => vm.Capture.ID == eventArgs.Capture.ID);
+
+                if (!_toRemoveAdContent.IsObjectNull())
+                {
+                    this.CaptureTemplateViewModels.Remove(_toRemoveAdContent);
+
+                    await CommonsTool.DisplayAlert("Notification", "Capture has been successfully removed.");
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
         }
 
         public async Task InitializeSettingsAsync()
@@ -101,7 +122,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                var _apiResponse = await this.appSettingService.GetAppSettingByNames(settings);
+                var _apiResponse = await this.containerCapture.AppSettingService.GetAppSettingByNames(settings);
 
                 if (_apiResponse.IsSuccess)
                 {
@@ -130,6 +151,8 @@ namespace GeolocationAds.ViewModels
 
         public async Task InitializeAsync(int? pageIndex = 1)
         {
+            CaptureTemplateViewModel2.CurrentPageContext = this.GetType().Name;
+
             await LoadData(pageIndex);
         }
 
@@ -144,7 +167,8 @@ namespace GeolocationAds.ViewModels
                 if (_apiResponse.IsSuccess)
                 {
                     this.CaptureTemplateViewModels
-                       .AddRange(_apiResponse.Data.Select(s => new CaptureTemplateViewModel2(s, this.service, this.advertisementService))
+                       .AddRange(
+                        _apiResponse.Data.Select(s => new CaptureTemplateViewModel2(s, this.service, this.containerCapture.AdvertisementService))
                        .ToList());
                 }
                 else
@@ -171,7 +195,6 @@ namespace GeolocationAds.ViewModels
 
             await InitializeAsync();
         }
-
 
         public override async Task OpenFilterPopUpForSearch()
         {

@@ -237,7 +237,7 @@ namespace GeolocationAds.ViewModels
                         {
                             if (Activator.CreateInstance<T>() is T newInstance)
                             {
-                                if (this.ValidationResults.Count > 0)
+                                if (this.ValidationResults.Any())
                                 {
                                     this.ValidationResults.Clear();
                                 }

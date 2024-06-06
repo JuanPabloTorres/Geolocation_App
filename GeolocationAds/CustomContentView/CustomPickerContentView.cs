@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Windows.Input;
 using ToolsLibrary.Extensions;
 
 namespace GeolocationAds.CustomContentView;
@@ -70,6 +71,24 @@ public class CustomPickerContentView : ContentView
         set => SetValue(IsEnabledProperty, value);
     }
 
+    public static readonly BindableProperty IconSourceProperty =
+       BindableProperty.Create(nameof(IconSource), typeof(string), typeof(CustomEntryContentView), default(string), BindingMode.TwoWay);
+
+    public string IconSource
+    {
+        get => (string)GetValue(IconSourceProperty);
+        set => SetValue(IconSourceProperty, value);
+    }
+
+    public static readonly BindableProperty ImageTapCommandProperty =
+    BindableProperty.Create(nameof(ImageTapCommand), typeof(ICommand), typeof(CustomPickerContentView), null);
+
+    public ICommand ImageTapCommand
+    {
+        get => (ICommand)GetValue(ImageTapCommandProperty);
+        set => SetValue(ImageTapCommandProperty, value);
+    }
+
     private Picker picker;
 
     public CustomPickerContentView()
@@ -85,10 +104,46 @@ public class CustomPickerContentView : ContentView
 
         picker.SetBinding(Picker.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
 
+        var arrowBtn = new Button()
+        {
+            Style = (Style)Application.Current.Resources["downArrowglobalButton"]
+        };
+
+        arrowBtn.ImageSource = new FontImageSource
+        {
+            FontFamily = "MaterialIcons-Regular",
+            Glyph = "\ue313",
+            Color = (Color)Application.Current.Resources["AppBlack"]
+        };
+
+        arrowBtn.Clicked += (sender, args) =>
+        {
+            if (picker.IsFocused)
+                picker.Unfocus();
+
+            picker.Focus();
+        };
+
+        // Create a new Grid
+        var grid = new Grid
+        {
+            ColumnSpacing = 5,
+            ColumnDefinitions =
+            {
+                new ColumnDefinition { Width = GridLength.Star },
+                new ColumnDefinition { Width = GridLength.Auto }
+            },
+            RowDefinitions = { new RowDefinition { Height = GridLength.Auto } }
+        };
+
+        grid.Add(picker, 0, 0);
+
+        grid.Add(arrowBtn, 1, 0);
+
         var frame = new Border
         {
             Style = (Style)Application.Current.Resources["CustomBorderStyleOrange"],
-            Content = picker
+            Content = grid
         };
 
         Content = new VerticalStackLayout

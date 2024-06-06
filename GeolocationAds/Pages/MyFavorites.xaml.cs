@@ -21,6 +21,11 @@ public partial class MyFavorites : ContentPage
     }
 
 
+    //protected override void OnAppearing()
+    //{
+    //    CaptureTemplateViewModel2.CurrentPageContext = nameof(CaptureViewModel2);
+    //}
+
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
     {

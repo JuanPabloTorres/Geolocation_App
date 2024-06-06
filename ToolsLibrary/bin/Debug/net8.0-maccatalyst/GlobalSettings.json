@@ -1,7 +1,7 @@
 {
   "ApplicationSettings": {
-    "ServiceIPAddress": "192.168.0.10",
+    "ServiceIPAddress": "192.168.0.4",
     "ServicePort": "5160",
-    "GlobalLocalBackendUrl": "http://192.168.0.10:5160/api"
+    "GlobalLocalBackendUrl": "http://192.168.0.4:5160/api"
   }
 }

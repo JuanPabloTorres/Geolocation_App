@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
+using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -31,7 +32,7 @@ namespace GeolocationAds.ViewModels
         {
             this.ContainerCreateAdvertisment = ContainerCreateAdvertisment;
 
-            ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+            //ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
             Task.Run(async () =>
             {
@@ -42,6 +43,45 @@ namespace GeolocationAds.ViewModels
             {
                 await this.SetDefault();
             });
+
+            // Subscribe to the ItemDeletedEvent
+            EventManager2.Instance.Subscribe<ContentTypeTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
+
+
+        }
+
+        private async Task HandleItemDeletedEventAsync(ContentTypeTemplateViewModel2 eventArgs)
+        {
+
+
+            try
+            {
+                this.IsLoading = true;
+
+                if (this.ContentTypesTemplate.Count() == 1)
+                {
+                    await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
+                }
+                else
+                {
+                    this.ContentTypesTemplate.Remove(eventArgs);
+
+                    foreach (var item in ContentTypesTemplate)
+                    {
+                        await item.SetAnimation();
+                    }
+
+                    this.Model.Contents.Remove(eventArgs.ContentType);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
 
         public async Task DataInitialization()
@@ -92,6 +132,8 @@ namespace GeolocationAds.ViewModels
             try
             {
                 this.IsLoading = true;
+
+                ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
 
                 //this.ContentTypesTemplate.Clear();
 
@@ -266,7 +308,11 @@ namespace GeolocationAds.ViewModels
 
                     var _template = ContentTypeTemplateFactory.BuilContentType(_content, _content.Content);
 
+                    _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
                     this.ContentTypesTemplate.Add(_template);
+
+
 
                     this.Model.Contents.Add(_content);
                 }
@@ -297,6 +343,8 @@ namespace GeolocationAds.ViewModels
                 var _file = CommonsTool.SaveByteArrayToTempFile(_fileBytes);
 
                 var _template = ContentTypeTemplateFactory.BuilContentType(_content, result.FullPath);
+
+                _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                 this.ContentTypesTemplate.Add(_template);
 
@@ -331,9 +379,9 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
-
-
                 var _defaultTemplate = await AppToolCommon.GetDefaultContentTypeTemplateViewModel(this.LogUserPerfilTool.GetUserId());
+
+                _defaultTemplate.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                 this.ContentTypesTemplate.Add(_defaultTemplate);
 
@@ -373,17 +421,20 @@ namespace GeolocationAds.ViewModels
                     return;
                 }
 
-                RemoveDefaultImageIfPresent();
-
                 var _isValidUrl = CommonsTool.IsValidUrl(url);
 
                 if (_isValidUrl)
                 {
+                    RemoveDefaultImageIfPresent();
+
                     var _uri = new Uri(url);
 
                     var _content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null, this.LogUserPerfilTool.LogUser.ID, null, null);
 
                     var _template = ContentTypeTemplateFactory.BuilContentType(_content, _uri);
+
+                    _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
 
                     this.ContentTypesTemplate.Add(_template);
 

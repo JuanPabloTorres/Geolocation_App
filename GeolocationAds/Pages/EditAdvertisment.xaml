@@ -194,6 +194,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
 
@@ -213,6 +214,7 @@
 
         <local:CustomEntryContentView
             Grid.Row="1"
+            IconSource="&#xf05b;"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Placeholder="Title"
             Text="{Binding Model.Title}" />
@@ -227,22 +229,45 @@
             Grid.Row="3"
             DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
             HorizontalOptions="FillAndExpand"
+            IconSource="arrow.png"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ItemDisplayBindingPath="Value"
             ItemsSource="{Binding AdTypesSettings}"
             SelectValue="{Binding SelectedAdType}"
             SelectedItem="{Binding SelectedAdType}" />
 
+        <HorizontalStackLayout Grid.Row="4" HorizontalOptions="FillAndExpand">
+            <local:CustomEntryContentView
+                x:Name="urlValue"
+                IconSource="&#xe157;"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="URL"
+                Text="{Binding Model.Title, Mode=TwoWay}"
+                WidthRequest="320" />
+
+            <Button
+                BackgroundColor="{StaticResource DarkViolet}"
+                Command="{Binding SetURLCommand}"
+                CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButtonUrL}">
+
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe145;" />
+                </Button.ImageSource>
+            </Button>
+        </HorizontalStackLayout>
+
         <viewTemplate:EditAndCreateCarousel
             x:Name="contentCollection"
-            Grid.Row="4"
+            Grid.Row="5"
             IndicatorView="indicatorView"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}" />
 
         <IndicatorView
             x:Name="indicatorView"
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="5"
             Padding="5"
             HorizontalOptions="Center"

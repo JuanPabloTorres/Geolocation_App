@@ -86,7 +86,7 @@
                     TextColor="#3e4144" />
 
                 <local:CustomEntryContentView
-                    IconSource="user.png"
+                    IconSource="&#xe7fd;"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="False"
                     Placeholder="Username"
@@ -94,13 +94,13 @@
 
                 <local:CustomEntryContentView
                     Title="Password"
-                    IconSource="padlock.png"
+                    IconSource="&#xe897;"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="True"
                     Placeholder="Password"
                     Text="{Binding Model.Password}" />
 
-                <HorizontalStackLayout HorizontalOptions="CenterAndExpand" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+                <HorizontalStackLayout HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
 
                     <HorizontalStackLayout HorizontalOptions="StartAndExpand">
                         <!--  Checkbox for 'Remember Password'  -->
@@ -120,7 +120,6 @@
                         Command="{Binding OpenRecoveryPopUpCommand}"
                         FontSize="Medium"
                         HorizontalOptions="End"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Style="{StaticResource globalButton}"
                         Text="Forgot Password?"
                         TextColor="{StaticResource Burgundy}" />
@@ -157,6 +156,7 @@
                 <VerticalStackLayout
                     Padding="10"
                     HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Spacing="5"
                     VerticalOptions="Center">
 
@@ -188,7 +188,6 @@
                             HeightRequest="50"
                             HorizontalOptions="Center"
                             ImageSource="google.png"
-                            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                             Text="Google"
                             TextColor="Black"
                             WidthRequest="130" />
@@ -199,7 +198,6 @@
                             HeightRequest="50"
                             HorizontalOptions="Center"
                             ImageSource="facebook.png"
-                            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                             Text="Facebook"
                             TextColor="Black"
                             WidthRequest="130" />
@@ -224,6 +222,7 @@
             Padding="10"
             BackgroundColor="Transparent"
             HorizontalOptions="Center"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             VerticalOptions="Center">
 
             <Label
@@ -234,7 +233,6 @@
                 Padding="0"
                 BackgroundColor="Transparent"
                 Command="{Binding GoToRegisterCommand}"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalButton}"
                 Text="Sign Up"
                 TextColor="White" />

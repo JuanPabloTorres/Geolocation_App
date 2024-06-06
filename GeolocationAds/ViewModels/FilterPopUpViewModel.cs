@@ -1,44 +1,47 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
-    public class FilterPopUpViewModel : BaseViewModel
+    public partial class FilterPopUpViewModel : BaseViewModel
     {
-        public ICommand FilterCommand { get; set; }
+        //public ICommand FilterCommand { get; set; }
 
-        private AppSetting _selectedAdType;
+        [ObservableProperty]
+        private AppSetting selectedAdType;
 
-        public AppSetting SelectedAdType
-        {
-            get => _selectedAdType;
-            set
-            {
-                if (_selectedAdType != value)
-                {
-                    _selectedAdType = value;
+        //public AppSetting SelectedAdType
+        //{
+        //    get => _selectedAdType;
+        //    set
+        //    {
+        //        if (_selectedAdType != value)
+        //        {
+        //            _selectedAdType = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
-        private string _selectedDistance;
+        [ObservableProperty]
+        private string selectedDistance;
 
-        public string SelectedDistance
-        {
-            get => _selectedDistance;
-            set
-            {
-                if (_selectedDistance != value)
-                {
-                    _selectedDistance = value;
+        //public string SelectedDistance
+        //{
+        //    get => _selectedDistance;
+        //    set
+        //    {
+        //        if (_selectedDistance != value)
+        //        {
+        //            _selectedDistance = value;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
 
         public ObservableCollection<string> DistanceSettings { get; set; }
 
@@ -54,7 +57,7 @@ namespace GeolocationAds.ViewModels
 
             SelectedDistance = DistanceSettings.FirstOrDefault();
 
-            this.FilterCommand = new Command(OnsubmitFilter);
+            //this.FilterCommand = new Command(OnsubmitFilter);
         }
 
         public FilterPopUpViewModel(IEnumerable<AppSetting> appSettings)
@@ -63,7 +66,7 @@ namespace GeolocationAds.ViewModels
 
             SelectedAdType = AdTypesSettings.FirstOrDefault();
 
-            this.FilterCommand = new Command(OnsubmitFilter);
+            //this.FilterCommand = new Command(OnsubmitFilter);
         }
 
         public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
@@ -75,7 +78,8 @@ namespace GeolocationAds.ViewModels
             OnFilterItem?.Invoke(this, e);
         }
 
-        public void OnsubmitFilter()
+        [RelayCommand]
+        public void Filter()
         {
             FilterItemInvoke(EventArgs.Empty);
         }

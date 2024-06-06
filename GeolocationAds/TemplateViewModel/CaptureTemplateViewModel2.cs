@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -115,7 +116,9 @@ namespace GeolocationAds.TemplateViewModel
 
                     if (_apiResponse.IsSuccess)
                     {
-                        OnDeleteType(EventArgs.Empty);
+                        //OnDeleteType(EventArgs.Empty);
+
+                        EventManager2.Instance.Publish(this, CurrentPageContext);
                     }
                     else
                     {

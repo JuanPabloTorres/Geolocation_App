@@ -23,87 +23,7 @@
     </ContentPage.ToolbarItems>
 
 
-    <!--<ScrollView HorizontalScrollBarVisibility="Never">
-        <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
 
-            <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
-
-    -->
-    <!--  Section Title for Personal Information  -->
-    <!--
-            <Label Style="{StaticResource globalLabel}" Text="Personal Information" />
-            <BoxView HeightRequest="0.1" />
-
-    -->
-    <!--  FullName Input  -->
-    <!--
-            <local:CustomEntryContentView
-                Grid.Row="2"
-                IconSource="user.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="FullName"
-                Text="{Binding Model.FullName}" />
-
-    -->
-    <!--  Phone Input  -->
-    <!--
-            <local:CustomEntryContentView
-                Grid.Row="4"
-                IconSource="phone.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Phone"
-                Text="{Binding Model.Phone}" />
-
-    -->
-    <!--  Section Title for Account Information  -->
-    <!--
-            <Label Style="{StaticResource globalLabel}" Text="Account Information" />
-            <BoxView HeightRequest="0.1" />
-
-    -->
-    <!--  Email Input  -->
-    <!--
-            <local:CustomEntryContentView
-                Grid.Row="6"
-                IconSource="mail.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Email"
-                Text="{Binding Model.Email}" />
-
-    -->
-    <!--  Username Input  -->
-    <!--
-            <local:CustomEntryContentView
-                Grid.Row="8"
-                IconSource="user.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Username"
-                Text="{Binding Model.Login.Username}" />
-
-    -->
-    <!--  Password Input  -->
-    <!--
-            <local:CustomEntryContentView
-                Grid.Row="10"
-                IconSource="padlock.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                IsPassword="True"
-                Placeholder="Password"
-                Text="{Binding Model.Login.Password}" />
-        </VerticalStackLayout>
-    </ScrollView>-->
 
     <ScrollView HorizontalScrollBarVisibility="Never">
         <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
@@ -153,7 +73,7 @@
             <!--  FullName Input  -->
             <local:CustomEntryContentView
                 Grid.Row="2"
-                IconSource="user.png"
+                IconSource="&#xe7fd;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="FullName"
                 Text="{Binding Model.FullName}" />
@@ -161,27 +81,30 @@
             <!--  Phone Input  -->
             <local:CustomEntryContentView
                 Grid.Row="4"
-                IconSource="phone.png"
+                IconSource="&#xe0b0;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Phone"
                 Text="{Binding Model.Phone}" />
+
+            <!--  Email Input  -->
+            <local:CustomEntryContentView
+                Grid.Row="6"
+                IconSource="&#xe158;"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="Email"
+                Text="{Binding Model.Email}" />
+
 
             <!--  Section Title for Account Information  -->
             <Label Style="{StaticResource globalLabel}" Text="Account Information" />
             <BoxView HeightRequest="0.1" />
 
-            <!--  Email Input  -->
-            <local:CustomEntryContentView
-                Grid.Row="6"
-                IconSource="mail.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Email"
-                Text="{Binding Model.Email}" />
+
 
             <!--  Username Input  -->
             <local:CustomEntryContentView
                 Grid.Row="8"
-                IconSource="user.png"
+                IconSource="&#xe7fd;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Username"
                 Text="{Binding Model.Login.Username}" />
@@ -189,7 +112,7 @@
             <!--  Password Input  -->
             <local:CustomEntryContentView
                 Grid.Row="10"
-                IconSource="padlock.png"
+                IconSource="&#xe897;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 IsPassword="True"
                 Placeholder="Password"

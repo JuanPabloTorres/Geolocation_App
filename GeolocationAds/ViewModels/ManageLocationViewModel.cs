@@ -89,7 +89,7 @@ namespace GeolocationAds.ViewModels
 
             this.ApplyQueryAttributesCompleted += ManageLocationViewModel_ApplyQueryAttributesCompleted;
 
-            // Subscribe to the ItemDeletedEvent
+            //// Subscribe to the ItemDeletedEvent
             EventManager.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>
             {
                 // Handle the item deleted event here.

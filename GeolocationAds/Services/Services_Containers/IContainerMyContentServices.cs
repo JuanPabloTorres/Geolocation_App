@@ -7,7 +7,7 @@ namespace GeolocationAds.Services.Services_Containers
         ContentViewTemplateViewModel AdLocationTemplateViewModel { get; }
         IAdvertisementService AdvertisementService { get; }
         IGeolocationAdService GeolocationAdService { get; }
-        IAppSettingService AppSettingService { get; }
+
 
     }
 }

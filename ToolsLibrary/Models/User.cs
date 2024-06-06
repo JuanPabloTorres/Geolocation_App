@@ -9,6 +9,8 @@ namespace ToolsLibrary.Models
         InvalidUser = 2,
         ValidUser = 3,
         Active = 4,
+        CancelSubscription = 5,
+        Subscribe = 6
     }
 
     public class User : BaseModel
