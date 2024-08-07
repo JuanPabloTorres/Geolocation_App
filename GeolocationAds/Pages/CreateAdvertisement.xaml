@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.CreateAdvertisment"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:GeolocationAds.App_Converter"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewTemplate="clr-namespace:GeolocationAds.ViewTemplates"
+    Title="Content Creation"
+    BackgroundColor="WhiteSmoke"
+    Routing.Route="CreateAdvertisement">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding UploadContentCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe8a7;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem
+            Command="{Binding SubmitCommand}"
+            CommandParameter="{Binding Model}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+
+        <converters:AnimationConverter x:Key="AnimationConverter" />
+        <converters:LenghtCountConverter x:Key="LenghtCountConverter" />
+
+        <DataTemplate x:Key="WebViewDataTemplateCreate">
+
+            <Grid RowSpacing="2">
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <!--  New row for the buttons  -->
+                </Grid.RowDefinitions>
+                <WebView
+                    x:Name="web"
+                    Grid.Row="0"
+                    Navigating="WebView_Navigating"
+                    Source="{Binding UrlSource, Mode=TwoWay}" />
+
+                <!--  Button Container Grid  -->
+                <Grid Grid.Row="1" ColumnSpacing="4">
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="Auto" />
+                        <!--  New row for the buttons  -->
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Command="{Binding BackCommand}"
+                        CommandParameter="{x:Reference web}"
+                        IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaa7;" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Command="{Binding ForwardCommand}"
+                        CommandParameter="{x:Reference web}"
+                        IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaaa;" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Command="{Binding ReloadCommand}"
+                        CommandParameter="{x:Reference web}">
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+                        </Button.ImageSource>
+                    </Button>
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Command="{Binding OpenUrlCommand}">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                        </Button.ImageSource>
+
+                    </Button>
+
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        Command="{Binding RemoveCurrentItemCommand}"
+                        CommandParameter="{Binding CurrentAdvertisement}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+                        </Button.ImageSource>
+                    </Button>
+
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <!--<DataTemplate x:Key="WebViewDataTemplateCreate">
+
+            <Grid>
+
+                <WebView Navigating="WebView_Navigating" Source="{Binding UrlSource, Mode=TwoWay}" />
+
+        -->
+        <!--  Button Container Grid  -->
+        <!--
+                <Grid>
+        -->
+        <!--  Button is placed in the same cell as the image  -->
+        <!--
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+        -->
+        <!--  Button  -->
+        <!--
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding RemoveCurrentItemCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+                        </Button.ImageSource>
+                    </Button>
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding OpenUrlCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DataTemplate>-->
+
+        <DataTemplate x:Key="ImageDataTemplateCreate">
+
+            <Grid>
+
+                <ffimageloading:CachedImage
+                    Aspect="Fill"
+                    FadeAnimationEnabled="True"
+                    Source="{Binding Image}" />
+
+                <!--  Button Container Grid  -->
+                <Grid>
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Button  -->
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding RemoveCurrentItemCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplateCreate">
+
+            <Grid>
+
+                <toolkit:MediaElement
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Aspect="Fill"
+                    ShouldShowPlaybackControls="True"
+                    Source="{Binding MediaSource, Mode=TwoWay}" />
+
+                <!--  Button Container Grid  -->
+                <Grid>
+                    <!--  Button is placed in the same cell as the image  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Button  -->
+                    <Button
+                        Grid.Row="0"
+                        Command="{Binding RemoveCurrentItemCommand}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource XButton}"
+                        VerticalOptions="Start">
+
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.5"
+                                Radius="40"
+                                Offset="5,5" />
+                        </Button.Shadow>
+
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+                        </Button.ImageSource>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <templateSelector:ContentTypeTemplateSelector
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplateCreate}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateCreate}"
+            VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
+
+        <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+
+        <local:CustomEntryContentView
+            Grid.Row="1"
+            IconSource="&#xf05b;"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Placeholder="Title"
+            Text="{Binding Model.Title, Mode=TwoWay}" />
+
+        <local:CustomEditorContentView
+            Grid.Row="2"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Placeholder="Description"
+            Text="{Binding Model.Description, Mode=TwoWay}" />
+
+        <local:CustomPickerContentView
+            Grid.Row="3"
+            DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+            HorizontalOptions="FillAndExpand"
+            IconSource="arrow.png"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            ItemDisplayBindingPath="Value"
+            ItemsSource="{Binding AdTypesSettings}"
+            SelectValue="{Binding SelectedAdType}"
+            SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
+
+        <HorizontalStackLayout Grid.Row="4" HorizontalOptions="FillAndExpand">
+            <local:CustomEntryContentView
+                x:Name="urlValue"
+                IconSource="&#xe157;"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="URL"
+                Text="{Binding Url, Mode=TwoWay}"
+                WidthRequest="320" />
+
+            <Button
+                BackgroundColor="{StaticResource DarkViolet}"
+                Command="{Binding SetURLCommand}"
+                CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButtonUrL}">
+
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe145;" />
+                </Button.ImageSource>
+            </Button>
+        </HorizontalStackLayout>
+
+        <viewTemplate:EditAndCreateCarousel
+            x:Name="contentCollection"
+            Grid.Row="5"
+            IndicatorView="indicatorView"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding ContentTypesTemplate}" />
+
+        <IndicatorView
+            x:Name="indicatorView"
+            Grid.Row="5"
+            Margin="5"
+            Padding="5"
+            HorizontalOptions="Center"
+            IndicatorColor="{StaticResource AppBlack}"
+            IndicatorSize="15"
+            SelectedIndicatorColor="{StaticResource AppGray}"
+            VerticalOptions="End" />
+
+        <ActivityIndicator
+            Grid.Row="5"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
+    </Grid>
+</ContentPage>

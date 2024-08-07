@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HorizontalStackLayout
+    x:Class="GeolocationAds.ViewTemplates.ContentHeaderView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource AppBlack}"
+    Opacity="{StaticResource OpacityValue}">
+
+
+
+    <Button
+        Command="{Binding OpenActionPopUpCommand}"
+        CommandParameter="{Binding Advertisement}"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
+        </Button.ImageSource>
+    </Button>
+
+    <Button
+        CommandParameter="{Binding Advertisement}"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe88e;" />
+        </Button.ImageSource>
+    </Button>
+
+    <Button
+        Command="{Binding RemoveContentYesOrNoAlertCommand}"
+        CommandParameter="{Binding Advertisement}"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+        </Button.ImageSource>
+    </Button>
+
+
+
+</HorizontalStackLayout>

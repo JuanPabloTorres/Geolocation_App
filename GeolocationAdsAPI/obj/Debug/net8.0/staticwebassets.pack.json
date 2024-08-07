@@ -1,0 +1,697 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\0986fba3-5ff1-4fa2-895b-2752846be864\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\0986fba3-5ff1-4fa2-895b-2752846be864\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\0986fba3-5ff1-4fa2-895b-2752846be864\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\0986fba3-5ff1-4fa2-895b-2752846be864\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\0fe30437-ef0a-4c46-b604-b7459f865765\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\0fe30437-ef0a-4c46-b604-b7459f865765\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\0fe30437-ef0a-4c46-b604-b7459f865765\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\0fe30437-ef0a-4c46-b604-b7459f865765\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\1253d6b8-58d4-4506-b37e-a516b1e12ed8\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\1253d6b8-58d4-4506-b37e-a516b1e12ed8\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\1253d6b8-58d4-4506-b37e-a516b1e12ed8\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\1253d6b8-58d4-4506-b37e-a516b1e12ed8\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\12e34f18-e9a6-4b0e-9e3e-870ad72cdc0b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\12e34f18-e9a6-4b0e-9e3e-870ad72cdc0b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\12e34f18-e9a6-4b0e-9e3e-870ad72cdc0b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\12e34f18-e9a6-4b0e-9e3e-870ad72cdc0b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\1c495cd2-7d91-4df4-aac1-71703a6c73b8\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\1c495cd2-7d91-4df4-aac1-71703a6c73b8\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\1c495cd2-7d91-4df4-aac1-71703a6c73b8\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\1c495cd2-7d91-4df4-aac1-71703a6c73b8\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\21b5f951-bd43-4c78-a4ce-38d4159e7992\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\21b5f951-bd43-4c78-a4ce-38d4159e7992\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\21b5f951-bd43-4c78-a4ce-38d4159e7992\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\21b5f951-bd43-4c78-a4ce-38d4159e7992\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\21ded9ba-81d3-4be9-a867-90530ba63256\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\21ded9ba-81d3-4be9-a867-90530ba63256\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\21ded9ba-81d3-4be9-a867-90530ba63256\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\21ded9ba-81d3-4be9-a867-90530ba63256\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\28d81af1-77ec-4f0f-884f-ace690cb8d9b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\28d81af1-77ec-4f0f-884f-ace690cb8d9b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\28d81af1-77ec-4f0f-884f-ace690cb8d9b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\28d81af1-77ec-4f0f-884f-ace690cb8d9b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\28fd2601-8847-402d-bc43-ec30b5bb379d\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\28fd2601-8847-402d-bc43-ec30b5bb379d\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\28fd2601-8847-402d-bc43-ec30b5bb379d\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\28fd2601-8847-402d-bc43-ec30b5bb379d\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\28fd2601-8847-402d-bc43-ec30b5bb379d\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\28fd2601-8847-402d-bc43-ec30b5bb379d\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\3766d6d9-ea6f-4bcb-bb23-0be12f86d2b9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\3766d6d9-ea6f-4bcb-bb23-0be12f86d2b9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\3766d6d9-ea6f-4bcb-bb23-0be12f86d2b9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\3766d6d9-ea6f-4bcb-bb23-0be12f86d2b9\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\3ca1c243-a2cc-4376-b6b8-104ed7ff9ab5\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\3ca1c243-a2cc-4376-b6b8-104ed7ff9ab5\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\3ca1c243-a2cc-4376-b6b8-104ed7ff9ab5\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\3ca1c243-a2cc-4376-b6b8-104ed7ff9ab5\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\3d4b8508-d119-4571-aacb-633dfadac0ed\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\3d4b8508-d119-4571-aacb-633dfadac0ed\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\3d4b8508-d119-4571-aacb-633dfadac0ed\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\3d4b8508-d119-4571-aacb-633dfadac0ed\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\40a0d3cf-b1ef-4fed-99dd-0cb7012f080a\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\40a0d3cf-b1ef-4fed-99dd-0cb7012f080a\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\40a0d3cf-b1ef-4fed-99dd-0cb7012f080a\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\40a0d3cf-b1ef-4fed-99dd-0cb7012f080a\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\429fe806-c3a9-4d42-9ea6-46e887faefef\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\429fe806-c3a9-4d42-9ea6-46e887faefef\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\429fe806-c3a9-4d42-9ea6-46e887faefef\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\429fe806-c3a9-4d42-9ea6-46e887faefef\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\463336c6-78de-4291-a02b-5854c48a06b1\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\463336c6-78de-4291-a02b-5854c48a06b1\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\463336c6-78de-4291-a02b-5854c48a06b1\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\463336c6-78de-4291-a02b-5854c48a06b1\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\4706c655-beb7-4907-92da-ac0cf2d12d94\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\4706c655-beb7-4907-92da-ac0cf2d12d94\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\4706c655-beb7-4907-92da-ac0cf2d12d94\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\4706c655-beb7-4907-92da-ac0cf2d12d94\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\4706c655-beb7-4907-92da-ac0cf2d12d94\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\4706c655-beb7-4907-92da-ac0cf2d12d94\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\4b2b6e86-eae5-47fb-8508-3c2de1d5fec9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\4b2b6e86-eae5-47fb-8508-3c2de1d5fec9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\4b2b6e86-eae5-47fb-8508-3c2de1d5fec9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\4b2b6e86-eae5-47fb-8508-3c2de1d5fec9\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5000ba88-2942-43e2-aed7-b36f1221fe3d\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\5000ba88-2942-43e2-aed7-b36f1221fe3d\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5000ba88-2942-43e2-aed7-b36f1221fe3d\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\5000ba88-2942-43e2-aed7-b36f1221fe3d\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5123e601-5bc0-4f57-a2a5-620a700c9c6b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\5123e601-5bc0-4f57-a2a5-620a700c9c6b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5123e601-5bc0-4f57-a2a5-620a700c9c6b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\5123e601-5bc0-4f57-a2a5-620a700c9c6b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5123e601-5bc0-4f57-a2a5-620a700c9c6b\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\5123e601-5bc0-4f57-a2a5-620a700c9c6b\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5228f598-621f-40e0-b35b-adc6fc9571f9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\5228f598-621f-40e0-b35b-adc6fc9571f9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5228f598-621f-40e0-b35b-adc6fc9571f9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\5228f598-621f-40e0-b35b-adc6fc9571f9\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\53549b94-c42e-4d4f-bec3-204967a6e72b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\53549b94-c42e-4d4f-bec3-204967a6e72b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\53549b94-c42e-4d4f-bec3-204967a6e72b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\53549b94-c42e-4d4f-bec3-204967a6e72b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5e450fe7-a703-478e-878c-236228ac8023\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\5e450fe7-a703-478e-878c-236228ac8023\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\5e450fe7-a703-478e-878c-236228ac8023\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\5e450fe7-a703-478e-878c-236228ac8023\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\63961923-fff6-41b3-bd34-cc059628d701\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\63961923-fff6-41b3-bd34-cc059628d701\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\63961923-fff6-41b3-bd34-cc059628d701\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\63961923-fff6-41b3-bd34-cc059628d701\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\6c53fea1-5496-4f38-bde3-b0ee41a2b52c\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\6c53fea1-5496-4f38-bde3-b0ee41a2b52c\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\6c53fea1-5496-4f38-bde3-b0ee41a2b52c\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\6c53fea1-5496-4f38-bde3-b0ee41a2b52c\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\78133b55-9c30-48a0-ade5-801d379d2a23\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\78133b55-9c30-48a0-ade5-801d379d2a23\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\78133b55-9c30-48a0-ade5-801d379d2a23\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\78133b55-9c30-48a0-ade5-801d379d2a23\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f8c1b21-8ecc-4ca0-b024-bd76d245e9b7\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\7f8c1b21-8ecc-4ca0-b024-bd76d245e9b7\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7f8c1b21-8ecc-4ca0-b024-bd76d245e9b7\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\7f8c1b21-8ecc-4ca0-b024-bd76d245e9b7\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7fd88724-5d78-4c5c-ae12-65de1725d08d\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\7fd88724-5d78-4c5c-ae12-65de1725d08d\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7fd88724-5d78-4c5c-ae12-65de1725d08d\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\7fd88724-5d78-4c5c-ae12-65de1725d08d\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\7fd88724-5d78-4c5c-ae12-65de1725d08d\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\7fd88724-5d78-4c5c-ae12-65de1725d08d\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\80bd8c4d-bbe3-4a04-92f3-763a477c9851\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\80bd8c4d-bbe3-4a04-92f3-763a477c9851\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\80bd8c4d-bbe3-4a04-92f3-763a477c9851\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\80bd8c4d-bbe3-4a04-92f3-763a477c9851\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\82c1fd3c-676b-4c09-9ac7-c81abed889df\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\82c1fd3c-676b-4c09-9ac7-c81abed889df\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\82c1fd3c-676b-4c09-9ac7-c81abed889df\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\82c1fd3c-676b-4c09-9ac7-c81abed889df\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\87ed2c2e-5833-4214-83a2-f7b567cf4cc5\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\87ed2c2e-5833-4214-83a2-f7b567cf4cc5\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\87ed2c2e-5833-4214-83a2-f7b567cf4cc5\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\87ed2c2e-5833-4214-83a2-f7b567cf4cc5\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\896b8864-762b-48b0-b9a2-86b905748141\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\896b8864-762b-48b0-b9a2-86b905748141\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\896b8864-762b-48b0-b9a2-86b905748141\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\896b8864-762b-48b0-b9a2-86b905748141\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8a8d2977-e333-481c-a9e7-1a38126e5855\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\8a8d2977-e333-481c-a9e7-1a38126e5855\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8a8d2977-e333-481c-a9e7-1a38126e5855\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\8a8d2977-e333-481c-a9e7-1a38126e5855\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8beacda6-1f10-48fa-b46f-691435bb94ad\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\8beacda6-1f10-48fa-b46f-691435bb94ad\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8beacda6-1f10-48fa-b46f-691435bb94ad\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\8beacda6-1f10-48fa-b46f-691435bb94ad\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8c76bbd4-2670-4ba6-a0bd-837bf346d324\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\8c76bbd4-2670-4ba6-a0bd-837bf346d324\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8c76bbd4-2670-4ba6-a0bd-837bf346d324\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\8c76bbd4-2670-4ba6-a0bd-837bf346d324\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8d562e01-be08-435e-9be1-2a55e9014881\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\8d562e01-be08-435e-9be1-2a55e9014881\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\8d562e01-be08-435e-9be1-2a55e9014881\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\8d562e01-be08-435e-9be1-2a55e9014881\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\918c3949-1680-4507-b72c-1fb32de2d098\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\918c3949-1680-4507-b72c-1fb32de2d098\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\918c3949-1680-4507-b72c-1fb32de2d098\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\918c3949-1680-4507-b72c-1fb32de2d098\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\9339d179-e89c-4dd8-be1b-2fcf26c63307\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\9339d179-e89c-4dd8-be1b-2fcf26c63307\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\9339d179-e89c-4dd8-be1b-2fcf26c63307\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\9339d179-e89c-4dd8-be1b-2fcf26c63307\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\936f19b5-697b-45fa-8d2e-bded8ab977d5\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\936f19b5-697b-45fa-8d2e-bded8ab977d5\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\936f19b5-697b-45fa-8d2e-bded8ab977d5\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\936f19b5-697b-45fa-8d2e-bded8ab977d5\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93fa2497-2e1f-4f5e-9aa4-31885a46d3cf\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\93fa2497-2e1f-4f5e-9aa4-31885a46d3cf\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\93fa2497-2e1f-4f5e-9aa4-31885a46d3cf\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\93fa2497-2e1f-4f5e-9aa4-31885a46d3cf\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\958a0030-cda6-48b2-b6ee-ddf2ab11055a\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\958a0030-cda6-48b2-b6ee-ddf2ab11055a\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\958a0030-cda6-48b2-b6ee-ddf2ab11055a\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\958a0030-cda6-48b2-b6ee-ddf2ab11055a\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\996935b8-f335-4f38-bc15-4f7adb4de972\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\996935b8-f335-4f38-bc15-4f7adb4de972\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\996935b8-f335-4f38-bc15-4f7adb4de972\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\996935b8-f335-4f38-bc15-4f7adb4de972\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\9f83620b-250a-4372-a051-5e4033bdf5e9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\9f83620b-250a-4372-a051-5e4033bdf5e9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\9f83620b-250a-4372-a051-5e4033bdf5e9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\9f83620b-250a-4372-a051-5e4033bdf5e9\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\9fad5fe0-5fc9-4170-bba8-ef3a9741619c\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\9fad5fe0-5fc9-4170-bba8-ef3a9741619c\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\9fad5fe0-5fc9-4170-bba8-ef3a9741619c\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\9fad5fe0-5fc9-4170-bba8-ef3a9741619c\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a0549682-c74f-4664-a7d6-e6128e684a07\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\a0549682-c74f-4664-a7d6-e6128e684a07\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a0549682-c74f-4664-a7d6-e6128e684a07\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\a0549682-c74f-4664-a7d6-e6128e684a07\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a085d757-61ee-4813-8c75-628264e9b718\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\a085d757-61ee-4813-8c75-628264e9b718\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a085d757-61ee-4813-8c75-628264e9b718\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\a085d757-61ee-4813-8c75-628264e9b718\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a1c02ce8-0f3c-4b11-85a6-99f3921b0c2d\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\a1c02ce8-0f3c-4b11-85a6-99f3921b0c2d\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a1c02ce8-0f3c-4b11-85a6-99f3921b0c2d\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\a1c02ce8-0f3c-4b11-85a6-99f3921b0c2d\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a27151f9-b990-48f0-afb1-ee79b5a2401b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\a27151f9-b990-48f0-afb1-ee79b5a2401b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a27151f9-b990-48f0-afb1-ee79b5a2401b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\a27151f9-b990-48f0-afb1-ee79b5a2401b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a492fae5-504a-4baf-83b1-463fcdc0f0de\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\a492fae5-504a-4baf-83b1-463fcdc0f0de\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a492fae5-504a-4baf-83b1-463fcdc0f0de\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\a492fae5-504a-4baf-83b1-463fcdc0f0de\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a4f553ec-a5ac-416e-a1df-3ba3b5a66af1\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\a4f553ec-a5ac-416e-a1df-3ba3b5a66af1\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\a4f553ec-a5ac-416e-a1df-3ba3b5a66af1\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\a4f553ec-a5ac-416e-a1df-3ba3b5a66af1\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ad489e26-f978-4e73-9e6a-6461627a6bb0\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\ad489e26-f978-4e73-9e6a-6461627a6bb0\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ad489e26-f978-4e73-9e6a-6461627a6bb0\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\ad489e26-f978-4e73-9e6a-6461627a6bb0\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\b168815a-4adf-48ed-8162-b33c20b84f47\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\b168815a-4adf-48ed-8162-b33c20b84f47\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\b168815a-4adf-48ed-8162-b33c20b84f47\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\b168815a-4adf-48ed-8162-b33c20b84f47\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\b9089132-71a7-45c0-8712-e17cbeace3ce\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\b9089132-71a7-45c0-8712-e17cbeace3ce\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\b9089132-71a7-45c0-8712-e17cbeace3ce\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\b9089132-71a7-45c0-8712-e17cbeace3ce\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\b9415d63-90d7-4a93-8793-a5e51eb42ba1\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\b9415d63-90d7-4a93-8793-a5e51eb42ba1\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\b9415d63-90d7-4a93-8793-a5e51eb42ba1\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\b9415d63-90d7-4a93-8793-a5e51eb42ba1\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c24b2b32-aa30-4fea-9977-19039829983b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\c24b2b32-aa30-4fea-9977-19039829983b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c24b2b32-aa30-4fea-9977-19039829983b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\c24b2b32-aa30-4fea-9977-19039829983b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c2f00033-8399-4f71-926d-f2717f225253\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\c2f00033-8399-4f71-926d-f2717f225253\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c2f00033-8399-4f71-926d-f2717f225253\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\c2f00033-8399-4f71-926d-f2717f225253\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c3537eab-c022-492b-802b-e5c8b2caf40b\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\c3537eab-c022-492b-802b-e5c8b2caf40b\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c3537eab-c022-492b-802b-e5c8b2caf40b\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\c3537eab-c022-492b-802b-e5c8b2caf40b\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c6f9e02d-9726-4094-bfd5-6acd8104dd71\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\c6f9e02d-9726-4094-bfd5-6acd8104dd71\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c6f9e02d-9726-4094-bfd5-6acd8104dd71\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\c6f9e02d-9726-4094-bfd5-6acd8104dd71\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c8e42432-fee2-4ffd-a3e3-f85b15d579a0\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\c8e42432-fee2-4ffd-a3e3-f85b15d579a0\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\c8e42432-fee2-4ffd-a3e3-f85b15d579a0\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\c8e42432-fee2-4ffd-a3e3-f85b15d579a0\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ca09a847-21e1-4252-8fc9-e9122f37d402\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\ca09a847-21e1-4252-8fc9-e9122f37d402\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ca09a847-21e1-4252-8fc9-e9122f37d402\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\ca09a847-21e1-4252-8fc9-e9122f37d402\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cb0d3cc9-53cb-4fbe-9f6f-3f735f064475\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\cb0d3cc9-53cb-4fbe-9f6f-3f735f064475\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cb0d3cc9-53cb-4fbe-9f6f-3f735f064475\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\cb0d3cc9-53cb-4fbe-9f6f-3f735f064475\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cd068882-5c86-438b-96b8-f144cef308e2\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\cd068882-5c86-438b-96b8-f144cef308e2\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cd068882-5c86-438b-96b8-f144cef308e2\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\cd068882-5c86-438b-96b8-f144cef308e2\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cd656703-aed6-489b-b175-1c245a35d0f4\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\cd656703-aed6-489b-b175-1c245a35d0f4\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cd656703-aed6-489b-b175-1c245a35d0f4\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\cd656703-aed6-489b-b175-1c245a35d0f4\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cdb3cc19-277b-45aa-a026-3608ab267737\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\cdb3cc19-277b-45aa-a026-3608ab267737\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\cdb3cc19-277b-45aa-a026-3608ab267737\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\cdb3cc19-277b-45aa-a026-3608ab267737\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d2352ebb-0588-42cb-887c-4b35f80777cd\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\d2352ebb-0588-42cb-887c-4b35f80777cd\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d2352ebb-0588-42cb-887c-4b35f80777cd\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\d2352ebb-0588-42cb-887c-4b35f80777cd\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d5a48cda-1e37-4c9f-bee6-ff9beff3d8d9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\d5a48cda-1e37-4c9f-bee6-ff9beff3d8d9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d5a48cda-1e37-4c9f-bee6-ff9beff3d8d9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\d5a48cda-1e37-4c9f-bee6-ff9beff3d8d9\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d5a48cda-1e37-4c9f-bee6-ff9beff3d8d9\\output1.ts",
+      "PackagePath": "staticwebassets\\hls\\d5a48cda-1e37-4c9f-bee6-ff9beff3d8d9\\output1.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d61c9729-35be-4323-a98f-2754828e2419\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\d61c9729-35be-4323-a98f-2754828e2419\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d61c9729-35be-4323-a98f-2754828e2419\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\d61c9729-35be-4323-a98f-2754828e2419\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d80cfda6-972a-45ea-a972-d26f0387593a\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\d80cfda6-972a-45ea-a972-d26f0387593a\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d80cfda6-972a-45ea-a972-d26f0387593a\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\d80cfda6-972a-45ea-a972-d26f0387593a\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d8590b3e-6adb-48fb-ab95-f9544981e66a\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\d8590b3e-6adb-48fb-ab95-f9544981e66a\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d8590b3e-6adb-48fb-ab95-f9544981e66a\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\d8590b3e-6adb-48fb-ab95-f9544981e66a\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d9b18c32-e68f-4d5c-8088-e7f71698cdb4\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\d9b18c32-e68f-4d5c-8088-e7f71698cdb4\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\d9b18c32-e68f-4d5c-8088-e7f71698cdb4\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\d9b18c32-e68f-4d5c-8088-e7f71698cdb4\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\de088756-8b4b-40c0-ae48-7996671a5335\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\de088756-8b4b-40c0-ae48-7996671a5335\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\de088756-8b4b-40c0-ae48-7996671a5335\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\de088756-8b4b-40c0-ae48-7996671a5335\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\e1e8ec10-bae1-442f-99c7-072081aefcbb\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\e1e8ec10-bae1-442f-99c7-072081aefcbb\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\e1e8ec10-bae1-442f-99c7-072081aefcbb\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\e1e8ec10-bae1-442f-99c7-072081aefcbb\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\e7e1e0dc-e4d9-4c4d-82da-6b66f803a770\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\e7e1e0dc-e4d9-4c4d-82da-6b66f803a770\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\e7e1e0dc-e4d9-4c4d-82da-6b66f803a770\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\e7e1e0dc-e4d9-4c4d-82da-6b66f803a770\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\e978ff5e-2385-4c25-998c-8d6c74df3760\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\e978ff5e-2385-4c25-998c-8d6c74df3760\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\e978ff5e-2385-4c25-998c-8d6c74df3760\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\e978ff5e-2385-4c25-998c-8d6c74df3760\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ecbcbfb0-f82b-4b89-af7a-3ff682746ee4\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\ecbcbfb0-f82b-4b89-af7a-3ff682746ee4\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ecbcbfb0-f82b-4b89-af7a-3ff682746ee4\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\ecbcbfb0-f82b-4b89-af7a-3ff682746ee4\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ede57167-d94d-4004-bb53-23aff276405c\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\ede57167-d94d-4004-bb53-23aff276405c\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ede57167-d94d-4004-bb53-23aff276405c\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\ede57167-d94d-4004-bb53-23aff276405c\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ede9ce3e-2af7-47fc-b8d3-4e3a956246d9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\ede9ce3e-2af7-47fc-b8d3-4e3a956246d9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\ede9ce3e-2af7-47fc-b8d3-4e3a956246d9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\ede9ce3e-2af7-47fc-b8d3-4e3a956246d9\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f28fa6ba-6bdf-4cc8-b6ee-b8347e2574dc\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\f28fa6ba-6bdf-4cc8-b6ee-b8347e2574dc\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f28fa6ba-6bdf-4cc8-b6ee-b8347e2574dc\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\f28fa6ba-6bdf-4cc8-b6ee-b8347e2574dc\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f2c5370e-88bf-45c4-a440-4949fedeb2c6\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\f2c5370e-88bf-45c4-a440-4949fedeb2c6\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f2c5370e-88bf-45c4-a440-4949fedeb2c6\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\f2c5370e-88bf-45c4-a440-4949fedeb2c6\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f8b48799-4e1b-4f5a-86d9-f382aa1cdfb3\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\f8b48799-4e1b-4f5a-86d9-f382aa1cdfb3\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f8b48799-4e1b-4f5a-86d9-f382aa1cdfb3\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\f8b48799-4e1b-4f5a-86d9-f382aa1cdfb3\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f9133ed7-49e2-4e7b-976d-ec2971454224\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\f9133ed7-49e2-4e7b-976d-ec2971454224\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\f9133ed7-49e2-4e7b-976d-ec2971454224\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\f9133ed7-49e2-4e7b-976d-ec2971454224\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\fe4f9ab8-13fd-4379-8015-abff1b1334aa\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\fe4f9ab8-13fd-4379-8015-abff1b1334aa\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\fe4f9ab8-13fd-4379-8015-abff1b1334aa\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\fe4f9ab8-13fd-4379-8015-abff1b1334aa\\output0.ts"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\feb4ffef-99e2-4482-87a8-48e06b09faa9\\output.m3u8",
+      "PackagePath": "staticwebassets\\hls\\feb4ffef-99e2-4482-87a8-48e06b09faa9\\output.m3u8"
+    },
+    {
+      "Id": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\hls\\feb4ffef-99e2-4482-87a8-48e06b09faa9\\output0.ts",
+      "PackagePath": "staticwebassets\\hls\\feb4ffef-99e2-4482-87a8-48e06b09faa9\\output0.ts"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GeolocationAdsAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.GeolocationAdsAPI.props",
+      "PackagePath": "build\\GeolocationAdsAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GeolocationAdsAPI.props",
+      "PackagePath": "buildMultiTargeting\\GeolocationAdsAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.GeolocationAdsAPI.props",
+      "PackagePath": "buildTransitive\\GeolocationAdsAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

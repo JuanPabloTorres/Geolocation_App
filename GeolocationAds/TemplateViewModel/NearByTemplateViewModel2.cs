@@ -1,0 +1,323 @@
+﻿using CommunityToolkit.Maui.Core.Primitives;
+using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.AppTools;
+using GeolocationAds.Pages;
+using GeolocationAds.PopUps;
+using GeolocationAds.Services;
+using GeolocationAds.ViewModels;
+using ToolsLibrary.Extensions;
+using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
+
+namespace GeolocationAds.TemplateViewModel
+{
+    public partial class NearByTemplateViewModel2 : BaseTemplateViewModel
+    {
+        [ObservableProperty]
+        private Advertisement advertisement;
+
+        [ObservableProperty]
+        private MediaSource mediaSource;
+
+        [ObservableProperty]
+        private Image image;
+
+        [ObservableProperty]
+        private WebViewSource urlSource;
+
+        protected readonly LogUserPerfilTool LogUser;
+
+        protected readonly ICaptureService service;
+
+        public delegate void MediaElementPlayingEventHandler(object sender, MediaStateChangedEventArgs e);
+
+        public static event MediaElementPlayingEventHandler MediaElementPlaying;
+
+        public string VideoFilePath { get; set; }
+
+        [ObservableProperty]
+        private bool isExpanded;
+
+        private const int MaxLengthWithoutExpand = 100;
+
+        public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
+
+
+        public NearByTemplateViewModel2(ICaptureService captureService, IAdvertisementService advertisementService, Advertisement advertisement, LogUserPerfilTool logUser) : base(advertisementService)
+        {
+            this.LogUser = logUser;
+
+            this.Advertisement = advertisement;
+
+            this.service = captureService;
+
+            Task.Run(async () =>
+            {
+                await InitializeAsync();
+            });
+        }
+
+        private string TruncateDescription(string description)
+        {
+            const int maxLength = 100; // Adjust the length as needed
+
+            return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
+        }
+
+        [RelayCommand]
+        private void ToggleExpand()
+        {
+            IsExpanded = !IsExpanded;
+
+            OnPropertyChanged(nameof(DisplayDescription));
+        }
+
+        public async Task InitializeAsync()
+        {
+            try
+            {
+                var content = this.Advertisement.Contents.FirstOrDefault();
+
+                if (content != null)
+                {
+                    switch (content.Type)
+                    {
+                        case ContentVisualType.URL:
+
+                            this.UrlSource = new Uri(content.Url);
+
+                            break;
+
+                        case ContentVisualType.Image:
+
+                            this.Image = new Image();
+
+                            this.Image.Source = await LoadImageAsync(content.Content);
+
+                            break;
+
+                        case ContentVisualType.Video:
+
+                            var _streamingResponse = await this.advertisementService.GetStreamingVideoUrl(content.ID);
+
+                            if (!_streamingResponse.IsSuccess)
+                            {
+                                await CommonsTool.DisplayAlert("Error", _streamingResponse.Message);
+                            }
+
+                            this.MediaSource = _streamingResponse.Data;
+
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+        private async Task<ImageSource> LoadImageAsync(byte[] imageData)
+        {
+            return await Task.Run(() => AppToolCommon.LoadImageFromBytes(imageData));
+        }
+
+        private async Task<MediaSource> SaveToTempAsync(byte[] videoData)
+        {
+            VideoFilePath = await CommonsTool.SaveByteArrayToPartialFile3(videoData, string.Empty);
+
+            return VideoFilePath;
+        }
+
+        public async Task FillTemplate()
+        {
+            try
+            {
+                if (!this.Advertisement.Contents.IsObjectNull())
+                {
+                    if (this.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.Image)
+                    {
+                        if (this.Image.IsObjectNull())
+                        {
+                            this.Image = new Image();
+                        }
+
+                        var _imageBytes = this.Advertisement.Contents.FirstOrDefault().Content;
+
+                        Image.Source = AppToolCommon.LoadImageFromBytes(_imageBytes);
+                    }
+
+                    if (this.Advertisement.Contents.FirstOrDefault().Type == ContentVisualType.Video)
+                    {
+                        var file = await CommonsTool.SaveByteArrayToTempFile2(this.Advertisement.Contents.FirstOrDefault().Content);
+
+                        this.MediaSource = file;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        public async Task CaptureItem(Advertisement advertisement)
+        {
+            try
+            {
+                this.IsLoading = true;
+
+                var _capture = new Capture()
+                {
+                    AdvertisementId = this.Advertisement.ID,
+                    UserId = this.LogUser.GetUserId(),
+                    CreateDate = DateTime.Now,
+                    CreateBy = this.LogUser.GetUserId(),
+                };
+
+                var _apiResponse = await this.service.Add(_capture);
+
+                if (_apiResponse.IsSuccess)
+                {
+                    await CommonsTool.DisplayAlert("Notification", "Capture completed successfully.");
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
+        }
+
+        [RelayCommand]
+        public override async Task OpenMetaDataPopUp()
+        {
+            try
+            {
+                var _metaDataViewModel = new MetaDataViewModel()
+                {
+                    CreateDate = this.Advertisement.CreateDate,
+                    DataSize = this.Advertisement.Contents.FirstOrDefault().FileSize
+                };
+
+                var _metadataPopUp = new MetaDataPopUp(_metaDataViewModel);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(_metadataPopUp);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+        }
+
+        [RelayCommand]
+        public async Task GoDetail(int adId)
+        {
+            try
+            {
+                this.IsLoading = true;
+
+                var navigationParameter = new Dictionary<string, object> { { "ID", this.Advertisement.ID } };
+
+                await NavigateAsync(nameof(NearByItemDetail), navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
+        }
+
+        [RelayCommand]
+        public async Task OpenUrl(UrlWebViewSource source)
+        {
+            try
+            {
+                await Browser.Default.OpenAsync(source.Url, BrowserLaunchMode.SystemPreferred);  // Open the URL in the system preferred browser.
+            }
+            catch (Exception ex)
+            {
+                // Handle or log exceptions that might occur (e.g., invalid URL format)
+                await CommonsTool.DisplayAlert("Error", $"Could not open URL: {ex.Message}");
+            }
+        }
+
+        [RelayCommand]
+        public async Task Back(WebView webView)
+        {
+            if (webView.CanGoBack)
+            {
+                webView.GoBack();
+            }
+        }
+
+        [RelayCommand]
+        public void Forward(WebView webView)
+        {
+            if (webView.CanGoForward)
+            {
+                webView.GoForward();
+            }
+        }
+
+        [RelayCommand]
+        public void Reload(WebView webView)
+        {
+            webView?.Reload();
+        }
+
+        [RelayCommand]
+        public async Task BackMedia(MediaElement mediaElement)
+        {
+            var newPosition = mediaElement.Position - TimeSpan.FromSeconds(10);
+
+            await mediaElement.SeekTo(newPosition < TimeSpan.Zero ? TimeSpan.Zero : newPosition);
+        }
+
+        [RelayCommand]
+        public async Task ForwardMedia(MediaElement mediaElement)
+        {
+            var newPosition = mediaElement.Position + TimeSpan.FromSeconds(10);
+
+            await mediaElement.SeekTo(newPosition > mediaElement.Duration ? mediaElement.Duration : newPosition);
+        }
+
+        [RelayCommand]
+        public void PlayPause(MediaElement mediaElement)
+        {
+            if (mediaElement.CurrentState == MediaElementState.Playing)
+            {
+                mediaElement.Pause();
+            }
+            else
+            {
+                mediaElement.Play();
+            }
+        }
+
+        [RelayCommand]
+        public async Task ReloadMedia(MediaElement mediaElement)
+        {
+            //mediaElement.Stop();
+
+            //mediaElement.Play();
+
+            await mediaElement.SeekTo(TimeSpan.Zero);
+
+            mediaElement.Play();
+        }
+    }
+}

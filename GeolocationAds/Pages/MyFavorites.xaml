@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.MyFavorites"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controlDisplayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="My Captures"
+    BackgroundColor="WhiteSmoke">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="ImageDataTemplateForDisplay2">
+
+            <displayer:ImageDisplayer IsMyCaptureHeaderVisible="True" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplateForDisplay2">
+
+            <displayer:VideoDisplayer IsMyCaptureHeaderVisible="True" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="WebViewDataTemplateForDisplay">
+
+            <displayer:WebViewDisplayer IsMyCaptureHeaderVisible="True" />
+        </DataTemplate>
+
+        <templateSelector:CaptureTemplateSelector
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplateForDisplay2}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateForDisplay}"
+            VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CarouselView
+            x:Name="carouselView"
+            Grid.Row="0"
+            IsSwipeEnabled="False"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding CaptureTemplateViewModels}">
+
+            <CarouselView.EmptyView>
+
+                <Grid>
+                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Load Content To Display." />
+                </Grid>
+            </CarouselView.EmptyView>
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+        </CarouselView>
+
+
+
+        <controlDisplayer:PaginControls
+            x:Name="paginControls"
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
+        <HorizontalStackLayout
+            Grid.Row="2"
+            BackgroundColor="{StaticResource AppGray}"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            VerticalOptions="End">
+            <Label
+                x:Name="counterLabel"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding CaptureTemplateViewModels.Count, StringFormat='Total: {0:N0}'}"
+                TextColor="White" />
+
+            <Label
+                x:Name="filterType"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedAdType.Value, StringFormat='{0}'}"
+                TextColor="White" />
+            <Label
+                x:Name="filterDistance"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedDistance, StringFormat='Distance: {0}'}"
+                TextColor="White" />
+        </HorizontalStackLayout>
+
+
+        <ActivityIndicator
+            Grid.Row="1"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
+    </Grid>
+</ContentPage>

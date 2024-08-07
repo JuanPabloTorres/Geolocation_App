@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.EditUserPerfil"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    Title="Update Profile"
+    BackgroundColor="WhiteSmoke">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding SubmitUpdateCommand}" CommandParameter="{Binding Model}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+
+    <ScrollView HorizontalScrollBarVisibility="Never">
+        <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
+            <Border
+                Grid.Row="0"
+                BackgroundColor="White"
+                HeightRequest="150"
+                HorizontalOptions="FillAndExpand"
+                StrokeThickness="0"
+                VerticalOptions="Start">
+                <Grid>
+                    <GraphicsView
+                        BackgroundColor="WhiteSmoke"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill">
+                        <GraphicsView.Drawable>
+                            <drawable:SemiCircle />
+                        </GraphicsView.Drawable>
+                    </GraphicsView>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text=" Modify Your Profile"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+            </Border>
+
+
+            <VerticalStackLayout>
+
+                <Label Style="{StaticResource globalLabel}" Text="Profile Information" />
+                <BoxView HeightRequest="0.1" />
+            </VerticalStackLayout>
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+
+
+            <local:CustomEntryContentView
+                Grid.Row="3"
+                IconSource="&#xe7fd;"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="FullName"
+                Text="{Binding Model.FullName}" />
+
+
+            <local:CustomEntryContentView
+                Grid.Row="5"
+                IconSource="&#xe0b0;"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="Phone"
+                Text="{Binding Model.Phone}" />
+
+
+            <local:CustomEntryContentView
+                Grid.Row="7"
+                IconSource="&#xe158;"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Placeholder="Email"
+                Text="{Binding Model.Email}" />
+
+            <ContentView
+                x:Name="LoadingIndicatorContainer"
+                Grid.Row="8"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand">
+                <ContentView.Content>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                </ContentView.Content>
+            </ContentView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

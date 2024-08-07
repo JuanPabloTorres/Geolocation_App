@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GeolocationAds.Pages.SearchAd"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    Title="Search and Discover"
+    BackgroundColor="WhiteSmoke"
+    Routing.Route="SearchAd">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding SearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xf04e;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="ImageDataTemplateForDisplayHome">
+
+            <displayer:ImageDisplayer IsSearchContentStackHeaderVisible="True" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="VideoDataTemplateForDisplayHome">
+
+            <displayer:VideoDisplayer IsSearchContentStackHeaderVisible="True" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="WebViewDataTemplateForDisplayHome">
+
+            <displayer:WebViewDisplayer IsSearchContentStackHeaderVisible="True" />
+        </DataTemplate>
+
+        <templateSelector:ContentViewHomeListItemSelector
+            x:Key="typeSelector"
+            ImageDataTemplate="{StaticResource ImageDataTemplateForDisplayHome}"
+            UrlDataTemplate="{StaticResource WebViewDataTemplateForDisplayHome}"
+            VideoDataTemplate="{StaticResource VideoDataTemplateForDisplayHome}" />
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <CarouselView
+            x:Name="carouselView"
+            Grid.Row="0"
+            IsSwipeEnabled="False"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding NearByTemplateViewModels}"
+            Position="{Binding CarouselViewPosition}">
+
+            <CarouselView.EmptyView>
+
+                <Grid>
+
+                    <ffimageloading:CachedImage
+                        Aspect="AspectFit"
+                        FadeAnimationEnabled="True"
+                        HeightRequest="100"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Source="radar.gif" />
+                </Grid>
+            </CarouselView.EmptyView>
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+        </CarouselView>
+
+
+
+
+
+
+
+
+        <displayer:PaginControls
+            x:Name="paginControls"
+            Grid.Row="1"
+            IsBackButtonEnabled="{Binding IsBackEnabled, Mode=TwoWay}"
+            IsBackButtonVisible="{Binding IsBackVisible, Mode=TwoWay}"
+            IsNextButtonEnabled="{Binding IsNextEnabled, Mode=TwoWay}"
+            IsNextButtonVisible="{Binding IsNextVisible, Mode=TwoWay}">
+            <displayer:PaginControls.IsVisible>
+                <MultiBinding Converter="{StaticResource IsVisibleConverterMultiParam}">
+                    <Binding Path="IsLoading" />
+                    <Binding Path="NearByTemplateViewModels.Count" />
+                </MultiBinding>
+            </displayer:PaginControls.IsVisible>
+        </displayer:PaginControls>
+
+        <HorizontalStackLayout
+            Grid.Row="2"
+            BackgroundColor="{StaticResource AppGray}"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            VerticalOptions="End">
+            <Label
+                x:Name="counterLabel"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding NearByTemplateViewModels.Count, StringFormat='Nearby: {0:N0}'}"
+                TextColor="White" />
+
+            <Label
+                x:Name="filterType"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedAdType.Value, StringFormat='{0}'}"
+                TextColor="White" />
+            <Label
+                x:Name="filterDistance"
+                Grid.Row="0"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedDistance, StringFormat='Distance: {0}'}"
+                TextColor="White" />
+        </HorizontalStackLayout>
+
+        <ActivityIndicator
+            Grid.Row="1"
+            IsRunning="{Binding IsLoading}"
+            Style="{StaticResource globalLoading}" />
+    </Grid>
+</ContentPage>

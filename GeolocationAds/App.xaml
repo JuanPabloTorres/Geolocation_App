@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application
+    x:Class="GeolocationAds.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
+    xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:local="clr-namespace:GeolocationAds"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  URLs  -->
+            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
+
+            <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
+
+            <!--<x:String x:Key="BackendUrl">http://ip:port/api</x:String>-->
+
+            <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
+
+            <Color x:Key="AppGray">#3e4144</Color>
+
+            <Color x:Key="AppBlack">#242124</Color>
+
+            <Color x:Key="DeepBlue">#1c1447</Color>
+            <!--  Un azul oscuro profundo  -->
+
+            <Color x:Key="MediumPurple">#7f2481</Color>
+            <!--  Un púrpura medio  -->
+
+            <Color x:Key="BrightOrangeRed">#e1482b</Color>
+            <!--  Un rojo anaranjado brillante  -->
+
+            <Color x:Key="Burgundy">#961e52</Color>
+            <!--  Un rojo burdeos  -->
+
+            <Color x:Key="DarkViolet">#5a1b60</Color>
+            <!--  Un violeta oscuro  -->
+
+            <Color x:Key="DarkFuchsia">#bf1d57</Color>
+
+            <Color x:Key="WhiteSmoke">#F5F5F5</Color>
+            <!--  Un fucsia oscuro  -->
+
+            <x:Double x:Key="OpacityValue">0.9</x:Double>
+
+            <!--  Global  -->
+            <Style x:Key="globalLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <Style x:Key="globalTitle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource AppGray}" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <Style x:Key="globalsubTitle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <Style x:Key="globalEntry" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+
+
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style x:Key="globalEditor" TargetType="Editor">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="MaxLength" Value="180" />
+                <Setter Property="HeightRequest" Value="150" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Keyboard" Value="Text" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style x:Key="globalPicker" TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+
+
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+            <Style x:Key="globalDescriptionLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+
+
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="MaxLines" Value="5" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <Style x:Key="globalButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="25" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkFuchsia}" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.3"
+                            Radius="10"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+
+            <Style x:Key="downArrowglobalButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+
+
+            </Style>
+
+            <Style x:Key="globalButtonUrL" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkFuchsia}" />
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.3"
+                            Radius="10"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+
+            <Style x:Key="pagingBtn" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="Margin" Value="3" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+
+                <Setter Property="BorderWidth" Value="0.5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource AppGray}" />
+
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.3"
+                            Radius="10"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="globalLoading" TargetType="ActivityIndicator">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Color" Value="Red" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+
+            <Style x:Key="cardBorder" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <!--  Define the Shadow resource first  -->
+            <Shadow
+                x:Key="MyShadow"
+                Brush="#99000000"
+                Opacity="0.8"
+                Radius="6"
+                Offset="0,4" />
+
+            <!--  Define the Border style  -->
+            <Style x:Key="CustomBorderStyle" TargetType="Border">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="CustomBorderStyle2" TargetType="Border">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="avatarBorderStyle" TargetType="Border">
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="#F5F5F5" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="#961e52" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="borderOnHeaderControls" TargetType="Border">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Background" Value="#F5F5F5" />
+                <Setter Property="Opacity" Value="{StaticResource OpacityValue}" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="CustomBorderStyleOrange" TargetType="Border">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="Padding" Value="6" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="0.5" />
+            </Style>
+
+            <Style x:Key="popUpBorder" TargetType="Border">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="HeightRequest" Value="270" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
+                <Setter Property="Stroke" Value="{StaticResource White}" />
+                <Setter Property="StrokeShape">
+                    <Setter.Value>
+                        <RoundRectangle CornerRadius="10,10,0,0" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="StrokeThickness" Value="2" />
+            </Style>
+
+            <Style x:Key="verticalStandarStyle" TargetType="VerticalStackLayout">
+                <Setter Property="Margin" Value="15" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <!--  Labels  -->
+
+            <Style x:Key="formlLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+
+            <Style x:Key="emptyCollectionLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+            </Style>
+
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <!--  Butons,picker and others.  -->
+            <Style x:Key="cardButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BackgroundColor" Value="#1e90ff" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+
+            <Style x:Key="XButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="RobotoBold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="XButtonGray" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="End" />
+
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="RobotoBold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="TextColor" Value="{StaticResource AppGray}" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+
+                <Setter Property="ImageSource">
+                    <Setter.Value>
+                        <FontImageSource
+                            FontFamily="MaterialIconsOutlined-Regular"
+                            Glyph="&#xe5cd;"
+                            Size="25"
+                            Color="{StaticResource AppGray}" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ModernDatePickerStyle" TargetType="DatePicker">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="#3e4144" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
+            </Style>
+
+            <DataTemplate x:Key="ImageDataTemplateForDisplay">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <ffimageloading:CachedImage Aspect="Fill" Source="{Binding Image}" />
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="VideoDataTemplateForDisplay">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <toolkit:MediaElement
+                        Grid.Row="1"
+                        Aspect="Fill"
+                        ShouldAutoPlay="False"
+                        ShouldKeepScreenOn="True"
+                        ShouldLoopPlayback="False"
+                        ShouldShowPlaybackControls="True"
+                        Source="{Binding MediaSource}" />
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ImageDataTemplate2">
+                <Frame Style="{StaticResource cardFrame}">
+                    <StackLayout>
+
+                        <Button
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X" />
+
+                        <Frame Style="{StaticResource imageFrame}">
+
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="300"
+                                IsAnimationPlaying="True"
+                                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
+                                WidthRequest="400" />
+                        </Frame>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoading}"
+                            IsVisible="{Binding IsLoading}"
+                            Style="{StaticResource globalLoading}" />
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+
+            <DataTemplate x:Key="VideoDataTemplate2">
+                <Frame Style="{StaticResource cardFrame}">
+                    <StackLayout>
+
+                        <Button
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding CurrentAdvertisement}"
+                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                            Style="{StaticResource XButton}"
+                            Text="X" />
+
+                        <Frame Style="{StaticResource imageFrame}">
+
+                            <WebView
+                                x:Name="SelectedVideo"
+                                HeightRequest="300"
+                                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}, Mode=TwoWay}"
+                                WidthRequest="400" />
+                        </Frame>
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsLoading}"
+                            IsVisible="{Binding IsLoading}"
+                            Style="{StaticResource globalLoading}" />
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+
+            <DataTemplate x:Key="WebViewDataTemplateForDisplay">
+
+                <displayer:WebViewDisplayer IsMyContentStackHeaderVisible="True" />
+            </DataTemplate>
+
+            <!--  Converters  -->
+            <converters:IsEnableConverter x:Key="IsEnableConverter" />
+
+            <converters:IsVisibleConverterMultiParam x:Key="IsVisibleConverterMultiParam" />
+
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+
+            <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
+
+            <converters:SubstringConverter x:Key="SubstringConverter" />
+
+            <converters:StepViewConverter x:Key="StepViewConverter" />
+
+            <converters:ImageOrVideoCheckConverter x:Key="ImageOrVideoCheckConverter" />
+
+            <converters:ByteArrayToVideSourceConverter x:Key="ByteArrayToVideSourceConverter" />
+
+            <converters:SpanConverter x:Key="SpanConverter" />
+
+            <converters:BoolToTextConverter x:Key="BoolToTextConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="GeolocationAds.ViewTemplates.WebViewDisplayer"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates">
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Grid x:Name="myContentStackHeader" Grid.Row="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <!--  Button is placed in the same cell as the image  -->
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto" />
+                <!--  New row for the buttons  -->
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding BackCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaa7;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding ForwardCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaaa;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Command="{Binding ReloadCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="{Binding Source={x:Reference web}, Path=Source}"
+                CornerRadius="0"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+
+        <headerView:ContentHeaderView Grid.Row="0" Grid.Column="1" />
+
+        <headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />
+
+
+
+
+    </Grid>
+
+    <Grid x:Name="searchContentStackHeader" Grid.Row="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <!--  Button is placed in the same cell as the image  -->
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto" />
+                <!--  New row for the buttons  -->
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding BackCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaa7;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding ForwardCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaaa;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Command="{Binding ReloadCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="{Binding Source={x:Reference web}, Path=Source}"
+                CornerRadius="0"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+
+        <headerView:HomeContentItemHeaderView Grid.Row="0" Grid.Column="1" />
+
+        <headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />
+
+
+
+    </Grid>
+
+    <Grid x:Name="myCaptureHeader" Grid.Row="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto" />
+                <!--  New row for the buttons  -->
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding BackCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaa7;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding ForwardCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0"
+                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaaa;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Command="{Binding ReloadCommand}"
+                CommandParameter="{x:Reference web}"
+                CornerRadius="0">
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
+                </Button.ImageSource>
+            </Button>
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="{Binding Source={x:Reference web}, Path=Source}"
+                CornerRadius="0">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.5"
+                        Radius="40"
+                        Offset="5,5" />
+                </Button.Shadow>
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+
+        <headerView:CaptureHeaderDisplayer Grid.Row="0" Grid.Column="1" />
+
+        <headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />
+
+    </Grid>
+
+    <WebView
+        x:Name="web"
+        Grid.Row="1"
+        Source="{Binding UrlSource, Mode=TwoWay}" />
+
+    <ActivityIndicator
+        Grid.Row="1"
+        IsRunning="{Binding IsLoading}"
+        IsVisible="{Binding IsLoading}"
+        Style="{StaticResource globalLoading}" />
+
+
+</Grid>

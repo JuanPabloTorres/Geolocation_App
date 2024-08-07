@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="GeolocationAds.ViewTemplates.CaptureHeaderDisplayer"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource AppBlack}"
+    Opacity="{StaticResource OpacityValue}">
+
+
+    <!--  Button is placed in the same cell as the image  -->
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+
+    </Grid.ColumnDefinitions>
+
+    <Button
+        Grid.Row="0"
+        Grid.Column="0"
+        Command="{Binding GoDetailCommand}"
+        CommandParameter="{Binding Advertisement.ID}"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe619;" />
+        </Button.ImageSource>
+    </Button>
+
+    <!--  Button  -->
+    <Button
+        Grid.Row="0"
+        Grid.Column="1"
+        Command="{Binding RemoveCurrentItemCommand}"
+        CommandParameter="{Binding CurrentAdvertisement}"
+        CornerRadius="0"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}"
+        VerticalOptions="Start">
+
+        <Button.Shadow>
+            <Shadow
+                Brush="Black"
+                Opacity="0.5"
+                Radius="40"
+                Offset="5,5" />
+        </Button.Shadow>
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
+        </Button.ImageSource>
+    </Button>
+
+
+
+
+
+
+</Grid>

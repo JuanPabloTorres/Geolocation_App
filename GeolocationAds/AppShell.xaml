@@ -1,0 +1,122 @@
+<Shell
+    x:Class="GeolocationAds.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds"
+    xmlns:pages="clr-namespace:GeolocationAds.Pages"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.BackgroundColor="{StaticResource DeepBlue}"
+    Shell.TabBarIsVisible="False">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:Login}"
+        FlyoutItemIsVisible="False"
+        Route="login"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <!--  TabBar for main navigation  -->
+    <!--
+    <TabBar>
+
+    -->
+    <!--  Each Tab represents a group of related content or a feature area  -->
+    <!--
+        <Tab Title="Search" Icon="travelexplore.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:SearchAd}" />
+        </Tab>
+
+        <Tab Title="Favorites" Icon="star.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MyFavorites}" />
+        </Tab>
+
+        <Tab Title="Create" Icon="plus.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:CreateAdvertisment}" />
+        </Tab>
+
+        <Tab Title="My Content" Icon="filebox.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MyContentPage}" />
+        </Tab>
+
+        <Tab Title="Explore" Icon="map.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:GoogleMapPage}" />
+        </Tab>
+
+        <Tab Title="Settings" Icon="setting.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:UserSetting}" />
+        </Tab>
+
+    </TabBar>-->
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
+        <ShellContent
+            Title="Search and Discover"
+            ContentTemplate="{DataTemplate pages:SearchAd}"
+            Icon="travelexplore.png" />
+
+        <ShellContent
+            Title="My Captures"
+            ContentTemplate="{DataTemplate pages:MyFavorites}"
+            Icon="star.png" />
+
+        <ShellContent
+            Title="Content Creation"
+            ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
+            Icon="plus.png" />
+        <ShellContent
+            Title="Created by Me"
+            ContentTemplate="{DataTemplate pages:MyContentPage}"
+            Icon="filebox.png" />
+
+        <ShellContent
+            Title="Near You: Explore Now"
+            ContentTemplate="{DataTemplate pages:GoogleMapPage}"
+            Icon="map.png" />
+
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate pages:UserSetting}"
+            Icon="setting.png" />
+    </FlyoutItem>
+
+    <Shell.FlyoutHeader>
+        <!--  Custom navigation header  -->
+        <StackLayout Orientation="Horizontal">
+            <Border
+                HeightRequest="50"
+                Style="{StaticResource avatarBorderStyle}"
+                WidthRequest="50">
+
+                <toolkit:AvatarView
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HeightRequest="90"
+                    Text="{Binding Avatar, Mode=TwoWay}"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="90" />
+            </Border>
+
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource globalTitle}"
+                Text="{Binding UserName, Mode=TwoWay}" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+
+        <StackLayout>
+            <Button
+                Command="{Binding SignOutCommand}"
+                Style="{StaticResource globalButton}"
+                Text="Sign Out">
+
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
+                </Button.ImageSource>
+            </Button>
+        </StackLayout>
+    </Shell.FlyoutFooter>
+</Shell>

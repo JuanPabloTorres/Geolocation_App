@@ -1,0 +1,14 @@
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0\GlobalSettings.json
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0\ToolsLibrary.deps.json
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\bin\Debug\net8.0\ToolsLibrary.pdb
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.csproj.AssemblyReference.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.AssemblyInfoInputs.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.AssemblyInfo.cs
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.sourcelink.json
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\refint\ToolsLibrary.dll
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ToolsLibrary.pdb
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\ToolsLibrary\obj\Debug\net8.0\ref\ToolsLibrary.dll

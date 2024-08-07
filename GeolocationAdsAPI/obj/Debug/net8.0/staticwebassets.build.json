@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "b67ZGCvEGAT6AJTDRbvmT6JfsuGnfZ/qOSjBdyQho8E=",
+  "Source": "GeolocationAdsAPI",
+  "BasePath": "_content/GeolocationAdsAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GeolocationAdsAPI\\wwwroot",
+      "Source": "GeolocationAdsAPI",
+      "ContentRoot": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\",
+      "BasePath": "_content/GeolocationAdsAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
