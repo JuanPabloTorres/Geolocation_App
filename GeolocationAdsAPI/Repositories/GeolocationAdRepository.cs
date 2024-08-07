@@ -1,0 +1,164 @@
+﻿using GeolocationAdsAPI.Context;
+using Microsoft.EntityFrameworkCore;
+using ToolsLibrary.Factories;
+using ToolsLibrary.Models;
+using ToolsLibrary.Tools;
+
+namespace GeolocationAdsAPI.Repositories
+{
+    public class GeolocationAdRepository : BaseRepositoryImplementation<GeolocationAd>, IGeolocationAdRepository
+    {
+        public GeolocationAdRepository(GeolocationContext context) : base(context)
+        {
+        }
+
+        public async Task<ResponseTool<bool>> AdvertisementExistInGeolocationAd(int id)
+        {
+            try
+            {
+                var _exist = await _context.GeolocationAds.AnyAsync(v => v.AdvertisingId == id);
+
+                if (_exist)
+                {
+                    return ResponseFactory<bool>.BuildSuccess("Exist.", true, ToolsLibrary.Tools.Type.Exist);
+                }
+                else
+                {
+                    return ResponseFactory<bool>.BuildSuccess("Exist.", false, ToolsLibrary.Tools.Type.NotExist);
+                }
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsync(double latitud, double longitude, int distance, int settinTypeId)
+        {
+            try
+            {
+                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement)
+                    .ThenInclude(a => a.Settings)
+                    .Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
+                    DateTime.Now <= v.ExpirationDate &&
+                    v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId)).OrderBy(c => c.Advertisement.CreateDate)
+                    .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
+                   .Distinct().ToListAsync();
+
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo(int settingId)
+        {
+            try
+            {
+                var allEntities = await _context.GeolocationAds
+                    .Include(v => v.Advertisement)
+                    .ThenInclude(c => c.Contents)
+                    .Include(s => s.Advertisement.Settings)
+                    .Where(v =>
+                    DateTime.Now <= v.ExpirationDate &&
+                    v.Advertisement.Settings.Any(s => s.SettingId == settingId))
+                    .Select(s => new GeolocationAd
+                    {
+                        ID = s.ID,
+                        ExpirationDate = s.ExpirationDate,
+                        Latitude = s.Latitude,
+                        Longitude = s.Longitude,
+
+                        Advertisement = new Advertisement
+                        {
+                            ID = s.AdvertisingId,
+                            Description = s.Advertisement.Description,
+                            Title = s.Advertisement.Title,
+                            UserId = s.Advertisement.UserId,
+                            Contents = s.Advertisement.Contents
+                            .Select(cs => new ContentType
+                            {
+                                Type = cs.Type,
+                                Content = cs.Content
+                            })
+                            .ToList()
+                        }
+                    })
+                    .ToListAsync();
+
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
+        {
+            try
+            {
+                // Assume pre-calculation or efficient distance filtering
+                var relevantAdIds = await _context.GeolocationAds
+                    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <= geo.ExpirationDate)
+                    .Select(geo => geo.AdvertisingId)
+                    .Distinct()
+                    .ToListAsync();
+
+                var filteredAds = _context.Advertisements
+                    .AsNoTracking()
+                    .Where(ad => relevantAdIds.Any(a => a == ad.ID) && ad.Settings.Any(s => s.SettingId == settingId))
+                    .OrderByDescending(ad => ad.CreateDate)  // Consider ordering by a meaningful field
+                     .Select(ad => new Advertisement
+                     {
+                         ID = ad.ID,
+                         Description = ad.Description,
+                         Title = ad.Title,
+                         UserId = ad.UserId,
+                         CreateDate = ad.CreateDate,
+
+                         Contents = ad.Contents.Select(content => new ContentType
+                         {
+                             CreateDate = content.CreateDate,
+                             ID = content.ID,
+                             FileSize = content.FileSize,
+                             Type = content.Type,
+                             Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,// Apply byte range here
+                             Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
+                         }).Take(1).ToList(),  // Only take necessary content
+                     })
+                     .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                     .Take(ConstantsTools.PageSize);
+
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", filteredAds);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id)
+        {
+            try
+            {
+                var allEntities = await _context.GeolocationAds.Where(v => v.AdvertisingId == id).ToListAsync();
+
+                foreach (var item in allEntities)
+                {
+                    _context.GeolocationAds.Remove(item);
+                }
+
+                await _context.SaveChangesAsync();
+
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+    }
+}
