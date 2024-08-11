@@ -21,7 +21,6 @@
 
     <VerticalStackLayout>
         <Label
-            HorizontalOptions="Start"
             LineBreakMode="WordWrap"
             Style="{StaticResource globalDescriptionLabel}"
             Text="{Binding DisplayDescription}"

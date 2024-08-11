@@ -34,17 +34,7 @@ namespace GeolocationAds.TemplateViewModel
 
         private const int MaxLengthWithoutExpand = 100;
 
-
-
-        //public string DisplayDescription => IsExpanded ? Advertisement.Description : GetTruncatedDescription(Advertisement.Description);
-
-        //public string DisplayDescription => IsExpanded ? GetFullDescriptionWithNewLines(Advertisement.Description) : GetTruncatedDescription(Advertisement.Description);
-
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
-
-
-
-
 
         public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
         {

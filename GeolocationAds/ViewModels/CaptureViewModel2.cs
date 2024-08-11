@@ -191,7 +191,10 @@ namespace GeolocationAds.ViewModels
         {
             PageIndex = 1;
 
-            this.CaptureTemplateViewModels.Clear();
+            if (this.CaptureTemplateViewModels.Any())
+            {
+                this.CaptureTemplateViewModels.Clear();
+            }
 
             await InitializeAsync();
         }

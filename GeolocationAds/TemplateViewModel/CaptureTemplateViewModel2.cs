@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
+using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Managers;
@@ -279,6 +280,28 @@ namespace GeolocationAds.TemplateViewModel
             await mediaElement.SeekTo(TimeSpan.Zero);
 
             mediaElement.Play();
+        }
+
+
+        [RelayCommand]
+        public async Task GoDetail(int adId)
+        {
+            try
+            {
+                this.IsLoading = true;
+
+                var navigationParameter = new Dictionary<string, object> { { "ID", this.Advertisement.ID } };
+
+                await NavigateAsync(nameof(NearByItemDetail), navigationParameter);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                this.IsLoading = false;
+            }
         }
     }
 }

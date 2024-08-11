@@ -13,20 +13,6 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private M model;
 
-        //public M Model
-        //{
-        //    get => _model;
-        //    set
-        //    {
-        //        if (!EqualityComparer<M>.Default.Equals(_model, value))
-        //        {
-        //            _model = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         protected S service { get; set; }
 
         public TemplateCardViewModel(M model, S service)
@@ -34,8 +20,6 @@ namespace GeolocationAds.TemplateViewModel
             this.Model = model;
 
             this.service = service;
-
-            //this.RemoveCommand = new Command<M>(Remove);
         }
 
         [RelayCommand]
@@ -45,28 +29,21 @@ namespace GeolocationAds.TemplateViewModel
             {
                 this.IsLoading = true;
 
-                var _removeAlertResponse = await Shell.Current.DisplayAlert("Notification", $"Are you sure you want to remove this location?", "Yes", "No");
+                bool isConfirmed = await Shell.Current.DisplayAlert("Notification", "Are you sure you want to remove this location?", "Yes", "No");
 
-                if (_removeAlertResponse)
+                if (isConfirmed)
                 {
-                    var _id = GenericTool<M>.GetPropertyValueFromObject<int>(item, nameof(BaseModel.ID));
+                    int id = GenericTool<M>.GetPropertyValueFromObject<int>(item, nameof(BaseModel.ID));
 
-                    object[] parameters = new object[] { _id };
+                    var response = await RemoveItemAsync(id);
 
-                    var _apiResponse = await GenericTool<ResponseTool<M>>.InvokeMethodName<ResponseTool<M>>(this.service, nameof(BaseService<M>.Remove), parameters);
-
-                    if (_apiResponse.IsSuccess)
+                    if (response.IsSuccess)
                     {
-                        await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
-
-
-
-                        EventManager.Instance.Publish(this.Model);
-
+                        EventManager2.Instance.Publish(this, CurrentPageContext);
                     }
                     else
                     {
-                        await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                        await CommonsTool.DisplayAlert("Error", response.Message);
                     }
                 }
             }
@@ -80,11 +57,12 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        //public void OnItemDeleted2()
-        //{
-        //    // Do some work here.
-        //    // When the item is deleted, publish an event.
-        //    EventManager.Instance.Publish(this.Model);
-        //}
+        private async Task<ResponseTool<M>> RemoveItemAsync(int id)
+        {
+            object[] parameters = { id };
+
+            return await GenericTool<ResponseTool<M>>.InvokeMethodName<ResponseTool<M>>(this.service, nameof(BaseService<M>.Remove), parameters);
+        }
+
     }
 }

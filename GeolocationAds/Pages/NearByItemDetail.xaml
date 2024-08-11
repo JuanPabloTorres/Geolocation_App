@@ -50,7 +50,8 @@
                         Grid.Column="0"
                         Command="{Binding BackCommand}"
                         CommandParameter="{x:Reference web}"
-                        IsEnabled="{Binding CanGoBack}">
+                        IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
 
                         <Button.Shadow>
                             <Shadow
@@ -70,7 +71,8 @@
                         Grid.Column="1"
                         Command="{Binding ForwardCommand}"
                         CommandParameter="{x:Reference web}"
-                        IsEnabled="{Binding CanGoForward}">
+                        IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
 
                         <Button.Shadow>
                             <Shadow
@@ -193,13 +195,33 @@
                     TextColor="White"
                     VerticalTextAlignment="Center" />
 
-                <Label
+                <!--<Label
                     LineBreakMode="WordWrap"
                     MaxLines="2"
                     Style="{StaticResource globalDescriptionLabel}"
                     Text="{Binding Model.Description, Mode=TwoWay}"
                     TextColor="White"
-                    VerticalTextAlignment="Center" />
+                    VerticalTextAlignment="Center" />-->
+
+                <VerticalStackLayout>
+                    <Label
+                        HorizontalOptions="Start"
+                        LineBreakMode="WordWrap"
+                        Style="{StaticResource globalDescriptionLabel}"
+                        Text="{Binding Model.Description, Mode=TwoWay}"
+                        TextColor="White" />
+
+                    <Label
+                        HorizontalOptions="End"
+                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Text="{Binding IsExpanded, Converter={StaticResource BoolToTextConverter}, ConverterParameter='See More,See Less'}"
+                        TextColor="LightBlue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleExpandCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+
 
                 <Label
                     LineBreakMode="WordWrap"

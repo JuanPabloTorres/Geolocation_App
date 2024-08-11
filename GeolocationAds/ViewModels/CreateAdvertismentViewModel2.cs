@@ -97,7 +97,12 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                this.AdTypesSettings.Clear();
+                if (this.AdTypesSettings.Any())
+                {
+
+                    this.AdTypesSettings.Clear();
+                }
+
 
                 var _apiResponse = await this.ContainerCreateAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
@@ -522,7 +527,13 @@ namespace GeolocationAds.ViewModels
             {
                 if (!this.Model.Settings.IsObjectNull() && !value.IsObjectNull())
                 {
-                    this.Model.Settings.Clear();
+
+                    if (this.Model.Settings.Any())
+                    {
+                        this.Model.Settings.Clear();
+
+                    }
+
 
                     var _adSetting = new AdvertisementSettings()
                     {

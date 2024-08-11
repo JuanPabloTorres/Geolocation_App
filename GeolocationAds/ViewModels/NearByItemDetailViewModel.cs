@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
@@ -16,12 +17,36 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private string? settingType;
 
+        [ObservableProperty]
+        private bool isExpanded;
+
+        private const int MaxLengthWithoutExpand = 100;
+
+        public string DisplayDescription => IsExpanded ? this.Model.Description : TruncateDescription(this.Model.Description);
+
+
+
         public NearByItemDetailViewModel(INearByItemDetailContainer nearByItemDetailContainer) : base(nearByItemDetailContainer.Model, nearByItemDetailContainer.AdvertisementService, nearByItemDetailContainer.LogUserPerfilTool)
         {
             this.nearByItemDetailContainer = nearByItemDetailContainer;
 
             this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
         }
+        private string TruncateDescription(string description)
+        {
+            const int maxLength = 100; // Adjust the length as needed
+
+            return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
+        }
+
+        [RelayCommand]
+        private void ToggleExpand()
+        {
+            IsExpanded = !IsExpanded;
+
+            OnPropertyChanged(nameof(DisplayDescription));
+        }
+
 
         public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2>();
 

@@ -3,26 +3,57 @@
     x:Class="GeolocationAds.Pages.UserSetting"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="App Setting"
     BackgroundColor="WhiteSmoke"
     Routing.Route="UserSetting">
 
-    <Grid VerticalOptions="CenterAndExpand">
+    <Grid VerticalOptions="Start">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button
+        <Border
             Grid.Row="0"
+            BackgroundColor="White"
+            HeightRequest="150"
+            HorizontalOptions="FillAndExpand"
+            StrokeThickness="0"
+            VerticalOptions="Start">
+            <Grid>
+                <GraphicsView
+                    BackgroundColor="WhiteSmoke"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Control Settings"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </Border>
+
+        <Button
+            Grid.Row="1"
             Command="{Binding onNavigateEditPerfilCommand}"
             CommandParameter="{Binding Model.ID}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Style="{StaticResource globalButton}"
             Text="Update Perfil"
-            TextTransform="Uppercase">
+            TextTransform="Uppercase"
+            VerticalOptions="Center">
 
             <Button.Shadow>
                 <Shadow
@@ -38,7 +69,7 @@
         </Button>
 
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Command="{Binding onNavigateEditLoginCommand}"
             CommandParameter="{Binding Model.Login.ID}"
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"

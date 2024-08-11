@@ -188,15 +188,17 @@ namespace GeolocationAds.ViewModels
             ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
         }
 
-
         public virtual async Task Submit(T obj)
         {
-            IsLoading = true;
-
-            ValidationResults.Clear();
-
             try
             {
+                IsLoading = true;
+
+                if (this.ValidationResults.Any())
+                {
+                    this.ValidationResults.Clear();
+                }
+
                 DateTime now = DateTime.Now;
 
                 var validationContextCurrentType = new ValidationContext(obj);

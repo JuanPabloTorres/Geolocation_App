@@ -24,7 +24,10 @@ public partial class MyContentPage : ContentPage
     {
         MyContentViewModel2.PageIndex = 1;
 
-        this._viewModel.CollectionModel.Clear();
+        if (this._viewModel.CollectionModel.Any())
+        {
+            this._viewModel.CollectionModel.Clear();
+        }
 
         this.paginControls.IsBackButtonEnabled = false;
 

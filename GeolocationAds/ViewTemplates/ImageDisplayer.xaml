@@ -16,28 +16,32 @@
     <Grid x:Name="myContentStackHeader">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <headerView:ContentInformationDisplayer
-            Grid.Row="0"
-            Grid.Column="1"
-            HorizontalOptions="FillAndExpand"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="End" />
 
 
         <headerView:ContentHeaderView
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalOptions="End"
+            HorizontalOptions="EndAndExpand"
             Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="Start" />
+            VerticalOptions="StartAndExpand" />
 
 
 
+        <headerView:ContentInformationDisplayer
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalOptions="EndAndExpand"
+            Opacity="{StaticResource OpacityValue}"
+            VerticalOptions="EndAndExpand" />
 
 
 
@@ -46,49 +50,61 @@
     <Grid x:Name="searchContentStackHeader">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <headerView:ContentInformationDisplayer
-            Grid.Row="0"
-            Grid.Column="1"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="End" />
-
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
         <headerView:HomeContentItemHeaderView
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalOptions="End"
+            HorizontalOptions="EndAndExpand"
             Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="Start" />
+            VerticalOptions="StartAndExpand" />
+
+        <headerView:ContentInformationDisplayer
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalOptions="EndAndExpand"
+            Opacity="{StaticResource OpacityValue}"
+            VerticalOptions="EndAndExpand" />
+
+
 
     </Grid>
 
     <Grid x:Name="myCaptureHeader">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <headerView:ContentInformationDisplayer
-            Grid.Row="0"
-            Grid.Column="1"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="End" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
 
 
 
         <headerView:CaptureHeaderDisplayer
             Grid.Row="0"
             Grid.Column="1"
-            HorizontalOptions="End"
+            HorizontalOptions="EndAndExpand"
             Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="Start" />
+            VerticalOptions="StartAndExpand" />
 
+        <headerView:ContentInformationDisplayer
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalOptions="EndAndExpand"
+            Opacity="{StaticResource OpacityValue}"
+            VerticalOptions="EndAndExpand" />
     </Grid>
 
 

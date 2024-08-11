@@ -22,6 +22,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.Advertisement">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.advertisement"/>
@@ -100,6 +101,12 @@
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.ReloadMediaCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.ReloadMedia(CommunityToolkit.Maui.Views.MediaElement)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.goDetailCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.GoDetailCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.GoDetailCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2.GoDetail(System.Int32)"/>.</summary>
         </member>
         <member name="T:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2">
             <inheritdoc/>
@@ -472,9 +479,14 @@
         <member name="T:GeolocationAds.ViewModels.EditAdvertismentViewModel2">
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SelectedAdType">
             <inheritdoc cref="F:GeolocationAds.ViewModels.EditAdvertismentViewModel2.selectedAdType"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.Url">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.EditAdvertismentViewModel2.url"/>
         </member>
         <member name="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.OnSelectedAdTypeChanged(ToolsLibrary.Models.AppSetting)">
             <summary>Executes the logic for when <see cref="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SelectedAdType"/> just changed.</summary>
@@ -486,6 +498,18 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.UploadContentCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.UploadContent"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.EditAdvertismentViewModel2.goManageLocationCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.GoManageLocationCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.GoManageLocationCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.GoManageLocation(System.Int32)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.EditAdvertismentViewModel2.setURLCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURLCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURLCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURL(System.String)"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.FilterPopUpViewModel">
             <inheritdoc/>
@@ -614,9 +638,19 @@
         </member>
         <member name="T:GeolocationAds.ViewModels.NearByItemDetailViewModel">
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.ViewModels.NearByItemDetailViewModel.SettingType">
             <inheritdoc cref="F:GeolocationAds.ViewModels.NearByItemDetailViewModel.settingType"/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.NearByItemDetailViewModel.IsExpanded">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.NearByItemDetailViewModel.isExpanded"/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.NearByItemDetailViewModel.toggleExpandCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.NearByItemDetailViewModel.ToggleExpandCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.NearByItemDetailViewModel.ToggleExpandCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.NearByItemDetailViewModel.ToggleExpand"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>

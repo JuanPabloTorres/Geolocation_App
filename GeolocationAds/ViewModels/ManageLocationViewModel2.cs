@@ -35,10 +35,11 @@ namespace GeolocationAds.ViewModels
             this.ApplyQueryAttributesCompleted += ManageLocationViewModel_ApplyQueryAttributesCompleted;
 
             // Subscribe to the ItemDeletedEvent
-            EventManager2.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>
+            EventManager2.Instance.Subscribe<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>(async (eventArgs) =>
             {
                 // Handle the item deleted event here.
-                await HandleItemDeletedEventAsync(eventArgs);
+                await HandleItemDeletedEventAsync(eventArgs.Model);
+
             }, this);
         }
 
@@ -136,6 +137,15 @@ namespace GeolocationAds.ViewModels
             try
             {
                 this.IsLoading = true;
+
+                TemplateCardViewModel<GeolocationAd, IGeolocationAdService>.CurrentPageContext = this.GetType().Name;
+
+                //// Subscribe to the ItemDeletedEvent
+                //EventManager2.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>
+                //{
+                //    // Handle the item deleted event here.
+                //    await HandleItemDeletedEventAsync(eventArgs);
+                //}, this);
 
                 foreach (var geo in this.Model.GeolocationAds)
                 {

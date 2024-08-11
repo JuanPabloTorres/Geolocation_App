@@ -1359,7 +1359,6 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Numerics.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Numerics.Vectors.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.ObjectModel.dll
-C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.CoreLib.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.DataContractSerialization.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.Uri.dll
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.Xml.dll
@@ -2281,3 +2280,4 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\src\crc646d254120c5b615c9\SslWebViewClient.java
+C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAds\obj\Debug\net8.0-android34.0\android\assets\System.Private.CoreLib.dll

@@ -8,10 +8,19 @@
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewTemplate="clr-namespace:GeolocationAds.ViewTemplates"
-    Title="Update Content"
+    Title="Modify Content"
     BackgroundColor="WhiteSmoke">
 
     <ContentPage.ToolbarItems>
+
+        <ToolbarItem
+            Command="{Binding GoManageLocationCommand}"
+            CommandParameter="{Binding Model.ID}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe55b;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
 
         <ToolbarItem Command="{Binding UploadContentCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
@@ -405,7 +414,7 @@
                 IconSource="&#xe157;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="URL"
-                Text="{Binding Model.Title, Mode=TwoWay}"
+                Text="{Binding Url, Mode=TwoWay}"
                 WidthRequest="320" />
 
             <Button

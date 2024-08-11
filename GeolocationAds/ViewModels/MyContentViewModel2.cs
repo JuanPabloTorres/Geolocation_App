@@ -34,7 +34,6 @@ namespace GeolocationAds.ViewModels
 
                 await InitializeAsync();
             });
-
         }
 
         [RelayCommand]
@@ -96,8 +95,6 @@ namespace GeolocationAds.ViewModels
 
                 if (!apiResponse.IsSuccess)
                 {
-
-
                     await CommonsTool.DisplayAlert("Error", apiResponse.Message);
                 }
 
@@ -108,7 +105,6 @@ namespace GeolocationAds.ViewModels
                 //this.CollectionModel.AddRange(viewModels);
 
                 MainThread.BeginInvokeOnMainThread(() => CollectionModel.AddRange(viewModels));
-
             }
             catch (Exception ex)
             {
@@ -128,7 +124,10 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                this.AdTypesSettings.Clear();
+                if (this.AdTypesSettings.Any())
+                {
+                    this.AdTypesSettings.Clear();
+                }
 
                 var _apiResponse = await this.containerMyContentServices.AppSettingService.GetAppSettingByNames(settings);
 
@@ -139,7 +138,6 @@ namespace GeolocationAds.ViewModels
                         if (SettingName.AdTypes.ToString() == item.SettingName)
                         {
                             AdTypesSettings.Add(item);
-
                         }
                     }
 
@@ -151,7 +149,7 @@ namespace GeolocationAds.ViewModels
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
             }
             catch (Exception ex)
@@ -173,7 +171,6 @@ namespace GeolocationAds.ViewModels
         {
             await LoadData(pageIndex);
         }
-
 
         public override async Task OpenFilterPopUpForSearch()
         {

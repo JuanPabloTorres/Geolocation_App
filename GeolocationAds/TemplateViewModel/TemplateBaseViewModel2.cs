@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using GeolocationAds.Services;
 using System.ComponentModel;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
@@ -53,6 +54,20 @@ namespace GeolocationAds.TemplateViewModel
         protected virtual void OnDeleteType(EventArgs e)
         {
             ItemDeleted?.Invoke(this, e);
+        }
+
+        public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
+        {
+            var queryString = string.Empty;
+
+            if (!queryParameters.IsObjectNull() && queryParameters.Count > 0)
+            {
+                queryString = string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"));
+
+                queryString = "?" + queryString;
+            }
+
+            await Shell.Current.GoToAsync($"{pageName}{queryString}");
         }
     }
 }

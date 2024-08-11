@@ -145,5 +145,7 @@ namespace GeolocationAds.TemplateViewModel
                 this.IsLoading = false;
             }
         }
+
+
     }
 }

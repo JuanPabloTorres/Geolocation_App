@@ -1,0 +1,24 @@
+# Ignore archivos de sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Ignore archivos de configuración personal
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore binarios y artefactos de compilación
+bin/
+obj/
+*.exe
+*.dll
+
+# Ignore appsettings files
+appsettings.json
+appsettings.Development.json
+
+# Ignore Visual Studio files
+.vs/

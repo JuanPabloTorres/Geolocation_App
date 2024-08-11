@@ -15,14 +15,8 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!--  URLs  -->
-            <!--<x:String x:Key="BackendUrl">http://10.0.2.2:5160/api</x:String>-->
 
-            <x:String x:Key="BackendUrl">http://192.168.0.2:5160/api</x:String>
 
-            <!--<x:String x:Key="BackendUrl">http://ip:port/api</x:String>-->
-
-            <x:String x:Key="IISBackendUrl">http://10.0.2.2:80/api</x:String>
 
             <Color x:Key="AppGray">#3e4144</Color>
 
@@ -124,7 +118,7 @@
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
 
 
-                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="MaxLines" Value="5" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
@@ -526,6 +520,8 @@
             <converters:SpanConverter x:Key="SpanConverter" />
 
             <converters:BoolToTextConverter x:Key="BoolToTextConverter" />
+
+            <converters:DataSizeConverter x:Key="DataSizeConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
