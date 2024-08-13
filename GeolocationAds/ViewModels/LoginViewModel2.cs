@@ -6,6 +6,8 @@ using GeolocationAds.Messages;
 using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -48,6 +50,103 @@ namespace GeolocationAds.ViewModels
 
             LoadCredentialsCommand.Execute(null);
         }
+
+        [RelayCommand]
+        public async Task SignInWithGoogle()
+        {
+            //var authUrl = new Uri("https://accounts.google.com/o/oauth2/auth?client_id=1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com&redirect_uri=com.mycompany.myapp://&response_type=code&scope=openid%20email%20profile");
+
+            var authUrl = new Uri("https://accounts.google.com/o/oauth2/auth?client_id=1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com&redirect_uri=com.mycompany.myapp://&response_type=code&scope=openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile");
+
+
+            var callbackUrl = new Uri("com.mycompany.myapp://");
+
+            try
+            {
+                //var authResult = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
+
+                var response = await WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions()
+                {
+                    Url = authUrl,
+                    CallbackUrl = callbackUrl
+                });
+
+                var codeToken = response.Properties["code"];
+
+                var parameters = new FormUrlEncodedContent(new[]
+                {
+                        new KeyValuePair<string,string>("grant_type","authorization_code"),
+                        new KeyValuePair<string,string>("client_id","1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com"),
+                        new KeyValuePair<string,string>("redirect_uri","com.mycompany.myapp://"),
+                        new KeyValuePair<string,string>("code",codeToken),
+                    });
+
+                HttpClient client = new HttpClient();
+
+                var accessTokenResponse = await client.PostAsync("https://oauth2.googleapis.com/token", parameters);
+
+                //LoginResponse loginResponse;
+
+                if (accessTokenResponse.IsSuccessStatusCode)
+                {
+                    var data = await accessTokenResponse.Content.ReadAsStringAsync();
+
+                    var jsonResponse = JObject.Parse(data);
+
+                    var accessToken = jsonResponse["access_token"]?.ToString();
+
+                    // Llamada a la API de Google para obtener la información del usuario
+                    if (!string.IsNullOrEmpty(accessToken))
+                    {
+                        await GetGoogleUserInfo(accessToken);
+                    }
+
+                    //loginResponse = JsonConvert.DeserializeObject<LoginResponse>(data);
+                }
+
+
+
+
+                // authResult contiene los tokens de autenticación que puedes usar para acceder a la API de Google.
+                //if (authResult != null)
+                //{
+                //    var accessToken = authResult?.AccessToken;
+
+                //    await GetGoogleUserInfo(accessToken);
+                //}
+
+                // authResult contiene los tokens de autenticación que puedes usar para acceder a la API de Google.
+            }
+            catch (TaskCanceledException ex)
+            {
+                // El usuario canceló la autenticación
+            }
+            catch (Exception ex)
+            {
+                // Ocurrió un error durante la autenticación
+            }
+        }
+
+        public async Task GetGoogleUserInfo(string accessToken)
+        {
+            var httpClient = new HttpClient();
+
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await httpClient.GetStringAsync("https://www.googleapis.com/oauth2/v2/userinfo");
+
+            var userInfo = JObject.Parse(response);
+
+            var email = userInfo["email"]?.ToString();
+
+            var name = userInfo["name"]?.ToString();
+
+            var picture = userInfo["picture"]?.ToString();
+
+            // Puedes almacenar esta información o usarla directamente en tu aplicación
+            Console.WriteLine($"Email: {email}, Name: {name}, Picture: {picture}");
+        }
+
 
         [RelayCommand]
         private async Task GoToRegister()
@@ -142,12 +241,13 @@ namespace GeolocationAds.ViewModels
 
         private async Task AutoLoginAsync()
         {
-            var credential = new ToolsLibrary.Models.Login
-            {
-                Username = this.Model.Username,
-                Password = this.Model.Password
-            };
-            await VerifyCredential(credential);
+            //var credential = new ToolsLibrary.Models.Login
+            //{
+            //    Username = this.Model.Username,
+            //    Password = this.Model.Password
+            //};
+
+            //await VerifyCredential(credential);
         }
 
         partial void OnIsRememberChanged(bool value)
