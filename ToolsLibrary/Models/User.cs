@@ -32,5 +32,10 @@ namespace ToolsLibrary.Models
         public string Phone { get; set; }
 
         public UserStatus UserStatus { get; set; }
+
+        public User()
+        {
+            Advertisements = new List<Advertisement>();
+        }
     }
 }

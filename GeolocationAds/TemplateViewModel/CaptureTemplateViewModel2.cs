@@ -4,7 +4,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.AppTools;
 using GeolocationAds.Pages;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
+using GeolocationAds.ViewModels;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Managers;
 using ToolsLibrary.Models;
@@ -301,6 +303,27 @@ namespace GeolocationAds.TemplateViewModel
             finally
             {
                 this.IsLoading = false;
+            }
+        }
+
+        [RelayCommand]
+        public async Task OpenMetaDataPopUp()
+        {
+            try
+            {
+                var _metaDataViewModel = new MetaDataViewModel()
+                {
+                    CreateDate = this.Advertisement.CreateDate,
+                    DataSize = this.Advertisement.Contents.FirstOrDefault().FileSize
+                };
+
+                var _metadataPopUp = new MetaDataPopUp(_metaDataViewModel);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(_metadataPopUp);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
     }

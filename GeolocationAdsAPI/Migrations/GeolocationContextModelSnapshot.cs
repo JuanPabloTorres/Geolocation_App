@@ -217,6 +217,16 @@ namespace GeolocationAdsAPI.Migrations
                             UpdateBy = 0,
                             UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "Offer"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            CreateBy = 0,
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SettingName = "AdTypes",
+                            UpdateBy = 0,
+                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Value = "News"
                         });
                 });
 
@@ -391,12 +401,18 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("GoogleId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HashPassword")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Provider")
+                        .HasColumnType("int");
 
                     b.Property<int>("UpdateBy")
                         .HasColumnType("int");

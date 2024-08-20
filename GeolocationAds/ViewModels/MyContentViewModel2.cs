@@ -87,8 +87,6 @@ namespace GeolocationAds.ViewModels
 
                 var userId = this.LogUserPerfilTool.GetUserId();
 
-                //var apiResponse = await this.containerMyContentServices.AdvertisementService.GetAdvertisementsOfUser(userId, this.SelectedAdType.ID, pageIndex);
-
                 var apiResponse = await containerMyContentServices.AdvertisementService
                                 .GetAdvertisementsOfUser(userId, SelectedAdType.ID, pageIndex)
                                 .ConfigureAwait(false);
@@ -98,11 +96,7 @@ namespace GeolocationAds.ViewModels
                     await CommonsTool.DisplayAlert("Error", apiResponse.Message);
                 }
 
-                // Convert the enumerable to a list to avoid multiple enumerations
                 var viewModels = apiResponse.Data.Select(ad => new ContentViewTemplateViewModel(this.containerMyContentServices.AdvertisementService, this.service, ad)).ToList();
-
-                // Add the initialized viewModels to the collection
-                //this.CollectionModel.AddRange(viewModels);
 
                 MainThread.BeginInvokeOnMainThread(() => CollectionModel.AddRange(viewModels));
             }

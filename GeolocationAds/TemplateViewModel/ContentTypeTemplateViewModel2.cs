@@ -120,7 +120,7 @@ namespace GeolocationAds.TemplateViewModel
         {
             this.IsAnimation = false;
 
-            await Task.Delay(1000);  // Delay for 1 second or however long you need
+            await Task.Delay(10);  // Delay for 10 ms (0.01 segundos): or however long you need
 
             this.IsAnimation = true;      // Set to true after delay
         }

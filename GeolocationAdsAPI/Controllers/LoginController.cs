@@ -66,33 +66,114 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
+        //[HttpPost("[action]")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> VerifyCredential(Login loginCredential)
+        //{
+        //    try
+        //    {
+        //        ResponseTool<User> response;
+
+        //        if (loginCredential.Provider == ToolsLibrary.Enums.Providers.Google)
+        //        {
+        //            response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
+        //        }
+        //        else
+        //        {
+        //            response = await this.loginRespository.VerifyCredential(loginCredential);
+        //        }
+
+        //        if (response.IsSuccess)
+        //        {
+        //            // Authenticate the user and generate a JWT token.
+        //            var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
+
+        //            return Ok(response);
+        //        }
+        //        else
+        //        {
+        //            return Ok(response);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //        return Ok(_exceptionResponse);
+        //    }
+        //}
+
         [HttpPost("[action]")]
         [AllowAnonymous]
         public async Task<IActionResult> VerifyCredential(Login loginCredential)
         {
             try
             {
-                var response = await this.loginRespository.VerifyCredential(loginCredential);
+                ResponseTool<User> response;
+
+                // Verifica el proveedor y llama al método correspondiente
+                switch (loginCredential.Provider)
+                {
+                    case ToolsLibrary.Enums.Providers.Google:
+                        response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
+                        break;
+
+                    case ToolsLibrary.Enums.Providers.Facebook:
+                        response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
+                        break;
+
+                    default:
+                        // Por defecto, usa la verificación estándar
+                        response = await this.loginRespository.VerifyCredential(loginCredential);
+                        break;
+                }
 
                 if (response.IsSuccess)
                 {
-                    // Authenticate the user and generate a JWT token.
+                    // Autenticar al usuario y generar un token JWT
                     var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
 
-                    return Ok(response);
+                    return Ok(token);
                 }
-                else
-                {
-                    return Ok(response);
-                }
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                var exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
-                return Ok(_exceptionResponse);
+                return Ok(exceptionResponse);
             }
         }
+
+
+        //[HttpPost("[action]")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GenerateJSONWebToken()
+        //{
+        //    try
+        //    {
+        //        var response = await this.loginRespository.VerifyCredential(loginCredential);
+
+        //        if (response.IsSuccess)
+        //        {
+        //            // Authenticate the user and generate a JWT token.
+        //            var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
+
+        //            return Ok(response);
+        //        }
+        //        else
+        //        {
+        //            return Ok(response);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+        //        return Ok(_exceptionResponse);
+        //    }
+        //}
 
         [HttpPost("[action]")]
         [AllowAnonymous]
@@ -100,7 +181,26 @@ namespace GeolocationAdsAPI.Controllers
         {
             try
             {
-                var response = await this.loginRespository.VerifyCredential(loginCredential);
+                //var response = await this.loginRespository.VerifyCredential(loginCredential);
+
+                ResponseTool<User> response;
+
+                // Verifica el proveedor y llama al método correspondiente
+                switch (loginCredential.Provider)
+                {
+                    case ToolsLibrary.Enums.Providers.Google:
+                        response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
+                        break;
+
+                    case ToolsLibrary.Enums.Providers.Facebook:
+                        response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
+                        break;
+
+                    default:
+                        // Por defecto, usa la verificación estándar
+                        response = await this.loginRespository.VerifyCredential(loginCredential);
+                        break;
+                }
 
                 if (response.IsSuccess)
                 {

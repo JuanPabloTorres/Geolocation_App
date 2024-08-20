@@ -1,11 +1,11 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0897f647-7eb3-4edf-aa56-aa587e1def8f\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\14e66053-32ad-4011-a8be-62401cd200c3\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/0897f647-7eb3-4edf-aa56-aa587e1def8f/output.m3u8</RelativePath>
+      <RelativePath>hls/14e66053-32ad-4011-a8be-62401cd200c3/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -14,14 +14,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0897f647-7eb3-4edf-aa56-aa587e1def8f\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\14e66053-32ad-4011-a8be-62401cd200c3\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0897f647-7eb3-4edf-aa56-aa587e1def8f\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\14e66053-32ad-4011-a8be-62401cd200c3\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/0897f647-7eb3-4edf-aa56-aa587e1def8f/output0.ts</RelativePath>
+      <RelativePath>hls/14e66053-32ad-4011-a8be-62401cd200c3/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -30,14 +30,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0897f647-7eb3-4edf-aa56-aa587e1def8f\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\14e66053-32ad-4011-a8be-62401cd200c3\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0897f647-7eb3-4edf-aa56-aa587e1def8f\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\14e66053-32ad-4011-a8be-62401cd200c3\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/0897f647-7eb3-4edf-aa56-aa587e1def8f/output1.ts</RelativePath>
+      <RelativePath>hls/14e66053-32ad-4011-a8be-62401cd200c3/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -46,103 +46,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0897f647-7eb3-4edf-aa56-aa587e1def8f\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0899df4c-506e-4d94-9d2c-1b2d0d1eeef3\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/0899df4c-506e-4d94-9d2c-1b2d0d1eeef3/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0899df4c-506e-4d94-9d2c-1b2d0d1eeef3\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0899df4c-506e-4d94-9d2c-1b2d0d1eeef3\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/0899df4c-506e-4d94-9d2c-1b2d0d1eeef3/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0899df4c-506e-4d94-9d2c-1b2d0d1eeef3\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0899df4c-506e-4d94-9d2c-1b2d0d1eeef3\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/0899df4c-506e-4d94-9d2c-1b2d0d1eeef3/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\0899df4c-506e-4d94-9d2c-1b2d0d1eeef3\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\092e4945-c8df-49ce-8f86-db01427eab0f\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/092e4945-c8df-49ce-8f86-db01427eab0f/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\092e4945-c8df-49ce-8f86-db01427eab0f\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\092e4945-c8df-49ce-8f86-db01427eab0f\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/092e4945-c8df-49ce-8f86-db01427eab0f/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\092e4945-c8df-49ce-8f86-db01427eab0f\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\092e4945-c8df-49ce-8f86-db01427eab0f\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/092e4945-c8df-49ce-8f86-db01427eab0f/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\092e4945-c8df-49ce-8f86-db01427eab0f\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\14e66053-32ad-4011-a8be-62401cd200c3\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a30642f-dcd4-4b02-bd69-12ff7b02d0e7\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -192,12 +96,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a30642f-dcd4-4b02-bd69-12ff7b02d0e7\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1f39db6c-1fce-434f-b371-7cc34afa2d1d\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a554ed3-75f2-4179-8c99-4d43cfcd5b38\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/1f39db6c-1fce-434f-b371-7cc34afa2d1d/output.m3u8</RelativePath>
+      <RelativePath>hls/1a554ed3-75f2-4179-8c99-4d43cfcd5b38/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -206,14 +110,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1f39db6c-1fce-434f-b371-7cc34afa2d1d\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a554ed3-75f2-4179-8c99-4d43cfcd5b38\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1f39db6c-1fce-434f-b371-7cc34afa2d1d\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a554ed3-75f2-4179-8c99-4d43cfcd5b38\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/1f39db6c-1fce-434f-b371-7cc34afa2d1d/output0.ts</RelativePath>
+      <RelativePath>hls/1a554ed3-75f2-4179-8c99-4d43cfcd5b38/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -222,14 +126,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1f39db6c-1fce-434f-b371-7cc34afa2d1d\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a554ed3-75f2-4179-8c99-4d43cfcd5b38\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1f39db6c-1fce-434f-b371-7cc34afa2d1d\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a554ed3-75f2-4179-8c99-4d43cfcd5b38\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/1f39db6c-1fce-434f-b371-7cc34afa2d1d/output1.ts</RelativePath>
+      <RelativePath>hls/1a554ed3-75f2-4179-8c99-4d43cfcd5b38/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -238,14 +142,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1f39db6c-1fce-434f-b371-7cc34afa2d1d\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\1a554ed3-75f2-4179-8c99-4d43cfcd5b38\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\22a50aba-003a-4842-a364-269cb594f242\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\238d25fe-661b-4b0e-b538-f58b2fb1f53d\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/22a50aba-003a-4842-a364-269cb594f242/output.m3u8</RelativePath>
+      <RelativePath>hls/238d25fe-661b-4b0e-b538-f58b2fb1f53d/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -254,14 +158,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\22a50aba-003a-4842-a364-269cb594f242\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\238d25fe-661b-4b0e-b538-f58b2fb1f53d\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\22a50aba-003a-4842-a364-269cb594f242\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\238d25fe-661b-4b0e-b538-f58b2fb1f53d\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/22a50aba-003a-4842-a364-269cb594f242/output0.ts</RelativePath>
+      <RelativePath>hls/238d25fe-661b-4b0e-b538-f58b2fb1f53d/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -270,14 +174,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\22a50aba-003a-4842-a364-269cb594f242\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\238d25fe-661b-4b0e-b538-f58b2fb1f53d\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\22a50aba-003a-4842-a364-269cb594f242\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\238d25fe-661b-4b0e-b538-f58b2fb1f53d\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/22a50aba-003a-4842-a364-269cb594f242/output1.ts</RelativePath>
+      <RelativePath>hls/238d25fe-661b-4b0e-b538-f58b2fb1f53d/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -286,7 +190,55 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\22a50aba-003a-4842-a364-269cb594f242\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\238d25fe-661b-4b0e-b538-f58b2fb1f53d\output1.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\28f0be58-6d7c-4179-ae3e-5c87c4492bde\output.m3u8))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/28f0be58-6d7c-4179-ae3e-5c87c4492bde/output.m3u8</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\28f0be58-6d7c-4179-ae3e-5c87c4492bde\output.m3u8))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\28f0be58-6d7c-4179-ae3e-5c87c4492bde\output0.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/28f0be58-6d7c-4179-ae3e-5c87c4492bde/output0.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\28f0be58-6d7c-4179-ae3e-5c87c4492bde\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\28f0be58-6d7c-4179-ae3e-5c87c4492bde\output1.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/28f0be58-6d7c-4179-ae3e-5c87c4492bde/output1.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\28f0be58-6d7c-4179-ae3e-5c87c4492bde\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2a7947f1-9b41-42e1-ad55-fdf68c745e22\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -336,12 +288,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2a7947f1-9b41-42e1-ad55-fdf68c745e22\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\324b343a-9176-4f58-83ed-512da3d153f3\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61/output.m3u8</RelativePath>
+      <RelativePath>hls/324b343a-9176-4f58-83ed-512da3d153f3/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -350,14 +302,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\324b343a-9176-4f58-83ed-512da3d153f3\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\324b343a-9176-4f58-83ed-512da3d153f3\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61/output0.ts</RelativePath>
+      <RelativePath>hls/324b343a-9176-4f58-83ed-512da3d153f3/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -366,14 +318,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\324b343a-9176-4f58-83ed-512da3d153f3\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\324b343a-9176-4f58-83ed-512da3d153f3\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61/output1.ts</RelativePath>
+      <RelativePath>hls/324b343a-9176-4f58-83ed-512da3d153f3/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -382,183 +334,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\2d68eb9d-35b6-4ff5-8b44-6fa34b8d0a61\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3ce12bdc-13c7-4a3a-904c-acc237762ef4\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/3ce12bdc-13c7-4a3a-904c-acc237762ef4/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3ce12bdc-13c7-4a3a-904c-acc237762ef4\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3ce12bdc-13c7-4a3a-904c-acc237762ef4\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/3ce12bdc-13c7-4a3a-904c-acc237762ef4/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3ce12bdc-13c7-4a3a-904c-acc237762ef4\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3ce12bdc-13c7-4a3a-904c-acc237762ef4\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/3ce12bdc-13c7-4a3a-904c-acc237762ef4/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3ce12bdc-13c7-4a3a-904c-acc237762ef4\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3eda661c-ab63-4d3e-8a14-93b080137c37\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/3eda661c-ab63-4d3e-8a14-93b080137c37/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3eda661c-ab63-4d3e-8a14-93b080137c37\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3eda661c-ab63-4d3e-8a14-93b080137c37\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/3eda661c-ab63-4d3e-8a14-93b080137c37/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\3eda661c-ab63-4d3e-8a14-93b080137c37\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\522cff0a-c0b1-4980-b86c-8ee30afc6e61\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/522cff0a-c0b1-4980-b86c-8ee30afc6e61/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\522cff0a-c0b1-4980-b86c-8ee30afc6e61\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\522cff0a-c0b1-4980-b86c-8ee30afc6e61\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/522cff0a-c0b1-4980-b86c-8ee30afc6e61/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\522cff0a-c0b1-4980-b86c-8ee30afc6e61\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\522cff0a-c0b1-4980-b86c-8ee30afc6e61\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/522cff0a-c0b1-4980-b86c-8ee30afc6e61/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\522cff0a-c0b1-4980-b86c-8ee30afc6e61\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\53290585-630f-4a12-a7dc-5221319a7785\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/53290585-630f-4a12-a7dc-5221319a7785/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\53290585-630f-4a12-a7dc-5221319a7785\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\53290585-630f-4a12-a7dc-5221319a7785\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/53290585-630f-4a12-a7dc-5221319a7785/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\53290585-630f-4a12-a7dc-5221319a7785\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\53290585-630f-4a12-a7dc-5221319a7785\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/53290585-630f-4a12-a7dc-5221319a7785/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\53290585-630f-4a12-a7dc-5221319a7785\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\324b343a-9176-4f58-83ed-512da3d153f3\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5361d22f-ef15-4ede-9cc9-59ce7d519087\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -704,12 +480,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\570d5283-4835-4821-82f8-b9ab218efef6\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5f24c9d7-8d79-4a13-9e85-383da07ac807\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\60e3ae7e-b7a5-44e3-bfbd-b6084a935717\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/5f24c9d7-8d79-4a13-9e85-383da07ac807/output.m3u8</RelativePath>
+      <RelativePath>hls/60e3ae7e-b7a5-44e3-bfbd-b6084a935717/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -718,14 +494,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5f24c9d7-8d79-4a13-9e85-383da07ac807\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\60e3ae7e-b7a5-44e3-bfbd-b6084a935717\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5f24c9d7-8d79-4a13-9e85-383da07ac807\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\60e3ae7e-b7a5-44e3-bfbd-b6084a935717\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/5f24c9d7-8d79-4a13-9e85-383da07ac807/output0.ts</RelativePath>
+      <RelativePath>hls/60e3ae7e-b7a5-44e3-bfbd-b6084a935717/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -734,14 +510,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5f24c9d7-8d79-4a13-9e85-383da07ac807\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\60e3ae7e-b7a5-44e3-bfbd-b6084a935717\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5f24c9d7-8d79-4a13-9e85-383da07ac807\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\60e3ae7e-b7a5-44e3-bfbd-b6084a935717\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/5f24c9d7-8d79-4a13-9e85-383da07ac807/output1.ts</RelativePath>
+      <RelativePath>hls/60e3ae7e-b7a5-44e3-bfbd-b6084a935717/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -750,14 +526,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\5f24c9d7-8d79-4a13-9e85-383da07ac807\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\60e3ae7e-b7a5-44e3-bfbd-b6084a935717\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\606daaad-9312-46ca-9c59-4a2833f9cf03\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\65b13792-2520-4102-81fb-cd707fae98b0\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/606daaad-9312-46ca-9c59-4a2833f9cf03/output.m3u8</RelativePath>
+      <RelativePath>hls/65b13792-2520-4102-81fb-cd707fae98b0/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -766,14 +542,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\606daaad-9312-46ca-9c59-4a2833f9cf03\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\65b13792-2520-4102-81fb-cd707fae98b0\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\606daaad-9312-46ca-9c59-4a2833f9cf03\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\65b13792-2520-4102-81fb-cd707fae98b0\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/606daaad-9312-46ca-9c59-4a2833f9cf03/output0.ts</RelativePath>
+      <RelativePath>hls/65b13792-2520-4102-81fb-cd707fae98b0/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -782,14 +558,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\606daaad-9312-46ca-9c59-4a2833f9cf03\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\65b13792-2520-4102-81fb-cd707fae98b0\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\606daaad-9312-46ca-9c59-4a2833f9cf03\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\65b13792-2520-4102-81fb-cd707fae98b0\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/606daaad-9312-46ca-9c59-4a2833f9cf03/output1.ts</RelativePath>
+      <RelativePath>hls/65b13792-2520-4102-81fb-cd707fae98b0/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -798,55 +574,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\606daaad-9312-46ca-9c59-4a2833f9cf03\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\718de81b-56f9-4f21-94d0-029750a68dce\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/718de81b-56f9-4f21-94d0-029750a68dce/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\718de81b-56f9-4f21-94d0-029750a68dce\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\718de81b-56f9-4f21-94d0-029750a68dce\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/718de81b-56f9-4f21-94d0-029750a68dce/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\718de81b-56f9-4f21-94d0-029750a68dce\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\718de81b-56f9-4f21-94d0-029750a68dce\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/718de81b-56f9-4f21-94d0-029750a68dce/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\718de81b-56f9-4f21-94d0-029750a68dce\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\65b13792-2520-4102-81fb-cd707fae98b0\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\72f8092f-fbeb-4435-897a-f710a4baf276\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -896,12 +624,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\72f8092f-fbeb-4435-897a-f710a4baf276\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7548ee39-cc41-4027-a2d3-4456be907c71\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\73d1532a-f78e-4dff-913c-7fb64c600e19\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/7548ee39-cc41-4027-a2d3-4456be907c71/output.m3u8</RelativePath>
+      <RelativePath>hls/73d1532a-f78e-4dff-913c-7fb64c600e19/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -910,14 +638,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7548ee39-cc41-4027-a2d3-4456be907c71\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\73d1532a-f78e-4dff-913c-7fb64c600e19\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7548ee39-cc41-4027-a2d3-4456be907c71\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\73d1532a-f78e-4dff-913c-7fb64c600e19\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/7548ee39-cc41-4027-a2d3-4456be907c71/output0.ts</RelativePath>
+      <RelativePath>hls/73d1532a-f78e-4dff-913c-7fb64c600e19/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -926,14 +654,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7548ee39-cc41-4027-a2d3-4456be907c71\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\73d1532a-f78e-4dff-913c-7fb64c600e19\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7548ee39-cc41-4027-a2d3-4456be907c71\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\73d1532a-f78e-4dff-913c-7fb64c600e19\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/7548ee39-cc41-4027-a2d3-4456be907c71/output1.ts</RelativePath>
+      <RelativePath>hls/73d1532a-f78e-4dff-913c-7fb64c600e19/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -942,7 +670,87 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7548ee39-cc41-4027-a2d3-4456be907c71\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\73d1532a-f78e-4dff-913c-7fb64c600e19\output1.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7519d18a-0208-481f-b95e-b29a660df572\output.m3u8))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/7519d18a-0208-481f-b95e-b29a660df572/output.m3u8</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7519d18a-0208-481f-b95e-b29a660df572\output.m3u8))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7519d18a-0208-481f-b95e-b29a660df572\output0.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/7519d18a-0208-481f-b95e-b29a660df572/output0.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\7519d18a-0208-481f-b95e-b29a660df572\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\78448504-e329-4d57-8fb6-8ee05301ece7\output.m3u8))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/78448504-e329-4d57-8fb6-8ee05301ece7/output.m3u8</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\78448504-e329-4d57-8fb6-8ee05301ece7\output.m3u8))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\78448504-e329-4d57-8fb6-8ee05301ece7\output0.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/78448504-e329-4d57-8fb6-8ee05301ece7/output0.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\78448504-e329-4d57-8fb6-8ee05301ece7\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\78448504-e329-4d57-8fb6-8ee05301ece7\output1.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/78448504-e329-4d57-8fb6-8ee05301ece7/output1.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\78448504-e329-4d57-8fb6-8ee05301ece7\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\790fb965-f555-4f5c-814b-3bad90e4239c\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -991,6 +799,54 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\790fb965-f555-4f5c-814b-3bad90e4239c\output1.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\835e1e79-87ec-4a5d-88af-2284cc03461e\output.m3u8))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/835e1e79-87ec-4a5d-88af-2284cc03461e/output.m3u8</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\835e1e79-87ec-4a5d-88af-2284cc03461e\output.m3u8))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\835e1e79-87ec-4a5d-88af-2284cc03461e\output0.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/835e1e79-87ec-4a5d-88af-2284cc03461e/output0.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\835e1e79-87ec-4a5d-88af-2284cc03461e\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\835e1e79-87ec-4a5d-88af-2284cc03461e\output1.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/835e1e79-87ec-4a5d-88af-2284cc03461e/output1.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\835e1e79-87ec-4a5d-88af-2284cc03461e\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\88b7b014-fb7d-4462-a0f7-d201d14dd9a2\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -1088,12 +944,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8a17cbb6-3ecd-4493-8c93-60c4e186fa02\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8e0524cb-5e19-464e-afc5-769b4f52caba\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\90444e0a-cc5c-4541-ab9c-bd1779d0d158\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/8e0524cb-5e19-464e-afc5-769b4f52caba/output.m3u8</RelativePath>
+      <RelativePath>hls/90444e0a-cc5c-4541-ab9c-bd1779d0d158/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1102,14 +958,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8e0524cb-5e19-464e-afc5-769b4f52caba\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\90444e0a-cc5c-4541-ab9c-bd1779d0d158\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8e0524cb-5e19-464e-afc5-769b4f52caba\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\90444e0a-cc5c-4541-ab9c-bd1779d0d158\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/8e0524cb-5e19-464e-afc5-769b4f52caba/output0.ts</RelativePath>
+      <RelativePath>hls/90444e0a-cc5c-4541-ab9c-bd1779d0d158/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1118,14 +974,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8e0524cb-5e19-464e-afc5-769b4f52caba\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\90444e0a-cc5c-4541-ab9c-bd1779d0d158\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8e0524cb-5e19-464e-afc5-769b4f52caba\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\96d7e857-ce11-4807-b7b0-196adde446ff\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/8e0524cb-5e19-464e-afc5-769b4f52caba/output1.ts</RelativePath>
+      <RelativePath>hls/96d7e857-ce11-4807-b7b0-196adde446ff/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1134,14 +990,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\8e0524cb-5e19-464e-afc5-769b4f52caba\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\96d7e857-ce11-4807-b7b0-196adde446ff\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\93cd2390-1521-43c9-9aea-a10030f29db9\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\96d7e857-ce11-4807-b7b0-196adde446ff\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/93cd2390-1521-43c9-9aea-a10030f29db9/output.m3u8</RelativePath>
+      <RelativePath>hls/96d7e857-ce11-4807-b7b0-196adde446ff/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1150,14 +1006,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\93cd2390-1521-43c9-9aea-a10030f29db9\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\96d7e857-ce11-4807-b7b0-196adde446ff\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\93cd2390-1521-43c9-9aea-a10030f29db9\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\96d7e857-ce11-4807-b7b0-196adde446ff\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/93cd2390-1521-43c9-9aea-a10030f29db9/output0.ts</RelativePath>
+      <RelativePath>hls/96d7e857-ce11-4807-b7b0-196adde446ff/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1166,119 +1022,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\93cd2390-1521-43c9-9aea-a10030f29db9\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\93cd2390-1521-43c9-9aea-a10030f29db9\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/93cd2390-1521-43c9-9aea-a10030f29db9/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\93cd2390-1521-43c9-9aea-a10030f29db9\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\9438cb3a-8301-4044-bd3d-ef741c1b400a\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/9438cb3a-8301-4044-bd3d-ef741c1b400a/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\9438cb3a-8301-4044-bd3d-ef741c1b400a\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\9438cb3a-8301-4044-bd3d-ef741c1b400a\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/9438cb3a-8301-4044-bd3d-ef741c1b400a/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\9438cb3a-8301-4044-bd3d-ef741c1b400a\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\9438cb3a-8301-4044-bd3d-ef741c1b400a\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/9438cb3a-8301-4044-bd3d-ef741c1b400a/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\9438cb3a-8301-4044-bd3d-ef741c1b400a\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\99180ef0-d8ba-459e-b2d1-c904ab5aea4b\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/99180ef0-d8ba-459e-b2d1-c904ab5aea4b/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\99180ef0-d8ba-459e-b2d1-c904ab5aea4b\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\99180ef0-d8ba-459e-b2d1-c904ab5aea4b\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/99180ef0-d8ba-459e-b2d1-c904ab5aea4b/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\99180ef0-d8ba-459e-b2d1-c904ab5aea4b\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\99180ef0-d8ba-459e-b2d1-c904ab5aea4b\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/99180ef0-d8ba-459e-b2d1-c904ab5aea4b/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\99180ef0-d8ba-459e-b2d1-c904ab5aea4b\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\96d7e857-ce11-4807-b7b0-196adde446ff\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a344324c-3e49-446d-95f8-3e3e256dba5a\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -1376,6 +1120,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a39ad5e4-824e-4a66-b66c-cece5eb6a21c\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a450c739-1798-48db-b205-a92f1a38f94d\output.m3u8))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/a450c739-1798-48db-b205-a92f1a38f94d/output.m3u8</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a450c739-1798-48db-b205-a92f1a38f94d\output.m3u8))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a450c739-1798-48db-b205-a92f1a38f94d\output0.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/a450c739-1798-48db-b205-a92f1a38f94d/output0.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a450c739-1798-48db-b205-a92f1a38f94d\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a7d2e5e1-92f0-447c-8376-6c53ba111870\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
@@ -1424,12 +1200,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\a7d2e5e1-92f0-447c-8376-6c53ba111870\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b01f1305-ec78-41cf-877e-0690fbac333d\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ae0d4c9a-363c-44a4-9149-7ca5bd1f9831\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/b01f1305-ec78-41cf-877e-0690fbac333d/output.m3u8</RelativePath>
+      <RelativePath>hls/ae0d4c9a-363c-44a4-9149-7ca5bd1f9831/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1438,14 +1214,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b01f1305-ec78-41cf-877e-0690fbac333d\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ae0d4c9a-363c-44a4-9149-7ca5bd1f9831\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b01f1305-ec78-41cf-877e-0690fbac333d\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ae0d4c9a-363c-44a4-9149-7ca5bd1f9831\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/b01f1305-ec78-41cf-877e-0690fbac333d/output0.ts</RelativePath>
+      <RelativePath>hls/ae0d4c9a-363c-44a4-9149-7ca5bd1f9831/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1454,14 +1230,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b01f1305-ec78-41cf-877e-0690fbac333d\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ae0d4c9a-363c-44a4-9149-7ca5bd1f9831\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b01f1305-ec78-41cf-877e-0690fbac333d\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ae0d4c9a-363c-44a4-9149-7ca5bd1f9831\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/b01f1305-ec78-41cf-877e-0690fbac333d/output1.ts</RelativePath>
+      <RelativePath>hls/ae0d4c9a-363c-44a4-9149-7ca5bd1f9831/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1470,14 +1246,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b01f1305-ec78-41cf-877e-0690fbac333d\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ae0d4c9a-363c-44a4-9149-7ca5bd1f9831\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b1c113c5-2759-461d-b4fc-d6684a1812cc\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b10f05e3-0a39-4661-8666-7e5609c8362e\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/b1c113c5-2759-461d-b4fc-d6684a1812cc/output.m3u8</RelativePath>
+      <RelativePath>hls/b10f05e3-0a39-4661-8666-7e5609c8362e/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1486,14 +1262,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b1c113c5-2759-461d-b4fc-d6684a1812cc\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b10f05e3-0a39-4661-8666-7e5609c8362e\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b1c113c5-2759-461d-b4fc-d6684a1812cc\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b10f05e3-0a39-4661-8666-7e5609c8362e\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/b1c113c5-2759-461d-b4fc-d6684a1812cc/output0.ts</RelativePath>
+      <RelativePath>hls/b10f05e3-0a39-4661-8666-7e5609c8362e/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1502,14 +1278,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b1c113c5-2759-461d-b4fc-d6684a1812cc\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b10f05e3-0a39-4661-8666-7e5609c8362e\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b1c113c5-2759-461d-b4fc-d6684a1812cc\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b10f05e3-0a39-4661-8666-7e5609c8362e\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/b1c113c5-2759-461d-b4fc-d6684a1812cc/output1.ts</RelativePath>
+      <RelativePath>hls/b10f05e3-0a39-4661-8666-7e5609c8362e/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1518,14 +1294,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b1c113c5-2759-461d-b4fc-d6684a1812cc\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b10f05e3-0a39-4661-8666-7e5609c8362e\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bbb8b682-df8b-456d-bde8-753d29706257\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b8a0b802-b7f6-45b1-af81-93ab65375761\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/bbb8b682-df8b-456d-bde8-753d29706257/output.m3u8</RelativePath>
+      <RelativePath>hls/b8a0b802-b7f6-45b1-af81-93ab65375761/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1534,14 +1310,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bbb8b682-df8b-456d-bde8-753d29706257\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b8a0b802-b7f6-45b1-af81-93ab65375761\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bbb8b682-df8b-456d-bde8-753d29706257\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b8a0b802-b7f6-45b1-af81-93ab65375761\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/bbb8b682-df8b-456d-bde8-753d29706257/output0.ts</RelativePath>
+      <RelativePath>hls/b8a0b802-b7f6-45b1-af81-93ab65375761/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1550,7 +1326,23 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bbb8b682-df8b-456d-bde8-753d29706257\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b8a0b802-b7f6-45b1-af81-93ab65375761\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b8a0b802-b7f6-45b1-af81-93ab65375761\output1.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/b8a0b802-b7f6-45b1-af81-93ab65375761/output1.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\b8a0b802-b7f6-45b1-af81-93ab65375761\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bc6690f1-df8d-44a5-9fd7-42be466e7aa2\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -1600,12 +1392,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bc6690f1-df8d-44a5-9fd7-42be466e7aa2\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bd6c7b72-db2f-425a-bc3a-0f270f4d071b\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/bd6c7b72-db2f-425a-bc3a-0f270f4d071b/output.m3u8</RelativePath>
+      <RelativePath>hls/c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1614,14 +1406,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bd6c7b72-db2f-425a-bc3a-0f270f4d071b\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bd6c7b72-db2f-425a-bc3a-0f270f4d071b\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/bd6c7b72-db2f-425a-bc3a-0f270f4d071b/output0.ts</RelativePath>
+      <RelativePath>hls/c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1630,14 +1422,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bd6c7b72-db2f-425a-bc3a-0f270f4d071b\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bd6c7b72-db2f-425a-bc3a-0f270f4d071b\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/bd6c7b72-db2f-425a-bc3a-0f270f4d071b/output1.ts</RelativePath>
+      <RelativePath>hls/c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1646,14 +1438,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\bd6c7b72-db2f-425a-bc3a-0f270f4d071b\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c5c08ed5-13e5-4c3d-8e0b-79dd66b7636e\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\be32ad1f-e0c0-4afb-b289-69999d220486\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d0f08bce-b283-4427-9b76-d8ef23a94e4c\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/be32ad1f-e0c0-4afb-b289-69999d220486/output.m3u8</RelativePath>
+      <RelativePath>hls/d0f08bce-b283-4427-9b76-d8ef23a94e4c/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1662,14 +1454,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\be32ad1f-e0c0-4afb-b289-69999d220486\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d0f08bce-b283-4427-9b76-d8ef23a94e4c\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\be32ad1f-e0c0-4afb-b289-69999d220486\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d0f08bce-b283-4427-9b76-d8ef23a94e4c\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/be32ad1f-e0c0-4afb-b289-69999d220486/output0.ts</RelativePath>
+      <RelativePath>hls/d0f08bce-b283-4427-9b76-d8ef23a94e4c/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1678,14 +1470,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\be32ad1f-e0c0-4afb-b289-69999d220486\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d0f08bce-b283-4427-9b76-d8ef23a94e4c\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\be32ad1f-e0c0-4afb-b289-69999d220486\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d0f08bce-b283-4427-9b76-d8ef23a94e4c\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/be32ad1f-e0c0-4afb-b289-69999d220486/output1.ts</RelativePath>
+      <RelativePath>hls/d0f08bce-b283-4427-9b76-d8ef23a94e4c/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1694,14 +1486,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\be32ad1f-e0c0-4afb-b289-69999d220486\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d0f08bce-b283-4427-9b76-d8ef23a94e4c\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d72f70c1-b30f-4513-9f98-a22fac0b2499\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945/output.m3u8</RelativePath>
+      <RelativePath>hls/d72f70c1-b30f-4513-9f98-a22fac0b2499/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1710,14 +1502,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d72f70c1-b30f-4513-9f98-a22fac0b2499\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d72f70c1-b30f-4513-9f98-a22fac0b2499\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945/output0.ts</RelativePath>
+      <RelativePath>hls/d72f70c1-b30f-4513-9f98-a22fac0b2499/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1726,14 +1518,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d72f70c1-b30f-4513-9f98-a22fac0b2499\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d72f70c1-b30f-4513-9f98-a22fac0b2499\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945/output1.ts</RelativePath>
+      <RelativePath>hls/d72f70c1-b30f-4513-9f98-a22fac0b2499/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1742,199 +1534,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c2ef1a3d-2ca6-44b7-bab6-fe5b2a8b5945\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c89fa7c4-f88f-42c3-bf15-2185b5d46571\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c89fa7c4-f88f-42c3-bf15-2185b5d46571/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c89fa7c4-f88f-42c3-bf15-2185b5d46571\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c89fa7c4-f88f-42c3-bf15-2185b5d46571\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c89fa7c4-f88f-42c3-bf15-2185b5d46571/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c89fa7c4-f88f-42c3-bf15-2185b5d46571\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c89fa7c4-f88f-42c3-bf15-2185b5d46571\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c89fa7c4-f88f-42c3-bf15-2185b5d46571/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c89fa7c4-f88f-42c3-bf15-2185b5d46571\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c8aa7367-d943-4826-8eb9-43b2122defd1\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c8aa7367-d943-4826-8eb9-43b2122defd1/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c8aa7367-d943-4826-8eb9-43b2122defd1\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c8aa7367-d943-4826-8eb9-43b2122defd1\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c8aa7367-d943-4826-8eb9-43b2122defd1/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c8aa7367-d943-4826-8eb9-43b2122defd1\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c8aa7367-d943-4826-8eb9-43b2122defd1\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/c8aa7367-d943-4826-8eb9-43b2122defd1/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\c8aa7367-d943-4826-8eb9-43b2122defd1\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cf3e48ee-41ff-4186-9c51-49dae1addf68\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/cf3e48ee-41ff-4186-9c51-49dae1addf68/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cf3e48ee-41ff-4186-9c51-49dae1addf68\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cf3e48ee-41ff-4186-9c51-49dae1addf68\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/cf3e48ee-41ff-4186-9c51-49dae1addf68/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cf3e48ee-41ff-4186-9c51-49dae1addf68\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cf3e48ee-41ff-4186-9c51-49dae1addf68\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/cf3e48ee-41ff-4186-9c51-49dae1addf68/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cf3e48ee-41ff-4186-9c51-49dae1addf68\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cff4922d-977e-43bf-8926-50033a9bebb5\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/cff4922d-977e-43bf-8926-50033a9bebb5/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cff4922d-977e-43bf-8926-50033a9bebb5\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cff4922d-977e-43bf-8926-50033a9bebb5\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/cff4922d-977e-43bf-8926-50033a9bebb5/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cff4922d-977e-43bf-8926-50033a9bebb5\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cff4922d-977e-43bf-8926-50033a9bebb5\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/cff4922d-977e-43bf-8926-50033a9bebb5/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\cff4922d-977e-43bf-8926-50033a9bebb5\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d72f70c1-b30f-4513-9f98-a22fac0b2499\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d860f6a0-8925-4646-8411-529aca86b7cd\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -1984,12 +1584,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\d860f6a0-8925-4646-8411-529aca86b7cd\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\df13c532-ace3-4c5d-92ab-0fc206ed4989\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e59edbf6-e729-44a0-ac0f-4ab609467363\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/df13c532-ace3-4c5d-92ab-0fc206ed4989/output.m3u8</RelativePath>
+      <RelativePath>hls/e59edbf6-e729-44a0-ac0f-4ab609467363/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1998,14 +1598,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\df13c532-ace3-4c5d-92ab-0fc206ed4989\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e59edbf6-e729-44a0-ac0f-4ab609467363\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\df13c532-ace3-4c5d-92ab-0fc206ed4989\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e59edbf6-e729-44a0-ac0f-4ab609467363\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/df13c532-ace3-4c5d-92ab-0fc206ed4989/output0.ts</RelativePath>
+      <RelativePath>hls/e59edbf6-e729-44a0-ac0f-4ab609467363/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2014,14 +1614,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\df13c532-ace3-4c5d-92ab-0fc206ed4989\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e59edbf6-e729-44a0-ac0f-4ab609467363\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\df13c532-ace3-4c5d-92ab-0fc206ed4989\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e59edbf6-e729-44a0-ac0f-4ab609467363\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/df13c532-ace3-4c5d-92ab-0fc206ed4989/output1.ts</RelativePath>
+      <RelativePath>hls/e59edbf6-e729-44a0-ac0f-4ab609467363/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2030,55 +1630,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\df13c532-ace3-4c5d-92ab-0fc206ed4989\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e8ebecd6-36e0-4336-b49c-33d5ccd70e08\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/e8ebecd6-36e0-4336-b49c-33d5ccd70e08/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e8ebecd6-36e0-4336-b49c-33d5ccd70e08\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e8ebecd6-36e0-4336-b49c-33d5ccd70e08\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/e8ebecd6-36e0-4336-b49c-33d5ccd70e08/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e8ebecd6-36e0-4336-b49c-33d5ccd70e08\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e8ebecd6-36e0-4336-b49c-33d5ccd70e08\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/e8ebecd6-36e0-4336-b49c-33d5ccd70e08/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e8ebecd6-36e0-4336-b49c-33d5ccd70e08\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\e59edbf6-e729-44a0-ac0f-4ab609467363\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ed9e964b-a7b3-4655-b91a-96860f152a1c\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -2128,6 +1680,54 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ed9e964b-a7b3-4655-b91a-96860f152a1c\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ef187533-307f-420f-84c8-2eab0904c66a\output.m3u8))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/ef187533-307f-420f-84c8-2eab0904c66a/output.m3u8</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ef187533-307f-420f-84c8-2eab0904c66a\output.m3u8))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ef187533-307f-420f-84c8-2eab0904c66a\output0.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/ef187533-307f-420f-84c8-2eab0904c66a/output0.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ef187533-307f-420f-84c8-2eab0904c66a\output0.ts))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ef187533-307f-420f-84c8-2eab0904c66a\output1.ts))">
+      <SourceType>Package</SourceType>
+      <SourceId>GeolocationAdsAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GeolocationAdsAPI</BasePath>
+      <RelativePath>hls/ef187533-307f-420f-84c8-2eab0904c66a/output1.ts</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ef187533-307f-420f-84c8-2eab0904c66a\output1.ts))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f04dcf74-09c0-42d6-bd31-e534440e62e8\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
@@ -2176,12 +1776,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f04dcf74-09c0-42d6-bd31-e534440e62e8\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f27f1ce4-205a-4f9d-bb65-16f286d5312a\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/f27f1ce4-205a-4f9d-bb65-16f286d5312a/output.m3u8</RelativePath>
+      <RelativePath>hls/ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2190,14 +1790,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f27f1ce4-205a-4f9d-bb65-16f286d5312a\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f27f1ce4-205a-4f9d-bb65-16f286d5312a\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/f27f1ce4-205a-4f9d-bb65-16f286d5312a/output0.ts</RelativePath>
+      <RelativePath>hls/ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2206,14 +1806,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f27f1ce4-205a-4f9d-bb65-16f286d5312a\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f27f1ce4-205a-4f9d-bb65-16f286d5312a\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/f27f1ce4-205a-4f9d-bb65-16f286d5312a/output1.ts</RelativePath>
+      <RelativePath>hls/ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2222,55 +1822,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\f27f1ce4-205a-4f9d-bb65-16f286d5312a\output1.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\fd2b2661-9c14-4b8e-a261-6174de1a3d59\output.m3u8))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/fd2b2661-9c14-4b8e-a261-6174de1a3d59/output.m3u8</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\fd2b2661-9c14-4b8e-a261-6174de1a3d59\output.m3u8))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\fd2b2661-9c14-4b8e-a261-6174de1a3d59\output0.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/fd2b2661-9c14-4b8e-a261-6174de1a3d59/output0.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\fd2b2661-9c14-4b8e-a261-6174de1a3d59\output0.ts))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\fd2b2661-9c14-4b8e-a261-6174de1a3d59\output1.ts))">
-      <SourceType>Package</SourceType>
-      <SourceId>GeolocationAdsAPI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/fd2b2661-9c14-4b8e-a261-6174de1a3d59/output1.ts</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\fd2b2661-9c14-4b8e-a261-6174de1a3d59\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff4b4b02-af91-4bfd-a1ff-4f264ad3bc6f\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff9c71e1-8bcc-4565-a844-bb55b449f224\output.m3u8))">
       <SourceType>Package</SourceType>
@@ -2320,12 +1872,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ff9c71e1-8bcc-4565-a844-bb55b449f224\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffbf86a6-6bf1-448d-a4f4-7538ab0e2104\output.m3u8))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffe96fb0-61bf-454b-beac-be1ac3689eb5\output.m3u8))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/ffbf86a6-6bf1-448d-a4f4-7538ab0e2104/output.m3u8</RelativePath>
+      <RelativePath>hls/ffe96fb0-61bf-454b-beac-be1ac3689eb5/output.m3u8</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2334,14 +1886,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffbf86a6-6bf1-448d-a4f4-7538ab0e2104\output.m3u8))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffe96fb0-61bf-454b-beac-be1ac3689eb5\output.m3u8))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffbf86a6-6bf1-448d-a4f4-7538ab0e2104\output0.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffe96fb0-61bf-454b-beac-be1ac3689eb5\output0.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/ffbf86a6-6bf1-448d-a4f4-7538ab0e2104/output0.ts</RelativePath>
+      <RelativePath>hls/ffe96fb0-61bf-454b-beac-be1ac3689eb5/output0.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2350,14 +1902,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffbf86a6-6bf1-448d-a4f4-7538ab0e2104\output0.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffe96fb0-61bf-454b-beac-be1ac3689eb5\output0.ts))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffbf86a6-6bf1-448d-a4f4-7538ab0e2104\output1.ts))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffe96fb0-61bf-454b-beac-be1ac3689eb5\output1.ts))">
       <SourceType>Package</SourceType>
       <SourceId>GeolocationAdsAPI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/GeolocationAdsAPI</BasePath>
-      <RelativePath>hls/ffbf86a6-6bf1-448d-a4f4-7538ab0e2104/output1.ts</RelativePath>
+      <RelativePath>hls/ffe96fb0-61bf-454b-beac-be1ac3689eb5/output1.ts</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -2366,7 +1918,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffbf86a6-6bf1-448d-a4f4-7538ab0e2104\output1.ts))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\hls\ffe96fb0-61bf-454b-beac-be1ac3689eb5\output1.ts))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

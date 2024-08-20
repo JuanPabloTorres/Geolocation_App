@@ -110,5 +110,23 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
+
+        [HttpGet("[action]/{email}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> IsEmailRegistered(string email)
+        {
+            try
+            {
+                var _emailExist = await this.userRepository.IsEmailRegistered(email);
+
+                return Ok(_emailExist);
+            }
+            catch (Exception ex)
+            {
+                var response = ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(response);
+            }
+        }
     }
 }

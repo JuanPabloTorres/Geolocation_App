@@ -175,7 +175,6 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-
         //private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
         //{
         //    try
@@ -235,33 +234,67 @@ namespace GeolocationAds.ViewModels
         //    }
         //}
 
+        //public async Task LoadSetting()
+        //{
+        //    try
+        //    {
+        //        if (!AdTypesSettings.Any())
+        //        {
+        //            var _apiResponse = await this.containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+
+        //            if (_apiResponse.IsSuccess)
+        //            {
+        //                AdTypesSettings.AddRange(_apiResponse.Data);
+
+        //                var matchingSetting = this.Model.Settings.FirstOrDefault(modelsetting => AdTypesSettings.Any(item => modelsetting.SettingId == item.ID));
+
+        //                if (!matchingSetting.IsObjectNull())
+        //                {
+        //                    this.SelectedAdType = AdTypesSettings.First(item => matchingSetting.SettingId == item.ID);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //    }
+        //}
+
         public async Task LoadSetting()
         {
             try
             {
-                var _apiResponse = await this.containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+                if (AdTypesSettings.Any()) return;
 
-                if (_apiResponse.IsSuccess)
+                var apiResponse = await containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+
+                if (!apiResponse.IsSuccess)
                 {
-                    AdTypesSettings.AddRange(_apiResponse.Data);
+                    await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
 
-                    var matchingSetting = this.Model.Settings.FirstOrDefault(modelsetting => AdTypesSettings.Any(item => modelsetting.SettingId == item.ID));
-
-                    if (!matchingSetting.IsObjectNull())
-                    {
-                        this.SelectedAdType = AdTypesSettings.First(item => matchingSetting.SettingId == item.ID);
-                    }
+                    return;
                 }
-                else
+
+                AdTypesSettings.AddRange(apiResponse.Data);
+
+                var matchingSetting = Model.Settings.FirstOrDefault(modelSetting => AdTypesSettings.Any(item => modelSetting.SettingId == item.ID));
+
+                if (matchingSetting != null)
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    SelectedAdType = AdTypesSettings.First(item => item.ID == matchingSetting.SettingId);
                 }
             }
             catch (Exception ex)
             {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
+                await CommonsTool.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}");
             }
         }
+
 
         [RelayCommand]
         public async Task UploadContent()
@@ -273,6 +306,8 @@ namespace GeolocationAds.ViewModels
                 if (this.Model.Contents.Count == 3)
                 {
                     await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
+
+                    this.IsLoading = false;
 
                     return;
                 }

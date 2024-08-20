@@ -20,6 +20,7 @@
     </Button>
 
     <Button
+        Command="{Binding OpenMetaDataPopUpCommand}"
         CommandParameter="{Binding Advertisement}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
         Style="{StaticResource XButton}">

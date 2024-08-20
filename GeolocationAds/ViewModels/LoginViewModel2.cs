@@ -8,6 +8,7 @@ using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using ToolsLibrary.Enums;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
@@ -21,6 +22,10 @@ namespace GeolocationAds.ViewModels
 
         private readonly IForgotPasswordService forgotPasswordService;
 
+        private readonly IUserService userService;
+
+        private Providers Provider { get; set; }
+
         public IAsyncRelayCommand SaveCredentialsCommand => new AsyncRelayCommand(SaveCredentialsAsync);
 
         public IAsyncRelayCommand ClearCredentialsCommand => new AsyncRelayCommand(ClearCredentialsAsync);
@@ -29,14 +34,18 @@ namespace GeolocationAds.ViewModels
 
         public IAsyncRelayCommand AutoLoginCommand => new AsyncRelayCommand(AutoLoginAsync);
 
+        public readonly string storageNameProvider = nameof(Provider).ToLower();
+
         [ObservableProperty]
         private bool isRemember;
 
-        public LoginViewModel2(RecoveryPasswordViewModel recoveryPasswordViewModel, ToolsLibrary.Models.Login model, IForgotPasswordService forgotPasswordService, ILoginService service, LogUserPerfilTool logUserPerfil = null) : base(model, service, logUserPerfil)
+        public LoginViewModel2(RecoveryPasswordViewModel recoveryPasswordViewModel, ToolsLibrary.Models.Login model, IForgotPasswordService forgotPasswordService, ILoginService service, IUserService userService, LogUserPerfilTool logUserPerfil = null) : base(model, service, logUserPerfil)
         {
             this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
 
             this.forgotPasswordService = forgotPasswordService;
+
+            this.userService = userService;
 
             WeakReferenceMessenger.Default.Register<UpdateMessage<ForgotPassword>>(this, (r, m) =>
             {
@@ -54,10 +63,7 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task SignInWithGoogle()
         {
-            //var authUrl = new Uri("https://accounts.google.com/o/oauth2/auth?client_id=1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com&redirect_uri=com.mycompany.myapp://&response_type=code&scope=openid%20email%20profile");
-
             var authUrl = new Uri("https://accounts.google.com/o/oauth2/auth?client_id=1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com&redirect_uri=com.mycompany.myapp://&response_type=code&scope=openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile");
-
 
             var callbackUrl = new Uri("com.mycompany.myapp://");
 
@@ -79,13 +85,11 @@ namespace GeolocationAds.ViewModels
                         new KeyValuePair<string,string>("client_id","1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com"),
                         new KeyValuePair<string,string>("redirect_uri","com.mycompany.myapp://"),
                         new KeyValuePair<string,string>("code",codeToken),
-                    });
+                });
 
                 HttpClient client = new HttpClient();
 
                 var accessTokenResponse = await client.PostAsync("https://oauth2.googleapis.com/token", parameters);
-
-                //LoginResponse loginResponse;
 
                 if (accessTokenResponse.IsSuccessStatusCode)
                 {
@@ -98,36 +102,113 @@ namespace GeolocationAds.ViewModels
                     // Llamada a la API de Google para obtener la información del usuario
                     if (!string.IsNullOrEmpty(accessToken))
                     {
-                        await GetGoogleUserInfo(accessToken);
+                        var userInfo = await GetGoogleUserInfo(accessToken);
+
+                        await HandleGoogleSignIn(userInfo);
+
+                        this.Provider = Providers.Google;
                     }
-
-                    //loginResponse = JsonConvert.DeserializeObject<LoginResponse>(data);
                 }
-
-
-
-
-                // authResult contiene los tokens de autenticación que puedes usar para acceder a la API de Google.
-                //if (authResult != null)
-                //{
-                //    var accessToken = authResult?.AccessToken;
-
-                //    await GetGoogleUserInfo(accessToken);
-                //}
-
-                // authResult contiene los tokens de autenticación que puedes usar para acceder a la API de Google.
             }
             catch (TaskCanceledException ex)
             {
-                // El usuario canceló la autenticación
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
             catch (Exception ex)
             {
-                // Ocurrió un error durante la autenticación
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
-        public async Task GetGoogleUserInfo(string accessToken)
+        public async Task HandleGoogleSignIn(JObject userInfo)
+        {
+            try
+            {
+                var email = userInfo["email"]?.ToString();
+
+                var name = userInfo["name"]?.ToString();
+
+                var googleId = userInfo["id"]?.ToString();
+
+                // Verificar si el usuario ya existe en la base de datos
+                var existingUserResponse = await userService.IsEmailRegistered(email);
+
+                ToolsLibrary.Models.Login googleCredential;
+
+                User user;
+
+                if (existingUserResponse.ResponseType == ToolsLibrary.Tools.Type.NotExist)
+                {
+                    // El usuario no existe, crear un nuevo registro
+                    user = new User
+                    {
+                        CreateBy = 0,
+                        CreateDate = DateTime.Now,
+                        Email = email,
+                        FullName = name,
+                        Phone = "111-111-1111",
+                        Login = new ToolsLibrary.Models.Login
+                        {
+                            CreateBy = 0,
+                            CreateDate = DateTime.Now,
+                            GoogleId = googleId,
+                            Password = "google",
+                            Username = "googleuser",
+                            Provider = ToolsLibrary.Enums.Providers.Google
+                        }
+                    };
+
+                    var addUserResponse = await userService.Add(user);
+                    googleCredential = user.Login;
+                }
+                else
+                {
+                    // El usuario ya existe, crear el objeto de credenciales de Google
+                    googleCredential = new ToolsLibrary.Models.Login
+                    {
+                        CreateBy = 0,
+                        CreateDate = DateTime.Now,
+                        GoogleId = googleId,
+                        Password = "google",
+                        Username = "googleuser",
+                        Provider = ToolsLibrary.Enums.Providers.Google
+                    };
+                }
+
+                // Generar un token de sesión y manejar la autenticación
+                var authResponse = await service.VerifyCredential2(googleCredential);
+
+                if (authResponse.IsSuccess)
+                {
+                    LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
+
+                    LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
+
+                    service.SetJwtToken(LogUserPerfilTool.JsonToken);
+
+                    WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+
+                    Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+                    await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+                }
+                else
+                {
+                    // Manejar casos de fallo en la autenticación, si es necesario
+                    // Ejemplo: Notificar al usuario o tomar acciones adicionales
+
+                    await CommonsTool.DisplayAlert("Error", authResponse.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+
+                // Manejo adicional si es necesario
+            }
+        }
+
+        public async Task<JObject> GetGoogleUserInfo(string accessToken)
         {
             var httpClient = new HttpClient();
 
@@ -135,18 +216,8 @@ namespace GeolocationAds.ViewModels
 
             var response = await httpClient.GetStringAsync("https://www.googleapis.com/oauth2/v2/userinfo");
 
-            var userInfo = JObject.Parse(response);
-
-            var email = userInfo["email"]?.ToString();
-
-            var name = userInfo["name"]?.ToString();
-
-            var picture = userInfo["picture"]?.ToString();
-
-            // Puedes almacenar esta información o usarla directamente en tu aplicación
-            Console.WriteLine($"Email: {email}, Name: {name}, Picture: {picture}");
+            return JObject.Parse(response);
         }
-
 
         [RelayCommand]
         private async Task GoToRegister()
@@ -189,6 +260,8 @@ namespace GeolocationAds.ViewModels
                         break;
 
                     default:
+                        this.Provider = Providers.App;
+
                         this.LogUserPerfilTool.JsonToken = _apiResponse.Data.JsonToken;
 
                         this.LogUserPerfilTool.LogUser = _apiResponse.Data.LogUser;
@@ -241,14 +314,46 @@ namespace GeolocationAds.ViewModels
 
         private async Task AutoLoginAsync()
         {
-            //var credential = new ToolsLibrary.Models.Login
-            //{
-            //    Username = this.Model.Username,
-            //    Password = this.Model.Password
-            //};
+            try
+            {
+                // Obtener el tipo de proveedor desde el almacenamiento seguro
+                var providerType = await SecureStorage.GetAsync(storageNameProvider);
 
-            //await VerifyCredential(credential);
+                if (!string.IsNullOrWhiteSpace(providerType) && Enum.TryParse(providerType, true, out Providers provider))
+                {
+                    switch (provider)
+                    {
+                        case Providers.App:
+                            var credential = new ToolsLibrary.Models.Login
+                            {
+                                Username = this.Model.Username,
+                                Password = this.Model.Password
+                            };
+                            await VerifyCredential(credential);
+
+                            break;
+
+                        case Providers.Google:
+                            await SignInWithGoogle();
+
+                            break;
+
+                        // Agregar más proveedores aquí si es necesario
+                        default:
+                            throw new InvalidOperationException("Unsupported provider type.");
+                    }
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                await CommonsTool.DisplayAlert("Error", "Invalid provider type: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
         }
+
 
         partial void OnIsRememberChanged(bool value)
         {
@@ -273,6 +378,8 @@ namespace GeolocationAds.ViewModels
         {
             try
             {
+                await SecureStorage.SetAsync(storageNameProvider, this.Provider.ToString());
+
                 await SecureStorage.SetAsync("username", this.Model.Username);
 
                 await SecureStorage.SetAsync("password", this.Model.Password);

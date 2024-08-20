@@ -8,17 +8,23 @@ namespace ToolsLibrary.Converters
         {
             if (value is long dataSize)
             {
-                if (dataSize >= 1_073_741_824) // GB
-                    return $"{dataSize / 1_073_741_824.0:F2} GB";
-                else if (dataSize >= 1_048_576) // MB
-                    return $"{dataSize / 1_048_576.0:F2} MB";
-                else if (dataSize >= 1024) // KB
-                    return $"{dataSize / 1024.0:F2} KB";
+                const long OneKB = 1024;
+
+                const long OneMB = OneKB * 1024;
+
+                const long OneGB = OneMB * 1024;
+
+                if (dataSize >= OneGB) // GB
+                    return $"{dataSize / (double)OneGB:F2} GB";
+                else if (dataSize >= OneMB) // MB
+                    return $"{dataSize / (double)OneMB:F2} MB";
+                else if (dataSize >= OneKB) // KB
+                    return $"{dataSize / (double)OneKB:F2} KB";
                 else // Bytes
-                    return $"{dataSize} B";
+                    return string.Empty;
             }
 
-            return "0 B";
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

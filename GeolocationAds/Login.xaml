@@ -179,6 +179,7 @@
                     <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
                         <Button
                             BackgroundColor="Transparent"
+                            Command="{Binding SignInWithGoogleCommand}"
                             HeightRequest="50"
                             HorizontalOptions="Center"
                             ImageSource="google.png"

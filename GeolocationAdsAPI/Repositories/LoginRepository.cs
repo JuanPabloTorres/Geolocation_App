@@ -100,41 +100,75 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                // Attempt to find login with matching username
+                // Intentar encontrar el login con el username coincidente
                 var foundLogin = await _context.Logins
+                                               .AsNoTracking()  // Evitar el tracking si no se necesita modificar la entidad
                                                .FirstOrDefaultAsync(v => v.Username == credential.Username);
 
-                // Handle cases where either login is not found or password verification fails
+                // Manejar casos donde no se encuentra el login o la verificación de contraseña falla
                 if (foundLogin == null || !BCrypt.Net.BCrypt.Verify(credential.Password, foundLogin.HashPassword))
                 {
                     return ResponseFactory<User>.BuildFail("Invalid Credential", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
-                // User is found, proceed to get associated user details
+                // Obtener los detalles del usuario asociado si la verificación de login fue exitosa
                 var foundUser = await _context.Users
                                               .Include(u => u.Login)
+                                              .AsNoTracking()  // Evitar el tracking si no se necesita modificar la entidad
                                               .FirstOrDefaultAsync(v => v.ID == foundLogin.UserId);
 
+                if (foundUser == null)
+                {
+                    return ResponseFactory<User>.BuildFail("User not found", null, ToolsLibrary.Tools.Type.NotFound);
+                }
+
+                // Verificar el estado del usuario
+                if (foundUser.UserStatus == UserStatus.ResetPassword)
+                {
+                    return ResponseFactory<User>.BuildFail("User needs to reset password", null, ToolsLibrary.Tools.Type.Fail);
+                }
+
+                // Si todas las verificaciones son exitosas, devolver una respuesta exitosa
+                return ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser, ToolsLibrary.Tools.Type.Found);
+            }
+            catch (Exception ex)
+            {
+                // Manejo genérico de excepciones
+                return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        public async Task<ResponseTool<User>> VerifyCredentialByProvider(Login credential)
+        {
+            try
+            {
+                User foundUser = null;
+
+                if (credential.Provider == ToolsLibrary.Enums.Providers.Google)
+                {
+                    // Intentar encontrar el login con GoogleId coincidente
+                    var foundLogin = await _context.Logins.Include(u => u.User).FirstOrDefaultAsync(v => v.GoogleId == credential.GoogleId);
+
+                    if (!foundLogin.IsObjectNull())
+                    {
+                        foundUser = foundLogin.User;
+                    }
+                }
+
+                // Verifica si se encontró el usuario
                 if (foundUser.IsObjectNull())
                 {
                     return ResponseFactory<User>.BuildFail("User not found", null, ToolsLibrary.Tools.Type.NotFound);
                 }
 
-                // Check user status
-                if (foundUser.UserStatus == UserStatus.ResetPassword)
-                {
-                    return ResponseFactory<User>.BuildFail("User Reset Password", null, ToolsLibrary.Tools.Type.Fail);
-                }
-
-                // If all checks pass, return successful response
+                // Si todas las verificaciones pasan, devuelve una respuesta exitosa
                 return ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser, ToolsLibrary.Tools.Type.Found);
             }
             catch (Exception ex)
             {
-                // Generic exception handling
+                // Manejo genérico de excepciones
                 return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
     }
 }

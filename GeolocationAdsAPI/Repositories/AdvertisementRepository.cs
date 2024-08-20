@@ -105,35 +105,65 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings)
-                    .Where(v =>
-                    v.UserId == userId &&
-                    v.Settings.Any(s => s.SettingId == typeId))
-                    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
-                    .AsSplitQuery()
-                    .Select(s => new Advertisement
-                    {
-                        ID = s.ID,
-                        Description = s.Description,
-                        Title = s.Title,
-                        UserId = s.UserId,
-                        Contents = s.Contents
-                            .Select(ct => new ContentType
-                            {
-                                ID = ct.ID,
-                                Type = ct.Type,
-                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
-                                ContentName = ct.ContentName ?? string.Empty,
-                                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty
-                            })
-                            .Take(1)
-                            .ToList()
-                    })
-                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                    .Take(ConstantsTools.PageSize)
-                    .ToListAsync();
+                //var _dataFoundResult = await _context.Advertisements.Include(s => s.Settings)
+                //    .Where(v =>
+                //    v.UserId == userId &&
+                //    v.Settings.Any(s => s.SettingId == typeId))
+                //    .OrderByDescending(s => s.CreateDate) // Order by ID (or another suitable property) if needed
+                //    .AsSplitQuery()
+                //    .Select(s => new Advertisement
+                //    {
+                //        ID = s.ID,
+                //        Description = s.Description,
+                //        Title = s.Title,
+                //        UserId = s.UserId,
+                //        Contents = s.Contents
+                //            .Select(ct => new ContentType
+                //            {
+                //                ID = ct.ID,
+                //                Type = ct.Type,
+                //                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
+                //                ContentName = ct.ContentName ?? string.Empty,
+                //                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty
+                //            })
+                //            .Take(1)
+                //            .ToList()
+                //    })
+                //    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                //    .Take(ConstantsTools.PageSize)
+                //    .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found", _dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
+                var dataFoundResult = await _context.Advertisements
+    .Where(v => v.UserId == userId && v.Settings.Any(s => s.SettingId == typeId))
+    .OrderByDescending(s => s.CreateDate) // Order by CreateDate or another suitable property
+    .AsNoTracking() // Improve performance by disabling change tracking
+    .AsSplitQuery() // Optimize performance for complex queries
+    .Select(s => new Advertisement
+    {
+        ID = s.ID,
+        Description = s.Description,
+        Title = s.Title,
+        UserId = s.UserId,
+        CreateDate = s.CreateDate,
+        Contents = s.Contents
+            .Select(ct => new ContentType
+            {
+                ID = ct.ID,
+                Type = ct.Type,
+                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,
+                ContentName = ct.ContentName ?? string.Empty,
+                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
+                FileSize = ct.FileSize,
+            })
+            .Take(1)
+            .ToList()
+    })
+    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+    .Take(ConstantsTools.PageSize)
+    .ToListAsync();
+
+
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found", dataFoundResult, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
