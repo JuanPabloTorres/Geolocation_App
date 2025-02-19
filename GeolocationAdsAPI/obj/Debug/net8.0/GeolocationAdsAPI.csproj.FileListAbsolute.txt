@@ -265,6 +265,7 @@ C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\ne
 C:\Users\Juan Pablo Torres\source\repos\AdsGeoApp\GeolocationAdsAPI\obj\Debug\net8.0\ref\GeolocationAdsAPI.dll
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\appsettings.json
+C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.staticwebassets.runtime.json
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.staticwebassets.endpoints.json
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\GeolocationAdsAPI.exe
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\GlobalSettings.json

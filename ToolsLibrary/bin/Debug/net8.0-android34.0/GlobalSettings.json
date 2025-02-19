@@ -6,7 +6,7 @@
   },
   "GoogleSettings": {
     "GoogleClientId": "1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com",
-    "GoogleClientSecret": "TU_CLIENT_SECRET",
+
     "GoogleRedirectUri": "com.mycompany.myapp://",
     "GoogleAuthUrl": "https://accounts.google.com/o/oauth2/auth?client_id=1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com&redirect_uri=com.mycompany.myapp://&response_type=code&scope=openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile"
   }

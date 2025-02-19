@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "GeolocationAds.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

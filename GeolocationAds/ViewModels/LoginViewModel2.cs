@@ -7,6 +7,7 @@ using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using Newtonsoft.Json.Linq;
+using Org.BouncyCastle.Security;
 using System.Net.Http.Headers;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Models;
@@ -17,16 +18,15 @@ namespace GeolocationAds.ViewModels;
 public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login, ILoginService>
 {
     private readonly IContainerLoginServices _containerLoginServices;
-    private RecoveryPasswordPopUp _passwordRecoveryPage;
-    private Providers Provider { get; set; }
 
-    public readonly string storageNameProvider = nameof(Provider).ToLower();
+    private RecoveryPasswordPopUp _passwordRecoveryPage;
+
+    private Providers Provider { get; set; }
 
     [ObservableProperty]
     private bool isRemember;
 
-    public LoginViewModel2(IContainerLoginServices containerLoginServices)
-        : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
+    public LoginViewModel2(IContainerLoginServices containerLoginServices) : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
     {
         _containerLoginServices = containerLoginServices;
 
@@ -39,7 +39,9 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             });
         });
 
-        AutoLoginAsync().ConfigureAwait(false);
+        //AutoLoginAsync().ConfigureAwait(false);
+
+        Task.Run(async () => await AutoLoginAsync());
     }
 
     /// <summary>
@@ -55,6 +57,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             if (!string.IsNullOrEmpty(accessToken))
             {
                 var userInfo = await _containerLoginServices.GoogleAuthService.GetGoogleUserInfoAsync(accessToken);
+
                 await HandleGoogleSignIn(userInfo);
             }
         }
@@ -152,6 +155,8 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         {
             await _containerLoginServices.SecureStoreService.ClearAll();
         }
+
+        this.IsRemember = rememberMe;
     }
 
     private async Task AutoLoginAsync()
@@ -221,7 +226,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             case Providers.Google:
                 var googleCredential = _containerLoginServices.LoginFactory.CreateGoogleCredential(await _containerLoginServices.SecureStoreService.GetAsync("googleClientId"));
 
-                await AuthenticateUserAsync(googleCredential);
+                await GoogleAuthenticateAndNavigateAsync(googleCredential);
                 break;
 
             default:
@@ -229,7 +234,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
     }
 
-     partial void OnIsRememberChanged(bool isRemember)
+    private partial void OnIsRememberChanged(bool isRemember)
     {
         Task.Run(async () =>
         {
@@ -242,7 +247,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
                 await _containerLoginServices.SecureStoreService.ClearAll();
             }
 
-            this.IsRemember=isRemember; 
+            this.IsRemember = isRemember;
         });
     }
 
@@ -251,6 +256,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         try
         {
             IsLoading = true;
+
             var authResponse = await service.VerifyCredential2(credential);
 
             if (authResponse.IsSuccess)
@@ -277,6 +283,80 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             else
             {
                 await CommonsTool.DisplayAlert("Error", authResponse.Message);
+            }
+        }
+        catch (Exception ex)
+        {
+            await CommonsTool.DisplayAlert("Error", ex.Message);
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    [RelayCommand]
+    private async Task GoToRegister()
+    {
+        Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+
+        await Shell.Current.GoToAsync(nameof(Register));
+    }
+
+    [RelayCommand]
+    private async Task OpenRecoveryPopUp()
+    {
+        this._passwordRecoveryPage = new RecoveryPasswordPopUp(this._containerLoginServices.RecoveryPasswordViewModel);
+
+        await Shell.Current.CurrentPage.ShowPopupAsync(this._passwordRecoveryPage);
+    }
+
+    [RelayCommand]
+    private async Task VerifyCredential(ToolsLibrary.Models.Login credential)
+    {
+        try
+        {
+            IsLoading = true;
+
+            var _apiResponse = await this.service.VerifyCredential2(credential);
+
+            if (!_apiResponse.IsSuccess)
+            {
+                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                return;
+            }
+
+            switch (_apiResponse.Data.LogUser.UserStatus)
+            {
+                case ToolsLibrary.Models.UserStatus.ResetPassword:
+
+                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+
+                    break;
+
+                default:
+
+                    this.LogUserPerfilTool.JsonToken = _apiResponse.Data.JsonToken;
+
+                    this.LogUserPerfilTool.LogUser = _apiResponse.Data.LogUser;
+
+                    this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
+
+                    WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
+
+                    Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+                    if (this.Provider != Providers.App)
+                    {
+                        this.Provider = Providers.App;
+
+                        await ConfirmRememberUserAsync();
+                    }
+
+                    await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+
+                    break;
             }
         }
         catch (Exception ex)

@@ -1,0 +1,152 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}|..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationadsapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}|..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationadsapi\\geolocationadsapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ED1E062-7677-442D-85F1-05F42CD1BFC3}|..\\ToolsLibrary\\ToolsLibrary.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\toolslibrary\\globalsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\viewmodels\\loginviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:viewmodels\\loginviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\services\\googleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:services\\googleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}|..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationadsapi\\controllers\\advertisementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "..\\GeolocationAdsAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\appsettings.json",
+              "RelativeToolTip": "..\\GeolocationAdsAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-19T06:09:28.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GeolocationAdsAPI",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
+              "RelativeDocumentMoniker": "..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
+              "RelativeToolTip": "..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-19T06:09:23.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdvertisementController.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "RelativeDocumentMoniker": "..\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "RelativeToolTip": "..\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "ViewState": "AgIAAPwAAAAAAAAAAAAmwBoBAACdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T05:16:03.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GoogleAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Services\\GoogleAuthService.cs",
+              "RelativeDocumentMoniker": "Services\\GoogleAuthService.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Services\\GoogleAuthService.cs",
+              "RelativeToolTip": "Services\\GoogleAuthService.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAnwFYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T05:05:09.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T03:49:27.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GlobalSettings.json",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\GlobalSettings.json",
+              "RelativeDocumentMoniker": "..\\ToolsLibrary\\GlobalSettings.json",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\GlobalSettings.json",
+              "RelativeToolTip": "..\\ToolsLibrary\\GlobalSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAACTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-19T03:52:34.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\LoginViewModel2.cs",
+              "RelativeDocumentMoniker": "ViewModels\\LoginViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\LoginViewModel2.cs",
+              "RelativeToolTip": "ViewModels\\LoginViewModel2.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-19T04:21:44.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Login.xaml",
+              "RelativeDocumentMoniker": "Login.xaml",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Login.xaml",
+              "RelativeToolTip": "Login.xaml",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAhwNwAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-19T04:27:05.962Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

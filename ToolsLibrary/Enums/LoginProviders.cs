@@ -7,8 +7,8 @@
 
     public enum Providers
     {
-        Google,
-        Facebook,
-        App
+        App=0,
+        Google=1,
+        Facebook=2,
     }
 }

@@ -1,0 +1,76 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output.lrvr43s08n.m3u8">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output.m3u8'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lrvr43s08n"},{"Name":"integrity","Value":"sha256-b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E="},{"Name":"label","Value":"_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output.m3u8"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"148"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 05:42:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output.m3u8">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output.m3u8'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"148"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 05:42:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output0.nl8cixpd11.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output0.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nl8cixpd11"},{"Name":"integrity","Value":"sha256-dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14="},{"Name":"label","Value":"_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output0.ts"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"29501336"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 05:42:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output0.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output0.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"29501336"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 05:42:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output1.lw2h8szbqz.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output1.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lw2h8szbqz"},{"Name":"integrity","Value":"sha256-C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc="},{"Name":"label","Value":"_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output1.ts"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1125180"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 05:42:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1/output1.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output1.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1125180"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 05:42:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output.lrvr43s08n.m3u8">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output.m3u8'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lrvr43s08n"},{"Name":"integrity","Value":"sha256-b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E="},{"Name":"label","Value":"_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output.m3u8"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"148"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 06:00:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output.m3u8">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output.m3u8'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"148"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022b/bro2Iip3\u002B862vEEWQXTLLK3QvIyt52CDfeQy1p66E=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 06:00:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output0.nl8cixpd11.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output0.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nl8cixpd11"},{"Name":"integrity","Value":"sha256-dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14="},{"Name":"label","Value":"_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output0.ts"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"29501336"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 06:00:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output0.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output0.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"29501336"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022dQMU04cjV8qSVnkBkemyes/XiAoZvCiN67XWYGLsP14=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 06:00:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output1.lw2h8szbqz.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output1.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lw2h8szbqz"},{"Name":"integrity","Value":"sha256-C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc="},{"Name":"label","Value":"_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output1.ts"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1125180"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 06:00:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GeolocationAdsAPI/hls/df8afd22-ef0d-4882-9355-89b03068a43a/output1.ts">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output1.ts'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1125180"},{"Name":"Content-Type","Value":"video/vnd.dlna.mpeg-tts"},{"Name":"ETag","Value":"\u0022C\u002B\u002BqkuXjff37vvA5QG/m1v2o0wA0O3rrc0iKJCKWPtc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Feb 2025 06:00:18 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>
