@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b67ZGCvEGAT6AJTDRbvmT6JfsuGnfZ/qOSjBdyQho8E=",
+  "Hash": "yEFhxAUtG3uDVHFbZDqyOaoaa3IqcRzH3oIPrpmF/0c=",
   "Source": "GeolocationAdsAPI",
   "BasePath": "_content/GeolocationAdsAPI",
   "Mode": "Default",
@@ -10,10 +10,11 @@
     {
       "Name": "GeolocationAdsAPI\\wwwroot",
       "Source": "GeolocationAdsAPI",
-      "ContentRoot": "C:\\Users\\Juan Pablo Torres\\source\\repos\\AdsGeoApp\\GeolocationAdsAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\wwwroot\\",
       "BasePath": "_content/GeolocationAdsAPI",
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

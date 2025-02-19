@@ -45,12 +45,7 @@ namespace GeolocationAdsAPI.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //{
-            //    optionsBuilder.UseSqlServer(_connectionString).ConfigureWarnings(warnings =>
-            //            warnings.Throw(RelationalEventId.MultipleCollectionIncludeWarning))
-            //        .UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-            //}
+           
         }
 
         // Seed method to populate initial AppSetting values
@@ -62,10 +57,7 @@ namespace GeolocationAdsAPI.Context
                 .HasForeignKey<Login>(l => l.UserId)
                 .IsRequired(true); // Optional, depending on your requirements
 
-            //modelBuilder.Entity<Advertisement>()
-            //      .HasMany(a => a.Contents)// Advertisement has many ContentTypes
-            //      .WithOne(c => c.Advertisement)  // ContentType has one Advertisement
-            //      .HasForeignKey(c => c.AdvertisingId);  // Use AdvertisementId as the foreign key
+          
 
             modelBuilder.Entity<Advertisement>()
                 .HasMany(a => a.Settings)

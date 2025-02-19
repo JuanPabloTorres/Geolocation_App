@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using FFImageLoading.Maui;
+using GeolocationAds.Factories;
 using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
@@ -73,6 +74,9 @@ public static class MauiProgram
 
             return _httpClient;
         });
+
+        builder.Services.AddTransient<IGoogleAuthService, GoogleAuthService>();
+
 
         #endregion Api Service
 
@@ -149,6 +153,8 @@ public static class MauiProgram
         builder.Services.AddScoped<IContainerManageLocation, ContainerManageLocation>();
 
         builder.Services.AddScoped<IContainerCapture, ContainerCapture>();
+        
+        builder.Services.AddScoped<IContainerLoginServices, ContainerLoginServices>();
 
         #endregion Containers
 
@@ -190,7 +196,17 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<LogUserPerfilTool>();
 
+        builder.Services.AddScoped<ISecureStoreService, SecureStoreService>();
+
         #endregion Tools
+
+        #region Factories
+
+        builder.Services.AddSingleton<ILoginFactory, LoginFactory>();
+
+        builder.Services.AddSingleton<IUserFactory, UserFactory>();
+
+        #endregion Factories
 
         return builder.Build();
     }

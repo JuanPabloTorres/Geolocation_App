@@ -4,6 +4,46 @@
         <name>GeolocationAds</name>
     </assembly>
     <members>
+        <member name="M:GeolocationAds.Factories.ILoginFactory.CreateLogin(System.String,System.String,ToolsLibrary.Enums.Providers)">
+            <summary>
+            Crea una instancia de Login para autenticación tradicional con usuario y contraseña.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Factories.ILoginFactory.CreateGoogleCredential(System.String)">
+            <summary>
+            Crea una instancia de Login para autenticación con Google.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Services.GoogleAuthService.AuthenticateAndRetrieveTokenAsync">
+            <summary>
+            Autentica con Google y obtiene el token de acceso.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Services.GoogleAuthService.GetAccessTokenAsync(System.String)">
+            <summary>
+            Intercambia el código de autorización por un token de acceso.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Services.GoogleAuthService.GetGoogleUserInfoAsync(System.String)">
+            <summary>
+            Obtiene información del usuario desde Google con el token de acceso.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Services.SecureStoreService.SaveAsync(ToolsLibrary.Enums.Providers,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Guarda valores en SecureStorage.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Services.SecureStoreService.GetAsync(System.String)">
+            <summary>
+            Obtiene un valor almacenado en SecureStorage.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Services.SecureStoreService.ClearAll">
+            <summary>
+            Elimina todos los datos almacenados en SecureStorage.
+            </summary>
+        </member>
         <member name="T:GeolocationAds.TemplateViewModel.BaseTemplateViewModel">
             <inheritdoc/>
         </member>
@@ -579,9 +619,16 @@
         <member name="T:GeolocationAds.ViewModels.LoginViewModel2">
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
-            <inheritdoc/>
-            <inheritdoc/>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.LoginViewModel2.SignInWithGoogle">
+            <summary>
+            Inicia sesión con Google utilizando el servicio de autenticación.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.LoginViewModel2.HandleGoogleSignIn(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Maneja el proceso de autenticación de Google.
+            </summary>
         </member>
         <member name="P:GeolocationAds.ViewModels.LoginViewModel2.IsRemember">
             <inheritdoc cref="F:GeolocationAds.ViewModels.LoginViewModel2.isRemember"/>
@@ -596,24 +643,6 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.LoginViewModel2.SignInWithGoogleCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.SignInWithGoogle"/>.</summary>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.goToRegisterCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.GoToRegisterCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.GoToRegisterCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.GoToRegister"/>.</summary>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.openRecoveryPopUpCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.OpenRecoveryPopUpCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.OpenRecoveryPopUpCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.OpenRecoveryPopUp"/>.</summary>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.verifyCredentialCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredentialCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredentialCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredential(ToolsLibrary.Models.Login)"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.ManageLocationViewModel2">
             <inheritdoc/>

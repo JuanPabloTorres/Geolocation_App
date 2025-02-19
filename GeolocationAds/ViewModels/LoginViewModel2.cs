@@ -12,382 +12,280 @@ using ToolsLibrary.Enums;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
-namespace GeolocationAds.ViewModels
+namespace GeolocationAds.ViewModels;
+
+public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login, ILoginService>
 {
-    public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login, ILoginService>
+    private readonly IContainerLoginServices _containerLoginServices;
+    private RecoveryPasswordPopUp _passwordRecoveryPage;
+    private Providers Provider { get; set; }
+
+    public readonly string storageNameProvider = nameof(Provider).ToLower();
+
+    [ObservableProperty]
+    private bool isRemember;
+
+    public LoginViewModel2(IContainerLoginServices containerLoginServices)
+        : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
     {
-        private RecoveryPasswordPopUp passwordRecoveryPage;
+        _containerLoginServices = containerLoginServices;
 
-        private RecoveryPasswordViewModel RecoveryPasswordViewModel;
-
-        private readonly IForgotPasswordService forgotPasswordService;
-
-        private readonly IUserService userService;
-
-        private Providers Provider { get; set; }
-
-        public IAsyncRelayCommand SaveCredentialsCommand => new AsyncRelayCommand(SaveCredentialsAsync);
-
-        public IAsyncRelayCommand ClearCredentialsCommand => new AsyncRelayCommand(ClearCredentialsAsync);
-
-        public IAsyncRelayCommand LoadCredentialsCommand => new AsyncRelayCommand(LoadCredentialsAsync);
-
-        public IAsyncRelayCommand AutoLoginCommand => new AsyncRelayCommand(AutoLoginAsync);
-
-        public readonly string storageNameProvider = nameof(Provider).ToLower();
-
-        [ObservableProperty]
-        private bool isRemember;
-
-        public LoginViewModel2(RecoveryPasswordViewModel recoveryPasswordViewModel, ToolsLibrary.Models.Login model, IForgotPasswordService forgotPasswordService, ILoginService service, IUserService userService, LogUserPerfilTool logUserPerfil = null) : base(model, service, logUserPerfil)
+        WeakReferenceMessenger.Default.Register<UpdateMessage<ForgotPassword>>(this, (r, m) =>
         {
-            this.RecoveryPasswordViewModel = recoveryPasswordViewModel;
-
-            this.forgotPasswordService = forgotPasswordService;
-
-            this.userService = userService;
-
-            WeakReferenceMessenger.Default.Register<UpdateMessage<ForgotPassword>>(this, (r, m) =>
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    await this.passwordRecoveryPage.CloseAsync();
-
-                    this.RecoveryPasswordViewModel = new RecoveryPasswordViewModel(this.forgotPasswordService);
-                });
+                await _passwordRecoveryPage.CloseAsync();
+                _containerLoginServices.RecoveryPasswordViewModel = new RecoveryPasswordViewModel(_containerLoginServices.ForgotPasswordService);
             });
+        });
 
-            LoadCredentialsCommand.Execute(null);
-        }
+        AutoLoginAsync().ConfigureAwait(false);
+    }
 
-        [RelayCommand]
-        public async Task SignInWithGoogle()
+    /// <summary>
+    /// Inicia sesión con Google utilizando el servicio de autenticación.
+    /// </summary>
+    [RelayCommand]
+    public async Task SignInWithGoogle()
+    {
+        try
         {
-            var authUrl = new Uri("https://accounts.google.com/o/oauth2/auth?client_id=1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com&redirect_uri=com.mycompany.myapp://&response_type=code&scope=openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile");
+            var accessToken = await _containerLoginServices.GoogleAuthService.AuthenticateAndRetrieveTokenAsync();
 
-            var callbackUrl = new Uri("com.mycompany.myapp://");
-
-            try
+            if (!string.IsNullOrEmpty(accessToken))
             {
-                //var authResult = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
-
-                var response = await WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions()
-                {
-                    Url = authUrl,
-                    CallbackUrl = callbackUrl
-                });
-
-                var codeToken = response.Properties["code"];
-
-                var parameters = new FormUrlEncodedContent(new[]
-                {
-                        new KeyValuePair<string,string>("grant_type","authorization_code"),
-                        new KeyValuePair<string,string>("client_id","1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com"),
-                        new KeyValuePair<string,string>("redirect_uri","com.mycompany.myapp://"),
-                        new KeyValuePair<string,string>("code",codeToken),
-                });
-
-                HttpClient client = new HttpClient();
-
-                var accessTokenResponse = await client.PostAsync("https://oauth2.googleapis.com/token", parameters);
-
-                if (accessTokenResponse.IsSuccessStatusCode)
-                {
-                    var data = await accessTokenResponse.Content.ReadAsStringAsync();
-
-                    var jsonResponse = JObject.Parse(data);
-
-                    var accessToken = jsonResponse["access_token"]?.ToString();
-
-                    // Llamada a la API de Google para obtener la información del usuario
-                    if (!string.IsNullOrEmpty(accessToken))
-                    {
-                        var userInfo = await GetGoogleUserInfo(accessToken);
-
-                        await HandleGoogleSignIn(userInfo);
-
-                        this.Provider = Providers.Google;
-                    }
-                }
-            }
-            catch (TaskCanceledException ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
+                var userInfo = await _containerLoginServices.GoogleAuthService.GetGoogleUserInfoAsync(accessToken);
+                await HandleGoogleSignIn(userInfo);
             }
         }
-
-        public async Task HandleGoogleSignIn(JObject userInfo)
+        catch (Exception ex)
         {
-            try
-            {
-                var email = userInfo["email"]?.ToString();
-
-                var name = userInfo["name"]?.ToString();
-
-                var googleId = userInfo["id"]?.ToString();
-
-                // Verificar si el usuario ya existe en la base de datos
-                var existingUserResponse = await userService.IsEmailRegistered(email);
-
-                ToolsLibrary.Models.Login googleCredential;
-
-                User user;
-
-                if (existingUserResponse.ResponseType == ToolsLibrary.Tools.Type.NotExist)
-                {
-                    // El usuario no existe, crear un nuevo registro
-                    user = new User
-                    {
-                        CreateBy = 0,
-                        CreateDate = DateTime.Now,
-                        Email = email,
-                        FullName = name,
-                        Phone = "111-111-1111",
-                        Login = new ToolsLibrary.Models.Login
-                        {
-                            CreateBy = 0,
-                            CreateDate = DateTime.Now,
-                            GoogleId = googleId,
-                            Password = "google",
-                            Username = "googleuser",
-                            Provider = ToolsLibrary.Enums.Providers.Google
-                        }
-                    };
-
-                    var addUserResponse = await userService.Add(user);
-                    googleCredential = user.Login;
-                }
-                else
-                {
-                    // El usuario ya existe, crear el objeto de credenciales de Google
-                    googleCredential = new ToolsLibrary.Models.Login
-                    {
-                        CreateBy = 0,
-                        CreateDate = DateTime.Now,
-                        GoogleId = googleId,
-                        Password = "google",
-                        Username = "googleuser",
-                        Provider = ToolsLibrary.Enums.Providers.Google
-                    };
-                }
-
-                // Generar un token de sesión y manejar la autenticación
-                var authResponse = await service.VerifyCredential2(googleCredential);
-
-                if (authResponse.IsSuccess)
-                {
-                    LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
-
-                    LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
-
-                    service.SetJwtToken(LogUserPerfilTool.JsonToken);
-
-                    WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
-
-                    Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-
-                    await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
-                }
-                else
-                {
-                    // Manejar casos de fallo en la autenticación, si es necesario
-                    // Ejemplo: Notificar al usuario o tomar acciones adicionales
-
-                    await CommonsTool.DisplayAlert("Error", authResponse.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-
-                // Manejo adicional si es necesario
-            }
+            await CommonsTool.DisplayAlert("Error", $"Google Sign-in failed: {ex.Message}");
         }
+    }
 
-        public async Task<JObject> GetGoogleUserInfo(string accessToken)
+    /// <summary>
+    /// Maneja el proceso de autenticación de Google.
+    /// </summary>
+    public async Task HandleGoogleSignIn(JObject userInfo)
+    {
+        try
         {
-            var httpClient = new HttpClient();
+            var email = userInfo["email"]?.ToString();
+            var name = userInfo["name"]?.ToString();
+            var googleId = userInfo["id"]?.ToString();
 
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            // Verificar si el usuario existe o crearlo
+            var googleCredential = await GetOrCreateGoogleUserAsync(email, name, googleId);
 
-            var response = await httpClient.GetStringAsync("https://www.googleapis.com/oauth2/v2/userinfo");
-
-            return JObject.Parse(response);
+            // Autenticar al usuario y navegar
+            await GoogleAuthenticateAndNavigateAsync(googleCredential);
         }
-
-        [RelayCommand]
-        private async Task GoToRegister()
+        catch (Exception ex)
         {
-            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
-
-            await Shell.Current.GoToAsync(nameof(Register));
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
+    }
 
-        [RelayCommand]
-        private async Task OpenRecoveryPopUp()
+    private async Task<ToolsLibrary.Models.Login> GetOrCreateGoogleUserAsync(string email, string name, string googleId)
+    {
+        var existingUserResponse = await _containerLoginServices.UserService.IsEmailRegistered(email);
+
+        if (existingUserResponse.ResponseType == ToolsLibrary.Tools.Type.NotExist)
         {
-            this.passwordRecoveryPage = new RecoveryPasswordPopUp(this.RecoveryPasswordViewModel);
+            var googleLogin = _containerLoginServices.LoginFactory.CreateLogin(email, googleId);
 
-            await Shell.Current.CurrentPage.ShowPopupAsync(this.passwordRecoveryPage);
+            var newUser = _containerLoginServices.UserFactory.CreateUser(email, name, "111-111-1111", googleLogin);
+
+            await _containerLoginServices.UserService.Add(newUser);
+
+            return newUser.Login;
         }
-
-        [RelayCommand]
-        private async Task VerifyCredential(ToolsLibrary.Models.Login credential)
+        else
         {
-            try
-            {
-                IsLoading = true;
-
-                var _apiResponse = await this.service.VerifyCredential2(credential);
-
-                if (!_apiResponse.IsSuccess)
-                {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-
-                    return;
-                }
-
-                switch (_apiResponse.Data.LogUser.UserStatus)
-                {
-                    case ToolsLibrary.Models.UserStatus.ResetPassword:
-
-                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-
-                        break;
-
-                    default:
-                        this.Provider = Providers.App;
-
-                        this.LogUserPerfilTool.JsonToken = _apiResponse.Data.JsonToken;
-
-                        this.LogUserPerfilTool.LogUser = _apiResponse.Data.LogUser;
-
-                        this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
-
-                        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
-
-                        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-
-                        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
-
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            return _containerLoginServices.LoginFactory.CreateLogin(email, googleId, Providers.Google);
         }
+    }
 
-        private async Task LoadCredentialsAsync()
+    private async Task GoogleAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login googleCredential)
+    {
+        var authResponse = await service.VerifyCredential2(googleCredential);
+
+        if (authResponse.IsSuccess)
         {
-            try
+            this.Model.GoogleId = googleCredential.GoogleId;
+
+            LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
+
+            LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
+
+            service.SetJwtToken(LogUserPerfilTool.JsonToken);
+
+            WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+            if (this.Provider != Providers.Google)
             {
-                var username = await SecureStorage.GetAsync("username");
+                this.Provider = Providers.Google;
 
-                var password = await SecureStorage.GetAsync("password");
-
-                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-                {
-                    this.Model.Username = username;
-
-                    this.Model.Password = password;
-
-                    IsRemember = true;
-
-                    await AutoLoginCommand.ExecuteAsync(null);
-                }
+                await ConfirmRememberUserAsync();
             }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+
+            await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
         }
-
-        private async Task AutoLoginAsync()
+        else
         {
-            try
-            {
-                // Obtener el tipo de proveedor desde el almacenamiento seguro
-                var providerType = await SecureStorage.GetAsync(storageNameProvider);
-
-                if (!string.IsNullOrWhiteSpace(providerType) && Enum.TryParse(providerType, true, out Providers provider))
-                {
-                    switch (provider)
-                    {
-                        case Providers.App:
-                            var credential = new ToolsLibrary.Models.Login
-                            {
-                                Username = this.Model.Username,
-                                Password = this.Model.Password
-                            };
-                            await VerifyCredential(credential);
-
-                            break;
-
-                        case Providers.Google:
-                            await SignInWithGoogle();
-
-                            break;
-
-                        // Agregar más proveedores aquí si es necesario
-                        default:
-                            throw new InvalidOperationException("Unsupported provider type.");
-                    }
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                await CommonsTool.DisplayAlert("Error", "Invalid provider type: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+            await CommonsTool.DisplayAlert("Error", authResponse.Message);
         }
+    }
 
+    private async Task ConfirmRememberUserAsync()
+    {
+        bool rememberMe = await Shell.Current.DisplayAlert("Remember Me", "Would you like to be remembered for automatic login in the future?", "Yes", "No");
 
-        partial void OnIsRememberChanged(bool value)
+        if (rememberMe)
         {
-            if (value)
+            await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, rememberMe);
+        }
+        else
+        {
+            await _containerLoginServices.SecureStoreService.ClearAll();
+        }
+    }
+
+    private async Task AutoLoginAsync()
+    {
+        try
+        {
+            var isRemember = await _containerLoginServices.SecureStoreService.GetAsync("isRemember");
+
+            if (string.IsNullOrEmpty(isRemember))
             {
-                SaveCredentialsCommand.Execute(null);
+                return;
+            }
+
+            this.IsRemember = true;
+
+            var providerType = await _containerLoginServices.SecureStoreService.GetAsync("provider");
+
+            if (string.IsNullOrWhiteSpace(providerType))
+            {
+                throw new ArgumentException("Error", "Provider type is missing.");
+            }
+
+            if (Enum.TryParse<Providers>(providerType, true, out var provider))
+            {
+                this.Provider = provider;
+
+                await HandleProviderLoginAsync(provider);
             }
             else
             {
-                ClearCredentialsCommand.Execute(null);
+                throw new ArgumentException("Invalid provider type.");
             }
         }
-
-        private async Task ClearCredentialsAsync()
+        catch (Exception ex)
         {
-            SecureStorage.Remove("username");
-
-            SecureStorage.Remove("password");
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
+    }
 
-        private async Task SaveCredentialsAsync()
+    private async Task HandleProviderLoginAsync(Providers provider)
+    {
+        switch (provider)
         {
-            try
-            {
-                await SecureStorage.SetAsync(storageNameProvider, this.Provider.ToString());
+            case Providers.App:
+                var username = await _containerLoginServices.SecureStoreService.GetAsync("username");
 
-                await SecureStorage.SetAsync("username", this.Model.Username);
+                var password = await _containerLoginServices.SecureStoreService.GetAsync("password");
 
-                await SecureStorage.SetAsync("password", this.Model.Password);
-            }
-            catch (Exception ex)
+                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                {
+                    return;
+                }
+
+                this.Model.Username = username;
+
+                this.Model.Password = password;
+
+                var credential = new ToolsLibrary.Models.Login
+                {
+                    Username = this.Model.Username,
+                    Password = this.Model.Password
+                };
+
+                await AuthenticateUserAsync(credential);
+                break;
+
+            case Providers.Google:
+                var googleCredential = _containerLoginServices.LoginFactory.CreateGoogleCredential(await _containerLoginServices.SecureStoreService.GetAsync("googleClientId"));
+
+                await AuthenticateUserAsync(googleCredential);
+                break;
+
+            default:
+                throw new InvalidOperationException("Unsupported provider type.");
+        }
+    }
+
+     partial void OnIsRememberChanged(bool isRemember)
+    {
+        Task.Run(async () =>
+        {
+            if (isRemember)
             {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
+                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, isRemember);
             }
+            else
+            {
+                await _containerLoginServices.SecureStoreService.ClearAll();
+            }
+
+            this.IsRemember=isRemember; 
+        });
+    }
+
+    private async Task AuthenticateUserAsync(ToolsLibrary.Models.Login credential)
+    {
+        try
+        {
+            IsLoading = true;
+            var authResponse = await service.VerifyCredential2(credential);
+
+            if (authResponse.IsSuccess)
+            {
+                LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
+
+                LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
+
+                service.SetJwtToken(LogUserPerfilTool.JsonToken);
+
+                WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+                if (this.Provider != Providers.App)
+                {
+                    this.Provider = Providers.App;
+
+                    await ConfirmRememberUserAsync();
+                }
+
+                await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+            }
+            else
+            {
+                await CommonsTool.DisplayAlert("Error", authResponse.Message);
+            }
+        }
+        catch (Exception ex)
+        {
+            await CommonsTool.DisplayAlert("Error", ex.Message);
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
 }

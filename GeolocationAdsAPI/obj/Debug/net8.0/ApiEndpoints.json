@@ -1,0 +1,497 @@
+[
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "GetServiceEndpoint",
+    "RelativePath": "api/Advertisement",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "AddAdvertisement",
+    "RelativePath": "api/Advertisement/Add2",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "Get",
+    "RelativePath": "api/Advertisement/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "GetAdvertisementsOfUser",
+    "RelativePath": "api/Advertisement/GetAdvertisementsOfUser/{userId}/{typeId}/{pageIndex}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "typeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageIndex",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "GetAll",
+    "RelativePath": "api/Advertisement/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "GetStreamingVideoUrl",
+    "RelativePath": "api/Advertisement/GetStreamingVideoUrl/{contentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "Remove",
+    "RelativePath": "api/Advertisement/Remove/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AdvertisementController",
+    "Method": "Update2",
+    "RelativePath": "api/Advertisement/Update2/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AppSettingController",
+    "Method": "GetAppSettingByName",
+    "RelativePath": "api/AppSetting/GetAppSettingByName/{settingName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "settingName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.AppSettingController",
+    "Method": "GetAppSettingByNames",
+    "RelativePath": "api/AppSetting/GetAppSettingByNames",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "settingNames",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.CaptureController",
+    "Method": "Add",
+    "RelativePath": "api/Capture/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "capture",
+        "Type": "ToolsLibrary.Models.Capture",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.CaptureController",
+    "Method": "GetMyCaptures",
+    "RelativePath": "api/Capture/GetMyCaptures/{userId}/{typeId}/{pageIndex}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "typeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageIndex",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.CaptureController",
+    "Method": "Remove",
+    "RelativePath": "api/Capture/Remove/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.ForgotPasswordController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/ForgotPassword/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newPasswordDto",
+        "Type": "ToolsLibrary.Dto.NewPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.ForgotPasswordController",
+    "Method": "ConfirmCode",
+    "RelativePath": "api/ForgotPassword/ConfirmCode/{code}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.ForgotPasswordController",
+    "Method": "RecoveryPassword",
+    "RelativePath": "api/ForgotPassword/RecoveryPassword/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.GeolocationAdController",
+    "Method": "Add",
+    "RelativePath": "api/GeolocationAd/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newGeolocationAd",
+        "Type": "ToolsLibrary.Models.GeolocationAd",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.GeolocationAdController",
+    "Method": "FindAdNear2",
+    "RelativePath": "api/GeolocationAd/FindAdNear2/{distance}/{settingTypeId}/{pageIndex}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "currentLocation",
+        "Type": "ToolsLibrary.Models.CurrentLocation",
+        "IsRequired": true
+      },
+      {
+        "Name": "distance",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "settingTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageIndex",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.GeolocationAdController",
+    "Method": "FindAdsNearby",
+    "RelativePath": "api/GeolocationAd/FindAdsNearby/{distance}/{settinTypeId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "currentLocation",
+        "Type": "ToolsLibrary.Models.CurrentLocation",
+        "IsRequired": true
+      },
+      {
+        "Name": "distance",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "settinTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.GeolocationAdController",
+    "Method": "Remove",
+    "RelativePath": "api/GeolocationAd/Remove/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.LoginController",
+    "Method": "Get",
+    "RelativePath": "api/Login/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.LoginController",
+    "Method": "Update",
+    "RelativePath": "api/Login/Update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "ToolsLibrary.Models.Login",
+        "IsRequired": true
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.LoginController",
+    "Method": "VerifyCredential",
+    "RelativePath": "api/Login/VerifyCredential",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginCredential",
+        "Type": "ToolsLibrary.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.LoginController",
+    "Method": "VerifyCredential2",
+    "RelativePath": "api/Login/VerifyCredential2",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginCredential",
+        "Type": "ToolsLibrary.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.UserController",
+    "Method": "Add",
+    "RelativePath": "api/User/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "ToolsLibrary.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.UserController",
+    "Method": "Get",
+    "RelativePath": "api/User/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.UserController",
+    "Method": "IsEmailRegistered",
+    "RelativePath": "api/User/IsEmailRegistered/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GeolocationAdsAPI.Controllers.UserController",
+    "Method": "Update",
+    "RelativePath": "api/User/Update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "ToolsLibrary.Models.User",
+        "IsRequired": true
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
