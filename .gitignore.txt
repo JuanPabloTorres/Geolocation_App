@@ -13,6 +13,7 @@ Desktop.ini
 # Ignore binarios y artefactos de compilación
 bin/
 obj/
+obj/Debug
 *.exe
 *.dll
 
@@ -21,5 +22,5 @@ appsettings.json
 appsettings.Development.json
 
 # Ignore Visual Studio files
-.vs/
-.vs\GeolocationAds\FileContentIndex
+.vs\
+
