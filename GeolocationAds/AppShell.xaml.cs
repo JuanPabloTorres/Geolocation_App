@@ -9,6 +9,18 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
+        // Registrar todas las rutas de navegación
+        RegisterRoutes();
+
+        // Configurar el BindingContext para el ViewModel
+        BindingContext = appShellViewModel;
+    }
+
+    /// <summary>
+    /// Registra las rutas de navegación dentro de la aplicación.
+    /// </summary>
+    private void RegisterRoutes()
+    {
         Routing.RegisterRoute(nameof(Register), typeof(Register));
 
         Routing.RegisterRoute(nameof(SearchAd), typeof(SearchAd));
@@ -25,6 +37,6 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(ManageLocation), typeof(ManageLocation));
 
-        BindingContext = appShellViewModel;
+        Routing.RegisterRoute(nameof(FacebookAuthWebViewPage), typeof(FacebookAuthWebViewPage));
     }
 }

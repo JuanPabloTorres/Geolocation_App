@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using FFImageLoading.Maui;
+using Firebase.Auth;
+using Firebase.Auth.Providers;
 using GeolocationAds.Factories;
 using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
@@ -23,191 +25,162 @@ public static class MauiProgram
 
         builder
             .UseMauiApp<App>()
-             .UseFFImageLoading()
+            .UseFFImageLoading()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMediaElement()
-             .UseSkiaSharp()
+            .UseSkiaSharp()
+            .UseMauiMaps()
+            .ConfigureFonts(ConfigureAppFonts);
 
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-
-                fonts.AddFont("Roboto-Light.ttf", "Roboto");
-
-                fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
-
-                fonts.AddFont("Sunshine.ttf", "Sunshine");
-
-                fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined-Regular");
-
-                fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
-            }).UseMauiMaps();
-
+        // Cargar configuración desde el archivo de configuración
         var configuration = CommonsTool.ConfigurationLoader.LoadConfiguration();
-
         builder.Services.AddSingleton<IConfiguration>(configuration);
 
-        #region Api Service
-
-        builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
-
-        builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
-
-        builder.Services.AddTransient<ILoginService, LoginService>();
-
-        builder.Services.AddTransient<IUserService, UserService>();
-
-        builder.Services.AddTransient<IAppSettingService, AppSettingService>();
-
-        builder.Services.AddTransient<IForgotPasswordService, ForgotPasswordService>();
-
-        builder.Services.AddTransient<ICaptureService, CaptureService>();
-
-        builder.Services.AddSingleton<HttpClient>((provider) =>
-        {
-            var _httpClient = new HttpClient()
-            {
-                Timeout = TimeSpan.FromMinutes(ConstantsTools.TIMEOUT)
-            };
-
-            return _httpClient;
-        });
-
-        builder.Services.AddTransient<IGoogleAuthService, GoogleAuthService>();
-
-
-        #endregion Api Service
-
-        #region Models
-
-        builder.Services.AddTransient<User>();
-
-        builder.Services.AddTransient<Pin>();
-
-        builder.Services.AddTransient<ToolsLibrary.Models.Login>();
-
-        builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
-
-        builder.Services.AddTransient<ToolsLibrary.Models.Capture>();
-
-        #endregion Models
-
-        #region ViewModels
-
-        builder.Services.AddTransient<CreateAdvertismentViewModel2>();
-
-        builder.Services.AddScoped<MangeContentTemplateViewModel>();
-
-        builder.Services.AddScoped<MyContentViewModel2>();
-
-        builder.Services.AddScoped<SearchAdViewModel2>();
-
-        builder.Services.AddScoped<LoginViewModel2>();
-
-        builder.Services.AddScoped<RegisterViewModel>();
-
-        builder.Services.AddScoped<AppShellViewModel2>();
-
-        builder.Services.AddScoped<GoogleMapViewModel2>();
-
-        builder.Services.AddScoped<EditAdvertismentViewModel2>();
-
-        builder.Services.AddScoped<UserSettingViewModel>();
-
-        builder.Services.AddScoped<EditUserPerfilViewModel>();
-
-        builder.Services.AddScoped<EditLoginCredentialViewModel>();
-
-        builder.Services.AddScoped<RecoveryPasswordViewModel>();
-
-        builder.Services.AddScoped<FilterPopUpViewModel>();
-
-        builder.Services.AddScoped<FilterPopUpViewModel2>();
-
-        builder.Services.AddScoped<CaptureViewModel2>();
-
-        builder.Services.AddScoped<ManageLocationViewModel>();
-
-        builder.Services.AddScoped<ManageLocationViewModel2>();
-
-        builder.Services.AddScoped<ContentViewTemplateViewModel>();
-
-        builder.Services.AddScoped<NearByItemDetailViewModel>();
-
-        #endregion ViewModels
-
-        #region Containers
-
-        builder.Services.AddScoped<IContainerMyContentServices, ContainerMyContentServices>();
-
-        builder.Services.AddScoped<IContainerMapServices, ContainerMapServices>();
-
-        builder.Services.AddScoped<IContainerEditAdvertisment, ContainerEditAdvertisment>();
-
-        builder.Services.AddScoped<IContainerCreateAdvertisment, ContainerCreateAdvertisment>();
-
-        builder.Services.AddScoped<INearByItemDetailContainer, NearByItemDetailContainer>();
-
-        builder.Services.AddScoped<IContainerManageLocation, ContainerManageLocation>();
-
-        builder.Services.AddScoped<IContainerCapture, ContainerCapture>();
-        
-        builder.Services.AddScoped<IContainerLoginServices, ContainerLoginServices>();
-
-        #endregion Containers
-
-        #region Pages
-
-        builder.Services.AddTransient<FilterPopUp>();
-
-        builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
-
-        builder.Services.AddScoped<SearchAd>();
-
-        builder.Services.AddScoped<MyContentPage>();
-
-        builder.Services.AddTransient<Login>();
-
-        builder.Services.AddScoped<Register>();
-
-        builder.Services.AddScoped<GoogleMapPage>();
-
-        builder.Services.AddScoped<UserSetting>();
-
-        builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel2>($"{nameof(EditAdvertisment)}");
-
-        builder.Services.AddTransientWithShellRoute<NearByItemDetail, NearByItemDetailViewModel>($"{nameof(NearByItemDetail)}");
-
-        builder.Services.AddScoped<EditUserPerfil>();
-
-        builder.Services.AddScoped<EditLoginCredential>();
-
-        builder.Services.AddScoped<RecoveryPasswordPopUp>();
-
-        builder.Services.AddScoped<MyFavorites>();
-
-        builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel2>($"{nameof(ManageLocation)}");
-
-        #endregion Pages
-
-        #region Tools
-
-        builder.Services.AddSingleton<LogUserPerfilTool>();
-
-        builder.Services.AddScoped<ISecureStoreService, SecureStoreService>();
-
-        #endregion Tools
-
-        #region Factories
-
-        builder.Services.AddSingleton<ILoginFactory, LoginFactory>();
-
-        builder.Services.AddSingleton<IUserFactory, UserFactory>();
-
-        #endregion Factories
+        // Registrar dependencias
+        RegisterApiServices(builder);
+        RegisterModels(builder);
+        RegisterViewModels(builder);
+        RegisterContainers(builder);
+        RegisterPages(builder);
+        RegisterTools(builder);
+        RegisterFactories(builder);
 
         return builder.Build();
     }
+
+    #region **Configuración de Fuentes**
+    private static void ConfigureAppFonts(IFontCollection fonts)
+    {
+        fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+        fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+        fonts.AddFont("Roboto-Light.ttf", "Roboto");
+        fonts.AddFont("Roboto-Bold.ttf", "RobotoBold");
+        fonts.AddFont("Sunshine.ttf", "Sunshine");
+        fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined-Regular");
+        fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
+    }
+    #endregion
+
+    #region **Registro de Servicios**
+    private static void RegisterApiServices(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
+        builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
+        builder.Services.AddTransient<ILoginService, LoginService>();
+        builder.Services.AddTransient<IUserService, UserService>();
+        builder.Services.AddTransient<IAppSettingService, AppSettingService>();
+        builder.Services.AddTransient<IForgotPasswordService, ForgotPasswordService>();
+        builder.Services.AddTransient<ICaptureService, CaptureService>();
+        builder.Services.AddTransient<IFirebaseAuthService, FirebaseAuthService>();
+        builder.Services.AddTransient<IGoogleAuthService, GoogleAuthService>();
+
+        builder.Services.AddSingleton<HttpClient>(provider =>
+        {
+            return new HttpClient()
+            {
+                Timeout = TimeSpan.FromMinutes(ConstantsTools.TIMEOUT)
+            };
+        });
+    }
+    #endregion
+
+    #region **Registro de Modelos**
+    private static void RegisterModels(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<ToolsLibrary.Models.User>();
+        builder.Services.AddTransient<Pin>();
+        builder.Services.AddTransient<ToolsLibrary.Models.Login>();
+        builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
+        builder.Services.AddTransient<ToolsLibrary.Models.Capture>();
+    }
+    #endregion
+
+    #region **Registro de ViewModels**
+    private static void RegisterViewModels(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<CreateAdvertismentViewModel2>();
+        builder.Services.AddScoped<MangeContentTemplateViewModel>();
+        builder.Services.AddScoped<MyContentViewModel2>();
+        builder.Services.AddScoped<SearchAdViewModel2>();
+        builder.Services.AddScoped<LoginViewModel2>();
+        builder.Services.AddScoped<RegisterViewModel>();
+        builder.Services.AddScoped<AppShellViewModel2>();
+        builder.Services.AddScoped<GoogleMapViewModel2>();
+        builder.Services.AddScoped<EditAdvertismentViewModel2>();
+        builder.Services.AddScoped<UserSettingViewModel>();
+        builder.Services.AddScoped<EditUserPerfilViewModel>();
+        builder.Services.AddScoped<EditLoginCredentialViewModel>();
+        builder.Services.AddScoped<RecoveryPasswordViewModel>();
+        builder.Services.AddScoped<FilterPopUpViewModel>();
+        builder.Services.AddScoped<FilterPopUpViewModel2>();
+        builder.Services.AddScoped<CaptureViewModel2>();
+        builder.Services.AddScoped<ManageLocationViewModel>();
+        builder.Services.AddScoped<ManageLocationViewModel2>();
+        builder.Services.AddScoped<ContentViewTemplateViewModel>();
+        builder.Services.AddScoped<NearByItemDetailViewModel>();
+        builder.Services.AddScoped<FacebookAuthWebViewViewModel>();
+    }
+    #endregion
+
+    #region **Registro de Contenedores**
+    private static void RegisterContainers(MauiAppBuilder builder)
+    {
+        builder.Services.AddScoped<IContainerMyContentServices, ContainerMyContentServices>();
+        builder.Services.AddScoped<IContainerMapServices, ContainerMapServices>();
+        builder.Services.AddScoped<IContainerEditAdvertisment, ContainerEditAdvertisment>();
+        builder.Services.AddScoped<IContainerCreateAdvertisment, ContainerCreateAdvertisment>();
+        builder.Services.AddScoped<INearByItemDetailContainer, NearByItemDetailContainer>();
+        builder.Services.AddScoped<IContainerManageLocation, ContainerManageLocation>();
+        builder.Services.AddScoped<IContainerCapture, ContainerCapture>();
+        builder.Services.AddScoped<IContainerLoginServices, ContainerLoginServices>();
+    }
+    #endregion
+
+    #region **Registro de Páginas**
+    private static void RegisterPages(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<FilterPopUp>();
+        builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
+        builder.Services.AddScoped<SearchAd>();
+        builder.Services.AddScoped<MyContentPage>();
+        builder.Services.AddTransient<Login>();
+        builder.Services.AddScoped<Register>();
+        builder.Services.AddScoped<GoogleMapPage>();
+        builder.Services.AddScoped<UserSetting>();
+        builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel2>($"{nameof(EditAdvertisment)}");
+        builder.Services.AddTransientWithShellRoute<NearByItemDetail, NearByItemDetailViewModel>($"{nameof(NearByItemDetail)}");
+        builder.Services.AddScoped<EditUserPerfil>();
+        builder.Services.AddScoped<EditLoginCredential>();
+        builder.Services.AddScoped<RecoveryPasswordPopUp>();
+        builder.Services.AddScoped<MyFavorites>();
+        //builder.Services.AddScoped<FacebookAuthWebViewPage>();
+        builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel2>($"{nameof(ManageLocation)}");
+    }
+    #endregion
+
+    #region **Registro de Herramientas**
+    private static void RegisterTools(MauiAppBuilder builder)
+    {
+        builder.Services.AddSingleton<LogUserPerfilTool>();
+        builder.Services.AddScoped<ISecureStoreService, SecureStoreService>();
+
+        builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig()
+        {
+            ApiKey = "AIzaSyBDLtukG8FeZUCVm2wtyFNdNzXneISwBbs",
+            AuthDomain = "geoconnect-auth.firebaseapp.com",
+            Providers = new FirebaseAuthProvider[]
+            {
+                new FacebookProvider(),
+            }
+        }));
+    }
+    #endregion
+
+    #region **Registro de Fábricas**
+    private static void RegisterFactories(MauiAppBuilder builder)
+    {
+        builder.Services.AddSingleton<ILoginFactory, LoginFactory>();
+        builder.Services.AddSingleton<IUserFactory, UserFactory>();
+    }
+    #endregion
 }

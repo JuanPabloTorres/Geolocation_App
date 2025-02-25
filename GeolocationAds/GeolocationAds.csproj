@@ -104,6 +104,7 @@
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 	  <PackageReference Include="FFImageLoading.Maui" Version="1.2.4" />
 	  <PackageReference Include="FFmpeg.AutoGen" Version="7.0.0" />
+	  <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
 	  <PackageReference Include="GoogleMapsApi" Version="1.2.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.4.24266.19" />
@@ -138,6 +139,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\CreateAdvertisement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FacebookAuthWebViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\GoogleMapPage.xaml">
@@ -205,6 +209,12 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android34.0'">
+	  <PackageReference Include="Xamarin.Facebook.Android">
+	    <Version>11.2.0.1</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerExceptionGeolocationAdsHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionGeolocationAdsHideInfoBar="True" /></VisualStudio></ProjectExtensions>

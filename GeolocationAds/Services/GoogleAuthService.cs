@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Services
 {
@@ -36,12 +37,14 @@ namespace GeolocationAds.Services
                 string authUrl = _configuration.GetValue<string>("GoogleSettings:GoogleAuthUrl");
 
                 var authUri = new Uri(authUrl);
+
                 var callbackUri = new Uri(redirectUri);
 
                 var response = await WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions()
                 {
                     Url = authUri,
-                    CallbackUrl = callbackUri
+                    CallbackUrl = callbackUri,
+                    
                 });
 
                 var authorizationCode = response.Properties["code"];
@@ -50,7 +53,8 @@ namespace GeolocationAds.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Google Authentication failed: {ex.Message}");
+                await CommonsTool.DisplayAlert("Error", $"Google Authentication failed: {ex.Message}");
+
                 return null;
             }
         }
@@ -63,14 +67,13 @@ namespace GeolocationAds.Services
             try
             {
                 string clientId = _configuration.GetValue<string>("GoogleSettings:GoogleClientId");
-                //string clientSecret = _configuration.GetValue<string>("GoogleSettings:GoogleClientSecret");
+              
                 string redirectUri = _configuration.GetValue<string>("GoogleSettings:GoogleRedirectUri");
 
                 var parameters = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("grant_type", "authorization_code"),
                     new KeyValuePair<string, string>("client_id", clientId),
-                    
                     new KeyValuePair<string, string>("redirect_uri", redirectUri),
                     new KeyValuePair<string, string>("code", authorizationCode),
                 });
@@ -88,7 +91,8 @@ namespace GeolocationAds.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to exchange code for token: {ex.Message}");
+                await CommonsTool.DisplayAlert("Error",$"Failed to exchange code for token: {ex.Message}");
+
                 return null;
             }
         }
@@ -108,7 +112,8 @@ namespace GeolocationAds.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to retrieve user info: {ex.Message}");
+                await CommonsTool.DisplayAlert("Error", $"Failed to retrieve user info: {ex.Message}");
+
                 return null;
             }
         }

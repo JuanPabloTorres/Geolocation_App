@@ -22,7 +22,7 @@ namespace GeolocationAds.Services
             LogUserPerfilTool logUserPerfil,
             IConfiguration configuration,
             IGoogleAuthService googleAuthService,
-            ISecureStoreService secureStoreService, ILoginFactory loginFactory,
+            ISecureStoreService secureStoreService, ILoginFactory loginFactory,IFirebaseAuthService firebaseAuthService,
         IUserFactory userFactory)
             : base(logUserPerfil)
         {
@@ -36,11 +36,13 @@ namespace GeolocationAds.Services
             SecureStoreService = secureStoreService;
             this.LoginFactory = loginFactory;
             this.UserFactory = userFactory;
+
+            this.FirebaseAuthService = firebaseAuthService;
         }
 
         public IConfiguration Configuration { get; }
         public IForgotPasswordService ForgotPasswordService { get; }
-        public IGoogleAuthService GoogleAuthService { get; }
+        public IGoogleAuthService GoogleAuthService { get; set; }
         public ISecureStoreService SecureStoreService { get; set; }
         public ILoginFactory LoginFactory { get; }
         public IUserFactory UserFactory { get; }
@@ -48,5 +50,6 @@ namespace GeolocationAds.Services
         public ILoginService LoginService { get; }
         public RecoveryPasswordViewModel RecoveryPasswordViewModel { get; set; }
         public IUserService UserService { get; }
+        public IFirebaseAuthService FirebaseAuthService { get; set ; }
     }
 }

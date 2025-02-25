@@ -4,6 +4,11 @@
         <name>GeolocationAds</name>
     </assembly>
     <members>
+        <member name="M:GeolocationAds.AppShell.RegisterRoutes">
+            <summary>
+            Registra las rutas de navegación dentro de la aplicación.
+            </summary>
+        </member>
         <member name="M:GeolocationAds.Factories.ILoginFactory.CreateLogin(System.String,System.String,ToolsLibrary.Enums.Providers)">
             <summary>
             Crea una instancia de Login para autenticación tradicional con usuario y contraseña.
@@ -565,6 +570,39 @@
         <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURLCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURL(System.String)"/>.</summary>
         </member>
+        <member name="T:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.LoadFacebookLogin">
+            <summary>
+            Carga la URL de autenticación de Facebook en el WebView.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.OnNavigating(Microsoft.Maui.Controls.WebNavigatingEventArgs)">
+            <summary>
+            Maneja la navegación en el WebView.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.ExtractAccessToken(System.String)">
+            <summary>
+            Extrae el token de acceso de la URL.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.GetFacebookUserInfoAsync(System.String)">
+            <summary>
+            Obtiene la información del usuario desde Facebook Graph API.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.FacebookAuthUrl">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.facebookAuthUrl"/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.navigatingCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.NavigatingCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.NavigatingCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.OnNavigating(Microsoft.Maui.Controls.WebNavigatingEventArgs)"/>.</summary>
+        </member>
         <member name="T:GeolocationAds.ViewModels.FilterPopUpViewModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -622,6 +660,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="M:GeolocationAds.ViewModels.LoginViewModel2.SignInWithGoogle">
             <summary>
@@ -664,6 +703,12 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredentialCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.VerifyCredential(ToolsLibrary.Models.Login)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.LoginViewModel2.signInWithFacebookCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.LoginViewModel2.SignInWithFacebookCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.LoginViewModel2.SignInWithFacebookCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.LoginViewModel2.SignInWithFacebook"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.ManageLocationViewModel2">
             <inheritdoc/>
@@ -928,6 +973,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Url">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Url" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FacebookAuthUrl">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FacebookAuthUrl" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
         </member>
@@ -1014,6 +1062,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Url">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Url" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FacebookAuthUrl">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FacebookAuthUrl" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>

@@ -14,7 +14,7 @@ namespace GeolocationAds.Services
     {
         IConfiguration Configuration { get; }
         IForgotPasswordService ForgotPasswordService { get; }
-        IGoogleAuthService GoogleAuthService { get; }
+        IGoogleAuthService GoogleAuthService { get; set; }
         ISecureStoreService SecureStoreService { get; set; }
         ToolsLibrary.Models.Login LoginModel { get; }
         ILoginService LoginService { get; }
@@ -23,5 +23,6 @@ namespace GeolocationAds.Services
 
         ILoginFactory LoginFactory { get; }
         IUserFactory UserFactory { get; }
+        IFirebaseAuthService FirebaseAuthService { get; set; }
     }
 }

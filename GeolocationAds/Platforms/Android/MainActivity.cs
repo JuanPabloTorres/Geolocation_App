@@ -1,42 +1,133 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.Net.Http;
+using Android.OS;
+using Android.Util;
 using Android.Webkit;
+using Xamarin.Facebook;
 
 namespace GeolocationAds;
 
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
 public class MainActivity : MauiAppCompatActivity
 {
+    private ICallbackManager callbackManager;
+
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+        base.OnCreate(savedInstanceState);
+
+        // Capturar el Token recibido desde FacebookAuthActivity
+        string accessToken = Intent?.GetStringExtra("auth_callback_token");
+
+        if (!string.IsNullOrEmpty(accessToken))
+        {
+            System.Diagnostics.Debug.WriteLine($"🔹 MainActivity recibió el Token de Facebook: {accessToken}");
+
+            // 🔹 Aquí puedes continuar con el login en tu app o guardar el token
+        }
+
+        //callbackManager = CallbackManagerFactory.Create();
+    }
+
     //protected override void OnCreate(Bundle savedInstanceState)
     //{
     //    base.OnCreate(savedInstanceState);
 
-    //    // Configurar el WebView
-    //    var webView = new Android.Webkit.WebView(this);
+    //    // Capturar la URL recibida
+    //    string callbackUri = Intent?.GetStringExtra("auth_callback_url");
 
-    //    webView.Settings.JavaScriptEnabled = true;
+    //    if (!string.IsNullOrEmpty(callbackUri))
+    //    {
+    //        System.Diagnostics.Debug.WriteLine($"🔹 MainActivity recibió la URL de Facebook: {callbackUri}");
 
-    //    webView.Settings.DomStorageEnabled = true;
+    //        // Convertir la URL a un Uri válido
+    //        var authUri = new Uri(callbackUri);
 
-    //    webView.Settings.AllowFileAccess = true;
-
-    //    webView.Settings.SetAppCacheEnabled(true);
-
-    //    webView.Settings.LoadWithOverviewMode = true;
-
-    //    webView.Settings.UseWideViewPort = true;
-
-    //    // Configurar el WebViewClient personalizado para manejar SSL
-    //    webView.SetWebViewClient(new SslWebViewClient());
-
-    //    //// Establecer la URL a cargar
-    //    //webView.LoadUrl("https://www.instagram.com");
-
-    //    // Establecer el WebView como el contenido de la actividad
-    //    SetContentView(webView);
+    //        // Completar la autenticación manualmente
+    //        Microsoft.Maui.Authentication.WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions
+    //        {
+    //            Url = authUri,
+    //            CallbackUrl = authUri
+    //        });
+    //    }
     //}
-}
+
+    //protected override void OnCreate(Bundle savedInstanceState)
+    //{
+    //    base.OnCreate(savedInstanceState);
+
+    //    // Capturar la URL recibida
+    //    string callbackUri = Intent?.GetStringExtra("auth_callback_url");
+
+    //    if (!string.IsNullOrEmpty(callbackUri))
+    //    {
+    //        System.Diagnostics.Debug.WriteLine($"🔹 MainActivity recibió la URL de Facebook: {callbackUri}");
+
+    //        try
+    //        {
+    //            var authUri = new Uri(callbackUri);
+
+    //            // Procesar la autenticación manualmente
+    //            MainThread.BeginInvokeOnMainThread(async () =>
+    //            {
+    //                await WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions
+    //                {
+    //                    Url = authUri,
+    //                    CallbackUrl = authUri
+    //                });
+    //            });
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            System.Diagnostics.Debug.WriteLine($"❌ Error al procesar la autenticación: {ex.Message}");
+    //        }
+    //    }
+
+
+
+        //protected override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        //{
+        //    base.OnActivityResult(requestCode, resultCode, data);
+
+        //    FacebookSdk.SdkInitialize(this.ApplicationContext);
+
+        //    CallbackManager callbackManager = CallbackManager.Factory.Create();
+
+        //    callbackManager.OnActivityResult(requestCode, resultCode, data);
+        //}
+
+
+
+        //protected override void OnCreate(Bundle savedInstanceState)
+        //{
+        //    base.OnCreate(savedInstanceState);
+
+        //    // Configurar el WebView
+        //    var webView = new Android.Webkit.WebView(this);
+
+        //    webView.Settings.JavaScriptEnabled = true;
+
+        //    webView.Settings.DomStorageEnabled = true;
+
+        //    webView.Settings.AllowFileAccess = true;
+
+        //    webView.Settings.SetAppCacheEnabled(true);
+
+        //    webView.Settings.LoadWithOverviewMode = true;
+
+        //    webView.Settings.UseWideViewPort = true;
+
+        //    // Configurar el WebViewClient personalizado para manejar SSL
+        //    webView.SetWebViewClient(new SslWebViewClient());
+
+        //    //// Establecer la URL a cargar
+        //    //webView.LoadUrl("https://www.instagram.com");
+
+        //    // Establecer el WebView como el contenido de la actividad
+        //    SetContentView(webView);
+        //}
+    }
 
 public class SslWebViewClient : WebViewClient
 {

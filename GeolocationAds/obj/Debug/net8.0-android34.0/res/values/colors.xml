@@ -1,1 +1,1 @@
-<resources><color name="colorPrimary">#512BD4</color><color name="colorPrimaryDark">#2B0B98</color><color name="colorAccent">#2B0B98</color></resources>
+<resources><color name="colorPrimary">#512BD4</color><color name="colorPrimaryDark">#2B0B98</color><color name="colorAccent">#2B0B98</color><string name="facebook_app_id">2641020766093307</string><string name="fb_login_protocol_scheme">fb2641020766093307</string><string name="facebook_client_token">56789</string></resources>

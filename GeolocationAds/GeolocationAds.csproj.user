@@ -14,6 +14,9 @@
     <MauiXaml Update="Pages\CreateAdvertisement.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Pages\FacebookAuthWebViewPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Pages\GoogleMapPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

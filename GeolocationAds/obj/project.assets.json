@@ -139,6 +139,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleGson/2.10.1.4": {
         "type": "package",
         "compile": {
@@ -981,15 +997,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -1621,6 +1637,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -1901,6 +1926,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -2371,6 +2416,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -2393,6 +2468,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -3190,6 +3288,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -3326,6 +3582,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -3700,6 +3965,22 @@
         },
         "runtime": {
           "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
         }
@@ -4531,15 +4812,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -5134,6 +5415,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -5414,6 +5704,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -5884,6 +6194,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -5906,6 +6246,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -6703,6 +7066,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -6839,6 +7360,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -7213,6 +7743,22 @@
         },
         "runtime": {
           "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
         }
@@ -8044,15 +8590,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -8647,6 +9193,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -8927,6 +9482,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -9397,6 +9972,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -9419,6 +10024,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -10216,6 +10844,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -10352,6 +11138,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -10726,6 +11521,22 @@
         },
         "runtime": {
           "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
         }
@@ -11557,15 +12368,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -12160,6 +12971,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -12440,6 +13260,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -12910,6 +13750,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -12932,6 +13802,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -13729,6 +14622,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -13865,6 +14916,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -14239,6 +15299,22 @@
         },
         "runtime": {
           "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
         }
@@ -15070,15 +16146,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -15673,6 +16749,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -15953,6 +17038,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -16423,6 +17528,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -16445,6 +17580,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -17242,6 +18400,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -17378,6 +18694,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -17756,6 +19081,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleGson/2.10.1.4": {
         "type": "package",
         "compile": {
@@ -18580,15 +19921,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -19180,6 +20521,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -19460,6 +20810,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -19930,6 +21300,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -19952,6 +21352,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -20749,6 +22172,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -20885,6 +22466,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -21263,6 +22853,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleGson/2.10.1.4": {
         "type": "package",
         "compile": {
@@ -22087,15 +23693,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -22687,6 +24293,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -22967,6 +24582,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -23437,6 +25072,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -23459,6 +25124,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -24256,6 +25944,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -24392,6 +26238,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -24766,6 +26621,22 @@
         },
         "runtime": {
           "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
         }
@@ -25594,15 +27465,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -26194,6 +28065,15 @@
           }
         }
       },
+      "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll": {}
+        }
+      },
       "Xamarin.Android.Glide/4.15.1.2": {
         "type": "package",
         "dependencies": {
@@ -26474,6 +28354,26 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets": {}
         }
       },
       "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -26944,6 +28844,36 @@
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Interpolator.targets": {}
         }
       },
+      "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.1.0.1",
+          "Xamarin.AndroidX.AsyncLayoutInflater": "1.0.0.1",
+          "Xamarin.AndroidX.CoordinatorLayout": "1.1.0.1",
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.CursorAdapter": "1.0.0.1",
+          "Xamarin.AndroidX.CustomView": "1.0.0.1",
+          "Xamarin.AndroidX.DrawerLayout": "1.0.0.1",
+          "Xamarin.AndroidX.Interpolator": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.SlidingPaneLayout": "1.0.0.1",
+          "Xamarin.AndroidX.SwipeRefreshLayout": "1.0.0.1",
+          "Xamarin.AndroidX.ViewPager": "1.0.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets": {}
+        }
+      },
       "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
         "type": "package",
         "dependencies": {
@@ -26966,6 +28896,29 @@
         },
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.targets": {}
+        }
+      },
+      "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Core": "1.1.0.1",
+          "Xamarin.AndroidX.Fragment": "1.1.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.UI": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.AndroidX.Media": "1.1.0.1"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll": {
+            "related": ".pdb"
+          }
+        },
+        "build": {
+          "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets": {}
         }
       },
       "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -27763,6 +29716,164 @@
           "buildTransitive/net6.0-android31.0/Xamarin.CheckerFramework.CheckerQual.targets": {}
         }
       },
+      "Xamarin.Facebook.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.AppLinks.Android": "11.2.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.GamingServices.Android": "11.2.0.1",
+          "Xamarin.Facebook.Login.Android": "11.2.0.1",
+          "Xamarin.Facebook.Messenger.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Common.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.AndroidX.Browser": "1.2.0.1",
+          "Xamarin.AndroidX.CardView": "1.0.0.1",
+          "Xamarin.AndroidX.Legacy.Support.V4": "1.0.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Google.ZXing.Core": "3.3.3",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Core.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Android.Binding.InstallReferrer": "2.2.0",
+          "Xamarin.AndroidX.Annotation": "1.2.0.1",
+          "Xamarin.AndroidX.Core": "1.3.2.3",
+          "Xamarin.AndroidX.Legacy.Support.Core.Utils": "1.0.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk7": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Facebook.Share.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Login.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Xamarin.Facebook.Share.Android/11.2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.AndroidX.AppCompat": "1.1.0.1",
+          "Xamarin.Facebook.Common.Android": "11.2.0.1",
+          "Xamarin.Facebook.Core.Android": "11.2.0.1",
+          "Xamarin.Kotlin.StdLib.Jdk8": "1.5.10"
+        },
+        "compile": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Xamarin.Google.Android.Material/1.9.0.2": {
         "type": "package",
         "dependencies": {
@@ -27899,6 +30010,15 @@
         "type": "package",
         "build": {
           "buildTransitive/net6.0-android31.0/Xamarin.Google.J2Objc.Annotations.targets": {}
+        }
+      },
+      "Xamarin.Google.ZXing.Core/3.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
+        },
+        "runtime": {
+          "lib/monoandroid90/Google.ZXing.Core.dll": {}
         }
       },
       "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -28267,6 +30387,22 @@
         },
         "runtime": {
           "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
             "related": ".xml"
           }
         }
@@ -29128,15 +31264,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -30438,6 +32574,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -31267,15 +33419,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -32705,6 +34857,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -33534,15 +35702,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -34972,6 +37140,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -35801,15 +37985,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -37239,6 +39423,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -38068,15 +40268,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -39506,6 +41706,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -40342,15 +42558,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -41785,6 +44001,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -42621,15 +44853,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -44064,6 +46296,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -44893,15 +47141,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -46338,6 +48586,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -47159,15 +49423,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -48449,6 +50713,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -49278,15 +51558,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -50716,6 +52996,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -51545,15 +53841,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -52983,6 +55279,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -53812,15 +56124,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -55250,6 +57562,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -56079,15 +58407,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -57517,6 +59845,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -58346,15 +60690,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -59784,6 +62128,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -60616,15 +62976,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -62057,6 +64417,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -62886,15 +65262,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -64332,6 +66708,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -65329,15 +67721,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -66660,6 +69052,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -67611,15 +70019,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -69070,6 +71478,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -70021,15 +72445,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -71480,6 +73904,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -72431,15 +74871,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -73890,6 +76330,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -74841,15 +77297,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -76300,6 +78756,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -77251,15 +79723,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -78710,6 +81182,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -79661,15 +82149,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -81120,6 +83608,22 @@
           }
         }
       },
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "GoogleMapsApi/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -82080,15 +84584,15 @@
           }
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -83633,6 +86137,22 @@
         "lib/netstandard2.0/FFmpeg.AutoGen.xml",
         "lib/netstandard2.1/FFmpeg.AutoGen.dll",
         "lib/netstandard2.1/FFmpeg.AutoGen.xml"
+      ]
+    },
+    "FirebaseAuthentication.net/4.1.0": {
+      "sha512": "pShi5v9cvT5bUWZDm261lO4uxJHvzOvpj46YHrL3uCB1WBeyCIcpoVakAQ2xHTu1dpmV86/BzSNRpqIGNp860g==",
+      "type": "package",
+      "path": "firebaseauthentication.net/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "firebase.png",
+        "firebaseauthentication.net.4.1.0.nupkg.sha512",
+        "firebaseauthentication.net.nuspec",
+        "lib/netstandard2.0/Firebase.Auth.dll",
+        "lib/netstandard2.0/Firebase.Auth.xml"
       ]
     },
     "GoogleGson/2.10.1.4": {
@@ -86492,14 +89012,15 @@
         "mimekit.nuspec"
       ]
     },
-    "Newtonsoft.Json/13.0.1": {
-      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+    "Newtonsoft.Json/13.0.2": {
+      "sha512": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.1",
+      "path": "newtonsoft.json/13.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -86508,13 +89029,15 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.13.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -91590,6 +94113,18 @@
         "xam.plugins.android.exoplayer.ui.nuspec"
       ]
     },
+    "Xamarin.Android.Binding.InstallReferrer/2.2.0": {
+      "sha512": "eohv3NDZcXGroLx737Tqhr3YACXjgcDQXi8BFImh2TsbcUmgzdG53yFInDkChLoqeb6GETQGplFUzstkPXRYwQ==",
+      "type": "package",
+      "path": "xamarin.android.binding.installreferrer/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Xamarin.Android.Binding.InstallReferrer.dll",
+        "xamarin.android.binding.installreferrer.2.2.0.nupkg.sha512",
+        "xamarin.android.binding.installreferrer.nuspec"
+      ]
+    },
     "Xamarin.Android.Glide/4.15.1.2": {
       "sha512": "DcekP+BXm4jFMV7zjHEltj01uiXcItq1kjGa79pj/Vx1rk3Ac2VXdmwGw06HXDP8n2XZsDh8dAoSI48G4KODRA==",
       "type": "package",
@@ -91902,6 +94437,23 @@
         "lib/net6.0-android31.0/Xamarin.AndroidX.Arch.Core.Runtime.xml",
         "xamarin.androidx.arch.core.runtime.2.2.0.3.nupkg.sha512",
         "xamarin.androidx.arch.core.runtime.nuspec"
+      ]
+    },
+    "Xamarin.AndroidX.AsyncLayoutInflater/1.0.0.1": {
+      "sha512": "oK6ZekMjTLuvW+pJ/oqulfsF876rnMxTjbMYhJ+UlToFoS34BHRDCdA2HJ+ze5UWhNFHuR2XtHrrGPDEY+kpAQ==",
+      "type": "package",
+      "path": "xamarin.androidx.asynclayoutinflater/1.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "aar/androidx.asynclayoutinflater.asynclayoutinflater.aar",
+        "build/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets",
+        "buildTransitive/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.targets",
+        "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.dll",
+        "lib/monoandroid90/Xamarin.AndroidX.AsyncLayoutInflater.pdb",
+        "xamarin.androidx.asynclayoutinflater.1.0.0.1.nupkg.sha512",
+        "xamarin.androidx.asynclayoutinflater.nuspec"
       ]
     },
     "Xamarin.AndroidX.Browser/1.5.0.3": {
@@ -92457,6 +95009,23 @@
         "xamarin.androidx.interpolator.nuspec"
       ]
     },
+    "Xamarin.AndroidX.Legacy.Support.Core.UI/1.0.0.1": {
+      "sha512": "A9ifdFll5IkFH78VZ2xqscH6M0NGN0YSApodf4+GcFiHmIX2z5qVJ943gBdA54e1fSarh1YgCLC7M2PllThxWQ==",
+      "type": "package",
+      "path": "xamarin.androidx.legacy.support.core.ui/1.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "aar/androidx.legacy.legacy-support-core-ui.aar",
+        "build/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets",
+        "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.targets",
+        "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.dll",
+        "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.Core.UI.pdb",
+        "xamarin.androidx.legacy.support.core.ui.1.0.0.1.nupkg.sha512",
+        "xamarin.androidx.legacy.support.core.ui.nuspec"
+      ]
+    },
     "Xamarin.AndroidX.Legacy.Support.Core.Utils/1.0.0.19": {
       "sha512": "DsemAF1M7ARY9uO7xgGmuA3p8E5t1/fjC6D5S9XCMooOu40EHC3rbj7ltWWNp7RXXaXx7nLuB7viMKM0QZirVA==",
       "type": "package",
@@ -92480,6 +95049,23 @@
         "lib/net6.0-android31.0/Xamarin.AndroidX.Legacy.Support.Core.Utils.xml",
         "xamarin.androidx.legacy.support.core.utils.1.0.0.19.nupkg.sha512",
         "xamarin.androidx.legacy.support.core.utils.nuspec"
+      ]
+    },
+    "Xamarin.AndroidX.Legacy.Support.V4/1.0.0.1": {
+      "sha512": "EGWF7qThkBp1zkZCihRtx2NF+G8hqhd0wvEU1WfjZDVaO9fddxyx5ducAURPWsMH+LQR5lCqyhLhuTABogfjog==",
+      "type": "package",
+      "path": "xamarin.androidx.legacy.support.v4/1.0.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "aar/androidx.legacy.legacy-support-v4.aar",
+        "build/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets",
+        "buildTransitive/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.targets",
+        "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.dll",
+        "lib/monoandroid90/Xamarin.AndroidX.Legacy.Support.V4.pdb",
+        "xamarin.androidx.legacy.support.v4.1.0.0.1.nupkg.sha512",
+        "xamarin.androidx.legacy.support.v4.nuspec"
       ]
     },
     "Xamarin.AndroidX.Lifecycle.Common/2.6.1.3": {
@@ -93437,6 +96023,118 @@
         "xamarin.checkerframework.checkerqual.nuspec"
       ]
     },
+    "Xamarin.Facebook.Android/11.2.0.1": {
+      "sha512": "QlBe54n2qGQFgeO8CVIv07g+vrBNxFrjCUEAGMUbQgiGTT9M1CaWzLxodwltx91uw5lt5B0k/os58C0OODVuXg==",
+      "type": "package",
+      "path": "xamarin.facebook.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.Android.xml",
+        "xamarin.facebook.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.AppLinks.Android/11.2.0.1": {
+      "sha512": "JirIGObQ2uPSGbqZEc4iuQQoLHmdE9kaDJnRjGtoV6gdh+goxoc6mTOff79ksBeY76l1GbJQwqymrEUQppbblQ==",
+      "type": "package",
+      "path": "xamarin.facebook.applinks.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.AppLinks.Android.xml",
+        "xamarin.facebook.applinks.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.applinks.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.Common.Android/11.2.0.1": {
+      "sha512": "02NLyiNatTBLQWGLCHX6ashp1mG5ApXkx0t1JMKSmaE4V//5DoMUMsuPfmvPTf+5fNlbwZq1PetipZBGGZlSlA==",
+      "type": "package",
+      "path": "xamarin.facebook.common.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.Common.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.Common.Android.xml",
+        "xamarin.facebook.common.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.common.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.Core.Android/11.2.0.1": {
+      "sha512": "GponfbOj6dlv6DDqoeIyiBwRrnRAcUqgAigs/ZpQysn34cj75WVqNTlqDnuZOPE9FfO3dcJSiYizYmfDCG4gYQ==",
+      "type": "package",
+      "path": "xamarin.facebook.core.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.Core.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.Core.Android.xml",
+        "xamarin.facebook.core.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.core.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.GamingServices.Android/11.2.0.1": {
+      "sha512": "6fYs0YlMWGo+fYOkD6LwNzgJgGeTP93pPRnOb+PInh1xzuMRNVd6RyI7DltGZRWtEyuw1BxpNZk1AKkAOKrVHQ==",
+      "type": "package",
+      "path": "xamarin.facebook.gamingservices.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.GamingServices.Android.xml",
+        "xamarin.facebook.gamingservices.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.gamingservices.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.Login.Android/11.2.0.1": {
+      "sha512": "HLytmDmBGhm/larWp9eu8R6mSV3cYnbGPW5iqo5OVcVmwmxllPKXRnRwrDji4lCQPritn4rvUqP3n5Or5lKNvw==",
+      "type": "package",
+      "path": "xamarin.facebook.login.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.Login.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.Login.Android.xml",
+        "xamarin.facebook.login.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.login.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.Messenger.Android/11.2.0.1": {
+      "sha512": "Id6bFleYBHFc2PD+F8zEWF25v/gsXQL327x278Nr0BosS1gIPe2eO6DQEgH4UJIII7ScWT/PMUW75qkSPHtTCw==",
+      "type": "package",
+      "path": "xamarin.facebook.messenger.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.Messenger.Android.xml",
+        "xamarin.facebook.messenger.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.messenger.android.nuspec"
+      ]
+    },
+    "Xamarin.Facebook.Share.Android/11.2.0.1": {
+      "sha512": "yaZaiY4ciYq5UllCzgg1/iedlE1ooGt4SW2V+QzTMgsVY9BRutR6j38PPxhNyW4CvOQeAOYxCTV+qzby+v0j0A==",
+      "type": "package",
+      "path": "xamarin.facebook.share.android/11.2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Xamarin.Facebook.Share.Android.dll",
+        "lib/monoandroid90/Xamarin.Facebook.Share.Android.xml",
+        "xamarin.facebook.share.android.11.2.0.1.nupkg.sha512",
+        "xamarin.facebook.share.android.nuspec"
+      ]
+    },
     "Xamarin.Google.Android.Material/1.9.0.2": {
       "sha512": "sLmA5Kff8m4CjjUqYc8SZKjXpOF9xIAFJc2eNNfd8T0NY9bb6tbl6YL2rjUxCNI1qfs4qHaDHm/cDrEwI5DGfQ==",
       "type": "package",
@@ -93593,6 +96291,20 @@
         "jar/j2objc-annotations.jar",
         "xamarin.google.j2objc.annotations.1.3.0.1.nupkg.sha512",
         "xamarin.google.j2objc.annotations.nuspec"
+      ]
+    },
+    "Xamarin.Google.ZXing.Core/3.3.3": {
+      "sha512": "vxTn3kBeZVM4TE4PtE42ZAOv4zxq+wyTIZHtmtLPU5Xc8EOI9MBnvhLjn9fIns0QZ++eW4Yu34gvdvQLuIt8ig==",
+      "type": "package",
+      "path": "xamarin.google.zxing.core/3.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/monoandroid90/Google.ZXing.Core.dll",
+        "xamarin.google.zxing.core.3.3.3.nupkg.sha512",
+        "xamarin.google.zxing.core.nuspec"
       ]
     },
     "Xamarin.GooglePlayServices.Base/118.2.0.2": {
@@ -93857,6 +96569,7 @@
       "CommunityToolkit.Mvvm >= 8.2.2",
       "FFImageLoading.Maui >= 1.2.4",
       "FFmpeg.AutoGen >= 7.0.0",
+      "FirebaseAuthentication.net >= 4.1.0",
       "GoogleMapsApi >= 1.2.1",
       "Microsoft.AspNetCore.Hosting.Abstractions >= 2.2.0",
       "Microsoft.Extensions.Configuration.Binder >= 9.0.0-preview.4.24266.19",
@@ -93871,7 +96584,8 @@
       "ToolsLibrary >= 1.0.0",
       "VideoLAN.LibVLC.Android >= 3.5.3",
       "VideoLAN.LibVLC.Windows >= 3.0.20",
-      "Xabe.FFmpeg >= 5.2.6"
+      "Xabe.FFmpeg >= 5.2.6",
+      "Xamarin.Facebook.Android >= 11.2.0.1"
     ],
     "net8.0-ios18.0": [
       "CommunityToolkit.Maui >= 9.0.0",
@@ -93879,6 +96593,7 @@
       "CommunityToolkit.Mvvm >= 8.2.2",
       "FFImageLoading.Maui >= 1.2.4",
       "FFmpeg.AutoGen >= 7.0.0",
+      "FirebaseAuthentication.net >= 4.1.0",
       "GoogleMapsApi >= 1.2.1",
       "Microsoft.AspNetCore.Hosting.Abstractions >= 2.2.0",
       "Microsoft.Extensions.Configuration.Binder >= 9.0.0-preview.4.24266.19",
@@ -93901,6 +96616,7 @@
       "CommunityToolkit.Mvvm >= 8.2.2",
       "FFImageLoading.Maui >= 1.2.4",
       "FFmpeg.AutoGen >= 7.0.0",
+      "FirebaseAuthentication.net >= 4.1.0",
       "GoogleMapsApi >= 1.2.1",
       "Microsoft.AspNetCore.Hosting.Abstractions >= 2.2.0",
       "Microsoft.Extensions.Configuration.Binder >= 9.0.0-preview.4.24266.19",
@@ -93923,6 +96639,7 @@
       "CommunityToolkit.Mvvm >= 8.2.2",
       "FFImageLoading.Maui >= 1.2.4",
       "FFmpeg.AutoGen >= 7.0.0",
+      "FirebaseAuthentication.net >= 4.1.0",
       "GoogleMapsApi >= 1.2.1",
       "Microsoft.AspNetCore.Hosting.Abstractions >= 2.2.0",
       "Microsoft.Extensions.Configuration.Binder >= 9.0.0-preview.4.24266.19",
@@ -94042,6 +96759,10 @@
             "target": "Package",
             "version": "[7.0.0, )"
           },
+          "FirebaseAuthentication.net": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "GoogleMapsApi": {
             "target": "Package",
             "version": "[1.2.1, )"
@@ -94099,6 +96820,10 @@
           "Xabe.FFmpeg": {
             "target": "Package",
             "version": "[5.2.6, )"
+          },
+          "Xamarin.Facebook.Android": {
+            "target": "Package",
+            "version": "[11.2.0.1, )"
           }
         },
         "imports": [
@@ -94166,6 +96891,10 @@
           "FFmpeg.AutoGen": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "FirebaseAuthentication.net": {
+            "target": "Package",
+            "version": "[4.1.0, )"
           },
           "GoogleMapsApi": {
             "target": "Package",
@@ -94280,6 +97009,10 @@
             "target": "Package",
             "version": "[7.0.0, )"
           },
+          "FirebaseAuthentication.net": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "GoogleMapsApi": {
             "target": "Package",
             "version": "[1.2.1, )"
@@ -94393,6 +97126,10 @@
           "FFmpeg.AutoGen": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "FirebaseAuthentication.net": {
+            "target": "Package",
+            "version": "[4.1.0, )"
           },
           "GoogleMapsApi": {
             "target": "Package",

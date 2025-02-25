@@ -10,6 +10,9 @@ geolocationads.SslWebViewClient;crc646d254120c5b615c9.SslWebViewClient
 GeolocationAds.MainApplication, GeolocationAds;crc646d254120c5b615c9.MainApplication
 GeolocationAds.MainApplication;crc646d254120c5b615c9.MainApplication
 geolocationads.MainApplication;crc646d254120c5b615c9.MainApplication
+GeolocationAds.Platforms.Android.FacebookAuthActivity, GeolocationAds;crc6467d6dae4dba59566.FacebookAuthActivity
+GeolocationAds.Platforms.Android.FacebookAuthActivity;crc6467d6dae4dba59566.FacebookAuthActivity
+geolocationads.platforms.android.FacebookAuthActivity;crc6467d6dae4dba59566.FacebookAuthActivity
 GeolocationAds.Platforms.Android.WebAuthenticationCallbackActivity, GeolocationAds;crc6467d6dae4dba59566.WebAuthenticationCallbackActivity
 GeolocationAds.Platforms.Android.WebAuthenticationCallbackActivity;crc6467d6dae4dba59566.WebAuthenticationCallbackActivity
 geolocationads.platforms.android.WebAuthenticationCallbackActivity;crc6467d6dae4dba59566.WebAuthenticationCallbackActivity
@@ -2365,6 +2368,18 @@ com.google.android.exoplayer2.ui.TrackSelectionView$TrackSelectionListener;com.g
 Com.Google.Android.Exoplayer2.UI.TrackSelectionView+ITrackSelectionListenerImplementor, ExoPlayer.UI;mono.com.google.android.exoplayer2.ui.TrackSelectionView_TrackSelectionListenerImplementor
 Com.Google.Android.Exoplayer2.UI.TrackSelectionView.ITrackSelectionListenerImplementor;mono.com.google.android.exoplayer2.ui.TrackSelectionView_TrackSelectionListenerImplementor
 mono.com.google.android.exoplayer2.ui.TrackSelectionView_TrackSelectionListenerImplementor;mono.com.google.android.exoplayer2.ui.TrackSelectionView_TrackSelectionListenerImplementor
+Com.Google.Android.Finsky.Externalreferrer.IGetInstallReferrerService, Xamarin.Android.Binding.InstallReferrer;com.google.android.finsky.externalreferrer.IGetInstallReferrerService
+Com.Google.Android.Finsky.Externalreferrer.IGetInstallReferrerService;com.google.android.finsky.externalreferrer.IGetInstallReferrerService
+com.google.android.finsky.externalreferrer.IGetInstallReferrerService;com.google.android.finsky.externalreferrer.IGetInstallReferrerService
+Com.Android.Installreferrer.Api.IInstallReferrerStateListener, Xamarin.Android.Binding.InstallReferrer;com.android.installreferrer.api.InstallReferrerStateListener
+Com.Android.Installreferrer.Api.IInstallReferrerStateListener;com.android.installreferrer.api.InstallReferrerStateListener
+com.android.installreferrer.api.InstallReferrerStateListener;com.android.installreferrer.api.InstallReferrerStateListener
+Com.Android.Installreferrer.Api.IInstallReferrerStateListenerImplementor, Xamarin.Android.Binding.InstallReferrer;mono.com.android.installreferrer.api.InstallReferrerStateListenerImplementor
+Com.Android.Installreferrer.Api.IInstallReferrerStateListenerImplementor;mono.com.android.installreferrer.api.InstallReferrerStateListenerImplementor
+mono.com.android.installreferrer.api.InstallReferrerStateListenerImplementor;mono.com.android.installreferrer.api.InstallReferrerStateListenerImplementor
+Com.Android.Installreferrer.Api.InstallReferrerClient+IInstallReferrerResponse, Xamarin.Android.Binding.InstallReferrer;com.android.installreferrer.api.InstallReferrerClient$InstallReferrerResponse
+Com.Android.Installreferrer.Api.InstallReferrerClient.IInstallReferrerResponse;com.android.installreferrer.api.InstallReferrerClient$InstallReferrerResponse
+com.android.installreferrer.api.InstallReferrerClient$InstallReferrerResponse;com.android.installreferrer.api.InstallReferrerClient$InstallReferrerResponse
 Bumptech.Glide.Glide+IRequestOptionsFactory, Xamarin.Android.Glide;com.bumptech.glide.Glide$RequestOptionsFactory
 Bumptech.Glide.Glide.IRequestOptionsFactory;com.bumptech.glide.Glide$RequestOptionsFactory
 com.bumptech.glide.Glide$RequestOptionsFactory;com.bumptech.glide.Glide$RequestOptionsFactory
@@ -3019,6 +3034,12 @@ androidx.appcompat.widget.ResourceManagerInternal$ResourceManagerHooks;androidx.
 AndroidX.Arch.Core.Util.IFunction, Xamarin.AndroidX.Arch.Core.Common;androidx.arch.core.util.Function
 AndroidX.Arch.Core.Util.IFunction;androidx.arch.core.util.Function
 androidx.arch.core.util.Function;androidx.arch.core.util.Function
+AndroidX.AsyncLayoutInflater.View.AsyncLayoutInflater+IOnInflateFinishedListener, Xamarin.AndroidX.AsyncLayoutInflater;androidx.asynclayoutinflater.view.AsyncLayoutInflater$OnInflateFinishedListener
+AndroidX.AsyncLayoutInflater.View.AsyncLayoutInflater.IOnInflateFinishedListener;androidx.asynclayoutinflater.view.AsyncLayoutInflater$OnInflateFinishedListener
+androidx.asynclayoutinflater.view.AsyncLayoutInflater$OnInflateFinishedListener;androidx.asynclayoutinflater.view.AsyncLayoutInflater$OnInflateFinishedListener
+AndroidX.AsyncLayoutInflater.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.AndroidX.AsyncLayoutInflater;mono.androidx.asynclayoutinflater.view.AsyncLayoutInflater_OnInflateFinishedListenerImplementor
+AndroidX.AsyncLayoutInflater.View.AsyncLayoutInflater.IOnInflateFinishedListenerImplementor;mono.androidx.asynclayoutinflater.view.AsyncLayoutInflater_OnInflateFinishedListenerImplementor
+mono.androidx.asynclayoutinflater.view.AsyncLayoutInflater_OnInflateFinishedListenerImplementor;mono.androidx.asynclayoutinflater.view.AsyncLayoutInflater_OnInflateFinishedListenerImplementor
 Android.Support.Customtabs.Trusted.ITrustedWebActivityCallback, Xamarin.AndroidX.Browser;android.support.customtabs.trusted.ITrustedWebActivityCallback
 Android.Support.Customtabs.Trusted.ITrustedWebActivityCallback;android.support.customtabs.trusted.ITrustedWebActivityCallback
 android.support.customtabs.trusted.ITrustedWebActivityCallback;android.support.customtabs.trusted.ITrustedWebActivityCallback
@@ -3652,6 +3673,12 @@ androidx.fragment.app.strictmode.FragmentStrictMode$OnViolationListener;androidx
 AndroidX.Fragment.App.StrictMode.FragmentStrictMode+IOnViolationListenerImplementor, Xamarin.AndroidX.Fragment;mono.androidx.fragment.app.strictmode.FragmentStrictMode_OnViolationListenerImplementor
 AndroidX.Fragment.App.StrictMode.FragmentStrictMode.IOnViolationListenerImplementor;mono.androidx.fragment.app.strictmode.FragmentStrictMode_OnViolationListenerImplementor
 mono.androidx.fragment.app.strictmode.FragmentStrictMode_OnViolationListenerImplementor;mono.androidx.fragment.app.strictmode.FragmentStrictMode_OnViolationListenerImplementor
+AndroidX.Legacy.App.ActionBarDrawerToggle+IDelegate, Xamarin.AndroidX.Legacy.Support.Core.UI;androidx.legacy.app.ActionBarDrawerToggle$Delegate
+AndroidX.Legacy.App.ActionBarDrawerToggle.IDelegate;androidx.legacy.app.ActionBarDrawerToggle$Delegate
+androidx.legacy.app.ActionBarDrawerToggle$Delegate;androidx.legacy.app.ActionBarDrawerToggle$Delegate
+AndroidX.Legacy.App.ActionBarDrawerToggle+IDelegateProvider, Xamarin.AndroidX.Legacy.Support.Core.UI;androidx.legacy.app.ActionBarDrawerToggle$DelegateProvider
+AndroidX.Legacy.App.ActionBarDrawerToggle.IDelegateProvider;androidx.legacy.app.ActionBarDrawerToggle$DelegateProvider
+androidx.legacy.app.ActionBarDrawerToggle$DelegateProvider;androidx.legacy.app.ActionBarDrawerToggle$DelegateProvider
 AndroidX.Lifecycle.IDefaultLifecycleObserver, Xamarin.AndroidX.Lifecycle.Common;androidx.lifecycle.DefaultLifecycleObserver
 AndroidX.Lifecycle.IDefaultLifecycleObserver;androidx.lifecycle.DefaultLifecycleObserver
 androidx.lifecycle.DefaultLifecycleObserver;androidx.lifecycle.DefaultLifecycleObserver
@@ -4042,6 +4069,192 @@ androidx.window.extensions.core.util.function.Function;androidx.window.extension
 AndroidX.Window.Extensions.Core.Util.Function.IPredicate, Xamarin.AndroidX.Window.Extensions.Core.Core;androidx.window.extensions.core.util.function.Predicate
 AndroidX.Window.Extensions.Core.Util.Function.IPredicate;androidx.window.extensions.core.util.function.Predicate
 androidx.window.extensions.core.util.function.Predicate;androidx.window.extensions.core.util.function.Predicate
+Xamarin.Facebook.AppLinks.AppLinkData+ICompletionHandler, Xamarin.Facebook.AppLinks.Android;com.facebook.applinks.AppLinkData$CompletionHandler
+Xamarin.Facebook.AppLinks.AppLinkData.ICompletionHandler;com.facebook.applinks.AppLinkData$CompletionHandler
+com.facebook.applinks.AppLinkData$CompletionHandler;com.facebook.applinks.AppLinkData$CompletionHandler
+Xamarin.Facebook.IFacebookCallback, Xamarin.Facebook.Common.Android;com.facebook.FacebookCallback
+Xamarin.Facebook.IFacebookCallback;com.facebook.FacebookCallback
+com.facebook.FacebookCallback;com.facebook.FacebookCallback
+Xamarin.Facebook.IFacebookDialog, Xamarin.Facebook.Common.Android;com.facebook.FacebookDialog
+Xamarin.Facebook.IFacebookDialog;com.facebook.FacebookDialog
+com.facebook.FacebookDialog;com.facebook.FacebookDialog
+Xamarin.Facebook.ILoginStatusCallback, Xamarin.Facebook.Common.Android;com.facebook.LoginStatusCallback
+Xamarin.Facebook.ILoginStatusCallback;com.facebook.LoginStatusCallback
+com.facebook.LoginStatusCallback;com.facebook.LoginStatusCallback
+Xamarin.Facebook.Internal.DialogPresenter+IParameterProvider, Xamarin.Facebook.Common.Android;com.facebook.internal.DialogPresenter$ParameterProvider
+Xamarin.Facebook.Internal.DialogPresenter.IParameterProvider;com.facebook.internal.DialogPresenter$ParameterProvider
+com.facebook.internal.DialogPresenter$ParameterProvider;com.facebook.internal.DialogPresenter$ParameterProvider
+Xamarin.Facebook.Internal.IDialogFeature, Xamarin.Facebook.Common.Android;com.facebook.internal.DialogFeature
+Xamarin.Facebook.Internal.IDialogFeature;com.facebook.internal.DialogFeature
+com.facebook.internal.DialogFeature;com.facebook.internal.DialogFeature
+Xamarin.Facebook.Internal.PlatformServiceClient+ICompletedListener, Xamarin.Facebook.Common.Android;com.facebook.internal.PlatformServiceClient$CompletedListener
+Xamarin.Facebook.Internal.PlatformServiceClient.ICompletedListener;com.facebook.internal.PlatformServiceClient$CompletedListener
+com.facebook.internal.PlatformServiceClient$CompletedListener;com.facebook.internal.PlatformServiceClient$CompletedListener
+Xamarin.Facebook.Internal.PlatformServiceClient+ICompletedListenerImplementor, Xamarin.Facebook.Common.Android;mono.com.facebook.internal.PlatformServiceClient_CompletedListenerImplementor
+Xamarin.Facebook.Internal.PlatformServiceClient.ICompletedListenerImplementor;mono.com.facebook.internal.PlatformServiceClient_CompletedListenerImplementor
+mono.com.facebook.internal.PlatformServiceClient_CompletedListenerImplementor;mono.com.facebook.internal.PlatformServiceClient_CompletedListenerImplementor
+Xamarin.Facebook.Internal.WebDialog+IInitCallback, Xamarin.Facebook.Common.Android;com.facebook.internal.WebDialog$InitCallback
+Xamarin.Facebook.Internal.WebDialog.IInitCallback;com.facebook.internal.WebDialog$InitCallback
+com.facebook.internal.WebDialog$InitCallback;com.facebook.internal.WebDialog$InitCallback
+Xamarin.Facebook.Internal.WebDialog+IOnCompleteListener, Xamarin.Facebook.Common.Android;com.facebook.internal.WebDialog$OnCompleteListener
+Xamarin.Facebook.Internal.WebDialog.IOnCompleteListener;com.facebook.internal.WebDialog$OnCompleteListener
+com.facebook.internal.WebDialog$OnCompleteListener;com.facebook.internal.WebDialog$OnCompleteListener
+Xamarin.Facebook.Internal.WebDialog+IOnCompleteListenerImplementor, Xamarin.Facebook.Common.Android;mono.com.facebook.internal.WebDialog_OnCompleteListenerImplementor
+Xamarin.Facebook.Internal.WebDialog.IOnCompleteListenerImplementor;mono.com.facebook.internal.WebDialog_OnCompleteListenerImplementor
+mono.com.facebook.internal.WebDialog_OnCompleteListenerImplementor;mono.com.facebook.internal.WebDialog_OnCompleteListenerImplementor
+Xamarin.Facebook.Share.IShareBuilder, Xamarin.Facebook.Common.Android;com.facebook.share.ShareBuilder
+Xamarin.Facebook.Share.IShareBuilder;com.facebook.share.ShareBuilder
+com.facebook.share.ShareBuilder;com.facebook.share.ShareBuilder
+Xamarin.Facebook.Share.ISharer, Xamarin.Facebook.Common.Android;com.facebook.share.Sharer
+Xamarin.Facebook.Share.ISharer;com.facebook.share.Sharer
+com.facebook.share.Sharer;com.facebook.share.Sharer
+Xamarin.Facebook.Share.Widget.LikeView+IOnErrorListener, Xamarin.Facebook.Common.Android;com.facebook.share.widget.LikeView$OnErrorListener
+Xamarin.Facebook.Share.Widget.LikeView.IOnErrorListener;com.facebook.share.widget.LikeView$OnErrorListener
+com.facebook.share.widget.LikeView$OnErrorListener;com.facebook.share.widget.LikeView$OnErrorListener
+Xamarin.Facebook.Share.Widget.LikeView+IOnErrorListenerImplementor, Xamarin.Facebook.Common.Android;mono.com.facebook.share.widget.LikeView_OnErrorListenerImplementor
+Xamarin.Facebook.Share.Widget.LikeView.IOnErrorListenerImplementor;mono.com.facebook.share.widget.LikeView_OnErrorListenerImplementor
+mono.com.facebook.share.widget.LikeView_OnErrorListenerImplementor;mono.com.facebook.share.widget.LikeView_OnErrorListenerImplementor
+Xamarin.Facebook.Share.Model.IShareModel, Xamarin.Facebook.Common.Android;com.facebook.share.model.ShareModel
+Xamarin.Facebook.Share.Model.IShareModel;com.facebook.share.model.ShareModel
+com.facebook.share.model.ShareModel;com.facebook.share.model.ShareModel
+Xamarin.Facebook.Share.Model.IShareModelBuilder, Xamarin.Facebook.Common.Android;com.facebook.share.model.ShareModelBuilder
+Xamarin.Facebook.Share.Model.IShareModelBuilder;com.facebook.share.model.ShareModelBuilder
+com.facebook.share.model.ShareModelBuilder;com.facebook.share.model.ShareModelBuilder
+Com.Facebook.Internal.Logging.Dumpsys.AndroidRootResolver+IListener, Xamarin.Facebook.Core.Android;com.facebook.internal.logging.dumpsys.AndroidRootResolver$Listener
+Com.Facebook.Internal.Logging.Dumpsys.AndroidRootResolver.IListener;com.facebook.internal.logging.dumpsys.AndroidRootResolver$Listener
+com.facebook.internal.logging.dumpsys.AndroidRootResolver$Listener;com.facebook.internal.logging.dumpsys.AndroidRootResolver$Listener
+Com.Facebook.Internal.Logging.Dumpsys.AndroidRootResolver+IListenerImplementor, Xamarin.Facebook.Core.Android;mono.com.facebook.internal.logging.dumpsys.AndroidRootResolver_ListenerImplementor
+Com.Facebook.Internal.Logging.Dumpsys.AndroidRootResolver.IListenerImplementor;mono.com.facebook.internal.logging.dumpsys.AndroidRootResolver_ListenerImplementor
+mono.com.facebook.internal.logging.dumpsys.AndroidRootResolver_ListenerImplementor;mono.com.facebook.internal.logging.dumpsys.AndroidRootResolver_ListenerImplementor
+Xamarin.Facebook.GraphRequestBatch+ICallback, Xamarin.Facebook.Core.Android;com.facebook.GraphRequestBatch$Callback
+Xamarin.Facebook.GraphRequestBatch.ICallback;com.facebook.GraphRequestBatch$Callback
+com.facebook.GraphRequestBatch$Callback;com.facebook.GraphRequestBatch$Callback
+Xamarin.Facebook.GraphRequestBatch+IOnProgressCallback, Xamarin.Facebook.Core.Android;com.facebook.GraphRequestBatch$OnProgressCallback
+Xamarin.Facebook.GraphRequestBatch.IOnProgressCallback;com.facebook.GraphRequestBatch$OnProgressCallback
+com.facebook.GraphRequestBatch$OnProgressCallback;com.facebook.GraphRequestBatch$OnProgressCallback
+Xamarin.Facebook.AccessToken+IAccessTokenCreationCallback, Xamarin.Facebook.Core.Android;com.facebook.AccessToken$AccessTokenCreationCallback
+Xamarin.Facebook.AccessToken.IAccessTokenCreationCallback;com.facebook.AccessToken$AccessTokenCreationCallback
+com.facebook.AccessToken$AccessTokenCreationCallback;com.facebook.AccessToken$AccessTokenCreationCallback
+Xamarin.Facebook.AccessToken+IAccessTokenRefreshCallback, Xamarin.Facebook.Core.Android;com.facebook.AccessToken$AccessTokenRefreshCallback
+Xamarin.Facebook.AccessToken.IAccessTokenRefreshCallback;com.facebook.AccessToken$AccessTokenRefreshCallback
+com.facebook.AccessToken$AccessTokenRefreshCallback;com.facebook.AccessToken$AccessTokenRefreshCallback
+Xamarin.Facebook.AccessTokenManager+IRefreshTokenInfo, Xamarin.Facebook.Core.Android;com.facebook.AccessTokenManager$RefreshTokenInfo
+Xamarin.Facebook.AccessTokenManager.IRefreshTokenInfo;com.facebook.AccessTokenManager$RefreshTokenInfo
+com.facebook.AccessTokenManager$RefreshTokenInfo;com.facebook.AccessTokenManager$RefreshTokenInfo
+Xamarin.Facebook.FacebookSdk+IGraphRequestCreator, Xamarin.Facebook.Core.Android;com.facebook.FacebookSdk$GraphRequestCreator
+Xamarin.Facebook.FacebookSdk.IGraphRequestCreator;com.facebook.FacebookSdk$GraphRequestCreator
+com.facebook.FacebookSdk$GraphRequestCreator;com.facebook.FacebookSdk$GraphRequestCreator
+Xamarin.Facebook.FacebookSdk+IInitializeCallback, Xamarin.Facebook.Core.Android;com.facebook.FacebookSdk$InitializeCallback
+Xamarin.Facebook.FacebookSdk.IInitializeCallback;com.facebook.FacebookSdk$InitializeCallback
+com.facebook.FacebookSdk$InitializeCallback;com.facebook.FacebookSdk$InitializeCallback
+Xamarin.Facebook.GraphRequest+ICallback, Xamarin.Facebook.Core.Android;com.facebook.GraphRequest$Callback
+Xamarin.Facebook.GraphRequest.ICallback;com.facebook.GraphRequest$Callback
+com.facebook.GraphRequest$Callback;com.facebook.GraphRequest$Callback
+Xamarin.Facebook.GraphRequest+IGraphJSONArrayCallback, Xamarin.Facebook.Core.Android;com.facebook.GraphRequest$GraphJSONArrayCallback
+Xamarin.Facebook.GraphRequest.IGraphJSONArrayCallback;com.facebook.GraphRequest$GraphJSONArrayCallback
+com.facebook.GraphRequest$GraphJSONArrayCallback;com.facebook.GraphRequest$GraphJSONArrayCallback
+Xamarin.Facebook.GraphRequest+IGraphJSONObjectCallback, Xamarin.Facebook.Core.Android;com.facebook.GraphRequest$GraphJSONObjectCallback
+Xamarin.Facebook.GraphRequest.IGraphJSONObjectCallback;com.facebook.GraphRequest$GraphJSONObjectCallback
+com.facebook.GraphRequest$GraphJSONObjectCallback;com.facebook.GraphRequest$GraphJSONObjectCallback
+Xamarin.Facebook.GraphRequest+IOnProgressCallback, Xamarin.Facebook.Core.Android;com.facebook.GraphRequest$OnProgressCallback
+Xamarin.Facebook.GraphRequest.IOnProgressCallback;com.facebook.GraphRequest$OnProgressCallback
+com.facebook.GraphRequest$OnProgressCallback;com.facebook.GraphRequest$OnProgressCallback
+Xamarin.Facebook.ICallbackManager, Xamarin.Facebook.Core.Android;com.facebook.CallbackManager
+Xamarin.Facebook.ICallbackManager;com.facebook.CallbackManager
+com.facebook.CallbackManager;com.facebook.CallbackManager
+Xamarin.Facebook.Ppml.Receiver.IReceiverService, Xamarin.Facebook.Core.Android;com.facebook.ppml.receiver.IReceiverService
+Xamarin.Facebook.Ppml.Receiver.IReceiverService;com.facebook.ppml.receiver.IReceiverService
+com.facebook.ppml.receiver.IReceiverService;com.facebook.ppml.receiver.IReceiverService
+Xamarin.Facebook.Internal.BundleJSONConverter+ISetter, Xamarin.Facebook.Core.Android;com.facebook.internal.BundleJSONConverter$Setter
+Xamarin.Facebook.Internal.BundleJSONConverter.ISetter;com.facebook.internal.BundleJSONConverter$Setter
+com.facebook.internal.BundleJSONConverter$Setter;com.facebook.internal.BundleJSONConverter$Setter
+Xamarin.Facebook.Internal.CallbackManagerImpl+ICallback, Xamarin.Facebook.Core.Android;com.facebook.internal.CallbackManagerImpl$Callback
+Xamarin.Facebook.Internal.CallbackManagerImpl.ICallback;com.facebook.internal.CallbackManagerImpl$Callback
+com.facebook.internal.CallbackManagerImpl$Callback;com.facebook.internal.CallbackManagerImpl$Callback
+Xamarin.Facebook.Internal.FeatureManager+ICallback, Xamarin.Facebook.Core.Android;com.facebook.internal.FeatureManager$Callback
+Xamarin.Facebook.Internal.FeatureManager.ICallback;com.facebook.internal.FeatureManager$Callback
+com.facebook.internal.FeatureManager$Callback;com.facebook.internal.FeatureManager$Callback
+Xamarin.Facebook.Internal.FetchedAppGateKeepersManager+ICallback, Xamarin.Facebook.Core.Android;com.facebook.internal.FetchedAppGateKeepersManager$Callback
+Xamarin.Facebook.Internal.FetchedAppGateKeepersManager.ICallback;com.facebook.internal.FetchedAppGateKeepersManager$Callback
+com.facebook.internal.FetchedAppGateKeepersManager$Callback;com.facebook.internal.FetchedAppGateKeepersManager$Callback
+Xamarin.Facebook.Internal.FetchedAppSettingsManager+IFetchedAppSettingsCallback, Xamarin.Facebook.Core.Android;com.facebook.internal.FetchedAppSettingsManager$FetchedAppSettingsCallback
+Xamarin.Facebook.Internal.FetchedAppSettingsManager.IFetchedAppSettingsCallback;com.facebook.internal.FetchedAppSettingsManager$FetchedAppSettingsCallback
+com.facebook.internal.FetchedAppSettingsManager$FetchedAppSettingsCallback;com.facebook.internal.FetchedAppSettingsManager$FetchedAppSettingsCallback
+Xamarin.Facebook.Internal.ImageRequest+ICallback, Xamarin.Facebook.Core.Android;com.facebook.internal.ImageRequest$Callback
+Xamarin.Facebook.Internal.ImageRequest.ICallback;com.facebook.internal.ImageRequest$Callback
+com.facebook.internal.ImageRequest$Callback;com.facebook.internal.ImageRequest$Callback
+Xamarin.Facebook.Internal.InstallReferrerUtil+ICallback, Xamarin.Facebook.Core.Android;com.facebook.internal.InstallReferrerUtil$Callback
+Xamarin.Facebook.Internal.InstallReferrerUtil.ICallback;com.facebook.internal.InstallReferrerUtil$Callback
+com.facebook.internal.InstallReferrerUtil$Callback;com.facebook.internal.InstallReferrerUtil$Callback
+Xamarin.Facebook.Internal.Utility+IGraphMeRequestWithCacheCallback, Xamarin.Facebook.Core.Android;com.facebook.internal.Utility$GraphMeRequestWithCacheCallback
+Xamarin.Facebook.Internal.Utility.IGraphMeRequestWithCacheCallback;com.facebook.internal.Utility$GraphMeRequestWithCacheCallback
+com.facebook.internal.Utility$GraphMeRequestWithCacheCallback;com.facebook.internal.Utility$GraphMeRequestWithCacheCallback
+Xamarin.Facebook.Internal.Utility+IMapper, Xamarin.Facebook.Core.Android;com.facebook.internal.Utility$Mapper
+Xamarin.Facebook.Internal.Utility.IMapper;com.facebook.internal.Utility$Mapper
+com.facebook.internal.Utility$Mapper;com.facebook.internal.Utility$Mapper
+Xamarin.Facebook.Internal.Utility+IPredicate, Xamarin.Facebook.Core.Android;com.facebook.internal.Utility$Predicate
+Xamarin.Facebook.Internal.Utility.IPredicate;com.facebook.internal.Utility$Predicate
+com.facebook.internal.Utility$Predicate;com.facebook.internal.Utility$Predicate
+Xamarin.Facebook.Internal.WorkQueue+IWorkItem, Xamarin.Facebook.Core.Android;com.facebook.internal.WorkQueue$WorkItem
+Xamarin.Facebook.Internal.WorkQueue.IWorkItem;com.facebook.internal.WorkQueue$WorkItem
+com.facebook.internal.WorkQueue$WorkItem;com.facebook.internal.WorkQueue$WorkItem
+Xamarin.Facebook.Internal.QualityValidation.IExcuse, Xamarin.Facebook.Core.Android;com.facebook.internal.qualityvalidation.Excuse
+Xamarin.Facebook.Internal.QualityValidation.IExcuse;com.facebook.internal.qualityvalidation.Excuse
+com.facebook.internal.qualityvalidation.Excuse;com.facebook.internal.qualityvalidation.Excuse
+Xamarin.Facebook.Internal.QualityValidation.IExcusesForDesignViolations, Xamarin.Facebook.Core.Android;com.facebook.internal.qualityvalidation.ExcusesForDesignViolations
+Xamarin.Facebook.Internal.QualityValidation.IExcusesForDesignViolations;com.facebook.internal.qualityvalidation.ExcusesForDesignViolations
+com.facebook.internal.qualityvalidation.ExcusesForDesignViolations;com.facebook.internal.qualityvalidation.ExcusesForDesignViolations
+Xamarin.Facebook.Internal.Instrument.Crashshield.IAutoHandleExceptions, Xamarin.Facebook.Core.Android;com.facebook.internal.instrument.crashshield.AutoHandleExceptions
+Xamarin.Facebook.Internal.Instrument.Crashshield.IAutoHandleExceptions;com.facebook.internal.instrument.crashshield.AutoHandleExceptions
+com.facebook.internal.instrument.crashshield.AutoHandleExceptions;com.facebook.internal.instrument.crashshield.AutoHandleExceptions
+Xamarin.Facebook.Internal.Instrument.Crashshield.INoAutoExceptionHandling, Xamarin.Facebook.Core.Android;com.facebook.internal.instrument.crashshield.NoAutoExceptionHandling
+Xamarin.Facebook.Internal.Instrument.Crashshield.INoAutoExceptionHandling;com.facebook.internal.instrument.crashshield.NoAutoExceptionHandling
+com.facebook.internal.instrument.crashshield.NoAutoExceptionHandling;com.facebook.internal.instrument.crashshield.NoAutoExceptionHandling
+Xamarin.Facebook.Bolts.IAppLinkResolver, Xamarin.Facebook.Core.Android;com.facebook.bolts.AppLinkResolver
+Xamarin.Facebook.Bolts.IAppLinkResolver;com.facebook.bolts.AppLinkResolver
+com.facebook.bolts.AppLinkResolver;com.facebook.bolts.AppLinkResolver
+Xamarin.Facebook.Bolts.IContinuation, Xamarin.Facebook.Core.Android;com.facebook.bolts.Continuation
+Xamarin.Facebook.Bolts.IContinuation;com.facebook.bolts.Continuation
+com.facebook.bolts.Continuation;com.facebook.bolts.Continuation
+Xamarin.Facebook.Bolts.Task+IUnobservedExceptionHandler, Xamarin.Facebook.Core.Android;com.facebook.bolts.Task$UnobservedExceptionHandler
+Xamarin.Facebook.Bolts.Task.IUnobservedExceptionHandler;com.facebook.bolts.Task$UnobservedExceptionHandler
+com.facebook.bolts.Task$UnobservedExceptionHandler;com.facebook.bolts.Task$UnobservedExceptionHandler
+Xamarin.Facebook.AppEvents.Codeless.CodelessManager+ICodelessSessionChecker, Xamarin.Facebook.Core.Android;com.facebook.appevents.codeless.CodelessManager$CodelessSessionChecker
+Xamarin.Facebook.AppEvents.Codeless.CodelessManager.ICodelessSessionChecker;com.facebook.appevents.codeless.CodelessManager$CodelessSessionChecker
+com.facebook.appevents.codeless.CodelessManager$CodelessSessionChecker;com.facebook.appevents.codeless.CodelessManager$CodelessSessionChecker
+Xamarin.Facebook.AppEvents.Internal.FileDownloadTask+ICallback, Xamarin.Facebook.Core.Android;com.facebook.appevents.internal.FileDownloadTask$Callback
+Xamarin.Facebook.AppEvents.Internal.FileDownloadTask.ICallback;com.facebook.appevents.internal.FileDownloadTask$Callback
+com.facebook.appevents.internal.FileDownloadTask$Callback;com.facebook.appevents.internal.FileDownloadTask$Callback
+Xamarin.Facebook.GamingServices.CloudGaming.DaemonRequest+ICallback, Xamarin.Facebook.GamingServices.Android;com.facebook.gamingservices.cloudgaming.DaemonRequest$Callback
+Xamarin.Facebook.GamingServices.CloudGaming.DaemonRequest.ICallback;com.facebook.gamingservices.cloudgaming.DaemonRequest$Callback
+com.facebook.gamingservices.cloudgaming.DaemonRequest$Callback;com.facebook.gamingservices.cloudgaming.DaemonRequest$Callback
+Xamarin.Facebook.GraphRequestAsyncTask, Xamarin.Facebook.Login.Android;crc646925f37ba1198680.GraphRequestAsyncTask
+Xamarin.Facebook.GraphRequestAsyncTask;crc646925f37ba1198680.GraphRequestAsyncTask
+xamarin.facebook.GraphRequestAsyncTask;crc646925f37ba1198680.GraphRequestAsyncTask
+Xamarin.Facebook.Login.Widget.ProfilePictureView+IOnErrorListener, Xamarin.Facebook.Login.Android;com.facebook.login.widget.ProfilePictureView$OnErrorListener
+Xamarin.Facebook.Login.Widget.ProfilePictureView.IOnErrorListener;com.facebook.login.widget.ProfilePictureView$OnErrorListener
+com.facebook.login.widget.ProfilePictureView$OnErrorListener;com.facebook.login.widget.ProfilePictureView$OnErrorListener
+Xamarin.Facebook.Login.Widget.ProfilePictureView+IOnErrorListenerImplementor, Xamarin.Facebook.Login.Android;mono.com.facebook.login.widget.ProfilePictureView_OnErrorListenerImplementor
+Xamarin.Facebook.Login.Widget.ProfilePictureView.IOnErrorListenerImplementor;mono.com.facebook.login.widget.ProfilePictureView_OnErrorListenerImplementor
+mono.com.facebook.login.widget.ProfilePictureView_OnErrorListenerImplementor;mono.com.facebook.login.widget.ProfilePictureView_OnErrorListenerImplementor
+Xamarin.Facebook.Internal.CollectionMapper+ICollection, Xamarin.Facebook.Share.Android;com.facebook.internal.CollectionMapper$Collection
+Xamarin.Facebook.Internal.CollectionMapper.ICollection;com.facebook.internal.CollectionMapper$Collection
+com.facebook.internal.CollectionMapper$Collection;com.facebook.internal.CollectionMapper$Collection
+Xamarin.Facebook.Internal.CollectionMapper+IOnErrorListener, Xamarin.Facebook.Share.Android;com.facebook.internal.CollectionMapper$OnErrorListener
+Xamarin.Facebook.Internal.CollectionMapper.IOnErrorListener;com.facebook.internal.CollectionMapper$OnErrorListener
+com.facebook.internal.CollectionMapper$OnErrorListener;com.facebook.internal.CollectionMapper$OnErrorListener
+Xamarin.Facebook.Internal.CollectionMapper+IOnErrorListenerImplementor, Xamarin.Facebook.Share.Android;mono.com.facebook.internal.CollectionMapper_OnErrorListenerImplementor
+Xamarin.Facebook.Internal.CollectionMapper.IOnErrorListenerImplementor;mono.com.facebook.internal.CollectionMapper_OnErrorListenerImplementor
+mono.com.facebook.internal.CollectionMapper_OnErrorListenerImplementor;mono.com.facebook.internal.CollectionMapper_OnErrorListenerImplementor
+Xamarin.Facebook.Internal.CollectionMapper+IOnMapperCompleteListener, Xamarin.Facebook.Share.Android;com.facebook.internal.CollectionMapper$OnMapperCompleteListener
+Xamarin.Facebook.Internal.CollectionMapper.IOnMapperCompleteListener;com.facebook.internal.CollectionMapper$OnMapperCompleteListener
+com.facebook.internal.CollectionMapper$OnMapperCompleteListener;com.facebook.internal.CollectionMapper$OnMapperCompleteListener
+Xamarin.Facebook.Internal.CollectionMapper+IOnMapValueCompleteListener, Xamarin.Facebook.Share.Android;com.facebook.internal.CollectionMapper$OnMapValueCompleteListener
+Xamarin.Facebook.Internal.CollectionMapper.IOnMapValueCompleteListener;com.facebook.internal.CollectionMapper$OnMapValueCompleteListener
+com.facebook.internal.CollectionMapper$OnMapValueCompleteListener;com.facebook.internal.CollectionMapper$OnMapValueCompleteListener
+Xamarin.Facebook.Internal.CollectionMapper+IValueMapper, Xamarin.Facebook.Share.Android;com.facebook.internal.CollectionMapper$ValueMapper
+Xamarin.Facebook.Internal.CollectionMapper.IValueMapper;com.facebook.internal.CollectionMapper$ValueMapper
+com.facebook.internal.CollectionMapper$ValueMapper;com.facebook.internal.CollectionMapper$ValueMapper
 Google.Android.Material.Transition.IVisibilityAnimatorProvider, Xamarin.Google.Android.Material;com.google.android.material.transition.VisibilityAnimatorProvider
 Google.Android.Material.Transition.IVisibilityAnimatorProvider;com.google.android.material.transition.VisibilityAnimatorProvider
 com.google.android.material.transition.VisibilityAnimatorProvider;com.google.android.material.transition.VisibilityAnimatorProvider

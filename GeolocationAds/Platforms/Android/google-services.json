@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "349530168243",
+    "project_id": "geoconnect-auth",
+    "storage_bucket": "geoconnect-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349530168243:android:39ae7264cae04da45109c6",
+        "android_client_info": {
+          "package_name": "om.mycompany.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb64zcdIcN5YcnxkaF9jvs50zE8qOSxbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

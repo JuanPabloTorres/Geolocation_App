@@ -190,6 +190,7 @@
 
                         <Button
                             BackgroundColor="Transparent"
+                            Command="{Binding SignInWithFacebookCommand}"
                             HeightRequest="50"
                             HorizontalOptions="Center"
                             ImageSource="facebook.png"
