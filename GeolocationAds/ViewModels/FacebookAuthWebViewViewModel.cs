@@ -7,23 +7,34 @@ using System.Threading.Tasks;
 using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.Pages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Controls;
+using ToolsLibrary.Dto;
 
 namespace GeolocationAds.ViewModels
 {
     public partial class FacebookAuthWebViewViewModel : ObservableObject
     {
-        private readonly TaskCompletionSource<string> _taskCompletionSource;
-
-        private const string CallbackUrl = "https://com.mycompany.myapp/";
+        public Action<FacebookUserInfoDto> OnLoginCompleted { get; set; }
 
         [ObservableProperty]
         private string facebookAuthUrl;
 
-        public FacebookAuthWebViewViewModel()
+        protected IConfiguration Configuration { get; set; }
+
+        public FacebookAuthWebViewViewModel(IConfiguration configuration)
         {
-            //_taskCompletionSource = taskCompletionSource ?? throw new ArgumentNullException(nameof(taskCompletionSource));
+            this.Configuration = configuration;
+
             LoadFacebookLogin();
+        }
+
+        public string GetFacebookConfiguration(string configName)
+        {
+            var _configurationName = Configuration.GetValue<string>($"FacebookSettings:{configName}");
+
+            return !String.IsNullOrEmpty(_configurationName) ? _configurationName : string.Empty;
         }
 
         /// <summary>
@@ -31,66 +42,20 @@ namespace GeolocationAds.ViewModels
         /// </summary>
         private void LoadFacebookLogin()
         {
-            FacebookAuthUrl = $"https://www.facebook.com/v22.0/dialog/oauth" +
-                              $"?client_id=2641020766093307" +
-                              $"&redirect_uri={Uri.EscapeDataString(CallbackUrl)}" +
-                              $"&response_type=token" +
-                              $"&scope=email,public_profile";
+            string clientId = Configuration.GetValue<string>("FacebookSettings:FacebookAppId");
+
+            string redirectUri = Configuration.GetValue<string>("FacebookSettings:FacebookRedirectUri");
+
+            string authUrl = Configuration.GetValue<string>("FacebookSettings:FacebookAuthUrl");
+
+            FacebookAuthUrl = $"{authUrl}" +
+                $"?client_id={clientId}" +
+                $"&redirect_uri={Uri.EscapeDataString(redirectUri)}" +
+                "&response_type=token" +
+                $"&scope=email,public_profile";
         }
 
-        /// <summary>
-        /// Maneja la navegación en el WebView.
-        /// </summary>
-        [RelayCommand]
-        public async Task OnNavigating(WebNavigatingEventArgs e)
-        {
-            if (e.Url.StartsWith(CallbackUrl))
-            {
-                e.Cancel = true; // 🔹 Cancelamos la navegación en WebView
-
-                string accessToken = ExtractAccessToken(e.Url);
-                if (!string.IsNullOrEmpty(accessToken))
-                {
-                    var userInfo = await GetFacebookUserInfoAsync(accessToken);
-                    if (userInfo != null)
-                    {
-                        _taskCompletionSource.SetResult(userInfo.Id);
-                    }
-                    else
-                    {
-                        _taskCompletionSource.SetResult(null);
-                    }
-                }
-                else
-                {
-                    _taskCompletionSource.SetResult(null);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Extrae el token de acceso de la URL.
-        /// </summary>
-        private string ExtractAccessToken(string url)
-        {
-            try
-            {
-                var uri = new Uri(url);
-                if (!string.IsNullOrEmpty(uri.Fragment))
-                {
-                    var fragment = uri.Fragment.TrimStart('#'); // 🔹 Eliminamos `#`
-
-                    var queryParams = HttpUtility.ParseQueryString(fragment);
-
-                    return queryParams["access_token"];
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error extrayendo el token: {ex.Message}");
-            }
-            return null;
-        }
+     
 
         // 🔹 Método para generar el appsecret_proof
         private string GenerateAppSecretProof(string accessToken, string appSecret)
@@ -106,34 +71,14 @@ namespace GeolocationAds.ViewModels
         /// <summary>
         /// Obtiene la información del usuario desde Facebook Graph API.
         /// </summary>
-        //private async Task<FacebookUserInfo> GetFacebookUserInfoAsync(string accessToken)
-        //{
-        //    try
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            string requestUrl = $"https://graph.facebook.com/me?fields=id,name,email&access_token={accessToken}";
-        //            var response = await client.GetStringAsync(requestUrl);
-        //            return JsonSerializer.Deserialize<FacebookUserInfo>(response);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error obteniendo información del usuario: {ex.Message}");
-        //        return null;
-        //    }
-        //}
-
-        public async Task<FacebookUserInfo> GetFacebookUserInfoAsync(string accessToken)
+        public async Task<FacebookUserInfoDto> GetFacebookUserInfoAsync(string accessToken)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
                     // 🔹 Obtén tu App Secret desde la configuración
-                    string appSecret = "583e310c4cb00083afe190305f0f4090";
-                    
-                    //string appSecret = _containerLoginServices.Configuration["FacebookSettings:FacebookAppSecret"];
+                    string appSecret = Configuration.GetValue<string>("FacebookSettings:FacebookAppSecret"); ;
 
                     // 🔹 Genera el appsecret_proof
                     string appSecretProof = GenerateAppSecretProof(accessToken, appSecret);
@@ -149,13 +94,20 @@ namespace GeolocationAds.ViewModels
                     if (!response.IsSuccessStatusCode)
                     {
                         string errorMessage = await response.Content.ReadAsStringAsync();
+
                         Console.WriteLine($"Facebook API Error: {errorMessage}");
+
                         throw new Exception($"Facebook API error: {errorMessage}");
                     }
 
                     var jsonResponse = await response.Content.ReadAsStringAsync();
 
-                    return JsonSerializer.Deserialize<FacebookUserInfo>(jsonResponse);
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
+
+                    return JsonSerializer.Deserialize<FacebookUserInfoDto>(jsonResponse, options);
                 }
             }
             catch (Exception ex)
@@ -164,14 +116,12 @@ namespace GeolocationAds.ViewModels
                 return null;
             }
         }
-
-
     }
 
-    public class FacebookUserInfo
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-    }
+    //public class FacebookUserInfo
+    //{
+    //    public string Id { get; set; }
+    //    public string Name { get; set; }
+    //    public string Email { get; set; }
+    //}
 }

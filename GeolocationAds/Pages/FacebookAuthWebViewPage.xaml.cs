@@ -6,85 +6,76 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Maui.Storage;
 using GeolocationAds.ViewModels;
+using Microsoft.Extensions.Configuration;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages
 {
     public partial class FacebookAuthWebViewPage : ContentPage
     {
-        private readonly TaskCompletionSource<string> _taskCompletionSource;
+        private FacebookAuthWebViewViewModel _viewModel;
 
-        private const string CallbackUrl = "https://com.mycompany.myapp/";
-
-        FacebookAuthWebViewViewModel _viewModel;
-
-        public FacebookAuthWebViewPage()
+        public FacebookAuthWebViewPage(FacebookAuthWebViewViewModel facebookAuthWebViewViewModel)
         {
             InitializeComponent();
 
-            BindingContext = new FacebookAuthWebViewViewModel();
+            _viewModel = facebookAuthWebViewViewModel ?? throw new ArgumentNullException(nameof(facebookAuthWebViewViewModel));
 
-            _viewModel=this.BindingContext as FacebookAuthWebViewViewModel; 
+            BindingContext = _viewModel;
         }
 
-
-        //public FacebookAuthWebViewPage(TaskCompletionSource<string> taskCompletionSource)
-        //{
-        //    InitializeComponent();
-
-        //    //_taskCompletionSource = taskCompletionSource;
-
-        //    _taskCompletionSource = taskCompletionSource ?? throw new ArgumentNullException(nameof(taskCompletionSource));
-
-        //    LoadFacebookLogin();
-        //}
-
-       
-
-        private void LoadFacebookLogin()
+        public FacebookAuthWebViewPage()
         {
-            string facebookAuthUrl = $"https://www.facebook.com/v22.0/dialog/oauth" +
-                                     $"?client_id=2641020766093307" +
-                                     $"&redirect_uri={Uri.EscapeDataString(CallbackUrl)}" +
-                                     $"&response_type=token" +
-                                     $"&scope=email,public_profile";
-
-            FacebookWebView.Source = new UrlWebViewSource() { Url=facebookAuthUrl};
         }
 
         private async void OnNavigating(object sender, WebNavigatingEventArgs e)
         {
-            if (e.Url.StartsWith(CallbackUrl))
+            try
             {
-                e.Cancel = true; // 🔹 Detenemos la navegación en el WebView
+                var _callBackurl = _viewModel.GetFacebookConfiguration("FacebookRedirectUri");
 
-                string accessToken = ExtractAccessToken(e.Url);
-                if (!string.IsNullOrEmpty(accessToken))
+                if (e.Url.StartsWith(_callBackurl))
                 {
-                    Console.WriteLine($"🔹 Token de acceso de Facebook: {accessToken}");
+                    e.Cancel = true; // 🔹 Detenemos la navegación en el WebView
 
-                    // 🔹 Obtener información del usuario desde la API de Facebook
-                    var userInfo = await this._viewModel.GetFacebookUserInfoAsync(accessToken);
+                    string accessToken = ExtractAccessToken(e.Url);
 
-                    if (userInfo != null)
+                    if (!string.IsNullOrEmpty(accessToken))
                     {
-                        Console.WriteLine($"🔹 Facebook ID: {userInfo.Id}, Nombre: {userInfo.Name}");
+                        Console.WriteLine($"🔹 Token de acceso de Facebook: {accessToken}");
 
-                        // 🔹 Guardar Facebook ID en el backend (Aquí iría tu lógica para enviar la
-                        // info al backend)
-                        _taskCompletionSource.SetResult(userInfo.Id);
+                        // 🔹 Obtener información del usuario desde la API de Facebook
+                        var userInfo = await this._viewModel.GetFacebookUserInfoAsync(accessToken);
+
+                        if (userInfo != null)
+                        {
+                            Console.WriteLine($"🔹 Facebook ID: {userInfo.Id}, Nombre: {userInfo.Name}");
+
+                            // 🔹 Ejecutamos el callback para devolver la información
+                            _viewModel.OnLoginCompleted?.Invoke(userInfo);
+                            // Completar el TaskCompletionSource para que LoginViewModel2 reciba los datos
+                            //_viewModel.                LoginCompletionSource?.TrySetResult(userInfo);
+                        }
+                        else
+                        {
+                            //_viewModel.LoginCompletionSource?.SetResult(null);
+                        }
+
+                        await Navigation.PopAsync(); // 🔹 Cierra el WebView automáticamente
                     }
                     else
                     {
-                        _taskCompletionSource.SetResult(null);
-                    }
+                        //_taskCompletionSource.SetResult(null);
 
-                    await Navigation.PopAsync(); // 🔹 Cierra el WebView automáticamente
+                        //_viewModel.LoginCompletionSource?.TrySetResult(null);
+
+                        await Navigation.PopAsync();
+                    }
                 }
-                else
-                {
-                    _taskCompletionSource.SetResult(null);
-                    await Navigation.PopAsync();
-                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
             }
         }
 
@@ -93,10 +84,13 @@ namespace GeolocationAds.Pages
             try
             {
                 var uri = new Uri(url);
+
                 if (!string.IsNullOrEmpty(uri.Fragment))
                 {
                     var fragment = uri.Fragment.TrimStart('#'); // 🔹 Eliminar `#`
+
                     var queryParams = HttpUtility.ParseQueryString(fragment);
+
                     return queryParams["access_token"];
                 }
             }
@@ -106,50 +100,12 @@ namespace GeolocationAds.Pages
             }
             return null;
         }
-
-        //private async Task<FacebookUserInfo> GetFacebookUserInfo(string accessToken)
-        //{
-        //    try
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            string requestUrl = $"https://graph.facebook.com/v22.0/me?fields=id,name,email&access_token={accessToken}";
-        //            HttpResponseMessage response = await client.GetAsync(requestUrl);
-
-        //            if (!response.IsSuccessStatusCode)
-        //            {
-        //                string errorMessage = await response.Content.ReadAsStringAsync();
-
-        //                Console.WriteLine($"Facebook API Error: {errorMessage}");
-
-        //                throw new Exception($"Facebook API error: {errorMessage}");
-
-        //                var jsonResponse = await response.Content.ReadAsStringAsync();
-
-        //                return JsonSerializer.Deserialize<FacebookUserInfo>(jsonResponse);
-        //            }
-        //            else
-        //            {
-        //                return null;
-        //            }
-
-                  
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error obteniendo información del usuario: {ex.Message}");
-
-        //        return null;
-        //    }
-        //}
-
     }
 
-    public class FacebookUserInfo
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-    }
+    //public class FacebookUserInfo
+    //{
+    //    public string Id { get; set; }
+    //    public string Name { get; set; }
+    //    public string Email { get; set; }
+    //}
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Security;
 using System.Net.Http.Headers;
+using ToolsLibrary.Dto;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -22,11 +24,9 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
     private RecoveryPasswordPopUp _passwordRecoveryPage;
 
-    
     private Providers Provider { get; set; }
 
-    [ObservableProperty]
-    private bool isRemember;
+    [ObservableProperty] private bool isRemember;
 
     public LoginViewModel2(IContainerLoginServices containerLoginServices) : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
     {
@@ -37,11 +37,10 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 await _passwordRecoveryPage.CloseAsync();
+
                 _containerLoginServices.RecoveryPasswordViewModel = new RecoveryPasswordViewModel(_containerLoginServices.ForgotPasswordService);
             });
         });
-
-      
 
         Task.Run(async () => await AutoLoginAsync());
     }
@@ -94,6 +93,25 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
     }
 
+    /// <summary>
+    /// Maneja el proceso de autenticación de Facebook.
+    /// </summary>
+    public async Task HandleFacebookSignIn(FacebookUserInfoDto userInfo)
+    {
+        try
+        {
+            // Verificar si el usuario existe o crearlo
+            var facebookCredential = await GetOrCreateFacebookUserAsync(userInfo.Email, userInfo.Name, userInfo.Id);
+
+            // Autenticar al usuario y navegar
+            await FacebookAuthenticateAndNavigateAsync(facebookCredential);
+        }
+        catch (Exception ex)
+        {
+            await CommonsTool.DisplayAlert("Error", ex.Message);
+        }
+    }
+
     private async Task<ToolsLibrary.Models.Login> GetOrCreateGoogleUserAsync(string email, string name, string googleId)
     {
         var existingUserResponse = await _containerLoginServices.UserService.IsEmailRegistered(email);
@@ -114,38 +132,157 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
     }
 
-    private async Task GoogleAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login googleCredential)
+    private async Task<ToolsLibrary.Models.Login> GetOrCreateFacebookUserAsync(string email, string name, string facebookId)
     {
-        var authResponse = await service.VerifyCredential2(googleCredential);
+        var existingUserResponse = await _containerLoginServices.UserService.IsEmailRegistered(email);
 
-        if (authResponse.IsSuccess)
+        if (existingUserResponse.ResponseType == ToolsLibrary.Tools.Type.NotExist)
         {
-            this.Model.GoogleId = googleCredential.GoogleId;
+            var facebookLogin = _containerLoginServices.LoginFactory.CreateFacebookLogin(email, facebookId);
 
+            var newUser = _containerLoginServices.UserFactory.CreateUser(email, name, "111-111-1111", facebookLogin);
+
+            await _containerLoginServices.UserService.Add(newUser);
+
+            return newUser.Login;
+        }
+        else
+        {
+            return _containerLoginServices.LoginFactory.CreateLogin(email, facebookId, Providers.Facebook);
+        }
+    }
+
+    private async Task AuthenticateAndNavigateAsync(ToolsLibrary.Models.Login credential, Providers provider)
+    {
+        try
+        {
+            this.IsLoading = true;
+
+            var authResponse = await service.VerifyCredential2(credential);
+
+            if (!authResponse.IsSuccess)
+            {
+                await CommonsTool.DisplayAlert("Error", authResponse.Message);
+
+                return;
+            }
+
+            // Asigna el ID del proveedor correspondiente
+            if (provider == Providers.Google)
+                this.Model.GoogleId = credential.GoogleId;
+
+            else if (provider == Providers.Facebook)
+                this.Model.FacebookId = credential.FacebookId;
+
+            // Configurar sesión del usuario
             LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
 
             LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
 
             service.SetJwtToken(LogUserPerfilTool.JsonToken);
 
+            // Notificar inicio de sesión
             WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
 
+            // Configurar la UI de la aplicación
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
 
-            if (this.Provider != Providers.Google)
+            // Verificar si el proveedor cambió y guardar preferencia
+            if (this.Provider != provider)
             {
-                this.Provider = Providers.Google;
+                this.Provider = provider;
 
                 await ConfirmRememberUserAsync();
             }
 
+            // Navegar a la pantalla principal
             await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
         }
-        else
+        catch (Exception ex)
         {
-            await CommonsTool.DisplayAlert("Error", authResponse.Message);
+
+            await CommonsTool.DisplayAlert("Error", ex.Message);
         }
+        finally
+        {
+            this.IsLoading = false;
+        }
+      
     }
+
+    // Métodos específicos para cada proveedor, llamando al método genérico
+    private async Task GoogleAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login googleCredential) =>
+        await AuthenticateAndNavigateAsync(googleCredential, Providers.Google);
+
+    private async Task FacebookAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login facebookCredential) =>
+        await AuthenticateAndNavigateAsync(facebookCredential, Providers.Facebook);
+
+
+    //private async Task GoogleAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login googleCredential)
+    //{
+    //    var authResponse = await service.VerifyCredential2(googleCredential);
+
+    //    if (authResponse.IsSuccess)
+    //    {
+    //        this.Model.GoogleId = googleCredential.GoogleId;
+
+    //        LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
+
+    //        LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
+
+    //        service.SetJwtToken(LogUserPerfilTool.JsonToken);
+
+    //        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+
+    //        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+    //        if (this.Provider != Providers.Google)
+    //        {
+    //            this.Provider = Providers.Google;
+
+    //            await ConfirmRememberUserAsync();
+    //        }
+
+    //        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+    //    }
+    //    else
+    //    {
+    //        await CommonsTool.DisplayAlert("Error", authResponse.Message);
+    //    }
+    //}
+
+    //private async Task FacebookAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login facebookCredential)
+    //{
+    //    var authResponse = await service.VerifyCredential2(facebookCredential);
+
+    //    if (authResponse.IsSuccess)
+    //    {
+    //        this.Model.FacebookId = facebookCredential.FacebookId;
+
+    //        LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
+
+    //        LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
+
+    //        service.SetJwtToken(LogUserPerfilTool.JsonToken);
+
+    //        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+
+    //        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+    //        if (this.Provider != Providers.Facebook)
+    //        {
+    //            this.Provider = Providers.Facebook;
+
+    //            await ConfirmRememberUserAsync();
+    //        }
+
+    //        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+    //    }
+    //    else
+    //    {
+    //        await CommonsTool.DisplayAlert("Error", authResponse.Message);
+    //    }
+    //}
 
     private async Task ConfirmRememberUserAsync()
     {
@@ -373,87 +510,6 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
     }
 
-    //[RelayCommand]
-    //private async Task SignInWithFacebook()
-    //{
-    //    try
-    //    {
-    //        var authUrl = new Uri($"{_containerLoginServices.Configuration["FacebookSettings:FacebookAuthUrl"]}?" +
-    //            $"client_id={_containerLoginServices.Configuration["FacebookSettings:FacebookAppId"]}" +
-    //            $"&redirect_uri={_containerLoginServices.Configuration["FacebookSettings:FacebookRedirectUri"]}" +
-    //            $"&scope=email,public_profile");
-
-    //        var callbackUrl = new Uri(_containerLoginServices.Configuration["FacebookSettings:FacebookRedirectUri"]);
-
-    //        var result = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
-
-    //        if (result.Properties.TryGetValue("access_token", out string accessToken))
-    //        {
-    //            var userInfo = await GetFacebookUserInfoAsync(accessToken);
-
-    //            //await HandleFacebookSignIn(userInfo);
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
-    //    }
-    //}
-
-    //[RelayCommand]
-    //private async Task SignInWithFacebook()
-    //{
-    //    try
-    //    {
-    //        // Obtener configuración desde appsettings.json
-    //        var facebookAuthUrl = _containerLoginServices.Configuration["FacebookSettings:FacebookAuthUrl"];
-    //        var facebookAppId = _containerLoginServices.Configuration["FacebookSettings:FacebookAppId"];
-    //        var facebookRedirectUri = _containerLoginServices.Configuration["FacebookSettings:FacebookRedirectUri"];
-
-    //        // Validar que los valores estén configurados correctamente
-    //        if (string.IsNullOrWhiteSpace(facebookAuthUrl) || string.IsNullOrWhiteSpace(facebookAppId) || string.IsNullOrWhiteSpace(facebookRedirectUri))
-    //        {
-    //            throw new InvalidOperationException("Facebook authentication settings are missing or incorrect.");
-    //        }
-
-    //        // Construir la URL de autenticación con escape adecuado
-    //        var authUrl = new Uri($"{facebookAuthUrl}?" +
-    //            $"client_id={facebookAppId}" +
-    //            $"&redirect_uri={Uri.EscapeDataString(facebookRedirectUri)}" +
-    //            $"&scope=email,public_profile" +
-    //            $"&response_type=token");
-
-    //        var callbackUrl = new Uri(facebookRedirectUri);
-
-    //        // Iniciar el proceso de autenticación con Facebook
-    //        var result = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
-
-    //        // Obtener el token de acceso si la autenticación fue exitosa
-    //        if (result.Properties.TryGetValue("access_token", out string accessToken) && !string.IsNullOrEmpty(accessToken))
-    //        {
-    //            var userInfo = await GetFacebookUserInfoAsync(accessToken);
-
-    //            //await HandleFacebookSignIn(userInfo);
-    //        }
-    //        else
-    //        {
-    //            throw new Exception("Facebook authentication failed: Access token was not returned.");
-    //        }
-    //    }
-    //    catch (HttpRequestException httpEx)
-    //    {
-    //        await CommonsTool.DisplayAlert("Network Error", $"Failed to connect to Facebook: {httpEx.Message}");
-    //    }
-    //    catch (InvalidOperationException invEx)
-    //    {
-    //        await CommonsTool.DisplayAlert("Configuration Error", invEx.Message);
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
-    //    }
-    //}
-
     [RelayCommand]
     private async Task SignInWithFacebook()
     {
@@ -461,220 +517,36 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         {
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
 
+           
+
+            // 🔹 Pasamos un callback para recibir los datos cuando estén listos
+            _containerLoginServices.FacebookAuthWebViewViewModel.OnLoginCompleted = async (userInfo) =>
+            {
+                if (userInfo != null)
+                {
+                    Console.WriteLine($"🔹 Usuario autenticado: {userInfo.Name} ({userInfo.Email})");
+
+                    // 🔹 Aquí guardamos la sesión o enviamos los datos al backend
+                    await HandleFacebookSignIn(userInfo);
+
+                    // 🔹 Navegamos al Home después del login exitoso
+                    //await Shell.Current.GoToAsync("//HomePage");
+                }
+                else
+                {
+                    Console.WriteLine("⚠️ No se pudo obtener información del usuario.");
+                }
+            };
+
             //await Shell.Current.GoToAsync(nameof(FacebookAuthWebViewPage));
 
-            //var authService = _containerLoginServices.FirebaseAuthService;
-
-            //var authResult = await authService.SignInWithFacebookAsync();
-
-            //if (authResult != null)
-            //{
-            //    Console.WriteLine($"Inicio de sesión exitoso en Firebase. Usuario: {authResult.User.Info.DisplayName}");
-
-            //    await CommonsTool.DisplayAlert("Exitoso", "entrada exitosa.");
-
-            //    //await Shell.Current.GoToAsync("//MainPage");
-            //}
-            //else
-            //{
-            //    throw new Exception("No se pudo autenticar con Firebase.");
-            //}
-
-            var tcs = new TaskCompletionSource<string>();
-
-            await Shell.Current.Navigation.PushAsync(new FacebookAuthWebViewPage());
-
-            // Esperar hasta que el WebView devuelva el token de acceso
-            var accessToken = await tcs.Task;
-
-            if (!string.IsNullOrEmpty(accessToken))
-            {
-                var userInfo = await GetFacebookUserInfoAsync(accessToken);
-
-                //await HandleFacebookSignIn(userInfo);
-            }
+            await Shell.Current.Navigation.PushAsync(new FacebookAuthWebViewPage(_containerLoginServices.FacebookAuthWebViewViewModel));
         }
         catch (Exception ex)
         {
             await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
         }
     }
-
-    //[RelayCommand]
-    //private async Task SignInWithFacebook()
-    //{
-    //    try
-    //    {
-    //        Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
-
-    //        var tcs = new TaskCompletionSource<string>();
-
-    //        // 🔹 En lugar de Shell.GoToAsync(), usamos PushAsync()
-    //        await Shell.Current.Navigation.PushAsync(new FacebookAuthWebViewPage(tcs));
-
-    //        // 🔹 Esperamos la autenticación en el WebView
-    //        var accessToken = await tcs.Task;
-
-    //        if (!string.IsNullOrEmpty(accessToken))
-    //        {
-    //            var userInfo = await GetFacebookUserInfoAsync(accessToken);
-    //            //await HandleFacebookSignIn(userInfo);
-    //        }
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
-    //    }
-    //}
-
-
-
-
-    //[RelayCommand]
-    //private async Task SignInWithFacebook()
-    //{
-    //    try
-    //    {
-    //        var facebookAuthUrl = _containerLoginServices.Configuration["FacebookSettings:FacebookAuthUrl"];
-
-    //        var facebookAppId = _containerLoginServices.Configuration["FacebookSettings:FacebookAppId"];
-
-    //        var facebookRedirectUri = _containerLoginServices.Configuration["FacebookSettings:FacebookRedirectUri"];
-
-    //        if (string.IsNullOrWhiteSpace(facebookAuthUrl) || string.IsNullOrWhiteSpace(facebookAppId) || string.IsNullOrWhiteSpace(facebookRedirectUri))
-    //        {
-    //            throw new InvalidOperationException("Facebook authentication settings are missing or incorrect.");
-    //        }
-
-    //        var facebookRedirectUriEncoded = Uri.EscapeDataString(facebookRedirectUri);
-
-    //        // Construcción de la URL
-    //        var authUrl = new Uri($"{facebookAuthUrl}?" +
-    //            $"client_id={facebookAppId}" +
-    //            $"&redirect_uri={facebookRedirectUriEncoded}" +
-    //            $"&scope=email,public_profile" +
-    //            $"&response_type=token");
-
-    //        var callbackUrl = new Uri(facebookRedirectUri);
-
-    //        // Iniciar WebAuthenticator
-    //        var result = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
-
-    //        if (result.Properties.TryGetValue("access_token", out string accessToken) && !string.IsNullOrEmpty(accessToken))
-    //        {
-    //            //var firebaseToken = await _containerLoginServices.FirebaseAuthService.SignInWithFacebookAsync();
-
-    //            //if (!string.IsNullOrEmpty(firebaseToken))
-    //            //{
-    //            //    Console.WriteLine("Inicio de sesión exitoso en Firebase. Redirigiendo...");
-    //            //    await Shell.Current.GoToAsync("//MainPage");
-    //            //}
-    //            //else
-    //            //{
-    //            //    throw new Exception("No se pudo autenticar con Firebase.");
-    //            //}
-    //        }
-    //        else
-    //        {
-    //            throw new Exception("Facebook authentication failed: Access token was not returned.");
-    //        }
-    //    }
-    //    catch (HttpRequestException httpEx)
-    //    {
-    //        await CommonsTool.DisplayAlert("Network Error", $"Failed to connect to Facebook: {httpEx.Message}");
-    //    }
-    //    catch (InvalidOperationException invEx)
-    //    {
-    //        await CommonsTool.DisplayAlert("Configuration Error", invEx.Message);
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
-    //    }
-    //}
-
-
-
-    //[RelayCommand]
-    //private async Task SignInWithFacebook()
-    //{
-    //    try
-    //    {
-    //        var authService =  _containerLoginServices.FirebaseAuthService;
-
-    //        var authResult = await authService.SignInWithFacebookAsync();
-
-    //        if (authResult != null)
-    //        {
-    //            Console.WriteLine($"Inicio de sesión exitoso: {authResult.User.Info.DisplayName}");
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine("No se pudo iniciar sesión con Facebook.");
-    //        }
-
-
-    //        // Obtener configuración desde appsettings.json
-    //        //var facebookAuthUrl = _containerLoginServices.Configuration["FacebookSettings:FacebookAuthUrl"];
-    //        //var facebookAppId = _containerLoginServices.Configuration["FacebookSettings:FacebookAppId"];
-    //        //var facebookRedirectUri = _containerLoginServices.Configuration["FacebookSettings:FacebookRedirectUri"];
-
-    //        //// Validar que los valores estén configurados correctamente
-    //        //if (string.IsNullOrWhiteSpace(facebookAuthUrl) || string.IsNullOrWhiteSpace(facebookAppId) || string.IsNullOrWhiteSpace(facebookRedirectUri))
-    //        //{
-    //        //    throw new InvalidOperationException("Facebook authentication settings are missing or incorrect.");
-    //        //}
-
-    //        //// Construir la URL de autenticación
-    //        //var authUrl = new Uri($"{facebookAuthUrl}?" +
-    //        //    $"client_id={facebookAppId}" +
-    //        //    $"&redirect_uri={Uri.EscapeDataString(facebookRedirectUri)}" +
-    //        //    $"&scope=email,public_profile" +
-    //        //    $"&response_type=token");
-
-    //        //var callbackUrl = new Uri(facebookRedirectUri);
-
-    //        //// Iniciar autenticación con WebAuthenticator
-    //        //var result = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
-
-    //        //// Obtener el token de acceso
-    //        //if (result.Properties.TryGetValue("access_token", out string accessToken) && !string.IsNullOrEmpty(accessToken))
-    //        //{
-    //        //    // Autenticar en Firebase con Facebook
-    //        //    var firebaseToken = await _containerLoginServices.FirebaseAuthService.SignInWithFacebookAsync();
-
-    //        //    if (!string.IsNullOrEmpty(firebaseToken))
-    //        //    {
-    //        //        Console.WriteLine("Inicio de sesión exitoso en Firebase. Redirigiendo...");
-
-    //        //        // Lógica para volver a la pantalla principal
-    //        //        await Shell.Current.GoToAsync("//MainPage");
-    //        //    }
-    //        //    else
-    //        //    {
-    //        //        throw new Exception("No se pudo autenticar con Firebase.");
-    //        //    }
-    //        //}
-    //        //else
-    //        //{
-    //        //    throw new Exception("Facebook authentication failed: Access token was not returned.");
-    //        //}
-    //    }
-    //    catch (HttpRequestException httpEx)
-    //    {
-    //        await CommonsTool.DisplayAlert("Network Error", $"Failed to connect to Facebook: {httpEx.Message}");
-    //    }
-    //    catch (InvalidOperationException invEx)
-    //    {
-    //        await CommonsTool.DisplayAlert("Configuration Error", invEx.Message);
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
-    //    }
-    //}
-
-
 
     private async Task<JObject> GetFacebookUserInfoAsync(string accessToken)
     {
@@ -695,5 +567,4 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             return null;
         }
     }
-
 }

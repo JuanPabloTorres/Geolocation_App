@@ -18,5 +18,7 @@ namespace GeolocationAds.Factories
         /// Crea una instancia de Login para autenticación con Google.
         /// </summary>
         ToolsLibrary.Models.Login CreateGoogleCredential(string googleId);
+
+        ToolsLibrary.Models.Login CreateFacebookLogin(string email, string facebookId = null, ToolsLibrary.Enums.Providers provider = ToolsLibrary.Enums.Providers.Facebook);
     }
 }

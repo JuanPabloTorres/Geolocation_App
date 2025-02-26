@@ -23,21 +23,32 @@ namespace GeolocationAds.Services
             IConfiguration configuration,
             IGoogleAuthService googleAuthService,
             ISecureStoreService secureStoreService, ILoginFactory loginFactory,IFirebaseAuthService firebaseAuthService,
-        IUserFactory userFactory)
+        IUserFactory userFactory, FacebookAuthWebViewViewModel facebookAuthWebViewViewModel)
             : base(logUserPerfil)
         {
             LoginService = loginService;
+
             ForgotPasswordService = forgotPasswordService;
+
             UserService = userService;
+
             RecoveryPasswordViewModel = recoveryPasswordViewModel;
+
             LoginModel = model;
+
             Configuration = configuration;
+
             GoogleAuthService = googleAuthService;
+
             SecureStoreService = secureStoreService;
+
             this.LoginFactory = loginFactory;
+
             this.UserFactory = userFactory;
 
             this.FirebaseAuthService = firebaseAuthService;
+
+            FacebookAuthWebViewViewModel = facebookAuthWebViewViewModel;
         }
 
         public IConfiguration Configuration { get; }
@@ -51,5 +62,6 @@ namespace GeolocationAds.Services
         public RecoveryPasswordViewModel RecoveryPasswordViewModel { get; set; }
         public IUserService UserService { get; }
         public IFirebaseAuthService FirebaseAuthService { get; set ; }
+        public FacebookAuthWebViewViewModel FacebookAuthWebViewViewModel { get ; set ; }
     }
 }

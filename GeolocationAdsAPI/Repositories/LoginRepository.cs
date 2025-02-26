@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -48,49 +49,32 @@ namespace GeolocationAdsAPI.Repositories
         //{
         //    ResponseTool<User> response = null;
 
-        //    try
-        //    {
-        //        // Primero obtenemos el usuario que coincide con el nombre de usuario proporcionado
-        //        var foundLogin = await _context.Logins
-        //                                       .Where(v => v.Username == credential.Username)
-        //                                       .FirstOrDefaultAsync();
+        // try { // Primero obtenemos el usuario que coincide con el nombre de usuario proporcionado
+        // var foundLogin = await _context.Logins .Where(v => v.Username == credential.Username) .FirstOrDefaultAsync();
 
-        //        // Si no se encuentra el usuario, devolvemos una respuesta de credenciales inválidas
-        //        if (foundLogin.IsObjectNull() || !BCrypt.Net.BCrypt.Verify(credential.Password, foundLogin.HashPassword))
-        //        {
-        //            response = ResponseFactory<User>.BuildFail("Invalid Credential", null, ToolsLibrary.Tools.Type.NotFound);
+        // // Si no se encuentra el usuario, devolvemos una respuesta de credenciales inválidas if
+        // (foundLogin.IsObjectNull() || !BCrypt.Net.BCrypt.Verify(credential.Password,
+        // foundLogin.HashPassword)) { response = ResponseFactory<User>.BuildFail("Invalid
+        // Credential", null, ToolsLibrary.Tools.Type.NotFound);
 
-        //            return response;
-        //        }
+        // return response; }
 
-        //        // Si las credenciales son válidas, obtenemos el usuario asociado
-        //        var foundUser = await _context.Users
-        //            .Where(v => v.ID == foundLogin.UserId)
-        //            .Include(u => u.Login)
-        //            .FirstOrDefaultAsync();
+        // // Si las credenciales son válidas, obtenemos el usuario asociado var foundUser = await
+        // _context.Users .Where(v => v.ID == foundLogin.UserId) .Include(u => u.Login) .FirstOrDefaultAsync();
 
-        //        if (!foundUser.IsObjectNull())
-        //        {
-        //            // Verificamos el estado del usuario
-        //            if (foundUser.UserStatus == UserStatus.ResetPassword)
-        //            {
-        //                response = ResponseFactory<User>.BuildFail("User Reset Password", null, ToolsLibrary.Tools.Type.Fail);
+        // if (!foundUser.IsObjectNull()) { // Verificamos el estado del usuario if
+        // (foundUser.UserStatus == UserStatus.ResetPassword) { response =
+        // ResponseFactory<User>.BuildFail("User Reset Password", null, ToolsLibrary.Tools.Type.Fail);
 
-        //                return response;
-        //            }
+        // return response; }
 
-        //            response = ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser, ToolsLibrary.Tools.Type.Found);
-        //        }
-        //        else
-        //        {
-        //            response = ResponseFactory<User>.BuildFail("Invalid Credential", null, ToolsLibrary.Tools.Type.NotFound);
-        //        }
+        // response = ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser,
+        // ToolsLibrary.Tools.Type.Found); } else { response =
+        // ResponseFactory<User>.BuildFail("Invalid Credential", null,
+        // ToolsLibrary.Tools.Type.NotFound); }
 
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        // return response; } catch (Exception ex) { response =
+        // ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
         //        return response;
         //    }
@@ -142,33 +126,80 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                User foundUser = null;
+                if (credential is null)
+                    return ResponseFactory<User>.BuildFail("Invalid credentials provided", null, ToolsLibrary.Tools.Type.Fail);
 
-                if (credential.Provider == ToolsLibrary.Enums.Providers.Google)
+                // Determinar qué proveedor de autenticación usar
+                Expression<Func<Login, bool>> predicate = credential.Provider switch
                 {
-                    // Intentar encontrar el login con GoogleId coincidente
-                    var foundLogin = await _context.Logins.Include(u => u.User).FirstOrDefaultAsync(v => v.GoogleId == credential.GoogleId);
+                    ToolsLibrary.Enums.Providers.Google => v => v.GoogleId == credential.GoogleId,
+                    ToolsLibrary.Enums.Providers.Facebook => v => v.FacebookId == credential.FacebookId,
+                    _ => null
+                };
 
-                    if (!foundLogin.IsObjectNull())
-                    {
-                        foundUser = foundLogin.User;
-                    }
-                }
+                if (predicate is null)
+                    return ResponseFactory<User>.BuildFail("Unsupported authentication provider", null, ToolsLibrary.Tools.Type.Fail);
 
-                // Verifica si se encontró el usuario
-                if (foundUser.IsObjectNull())
-                {
+                // Buscar el usuario en la base de datos
+                var foundLogin = await _context.Logins
+                                               .AsNoTracking()
+                                               .Include(u => u.User)
+                                               .FirstOrDefaultAsync(predicate);
+
+                if (foundLogin?.User is null)
                     return ResponseFactory<User>.BuildFail("User not found", null, ToolsLibrary.Tools.Type.NotFound);
-                }
 
-                // Si todas las verificaciones pasan, devuelve una respuesta exitosa
-                return ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser, ToolsLibrary.Tools.Type.Found);
+                return ResponseFactory<User>.BuildSuccess("Valid Credential", foundLogin.User, ToolsLibrary.Tools.Type.Found);
             }
             catch (Exception ex)
             {
-                // Manejo genérico de excepciones
                 return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+
+        //public async Task<ResponseTool<User>> VerifyCredentialByProvider(Login credential)
+        //{
+        //    try
+        //    {
+        //        User foundUser = null;
+
+        //        if (credential.Provider == ToolsLibrary.Enums.Providers.Google)
+        //        {
+        //            // Intentar encontrar el login con GoogleId coincidente
+        //            var foundLogin = await _context.Logins.AsNoTracking().Include(u => u.User).FirstOrDefaultAsync(v => v.GoogleId == credential.GoogleId);
+
+        //            if (!foundLogin.IsObjectNull())
+        //            {
+        //                foundUser = foundLogin.User;
+        //            }
+        //        }
+
+        //        if (credential.Provider == ToolsLibrary.Enums.Providers.Facebook)
+        //        {
+        //            // Intentar encontrar el login con GoogleId coincidente
+        //            var foundLogin = await _context.Logins.AsNoTracking().Include(u => u.User).FirstOrDefaultAsync(v => v.FacebookId == credential.FacebookId);
+
+        //            if (!foundLogin.IsObjectNull())
+        //            {
+        //                foundUser = foundLogin.User;
+        //            }
+        //        }
+
+        //        // Verifica si se encontró el usuario
+        //        if (foundUser.IsObjectNull())
+        //        {
+        //            return ResponseFactory<User>.BuildFail("User not found", null, ToolsLibrary.Tools.Type.NotFound);
+        //        }
+
+        //        // Si todas las verificaciones pasan, devuelve una respuesta exitosa
+        //        return ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser, ToolsLibrary.Tools.Type.Found);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Manejo genérico de excepciones
+        //        return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
     }
 }

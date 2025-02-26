@@ -11,7 +11,9 @@ namespace ToolsLibrary.Models
         {
         }
 
-        public string GoogleId { get; set; }
+        public string? GoogleId { get; set; }
+        
+        public string? FacebookId { get; set; }
 
         public string HashPassword { get; set; }
 

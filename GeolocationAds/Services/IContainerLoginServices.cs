@@ -20,9 +20,10 @@ namespace GeolocationAds.Services
         ILoginService LoginService { get; }
         RecoveryPasswordViewModel RecoveryPasswordViewModel { get; set; }
         IUserService UserService { get; }
-
         ILoginFactory LoginFactory { get; }
         IUserFactory UserFactory { get; }
         IFirebaseAuthService FirebaseAuthService { get; set; }
+
+        FacebookAuthWebViewViewModel FacebookAuthWebViewViewModel { get; set; }
     }
 }

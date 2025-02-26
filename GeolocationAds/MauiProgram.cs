@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using FFImageLoading.Maui;
 using Firebase.Auth;
 using Firebase.Auth.Providers;
@@ -10,6 +11,7 @@ using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls.Maps;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ToolsLibrary.Models;
@@ -34,6 +36,7 @@ public static class MauiProgram
 
         // Cargar configuración desde el archivo de configuración
         var configuration = CommonsTool.ConfigurationLoader.LoadConfiguration();
+
         builder.Services.AddSingleton<IConfiguration>(configuration);
 
         // Registrar dependencias
@@ -119,6 +122,8 @@ public static class MauiProgram
         builder.Services.AddScoped<ContentViewTemplateViewModel>();
         builder.Services.AddScoped<NearByItemDetailViewModel>();
         builder.Services.AddScoped<FacebookAuthWebViewViewModel>();
+
+       
     }
     #endregion
 
@@ -140,20 +145,34 @@ public static class MauiProgram
     private static void RegisterPages(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<FilterPopUp>();
+
         builder.Services.AddTransientWithShellRoute<CreateAdvertisment, CreateAdvertismentViewModel2>($"{nameof(CreateAdvertisment)}");
         builder.Services.AddScoped<SearchAd>();
+
         builder.Services.AddScoped<MyContentPage>();
+
         builder.Services.AddTransient<Login>();
+
         builder.Services.AddScoped<Register>();
+
         builder.Services.AddScoped<GoogleMapPage>();
+
         builder.Services.AddScoped<UserSetting>();
+
         builder.Services.AddTransientWithShellRoute<EditAdvertisment, EditAdvertismentViewModel2>($"{nameof(EditAdvertisment)}");
+
         builder.Services.AddTransientWithShellRoute<NearByItemDetail, NearByItemDetailViewModel>($"{nameof(NearByItemDetail)}");
+
         builder.Services.AddScoped<EditUserPerfil>();
+
         builder.Services.AddScoped<EditLoginCredential>();
+
         builder.Services.AddScoped<RecoveryPasswordPopUp>();
+
         builder.Services.AddScoped<MyFavorites>();
-        //builder.Services.AddScoped<FacebookAuthWebViewPage>();
+
+        builder.Services.AddScopedWithShellRoute<FacebookAuthWebViewPage, FacebookAuthWebViewViewModel>($"{nameof(FacebookAuthWebViewPage)}");
+
         builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel2>($"{nameof(ManageLocation)}");
     }
     #endregion

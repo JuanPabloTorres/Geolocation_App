@@ -1,6 +1,0 @@
-wwwroot\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output.m3u8
-wwwroot\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output0.ts
-wwwroot\hls\2dcc1f8a-6a4a-49f8-99aa-431adb3f0dc1\output1.ts
-wwwroot\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output.m3u8
-wwwroot\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output0.ts
-wwwroot\hls\df8afd22-ef0d-4882-9355-89b03068a43a\output1.ts

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Maui.Authentication;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,9 @@ namespace GeolocationAds.Services
                 {
                     Url = authUri,
                     CallbackUrl = callbackUri,
+                    PrefersEphemeralWebBrowserSession = false,
                     
+
                 });
 
                 var authorizationCode = response.Properties["code"];

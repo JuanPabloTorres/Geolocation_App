@@ -3,15 +3,13 @@
     x:Class="GeolocationAds.Pages.FacebookAuthWebViewPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="FacebookAuthWebViewPage"
+    Title="Sign in with Facebook"
     Routing.Route="FacebookAuthWebViewPage">
 
-    <Grid>
-        <WebView
-            x:Name="FacebookWebView"
-            Navigating="OnNavigating"
-            Source="{Binding FacebookAuthUrl, Mode=TwoWay}" />
-    </Grid>
 
+    <WebView
+        x:Name="FacebookWebView"
+        Navigating="OnNavigating"
+        Source="{Binding FacebookAuthUrl, Mode=TwoWay}" />
 
 </ContentPage>

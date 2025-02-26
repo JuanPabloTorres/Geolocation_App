@@ -572,21 +572,10 @@
         </member>
         <member name="T:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel">
             <inheritdoc/>
-            <inheritdoc/>
         </member>
         <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.LoadFacebookLogin">
             <summary>
             Carga la URL de autenticación de Facebook en el WebView.
-            </summary>
-        </member>
-        <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.OnNavigating(Microsoft.Maui.Controls.WebNavigatingEventArgs)">
-            <summary>
-            Maneja la navegación en el WebView.
-            </summary>
-        </member>
-        <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.ExtractAccessToken(System.String)">
-            <summary>
-            Extrae el token de acceso de la URL.
             </summary>
         </member>
         <member name="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.GetFacebookUserInfoAsync(System.String)">
@@ -596,12 +585,6 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.FacebookAuthUrl">
             <inheritdoc cref="F:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.facebookAuthUrl"/>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.navigatingCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.NavigatingCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.NavigatingCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel.OnNavigating(Microsoft.Maui.Controls.WebNavigatingEventArgs)"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.FilterPopUpViewModel">
             <inheritdoc/>
@@ -670,6 +653,11 @@
         <member name="M:GeolocationAds.ViewModels.LoginViewModel2.HandleGoogleSignIn(Newtonsoft.Json.Linq.JObject)">
             <summary>
             Maneja el proceso de autenticación de Google.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.LoginViewModel2.HandleFacebookSignIn(ToolsLibrary.Dto.FacebookUserInfoDto)">
+            <summary>
+            Maneja el proceso de autenticación de Facebook.
             </summary>
         </member>
         <member name="P:GeolocationAds.ViewModels.LoginViewModel2.IsRemember">

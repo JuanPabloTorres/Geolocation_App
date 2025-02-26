@@ -24,6 +24,20 @@ namespace GeolocationAds.Factories
             };
         }
 
+        public ToolsLibrary.Models.Login CreateFacebookLogin(string email, string facebookId = null, ToolsLibrary.Enums.Providers provider = ToolsLibrary.Enums.Providers.Facebook)
+        {
+            return new ToolsLibrary.Models.Login
+            {
+                CreateBy = 0,
+                CreateDate = DateTime.Now,
+                GoogleId = null,
+                FacebookId=facebookId,
+                Password = provider == ToolsLibrary.Enums.Providers.Facebook ? "facebook" : "default_password",
+                Username = email,
+                Provider = provider
+            };
+        }
+
         public ToolsLibrary.Models.Login CreateGoogleCredential(string googleId)
         {
             return new ToolsLibrary.Models.Login
