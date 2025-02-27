@@ -6,7 +6,7 @@
     xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     Title="New User"
-     BackgroundColor="WhiteSmoke"
+    BackgroundColor="WhiteSmoke"
     Routing.Route="Register">
 
 
@@ -19,6 +19,12 @@
             IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding ClearTextCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe0b8;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
@@ -56,9 +62,9 @@
             <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
+                        <VerticalStackLayout HorizontalOptions="Center">
                             <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
@@ -77,15 +83,16 @@
                 IconSource="&#xe7fd;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="FullName"
-                Text="{Binding Model.FullName}" />
+                Text="{Binding Model.FullName, Mode=TwoWay}" />
 
             <!--  Phone Input  -->
             <local:CustomEntryContentView
                 Grid.Row="4"
                 IconSource="&#xe0b0;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Phone"
-                Text="{Binding Model.Phone}" />
+                Placeholder="(XXX)-XXX-XXXX"
+                Text="{Binding Model.Phone, Mode=TwoWay}"
+                TextChanged="onPhoneChange" />
 
             <!--  Email Input  -->
             <local:CustomEntryContentView
@@ -93,7 +100,7 @@
                 IconSource="&#xe158;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Email"
-                Text="{Binding Model.Email}" />
+                Text="{Binding Model.Email, Mode=TwoWay}" />
 
 
             <!--  Section Title for Account Information  -->
@@ -108,7 +115,7 @@
                 IconSource="&#xe7fd;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Username"
-                Text="{Binding Model.Login.Username}" />
+                Text="{Binding Model.Login.Username, Mode=TwoWay}" />
 
             <!--  Password Input  -->
             <local:CustomEntryContentView
@@ -117,7 +124,17 @@
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 IsPassword="True"
                 Placeholder="Password"
-                Text="{Binding Model.Login.Password}" />
+                Text="{Binding Model.Login.Password, Mode=TwoWay}" />
+
+            <ContentView
+                x:Name="LoadingIndicatorContainer"
+                Grid.Row="8"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="FillAndExpand">
+                <ContentView.Content>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+                </ContentView.Content>
+            </ContentView>
         </VerticalStackLayout>
     </ScrollView>
 

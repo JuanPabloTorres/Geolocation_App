@@ -522,6 +522,8 @@
             <converters:BoolToTextConverter x:Key="BoolToTextConverter" />
 
             <converters:DataSizeConverter x:Key="DataSizeConverter" />
+
+            <converters:UserProviderToBooleanConverter x:Key="UserProviderToBooleanConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

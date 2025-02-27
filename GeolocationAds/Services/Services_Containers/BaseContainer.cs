@@ -1,4 +1,5 @@
-﻿using ToolsLibrary.Tools;
+﻿using GeolocationAds.ViewModels;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Services.Services_Containers
 {
@@ -7,6 +8,8 @@ namespace GeolocationAds.Services.Services_Containers
         public LogUserPerfilTool LogUserPerfilTool { get; }
 
         public IAppSettingService AppSettingService { get; }
+
+        public AppShellViewModel2 AppShellViewModel { get; }
 
         public BaseContainer(LogUserPerfilTool logUserPerfilTool, IAppSettingService appSettingService)
         {
@@ -18,6 +21,13 @@ namespace GeolocationAds.Services.Services_Containers
         public BaseContainer(LogUserPerfilTool logUserPerfilTool)
         {
             LogUserPerfilTool = logUserPerfilTool;
+        }
+
+        public BaseContainer(LogUserPerfilTool logUserPerfilTool, AppShellViewModel2 appShellViewModel2)
+        {
+            LogUserPerfilTool = logUserPerfilTool;
+
+            AppShellViewModel = appShellViewModel2;
         }
     }
 }

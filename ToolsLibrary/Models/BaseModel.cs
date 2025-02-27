@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToolsLibrary.Models
 {
-    public class BaseModel
+    public class BaseModel: ObservableValidator
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -28,7 +28,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
     [ObservableProperty] private bool isRemember;
 
-    public LoginViewModel2(IContainerLoginServices containerLoginServices) : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
+    public LoginViewModel2(IContainerLoginServices containerLoginServices,AppShellViewModel2 appShellViewModel2) : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
     {
         _containerLoginServices = containerLoginServices;
 
@@ -53,6 +53,8 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
     {
         try
         {
+            this.IsLoading = true;  
+
             var accessToken = await _containerLoginServices.GoogleAuthService.AuthenticateAndRetrieveTokenAsync();
 
             if (!string.IsNullOrEmpty(accessToken))
@@ -65,6 +67,10 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         catch (Exception ex)
         {
             await CommonsTool.DisplayAlert("Error", $"Google Sign-in failed: {ex.Message}");
+        }
+        finally
+        {
+            this.IsLoading = false; 
         }
     }
 
@@ -118,7 +124,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
         if (existingUserResponse.ResponseType == ToolsLibrary.Tools.Type.NotExist)
         {
-            var googleLogin = _containerLoginServices.LoginFactory.CreateLogin(email, googleId);
+            var googleLogin = _containerLoginServices.LoginFactory.CreateCredential(googleId, Providers.Google);
 
             var newUser = _containerLoginServices.UserFactory.CreateUser(email, name, "111-111-1111", googleLogin);
 
@@ -128,7 +134,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
         else
         {
-            return _containerLoginServices.LoginFactory.CreateLogin(email, googleId, Providers.Google);
+            return _containerLoginServices.LoginFactory.CreateLogin(email, googleId,null, Providers.Google);
         }
     }
 
@@ -138,7 +144,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
         if (existingUserResponse.ResponseType == ToolsLibrary.Tools.Type.NotExist)
         {
-            var facebookLogin = _containerLoginServices.LoginFactory.CreateFacebookLogin(email, facebookId);
+            var facebookLogin = _containerLoginServices.LoginFactory.CreateCredential(facebookId, Providers.Facebook);
 
             var newUser = _containerLoginServices.UserFactory.CreateUser(email, name, "111-111-1111", facebookLogin);
 
@@ -148,7 +154,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
         else
         {
-            return _containerLoginServices.LoginFactory.CreateLogin(email, facebookId, Providers.Facebook);
+            return _containerLoginServices.LoginFactory.CreateLogin(email, null,facebookId, Providers.Facebook);
         }
     }
 
@@ -170,9 +176,10 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             // Asigna el ID del proveedor correspondiente
             if (provider == Providers.Google)
                 this.Model.GoogleId = credential.GoogleId;
-
             else if (provider == Providers.Facebook)
                 this.Model.FacebookId = credential.FacebookId;
+            else if (provider == Providers.App)
+                this.Model.ID = credential.ID;
 
             // Configurar sesión del usuario
             LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
@@ -195,19 +202,21 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
                 await ConfirmRememberUserAsync();
             }
 
+            Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
+
+            //await Task.Delay(10);
+
             // Navegar a la pantalla principal
             await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
         }
         catch (Exception ex)
         {
-
             await CommonsTool.DisplayAlert("Error", ex.Message);
         }
         finally
         {
             this.IsLoading = false;
         }
-      
     }
 
     // Métodos específicos para cada proveedor, llamando al método genérico
@@ -217,72 +226,8 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
     private async Task FacebookAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login facebookCredential) =>
         await AuthenticateAndNavigateAsync(facebookCredential, Providers.Facebook);
 
-
-    //private async Task GoogleAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login googleCredential)
-    //{
-    //    var authResponse = await service.VerifyCredential2(googleCredential);
-
-    //    if (authResponse.IsSuccess)
-    //    {
-    //        this.Model.GoogleId = googleCredential.GoogleId;
-
-    //        LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
-
-    //        LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
-
-    //        service.SetJwtToken(LogUserPerfilTool.JsonToken);
-
-    //        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
-
-    //        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-
-    //        if (this.Provider != Providers.Google)
-    //        {
-    //            this.Provider = Providers.Google;
-
-    //            await ConfirmRememberUserAsync();
-    //        }
-
-    //        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
-    //    }
-    //    else
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", authResponse.Message);
-    //    }
-    //}
-
-    //private async Task FacebookAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login facebookCredential)
-    //{
-    //    var authResponse = await service.VerifyCredential2(facebookCredential);
-
-    //    if (authResponse.IsSuccess)
-    //    {
-    //        this.Model.FacebookId = facebookCredential.FacebookId;
-
-    //        LogUserPerfilTool.JsonToken = authResponse.Data.JsonToken;
-
-    //        LogUserPerfilTool.LogUser = authResponse.Data.LogUser;
-
-    //        service.SetJwtToken(LogUserPerfilTool.JsonToken);
-
-    //        WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
-
-    //        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-
-    //        if (this.Provider != Providers.Facebook)
-    //        {
-    //            this.Provider = Providers.Facebook;
-
-    //            await ConfirmRememberUserAsync();
-    //        }
-
-    //        await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
-    //    }
-    //    else
-    //    {
-    //        await CommonsTool.DisplayAlert("Error", authResponse.Message);
-    //    }
-    //}
+    private async Task AppAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login appCredential) =>
+       await AuthenticateAndNavigateAsync(appCredential, Providers.App);
 
     private async Task ConfirmRememberUserAsync()
     {
@@ -290,7 +235,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
         if (rememberMe)
         {
-            await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, rememberMe);
+            await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId,this.Model.FacebookId, rememberMe);
         }
         else
         {
@@ -361,14 +306,20 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
                     Password = this.Model.Password
                 };
 
-                await AuthenticateUserAsync(credential);
+                await AppAuthenticateAndNavigateAsync(credential);
                 break;
 
             case Providers.Google:
-                var googleCredential = _containerLoginServices.LoginFactory.CreateGoogleCredential(await _containerLoginServices.SecureStoreService.GetAsync("googleClientId"));
+                var googleCredential = _containerLoginServices.LoginFactory.CreateCredential(await _containerLoginServices.SecureStoreService.GetAsync("googleClientId"),Providers.Google);
 
                 await GoogleAuthenticateAndNavigateAsync(googleCredential);
                 break;
+                case Providers.Facebook:
+                var facebookCredential = _containerLoginServices.LoginFactory.CreateCredential(await _containerLoginServices.SecureStoreService.GetAsync(SecureStoreService.FacebookClientIdKey),Providers.Facebook);
+
+                await FacebookAuthenticateAndNavigateAsync(facebookCredential);
+                break;
+
 
             default:
                 throw new InvalidOperationException("Unsupported provider type.");
@@ -381,7 +332,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         {
             if (isRemember)
             {
-                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, isRemember);
+                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId,this.Model.FacebookId, isRemember);
             }
             else
             {
@@ -515,26 +466,21 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
     {
         try
         {
-            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+            this.IsLoading = true;
 
-           
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
 
             // 🔹 Pasamos un callback para recibir los datos cuando estén listos
             _containerLoginServices.FacebookAuthWebViewViewModel.OnLoginCompleted = async (userInfo) =>
             {
                 if (userInfo != null)
                 {
-                    Console.WriteLine($"🔹 Usuario autenticado: {userInfo.Name} ({userInfo.Email})");
-
                     // 🔹 Aquí guardamos la sesión o enviamos los datos al backend
                     await HandleFacebookSignIn(userInfo);
-
-                    // 🔹 Navegamos al Home después del login exitoso
-                    //await Shell.Current.GoToAsync("//HomePage");
                 }
                 else
                 {
-                    Console.WriteLine("⚠️ No se pudo obtener información del usuario.");
+                    await CommonsTool.DisplayAlert("Error", "⚠️ No se pudo obtener información del usuario.");
                 }
             };
 
@@ -546,25 +492,11 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         {
             await CommonsTool.DisplayAlert("Error", $"Facebook Sign-in failed: {ex.Message}");
         }
-    }
-
-    private async Task<JObject> GetFacebookUserInfoAsync(string accessToken)
-    {
-        try
+        finally
         {
-            HttpClient _httpClient = new HttpClient();
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-            var response = await _httpClient.GetStringAsync("https://graph.facebook.com/me?fields=id,name,email,picture");
-
-            return JObject.Parse(response);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Failed to retrieve Facebook user info: {ex.Message}");
-
-            return null;
+            this.IsLoading = false;
         }
     }
+
+  
 }

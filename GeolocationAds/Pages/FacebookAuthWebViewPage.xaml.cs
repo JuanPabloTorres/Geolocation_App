@@ -8,6 +8,7 @@ using Microsoft.Maui.Storage;
 using GeolocationAds.ViewModels;
 using Microsoft.Extensions.Configuration;
 using ToolsLibrary.Tools;
+using Firebase.Auth;
 
 namespace GeolocationAds.Pages
 {
@@ -59,12 +60,15 @@ namespace GeolocationAds.Pages
                         else
                         {
                             //_viewModel.LoginCompletionSource?.SetResult(null);
+
+                            _viewModel.OnLoginCompleted?.Invoke(null);
                         }
 
                         await Navigation.PopAsync(); // 🔹 Cierra el WebView automáticamente
                     }
                     else
                     {
+                        _viewModel.OnLoginCompleted?.Invoke(null);
                         //_taskCompletionSource.SetResult(null);
 
                         //_viewModel.LoginCompletionSource?.TrySetResult(null);

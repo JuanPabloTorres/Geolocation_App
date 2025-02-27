@@ -10,15 +10,37 @@ namespace GeolocationAds.Factories
     public interface ILoginFactory
     {
         /// <summary>
-        /// Crea una instancia de Login para autenticación tradicional con usuario y contraseña.
+        /// Crea un objeto Login con la información del usuario.
         /// </summary>
-        ToolsLibrary.Models.Login CreateLogin(string email, string googleId = null, ToolsLibrary.Enums.Providers provider = ToolsLibrary.Enums.Providers.App);
+        /// <param name="email">
+        /// Correo electrónico del usuario.
+        /// </param>
+        /// <param name="googleId">
+        /// ID de Google (opcional).
+        /// </param>
+        /// <param name="facebookId">
+        /// ID de Facebook (opcional).
+        /// </param>
+        /// <param name="provider">
+        /// Proveedor de autenticación (por defecto, App).
+        /// </param>
+        /// <returns>
+        /// Instancia de Login.
+        /// </returns>
+        ToolsLibrary.Models.Login CreateLogin(string email, string? googleId = null, string? facebookId = null, Providers provider = Providers.App);
 
         /// <summary>
-        /// Crea una instancia de Login para autenticación con Google.
+        /// Crea una credencial de usuario basada en un proveedor (Google/Facebook).
         /// </summary>
-        ToolsLibrary.Models.Login CreateGoogleCredential(string googleId);
-
-        ToolsLibrary.Models.Login CreateFacebookLogin(string email, string facebookId = null, ToolsLibrary.Enums.Providers provider = ToolsLibrary.Enums.Providers.Facebook);
+        /// <param name="providerId">
+        /// ID del proveedor (Google/Facebook).
+        /// </param>
+        /// <param name="provider">
+        /// Proveedor de autenticación.
+        /// </param>
+        /// <returns>
+        /// Instancia de Login con credenciales básicas.
+        /// </returns>
+        ToolsLibrary.Models.Login CreateCredential(string providerId, Providers provider);
     }
 }

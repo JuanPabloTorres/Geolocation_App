@@ -20,11 +20,12 @@ namespace GeolocationAds.Services
             IUserService userService,
             RecoveryPasswordViewModel recoveryPasswordViewModel,
             LogUserPerfilTool logUserPerfil,
+            AppShellViewModel2 appShellViewModel2,
             IConfiguration configuration,
             IGoogleAuthService googleAuthService,
             ISecureStoreService secureStoreService, ILoginFactory loginFactory,IFirebaseAuthService firebaseAuthService,
         IUserFactory userFactory, FacebookAuthWebViewViewModel facebookAuthWebViewViewModel)
-            : base(logUserPerfil)
+            : base(logUserPerfil,appShellViewModel2)
         {
             LoginService = loginService;
 

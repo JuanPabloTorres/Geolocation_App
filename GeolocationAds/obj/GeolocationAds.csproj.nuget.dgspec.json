@@ -93,7 +93,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.2, )"
+              "version": "[8.4.0, )"
             },
             "FFImageLoading.Maui": {
               "target": "Package",
@@ -164,10 +164,6 @@
             "Xabe.FFmpeg": {
               "target": "Package",
               "version": "[5.2.6, )"
-            },
-            "Xamarin.Facebook.Android": {
-              "target": "Package",
-              "version": "[11.2.0.1, )"
             }
           },
           "imports": [
@@ -226,7 +222,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.2, )"
+              "version": "[8.4.0, )"
             },
             "FFImageLoading.Maui": {
               "target": "Package",
@@ -343,7 +339,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.2, )"
+              "version": "[8.4.0, )"
             },
             "FFImageLoading.Maui": {
               "target": "Package",
@@ -461,7 +457,7 @@
             },
             "CommunityToolkit.Mvvm": {
               "target": "Package",
-              "version": "[8.2.2, )"
+              "version": "[8.4.0, )"
             },
             "FFImageLoading.Maui": {
               "target": "Package",
@@ -652,6 +648,10 @@
               "target": "Package",
               "version": "[1.6.0, )"
             },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -703,6 +703,10 @@
             "BCrypt.Net-Core": {
               "target": "Package",
               "version": "[1.6.0, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.4.0, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
@@ -764,6 +768,10 @@
             "BCrypt.Net-Core": {
               "target": "Package",
               "version": "[1.6.0, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.4.0, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
@@ -832,6 +840,10 @@
               "target": "Package",
               "version": "[1.6.0, )"
             },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -899,6 +911,10 @@
             "BCrypt.Net-Core": {
               "target": "Package",
               "version": "[1.6.0, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.4.0, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",

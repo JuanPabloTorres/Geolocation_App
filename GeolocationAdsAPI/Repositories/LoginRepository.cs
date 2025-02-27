@@ -167,7 +167,7 @@ namespace GeolocationAdsAPI.Repositories
         //        if (credential.Provider == ToolsLibrary.Enums.Providers.Google)
         //        {
         //            // Intentar encontrar el login con GoogleId coincidente
-        //            var foundLogin = await _context.Logins.AsNoTracking().Include(u => u.User).FirstOrDefaultAsync(v => v.GoogleId == credential.GoogleId);
+        //            var foundLogin = await _context.Logins.Include(u => u.User).FirstOrDefaultAsync(v => v.GoogleId == credential.GoogleId);
 
         //            if (!foundLogin.IsObjectNull())
         //            {
@@ -178,7 +178,7 @@ namespace GeolocationAdsAPI.Repositories
         //        if (credential.Provider == ToolsLibrary.Enums.Providers.Facebook)
         //        {
         //            // Intentar encontrar el login con GoogleId coincidente
-        //            var foundLogin = await _context.Logins.AsNoTracking().Include(u => u.User).FirstOrDefaultAsync(v => v.FacebookId == credential.FacebookId);
+        //            var foundLogin = await _context.Logins.Include(u => u.User).FirstOrDefaultAsync(v => v.FacebookId == credential.FacebookId);
 
         //            if (!foundLogin.IsObjectNull())
         //            {

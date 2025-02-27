@@ -10,19 +10,26 @@ namespace GeolocationAds.Services
     public class SecureStoreService : ISecureStoreService
     {
         private const string ProviderKey = "provider";
+
         private const string UsernameKey = "username";
+
         private const string PasswordKey = "password";
-        private const string GoogleClientIdKey = "googleClientId";
+
+        public const string GoogleClientIdKey = "googleClientId";
+        
+        public const string FacebookClientIdKey = "facebookClientId";
+
         private const string IsRememberKey = "isRemember";
 
         /// <summary>
         /// Guarda valores en SecureStorage.
         /// </summary>
-        public async Task SaveAsync(Providers provider, string username = null, string password = null, string googleClientId = null, bool isRemember = false)
+        public async Task SaveAsync(Providers provider, string username = null, string password = null, string googleClientId = null,string facebookClientId=null, bool isRemember = false)
         {
             try
             {
                 await SecureStorage.SetAsync(IsRememberKey, isRemember.ToString());
+
                 await SecureStorage.SetAsync(ProviderKey, provider.ToString());
 
                 switch (provider)
@@ -43,6 +50,12 @@ namespace GeolocationAds.Services
                         if (!string.IsNullOrWhiteSpace(googleClientId))
                         {
                             await SecureStorage.SetAsync(GoogleClientIdKey, googleClientId);
+                        }
+                        break;
+                    case Providers.Facebook:
+                        if (!string.IsNullOrWhiteSpace(facebookClientId))
+                        {
+                            await SecureStorage.SetAsync(FacebookClientIdKey, facebookClientId);
                         }
                         break;
 

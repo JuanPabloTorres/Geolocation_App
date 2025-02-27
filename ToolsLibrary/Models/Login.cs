@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using ToolsLibrary.Enums;
 
 namespace ToolsLibrary.Models
 {
-    public class Login : BaseModel
+    public partial class Login : BaseModel
     {
         public Login()
         {
@@ -17,8 +18,10 @@ namespace ToolsLibrary.Models
 
         public string HashPassword { get; set; }
 
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Required(ErrorMessage = $"{nameof(Password)} is required.")]
-        public string? Password { get; set; }
+        public string? _password;
 
         public Providers Provider { get; set; }
 
@@ -28,8 +31,10 @@ namespace ToolsLibrary.Models
 
         public int UserId { get; set; }
 
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Required(ErrorMessage = $"{nameof(Username)} is required.")]
-        public string? Username { get; set; }
+        public string? _username;
 
     }
 }

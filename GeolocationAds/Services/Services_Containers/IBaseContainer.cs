@@ -1,4 +1,5 @@
-﻿using ToolsLibrary.Tools;
+﻿using GeolocationAds.ViewModels;
+using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Services.Services_Containers
 {
@@ -7,5 +8,7 @@ namespace GeolocationAds.Services.Services_Containers
         LogUserPerfilTool LogUserPerfilTool { get; }
 
         IAppSettingService AppSettingService { get; }
+
+        AppShellViewModel2 AppShellViewModel { get; }
     }
 }

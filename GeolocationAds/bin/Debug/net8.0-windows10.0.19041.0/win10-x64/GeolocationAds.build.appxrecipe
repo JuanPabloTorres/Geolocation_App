@@ -3448,7 +3448,7 @@
     <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\communitytoolkit.maui.mediaelement\3.1.1\lib\net8.0-windows10.0.19041\CommunityToolkit.Maui.MediaElement.dll">
       <PackagePath>CommunityToolkit.Maui.MediaElement.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\communitytoolkit.mvvm\8.2.2\lib\net6.0\CommunityToolkit.Mvvm.dll">
+    <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\communitytoolkit.mvvm\8.4.0\lib\net8.0-windows10.0.17763\CommunityToolkit.Mvvm.dll">
       <PackagePath>CommunityToolkit.Mvvm.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\excss\4.2.3\lib\net7.0\ExCSS.dll">

@@ -123,16 +123,7 @@
                         TextColor="{StaticResource Burgundy}" />
                 </HorizontalStackLayout>
 
-                <!--<Button
-                    Margin="0,5,0,0"
-                    BackgroundColor="Transparent"
-                    Command="{Binding OpenRecoveryPopUpCommand}"
-                    FontSize="Medium"
-                    HorizontalOptions="End"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource globalButton}"
-                    Text="Forgot Password?"
-                    TextColor="{StaticResource Burgundy}" />-->
+
 
                 <Button
                     Margin="20,0,20,0"

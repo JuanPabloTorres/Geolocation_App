@@ -55,8 +55,6 @@ namespace GeolocationAds.ViewModels
                 $"&scope=email,public_profile";
         }
 
-     
-
         // 🔹 Método para generar el appsecret_proof
         private string GenerateAppSecretProof(string accessToken, string appSecret)
         {
@@ -117,11 +115,4 @@ namespace GeolocationAds.ViewModels
             }
         }
     }
-
-    //public class FacebookUserInfo
-    //{
-    //    public string Id { get; set; }
-    //    public string Name { get; set; }
-    //    public string Email { get; set; }
-    //}
 }

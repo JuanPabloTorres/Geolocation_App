@@ -45,7 +45,7 @@ namespace GeolocationAds.Services
                 {
                     Url = authUri,
                     CallbackUrl = callbackUri,
-                    PrefersEphemeralWebBrowserSession = false,
+                   
                     
 
                 });

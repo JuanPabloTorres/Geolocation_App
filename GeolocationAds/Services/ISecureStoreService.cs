@@ -9,8 +9,12 @@ namespace GeolocationAds.Services
 {
     public interface ISecureStoreService
     {
-        Task SaveAsync(Providers provider, string username = null, string password = null, string googleClientId = null, bool isRemember = false);
+        Task SaveAsync(Providers provider, string username = null, string password = null, string googleClientId = null, string facebookClientId = null, bool isRemember = false);
         Task<string> GetAsync(string key);
         Task ClearAll();
+
+         const string GoogleClientIdKey = "googleClientId";
+
+         const string FacebookClientIdKey = "facebookClientId";
     }
 }

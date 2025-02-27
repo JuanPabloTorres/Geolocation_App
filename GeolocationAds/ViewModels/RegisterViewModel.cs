@@ -1,28 +1,71 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class RegisterViewModel : BaseViewModel2<User, IUserService>
+    public partial class RegisterViewModel : BaseViewModel3<User, IUserService>
     {
-        public RegisterViewModel(User user, IUserService service) : base(user, service)
+        [ObservableProperty]
+        private User _newUser = new User();
+
+        public RegisterViewModel(User user, IUserService service) : base(user,service)
         {
-            this.Model.Login = new ToolsLibrary.Models.Login();
+            NewUser = new User();
 
             TestDataDefault();
+
+            //OnPropertyChanged(nameof(NewUser));
         }
 
         private void TestDataDefault()
         {
-            this.Model.FullName = "Test 02";
+            this.Model.FullName = "Test";
 
-            this.Model.Phone = "939-111-1111";
+            this.Model.Phone = "111-111-1111";
 
-            this.Model.Email = "est.juanpablotorres@gmail.com";
+            this.Model.Email = "test@gmail.com";
 
-            this.Model.Login.Username = "test";
+            this.Model.Login = new ToolsLibrary.Models.Login()
+            {
+                Username = "test",
+                Password = "12345"
+            };
+        }
 
-            this.Model.Login.Password = "12345";
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        [RelayCommand]
+        private void ClearText()
+        {
+
+            //NewUser = new User();
+
+            //NewUser.Login = new ToolsLibrary.Models.Login();
+
+            ClearData();
+            
+        }
+
+        private void ClearData()
+        {
+            this.Model.FullName = string.Empty;
+
+            this.Model.Phone = string.Empty;
+
+            this.Model.Email = string.Empty;
+
+            this.Model.Login.Username = string.Empty;
+
+            this.Model.Login.Password = string.Empty;
         }
     }
 }

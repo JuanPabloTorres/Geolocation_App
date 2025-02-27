@@ -10,14 +10,15 @@
 
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem Command="{Binding SubmitUpdateCommand}" CommandParameter="{Binding Model}">
+        <ToolbarItem
+            Command="{Binding SubmitUpdateCommand}"
+            CommandParameter="{Binding Model2}"
+            IsEnabled="{Binding User.Login.Provider, Converter={StaticResource UserProviderToBooleanConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-
-
 
     <ScrollView HorizontalScrollBarVisibility="Never">
         <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
@@ -49,50 +50,46 @@
                 </Grid>
             </Border>
 
+            <Label Style="{StaticResource globalLabel}" Text="Profile Information" />
+            <BoxView HeightRequest="0.1" />
 
-            <VerticalStackLayout>
+            <VerticalStackLayout IsEnabled="{Binding User.Login.Provider, Converter={StaticResource UserProviderToBooleanConverter}}">
 
-                <Label Style="{StaticResource globalLabel}" Text="Profile Information" />
-                <BoxView HeightRequest="0.1" />
+                <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+
+                <local:CustomEntryContentView
+                    Grid.Row="3"
+                    IconSource="&#xe7fd;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="FullName"
+                    Text="{Binding User.FullName, Mode=TwoWay}" />
+
+                <local:CustomEntryContentView
+                    Grid.Row="5"
+                    IconSource="&#xe0b0;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Phone"
+                    Text="{Binding User.Phone, Mode=TwoWay}" />
+
+                <local:CustomEntryContentView
+                    Grid.Row="7"
+                    IconSource="&#xe158;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Email"
+                    Text="{Binding User.Email, Mode=TwoWay}" />
             </VerticalStackLayout>
-
-            <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
-
-
-            <local:CustomEntryContentView
-                Grid.Row="3"
-                IconSource="&#xe7fd;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="FullName"
-                Text="{Binding Model.FullName}" />
-
-
-            <local:CustomEntryContentView
-                Grid.Row="5"
-                IconSource="&#xe0b0;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Phone"
-                Text="{Binding Model.Phone}" />
-
-
-            <local:CustomEntryContentView
-                Grid.Row="7"
-                IconSource="&#xe158;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Email"
-                Text="{Binding Model.Email}" />
 
             <ContentView
                 x:Name="LoadingIndicatorContainer"
@@ -105,5 +102,4 @@
             </ContentView>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

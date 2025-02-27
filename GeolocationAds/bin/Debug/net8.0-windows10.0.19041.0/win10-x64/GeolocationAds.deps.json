@@ -11,7 +11,7 @@
         "dependencies": {
           "CommunityToolkit.Maui": "9.0.0",
           "CommunityToolkit.Maui.MediaElement": "3.1.1",
-          "CommunityToolkit.Mvvm": "8.2.2",
+          "CommunityToolkit.Mvvm": "8.4.0",
           "FFImageLoading.Maui": "1.2.4",
           "FFmpeg.AutoGen": "7.0.0",
           "FirebaseAuthentication.net": "4.1.0",
@@ -104,11 +104,11 @@
           }
         }
       },
-      "CommunityToolkit.Mvvm/8.2.2": {
+      "CommunityToolkit.Mvvm/8.4.0": {
         "runtime": {
-          "lib/net6.0/CommunityToolkit.Mvvm.dll": {
-            "assemblyVersion": "8.2.0.0",
-            "fileVersion": "8.2.2.1"
+          "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.dll": {
+            "assemblyVersion": "8.4.0.0",
+            "fileVersion": "8.4.0.1"
           }
         }
       },
@@ -1555,6 +1555,7 @@
       "ToolsLibrary/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Core": "1.6.0",
+          "CommunityToolkit.Mvvm": "8.4.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.5",
           "Microsoft.Extensions.Configuration.Json": "9.0.0-preview.4.24266.19",
@@ -1639,12 +1640,12 @@
       "path": "communitytoolkit.maui.mediaelement/3.1.1",
       "hashPath": "communitytoolkit.maui.mediaelement.3.1.1.nupkg.sha512"
     },
-    "CommunityToolkit.Mvvm/8.2.2": {
+    "CommunityToolkit.Mvvm/8.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-r0g0k9tGYdrnz8R7T3x5UiokDffeevzK/2P/9SBL6fqLgN8B157MIi/bVUWI1KAz6ZorZrK9AdABCWUeXZZsvA==",
-      "path": "communitytoolkit.mvvm/8.2.2",
-      "hashPath": "communitytoolkit.mvvm.8.2.2.nupkg.sha512"
+      "sha512": "sha512-tqVU8yc/ADO9oiTRyTnwhFN68hCwvkliMierptWOudIAvWY1mWCh5VFh+guwHJmpMwfg0J0rY+yyd5Oy7ty9Uw==",
+      "path": "communitytoolkit.mvvm/8.4.0",
+      "hashPath": "communitytoolkit.mvvm.8.4.0.nupkg.sha512"
     },
     "ExCSS/4.2.3": {
       "type": "package",

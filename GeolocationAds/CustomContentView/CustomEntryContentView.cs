@@ -56,13 +56,25 @@ public class CustomEntryContentView : ContentView
         set => SetValue(IconSourceProperty, value);
     }
 
+    // Evento TextChanged para permitir binding en XAML
+    public event EventHandler<TextChangedEventArgs> TextChanged;
+
+    private static void OnTextChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var control = (CustomEntryContentView)bindable;
+        control.TextChanged?.Invoke(control, new TextChangedEventArgs((string)oldValue, (string)newValue));
+    }
+
     public CustomEntryContentView()
     {
         var entry = new Entry
         {
             Keyboard = Keyboard.Text,
             Style = (Style)Application.Current.Resources["globalEntry"]
+            
         };
+
+
 
         entry.SetBinding(Entry.TextProperty, new Binding(nameof(Text), source: this));
 
@@ -71,6 +83,13 @@ public class CustomEntryContentView : ContentView
         entry.SetBinding(Entry.PlaceholderProperty, new Binding(nameof(Placeholder), source: this));
 
         entry.SetBinding(Entry.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
+
+        // Evento TextChanged
+        entry.TextChanged += (sender, args) =>
+        {
+            Text = args.NewTextValue; // Actualiza la propiedad `Text`
+            TextChanged?.Invoke(this, args); // Dispara el evento
+        };
 
         var titleLabel = new Label
         {

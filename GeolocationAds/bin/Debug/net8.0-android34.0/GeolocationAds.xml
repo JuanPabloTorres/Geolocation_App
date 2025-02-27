@@ -9,15 +9,39 @@
             Registra las rutas de navegación dentro de la aplicación.
             </summary>
         </member>
-        <member name="M:GeolocationAds.Factories.ILoginFactory.CreateLogin(System.String,System.String,ToolsLibrary.Enums.Providers)">
+        <member name="M:GeolocationAds.Factories.ILoginFactory.CreateLogin(System.String,System.String,System.String,ToolsLibrary.Enums.Providers)">
             <summary>
-            Crea una instancia de Login para autenticación tradicional con usuario y contraseña.
+            Crea un objeto Login con la información del usuario.
             </summary>
+            <param name="email">
+            Correo electrónico del usuario.
+            </param>
+            <param name="googleId">
+            ID de Google (opcional).
+            </param>
+            <param name="facebookId">
+            ID de Facebook (opcional).
+            </param>
+            <param name="provider">
+            Proveedor de autenticación (por defecto, App).
+            </param>
+            <returns>
+            Instancia de Login.
+            </returns>
         </member>
-        <member name="M:GeolocationAds.Factories.ILoginFactory.CreateGoogleCredential(System.String)">
+        <member name="M:GeolocationAds.Factories.ILoginFactory.CreateCredential(System.String,ToolsLibrary.Enums.Providers)">
             <summary>
-            Crea una instancia de Login para autenticación con Google.
+            Crea una credencial de usuario basada en un proveedor (Google/Facebook).
             </summary>
+            <param name="providerId">
+            ID del proveedor (Google/Facebook).
+            </param>
+            <param name="provider">
+            Proveedor de autenticación.
+            </param>
+            <returns>
+            Instancia de Login con credenciales básicas.
+            </returns>
         </member>
         <member name="M:GeolocationAds.Services.GoogleAuthService.AuthenticateAndRetrieveTokenAsync">
             <summary>
@@ -34,7 +58,7 @@
             Obtiene información del usuario desde Google con el token de acceso.
             </summary>
         </member>
-        <member name="M:GeolocationAds.Services.SecureStoreService.SaveAsync(ToolsLibrary.Enums.Providers,System.String,System.String,System.String,System.Boolean)">
+        <member name="M:GeolocationAds.Services.SecureStoreService.SaveAsync(ToolsLibrary.Enums.Providers,System.String,System.String,System.String,System.String,System.Boolean)">
             <summary>
             Guarda valores en SecureStorage.
             </summary>
@@ -470,7 +494,7 @@
             <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.Model">
-            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2.model"/>
+            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2._model"/>
         </member>
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.IsLoading">
             <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2.isLoading"/>
@@ -486,6 +510,122 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearchCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel3`2.OpenFilterPopUpForSearch"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.BaseViewModel4`2">
+            <summary>
+            Clase base genérica para ViewModels que proporciona lógica reutilizable para operaciones comunes.
+            </summary>
+            <typeparam name="T">
+            Tipo del modelo manejado por el ViewModel.
+            </typeparam>
+            <typeparam name="S">
+            Tipo del servicio asociado al modelo.
+            </typeparam>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.Model">
+            <summary>
+            Modelo principal manejado por el ViewModel. Los derivados deben sincronizarlo con su
+            propia propiedad observable si es necesario.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.Service">
+            <summary>
+            Servicio asociado al modelo.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.LogUserPerfilTool">
+            <summary>
+            Herramienta para manejar el perfil del usuario logueado.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.CollectionModel">
+            <summary>
+            Colección de modelos para listas o resultados paginados.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.ValidationResults">
+            <summary>
+            Resultados de validación para el modelo y sus subpropiedades.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.#ctor(`1,ToolsLibrary.Tools.LogUserPerfilTool)">
+            <summary>
+            Constructor base para inicializar el ViewModel.
+            </summary>
+            <param name="service">
+            Servicio para operaciones de datos.
+            </param>
+            <param name="logUserPerfilTool">
+            Herramienta de perfil de usuario (opcional).
+            </param>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.#ctor(`1)">
+            <summary>
+            Constructor base para inicializar el ViewModel.
+            </summary>
+            <param name="service">
+            Servicio para operaciones de datos.
+            </param>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.ApplyQueryAttributes(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Aplica parámetros de navegación desde una query.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.Get(System.Int32)">
+            <summary>
+            Obtiene un modelo específico por ID.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.LoadData(System.Nullable{System.Int32})">
+            <summary>
+            Carga datos en la colección, opcionalmente con paginación.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.LoadData(System.Object,System.Nullable{System.Int32})">
+            <summary>
+            Carga datos con información adicional.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.OpenMetaDataPopUp">
+            <summary>
+            Abre un popup de metadatos (debe ser sobreescrito si es específico).
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.SetUpdateMetadata(`0)">
+            <summary>
+            Establece metadatos de actualización en el modelo.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.BaseViewModel4`2.Submit(`0)">
+            <summary>
+            Envía un nuevo modelo al servicio.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.IsLoading">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel4`2.isLoading"/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.BaseViewModel4`2.openFilterPopUpForSearchCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel4`2.OpenFilterPopUpForSearchCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.OpenFilterPopUpForSearchCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel4`2.OpenFilterPopUpForSearch"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.BaseViewModel4`2.submitCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel4`2.SubmitCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.SubmitCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel4`2.Submit(`0)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.BaseViewModel4`2.submitUpdateCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel4`2.SubmitUpdateCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel4`2.SubmitUpdateCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel4`2.SubmitUpdate(`0)"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.CaptureViewModel2">
             <inheritdoc/>
@@ -569,6 +709,12 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURLCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.EditAdvertismentViewModel2.SetURL(System.String)"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.EditUserPerfilViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.EditUserPerfilViewModel.User">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.EditUserPerfilViewModel._user"/>
         </member>
         <member name="T:GeolocationAds.ViewModels.FacebookAuthWebViewViewModel">
             <inheritdoc/>
@@ -756,6 +902,19 @@
         <member name="P:GeolocationAds.ViewModels.NearByItemDetailViewModel.ToggleExpandCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.NearByItemDetailViewModel.ToggleExpand"/>.</summary>
         </member>
+        <member name="T:GeolocationAds.ViewModels.RegisterViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.RegisterViewModel.NewUser">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.RegisterViewModel._newUser"/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.RegisterViewModel.clearTextCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.RegisterViewModel.ClearTextCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.RegisterViewModel.ClearTextCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.RegisterViewModel.ClearText"/>.</summary>
+        </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -786,6 +945,22 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.SearchAdViewModel2.SearchCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.SearchAdViewModel2.Search"/>.</summary>
+        </member>
+        <member name="T:GeolocationAds.ViewModels.UserSettingViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.UserSettingViewModel.navigateEditPerfilCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditPerfilCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditPerfilCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditPerfil(System.Int32)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.UserSettingViewModel.navigateEditLoginCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditLoginCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditLoginCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditLogin(System.Int32)"/>.</summary>
         </member>
         <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
             <summary>
@@ -961,6 +1136,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Url">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Url" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.User">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "User" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FacebookAuthUrl">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FacebookAuthUrl" generated properties.</summary>
         </member>
@@ -981,6 +1159,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SettingType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SettingType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NewUser">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NewUser" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CarouselViewPosition">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>
@@ -1051,6 +1232,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Url">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Url" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.User">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "User" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FacebookAuthUrl">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FacebookAuthUrl" generated properties.</summary>
         </member>
@@ -1071,6 +1255,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SettingType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SettingType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NewUser">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NewUser" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CarouselViewPosition">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CarouselViewPosition" generated properties.</summary>

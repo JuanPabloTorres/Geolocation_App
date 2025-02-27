@@ -16,7 +16,7 @@ namespace GeolocationAds.ViewModels
     public partial class BaseViewModel3<T, S> : ObservableObject, IQueryAttributable
     {
         [ObservableProperty]
-        private T model;
+         T _model;
 
         [ObservableProperty]
         private bool isLoading;
@@ -179,7 +179,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private void SetUpdateMetadata(T obj)
+        protected void SetUpdateMetadata(T obj)
         {
             DateTime now = DateTime.Now;
 
