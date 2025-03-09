@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls.Maps;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using ToolsLibrary.Models;
+using ToolsLibrary.Models.Settings;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds;
@@ -41,17 +42,24 @@ public static class MauiProgram
 
         // Registrar dependencias
         RegisterApiServices(builder);
+
         RegisterModels(builder);
+
         RegisterViewModels(builder);
+
         RegisterContainers(builder);
+
         RegisterPages(builder);
-        RegisterTools(builder);
+
+        RegisterTools(builder,configuration);
+
         RegisterFactories(builder);
 
         return builder.Build();
     }
 
     #region **Configuración de Fuentes**
+
     private static void ConfigureAppFonts(IFontCollection fonts)
     {
         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -62,9 +70,11 @@ public static class MauiProgram
         fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIconsOutlined-Regular");
         fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons-Regular");
     }
-    #endregion
+
+    #endregion **Configuración de Fuentes**
 
     #region **Registro de Servicios**
+
     private static void RegisterApiServices(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
@@ -85,9 +95,11 @@ public static class MauiProgram
             };
         });
     }
-    #endregion
+
+    #endregion **Registro de Servicios**
 
     #region **Registro de Modelos**
+
     private static void RegisterModels(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<ToolsLibrary.Models.User>();
@@ -96,9 +108,11 @@ public static class MauiProgram
         builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
         builder.Services.AddTransient<ToolsLibrary.Models.Capture>();
     }
-    #endregion
+
+    #endregion **Registro de Modelos**
 
     #region **Registro de ViewModels**
+
     private static void RegisterViewModels(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<CreateAdvertismentViewModel2>();
@@ -122,12 +136,13 @@ public static class MauiProgram
         builder.Services.AddScoped<ContentViewTemplateViewModel>();
         builder.Services.AddScoped<NearByItemDetailViewModel>();
         builder.Services.AddScoped<FacebookAuthWebViewViewModel>();
-
-       
+        builder.Services.AddScoped<GoogleAuthWebViewViewModel>();
     }
-    #endregion
+
+    #endregion **Registro de ViewModels**
 
     #region **Registro de Contenedores**
+
     private static void RegisterContainers(MauiAppBuilder builder)
     {
         builder.Services.AddScoped<IContainerMyContentServices, ContainerMyContentServices>();
@@ -139,9 +154,11 @@ public static class MauiProgram
         builder.Services.AddScoped<IContainerCapture, ContainerCapture>();
         builder.Services.AddScoped<IContainerLoginServices, ContainerLoginServices>();
     }
-    #endregion
+
+    #endregion **Registro de Contenedores**
 
     #region **Registro de Páginas**
+
     private static void RegisterPages(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<FilterPopUp>();
@@ -173,33 +190,36 @@ public static class MauiProgram
 
         builder.Services.AddScopedWithShellRoute<FacebookAuthWebViewPage, FacebookAuthWebViewViewModel>($"{nameof(FacebookAuthWebViewPage)}");
 
+        builder.Services.AddScopedWithShellRoute<GoogleAuthWebViewPage, GoogleAuthWebViewViewModel>($"{nameof(GoogleAuthWebViewPage)}");
+
         builder.Services.AddTransientWithShellRoute<ManageLocation, ManageLocationViewModel2>($"{nameof(ManageLocation)}");
     }
-    #endregion
+
+    #endregion **Registro de Páginas**
 
     #region **Registro de Herramientas**
-    private static void RegisterTools(MauiAppBuilder builder)
+
+    private static void RegisterTools(MauiAppBuilder builder,IConfiguration configuration)
     {
         builder.Services.AddSingleton<LogUserPerfilTool>();
+
         builder.Services.AddScoped<ISecureStoreService, SecureStoreService>();
 
-        builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig()
-        {
-            ApiKey = "AIzaSyBDLtukG8FeZUCVm2wtyFNdNzXneISwBbs",
-            AuthDomain = "geoconnect-auth.firebaseapp.com",
-            Providers = new FirebaseAuthProvider[]
-            {
-                new FacebookProvider(),
-            }
-        }));
+        // Configurar GoogleAuthSettings usando Bind
+        builder.Services.Configure<GoogleAuthSettings>(options => configuration.GetSection("GoogleSettings").Bind(options));
+
+        //builder.Services.AddSingleton<GoogleAuthService>();
     }
-    #endregion
+
+    #endregion **Registro de Herramientas**
 
     #region **Registro de Fábricas**
+
     private static void RegisterFactories(MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<ILoginFactory, LoginFactory>();
         builder.Services.AddSingleton<IUserFactory, UserFactory>();
     }
-    #endregion
+
+    #endregion **Registro de Fábricas**
 }

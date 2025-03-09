@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.Maui.Authentication;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,21 +8,22 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ToolsLibrary.Models.Settings;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Services
 {
     public class GoogleAuthService : IGoogleAuthService
     {
-        private readonly IConfiguration _configuration;
-
         private readonly HttpClient _httpClient;
 
-        public GoogleAuthService(IConfiguration configuration, HttpClient httpClient)
-        {
-            _configuration = configuration;
+        private readonly GoogleAuthSettings _googleAuthSettings;
 
+        public GoogleAuthService(HttpClient httpClient, IOptions<GoogleAuthSettings> googleAuthOptions)
+        {
             _httpClient = httpClient;
+
+            _googleAuthSettings = googleAuthOptions.Value;
         }
 
         /// <summary>
@@ -31,28 +33,26 @@ namespace GeolocationAds.Services
         {
             try
             {
-                string clientId = _configuration.GetValue<string>("GoogleSettings:GoogleClientId");
+                var authUri = new Uri(_googleAuthSettings.GetAuthUrl());
 
-                string redirectUri = _configuration.GetValue<string>("GoogleSettings:GoogleRedirectUri");
+                var callbackUri = new Uri(_googleAuthSettings.GoogleRedirectUri);
 
-                string authUrl = _configuration.GetValue<string>("GoogleSettings:GoogleAuthUrl");
-
-                var authUri = new Uri(authUrl);
-
-                var callbackUri = new Uri(redirectUri);
-
-                var response = await WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions()
+                var authResult = await WebAuthenticator.AuthenticateAsync(new WebAuthenticatorOptions()
                 {
                     Url = authUri,
                     CallbackUrl = callbackUri,
-                   
-                    
-
                 });
 
-                var authorizationCode = response.Properties["code"];
+                if (authResult.Properties.TryGetValue("code", out string authorizationCode))
+                {
+                    Console.WriteLine($"🔹 Código de autorización recibido: {authorizationCode}");
 
-                return await GetAccessTokenAsync(authorizationCode);
+                    return await GetAccessTokenAsync(authorizationCode);
+                }
+                else
+                {
+                    throw new Exception("⚠️ No se obtuvo código de autorización");
+                }
             }
             catch (Exception ex)
             {
@@ -69,17 +69,13 @@ namespace GeolocationAds.Services
         {
             try
             {
-                string clientId = _configuration.GetValue<string>("GoogleSettings:GoogleClientId");
-              
-                string redirectUri = _configuration.GetValue<string>("GoogleSettings:GoogleRedirectUri");
-
                 var parameters = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string, string>("grant_type", "authorization_code"),
-                    new KeyValuePair<string, string>("client_id", clientId),
-                    new KeyValuePair<string, string>("redirect_uri", redirectUri),
-                    new KeyValuePair<string, string>("code", authorizationCode),
-                });
+           {
+                new KeyValuePair<string, string>("grant_type", "authorization_code"),
+                new KeyValuePair<string, string>("client_id", _googleAuthSettings.GoogleClientId),
+                new KeyValuePair<string, string>("redirect_uri", _googleAuthSettings.GoogleRedirectUri),
+                new KeyValuePair<string, string>("code", authorizationCode),
+            });
 
                 var tokenResponse = await _httpClient.PostAsync("https://oauth2.googleapis.com/token", parameters);
 
@@ -94,7 +90,7 @@ namespace GeolocationAds.Services
             }
             catch (Exception ex)
             {
-                await CommonsTool.DisplayAlert("Error",$"Failed to exchange code for token: {ex.Message}");
+                await CommonsTool.DisplayAlert("Error", $"Failed to exchange code for token: {ex.Message}");
 
                 return null;
             }

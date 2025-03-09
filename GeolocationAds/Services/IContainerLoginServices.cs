@@ -13,17 +13,29 @@ namespace GeolocationAds.Services
     public interface IContainerLoginServices : IBaseContainer
     {
         IConfiguration Configuration { get; }
+
         IForgotPasswordService ForgotPasswordService { get; }
+
         IGoogleAuthService GoogleAuthService { get; set; }
+
         ISecureStoreService SecureStoreService { get; set; }
+
         ToolsLibrary.Models.Login LoginModel { get; }
+
         ILoginService LoginService { get; }
+
         RecoveryPasswordViewModel RecoveryPasswordViewModel { get; set; }
+
         IUserService UserService { get; }
+
         ILoginFactory LoginFactory { get; }
+
         IUserFactory UserFactory { get; }
+
         IFirebaseAuthService FirebaseAuthService { get; set; }
 
         FacebookAuthWebViewViewModel FacebookAuthWebViewViewModel { get; set; }
+
+        GoogleAuthWebViewViewModel GoogleAuthWebViewViewModel { get; set; }
     }
 }

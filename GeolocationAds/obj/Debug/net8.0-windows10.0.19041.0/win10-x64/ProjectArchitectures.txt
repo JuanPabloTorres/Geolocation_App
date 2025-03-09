@@ -1,2 +1,2 @@
-C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\GeolocationAds.csproj;x64
-C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\ToolsLibrary.csproj;neutral
+C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\GeolocationAds.csproj;x64
+C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\ToolsLibrary.csproj;neutral

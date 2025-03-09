@@ -43,6 +43,25 @@
             Instancia de Login con credenciales básicas.
             </returns>
         </member>
+        <member name="M:GeolocationAds.Pages.GoogleAuthWebViewPage.#ctor(GeolocationAds.ViewModels.GoogleAuthWebViewViewModel)">
+            <summary>
+            Constructor que recibe el ViewModel y establece el contexto de enlace.
+            </summary>
+            <param name="googleAuthWebViewViewModel">ViewModel que maneja la autenticación con Google.</param>
+        </member>
+        <member name="M:GeolocationAds.Pages.GoogleAuthWebViewPage.OnNavigating(System.Object,Microsoft.Maui.Controls.WebNavigatingEventArgs)">
+            <summary>
+            Evento que se activa cuando el WebView navega a una nueva URL.
+            Se usa para capturar el código de autorización de Google.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.Pages.GoogleAuthWebViewPage.ExtractAuthorizationCode(System.String)">
+            <summary>
+            Extrae el código de autorización de la URL de redirección de Google.
+            </summary>
+            <param name="url">URL redirigida después del inicio de sesión en Google.</param>
+            <returns>Código de autorización si existe, de lo contrario, null.</returns>
+        </member>
         <member name="M:GeolocationAds.Services.GoogleAuthService.AuthenticateAndRetrieveTokenAsync">
             <summary>
             Autentica con Google y obtiene el token de acceso.
@@ -767,6 +786,50 @@
         <member name="P:GeolocationAds.ViewModels.FilterPopUpViewModel2.FilterCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.FilterPopUpViewModel2.Filter"/>.</summary>
         </member>
+        <member name="T:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel">
+            <summary>
+            ViewModel que maneja la autenticación de Google usando WebView.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.OnLoginCompleted">
+            <summary>
+            Evento que se activa cuando la autenticación se completa exitosamente.
+            </summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.googleAuthUrl">
+            <summary>
+            URL que se cargará en el WebView para la autenticación con Google.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.#ctor(GeolocationAds.Services.IGoogleAuthService,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor que recibe el servicio de autenticación de Google y la configuración de la aplicación.
+            </summary>
+            <param name="googleAuthService">Servicio que maneja la autenticación con Google.</param>
+            <param name="configuration">Configuración de la aplicación.</param>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.LoadGoogleLogin">
+            <summary>
+            Construye la URL de autenticación con Google y la asigna al WebView.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.AuthenticateUserAsync(System.String)">
+            <summary>
+            Método para autenticar al usuario y obtener su información.
+            </summary>
+            <param name="authorizationCode">Código de autorización recibido de Google.</param>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.GetGoogleConfiguration(System.String)">
+            <summary>
+            Obtiene un valor de configuración para Google desde el archivo de configuración.
+            </summary>
+            <param name="configName">Nombre del parámetro de configuración.</param>
+            <returns>Valor del parámetro de configuración.</returns>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.GoogleAuthUrl">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.GoogleAuthWebViewViewModel.googleAuthUrl"/>
+        </member>
         <member name="T:GeolocationAds.ViewModels.GoogleMapViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -1145,6 +1208,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.GoogleAuthUrl">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "GoogleAuthUrl" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsRemember">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsRemember" generated properties.</summary>
         </member>
@@ -1240,6 +1306,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDistance">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDistance" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.GoogleAuthUrl">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "GoogleAuthUrl" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsRemember">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsRemember" generated properties.</summary>

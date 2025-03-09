@@ -14,30 +14,20 @@
 
     <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token" />
 
-    <!--<activity android:name="com.mycompany.myapp.FacebookAuthActivity"
-    android:exported="true"
-    android:noHistory="true"
-    android:launchMode="singleTop"
-       android:autoVerify="true">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-       
-      </intent-filter>
-    </activity>-->
+    <!-- Configuración para manejar la URI de redirección de OAuth --><!--
+    <activity android:name=".Platforms.Android.WebAuthenticationCallbackActivity"
 
-    <!-- Configuración para manejar la URI de redirección de OAuth -->
-    <activity android:name="com.mycompany.myapp.WebAuthenticationCallbackActivity"
-              android:exported="true"
+               android:exported="true"
               android:noHistory="true"
               android:launchMode="singleTop">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
+
+       
       </intent-filter>
-    </activity>
+    </activity>-->
   </application>
 
   <!-- Permisos de la aplicación -->

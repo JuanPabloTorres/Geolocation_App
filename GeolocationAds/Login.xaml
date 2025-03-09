@@ -16,39 +16,7 @@
 
     <VerticalStackLayout VerticalOptions="CenterAndExpand">
 
-        <!--<Border
-            Margin="0,0,0,50"
-            BackgroundColor="Transparent"
-            HorizontalOptions="FillAndExpand"
-            StrokeThickness="0"
-            VerticalOptions="Fill">
-            <Grid>
-                <GraphicsView HeightRequest="150">
-                    <GraphicsView.Drawable>
-                        <drawable:SemiCircle2Drawable />
-                    </GraphicsView.Drawable>
-                </GraphicsView>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Text="Geo-Connect"
-                    TextColor="{StaticResource White}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
 
-        -->
-        <!--<ffimageloading:CachedImage
-                    Aspect="AspectFit"
-                    FadeAnimationEnabled="True"
-                    VerticalOptions="Center"
-                    HeightRequest="20"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Source="radar.gif" />-->
-        <!--
-            </Grid>
-        </Border>-->
 
         <Label
             Margin="5"

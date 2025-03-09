@@ -4,6 +4,11 @@
         <name>ToolsLibrary</name>
     </assembly>
     <members>
+        <member name="T:ToolsLibrary.Dto.GoogleUserInfoDto">
+            <summary>
+            Modelo de datos para almacenar la información del usuario autenticado con Google.
+            </summary>
+        </member>
         <member name="T:ToolsLibrary.Models.Login">
             <inheritdoc/>
         </member>
@@ -12,6 +17,11 @@
         </member>
         <member name="P:ToolsLibrary.Models.Login.Username">
             <inheritdoc cref="F:ToolsLibrary.Models.Login._username"/>
+        </member>
+        <member name="M:ToolsLibrary.Models.Settings.GoogleAuthSettings.GetAuthUrl">
+            <summary>
+            Genera dinámicamente la URL de autenticación con Google.
+            </summary>
         </member>
         <member name="T:ToolsLibrary.Models.User">
             <inheritdoc/>
