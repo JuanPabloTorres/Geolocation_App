@@ -12,7 +12,7 @@
 
         <ToolbarItem
             Command="{Binding SubmitUpdateCommand}"
-            CommandParameter="{Binding Model2}"
+            CommandParameter="{Binding User}"
             IsEnabled="{Binding User.Login.Provider, Converter={StaticResource UserProviderToBooleanConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />

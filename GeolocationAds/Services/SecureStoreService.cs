@@ -19,7 +19,7 @@ namespace GeolocationAds.Services
         
         public const string FacebookClientIdKey = "facebookClientId";
 
-        private const string IsRememberKey = "isRemember";
+        public const string IsRememberKey = "isRemember";
 
         /// <summary>
         /// Guarda valores en SecureStorage.

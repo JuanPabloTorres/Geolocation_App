@@ -16,5 +16,7 @@ namespace GeolocationAds.Services
          const string GoogleClientIdKey = "googleClientId";
 
          const string FacebookClientIdKey = "facebookClientId";
+
+        const string IsRememberKey = "isRemember";
     }
 }

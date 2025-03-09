@@ -10,617 +10,617 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>89c43289-a124-41df-9f63-bab1d46e1f63</PackageIdentityName>
     <PackageIdentityPublisher>CN=User Name</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
+    <LayoutDir>C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\GeolocationAds.runtimeconfig.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\GeolocationAds.runtimeconfig.json">
       <PackagePath>GeolocationAds.runtimeconfig.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\GeolocationAds.dll">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\GeolocationAds.dll">
       <PackagePath>GeolocationAds.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\bin\Debug\net8.0-windows10.0.19041.0\ToolsLibrary.dll">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\bin\Debug\net8.0-windows10.0.19041.0\ToolsLibrary.dll">
       <PackagePath>ToolsLibrary.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\GlobalSettings.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\ToolsLibrary\GlobalSettings.json">
       <PackagePath>GlobalSettings.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Images\mediacontent.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Images\mediacontent.png">
       <PackagePath>Resources\Images\mediacontent.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>GeolocationAds.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\AboutAssets.txt">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c1.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c1.json">
       <PackagePath>c1.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c2.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c2.json">
       <PackagePath>c2.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c3.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c3.json">
       <PackagePath>c3.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c4.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c4.json">
       <PackagePath>c4.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c5.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\c5.json">
       <PackagePath>c5.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\complete5.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\complete5.json">
       <PackagePath>complete5.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\complete_1.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\complete_1.json">
       <PackagePath>complete_1.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\loading.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\loading.json">
       <PackagePath>loading.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\radar.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\Resources\Raw\radar.json">
       <PackagePath>radar.json</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\MaterialIcons-Regular.ttf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\MaterialIcons-Regular.ttf">
       <PackagePath>MaterialIcons-Regular.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\MaterialIconsOutlined-Regular.otf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\MaterialIconsOutlined-Regular.otf">
       <PackagePath>MaterialIconsOutlined-Regular.otf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Semibold.ttf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Semibold.ttf">
       <PackagePath>OpenSans-Semibold.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\Roboto-Bold.ttf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\Roboto-Bold.ttf">
       <PackagePath>Roboto-Bold.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\Roboto-Light.ttf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\Roboto-Light.ttf">
       <PackagePath>Roboto-Light.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\Sunshine.ttf">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\Sunshine.ttf">
       <PackagePath>Sunshine.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\star.scale-100.png">
-      <PackagePath>star.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\complete01.scale-100.gif">
-      <PackagePath>complete01.scale-100.gif</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tag.scale-100.png">
-      <PackagePath>tag.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\filebox.scale-100.png">
-      <PackagePath>filebox.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\text.scale-100.png">
-      <PackagePath>text.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\arrow.scale-100.png">
-      <PackagePath>arrow.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tiktok.scale-100.png">
-      <PackagePath>tiktok.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\radar.scale-100.gif">
-      <PackagePath>radar.scale-100.gif</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\travelexplore.scale-100.png">
-      <PackagePath>travelexplore.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\loginbackground.scale-100.jpeg">
-      <PackagePath>loginbackground.scale-100.jpeg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\url.scale-100.png">
-      <PackagePath>url.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\plus.scale-100.png">
-      <PackagePath>plus.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\user.scale-100.png">
-      <PackagePath>user.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\google.scale-100.png">
-      <PackagePath>google.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\youtube.scale-100.png">
-      <PackagePath>youtube.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\map.scale-100.png">
-      <PackagePath>map.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-400.png">
-      <PackagePath>fullscreen.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-200.png">
-      <PackagePath>fullscreen.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-150.png">
-      <PackagePath>fullscreen.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-125.png">
-      <PackagePath>fullscreen.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-100.png">
-      <PackagePath>fullscreen.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\setting.scale-100.png">
-      <PackagePath>setting.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
-      <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
-      <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
-      <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
-      <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
-      <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
-      <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
-      <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
-      <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
-      <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
-      <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
-      <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
-      <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
-      <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
-      <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
-      <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
-      <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
-      <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
-      <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
-      <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
-      <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
-      <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
-      <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
-      <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
-      <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
-      <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
-      <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
-      <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
-      <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
-      <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
-      <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
-      <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
-      <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
-      <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
-      <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
-      <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
-      <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
-      <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
-      <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
-      <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
-      <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
-      <PackagePath>appiconLogo.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
-      <PackagePath>appiconLogo.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
-      <PackagePath>appiconLogo.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
-      <PackagePath>appiconLogo.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
-      <PackagePath>appiconLogo.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\facebook.scale-100.png">
-      <PackagePath>facebook.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
+      <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-400.png">
-      <PackagePath>geoappiconLargeTile.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
+      <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-200.png">
-      <PackagePath>geoappiconLargeTile.scale-200.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
+      <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-150.png">
-      <PackagePath>geoappiconLargeTile.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
+      <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-125.png">
-      <PackagePath>geoappiconLargeTile.scale-125.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
+      <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-100.png">
-      <PackagePath>geoappiconLargeTile.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
+      <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-400.png">
-      <PackagePath>geoappiconWideTile.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
+      <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-200.png">
-      <PackagePath>geoappiconWideTile.scale-200.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
+      <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-150.png">
-      <PackagePath>geoappiconWideTile.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
+      <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-125.png">
-      <PackagePath>geoappiconWideTile.scale-125.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
+      <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-100.png">
-      <PackagePath>geoappiconWideTile.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
+      <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-400.png">
-      <PackagePath>geoappiconMediumTile.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
+      <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-200.png">
-      <PackagePath>geoappiconMediumTile.scale-200.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
+      <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-150.png">
-      <PackagePath>geoappiconMediumTile.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
+      <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-125.png">
-      <PackagePath>geoappiconMediumTile.scale-125.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
+      <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-100.png">
-      <PackagePath>geoappiconMediumTile.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
+      <PackagePath>appiconLogo.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-400.png">
-      <PackagePath>geoappiconSmallTile.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
+      <PackagePath>appiconLogo.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-200.png">
-      <PackagePath>geoappiconSmallTile.scale-200.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
+      <PackagePath>appiconLogo.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-150.png">
-      <PackagePath>geoappiconSmallTile.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
+      <PackagePath>appiconLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-125.png">
-      <PackagePath>geoappiconSmallTile.scale-125.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
+      <PackagePath>appiconLogo.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-100.png">
-      <PackagePath>geoappiconSmallTile.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
+      <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-400.png">
-      <PackagePath>geoappiconStoreLogo.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
+      <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-200.png">
-      <PackagePath>geoappiconStoreLogo.scale-200.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
+      <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-150.png">
-      <PackagePath>geoappiconStoreLogo.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
+      <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-125.png">
-      <PackagePath>geoappiconStoreLogo.scale-125.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
+      <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-100.png">
-      <PackagePath>geoappiconStoreLogo.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
+      <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-256.png">
-      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
+      <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-48.png">
-      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
+      <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-32.png">
-      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
+      <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-24.png">
-      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
+      <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-16.png">
-      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
+      <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-256.png">
-      <PackagePath>geoappiconLogo.altform-unplated_targetsize-256.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
+      <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-48.png">
-      <PackagePath>geoappiconLogo.altform-unplated_targetsize-48.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
+      <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-32.png">
-      <PackagePath>geoappiconLogo.altform-unplated_targetsize-32.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
+      <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-24.png">
-      <PackagePath>geoappiconLogo.altform-unplated_targetsize-24.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
+      <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-16.png">
-      <PackagePath>geoappiconLogo.altform-unplated_targetsize-16.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
+      <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-256.png">
-      <PackagePath>geoappiconLogo.targetsize-256.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
+      <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-48.png">
-      <PackagePath>geoappiconLogo.targetsize-48.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
+      <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-32.png">
-      <PackagePath>geoappiconLogo.targetsize-32.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
+      <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-24.png">
-      <PackagePath>geoappiconLogo.targetsize-24.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
+      <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-16.png">
-      <PackagePath>geoappiconLogo.targetsize-16.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
+      <PackagePath>appiconWideTile.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-400.png">
-      <PackagePath>geoappiconLogo.scale-400.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
+      <PackagePath>appiconWideTile.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-200.png">
-      <PackagePath>geoappiconLogo.scale-200.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
+      <PackagePath>appiconWideTile.scale-150.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-150.png">
-      <PackagePath>geoappiconLogo.scale-150.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
+      <PackagePath>appiconWideTile.scale-200.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-125.png">
-      <PackagePath>geoappiconLogo.scale-125.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
+      <PackagePath>appiconWideTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-100.png">
-      <PackagePath>geoappiconLogo.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\arrow.scale-100.png">
+      <PackagePath>arrow.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappicon.ico">
-      <PackagePath>geoappicon.ico</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\complete01.scale-100.gif">
+      <PackagePath>complete01.scale-100.gif</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\padlock.scale-100.png">
-      <PackagePath>padlock.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
+      <PackagePath>dotnet_bot.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-400.png">
-      <PackagePath>play_store_512LargeTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-200.png">
-      <PackagePath>play_store_512LargeTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-150.png">
-      <PackagePath>play_store_512LargeTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-125.png">
-      <PackagePath>play_store_512LargeTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-100.png">
-      <PackagePath>play_store_512LargeTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-400.png">
-      <PackagePath>play_store_512WideTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-200.png">
-      <PackagePath>play_store_512WideTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-150.png">
-      <PackagePath>play_store_512WideTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-125.png">
-      <PackagePath>play_store_512WideTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-100.png">
-      <PackagePath>play_store_512WideTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-400.png">
-      <PackagePath>play_store_512MediumTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-200.png">
-      <PackagePath>play_store_512MediumTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-150.png">
-      <PackagePath>play_store_512MediumTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-125.png">
-      <PackagePath>play_store_512MediumTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-100.png">
-      <PackagePath>play_store_512MediumTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-400.png">
-      <PackagePath>play_store_512SmallTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-200.png">
-      <PackagePath>play_store_512SmallTile.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-150.png">
-      <PackagePath>play_store_512SmallTile.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-125.png">
-      <PackagePath>play_store_512SmallTile.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-100.png">
-      <PackagePath>play_store_512SmallTile.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-400.png">
-      <PackagePath>play_store_512StoreLogo.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-200.png">
-      <PackagePath>play_store_512StoreLogo.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-150.png">
-      <PackagePath>play_store_512StoreLogo.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-125.png">
-      <PackagePath>play_store_512StoreLogo.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-100.png">
-      <PackagePath>play_store_512StoreLogo.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-256.png">
-      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-48.png">
-      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-32.png">
-      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-24.png">
-      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-16.png">
-      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-256.png">
-      <PackagePath>play_store_512Logo.altform-unplated_targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-48.png">
-      <PackagePath>play_store_512Logo.altform-unplated_targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-32.png">
-      <PackagePath>play_store_512Logo.altform-unplated_targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-24.png">
-      <PackagePath>play_store_512Logo.altform-unplated_targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-16.png">
-      <PackagePath>play_store_512Logo.altform-unplated_targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-256.png">
-      <PackagePath>play_store_512Logo.targetsize-256.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-48.png">
-      <PackagePath>play_store_512Logo.targetsize-48.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-32.png">
-      <PackagePath>play_store_512Logo.targetsize-32.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-24.png">
-      <PackagePath>play_store_512Logo.targetsize-24.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-16.png">
-      <PackagePath>play_store_512Logo.targetsize-16.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-400.png">
-      <PackagePath>play_store_512Logo.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-200.png">
-      <PackagePath>play_store_512Logo.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-150.png">
-      <PackagePath>play_store_512Logo.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-125.png">
-      <PackagePath>play_store_512Logo.scale-125.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-100.png">
-      <PackagePath>play_store_512Logo.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512.ico">
-      <PackagePath>play_store_512.ico</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\mail.scale-100.png">
-      <PackagePath>mail.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\phone.scale-100.png">
-      <PackagePath>phone.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\instagram.scale-100.png">
-      <PackagePath>instagram.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
-      <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
-      <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
-      <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
-      <PackagePath>dotnet_bot.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
+      <PackagePath>dotnet_bot.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
+      <PackagePath>dotnet_bot.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
+      <PackagePath>dotnet_bot.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\facebook.scale-100.png">
+      <PackagePath>facebook.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\filebox.scale-100.png">
+      <PackagePath>filebox.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-100.png">
+      <PackagePath>fullscreen.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-125.png">
+      <PackagePath>fullscreen.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-150.png">
+      <PackagePath>fullscreen.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-200.png">
+      <PackagePath>fullscreen.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fullscreen.scale-400.png">
+      <PackagePath>fullscreen.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappicon.ico">
+      <PackagePath>geoappicon.ico</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-100.png">
+      <PackagePath>geoappiconLargeTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-125.png">
+      <PackagePath>geoappiconLargeTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-150.png">
+      <PackagePath>geoappiconLargeTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-200.png">
+      <PackagePath>geoappiconLargeTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLargeTile.scale-400.png">
+      <PackagePath>geoappiconLargeTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-16.png">
+      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-24.png">
+      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-256.png">
+      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-32.png">
+      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-lightunplated_targetsize-48.png">
+      <PackagePath>geoappiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-16.png">
+      <PackagePath>geoappiconLogo.altform-unplated_targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-24.png">
+      <PackagePath>geoappiconLogo.altform-unplated_targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-256.png">
+      <PackagePath>geoappiconLogo.altform-unplated_targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-32.png">
+      <PackagePath>geoappiconLogo.altform-unplated_targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.altform-unplated_targetsize-48.png">
+      <PackagePath>geoappiconLogo.altform-unplated_targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-100.png">
+      <PackagePath>geoappiconLogo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-125.png">
+      <PackagePath>geoappiconLogo.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-150.png">
+      <PackagePath>geoappiconLogo.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-200.png">
+      <PackagePath>geoappiconLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.scale-400.png">
+      <PackagePath>geoappiconLogo.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-16.png">
+      <PackagePath>geoappiconLogo.targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-24.png">
+      <PackagePath>geoappiconLogo.targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-256.png">
+      <PackagePath>geoappiconLogo.targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-32.png">
+      <PackagePath>geoappiconLogo.targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconLogo.targetsize-48.png">
+      <PackagePath>geoappiconLogo.targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-100.png">
+      <PackagePath>geoappiconMediumTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-125.png">
+      <PackagePath>geoappiconMediumTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-150.png">
+      <PackagePath>geoappiconMediumTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-200.png">
+      <PackagePath>geoappiconMediumTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconMediumTile.scale-400.png">
+      <PackagePath>geoappiconMediumTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-100.png">
+      <PackagePath>geoappiconSmallTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-125.png">
+      <PackagePath>geoappiconSmallTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-150.png">
+      <PackagePath>geoappiconSmallTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-200.png">
+      <PackagePath>geoappiconSmallTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconSmallTile.scale-400.png">
+      <PackagePath>geoappiconSmallTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-100.png">
+      <PackagePath>geoappiconStoreLogo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-125.png">
+      <PackagePath>geoappiconStoreLogo.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-150.png">
+      <PackagePath>geoappiconStoreLogo.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-200.png">
+      <PackagePath>geoappiconStoreLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconStoreLogo.scale-400.png">
+      <PackagePath>geoappiconStoreLogo.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-100.png">
+      <PackagePath>geoappiconWideTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-125.png">
+      <PackagePath>geoappiconWideTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-150.png">
+      <PackagePath>geoappiconWideTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-200.png">
+      <PackagePath>geoappiconWideTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\geoappiconWideTile.scale-400.png">
+      <PackagePath>geoappiconWideTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\google.scale-100.png">
+      <PackagePath>google.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\instagram.scale-100.png">
+      <PackagePath>instagram.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\loginbackground.scale-100.jpeg">
+      <PackagePath>loginbackground.scale-100.jpeg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\mail.scale-100.png">
+      <PackagePath>mail.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\map.scale-100.png">
+      <PackagePath>map.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\padlock.scale-100.png">
+      <PackagePath>padlock.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\phone.scale-100.png">
+      <PackagePath>phone.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512.ico">
+      <PackagePath>play_store_512.ico</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-100.png">
+      <PackagePath>play_store_512LargeTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-125.png">
+      <PackagePath>play_store_512LargeTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-150.png">
+      <PackagePath>play_store_512LargeTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-200.png">
+      <PackagePath>play_store_512LargeTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512LargeTile.scale-400.png">
+      <PackagePath>play_store_512LargeTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-16.png">
+      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-24.png">
+      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-256.png">
+      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-32.png">
+      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-lightunplated_targetsize-48.png">
+      <PackagePath>play_store_512Logo.altform-lightunplated_targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>play_store_512Logo.altform-unplated_targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-24.png">
+      <PackagePath>play_store_512Logo.altform-unplated_targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>play_store_512Logo.altform-unplated_targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>play_store_512Logo.altform-unplated_targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>play_store_512Logo.altform-unplated_targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-100.png">
+      <PackagePath>play_store_512Logo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-125.png">
+      <PackagePath>play_store_512Logo.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-150.png">
+      <PackagePath>play_store_512Logo.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-200.png">
+      <PackagePath>play_store_512Logo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.scale-400.png">
+      <PackagePath>play_store_512Logo.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-16.png">
+      <PackagePath>play_store_512Logo.targetsize-16.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-24.png">
+      <PackagePath>play_store_512Logo.targetsize-24.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-256.png">
+      <PackagePath>play_store_512Logo.targetsize-256.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-32.png">
+      <PackagePath>play_store_512Logo.targetsize-32.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512Logo.targetsize-48.png">
+      <PackagePath>play_store_512Logo.targetsize-48.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-100.png">
+      <PackagePath>play_store_512MediumTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-125.png">
+      <PackagePath>play_store_512MediumTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-150.png">
+      <PackagePath>play_store_512MediumTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-200.png">
+      <PackagePath>play_store_512MediumTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512MediumTile.scale-400.png">
+      <PackagePath>play_store_512MediumTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-100.png">
+      <PackagePath>play_store_512SmallTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-125.png">
+      <PackagePath>play_store_512SmallTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-150.png">
+      <PackagePath>play_store_512SmallTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-200.png">
+      <PackagePath>play_store_512SmallTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512SmallTile.scale-400.png">
+      <PackagePath>play_store_512SmallTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-100.png">
+      <PackagePath>play_store_512StoreLogo.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-125.png">
+      <PackagePath>play_store_512StoreLogo.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-150.png">
+      <PackagePath>play_store_512StoreLogo.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-200.png">
+      <PackagePath>play_store_512StoreLogo.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512StoreLogo.scale-400.png">
+      <PackagePath>play_store_512StoreLogo.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-100.png">
+      <PackagePath>play_store_512WideTile.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-125.png">
+      <PackagePath>play_store_512WideTile.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-150.png">
+      <PackagePath>play_store_512WideTile.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-200.png">
+      <PackagePath>play_store_512WideTile.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\play_store_512WideTile.scale-400.png">
+      <PackagePath>play_store_512WideTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\plus.scale-100.png">
+      <PackagePath>plus.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\radar.scale-100.gif">
+      <PackagePath>radar.scale-100.gif</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\setting.scale-100.png">
+      <PackagePath>setting.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\star.scale-100.png">
+      <PackagePath>star.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tag.scale-100.png">
+      <PackagePath>tag.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\text.scale-100.png">
+      <PackagePath>text.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\tiktok.scale-100.png">
+      <PackagePath>tiktok.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\travelexplore.scale-100.png">
+      <PackagePath>travelexplore.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\url.scale-100.png">
+      <PackagePath>url.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\user.scale-100.png">
+      <PackagePath>user.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\youtube.scale-100.png">
+      <PackagePath>youtube.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\videolan.libvlc.windows\3.0.20\build\x64\libvlc.dll">
       <PackagePath>libvlc\win-x64\libvlc.dll</PackagePath>
@@ -3424,7 +3424,7 @@
     <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\videolan.libvlc.windows\3.0.20\build\x86\plugins\visualization\libvisual_plugin.dll">
       <PackagePath>libvlc\win-x86\plugins\visualization\libvisual_plugin.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\juanp\Source\Repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\GeolocationAds.deps.json">
+    <AppxPackagedFile Include="C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAds\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\GeolocationAds.deps.json">
       <PackagePath>GeolocationAds.deps.json</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\juanp\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.57\lib\net8.0\Microsoft.Windows.SDK.NET.dll">

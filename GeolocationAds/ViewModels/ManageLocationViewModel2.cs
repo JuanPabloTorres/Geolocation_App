@@ -22,9 +22,9 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<Pin> Positions { get; set; } = new ObservableCollection<Pin>();
 
-        public ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>> TemplateCardViewModel { get; set; } = new ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>();
+        public ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>> TemplateCardViewModel = new();
 
-        public ObservableCollection<MapType> MapSettings { get; set; } = new ObservableCollection<MapType>(Enum.GetValues(typeof(MapType)).Cast<MapType>().ToList());
+        public ObservableCollection<MapType> MapSettings = new(Enum.GetValues(typeof(MapType)).Cast<MapType>().ToList());
 
         private readonly IContainerManageLocation containerManageLocation;
 
@@ -32,14 +32,15 @@ namespace GeolocationAds.ViewModels
         {
             this.containerManageLocation = containerManageLocation;
 
-            this.ApplyQueryAttributesCompleted += ManageLocationViewModel_ApplyQueryAttributesCompleted;
+            //this.ApplyQueryAttributesCompleted += ManageLocationViewModel_ApplyQueryAttributesCompleted;
+
+            this.ApplyQueryAttributesCompleted = async () => await ManageLocationViewModel_ApplyQueryAttributesCompleted();
 
             // Subscribe to the ItemDeletedEvent
             EventManager2.Instance.Subscribe<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>(async (eventArgs) =>
             {
                 // Handle the item deleted event here.
                 await HandleItemDeletedEventAsync(eventArgs.Model);
-
             }, this);
         }
 
@@ -132,7 +133,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private async void ManageLocationViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
+        private async Task ManageLocationViewModel_ApplyQueryAttributesCompleted()
         {
             try
             {

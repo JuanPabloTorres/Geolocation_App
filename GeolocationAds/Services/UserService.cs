@@ -49,6 +49,5 @@ namespace GeolocationAds.Services
                 return ResponseFactory<bool>.BuildFail($"Unexpected Error: {ex.Message}", false, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
     }
 }

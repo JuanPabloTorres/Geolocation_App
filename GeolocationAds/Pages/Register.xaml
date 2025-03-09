@@ -9,8 +9,6 @@
     BackgroundColor="WhiteSmoke"
     Routing.Route="Register">
 
-
-
     <ContentPage.ToolbarItems>
 
         <ToolbarItem
@@ -28,9 +26,6 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-
-
-
 
     <ScrollView HorizontalScrollBarVisibility="Never">
         <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
@@ -100,14 +95,12 @@
                 IconSource="&#xe158;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Email"
-                Text="{Binding Model.Email, Mode=TwoWay}" />
-
+                Text="{Binding Model.Email, Mode=TwoWay}"
+                TextChanged="onEmailChange" />
 
             <!--  Section Title for Account Information  -->
             <Label Style="{StaticResource globalLabel}" Text="Account Information" />
             <BoxView HeightRequest="0.1" />
-
-
 
             <!--  Username Input  -->
             <local:CustomEntryContentView
@@ -137,7 +130,4 @@
             </ContentView>
         </VerticalStackLayout>
     </ScrollView>
-
-
-
 </ContentPage>

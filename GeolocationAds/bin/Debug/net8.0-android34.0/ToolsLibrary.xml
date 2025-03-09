@@ -13,10 +13,10 @@
             <inheritdoc/>
         </member>
         <member name="P:ToolsLibrary.Models.Login.Password">
-            <inheritdoc cref="F:ToolsLibrary.Models.Login._password"/>
+            <inheritdoc cref="F:ToolsLibrary.Models.Login.password"/>
         </member>
         <member name="P:ToolsLibrary.Models.Login.Username">
-            <inheritdoc cref="F:ToolsLibrary.Models.Login._username"/>
+            <inheritdoc cref="F:ToolsLibrary.Models.Login.username"/>
         </member>
         <member name="M:ToolsLibrary.Models.Settings.GoogleAuthSettings.GetAuthUrl">
             <summary>
@@ -25,9 +25,6 @@
         </member>
         <member name="T:ToolsLibrary.Models.User">
             <inheritdoc/>
-        </member>
-        <member name="P:ToolsLibrary.Models.User.LoginId">
-            <inheritdoc cref="F:ToolsLibrary.Models.User.loginId"/>
         </member>
         <member name="P:ToolsLibrary.Models.User.FullName">
             <inheritdoc cref="F:ToolsLibrary.Models.User.fullName"/>
@@ -53,9 +50,6 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Username">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Username" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LoginId">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LoginId" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FullName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FullName" generated properties.</summary>
         </member>
@@ -79,9 +73,6 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Username">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Username" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LoginId">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LoginId" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FullName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FullName" generated properties.</summary>

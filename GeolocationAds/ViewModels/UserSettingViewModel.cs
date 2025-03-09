@@ -9,33 +9,43 @@ namespace GeolocationAds.ViewModels
 {
     public partial class UserSettingViewModel : BaseViewModel3<User, IUserService>
     {
-        //public ICommand onNavigateEditPerfilCommand { get; set; }
-
-        //public ICommand onNavigateEditLoginCommand { get; set; }
-
         public UserSettingViewModel(User model, IUserService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {
             this.Model = logUserPerfil.LogUser;
-
-            //this.onNavigateEditPerfilCommand = new Command<int>(NavigateEditPerfil);
-
-            //this.onNavigateEditLoginCommand = new Command<int>(NavigateEditLogin);
         }
 
         [RelayCommand]
         private async Task NavigateEditPerfil(int id)
         {
-            var navigationParameter = new Dictionary<string, object> { { "ID", id } };
-
-            await Shell.Current.GoToAsync(nameof(EditUserPerfil), navigationParameter);
+            await RunWithLoadingIndicator(async () =>
+            {
+                await Shell.Current.GoToAsync(nameof(EditUserPerfil), new Dictionary<string, object>
+                {
+                    { "ID", id }
+                });
+            });
         }
+
         [RelayCommand]
         private async Task NavigateEditLogin(int id)
         {
-            var navigationParameter = new Dictionary<string, object> { { "ID", id } };
-
-            await Shell.Current.GoToAsync(nameof(EditLoginCredential), navigationParameter);
+            await RunWithLoadingIndicator(async () =>
+            {
+                await Shell.Current.GoToAsync(nameof(EditLoginCredential), new Dictionary<string, object>
+                {
+                    { "ID", id }
+                });
+            });
         }
 
+        [RelayCommand]
+        public async Task SignOut()
+        {
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+
+            await Shell.Current.GoToAsync(nameof(Login));
+
+            Shell.Current.FlyoutIsPresented = false;
+        }
     }
 }

@@ -23,16 +23,6 @@ namespace GeolocationAds.ViewModels
 
         public AppShellViewModel2()
         {
-            WeakReferenceMessenger.Default.Register<LogInMessage<string>>(this, (r, m) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    this.UserName = m.Value;
-
-                    this.Avatar = this.UserName.FirstOrDefault().ToString();
-                });
-            });
-
             WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>

@@ -32,10 +32,6 @@ public partial class MyContentPage : ContentPage
         this.paginControls.IsBackButtonEnabled = false;
 
         this.paginControls.IsNextButtonEnabled = true;
-
-        //await this._viewModel.InitializeSettingsAsync();
-
-        //await this._viewModel.InitializeAsync();
     }
 
     private int GetSourceLastIndexCount()

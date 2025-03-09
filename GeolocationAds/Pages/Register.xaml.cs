@@ -1,4 +1,5 @@
-﻿using GeolocationAds.CustomContentView;
+﻿using GeolocationAds.AppTools;
+using GeolocationAds.CustomContentView;
 using GeolocationAds.ViewModels;
 
 namespace GeolocationAds.Pages;
@@ -21,46 +22,35 @@ public partial class Register : ContentPage
         this._registerViewModel.ValidationResults.Clear();
     }
 
-    //private void onPhoneChange(object sender, TextChangedEventArgs e
-    //{
-    //    if (sender is CustomEntryContentView entryView            && entryView.BindingContext is RegisterViewModel viewModel)
-    //    {
-    //        // Extraer solo los números del input
-    //        string digits = new string(e.NewTextValue.Where(char.IsDigit).ToArray());
-
-    // if (string.IsNullOrWhiteSpace(digits)) { viewModel.NewUser.Phone = string.Empty; return; }
-
-    // // Aplicar formato dinámico al número string formattedNumber = digits.Length switch { <= 3 =>
-    // $"({digits}", <= 6 => $"({digits[..3]})-{digits[3..]}", _ =>
-    // $"({digits[..3]})-{digits[3..6]}-{digits[6..]}" };
-
-    //        // Asignar el número formateado a NewUser.Phone
-    //        viewModel.NewUser.Phone = formattedNumber;
-    //    }
-    //}
-
     private void onPhoneChange(object sender, TextChangedEventArgs e)
     {
         if (sender is CustomEntryContentView entryView && entryView.BindingContext is RegisterViewModel viewModel)
         {
-            viewModel.Model.Phone = FormatPhoneNumber(e.NewTextValue);
-
-            // 🔹 Notifica a la UI que el valor cambió
-            //viewModel.OnPropertyChanged(nameof(viewModel.NewUser.Phone));
+            viewModel.Model.Phone = AppToolCommon.FormatPhoneNumber(e.NewTextValue);
         }
     }
 
-    private string FormatPhoneNumber(string input)
+    private void onEmailChange(object sender, TextChangedEventArgs e)
     {
-        string digits = new string(input.Where(char.IsDigit).ToArray());
-
-        if (string.IsNullOrWhiteSpace(digits)) return string.Empty;
-
-        return digits.Length switch
+        if (sender is CustomEntryContentView entryView && entryView.BindingContext is RegisterViewModel viewModel)
         {
-            <= 3 => $"({digits}",
-            <= 6 => $"({digits[..3]})-{digits[3..]}",
-            _ => $"({digits[..3]})-{digits[3..6]}-{digits[6..]}"
-        };
+            string formattedEmail = FormatEmail(e.NewTextValue);
+
+            viewModel.Model.Email = formattedEmail;
+        }
+    }
+
+    private string FormatEmail(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return string.Empty;
+
+        input = input.Trim(); // Remover espacios en blanco al inicio y al final
+
+        // Validar caracteres no permitidos
+        if (input.Any(c => c == ' '))
+            return input.Replace(" ", ""); // Elimina espacios en blanco
+
+        return input;
     }
 }

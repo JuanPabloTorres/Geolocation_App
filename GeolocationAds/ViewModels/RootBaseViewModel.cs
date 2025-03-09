@@ -1,0 +1,101 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ToolsLibrary.Tools;
+
+namespace GeolocationAds.ViewModels
+{
+    public partial class RootBaseViewModel : ObservableObject, IQueryAttributable
+    {
+        [ObservableProperty]
+        private bool isLoading;
+
+        public static int PageIndex { get; set; } = 1;
+
+        public string ID { get; private set; }
+
+        public ObservableCollection<ValidationResult> ValidationResults { get; set; } = new();
+
+        protected ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
+
+        protected LogUserPerfilTool LogUserPerfilTool { get; set; }
+
+        public RootBaseViewModel(LogUserPerfilTool logUserPerfilTool)
+        {
+            LogUserPerfilTool = logUserPerfilTool;
+        }
+
+        /// <summary>
+        /// Acción que se ejecuta cuando ApplyQueryAttributes finaliza.
+        /// </summary>
+        public Action ApplyQueryAttributesCompleted { get; set; }
+
+        /// <summary>
+        /// Método para ejecutar una tarea con indicador de carga activado.
+        /// </summary>
+        protected async Task RunWithLoadingIndicator(Func<Task> action)
+        {
+            if (IsLoading) return;
+
+            try
+            {
+                IsLoading = true;
+
+                await action();
+            }
+            catch (Exception ex)
+            {
+                // General exception handling
+                await CommonsTool.DisplayAlert("Error", ex.Message);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        /// <summary>
+        /// Procesa atributos de consulta y ejecuta la acción de finalización.
+        /// </summary>
+        public async void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            await RunWithLoadingIndicator(async () =>
+            {
+                if (query.ContainsKey("ID") && !string.IsNullOrEmpty(query["ID"].ToString()))
+                {
+                    int _itemId = Convert.ToInt32(query["ID"].ToString());
+
+                    if (_itemId > 0)
+                    {
+                        await Get(_itemId);
+
+                        ApplyQueryAttributesCompleted?.Invoke(); // Ejecuta la acción
+                    }
+                }
+            });
+        }
+
+        /// <summary>
+        /// Método virtual para obtener datos basado en ID (para ser sobreescrito en los ViewModels).
+        /// </summary>
+        protected virtual async Task Get(int id) => await Task.CompletedTask;
+
+        /// <summary>
+        /// Método de validación global para cualquier modelo.
+        /// </summary>
+        protected bool ValidateModel(object obj)
+        {
+            if (ValidationResults.Any())
+                ValidationResults.Clear();
+
+            var validationContext = new ValidationContext(obj);
+
+            return Validator.TryValidateObject(obj, validationContext, ValidationResults, true);
+        }
+    }
+}

@@ -40,6 +40,8 @@
             <Color x:Key="DarkFuchsia">#bf1d57</Color>
 
             <Color x:Key="WhiteSmoke">#F5F5F5</Color>
+
+            <Color x:Key="FacebookColor">#1877F2</Color>
             <!--  Un fucsia oscuro  -->
 
             <x:Double x:Key="OpacityValue">0.9</x:Double>
@@ -524,6 +526,8 @@
             <converters:DataSizeConverter x:Key="DataSizeConverter" />
 
             <converters:UserProviderToBooleanConverter x:Key="UserProviderToBooleanConverter" />
+
+            <BackButtonBehavior x:Key="NoBackButton" IsVisible="False" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

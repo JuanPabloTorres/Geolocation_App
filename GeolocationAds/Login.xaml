@@ -16,8 +16,6 @@
 
     <VerticalStackLayout VerticalOptions="CenterAndExpand">
 
-
-
         <Label
             Margin="5"
             FontFamily="Roboto"
@@ -91,8 +89,6 @@
                         TextColor="{StaticResource Burgundy}" />
                 </HorizontalStackLayout>
 
-
-
                 <Button
                     Margin="20,0,20,0"
                     Command="{Binding VerifyCredentialCommand}"
@@ -135,7 +131,7 @@
 
                     <!--<Label HorizontalOptions="Center" Text="Or sign in with" />-->
 
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="12">
                         <Button
                             BackgroundColor="Transparent"
                             Command="{Binding SignInWithGoogleCommand}"
@@ -155,7 +151,7 @@
                             ImageSource="facebook.png"
                             Text="Facebook"
                             TextColor="Black"
-                            WidthRequest="130" />
+                            WidthRequest="135" />
                         <!--  Ensure you have a Facebook logo in your Resources  -->
                     </HorizontalStackLayout>
                 </VerticalStackLayout>

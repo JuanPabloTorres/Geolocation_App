@@ -104,12 +104,10 @@ namespace GeolocationAds.Pages
             }
             return null;
         }
-    }
 
-    //public class FacebookUserInfo
-    //{
-    //    public string Id { get; set; }
-    //    public string Name { get; set; }
-    //    public string Email { get; set; }
-    //}
+        private async void OnCloseClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.Navigation.PopAsync(); // O usa PopModalAsync() si la página se abrió como modal
+        }
+    }
 }

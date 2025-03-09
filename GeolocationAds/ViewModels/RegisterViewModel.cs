@@ -12,13 +12,11 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private User _newUser = new User();
 
-        public RegisterViewModel(User user, IUserService service) : base(user,service)
+        public RegisterViewModel(User user, IUserService service) : base(user, service)
         {
             NewUser = new User();
 
             TestDataDefault();
-
-            //OnPropertyChanged(nameof(NewUser));
         }
 
         private void TestDataDefault()
@@ -36,23 +34,10 @@ namespace GeolocationAds.ViewModels
             };
         }
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        //{
-        //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
         [RelayCommand]
         private void ClearText()
         {
-
-            //NewUser = new User();
-
-            //NewUser.Login = new ToolsLibrary.Models.Login();
-
             ClearData();
-            
         }
 
         private void ClearData()

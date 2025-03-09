@@ -15,8 +15,6 @@
         Route="login"
         Shell.FlyoutBehavior="Disabled" />
 
-
-
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
         <ShellContent
             Title="Search and Discover"
@@ -74,9 +72,9 @@
         </StackLayout>
     </Shell.FlyoutHeader>
 
-    <Shell.FlyoutFooter>
+    <!--<Shell.FlyoutFooter>
 
-        <StackLayout>
+        <VerticalStackLayout>
             <Button
                 Command="{Binding SignOutCommand}"
                 Style="{StaticResource globalButton}"
@@ -86,6 +84,6 @@
                     <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
                 </Button.ImageSource>
             </Button>
-        </StackLayout>
-    </Shell.FlyoutFooter>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>-->
 </Shell>

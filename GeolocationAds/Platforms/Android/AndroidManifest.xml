@@ -13,21 +13,6 @@
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
 
     <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token" />
-
-    <!-- Configuración para manejar la URI de redirección de OAuth --><!--
-    <activity android:name=".Platforms.Android.WebAuthenticationCallbackActivity"
-
-               android:exported="true"
-              android:noHistory="true"
-              android:launchMode="singleTop">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-
-       
-      </intent-filter>
-    </activity>-->
   </application>
 
   <!-- Permisos de la aplicación -->

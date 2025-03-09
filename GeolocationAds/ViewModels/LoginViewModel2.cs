@@ -28,7 +28,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
     [ObservableProperty] private bool isRemember;
 
-    public LoginViewModel2(IContainerLoginServices containerLoginServices,AppShellViewModel2 appShellViewModel2) : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
+    public LoginViewModel2(IContainerLoginServices containerLoginServices, AppShellViewModel2 appShellViewModel2) : base(containerLoginServices.LoginModel, containerLoginServices.LoginService, containerLoginServices.LogUserPerfilTool)
     {
         _containerLoginServices = containerLoginServices;
 
@@ -53,7 +53,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
     {
         try
         {
-            this.IsLoading = true;  
+            this.IsLoading = true;
 
             var accessToken = await _containerLoginServices.GoogleAuthService.AuthenticateAndRetrieveTokenAsync();
 
@@ -70,7 +70,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
         finally
         {
-            this.IsLoading = false; 
+            this.IsLoading = false;
         }
     }
 
@@ -134,7 +134,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
         else
         {
-            return _containerLoginServices.LoginFactory.CreateLogin(email, googleId,null, Providers.Google);
+            return _containerLoginServices.LoginFactory.CreateLogin(email, googleId, null, Providers.Google);
         }
     }
 
@@ -154,26 +154,24 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
         else
         {
-            return _containerLoginServices.LoginFactory.CreateLogin(email, null,facebookId, Providers.Facebook);
+            return _containerLoginServices.LoginFactory.CreateLogin(email, null, facebookId, Providers.Facebook);
         }
     }
 
+ 
+
     private async Task AuthenticateAndNavigateAsync(ToolsLibrary.Models.Login credential, Providers provider)
     {
-        try
+        await RunWithLoadingIndicator(async () =>
         {
-            this.IsLoading = true;
-
             var authResponse = await service.VerifyCredential2(credential);
 
             if (!authResponse.IsSuccess)
             {
-                await CommonsTool.DisplayAlert("Error", authResponse.Message);
-
-                return;
+                throw new Exception(authResponse.Message); // Lanza la excepción para que `RunWithLoadingIndicator` la maneje
             }
 
-            // Asigna el ID del proveedor correspondiente
+            //Asigna el ID del proveedor correspondiente
             if (provider == Providers.Google)
                 this.Model.GoogleId = credential.GoogleId;
             else if (provider == Providers.Facebook)
@@ -189,7 +187,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             service.SetJwtToken(LogUserPerfilTool.JsonToken);
 
             // Notificar inicio de sesión
-            WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+            WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
 
             // Configurar la UI de la aplicación
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
@@ -198,25 +196,12 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             if (this.Provider != provider)
             {
                 this.Provider = provider;
-
                 await ConfirmRememberUserAsync();
             }
 
-            Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
-
-            //await Task.Delay(10);
-
             // Navegar a la pantalla principal
             await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            this.IsLoading = false;
-        }
+        });
     }
 
     // Métodos específicos para cada proveedor, llamando al método genérico
@@ -235,7 +220,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
         if (rememberMe)
         {
-            await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId,this.Model.FacebookId, rememberMe);
+            await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, this.Model.FacebookId, rememberMe);
         }
         else
         {
@@ -310,16 +295,16 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
                 break;
 
             case Providers.Google:
-                var googleCredential = _containerLoginServices.LoginFactory.CreateCredential(await _containerLoginServices.SecureStoreService.GetAsync("googleClientId"),Providers.Google);
+                var googleCredential = _containerLoginServices.LoginFactory.CreateCredential(await _containerLoginServices.SecureStoreService.GetAsync("googleClientId"), Providers.Google);
 
                 await GoogleAuthenticateAndNavigateAsync(googleCredential);
                 break;
-                case Providers.Facebook:
-                var facebookCredential = _containerLoginServices.LoginFactory.CreateCredential(await _containerLoginServices.SecureStoreService.GetAsync(SecureStoreService.FacebookClientIdKey),Providers.Facebook);
+
+            case Providers.Facebook:
+                var facebookCredential = _containerLoginServices.LoginFactory.CreateCredential(await _containerLoginServices.SecureStoreService.GetAsync(SecureStoreService.FacebookClientIdKey), Providers.Facebook);
 
                 await FacebookAuthenticateAndNavigateAsync(facebookCredential);
                 break;
-
 
             default:
                 throw new InvalidOperationException("Unsupported provider type.");
@@ -332,7 +317,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         {
             if (isRemember)
             {
-                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId,this.Model.FacebookId, isRemember);
+                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, this.Model.FacebookId, isRemember);
             }
             else
             {
@@ -359,7 +344,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
 
                 service.SetJwtToken(LogUserPerfilTool.JsonToken);
 
-                WeakReferenceMessenger.Default.Send(new LogInMessage<string>(LogUserPerfilTool.LogUser.FullName));
+                WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
 
                 Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
 
@@ -406,59 +391,43 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
     [RelayCommand]
     private async Task VerifyCredential(ToolsLibrary.Models.Login credential)
     {
-        try
+        await RunWithLoadingIndicator(async () =>
         {
-            IsLoading = true;
+            var apiResponse = await service.VerifyCredential2(credential);
 
-            var _apiResponse = await this.service.VerifyCredential2(credential);
-
-            if (!_apiResponse.IsSuccess)
+            if (!apiResponse.IsSuccess)
             {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-
-                return;
+                throw new Exception(apiResponse.Message);
             }
 
-            switch (_apiResponse.Data.LogUser.UserStatus)
+            var user = apiResponse.Data.LogUser;
+
+            this.LogUserPerfilTool.JsonToken = apiResponse.Data.JsonToken;
+
+            this.LogUserPerfilTool.LogUser = user;
+
+            this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
+
+            //WeakReferenceMessenger.Default.Send(new LogInMessage<string>(user.FullName));
+
+            WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
+
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+
+            if (user.UserStatus == ToolsLibrary.Models.UserStatus.ResetPassword)
             {
-                case ToolsLibrary.Models.UserStatus.ResetPassword:
-
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-
-                    break;
-
-                default:
-
-                    this.LogUserPerfilTool.JsonToken = _apiResponse.Data.JsonToken;
-
-                    this.LogUserPerfilTool.LogUser = _apiResponse.Data.LogUser;
-
-                    this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
-
-                    WeakReferenceMessenger.Default.Send(new LogInMessage<string>(this.LogUserPerfilTool.LogUser.FullName));
-
-                    Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-
-                    if (this.Provider != Providers.App)
-                    {
-                        this.Provider = Providers.App;
-
-                        await ConfirmRememberUserAsync();
-                    }
-
-                    await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
-
-                    break;
+                throw new Exception(apiResponse.Message);
             }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            IsLoading = false;
-        }
+
+            if (this.Provider != Providers.App || !IsRemember)
+            {
+                this.Provider = Providers.App;
+
+                await ConfirmRememberUserAsync();
+            }
+
+            await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
+        });
     }
 
     [RelayCommand]
@@ -497,6 +466,4 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             this.IsLoading = false;
         }
     }
-
-  
 }

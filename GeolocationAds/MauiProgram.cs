@@ -51,7 +51,7 @@ public static class MauiProgram
 
         RegisterPages(builder);
 
-        RegisterTools(builder,configuration);
+        RegisterTools(builder, configuration);
 
         RegisterFactories(builder);
 
@@ -199,7 +199,7 @@ public static class MauiProgram
 
     #region **Registro de Herramientas**
 
-    private static void RegisterTools(MauiAppBuilder builder,IConfiguration configuration)
+    private static void RegisterTools(MauiAppBuilder builder, IConfiguration configuration)
     {
         builder.Services.AddSingleton<LogUserPerfilTool>();
 
@@ -207,8 +207,6 @@ public static class MauiProgram
 
         // Configurar GoogleAuthSettings usando Bind
         builder.Services.Configure<GoogleAuthSettings>(options => configuration.GetSection("GoogleSettings").Bind(options));
-
-        //builder.Services.AddSingleton<GoogleAuthService>();
     }
 
     #endregion **Registro de Herramientas**

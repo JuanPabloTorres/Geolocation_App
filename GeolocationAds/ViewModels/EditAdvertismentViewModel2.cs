@@ -34,7 +34,9 @@ namespace GeolocationAds.ViewModels
         {
             this.containerEditAdvertisment = containerEditAdvertisment;
 
-            this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+            //this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+            // Asigna la acción a ejecutar cuando ApplyQueryAttributesCompleted sea invocado
+            this.ApplyQueryAttributesCompleted = async () => await EditAdvertismentViewModel_ApplyQueryAttributesCompleted();
 
             // Subscribe to the ItemDeletedEvent
             EventManager2.Instance.Subscribe<ContentTypeTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
@@ -78,23 +80,13 @@ namespace GeolocationAds.ViewModels
         //    {
         //        this.IsLoading = true;
 
-        //        if (sender is ContentTypeTemplateViewModel2 template)
-        //        {
-        //            this.ContentTypesTemplate.Remove(template);
+        // if (sender is ContentTypeTemplateViewModel2 template) { this.ContentTypesTemplate.Remove(template);
 
-        //            this.Model.Contents.Remove(this.Model.Contents.Where(v => v.ID == template.ContentType.ID).FirstOrDefault());
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        foreach (var item in ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image))
-        //        {
-        //            await item.SetAnimation();
-        //        }
+        // this.Model.Contents.Remove(this.Model.Contents.Where(v => v.ID ==
+        // template.ContentType.ID).FirstOrDefault()); } } catch (Exception ex) { await
+        // CommonsTool.DisplayAlert("Error", ex.Message); } finally { foreach (var item in
+        // ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image)) { await
+        // item.SetAnimation(); }
 
         //        this.IsLoading = false;
         //    }
@@ -135,44 +127,45 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
+        private async Task EditAdvertismentViewModel_ApplyQueryAttributesCompleted()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
                 await LoadSetting();
 
                 ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
 
-                var _currentModelAdType = this.Model.Settings.FirstOrDefault();
+                // Validación previa de Model.Settings para evitar excepciones
+                var _currentModelAdType = this.Model.Settings?.FirstOrDefault();
 
-                this.SelectedAdType = AdTypesSettings.FirstOrDefault(item => _currentModelAdType?.SettingId == item.ID);
+                if (_currentModelAdType != null)
+                {
+                    this.SelectedAdType = AdTypesSettings.FirstOrDefault(item => item.ID == _currentModelAdType.SettingId);
+                }
 
-                if (this.ContentTypesTemplate.Any())
+                // Limpiar la lista de ContentTypesTemplate solo si tiene elementos
+                if (this.ContentTypesTemplate.Count > 0)
                 {
                     this.ContentTypesTemplate.Clear();
                 }
 
-                var tasks = this.Model.Contents.Select(async item =>
+                // Obtener la lista de contenidos antes de la enumeración
+                var contentItems = this.Model.Contents?.ToList();
+
+                if (contentItems != null && contentItems.Any())
                 {
-                    var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
+                    var tasks = contentItems.Select(async item =>
+                    {
+                        var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
 
-                    var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
+                        var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
 
-                    this.ContentTypesTemplate.Add(_template);
-                });
+                        this.ContentTypesTemplate.Add(_template);
+                    });
 
-                await Task.WhenAll(tasks);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+                    await Task.WhenAll(tasks);
+                }
+            });
         }
 
         //private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
@@ -181,46 +174,38 @@ namespace GeolocationAds.ViewModels
         //    {
         //        this.IsLoading = true;
 
-        //        await LoadSetting();
+        // await LoadSetting();
 
-        //        ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
+        // ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
 
-        //        var _currentModelAdType = this.Model.Settings.FirstOrDefault();
+        // var _currentModelAdType = this.Model.Settings.FirstOrDefault();
 
-        //        this.SelectedAdType = AdTypesSettings.First(item => _currentModelAdType.SettingId == item.ID);
+        // this.SelectedAdType = AdTypesSettings.First(item => _currentModelAdType.SettingId == item.ID);
 
-        //        if (this.ContentTypesTemplate.Any())
-        //            this.ContentTypesTemplate.Clear();
+        // if (this.ContentTypesTemplate.Any()) this.ContentTypesTemplate.Clear();
 
-        //        foreach (var item in this.Model.Contents)
-        //        {
-        //            //if (item.Type == ContentVisualType.Video)
-        //            //{
-        //            //    var _template = await AppToolCommon.ProcessContentItem(item, this.service);
+        // foreach (var item in this.Model.Contents) { //if (item.Type == ContentVisualType.Video)
+        // //{ // var _template = await AppToolCommon.ProcessContentItem(item, this.service);
 
-        //            //    //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+        // // //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
-        //            //    this.ContentTypesTemplate.Add(_template);
-        //            //}
-        //            //else
-        //            //{
-        //            //    var _template = await AppToolCommon.ProcessContentItem(item, null);
+        // // this.ContentTypesTemplate.Add(_template); //} //else //{ // var _template = await
+        // AppToolCommon.ProcessContentItem(item, null);
 
-        //            //    //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+        // // //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
-        //            //    this.ContentTypesTemplate.Add(_template);
+        // // this.ContentTypesTemplate.Add(_template);
 
-        //            //    //this.ContentTypesTemplate.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-        //            //}
+        // // //this.ContentTypesTemplate.ItemDeleted +=
+        // ContentTypeTemplateViewModel_ContentTypeDeleted; //}
 
-        //            var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
+        // var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
 
-        //            var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
+        // var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
 
-        //            // _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+        // // _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
 
-        //            this.ContentTypesTemplate.Add(_template);
-        //        }
+        // this.ContentTypesTemplate.Add(_template); }
 
         //        //ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
         //    }
@@ -242,11 +227,10 @@ namespace GeolocationAds.ViewModels
         //        {
         //            var _apiResponse = await this.containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
 
-        //            if (_apiResponse.IsSuccess)
-        //            {
-        //                AdTypesSettings.AddRange(_apiResponse.Data);
+        // if (_apiResponse.IsSuccess) { AdTypesSettings.AddRange(_apiResponse.Data);
 
-        //                var matchingSetting = this.Model.Settings.FirstOrDefault(modelsetting => AdTypesSettings.Any(item => modelsetting.SettingId == item.ID));
+        // var matchingSetting = this.Model.Settings.FirstOrDefault(modelsetting =>
+        // AdTypesSettings.Any(item => modelsetting.SettingId == item.ID));
 
         //                if (!matchingSetting.IsObjectNull())
         //                {
@@ -294,7 +278,6 @@ namespace GeolocationAds.ViewModels
                 await CommonsTool.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}");
             }
         }
-
 
         [RelayCommand]
         public async Task UploadContent()
@@ -439,7 +422,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        partial void OnSelectedAdTypeChanged(AppSetting value)
+         partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             // Invoke the asynchronous method and forget it
             HandleAdTypeChangeAsync(value).ContinueWith(task =>

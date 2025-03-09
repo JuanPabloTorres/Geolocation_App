@@ -88,7 +88,7 @@ namespace GeolocationAds.ViewModels
         {
             await InitializeSettings();
 
-            //await SetDefault();
+           
         }
 
         public async Task LoadSetting()
@@ -171,7 +171,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        [RelayCommand]
+      
         public override async Task Submit(Advertisement obj)
         {
             try
@@ -479,7 +479,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                if (this.Model.Contents.Count == 3)
+                if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit)
                 {
                     await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
 

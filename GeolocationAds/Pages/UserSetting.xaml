@@ -15,6 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Border
@@ -87,6 +88,28 @@
 
             <Button.ImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe923;" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            Grid.Row="3"
+            Command="{Binding SignOutCommand}"
+            CommandParameter="{Binding Model.Login.ID}"
+            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            Style="{StaticResource globalButton}"
+            Text="Sign Out"
+            TextTransform="Uppercase">
+
+            <Button.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="40"
+                    Offset="5,5" />
+            </Button.Shadow>
+
+            <Button.ImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
             </Button.ImageSource>
         </Button>
     </Grid>

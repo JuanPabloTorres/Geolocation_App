@@ -30,7 +30,14 @@ namespace GeolocationAds.ViewModels
         {
             this.nearByItemDetailContainer = nearByItemDetailContainer;
 
-            this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+            //this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+
+
+
+
+            this.ApplyQueryAttributesCompleted = async () => await EditAdvertismentViewModel_ApplyQueryAttributesCompleted();
+
+
         }
         private string TruncateDescription(string description)
         {
@@ -50,7 +57,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2>();
 
-        private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
+        private async Task EditAdvertismentViewModel_ApplyQueryAttributesCompleted()
         {
             try
             {

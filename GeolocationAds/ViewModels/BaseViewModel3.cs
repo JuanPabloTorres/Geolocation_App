@@ -10,16 +10,14 @@ using System.Reflection;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class BaseViewModel3<T, S> : ObservableObject, IQueryAttributable
+    public partial class BaseViewModel3<T, S> : RootBaseViewModel
     {
         [ObservableProperty]
-         T _model;
-
-        [ObservableProperty]
-        private bool isLoading;
+        private T _model;
 
         protected FilterPopUp _filterPopUp;
 
@@ -31,25 +29,11 @@ namespace GeolocationAds.ViewModels
 
         protected FilterPopUpViewModel2 filterPopUpViewModel;
 
-        protected LogUserPerfilTool LogUserPerfilTool { get; set; }
-
-        public static int PageIndex { get; set; } = 1;
-
         protected S service { get; set; }
-
-        public string ID { get; private set; }
 
         public ObservableCollection<T> CollectionModel { get; set; } = new ObservableCollection<T>();
 
-        public ObservableCollection<ValidationResult> ValidationResults { get; set; } = new ObservableCollection<ValidationResult>();
-
-        protected ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
-
-        public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
-
-        public event ApplyQueryAttributesEventHandler ApplyQueryAttributesCompleted;
-
-        public BaseViewModel3(T model, S service, LogUserPerfilTool logUserPerfil = null)
+        public BaseViewModel3(T model, S service, LogUserPerfilTool logUserPerfil = null) : base(logUserPerfil)
         {
             Model = model;
 
@@ -58,47 +42,11 @@ namespace GeolocationAds.ViewModels
             LogUserPerfilTool = logUserPerfil;
         }
 
-        public async void ApplyQueryAttributes(IDictionary<string, object> query)
+        protected override async Task Get(int id)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
-                if (query.ContainsKey("ID") && !string.IsNullOrEmpty(query["ID"].ToString()))
-                {
-                    var _itemId = Convert.ToInt32(query["ID"].ToString());
-
-                    if (_itemId > 0)
-                    {
-                        await this.Get(_itemId);
-
-                        OnApplyQueryAttributesCompleted(EventArgs.Empty);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
-        }
-
-        protected virtual void OnApplyQueryAttributesCompleted(EventArgs e)
-        {
-            ApplyQueryAttributesCompleted?.Invoke(this, e);
-        }
-
-        protected virtual async Task Get(int id)
-        {
-            try
-            {
-                this.IsLoading = true;
-
-                // Cache the MethodInfo if this method is called frequently
-                MethodInfo getMethod = this.service.GetType().GetMethod(nameof(Get));
+                var getMethod = this.service.GetType().GetMethod(nameof(Get), new System.Type[] { typeof(int) });
 
                 if (getMethod != null)
                 {
@@ -107,32 +55,16 @@ namespace GeolocationAds.ViewModels
                     // Invoke the method directly and await the response
                     var responseTask = (Task<ResponseTool<T>>)getMethod.Invoke(this.service, parameters);
 
-                    ResponseTool<T> _apiResponse = await responseTask;
+                    var _apiResponse = await responseTask;
 
                     if (!_apiResponse.IsSuccess)
                     {
-                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-
-                        return;
+                        throw new Exception(_apiResponse.Message);
                     }
 
                     this.Model = _apiResponse.Data;
                 }
-            }
-            catch (TargetInvocationException tie)
-            {
-                // Handle invocation-specific exceptions
-                await CommonsTool.DisplayAlert("Error", tie.InnerException?.Message ?? tie.Message);
-            }
-            catch (Exception ex)
-            {
-                // General exception handling
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         protected virtual async Task LoadData(int? pageIndex = 1)
@@ -188,12 +120,11 @@ namespace GeolocationAds.ViewModels
             ToolsLibrary.Tools.GenericTool<T>.SetPropertyValueOnObject(obj, nameof(BaseModel.UpdateBy), this.LogUserPerfilTool.LogUser.ID);
         }
 
+        [RelayCommand]
         public virtual async Task Submit(T obj)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                IsLoading = true;
-
                 if (this.ValidationResults.Any())
                 {
                     this.ValidationResults.Clear();
@@ -267,145 +198,83 @@ namespace GeolocationAds.ViewModels
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Consider using a logging framework to log the full details of the exception.
-                //Debug.WriteLine($"An error occurred: {ex}");
-
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            });
         }
 
         [RelayCommand]
-        public virtual async Task SubmitUpdate(T obj)
+        public virtual async Task SubmitUpdate(T model)
         {
-            IsLoading = true;
-
-            try
+            await RunWithLoadingIndicator(async () =>
             {
                 ValidationResults.Clear();
 
-                SetUpdateMetadata(obj);
+                SetUpdateMetadata(model);
 
-                var validationContextCurrentType = new ValidationContext(obj);
+                var validationContextCurrentType = new ValidationContext(model);
 
-                var isValiteObj = Validator.TryValidateObject(obj, validationContextCurrentType, ValidationResults, true);
+                bool isValidObj = Validator.TryValidateObject(model, validationContextCurrentType, ValidationResults, true);
 
-                var _propertyIntances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(obj);
+                var propertyInstances = ToolsLibrary.Tools.GenericTool<T>.GetSubPropertiesOfWithForeignKeyAttribute(model);
 
-                var _validatedSubProperty = new List<bool>();
-
-                foreach (var item in _propertyIntances)
-                {
-                    if (!item.IsObjectNull())
+                var validatedSubProperties = propertyInstances
+                    .Where(item => !item.IsObjectNull())
+                    .Select(item =>
                     {
-                        var _tempValidationResultsSubProperty = new ObservableCollection<ValidationResult>();
+                        var tempValidationResults = new ObservableCollection<ValidationResult>();
 
                         var validationContextSubProperty = new ValidationContext(item);
 
-                        this.ValidationContexts.Add(validationContextSubProperty);
+                        ValidationContexts.Add(validationContextSubProperty);
 
-                        _validatedSubProperty.Add(Validator.TryValidateObject(item, validationContextSubProperty, _tempValidationResultsSubProperty, true));
+                        bool isValid = Validator.TryValidateObject(item, validationContextSubProperty, tempValidationResults, true);
 
-                        this.ValidationResults.AddRange(_tempValidationResultsSubProperty);
-                    }
-                }
+                        ValidationResults.AddRange(tempValidationResults);
 
-                if (_validatedSubProperty.Count >= 0)
+                        return isValid;
+                    }).ToList();
+
+                bool allSubPropertiesValid = validatedSubProperties.All(v => v);
+
+                if (isValidObj && allSubPropertiesValid)
                 {
-                    bool _allSubPropetyValueAreValid = _validatedSubProperty.All(v => v == true);
+                    MethodInfo updateMethod = service.GetType().GetMethod("Update");
 
-                    if (isValiteObj && _allSubPropetyValueAreValid)
-                    {
-                        MethodInfo updateMethod = this.service.GetType().GetMethod("Update");
+                    if (updateMethod == null) throw new Exception("Método 'Update' no encontrado en el servicio.");
 
-                        if (updateMethod != null)
-                        {
-                            // Parameters to pass to the "Add" method
+                    var _id = model.GetType().GetProperty("ID")?.GetValue(model);
 
-                            var _id = obj.GetType().GetProperties().Where(p => p.Name == "ID").FirstOrDefault().GetValue(obj);
+                    object[] parameters = new object[] { model, _id };
 
-                            object[] parameters = new object[] { obj, _id };
+                    var apiResponse = await (Task<ResponseTool<T>>)updateMethod.Invoke(service, parameters);
 
-                            // Call the "Add" method on the userService instance
-                            Task<ResponseTool<T>> updateTask = Task.Run(async () =>
-                            {
-                                return await (Task<ResponseTool<T>>)updateMethod.Invoke(this.service, parameters);
-                            });
+                    if (!apiResponse.IsSuccess) throw new Exception(apiResponse.Message);
 
-                            // Wait for the asynchronous task to complete
-                            ResponseTool<T> _apiResponse = await updateTask;
+                    await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
 
-                            if (_apiResponse.IsSuccess)
-                            {
-                                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                    WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(model));
 
-                                WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(this.Model));
-
-                                await Shell.Current.Navigation.PopToRootAsync();
-                            }
-                            else
-                            {
-                                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                            }
-                        }
-                    }
+                    await Shell.Current.Navigation.PopToRootAsync();
                 }
-                else
+                else if (isValidObj)
                 {
-                    if (isValiteObj)
+                    MethodInfo addMethod = service.GetType().GetMethod("Add");
+
+                    if (addMethod == null) throw new Exception("Método 'Add' no encontrado en el servicio.");
+
+                    var apiResponse = await (Task<ResponseTool<T>>)addMethod.Invoke(service, new object[] { model });
+
+                    if (!apiResponse.IsSuccess) throw new Exception(apiResponse.Message);
+
+                    if (typeof(T).GetConstructor(System.Type.EmptyTypes) == null)
                     {
-                        MethodInfo addMethod = this.service.GetType().GetMethod("Add");
-
-                        if (addMethod != null)
-                        {
-                            // Parameters to pass to the "Add" method
-                            object[] parameters = new object[] { obj };
-
-                            // Call the "Add" method on the userService instance
-                            Task<ResponseTool<T>> addTask = Task.Run(async () =>
-                            {
-                                return await (Task<ResponseTool<T>>)addMethod.Invoke(this.service, parameters);
-                            });
-
-                            // Wait for the asynchronous task to complete
-                            ResponseTool<T> _apiResponse = await addTask;
-
-                            if (_apiResponse.IsSuccess)
-                            {
-                                if (typeof(T).GetConstructor(System.Type.EmptyTypes) != null)
-                                {
-                                    Activator.CreateInstance<T>();
-                                }
-                                else
-                                {
-                                    // Handle cases where T doesn't have a parameterless constructor
-                                    throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
-                                }
-
-                                //this.Image.Source = null;
-
-                                await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
-                            }
-                            else
-                            {
-                                await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
-                            }
-                        }
+                        throw new NotSupportedException($"Type {typeof(T).FullName} does not have a parameterless constructor.");
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
 
-            IsLoading = false;
+                    Activator.CreateInstance<T>();
+
+                    await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
+                }
+            });
         }
 
         [RelayCommand]

@@ -511,12 +511,16 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.Model">
             <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2._model"/>
         </member>
-        <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.IsLoading">
-            <inheritdoc cref="F:GeolocationAds.ViewModels.BaseViewModel3`2.isLoading"/>
+        <member name="F:GeolocationAds.ViewModels.BaseViewModel3`2.submitCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel3`2.SubmitCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.BaseViewModel3`2.SubmitCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.BaseViewModel3`2.Submit(`0)"/>.</summary>
         </member>
         <member name="F:GeolocationAds.ViewModels.BaseViewModel3`2.submitUpdateCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.BaseViewModel3`2.SubmitUpdateCommand"/>.</summary>
@@ -663,7 +667,6 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.SelectedAdType">
             <inheritdoc cref="F:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.selectedAdType"/>
@@ -675,12 +678,6 @@
             <summary>Executes the logic for when <see cref="P:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.SelectedAdType"/> just changed.</summary>
             <param name="value">The new property value that was set.</param>
             <remarks>This method is invoked right after the value of <see cref="P:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.SelectedAdType"/> is changed.</remarks>
-        </member>
-        <member name="F:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.submitCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.SubmitCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.SubmitCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.Submit(ToolsLibrary.Models.Advertisement)"/>.</summary>
         </member>
         <member name="F:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.uploadContentCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.CreateAdvertismentViewModel2.UploadContentCommand"/>.</summary>
@@ -978,6 +975,37 @@
         <member name="P:GeolocationAds.ViewModels.RegisterViewModel.ClearTextCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.RegisterViewModel.ClearText"/>.</summary>
         </member>
+        <member name="T:GeolocationAds.ViewModels.RootBaseViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.RootBaseViewModel.ApplyQueryAttributesCompleted">
+            <summary>
+            Acción que se ejecuta cuando ApplyQueryAttributes finaliza.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.RootBaseViewModel.RunWithLoadingIndicator(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Método para ejecutar una tarea con indicador de carga activado.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.RootBaseViewModel.ApplyQueryAttributes(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Procesa atributos de consulta y ejecuta la acción de finalización.
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.RootBaseViewModel.Get(System.Int32)">
+            <summary>
+            Método virtual para obtener datos basado en ID (para ser sobreescrito en los ViewModels).
+            </summary>
+        </member>
+        <member name="M:GeolocationAds.ViewModels.RootBaseViewModel.ValidateModel(System.Object)">
+            <summary>
+            Método de validación global para cualquier modelo.
+            </summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.RootBaseViewModel.IsLoading">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.RootBaseViewModel.isLoading"/>
+        </member>
         <member name="T:GeolocationAds.ViewModels.SearchAdViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -1012,6 +1040,7 @@
         <member name="T:GeolocationAds.ViewModels.UserSettingViewModel">
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="F:GeolocationAds.ViewModels.UserSettingViewModel.navigateEditPerfilCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditPerfilCommand"/>.</summary>
@@ -1024,6 +1053,12 @@
         </member>
         <member name="P:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditLoginCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.UserSettingViewModel.NavigateEditLogin(System.Int32)"/>.</summary>
+        </member>
+        <member name="F:GeolocationAds.ViewModels.UserSettingViewModel.signOutCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.UserSettingViewModel.SignOutCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.ViewModels.UserSettingViewModel.SignOutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.UserSettingViewModel.SignOut"/>.</summary>
         </member>
         <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
             <summary>

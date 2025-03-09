@@ -12,12 +12,12 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class EditUserPerfilViewModel : BaseViewModel4<User, IUserService>
+    public partial class EditUserPerfilViewModel : BaseViewModel3<User, IUserService>
     {
         [ObservableProperty] private User _user;
 
         public EditUserPerfilViewModel(User model, IUserService service, LogUserPerfilTool logUserPerfil)
-            : base(service, logUserPerfil)
+            : base(model,service, logUserPerfil)
         {
             UpdateModel();
         }

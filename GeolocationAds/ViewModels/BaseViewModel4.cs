@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
+
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -64,9 +65,13 @@ namespace GeolocationAds.ViewModels
         #region Campos protegidos para popups
 
         protected FilterPopUp FilterPopUp;
+
         protected FilterPopUpForSearch FilterPopUpForSearch;
+
         protected MetaDataPopUp MetaDataPopUp;
+
         protected CompletePopUp CompletePopUp;
+
         protected FilterPopUpViewModel2 FilterPopUpViewModel;
 
         #endregion Campos protegidos para popups
@@ -151,18 +156,22 @@ namespace GeolocationAds.ViewModels
             try
             {
                 IsLoading = true;
+
                 var getMethod = Service.GetType().GetMethod(nameof(Get));
+
                 if (getMethod != null)
                 {
                     var responseTask = (Task<ResponseTool<T>>)getMethod.Invoke(Service, new object[] { id });
+
                     var response = await responseTask;
+
                     if (response.IsSuccess)
                     {
                         Model = response.Data;
                     }
                     else
                     {
-                        await Shell.Current.DisplayAlert("Error", response.Message, "OK");
+                       throw new Exception(response.Message);
                     }
                 }
             }

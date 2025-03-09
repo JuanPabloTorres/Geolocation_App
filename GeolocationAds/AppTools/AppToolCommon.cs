@@ -41,27 +41,6 @@ namespace GeolocationAds.AppTools
             }
         }
 
-        public static string EnsureImageFile(string fileName)
-        {
-            string filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
-
-            // Check if the file already exists
-            if (!File.Exists(filePath))
-            {
-                // Get the embedded resource stream
-                using (var resourceStream = GetEmbeddedResourceStream(fileName))
-                {
-                    // Copy the stream to the file system
-                    using (var fileStream = File.Create(filePath))
-                    {
-                        resourceStream.CopyTo(fileStream);
-                    }
-                }
-            }
-
-            return filePath;
-        }
-
         public static Stream GetEmbeddedResourceStream(string resourceFileName)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -90,7 +69,6 @@ namespace GeolocationAds.AppTools
 
                     case ContentVisualType.Video:
 
-
                         var streamingResponse = await advertisementService.GetStreamingVideoUrl(item.ID);
 
                         if (!streamingResponse.IsSuccess)
@@ -101,42 +79,6 @@ namespace GeolocationAds.AppTools
                         }
 
                         return ContentTypeTemplateFactory.BuilContentType(item, streamingResponse.Data);
-
-                    default:
-                        // Handle other content types or provide a default action.
-                        return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-
-                return null;
-            }
-        }
-
-        public static async Task<ContentTypeTemplateViewModel2> ProcessContentItem(IAdvertisementService advertisementService, ContentType item)
-        {
-            try
-            {
-                switch (item.Type)
-                {
-                    case ContentVisualType.Image:
-                        return ContentTypeTemplateFactory.BuilContentType(item, item.Content);
-
-                    case ContentVisualType.Video:
-                        var _streamingResponse = await advertisementService.GetStreamingVideoUrl(item.ID);
-
-                        if (!_streamingResponse.IsSuccess)
-                        {
-                            await CommonsTool.DisplayAlert("Error", _streamingResponse.Message);
-
-                            return null;
-                        }
-
-                        MediaSource _media = _streamingResponse.Data;
-
-                        return ContentTypeTemplateFactory.BuilContentType(item, _media);
 
                     default:
                         // Handle other content types or provide a default action.
@@ -210,6 +152,20 @@ namespace GeolocationAds.AppTools
 
                 return null;
             }
+        }
+
+        public static string FormatPhoneNumber(string input)
+        {
+            string digits = new string(input.Where(char.IsDigit).ToArray());
+
+            if (string.IsNullOrWhiteSpace(digits)) return string.Empty;
+
+            return digits.Length switch
+            {
+                <= 3 => $"({digits}",
+                <= 6 => $"({digits[..3]})-{digits[3..]}",
+                _ => $"({digits[..3]})-{digits[3..6]}-{digits[6..]}"
+            };
         }
     }
 }
