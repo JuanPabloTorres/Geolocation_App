@@ -11,16 +11,11 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private bool isLoading;
 
-        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
-
-        public event RemoveItemEventHandler ItemDeleted;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Action<ContentTypeTemplateViewModel2> ItemDeleted { get; set; }  // ✅ Se usa Action en vez de event
 
         public static string CurrentPageContext { get; set; }
 
         protected IAdvertisementService advertisementService { get; set; }
-
         protected IGeolocationAdService geolocationAdService { get; set; }
 
         public TemplateBaseViewModel2(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService)
@@ -51,23 +46,19 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        protected virtual void OnDeleteType(EventArgs e)
+        protected virtual void OnDeleteType(ContentTypeTemplateViewModel2 contentTypeTemplateViewModel2)
         {
-            ItemDeleted?.Invoke(this, e);
+            ItemDeleted?.Invoke(contentTypeTemplateViewModel2);  // ✅ Se usa Action en lugar de event
         }
 
         public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
         {
-            var queryString = string.Empty;
-
-            if (!queryParameters.IsObjectNull() && queryParameters.Count > 0)
-            {
-                queryString = string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"));
-
-                queryString = "?" + queryString;
-            }
+            var queryString = queryParameters != null && queryParameters.Count > 0
+                ? "?" + string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"))
+                : string.Empty;
 
             await Shell.Current.GoToAsync($"{pageName}{queryString}");
         }
     }
+
 }

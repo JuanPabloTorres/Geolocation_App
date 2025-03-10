@@ -132,9 +132,9 @@ namespace GeolocationAds.TemplateViewModel
             {
                 this.IsLoading = true;
 
-                //OnDeleteType(EventArgs.Empty);
+                OnDeleteType(this);
 
-                EventManager2.Instance.Publish(this, CurrentPageContext);
+                //EventManager2.Instance.Publish(this, CurrentPageContext);
             }
             catch (Exception ex)
             {

@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeolocationAds")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+fd086de70486ff6c3391d5efdce9437b4536d83d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+6e79353512a97d26946937aa79db23cd181bbb07")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeolocationAds")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeolocationAds")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

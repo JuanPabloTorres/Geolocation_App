@@ -18,7 +18,7 @@
 
         <ToolbarItem Command="{Binding UploadContentCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe8a7;" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe43e;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
@@ -35,6 +35,7 @@
     <ContentPage.Resources>
 
         <converters:AnimationConverter x:Key="AnimationConverter" />
+
         <converters:LenghtCountConverter x:Key="LenghtCountConverter" />
 
         <DataTemplate x:Key="WebViewDataTemplateCreate">
@@ -170,75 +171,7 @@
             </Grid>
         </DataTemplate>
 
-        <!--<DataTemplate x:Key="WebViewDataTemplateCreate">
 
-            <Grid>
-
-                <WebView Navigating="WebView_Navigating" Source="{Binding UrlSource, Mode=TwoWay}" />
-
-        -->
-        <!--  Button Container Grid  -->
-        <!--
-                <Grid>
-        -->
-        <!--  Button is placed in the same cell as the image  -->
-        <!--
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-        -->
-        <!--  Button  -->
-        <!--
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Command="{Binding RemoveCurrentItemCommand}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        VerticalOptions="Start">
-
-                        <Button.Shadow>
-                            <Shadow
-                                Brush="Black"
-                                Opacity="0.5"
-                                Radius="40"
-                                Offset="5,5" />
-                        </Button.Shadow>
-
-                        <Button.ImageSource>
-                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
-                        </Button.ImageSource>
-                    </Button>
-
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Command="{Binding OpenUrlCommand}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        VerticalOptions="Start">
-
-                        <Button.Shadow>
-                            <Shadow
-                                Brush="Black"
-                                Opacity="0.5"
-                                Radius="40"
-                                Offset="5,5" />
-                        </Button.Shadow>
-
-                        <Button.ImageSource>
-                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
-                        </Button.ImageSource>
-                    </Button>
-                </Grid>
-            </Grid>
-        </DataTemplate>-->
 
         <DataTemplate x:Key="ImageDataTemplateCreate">
 

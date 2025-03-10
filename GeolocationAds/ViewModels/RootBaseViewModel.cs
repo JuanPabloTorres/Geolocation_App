@@ -38,26 +38,52 @@ namespace GeolocationAds.ViewModels
         /// <summary>
         /// Método para ejecutar una tarea con indicador de carga activado.
         /// </summary>
-        protected async Task RunWithLoadingIndicator(Func<Task> action)
-        {
-            if (IsLoading) return;
+        //protected async Task RunWithLoadingIndicator(Func<Task> action)
+        //{
+        //    if (IsLoading) return;
 
+        //    try
+        //    {
+        //        IsLoading = true;
+
+        //        await action();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // General exception handling
+        //        await CommonsTool.DisplayAlert("Error", ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        IsLoading = false;
+        //    }
+        //}
+
+        protected async Task RunWithLoadingIndicator(Func<Task> action, Action<Exception> onError = null)
+        {
             try
             {
-                IsLoading = true;
+                this.IsLoading = true;
 
                 await action();
             }
             catch (Exception ex)
             {
-                // General exception handling
-                await CommonsTool.DisplayAlert("Error", ex.Message);
+                if (onError != null)
+                {
+                    onError(ex); // 🔹 Manejo personalizado de errores
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", ex.Message);
+                }
             }
             finally
             {
-                IsLoading = false;
+                this.IsLoading = false;
             }
         }
+
 
         /// <summary>
         /// Procesa atributos de consulta y ejecuta la acción de finalización.

@@ -983,7 +983,7 @@
             Acción que se ejecuta cuando ApplyQueryAttributes finaliza.
             </summary>
         </member>
-        <member name="M:GeolocationAds.ViewModels.RootBaseViewModel.RunWithLoadingIndicator(System.Func{System.Threading.Tasks.Task})">
+        <member name="M:GeolocationAds.ViewModels.RootBaseViewModel.RunWithLoadingIndicator(System.Func{System.Threading.Tasks.Task},System.Action{System.Exception})">
             <summary>
             Método para ejecutar una tarea con indicador de carga activado.
             </summary>

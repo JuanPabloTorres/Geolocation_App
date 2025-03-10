@@ -20,12 +20,12 @@ namespace GeolocationAds.ViewModels
     {
         private readonly IContainerEditAdvertisment containerEditAdvertisment;
 
-        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ();
 
-        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2>();
+        public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new();
 
         [ObservableProperty]
-        private AppSetting selectedAdType = new AppSetting();
+        private AppSetting selectedAdType = new ();
 
         [ObservableProperty]
         private string url;
@@ -34,7 +34,7 @@ namespace GeolocationAds.ViewModels
         {
             this.containerEditAdvertisment = containerEditAdvertisment;
 
-            //this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
+            
             // Asigna la acción a ejecutar cuando ApplyQueryAttributesCompleted sea invocado
             this.ApplyQueryAttributesCompleted = async () => await EditAdvertismentViewModel_ApplyQueryAttributesCompleted();
 
@@ -92,15 +92,14 @@ namespace GeolocationAds.ViewModels
         //    }
         //}
 
-        private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
+        private async void ContentTypeTemplateViewModel_ContentTypeDeleted(ContentTypeTemplateViewModel2 template)
         {
             try
             {
                 this.IsLoading = true;
 
-                if (sender is ContentTypeTemplateViewModel2 template)
-                {
-                    if (this.ContentTypesTemplate.Count() == 1)
+               
+                    if (this.ContentTypesTemplate.Count() == ConstantsTools.MaxAdLimit)
                     {
                         await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
                     }
@@ -115,7 +114,7 @@ namespace GeolocationAds.ViewModels
 
                         this.Model.Contents.Remove(template.ContentType);
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -286,7 +285,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                if (this.Model.Contents.Count == 3)
+                if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit)
                 {
                     await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
 
@@ -490,7 +489,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                if (this.Model.Contents.Count == 3)
+                if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit)
                 {
                     await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
 
@@ -507,7 +506,9 @@ namespace GeolocationAds.ViewModels
 
                     var _template = ContentTypeTemplateFactory.BuilContentType(_content, _uri);
 
-                    _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+                    //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+                    _template.ItemDeleted =  ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                     this.ContentTypesTemplate.Add(_template);
 
