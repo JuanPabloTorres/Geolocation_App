@@ -20,7 +20,7 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
-        <ToolbarItem Command="{Binding ClearTextCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+        <ToolbarItem Command="{Binding ClearDataCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe0b8;" />
             </ToolbarItem.IconImageSource>

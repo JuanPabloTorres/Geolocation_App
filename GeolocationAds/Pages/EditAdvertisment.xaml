@@ -24,7 +24,7 @@
 
         <ToolbarItem Command="{Binding UploadContentCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe8a7;" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe43e;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
@@ -53,38 +53,22 @@
                 <WebView
                     x:Name="webView"
                     Grid.Row="0"
-                    Navigated="WebView_Navigated"
                     Navigating="WebView_Navigating"
                     Source="{Binding UrlSource, Mode=TwoWay}" />
 
-                <!--<Button
-                    Grid.Row="0"
-                    Command="{Binding RemoveCurrentItemCommand}"
-                    CommandParameter="{Binding CurrentAdvertisement}"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                    Style="{StaticResource XButton}"
-                    VerticalOptions="Start">
 
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
-
-                    <Button.ImageSource>
-                        <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
-                    </Button.ImageSource>
-                </Button>-->
 
                 <!--  Button Container Grid  -->
-                <Grid Grid.Row="1" ColumnSpacing="4">
-                    <!--  Button is placed in the same cell as the image  -->
+                <!--<Grid Grid.Row="1" ColumnSpacing="4">
+                -->
+                <!--  Button is placed in the same cell as the image  -->
+                <!--
                     <Grid.RowDefinitions>
 
                         <RowDefinition Height="Auto" />
-                        <!--  New row for the buttons  -->
+                -->
+                <!--  New row for the buttons  -->
+                <!--
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -192,7 +176,7 @@
                         </Button.ImageSource>
                     </Button>
 
-                </Grid>
+                </Grid>-->
             </Grid>
         </DataTemplate>
 
@@ -411,11 +395,12 @@
         <HorizontalStackLayout Grid.Row="4" HorizontalOptions="FillAndExpand">
             <local:CustomEntryContentView
                 x:Name="urlValue"
-                IconSource="&#xe157;"
+                IconSize="50"
+                IconSource="&#xe902;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="URL"
                 Text="{Binding Url, Mode=TwoWay}"
-                WidthRequest="320" />
+                WidthRequest="300" />
 
             <Button
                 BackgroundColor="{StaticResource DarkViolet}"
@@ -425,7 +410,7 @@
                 Style="{StaticResource globalButtonUrL}">
 
                 <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe145;" />
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe178;" />
                 </Button.ImageSource>
             </Button>
         </HorizontalStackLayout>

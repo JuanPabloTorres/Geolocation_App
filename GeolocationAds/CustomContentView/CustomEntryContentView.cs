@@ -56,6 +56,15 @@ public class CustomEntryContentView : ContentView
         set => SetValue(IconSourceProperty, value);
     }
 
+    public static readonly BindableProperty IconSizeProperty =
+       BindableProperty.Create(nameof(IconSize), typeof(double), typeof(CustomEntryContentView), default(double), BindingMode.TwoWay);
+
+    public double IconSize
+    {
+        get => (double)GetValue(IconSizeProperty);
+        set => SetValue(IconSizeProperty, value);
+    }
+
     // Evento TextChanged para permitir binding en XAML
     public event EventHandler<TextChangedEventArgs> TextChanged;
 
@@ -112,11 +121,14 @@ public class CustomEntryContentView : ContentView
         // Set up the FontImageSource for the image
         var fontImageSource = new FontImageSource
         {
-            FontFamily = "MaterialIcons-Regular",
+            FontFamily = "MaterialIcons-Regular",            
+            
             Color = (Color)Application.Current.Resources["AppBlack"]
         };
 
         fontImageSource.SetBinding(FontImageSource.GlyphProperty, new Binding(nameof(IconSource), source: this));
+       
+        fontImageSource.SetBinding(FontImageSource.SizeProperty, new Binding(nameof(IconSize), source: this));
 
         // Assign the FontImageSource to the image
         image.Source = fontImageSource;

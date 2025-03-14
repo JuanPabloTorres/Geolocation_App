@@ -92,12 +92,6 @@
             Elimina todos los datos almacenados en SecureStorage.
             </summary>
         </member>
-        <member name="T:GeolocationAds.TemplateViewModel.BaseTemplateViewModel">
-            <inheritdoc/>
-        </member>
-        <member name="P:GeolocationAds.TemplateViewModel.BaseTemplateViewModel.IsLoading">
-            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.BaseTemplateViewModel.isLoading"/>
-        </member>
         <member name="T:GeolocationAds.TemplateViewModel.CaptureTemplateViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -210,6 +204,7 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
+            <inheritdoc/>
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.ContentType">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.contentType"/>
@@ -231,6 +226,12 @@
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.CanGoForward">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.canGoForward"/>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.clearHistoryAndNavigateCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.ClearHistoryAndNavigateCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.ClearHistoryAndNavigateCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.ClearHistoryAndNavigate(System.String)"/>.</summary>
         </member>
         <member name="F:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.openUrlCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.ContentTypeTemplateViewModel2.OpenUrlCommand"/>.</summary>
@@ -969,11 +970,11 @@
         <member name="P:GeolocationAds.ViewModels.RegisterViewModel.NewUser">
             <inheritdoc cref="F:GeolocationAds.ViewModels.RegisterViewModel._newUser"/>
         </member>
-        <member name="F:GeolocationAds.ViewModels.RegisterViewModel.clearTextCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.RegisterViewModel.ClearTextCommand"/>.</summary>
+        <member name="F:GeolocationAds.ViewModels.RegisterViewModel.clearDataCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.RegisterViewModel.ClearDataCommand"/>.</summary>
         </member>
-        <member name="P:GeolocationAds.ViewModels.RegisterViewModel.ClearTextCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.RegisterViewModel.ClearText"/>.</summary>
+        <member name="P:GeolocationAds.ViewModels.RegisterViewModel.ClearDataCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.ViewModels.RegisterViewModel.ClearData"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.RootBaseViewModel">
             <inheritdoc/>
@@ -1186,9 +1187,6 @@
             for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
             </summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLoading">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLoading" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Advertisement">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Advertisement" generated properties.</summary>
         </member>
@@ -1218,6 +1216,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CanGoForward">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CanGoForward" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLoading" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Model">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Model" generated properties.</summary>
@@ -1285,9 +1286,6 @@
             for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
             </summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLoading">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLoading" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Advertisement">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Advertisement" generated properties.</summary>
         </member>
@@ -1317,6 +1315,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CanGoForward">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CanGoForward" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLoading" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Model">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Model" generated properties.</summary>

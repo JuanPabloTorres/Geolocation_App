@@ -35,11 +35,6 @@ namespace GeolocationAds.ViewModels
         }
 
         [RelayCommand]
-        private void ClearText()
-        {
-            ClearData();
-        }
-
         private void ClearData()
         {
             this.Model.FullName = string.Empty;
@@ -52,5 +47,7 @@ namespace GeolocationAds.ViewModels
 
             this.Model.Login.Password = string.Empty;
         }
+
+       
     }
 }

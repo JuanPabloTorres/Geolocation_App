@@ -79,16 +79,7 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-
-
-
-        <displayer:PaginControls
-            x:Name="paginControls"
-            Grid.Row="1"
-            IsBackButtonEnabled="{Binding IsBackEnabled, Mode=TwoWay}"
-            IsBackButtonVisible="{Binding IsBackVisible, Mode=TwoWay}"
-            IsNextButtonEnabled="{Binding IsNextEnabled, Mode=TwoWay}"
-            IsNextButtonVisible="{Binding IsNextVisible, Mode=TwoWay}">
+        <displayer:PaginControls x:Name="paginControls" Grid.Row="1">
             <displayer:PaginControls.IsVisible>
                 <MultiBinding Converter="{StaticResource IsVisibleConverterMultiParam}">
                     <Binding Path="IsLoading" />

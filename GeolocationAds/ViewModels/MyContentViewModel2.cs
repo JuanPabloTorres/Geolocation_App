@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
@@ -20,19 +22,35 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private AppSetting selectedAdType;
 
-        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
         public MyContentViewModel2(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
         {
             this.containerMyContentServices = myContentServices;
 
-            BaseTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
+            //BaseTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
             Task.Run(async () =>
             {
                 await InitializeSettingsAsync();
 
                 await InitializeAsync();
+            });
+
+            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (m?.Value == null) return; // 🔹 Evita errores si el mensaje es nulo
+
+                    foreach (var item in CollectionModel)
+                    {
+                        if (item.Advertisement.ID == m.Value.ID)
+                        {
+                            item.Advertisement = m.Value;
+                        }
+                    }
+                });
             });
         }
 
@@ -46,22 +64,17 @@ namespace GeolocationAds.ViewModels
             await InitializeAsync();
         }
 
-        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        private async void FilterPopUpViewModel_FilterItem()
         {
             try
             {
                 await this._filterPopUp.CloseAsync();
 
-                var _sender = sender as FilterPopUpViewModel2;
+                this.CollectionModel.Clear();
 
-                if (sender is FilterPopUpViewModel2 filterPopUpViewModel)
-                {
-                    this.CollectionModel.Clear();
+                this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
 
-                    this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
-
-                    await InitializeAsync();
-                }
+                await InitializeAsync();
             }
             catch (Exception ex)
             {
@@ -69,91 +82,71 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private void AdLocationTemplateViewModel_ItemDeleted(object sender, EventArgs e)
+        private void On_ItemDeleted(ContentViewTemplateViewModel sender)
         {
-            if (sender is ContentViewTemplateViewModel model)
-            {
-                var _toRemoveAdContent = this.CollectionModel.Where(v => v.Advertisement.ID == model.Advertisement.ID).FirstOrDefault();
+            var _toRemoveAdContent = this.CollectionModel.Where(v => v.Advertisement.ID == sender.Advertisement.ID).FirstOrDefault();
 
-                this.CollectionModel.Remove(_toRemoveAdContent);
-            }
+            this.CollectionModel.Remove(_toRemoveAdContent);
         }
 
         protected override async Task LoadData(int? pageIndex = 1)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
-                var userId = this.LogUserPerfilTool.GetUserId();
+                var userId = LogUserPerfilTool.GetUserId();
 
                 var apiResponse = await containerMyContentServices.AdvertisementService
-                                .GetAdvertisementsOfUser(userId, SelectedAdType.ID, pageIndex)
-                                .ConfigureAwait(false);
+                    .GetAdvertisementsOfUser(userId, SelectedAdType?.ID ?? 0, pageIndex)
+                    .ConfigureAwait(false);
 
                 if (!apiResponse.IsSuccess)
                 {
-                    await CommonsTool.DisplayAlert("Error", apiResponse.Message);
+                    throw new Exception(apiResponse.Message);
                 }
 
-                var viewModels = apiResponse.Data.Select(ad => new ContentViewTemplateViewModel(this.containerMyContentServices.AdvertisementService, this.service, ad)).ToList();
+                var newViewModels = apiResponse.Data
+                    .AsParallel() // 🔹 Usa procesamiento paralelo para mayor eficiencia
+                    .Select(ad => new ContentViewTemplateViewModel(containerMyContentServices.AdvertisementService, service, ad, On_ItemDeleted))
+                    .ToList();
 
-                MainThread.BeginInvokeOnMainThread(() => CollectionModel.AddRange(viewModels));
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+                // 🔹 Modifica la UI solo si hay cambios y en el hilo principal
+                if (newViewModels.Count > 0)
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
+                        CollectionModel.AddRange(newViewModels);
+                    });
+                }
+            });
         }
 
         private async Task LoadSettingsAsync()
         {
-            IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
+            IList<string> settings = new List<string> { SettingName.AdTypes.ToString() };
 
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                AdTypesSettings.Clear();
 
-                if (this.AdTypesSettings.Any())
+                var apiResponse = await containerMyContentServices.AppSettingService.GetAppSettingByNames(settings);
+
+                if (!apiResponse.IsSuccess)
                 {
-                    this.AdTypesSettings.Clear();
+                    await CommonsTool.DisplayAlert("Error", apiResponse.Message);
+
+                    return;
                 }
 
-                var _apiResponse = await this.containerMyContentServices.AppSettingService.GetAppSettingByNames(settings);
+                // 🔹 Filtra y agrega los elementos de forma más eficiente
+                AdTypesSettings.AddRange(apiResponse.Data.Where(item => item.SettingName == SettingName.AdTypes.ToString()));
 
-                if (_apiResponse.IsSuccess)
-                {
-                    foreach (var item in _apiResponse.Data)
-                    {
-                        if (SettingName.AdTypes.ToString() == item.SettingName)
-                        {
-                            AdTypesSettings.Add(item);
-                        }
-                    }
+                SelectedAdType = AdTypesSettings.FirstOrDefault();
 
-                    SelectedAdType = AdTypesSettings.FirstOrDefault();
+                filterPopUpViewModel = new FilterPopUpViewModel2(AdTypesSettings);
 
-                    filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings);
-
-                    this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
-                }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+                filterPopUpViewModel.OnFilterItem = FilterPopUpViewModel_FilterItem;
+            });
         }
 
         public async Task InitializeSettingsAsync()
@@ -168,16 +161,12 @@ namespace GeolocationAds.ViewModels
 
         public override async Task OpenFilterPopUpForSearch()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this._filterPopUp = new FilterPopUp(this.filterPopUpViewModel);
+                _filterPopUp = new FilterPopUp(filterPopUpViewModel);
 
-                await Shell.Current.CurrentPage.ShowPopupAsync(this._filterPopUp);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+                await Shell.Current.CurrentPage.ShowPopupAsync(_filterPopUp);
+            });
         }
     }
 }

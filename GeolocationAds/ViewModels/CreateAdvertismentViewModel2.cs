@@ -98,14 +98,9 @@ namespace GeolocationAds.ViewModels
 
         public override async Task Submit(Advertisement obj)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                IsLoading = true;
-
-                if (ValidationResults.Any())
-                {
-                    ValidationResults.Clear();
-                }
+                ValidationResults.Clear();
 
                 var validationContextCurrentType = new ValidationContext(obj);
 
@@ -129,6 +124,7 @@ namespace GeolocationAds.ViewModels
                         {
                             allSubPropertyValid = false;
                         }
+
                         ValidationResults.AddRange(tempValidationResultsSubProperty);
                     }
                 }
@@ -137,33 +133,18 @@ namespace GeolocationAds.ViewModels
                 {
                     var apiResponse = await this.service.Add(obj);
 
-                    if (apiResponse.IsSuccess)
+                    if (!apiResponse.IsSuccess)
                     {
-                        if (ValidationResults.Any())
-                        {
-                            ValidationResults.Clear();
-                        }
-
-                        IsLoading = false;
-
-                        await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
-
-                        await this.SetDefault();
+                        throw new Exception(apiResponse.Message);
                     }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
-                    }
+
+                    ValidationResults.Clear();
+
+                    await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
+
+                    await this.SetDefault();
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            });
         }
 
         [RelayCommand]
@@ -299,16 +280,17 @@ namespace GeolocationAds.ViewModels
 
          partial void OnSelectedAdTypeChanged(AppSetting value)
         {
-            // Invoke the asynchronous method and forget it
-            HandleAdTypeChangeAsync(value).ContinueWith(task =>
+            _ = HandleAdTypeChangeAsync(value).ContinueWith(task =>
             {
-                // Handle exceptions if task fails
                 if (task.Exception != null)
                 {
-                    // Log or handle the exception as needed
-                    Console.WriteLine($"Exception occurred: {task.Exception.Flatten()}");
+                    // 🔹 Opcionalmente, podrías mostrar una alerta si lo necesitas
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await CommonsTool.DisplayAlert("Error", $"Ocurrió un error: {task.Exception.Flatten().InnerException?.Message}");
+                    });
                 }
-            }, TaskScheduler.FromCurrentSynchronizationContext()); // Ensure any continuation runs on the UI thread
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         [RelayCommand]
@@ -343,30 +325,20 @@ namespace GeolocationAds.ViewModels
 
         private async Task HandleAdTypeChangeAsync(AppSetting value)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                if (!this.Model.Settings.IsObjectNull() && !value.IsObjectNull())
+                if (this.Model.Settings.IsObjectNull() || value.IsObjectNull())
+                    return;
+
+                this.Model.Settings.Clear(); // 🔹 No es necesario verificar si tiene elementos antes de limpiar
+
+                this.Model.Settings.Add(new AdvertisementSettings
                 {
-                    if (this.Model.Settings.Any())
-                    {
-                        this.Model.Settings.Clear();
-                    }
-
-                    var _adSetting = new AdvertisementSettings()
-                    {
-                        CreateDate = DateTime.Now,
-                        CreateBy = this.LogUserPerfilTool.LogUser.ID,
-                        SettingId = value.ID,
-                    };
-
-                    this.Model.Settings.Add(_adSetting);
-                }
-            }
-            catch (Exception ex)
-            {
-                // If DisplayAlert is truly asynchronous
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+                    CreateDate = DateTime.Now,
+                    CreateBy = this.LogUserPerfilTool.LogUser.ID,
+                    SettingId = value.ID
+                });
+            });
         }
     }
 }

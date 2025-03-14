@@ -40,27 +40,34 @@
 
         <DataTemplate x:Key="WebViewDataTemplateCreate">
 
-            <Grid RowSpacing="2">
+            <VerticalStackLayout>
 
-                <Grid.RowDefinitions>
+                <!--<Grid.RowDefinitions>
 
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                    <!--  New row for the buttons  -->
-                </Grid.RowDefinitions>
+                -->
+                <!--  New row for the buttons  -->
+                <!--
+                </Grid.RowDefinitions>-->
                 <WebView
                     x:Name="web"
                     Grid.Row="0"
+                    Loaded="OnWebViewLoaded"
                     Navigating="WebView_Navigating"
                     Source="{Binding UrlSource, Mode=TwoWay}" />
 
                 <!--  Button Container Grid  -->
-                <Grid Grid.Row="1" ColumnSpacing="4">
-                    <!--  Button is placed in the same cell as the image  -->
+                <!--<Grid Grid.Row="1" ColumnSpacing="4">
+                -->
+                <!--  Button is placed in the same cell as the image  -->
+                <!--
                     <Grid.RowDefinitions>
 
                         <RowDefinition Height="Auto" />
-                        <!--  New row for the buttons  -->
+                -->
+                <!--  New row for the buttons  -->
+                <!--
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -70,7 +77,6 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
 
                     <Button
                         Grid.Row="1"
@@ -89,7 +95,6 @@
                         <Button.ImageSource>
                             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaa7;" />
                         </Button.ImageSource>
-
                     </Button>
 
                     <Button
@@ -109,7 +114,6 @@
                         <Button.ImageSource>
                             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeaaa;" />
                         </Button.ImageSource>
-
                     </Button>
 
                     <Button
@@ -144,7 +148,6 @@
                         <Button.ImageSource>
                             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe157;" />
                         </Button.ImageSource>
-
                     </Button>
 
                     <Button
@@ -166,52 +169,19 @@
                             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
                         </Button.ImageSource>
                     </Button>
-
-                </Grid>
-            </Grid>
+                </Grid>-->
+            </VerticalStackLayout>
         </DataTemplate>
-
-
 
         <DataTemplate x:Key="ImageDataTemplateCreate">
 
-            <Grid>
+            <VerticalStackLayout>
 
                 <ffimageloading:CachedImage
                     Aspect="Fill"
                     FadeAnimationEnabled="True"
                     Source="{Binding Image}" />
-
-                <!--  Button Container Grid  -->
-                <Grid>
-                    <!--  Button is placed in the same cell as the image  -->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <!--  Button  -->
-                    <Button
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Command="{Binding RemoveCurrentItemCommand}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        VerticalOptions="Start">
-
-                        <Button.Shadow>
-                            <Shadow
-                                Brush="Black"
-                                Opacity="0.5"
-                                Radius="40"
-                                Offset="5,5" />
-                        </Button.Shadow>
-
-                        <Button.ImageSource>
-                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
-                        </Button.ImageSource>
-                    </Button>
-                </Grid>
-            </Grid>
+            </VerticalStackLayout>
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplateCreate">
@@ -312,45 +282,43 @@
             SelectValue="{Binding SelectedAdType}"
             SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
 
-        <HorizontalStackLayout Grid.Row="4" HorizontalOptions="FillAndExpand">
+        <Grid Grid.Row="4" HorizontalOptions="CenterAndExpand">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
             <local:CustomEntryContentView
                 x:Name="urlValue"
-                IconSource="&#xe157;"
+                Grid.Column="0"
+                IconSize="50"
+                IconSource="&#xe902;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="URL"
                 Text="{Binding Url, Mode=TwoWay}"
-                WidthRequest="320" />
+                WidthRequest="300" />
 
             <Button
+                Grid.Column="1"
                 BackgroundColor="{StaticResource DarkViolet}"
                 Command="{Binding SetURLCommand}"
                 CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
+                HeightRequest="45"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButtonUrL}">
+                Style="{StaticResource globalButtonUrL}"
+                WidthRequest="45">
 
                 <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe145;" />
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe178;" />
                 </Button.ImageSource>
             </Button>
-        </HorizontalStackLayout>
+        </Grid>
 
         <viewTemplate:EditAndCreateCarousel
             x:Name="contentCollection"
             Grid.Row="5"
-            IndicatorView="indicatorView"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding ContentTypesTemplate}" />
-
-        <IndicatorView
-            x:Name="indicatorView"
-            Grid.Row="5"
-            Margin="5"
-            Padding="5"
-            HorizontalOptions="Center"
-            IndicatorColor="{StaticResource AppBlack}"
-            IndicatorSize="15"
-            SelectedIndicatorColor="{StaticResource AppGray}"
-            VerticalOptions="End" />
 
         <ActivityIndicator
             Grid.Row="5"

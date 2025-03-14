@@ -38,19 +38,18 @@ namespace GeolocationAds.ViewModels
             SelectedAdType = AdTypesSettings.FirstOrDefault();
         }
 
-        public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
+        public Action OnFilterItem { get; set; }
 
-        public event SubmitFilterEventHandler OnFilterItem;
-
-        public virtual void FilterItemInvoke(EventArgs e)
+        public virtual void FilterItemInvoke()
         {
-            OnFilterItem?.Invoke(this, e);
+            OnFilterItem?.Invoke();
         }
+
 
         [RelayCommand]
         public void Filter()
         {
-            FilterItemInvoke(EventArgs.Empty);
+            FilterItemInvoke();
         }
     }
 }

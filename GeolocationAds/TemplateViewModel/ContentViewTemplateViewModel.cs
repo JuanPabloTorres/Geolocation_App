@@ -38,9 +38,11 @@ namespace GeolocationAds.TemplateViewModel
 
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
-        public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement) : base(advertisementService, geolocationAdService)
+        public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement,Action<ContentViewTemplateViewModel> onDelete) : base(advertisementService, geolocationAdService)
         {
             this.advertisement = advertisement;
+
+            ItemDeleted = onDelete;
 
             Task.Run(async () =>
             {
@@ -259,32 +261,23 @@ namespace GeolocationAds.TemplateViewModel
 
         private async Task RemoveContent(Advertisement ad)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                var apiResponse = await advertisementService.Remove(ad.ID);
 
-                var _apiResponse = await this.advertisementService.Remove(ad.ID);
-
-                if (_apiResponse.IsSuccess)
+                if (apiResponse.IsSuccess)
                 {
                     RemoveCurrentItem();
 
-                    await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
+                    await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
                 }
                 else
                 {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                    await CommonsTool.DisplayAlert("Error", apiResponse.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
+
 
         private async Task SetLocationYesOrNoAlert(Advertisement selectAd)
         {
@@ -322,7 +315,7 @@ namespace GeolocationAds.TemplateViewModel
 
         public override void RemoveCurrentItem()
         {
-            OnDeleteItem(EventArgs.Empty);
+            OnDeleteItem(this);
         }
 
         [RelayCommand]

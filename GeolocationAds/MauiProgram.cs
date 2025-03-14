@@ -55,6 +55,8 @@ public static class MauiProgram
 
         RegisterFactories(builder);
 
+        RegisterActions(builder);
+
         return builder.Build();
     }
 
@@ -133,9 +135,13 @@ public static class MauiProgram
         builder.Services.AddScoped<CaptureViewModel2>();
         builder.Services.AddScoped<ManageLocationViewModel>();
         builder.Services.AddScoped<ManageLocationViewModel2>();
+
         builder.Services.AddScoped<ContentViewTemplateViewModel>();
+
         builder.Services.AddScoped<NearByItemDetailViewModel>();
+
         builder.Services.AddScoped<FacebookAuthWebViewViewModel>();
+
         builder.Services.AddScoped<GoogleAuthWebViewViewModel>();
     }
 
@@ -210,6 +216,43 @@ public static class MauiProgram
     }
 
     #endregion **Registro de Herramientas**
+
+    #region **Registro de Actions**
+
+    private static void RegisterActions(MauiAppBuilder builder)
+    {
+        // Acción para manejar la eliminación de un ContentViewTemplateViewModel
+        builder.Services.AddScoped<Action<ContentViewTemplateViewModel>>(sp => model =>
+        {
+            var viewModel = sp.GetRequiredService<ContentViewTemplateViewModel>();
+            model = viewModel;
+        });
+
+        // Acción para manejar filtros en el popup
+        builder.Services.AddScoped<Action<FilterPopUpViewModel2>>(sp => model =>
+        {
+            var viewModel = sp.GetRequiredService<FilterPopUpViewModel2>();
+            model = viewModel;
+        });
+
+        // Acción para manejar la eliminación de un anuncio (Advertisement)
+        builder.Services.AddScoped<Action<Advertisement>>(sp => ad =>
+        {
+            var service = sp.GetRequiredService<IAdvertisementService>();
+            Task.Run(async () =>
+            {
+                var response = await service.Remove(ad.ID);
+                if (!response.IsSuccess)
+                {
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                        CommonsTool.DisplayAlert("Error", response.Message)
+                    );
+                }
+            });
+        });
+    }
+
+    #endregion **Registro de Actions**
 
     #region **Registro de Fábricas**
 

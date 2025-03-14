@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.AppTools;
+using GeolocationAds.Messages;
 using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
@@ -34,12 +36,14 @@ namespace GeolocationAds.ViewModels
         {
             this.containerEditAdvertisment = containerEditAdvertisment;
 
-            
+         
+
+
             // Asigna la acción a ejecutar cuando ApplyQueryAttributesCompleted sea invocado
             this.ApplyQueryAttributesCompleted = async () => await EditAdvertismentViewModel_ApplyQueryAttributesCompleted();
 
             // Subscribe to the ItemDeletedEvent
-            EventManager2.Instance.Subscribe<ContentTypeTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
+            //EventManager2.Instance.Subscribe<ContentTypeTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
         }
 
         private async Task HandleItemDeletedEventAsync(ContentTypeTemplateViewModel2 eventArgs)
@@ -158,6 +162,8 @@ namespace GeolocationAds.ViewModels
                         var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
 
                         var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
+
+                        
 
                         this.ContentTypesTemplate.Add(_template);
                     });
@@ -303,6 +309,11 @@ namespace GeolocationAds.ViewModels
 
                 if (!result.IsObjectNull())
                 {
+
+                    Model.Contents.Clear();
+
+                    ContentTypesTemplate.Clear();
+
                     await ProcessSelectedFile(result);
                 }
             }

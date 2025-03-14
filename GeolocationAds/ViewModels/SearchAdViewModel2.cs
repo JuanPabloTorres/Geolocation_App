@@ -67,8 +67,6 @@ namespace GeolocationAds.ViewModels
 
         public async Task InitializeDataLoadingAsync(int? pageIndex = 1, bool? isReset = false)
         {
-
-
             try
             {
                 this.IsLoading = true;
@@ -170,7 +168,7 @@ namespace GeolocationAds.ViewModels
             await LoadSettings2Async();
         }
 
-        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        private async void FilterPopUpViewModel_FilterItem()
         {
             try
             {
@@ -178,14 +176,11 @@ namespace GeolocationAds.ViewModels
 
                 PageIndex = 1;
 
-                if (sender is FilterPopUpViewModel2 filterPopUpViewModel)
-                {
-                    this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
+                this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
 
-                    this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
+                this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
 
-                    await InitializeDataLoadingAsync(PageIndex, isReset: true);
-                }
+                await InitializeDataLoadingAsync(PageIndex, isReset: true);
             }
             catch (Exception ex)
             {
@@ -227,7 +222,7 @@ namespace GeolocationAds.ViewModels
 
                 filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings, this.DistanceSettings);
 
-                this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
+                this.filterPopUpViewModel.OnFilterItem = FilterPopUpViewModel_FilterItem;
             }
             catch (Exception ex)
             {

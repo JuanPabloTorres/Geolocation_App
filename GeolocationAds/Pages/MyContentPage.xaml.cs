@@ -1,4 +1,4 @@
-using GeolocationAds.ViewModels;
+﻿using GeolocationAds.ViewModels;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Pages;
@@ -18,16 +18,6 @@ public partial class MyContentPage : ContentPage
         this.paginControls.NextClicked += NextItemButton_Clicked;
 
         this.paginControls.BackClicked += BackItemButton_Clicked;
-    }
-
-    protected override void OnAppearing()
-    {
-        MyContentViewModel2.PageIndex = 1;
-
-        if (this._viewModel.CollectionModel.Any())
-        {
-            this._viewModel.CollectionModel.Clear();
-        }
 
         this.paginControls.IsBackButtonEnabled = false;
 
@@ -41,85 +31,60 @@ public partial class MyContentPage : ContentPage
 
     private async void NextItemButton_Clicked(object sender, EventArgs e)
     {
-        try
-        {
-            _viewModel.IsLoading = true;
+        if (_viewModel.IsLoading) return; // 🔹 Evita llamadas repetitivas si ya está cargando
 
+        await _viewModel.RunWithLoadingIndicator(async () =>
+        {
             this.paginControls.IsNextButtonEnabled = false;
 
             this.paginControls.IsBackButtonEnabled = false;
 
-            if (carouselView.ItemsSource != null && carouselView.Position < GetSourceLastIndexCount())
+            int lastIndex = GetSourceLastIndexCount();
+
+            // 🔹 Avanza al siguiente ítem si no está en el último
+            if (carouselView.ItemsSource != null && carouselView.Position < lastIndex)
             {
                 carouselView.Position++;
+
+                return;
             }
 
-            if (carouselView.Position == GetSourceLastIndexCount())
+            // 🔹 Si se llega al final, intenta cargar más datos
+            if (carouselView.Position == lastIndex)
             {
-                var _oldCount = GetSourceLastIndexCount();
+                int oldCount = lastIndex;
 
                 MyContentViewModel2.PageIndex++;
 
-                await this._viewModel.InitializeAsync(MyContentViewModel2.PageIndex);
+                await _viewModel.InitializeAsync(MyContentViewModel2.PageIndex);
 
-                var _newCount = GetSourceLastIndexCount();
+                int newCount = GetSourceLastIndexCount();
 
-                if (_newCount > _oldCount)
+                // 🔹 Solo avanza si hay más elementos
+                if (newCount > oldCount)
                 {
                     carouselView.Position++;
                 }
-
-                if (_newCount == _oldCount)
-                {
-                    this.paginControls.IsBackButtonEnabled = true;
-                }
             }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            _viewModel.IsLoading = false;
+        });
 
-            this.paginControls.IsNextButtonEnabled = true;
+        this.paginControls.IsNextButtonEnabled = true;
 
-            this.paginControls.IsBackButtonEnabled = true;
-        }
+        this.paginControls.IsBackButtonEnabled = true;
     }
 
     private async void BackItemButton_Clicked(object sender, EventArgs e)
     {
-        try
+        if (_viewModel.IsLoading || carouselView.Position == 0) return; // 🔹 Evita navegación redundante
+
+        await _viewModel.RunWithLoadingIndicator(async () =>
         {
-            _viewModel.IsLoading = true;
+            carouselView.Position--;
 
-            if (carouselView.Position > 0)
-            {
-                carouselView.Position--;
-            }
+            // 🔹 Si está en el primer elemento, desactiva el botón de retroceso
+            this.paginControls.IsBackButtonEnabled = carouselView.Position > 0;
 
-            if (carouselView.Position == 0)
-            {
-                this.paginControls.IsBackButtonEnabled = false;
-
-                this.paginControls.IsNextButtonEnabled = true;
-            }
-            else
-            {
-                this.paginControls.IsBackButtonEnabled = true;
-
-                this.paginControls.IsNextButtonEnabled = true;
-            }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            _viewModel.IsLoading = false;
-        }
+            this.paginControls.IsNextButtonEnabled = true;
+        });
     }
 }

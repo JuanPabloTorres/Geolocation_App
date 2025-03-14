@@ -30,6 +30,11 @@ namespace GeolocationAds.ViewModels
             LogUserPerfilTool = logUserPerfilTool;
         }
 
+        public RootBaseViewModel()
+        {
+            
+        }
+
         /// <summary>
         /// Acción que se ejecuta cuando ApplyQueryAttributes finaliza.
         /// </summary>
@@ -38,28 +43,7 @@ namespace GeolocationAds.ViewModels
         /// <summary>
         /// Método para ejecutar una tarea con indicador de carga activado.
         /// </summary>
-        //protected async Task RunWithLoadingIndicator(Func<Task> action)
-        //{
-        //    if (IsLoading) return;
-
-        //    try
-        //    {
-        //        IsLoading = true;
-
-        //        await action();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // General exception handling
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        IsLoading = false;
-        //    }
-        //}
-
-        protected async Task RunWithLoadingIndicator(Func<Task> action, Action<Exception> onError = null)
+        public async Task RunWithLoadingIndicator(Func<Task> action, Action<Exception> onError = null)
         {
             try
             {
@@ -83,7 +67,6 @@ namespace GeolocationAds.ViewModels
                 this.IsLoading = false;
             }
         }
-
 
         /// <summary>
         /// Procesa atributos de consulta y ejecuta la acción de finalización.

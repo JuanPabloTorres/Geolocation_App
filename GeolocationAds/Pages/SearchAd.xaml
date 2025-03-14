@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
-    Title="Search and Discover"
+    Title="Discover"
     BackgroundColor="WhiteSmoke"
     Routing.Route="SearchAd">
 

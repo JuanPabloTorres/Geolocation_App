@@ -158,8 +158,6 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
         }
     }
 
- 
-
     private async Task AuthenticateAndNavigateAsync(ToolsLibrary.Models.Login credential, Providers provider)
     {
         await RunWithLoadingIndicator(async () =>

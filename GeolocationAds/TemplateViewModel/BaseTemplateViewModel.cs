@@ -1,15 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using GeolocationAds.Services;
+using GeolocationAds.ViewModels;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class BaseTemplateViewModel : ObservableObject
+    public partial class BaseTemplateViewModel : RootBaseViewModel
     {
-        [ObservableProperty]
-        private bool isLoading;
-
         protected IAdvertisementService advertisementService { get; set; }
 
         protected IGeolocationAdService geolocationAdService { get; set; }
@@ -35,27 +33,29 @@ namespace GeolocationAds.TemplateViewModel
         {
         }
 
-        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
-
-        public static event RemoveItemEventHandler ItemDeleted;
+        public static Action<ContentViewTemplateViewModel> ItemDeleted { get; set; }
 
         public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
         {
-            var queryString = string.Empty;
-
-            if (!queryParameters.IsObjectNull() && queryParameters.Count > 0)
+            await RunWithLoadingIndicator(async () =>
             {
-                queryString = string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"));
+                if (string.IsNullOrWhiteSpace(pageName))
+                {
+                    throw new ArgumentException("Page name cannot be null or empty", nameof(pageName));
+                }
 
-                queryString = "?" + queryString;
-            }
+                var queryString = queryParameters != null && queryParameters.Any()
+                    ? "?" + string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value?.ToString() ?? string.Empty)}"))
+                    : string.Empty;
 
-            await Shell.Current.GoToAsync($"{pageName}{queryString}");
+                await Shell.Current.GoToAsync($"{pageName}{queryString}");
+            });
         }
 
-        public virtual void OnDeleteItem(EventArgs e)
+
+        public virtual void OnDeleteItem(ContentViewTemplateViewModel sender)
         {
-            ItemDeleted?.Invoke(this, e);
+            ItemDeleted?.Invoke(sender);
         }
 
         public virtual void RemoveCurrentItem()

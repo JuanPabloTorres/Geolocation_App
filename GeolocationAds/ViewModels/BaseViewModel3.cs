@@ -186,6 +186,8 @@ namespace GeolocationAds.ViewModels
                                 //this.Model = default(T);
 
                                 WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
+
+                                await Shell.Current.Navigation.PopToRootAsync();
                             }
                             else
                             {

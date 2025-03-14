@@ -27,5 +27,4 @@
             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c8;" />
         </Button.ImageSource>
     </Button>
-
 </StackLayout>

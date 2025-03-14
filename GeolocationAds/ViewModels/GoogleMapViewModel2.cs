@@ -156,7 +156,7 @@ namespace GeolocationAds.ViewModels
 
                     filterPopUpViewModel = new FilterPopUpViewModel2(this.AdTypesSettings, this.DistanceSettings);
 
-                    this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
+                    this.filterPopUpViewModel.OnFilterItem = FilterPopUpViewModel_FilterItem;
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace GeolocationAds.ViewModels
             await InitializeAsync();
         }
 
-        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        private async void FilterPopUpViewModel_FilterItem()
         {
             try
             {
@@ -187,14 +187,11 @@ namespace GeolocationAds.ViewModels
 
                 PageIndex = 1;
 
-                if (sender is FilterPopUpViewModel2 filterPopUpViewModel)
-                {
-                    this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
+                this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
 
-                    this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
+                this.SelectedDistance = filterPopUpViewModel.SelectedDistance;
 
-                    await LoadData();
-                }
+                await LoadData();
             }
             catch (Exception ex)
             {
