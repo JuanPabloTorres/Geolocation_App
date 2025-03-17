@@ -38,9 +38,9 @@ namespace GeolocationAds.TemplateViewModel
 
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
-        public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement,Action<ContentViewTemplateViewModel> onDelete) : base(advertisementService, geolocationAdService)
+        public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement, Action<ContentViewTemplateViewModel> onDelete) : base(advertisementService, geolocationAdService)
         {
-            this.advertisement = advertisement;
+            Advertisement = advertisement;
 
             ItemDeleted = onDelete;
 
@@ -93,9 +93,9 @@ namespace GeolocationAds.TemplateViewModel
         //    if (description.Length <= MaxLengthWithoutExpand)
         //        return description;
 
-        //    int midIndex = description.Length / 2;
+        // int midIndex = description.Length / 2;
 
-        //    string truncated = description.Substring(0, midIndex) + "\n" + description.Substring(midIndex);
+        // string truncated = description.Substring(0, midIndex) + "\n" + description.Substring(midIndex);
 
         //    return truncated.Length > MaxLengthWithoutExpand ? truncated.Substring(0, MaxLengthWithoutExpand) + "..." : truncated;
         //}
@@ -221,43 +221,30 @@ namespace GeolocationAds.TemplateViewModel
 
         private async Task CreateAdToLocation(Advertisement ad)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                var locationResponse = await GeolocationTool.GetLocation();
 
-                var locationReponse = await GeolocationTool.GetLocation();
-
-                if (!locationReponse.IsSuccess)
+                if (!locationResponse.IsSuccess)
                 {
-                    await CommonsTool.DisplayAlert("Error", locationReponse.Message);
-
-                    return;
+                    throw new Exception(locationResponse.Message);
                 }
 
-                GeolocationAd newAd = GeolocationAdFactory.CreateGeolocationAd(ad, locationReponse.Data);
+                var newAd = GeolocationAdFactory.CreateGeolocationAd(ad, locationResponse.Data);
 
-                var _apiResponse = await this.geolocationAdService.Add(newAd);
+                var apiResponse = await geolocationAdService.Add(newAd);
 
-                if (_apiResponse.IsSuccess)
+                if (!apiResponse.IsSuccess)
                 {
-                    this.Advertisement = ad;
+                    throw new Exception(apiResponse.Message);
+                }
 
-                    await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
-                }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+                Advertisement = ad;
+
+                await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
+            });
         }
+
 
         private async Task RemoveContent(Advertisement ad)
         {
@@ -265,19 +252,16 @@ namespace GeolocationAds.TemplateViewModel
             {
                 var apiResponse = await advertisementService.Remove(ad.ID);
 
-                if (apiResponse.IsSuccess)
-                {
-                    RemoveCurrentItem();
-
-                    await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
-                }
-                else
+                if (!apiResponse.IsSuccess)
                 {
                     await CommonsTool.DisplayAlert("Error", apiResponse.Message);
                 }
+
+                RemoveCurrentItem();
+
+                await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
             });
         }
-
 
         private async Task SetLocationYesOrNoAlert(Advertisement selectAd)
         {
@@ -416,7 +400,6 @@ namespace GeolocationAds.TemplateViewModel
             {
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
-
         }
     }
 }

@@ -87,4 +87,9 @@ public partial class MyContentPage : ContentPage
             this.paginControls.IsNextButtonEnabled = true;
         });
     }
+
+    private void OnPageLoaded(object sender, EventArgs e)
+    {
+
+    }
 }

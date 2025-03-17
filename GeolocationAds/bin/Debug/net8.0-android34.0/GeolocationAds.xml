@@ -941,6 +941,9 @@
         <member name="P:GeolocationAds.ViewModels.MyContentViewModel2.SelectedAdType">
             <inheritdoc cref="F:GeolocationAds.ViewModels.MyContentViewModel2.selectedAdType"/>
         </member>
+        <member name="P:GeolocationAds.ViewModels.MyContentViewModel2.IsResetMessage">
+            <inheritdoc cref="F:GeolocationAds.ViewModels.MyContentViewModel2.isResetMessage"/>
+        </member>
         <member name="F:GeolocationAds.ViewModels.MyContentViewModel2.searchCommand">
             <summary>The backing field for <see cref="P:GeolocationAds.ViewModels.MyContentViewModel2.SearchCommand"/>.</summary>
         </member>
@@ -1259,6 +1262,9 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DataSize">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DataSize" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsResetMessage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsResetMessage" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SettingType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SettingType" generated properties.</summary>
         </member>
@@ -1357,6 +1363,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DataSize">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DataSize" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsResetMessage">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsResetMessage" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SettingType">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SettingType" generated properties.</summary>

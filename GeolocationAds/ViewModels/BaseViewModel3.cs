@@ -253,9 +253,9 @@ namespace GeolocationAds.ViewModels
 
                     await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
 
-                    WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(model));
+                    WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(apiResponse.Data));
 
-                    await Shell.Current.Navigation.PopToRootAsync();
+                    await Shell.Current.Navigation.PopAsync();
                 }
                 else if (isValidObj)
                 {

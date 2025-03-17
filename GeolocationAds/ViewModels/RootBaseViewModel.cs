@@ -13,7 +13,7 @@ namespace GeolocationAds.ViewModels
     public partial class RootBaseViewModel : ObservableObject, IQueryAttributable
     {
         [ObservableProperty]
-        private bool isLoading;
+        public bool isLoading;
 
         public static int PageIndex { get; set; } = 1;
 

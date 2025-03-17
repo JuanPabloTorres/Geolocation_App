@@ -22,12 +22,12 @@ namespace GeolocationAds.ViewModels
     {
         private readonly IContainerEditAdvertisment containerEditAdvertisment;
 
-        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ();
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
         public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new();
 
         [ObservableProperty]
-        private AppSetting selectedAdType = new ();
+        private AppSetting selectedAdType = new();
 
         [ObservableProperty]
         private string url;
@@ -36,270 +36,109 @@ namespace GeolocationAds.ViewModels
         {
             this.containerEditAdvertisment = containerEditAdvertisment;
 
-         
-
-
             // Asigna la acción a ejecutar cuando ApplyQueryAttributesCompleted sea invocado
             this.ApplyQueryAttributesCompleted = async () => await EditAdvertismentViewModel_ApplyQueryAttributesCompleted();
-
-            // Subscribe to the ItemDeletedEvent
-            //EventManager2.Instance.Subscribe<ContentTypeTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
-        }
-
-        private async Task HandleItemDeletedEventAsync(ContentTypeTemplateViewModel2 eventArgs)
-        {
-            try
-            {
-                this.IsLoading = true;
-
-                if (this.ContentTypesTemplate.Count() == 1)
-                {
-                    await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
-                }
-                else
-                {
-                    this.ContentTypesTemplate.Remove(eventArgs);
-
-                    foreach (var item in ContentTypesTemplate)
-                    {
-                        await item.SetAnimation();
-                    }
-
-                    this.Model.Contents.Remove(eventArgs.ContentType);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
-        }
-
-        //private async void ContentTypeTemplateViewModel_ContentTypeDeleted(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        this.IsLoading = true;
-
-        // if (sender is ContentTypeTemplateViewModel2 template) { this.ContentTypesTemplate.Remove(template);
-
-        // this.Model.Contents.Remove(this.Model.Contents.Where(v => v.ID ==
-        // template.ContentType.ID).FirstOrDefault()); } } catch (Exception ex) { await
-        // CommonsTool.DisplayAlert("Error", ex.Message); } finally { foreach (var item in
-        // ContentTypesTemplate.Where(v => v.ContentVisualType == ContentVisualType.Image)) { await
-        // item.SetAnimation(); }
-
-        //        this.IsLoading = false;
-        //    }
-        //}
-
-        private async void ContentTypeTemplateViewModel_ContentTypeDeleted(ContentTypeTemplateViewModel2 template)
-        {
-            try
-            {
-                this.IsLoading = true;
-
-               
-                    if (this.ContentTypesTemplate.Count() == ConstantsTools.MaxAdLimit)
-                    {
-                        await CommonsTool.DisplayAlert("Error", "At least one item is required.You may remove any excess items.");
-                    }
-                    else
-                    {
-                        this.ContentTypesTemplate.Remove(template);
-
-                        foreach (var item in ContentTypesTemplate)
-                        {
-                            await item.SetAnimation();
-                        }
-
-                        this.Model.Contents.Remove(template.ContentType);
-                    }
-                
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
         }
 
         private async Task EditAdvertismentViewModel_ApplyQueryAttributesCompleted()
         {
             await RunWithLoadingIndicator(async () =>
             {
+                // 🔹 Validación previa de Model.Settings para evitar excepciones
+                var currentModelAdType = this.Model.Settings?.FirstOrDefault();
+
                 await LoadSetting();
 
-                ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
+                // 🔹 Asignación segura del tipo de anuncio seleccionado
+                this.SelectedAdType = currentModelAdType != null
+                    ? AdTypesSettings.FirstOrDefault(item => item.ID == currentModelAdType.SettingId)
+                    : AdTypesSettings.FirstOrDefault();
 
-                // Validación previa de Model.Settings para evitar excepciones
-                var _currentModelAdType = this.Model.Settings?.FirstOrDefault();
+                this.ContentTypesTemplate.Clear();
 
-                if (_currentModelAdType != null)
+                // 🔹 Validación segura de Model.Contents antes de procesar
+                if (this.Model.Contents?.Any() == true)
                 {
-                    this.SelectedAdType = AdTypesSettings.FirstOrDefault(item => item.ID == _currentModelAdType.SettingId);
+                    var contentProcessingTasks = this.Model.Contents
+                        .Select(async item =>
+                        {
+                            var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
+                            return await AppToolCommon.ProcessContentItem(item, serviceToUse);
+                        });
+
+                    // 🔹 Espera la ejecución en paralelo de todas las tareas antes de añadirlas a la colección
+                    var processedTemplates = await Task.WhenAll(contentProcessingTasks);
+
+                    // 🔹 Usa AddRange para evitar múltiples llamadas a la UI
+                    this.ContentTypesTemplate.AddRange(processedTemplates);
+                }
+            });
+
+        }
+
+
+
+
+
+
+
+        public async Task LoadSetting()
+        {
+            await RunWithLoadingIndicator(async () =>
+            {
+                this.AdTypesSettings.Clear();
+
+                var apiResponse = await this.containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
+
+                if (!apiResponse.IsSuccess)
+                {
+                    throw new Exception(apiResponse.Message); // Deja que RunWithLoadingIndicator maneje el error
                 }
 
-                // Limpiar la lista de ContentTypesTemplate solo si tiene elementos
-                if (this.ContentTypesTemplate.Count > 0)
-                {
-                    this.ContentTypesTemplate.Clear();
-                }
+                AdTypesSettings.AddRange(apiResponse.Data);
 
-                // Obtener la lista de contenidos antes de la enumeración
-                var contentItems = this.Model.Contents?.ToList();
-
-                if (contentItems != null && contentItems.Any())
-                {
-                    var tasks = contentItems.Select(async item =>
-                    {
-                        var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
-
-                        var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
-
-                        
-
-                        this.ContentTypesTemplate.Add(_template);
-                    });
-
-                    await Task.WhenAll(tasks);
-                }
+                this.SelectedAdType = AdTypesSettings.FirstOrDefault();
             });
         }
 
-        //private async void EditAdvertismentViewModel_ApplyQueryAttributesCompleted(object sender, EventArgs e)
+        //[RelayCommand]
+        //public async Task UploadContent()
         //{
         //    try
         //    {
         //        this.IsLoading = true;
 
-        // await LoadSetting();
+        // if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit) { await
+        // CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
 
-        // ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
+        // this.IsLoading = false;
 
-        // var _currentModelAdType = this.Model.Settings.FirstOrDefault();
+        // return; }
 
-        // this.SelectedAdType = AdTypesSettings.First(item => _currentModelAdType.SettingId == item.ID);
+        // var customFileTypes = GetCommonFileTypes();
 
-        // if (this.ContentTypesTemplate.Any()) this.ContentTypesTemplate.Clear();
+        // FileResult result = await FilePicker.PickAsync(new PickOptions { FileTypes =
+        // customFileTypes, });
 
-        // foreach (var item in this.Model.Contents) { //if (item.Type == ContentVisualType.Video)
-        // //{ // var _template = await AppToolCommon.ProcessContentItem(item, this.service);
+        // if (!result.IsObjectNull()) { Model.Contents.Clear();
 
-        // // //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+        // ContentTypesTemplate.Clear();
 
-        // // this.ContentTypesTemplate.Add(_template); //} //else //{ // var _template = await
-        // AppToolCommon.ProcessContentItem(item, null);
+        // await ProcessSelectedFile(result); } } catch (Exception ex) // Consider catching more
+        // specific exceptions { await CommonsTool.DisplayAlert("Error", ex.Message); } finally {
+        // //ContentTypesTemplate.Select(async v => await v.SetAnimation());
 
-        // // //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+        // foreach (var item in ContentTypesTemplate) { await item.SetAnimation(); }
 
-        // // this.ContentTypesTemplate.Add(_template);
-
-        // // //this.ContentTypesTemplate.ItemDeleted +=
-        // ContentTypeTemplateViewModel_ContentTypeDeleted; //}
-
-        // var serviceToUse = item.Type == ContentVisualType.Video ? this.service : null;
-
-        // var _template = await AppToolCommon.ProcessContentItem(item, serviceToUse);
-
-        // // _template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-        // this.ContentTypesTemplate.Add(_template); }
-
-        //        //ContentTypeTemplateViewModel2.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-        //    }
-        //    finally
-        //    {
         //        this.IsLoading = false;
         //    }
         //}
 
-        //public async Task LoadSetting()
-        //{
-        //    try
-        //    {
-        //        if (!AdTypesSettings.Any())
-        //        {
-        //            var _apiResponse = await this.containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
-        // if (_apiResponse.IsSuccess) { AdTypesSettings.AddRange(_apiResponse.Data);
-
-        // var matchingSetting = this.Model.Settings.FirstOrDefault(modelsetting =>
-        // AdTypesSettings.Any(item => modelsetting.SettingId == item.ID));
-
-        //                if (!matchingSetting.IsObjectNull())
-        //                {
-        //                    this.SelectedAdType = AdTypesSettings.First(item => matchingSetting.SettingId == item.ID);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-        //    }
-        //}
-
-        public async Task LoadSetting()
-        {
-            try
-            {
-                if (AdTypesSettings.Any()) return;
-
-                var apiResponse = await containerEditAdvertisment.AppSettingService.GetAppSettingByName(SettingName.AdTypes.ToString());
-
-                if (!apiResponse.IsSuccess)
-                {
-                    await Shell.Current.DisplayAlert("Error", apiResponse.Message, "OK");
-
-                    return;
-                }
-
-                AdTypesSettings.AddRange(apiResponse.Data);
-
-                var matchingSetting = Model.Settings.FirstOrDefault(modelSetting => AdTypesSettings.Any(item => modelSetting.SettingId == item.ID));
-
-                if (matchingSetting != null)
-                {
-                    SelectedAdType = AdTypesSettings.First(item => item.ID == matchingSetting.SettingId);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}");
-            }
-        }
-
         [RelayCommand]
         public async Task UploadContent()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
-                if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit)
-                {
-                    await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
-
-                    this.IsLoading = false;
-
-                    return;
-                }
-
                 var customFileTypes = GetCommonFileTypes();
 
                 FileResult result = await FilePicker.PickAsync(new PickOptions
@@ -309,29 +148,18 @@ namespace GeolocationAds.ViewModels
 
                 if (!result.IsObjectNull())
                 {
+                    this.Model.Contents.Clear();
 
-                    Model.Contents.Clear();
-
-                    ContentTypesTemplate.Clear();
+                    this.ContentTypesTemplate.Clear();
 
                     await ProcessSelectedFile(result);
                 }
-            }
-            catch (Exception ex) // Consider catching more specific exceptions
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                //ContentTypesTemplate.Select(async v => await v.SetAnimation());
 
                 foreach (var item in ContentTypesTemplate)
                 {
                     await item.SetAnimation();
                 }
-
-                this.IsLoading = false;
-            }
+            });
         }
 
         private FilePickerFileType GetCommonFileTypes()
@@ -448,98 +276,103 @@ namespace GeolocationAds.ViewModels
 
         private async Task HandleAdTypeChangeAsync(AppSetting value)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                if (!this.Model.Settings.IsObjectNull() && !value.IsObjectNull())
+                if (this.Model.Settings.IsObjectNull() || value.IsObjectNull())
+                    return;
+
+                this.Model.Settings.Clear(); // 🔹 No es necesario verificar si tiene elementos antes de limpiar
+
+                this.Model.Settings.Add(new AdvertisementSettings
                 {
-                    this.Model.Settings.Clear();
-
-                    var _adSetting = new AdvertisementSettings()
-                    {
-                        CreateDate = DateTime.Now,
-                        CreateBy = this.LogUserPerfilTool.LogUser.ID,
-                        SettingId = value.ID,
-                        AdvertisementId = this.Model.ID
-                    };
-
-                    this.Model.Settings.Add(_adSetting);
-                }
-            }
-            catch (Exception ex)
-            {
-                // If DisplayAlert is truly asynchronous
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+                    CreateDate = DateTime.Now,
+                    CreateBy = this.LogUserPerfilTool.LogUser.ID,
+                    SettingId = value.ID
+                });
+            });
         }
 
         [RelayCommand]
         public async Task GoManageLocation(int id)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
                 var navigationParameter = new Dictionary<string, object> { { "ID", id } };
 
                 await NavigationTool.NavigateAsync(nameof(ManageLocation), navigationParameter);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         [RelayCommand]
         public async Task SetURL(string url)
         {
-            try
+            //try
+            //{
+            //    this.IsLoading = true;
+
+            // if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit) { await
+            // CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
+
+            // return; }
+
+            // var _isValidUrl = CommonsTool.IsValidUrl(url);
+
+            // if (_isValidUrl) { var _uri = new Uri(url);
+
+            // var _content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null,
+            // this.LogUserPerfilTool.LogUser.ID, null, null);
+
+            // var _template = ContentTypeTemplateFactory.BuilContentType(_content, _uri);
+
+            // //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+            // _template.ItemDeleted = ContentTypeTemplateViewModel_ContentTypeDeleted;
+
+            // this.ContentTypesTemplate.Add(_template);
+
+            // this.Model.Contents.Add(_content);
+
+            //        this.Url = string.Empty;
+            //    }
+            //    else
+            //    {
+            //        await CommonsTool.DisplayAlert("Error", "Url invalid.");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    await CommonsTool.DisplayAlert("Error", ex.Message);
+            //}
+            //finally
+            //{
+            //    this.IsLoading = false;
+            //}
+
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                this.Model.Contents.Clear();
 
-                if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit)
+                this.ContentTypesTemplate.Clear();
+
+                if (!CommonsTool.IsValidUrl(url))
                 {
-                    await CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
-
-                    return;
+                    throw new Exception("URL invalid.");
                 }
 
-                var _isValidUrl = CommonsTool.IsValidUrl(url);
+                var uri = new Uri(url);
 
-                if (_isValidUrl)
-                {
-                    var _uri = new Uri(url);
+                var content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null, this.LogUserPerfilTool.LogUser.ID, null, null);
 
-                    var _content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null, this.LogUserPerfilTool.LogUser.ID, null, null);
+                var template = ContentTypeTemplateFactory.BuilContentType(content, uri);
 
-                    var _template = ContentTypeTemplateFactory.BuilContentType(_content, _uri);
+                //template.ItemDeleted = ContentTypeTemplateViewModel_ContentTypeDeleted;
 
-                    //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
+                this.ContentTypesTemplate.Add(template);
 
-                    _template.ItemDeleted =  ContentTypeTemplateViewModel_ContentTypeDeleted;
+                this.Model.Contents.Add(content);
 
-                    this.ContentTypesTemplate.Add(_template);
-
-                    this.Model.Contents.Add(_content);
-
-                    this.Url = string.Empty;
-                }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", "Url invalid.");
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+                this.Url = string.Empty;
+            });
         }
     }
 }

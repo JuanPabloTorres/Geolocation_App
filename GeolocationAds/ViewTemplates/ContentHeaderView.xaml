@@ -6,8 +6,6 @@
     BackgroundColor="{StaticResource AppBlack}"
     Opacity="{StaticResource OpacityValue}">
 
-
-
     <Button
         Command="{Binding OpenActionPopUpCommand}"
         CommandParameter="{Binding Advertisement}"
@@ -40,7 +38,4 @@
             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
         </Button.ImageSource>
     </Button>
-
-
-
 </HorizontalStackLayout>

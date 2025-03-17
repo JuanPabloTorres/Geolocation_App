@@ -104,11 +104,15 @@ public static class MauiProgram
 
     private static void RegisterModels(MauiAppBuilder builder)
     {
-        builder.Services.AddTransient<ToolsLibrary.Models.User>();
-        builder.Services.AddTransient<Pin>();
-        builder.Services.AddTransient<ToolsLibrary.Models.Login>();
-        builder.Services.AddTransient<ToolsLibrary.Models.Advertisement>();
-        builder.Services.AddTransient<ToolsLibrary.Models.Capture>();
+        builder.Services.AddScoped<ToolsLibrary.Models.User>();
+
+        builder.Services.AddScoped<Pin>();
+
+        builder.Services.AddScoped<ToolsLibrary.Models.Login>();
+
+        builder.Services.AddScoped<ToolsLibrary.Models.Advertisement>();
+
+        builder.Services.AddScoped<ToolsLibrary.Models.Capture>();
     }
 
     #endregion **Registro de Modelos**

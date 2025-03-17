@@ -12,12 +12,7 @@
         Text="{Binding Advertisement.Title}"
         TextColor="White" />
 
-    <!--<Label
-            LineBreakMode="WordWrap"
-            MaxLines="2"
-            Style="{StaticResource globalDescriptionLabel}"
-            Text="{Binding Advertisement.Description}"
-            TextColor="White" />-->
+
 
     <VerticalStackLayout>
         <Label

@@ -22,13 +22,14 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private AppSetting selectedAdType;
 
+        [ObservableProperty]
+        private string isResetMessage = "No content available.";
+
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
         public MyContentViewModel2(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
         {
             this.containerMyContentServices = myContentServices;
-
-            //BaseTemplateViewModel.ItemDeleted += AdLocationTemplateViewModel_ItemDeleted;
 
             Task.Run(async () =>
             {
@@ -39,15 +40,38 @@ namespace GeolocationAds.ViewModels
 
             WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
             {
+                if (m?.Value == null) return; // 🔹 Evita errores si el mensaje es nulo
+
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    if (m?.Value == null) return; // 🔹 Evita errores si el mensaje es nulo
+                    var existingItem = CollectionModel.FirstOrDefault(x => x.Advertisement.ID == m.Value.ID);
 
-                    foreach (var item in CollectionModel)
+                    if (existingItem != null)
                     {
-                        if (item.Advertisement.ID == m.Value.ID)
+                        var existingType = existingItem.Advertisement.Contents.FirstOrDefault()?.Type;
+
+                        var newType = m.Value.Contents.FirstOrDefault()?.Type;
+
+                        var existingSettingId = existingItem.Advertisement.Settings.FirstOrDefault()?.ID;
+
+                        var newSettingId = SelectedAdType?.ID;
+
+                        if (existingType == newType && existingSettingId == newSettingId)
                         {
-                            item.Advertisement = m.Value;
+                            // 🔹 Sustituye el elemento actualizado en la misma posición
+                            var itemIndex = CollectionModel.IndexOf(existingItem);
+
+                            CollectionModel[itemIndex] = new ContentViewTemplateViewModel(
+                                containerMyContentServices.AdvertisementService,
+                                service,
+                                m.Value,
+                                On_ItemDeleted
+                            );
+                        }
+                        else
+                        {
+                            // 🔹 Elimina el elemento si el tipo de contenido o el Setting ID no coinciden
+                            CollectionModel.Remove(existingItem);
                         }
                     }
                 });
@@ -93,6 +117,8 @@ namespace GeolocationAds.ViewModels
         {
             await RunWithLoadingIndicator(async () =>
             {
+                IsResetMessage = ""; // 🔹 Oculta el mensaje mientras carga
+
                 var userId = LogUserPerfilTool.GetUserId();
 
                 var apiResponse = await containerMyContentServices.AdvertisementService
@@ -118,6 +144,9 @@ namespace GeolocationAds.ViewModels
                         CollectionModel.AddRange(newViewModels);
                     });
                 }
+
+                // 🔹 Si la lista está vacía después de cargar, vuelve a mostrar el mensaje
+                IsResetMessage = CollectionModel.Count == 0 ? "No content available." : "";
             });
         }
 

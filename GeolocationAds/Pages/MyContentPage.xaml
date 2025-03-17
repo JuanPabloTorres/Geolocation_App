@@ -9,13 +9,13 @@
     Title="My Content"
     BackgroundColor="WhiteSmoke">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding SearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+        <ToolbarItem Command="{Binding SearchCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
-        <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+        <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
             </ToolbarItem.IconImageSource>
@@ -25,22 +25,18 @@
     <ContentPage.Resources>
 
         <DataTemplate x:Key="ImageDataTemplateForDisplay2">
-
             <displayer:ImageDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplateForDisplay2">
-
             <displayer:VideoDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
         <DataTemplate x:Key="DefaultDataTemplateForDisplay">
-
             <displayer:ImageDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
         <DataTemplate x:Key="WebViewDataTemplateForDisplay">
-
             <displayer:WebViewDisplayer IsMyContentStackHeaderVisible="True" />
         </DataTemplate>
 
@@ -52,6 +48,7 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
     </ContentPage.Resources>
 
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -60,62 +57,153 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!--  Optimización: Carga diferida del contenido en el CarouselView  -->
         <CarouselView
             x:Name="carouselView"
             Grid.Row="0"
             IsSwipeEnabled="False"
+            IsVisible="{Binding HasContent}"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding CollectionModel}">
 
             <CarouselView.EmptyView>
-
-                <Grid>
-                    <Label Style="{StaticResource emptyCollectionLabel}" Text="Load Content To Display." />
-                </Grid>
+                <Label Style="{StaticResource emptyCollectionLabel}" Text="{Binding IsResetMessage, Mode=TwoWay}" />
             </CarouselView.EmptyView>
 
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
+
         </CarouselView>
 
-        <displayer:PaginControls x:Name="paginControls" Grid.Row="1">
-            <displayer:PaginControls.IsVisible>
-                <MultiBinding Converter="{StaticResource IsVisibleConverterMultiParam}">
-                    <Binding Path="IsLoading" />
-                    <Binding Path=" CollectionModel.Count" />
-                </MultiBinding>
-            </displayer:PaginControls.IsVisible>
-        </displayer:PaginControls>
+        <!--  Eliminación de MultiBinding para optimización  -->
+        <displayer:PaginControls
+            x:Name="paginControls"
+            Grid.Row="1"
+            IsVisible="{Binding HasPagination}" />
+
+        <HorizontalStackLayout
+            Grid.Row="2"
+            Padding="2"
+            BackgroundColor="{StaticResource AppGray}"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding HasContent}"
+            VerticalOptions="End">
+
+            <Label
+                x:Name="counterLabel"
+                HorizontalOptions="End"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding CollectionModel.Count, StringFormat='Display: {0:N0}'}"
+                TextColor="White" />
+
+            <Label
+                x:Name="filterType"
+                HorizontalOptions="End"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding SelectedAdType.Value}"
+                TextColor="White" />
+        </HorizontalStackLayout>
+
+        <!--  Overlay para mostrar el loading con fondo blanco  -->
+        <Grid
+            x:Name="loadingOverlay"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="White"
+            IsVisible="{Binding IsLoading}"
+            Opacity="0.8"
+            ZIndex="10">
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
+        </Grid>
+
+    </Grid>
+
+    <!--<Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+    -->
+    <!--  Optimización: Carga diferida del contenido en el CarouselView  -->
+    <!--
+        <CarouselView
+            x:Name="carouselView"
+            Grid.Row="0"
+            IsSwipeEnabled="True"
+            IsVisible="{Binding HasContent}"
+            ItemTemplate="{StaticResource typeSelector}"
+            ItemsSource="{Binding CollectionModel}">
+
+            <CarouselView.EmptyView>
+                <Label Style="{StaticResource emptyCollectionLabel}" Text="No content available." />
+            </CarouselView.EmptyView>
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+
+        </CarouselView>
+
+    -->
+    <!--  Eliminación de MultiBinding para optimización  -->
+    <!--
+        <displayer:PaginControls
+            x:Name="paginControls"
+            Grid.Row="1"
+            IsVisible="{Binding HasPagination}" />
 
         <HorizontalStackLayout
             Grid.Row="2"
             BackgroundColor="{StaticResource AppGray}"
             HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            IsVisible="{Binding HasContent}"
             VerticalOptions="End">
+
             <Label
                 x:Name="counterLabel"
-                Grid.Row="0"
                 HorizontalOptions="End"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalsubTitle}"
-                Text="{Binding CollectionModel.Count, StringFormat='Nearby: {0:N0}'}"
+                Text="{Binding CollectionModel.Count, StringFormat='Display: {0:N0}'}"
                 TextColor="White" />
 
             <Label
                 x:Name="filterType"
-                Grid.Row="0"
                 HorizontalOptions="End"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalsubTitle}"
-                Text="{Binding SelectedAdType.Value, StringFormat='{0}'}"
+                Text="{Binding SelectedAdType.Value}"
                 TextColor="White" />
         </HorizontalStackLayout>
 
         <ActivityIndicator
             Grid.Row="1"
             IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
-    </Grid>
+
+    </Grid>-->
+
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="LoadingState">
+            <VisualState x:Name="Loading">
+                <VisualState.Setters>
+                    <Setter TargetName="carouselView" Property="IsVisible" Value="False" />
+                    <Setter TargetName="paginControls" Property="IsVisible" Value="False" />
+                    <Setter TargetName="activityIndicator" Property="IsVisible" Value="True" />
+                </VisualState.Setters>
+            </VisualState>
+
+            <VisualState x:Name="Loaded">
+                <VisualState.Setters>
+                    <Setter TargetName="carouselView" Property="IsVisible" Value="True" />
+                    <Setter TargetName="paginControls" Property="IsVisible" Value="True" />
+                    <Setter TargetName="activityIndicator" Property="IsVisible" Value="False" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 </ContentPage>

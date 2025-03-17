@@ -82,44 +82,6 @@ namespace GeolocationAds.TemplateViewModel
             });
         }
 
-        //private async Task ClearWebViewDataAsync()
-        //{
-        //    if (_webView == null) return;
-
-        //    await _webView.EvaluateJavaScriptAsync(@"
-        //    window.localStorage.clear();
-        //    window.sessionStorage.clear();
-        //    history.replaceState(null, null, document.URL);
-        //    window.history.pushState(null, null, document.URL);
-        //    window.onpopstate = function() { history.replaceState(null, null, document.URL); };
-        //");
-
-        //    var handler = _webView.Handler?.PlatformView;
-        //    if (handler == null) return;
-
-        //    switch (DeviceInfo.Platform)
-        //    {
-        //        case DevicePlatform.Android:
-        //            var androidWebView = handler as Android.Webkit.WebView;
-        //            if (androidWebView != null)
-        //            {
-        //                androidWebView.ClearCache(true);
-        //                androidWebView.ClearHistory();
-        //            }
-
-        //            Android.Webkit.WebStorage.Instance.DeleteAllData();
-        //            Android.Webkit.CookieManager.Instance.RemoveAllCookies(null);
-        //            Android.Webkit.CookieManager.Instance.Flush();
-        //            break;
-
-        //        case DevicePlatform.iOS:
-        //            Foundation.NSUrlCache.SharedCache.RemoveAllCachedResponses();
-        //            Foundation.NSUserDefaults.StandardUserDefaults.RemovePersistentDomain(Foundation.NSBundle.MainBundle.BundleIdentifier);
-        //            Foundation.NSUserDefaults.StandardUserDefaults.Synchronize();
-        //            break;
-        //    }
-        //}
-
         public async void AttachWebView(WebView webView)
         {
             _webView = webView;
