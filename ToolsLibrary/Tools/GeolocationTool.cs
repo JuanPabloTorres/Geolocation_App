@@ -1,4 +1,5 @@
-﻿using ToolsLibrary.Factories;
+﻿using Microsoft.Maui.Devices.Sensors;
+using ToolsLibrary.Factories;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.Tools
