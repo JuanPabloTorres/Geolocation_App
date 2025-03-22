@@ -39,7 +39,7 @@ namespace GeolocationAds.TemplateViewModel
 
                     if (response.IsSuccess)
                     {
-                        EventManager2.Instance.Publish(this, CurrentPageContext);
+                        //EventManager2.Instance.Publish(this, CurrentPageContext);
                     }
                     else
                     {

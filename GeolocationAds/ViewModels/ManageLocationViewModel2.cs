@@ -18,13 +18,13 @@ namespace GeolocationAds.ViewModels
     public partial class ManageLocationViewModel2 : BaseViewModel3<Advertisement, IAdvertisementService>
     {
         [ObservableProperty]
-        private MapType seletedMapSetting;
+        private MapType seletedMapSetting=new ();
 
-        public ObservableCollection<Pin> Positions { get; set; } = new ObservableCollection<Pin>();
+        public ObservableCollection<Pin> Positions { get; set; } = new();
 
         public ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>> TemplateCardViewModel = new();
 
-        public ObservableCollection<MapType> MapSettings = new(Enum.GetValues(typeof(MapType)).Cast<MapType>().ToList());
+        public ObservableCollection<MapType> MapSettings = new();
 
         private readonly IContainerManageLocation containerManageLocation;
 
@@ -32,16 +32,16 @@ namespace GeolocationAds.ViewModels
         {
             this.containerManageLocation = containerManageLocation;
 
-            //this.ApplyQueryAttributesCompleted += ManageLocationViewModel_ApplyQueryAttributesCompleted;
+           
 
             this.ApplyQueryAttributesCompleted = async () => await ManageLocationViewModel_ApplyQueryAttributesCompleted();
 
             // Subscribe to the ItemDeletedEvent
-            EventManager2.Instance.Subscribe<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>(async (eventArgs) =>
-            {
-                // Handle the item deleted event here.
-                await HandleItemDeletedEventAsync(eventArgs.Model);
-            }, this);
+            //EventManager2.Instance.Subscribe<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>(async (eventArgs) =>
+            //{
+            //    // Handle the item deleted event here.
+            //    await HandleItemDeletedEventAsync(eventArgs.Model);
+            //}, this);
         }
 
         private async Task HandleItemDeletedEventAsync(GeolocationAd eventArgs)
@@ -97,10 +97,11 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         protected override async Task LoadData(int? pageIndex = 1)
         {
-            try
-            {
-                this.IsLoading = true;
+       
 
+
+            await RunWithLoadingIndicator(async () =>
+            {
                 this.Positions.Clear();
 
                 this.TemplateCardViewModel.Clear();
@@ -114,7 +115,6 @@ namespace GeolocationAds.ViewModels
                         AddPinToPositions(geo);
 
                         var _cardViewModel = new TemplateCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService);
-
                         this.TemplateCardViewModel.Add(_cardViewModel);
                     }
                 }
@@ -122,15 +122,7 @@ namespace GeolocationAds.ViewModels
                 {
                     await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         private async Task ManageLocationViewModel_ApplyQueryAttributesCompleted()
@@ -139,7 +131,7 @@ namespace GeolocationAds.ViewModels
             {
                 this.IsLoading = true;
 
-                TemplateCardViewModel<GeolocationAd, IGeolocationAdService>.CurrentPageContext = this.GetType().Name;
+                //TemplateCardViewModel<GeolocationAd, IGeolocationAdService>.CurrentPageContext = this.GetType().Name;
 
                 //// Subscribe to the ItemDeletedEvent
                 //EventManager2.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>

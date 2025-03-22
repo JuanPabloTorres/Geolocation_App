@@ -75,7 +75,7 @@
 
         <CollectionView
             Grid.Row="3"
-            ItemsSource="{Binding TemplateCardViewModel, Mode=TwoWay}"
+            ItemsSource="{Binding TemplateCardViewModel}"
             SelectionMode="Single">
 
             <CollectionView.Header>

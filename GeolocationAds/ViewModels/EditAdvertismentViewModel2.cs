@@ -66,21 +66,15 @@ namespace GeolocationAds.ViewModels
                             return await AppToolCommon.ProcessContentItem(item, serviceToUse);
                         });
 
-                    // 🔹 Espera la ejecución en paralelo de todas las tareas antes de añadirlas a la colección
+                    // 🔹 Espera la ejecución en paralelo de todas las tareas antes de añadirlas a
+                    // la colección
                     var processedTemplates = await Task.WhenAll(contentProcessingTasks);
 
                     // 🔹 Usa AddRange para evitar múltiples llamadas a la UI
                     this.ContentTypesTemplate.AddRange(processedTemplates);
                 }
             });
-
         }
-
-
-
-
-
-
 
         public async Task LoadSetting()
         {
@@ -101,38 +95,7 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-        //[RelayCommand]
-        //public async Task UploadContent()
-        //{
-        //    try
-        //    {
-        //        this.IsLoading = true;
-
-        // if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit) { await
-        // CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
-
-        // this.IsLoading = false;
-
-        // return; }
-
-        // var customFileTypes = GetCommonFileTypes();
-
-        // FileResult result = await FilePicker.PickAsync(new PickOptions { FileTypes =
-        // customFileTypes, });
-
-        // if (!result.IsObjectNull()) { Model.Contents.Clear();
-
-        // ContentTypesTemplate.Clear();
-
-        // await ProcessSelectedFile(result); } } catch (Exception ex) // Consider catching more
-        // specific exceptions { await CommonsTool.DisplayAlert("Error", ex.Message); } finally {
-        // //ContentTypesTemplate.Select(async v => await v.SetAnimation());
-
-        // foreach (var item in ContentTypesTemplate) { await item.SetAnimation(); }
-
-        //        this.IsLoading = false;
-        //    }
-        //}
+  
 
         [RelayCommand]
         public async Task UploadContent()
