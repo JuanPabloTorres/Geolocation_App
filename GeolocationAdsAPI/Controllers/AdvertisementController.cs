@@ -3,6 +3,7 @@ using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NuGet.Packaging;
 using System.Diagnostics;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
@@ -101,7 +102,8 @@ namespace GeolocationAdsAPI.Controllers
                         return BadRequest($"File size exceeds the limit: {formFile.FileName}");
                     }
 
-                    // Instead of converting to a byte array, we can directly use the stream for further processing if needed
+                    // Instead of converting to a byte array, we can directly use the stream for
+                    // further processing if needed
                     using (var memoryStream = new MemoryStream())
                     {
                         await formFile.CopyToAsync(memoryStream);
@@ -160,9 +162,7 @@ namespace GeolocationAdsAPI.Controllers
         //        case "image/gif":
         //            return ContentVisualType.Image;
 
-        //        case "video/mp4":
-        //        case "video/mpeg":
-        //            return ContentVisualType.Video;
+        // case "video/mp4": case "video/mpeg": return ContentVisualType.Video;
 
         //        default:
         //            return ContentVisualType.Unknown;
@@ -306,7 +306,7 @@ namespace GeolocationAdsAPI.Controllers
         //{
         //    //string ip = _serviceIP;
 
-        //    //string port = _servicePort;
+        // //string port = _servicePort;
 
         //    return _globalLocalBackendUrl;
         //}
@@ -316,24 +316,88 @@ namespace GeolocationAdsAPI.Controllers
         //{
         //    ResponseTool<Advertisement> response;
 
-        //    try
-        //    {
-        //        response = await this.advertisementRepository.UpdateAsync(Id, advertisement);
+        // try { response = await this.advertisementRepository.UpdateAsync(Id, advertisement);
 
-        //        if (!response.IsSuccess)
-        //        {
-        //            response = ResponseFactory<Advertisement>.BuildFail(response.Message, null, ToolsLibrary.Tools.Type.Exception);
+        // if (!response.IsSuccess) { response =
+        // ResponseFactory<Advertisement>.BuildFail(response.Message, null, ToolsLibrary.Tools.Type.Exception);
 
-        //            return Ok(response);
-        //        }
+        // return Ok(response); }
+
+        // return Ok(response); } catch (Exception ex) { response =
+        // ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
         //        return Ok(response);
         //    }
+        //}
+
+        //[HttpPut("Update2/{Id}")]
+        //[RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
+        //[RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
+        //public async Task<IActionResult> Update2(int Id)
+        //{
+        //    try
+        //    {
+        //        if (!Request.HasFormContentType)
+        //        {
+        //            throw new InvalidOperationException("Unsupported media type.");
+        //        }
+
+        // // 🔹 Extraer datos del request con manejo de errores IFormCollection formCollection;
+
+        // var formDataResponse = await ApiCommonsTools.GetFormDataFromHttpRequest(Request);
+
+        // if (!formDataResponse.IsSuccess) { throw new
+        // InvalidOperationException(formDataResponse.Message); }
+
+        // formCollection = formDataResponse.Data;
+
+        // if (!formCollection.TryGetValue("advertisementMetadata", out var advertisementJson)) {
+        // throw new ArgumentException("Advertisement metadata is required."); }
+
+        // // 🔹 Deserializar el objeto JSON de forma segura Advertisement advertisement; try {
+        // advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson); if
+        // (advertisement == null) { throw new JsonException("Invalid advertisement data."); } }
+        // catch (JsonException je) { throw new Exception($"Invalid JSON data: {je.Message}", je); }
+
+        // // 🔹 Procesar los archivos adjuntos try { foreach (var formFile in formCollection.Files)
+        // { if (formFile.Length > ConstantsTools.MaxFileSize) { throw new
+        // InvalidOperationException($"File size exceeds the limit: {formFile.FileName}"); }
+
+        // // Extraer metadata de los headers con valores predeterminados seguros var filePath =
+        // formFile.Headers["FilePath"].FirstOrDefault() ?? string.Empty;
+
+        // var id = formFile.Headers["ID"].FirstOrDefault();
+
+        // var adId = formFile.Headers["AdId"].FirstOrDefault();
+
+        // // Convertir los IDs solo si son válidos if (!int.TryParse(id, out int contentId)) {
+        // throw new FormatException($"Invalid content ID: {id}"); }
+
+        // if (!int.TryParse(adId, out int advertisementId)) { throw new FormatException($"Invalid
+        // advertisement ID: {adId}"); }
+
+        // using var memoryStream = new MemoryStream();
+
+        // await formFile.CopyToAsync(memoryStream);
+
+        // // 🔹 Crear objeto de contenido var content = new ContentType { Content =
+        // memoryStream.ToArray(), FilePath = filePath, FileSize = formFile.Length, ContentName =
+        // formFile.FileName, Type = ApiCommonsTools.DetermineContentType(formFile.ContentType),
+        // CreateDate = DateTime.UtcNow, ID = contentId, AdvertisingId = advertisementId };
+
+        // advertisement.Contents.Add(content); } } catch (Exception ex) { throw new
+        // Exception("Error processing uploaded files.", ex); }
+
+        // // 🔹 Actualizar el anuncio en la base de datos con manejo seguro de excepciones
+
+        // var response = await advertisementRepository.UpdateAsync(Id, advertisement);
+
+        // return Ok(response);
+
+        //    }
         //    catch (Exception ex)
         //    {
-        //        response = ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-        //        return Ok(response);
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
         //    }
         //}
 
@@ -342,112 +406,64 @@ namespace GeolocationAdsAPI.Controllers
         [RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
         public async Task<IActionResult> Update2(int Id)
         {
-            if (!Request.HasFormContentType)
-            {
-                return BadRequest("Unsupported media type");
-            }
-
-            IFormCollection formCollection;
-
-            var formDataResponse = await ApiCommonsTools.GetFormDataFromHttpRequest(Request);
-
-            if (!formDataResponse.IsSuccess)
-            {
-                return Ok(formDataResponse);
-            }
-
-            formCollection = formDataResponse.Data;
-
-            if (!formCollection.ContainsKey("advertisementMetadata"))
-            {
-                return BadRequest("Advertisement metadata is required.");
-            }
-
-            var advertisementJson = formCollection["advertisementMetadata"];
-
-            Advertisement advertisement;
-
             try
             {
-                advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
+                if (!Request.HasFormContentType)
+                {
+                    return Ok(ResponseFactory<string>.BuildFail("Unsupported media type", string.Empty, ToolsLibrary.Tools.Type.Exception));
+                }
+
+                // 🔹 Obtener datos del formulario
+                var formDataResponse = await ApiCommonsTools.GetFormDataFromHttpRequest(Request);
+
+                if (!formDataResponse.IsSuccess)
+                {
+                    return Ok(ResponseFactory<string>.BuildFail(formDataResponse.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
+                }
+
+                var formCollection = formDataResponse.Data;
+
+                if (!formCollection.ContainsKey("advertisementMetadata"))
+                {
+                    return Ok(ResponseFactory<string>.BuildFail("Advertisement metadata is required.", string.Empty, ToolsLibrary.Tools.Type.Exception));
+                }
+
+                // 🔹 Deserializar anuncio
+                var advertisementJson = formCollection["advertisementMetadata"];
+
+                var advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
 
                 if (advertisement == null)
                 {
-                    return BadRequest("Invalid advertisement data.");
+                    return Ok(ResponseFactory<string>.BuildFail("Invalid advertisement data.", string.Empty, ToolsLibrary.Tools.Type.Exception));
                 }
-            }
-            catch (JsonException je)
-            {
-                return BadRequest($"Invalid JSON data: {je.Message}");
-            }
 
-            try
-            {
-                foreach (var formFile in formCollection.Files)
-                {
-                    if (formFile.Length > ConstantsTools.MaxFileSize)
-                    {
-                        return BadRequest($"File size exceeds the limit: {formFile.FileName}");
-                    }
+                // 🔹 Procesar archivos subidos
+                var uploadedContents = await FileManager.ProcessUploadedFilesAsync(formCollection);
 
-                    // We use the stream directly for further processing if needed
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await formFile.CopyToAsync(memoryStream);
+                advertisement.Contents.AddRange(uploadedContents);
 
-                        // Reset the position of the MemoryStream to the beginning for any further reading
-                        memoryStream.Position = 0;
-
-                        // Extract metadata from headers if available or use default values
-                        var filePath = formFile.Headers["FilePath"].FirstOrDefault();  // Correct usage
-
-                        var id = formFile.Headers["ID"].FirstOrDefault();  // Correct usage
-
-                        var adId = formFile.Headers["AdId"].FirstOrDefault();  // Correct usage
-
-                        // Create a ContentType object and associate it with the advertisement
-                        var content = new ContentType
-                        {
-                            Content = memoryStream.ToArray(), // Still converting to array for ContentType object usage
-                            FilePath = filePath,
-                            FileSize = formFile.Length,
-                            ContentName = formFile.FileName,
-                            Type = ApiCommonsTools.DetermineContentType(formFile.ContentType),
-                            CreateDate = DateTime.Now,
-                            ID = Convert.ToInt32(id), // Assuming ID is a string; adjust the type as necessary
-                            AdvertisingId = Convert.ToInt32(adId)
-                        };
-
-                        // Process the content further as needed, e.g., add to a list, etc.
-                        advertisement.Contents.Add(content);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error processing files: {ex.Message}");
-            }
-
-            try
-            {
+                // 🔹 Actualizar anuncio en base de datos
                 var response = await advertisementRepository.UpdateAsync(Id, advertisement);
 
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
+                return Ok(ResponseFactory<string>.BuildFail(ex.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
             }
         }
 
         private string ConvertVideoToHLS3(string videoFilePath)
         {
-            // Assuming wwwroot exists at the root of the web project and 'hls' is a folder inside it for videos.
+            // Assuming wwwroot exists at the root of the web project and 'hls' is a folder inside
+            // it for videos.
             var outputDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "hls", Guid.NewGuid().ToString());
 
             Directory.CreateDirectory(outputDirectory);
 
             var outputFilePath = Path.Combine(outputDirectory, "output.m3u8");
+
             var startInfo = new ProcessStartInfo
             {
                 FileName = "ffmpeg",

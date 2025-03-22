@@ -18,5 +18,7 @@
 
         public const long MB50 = 50 * 1024 * 1024; // This equals 52,428,800 bytes 50MB
 
+        public const int MaxAdLimit = 1;
+
     }
 }

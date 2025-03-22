@@ -277,6 +277,7 @@ C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bi
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\BCrypt.Net-Core.dll
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\CommunityToolkit.Mvvm.dll
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\Humanizer.dll
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\MailKit.dll
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -532,4 +533,3 @@ C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\ob
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\obj\Debug\net8.0\GeolocationAdsAPI.pdb
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\obj\Debug\net8.0\GeolocationAdsAPI.genruntimeconfig.cache
 C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\obj\Debug\net8.0\ref\GeolocationAdsAPI.dll
-C:\Users\juanp\source\repos\JuanPabloTorres\Geolocation_App\GeolocationAdsAPI\bin\Debug\net8.0\CommunityToolkit.Mvvm.dll

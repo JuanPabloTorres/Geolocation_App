@@ -5,8 +5,6 @@ Desktop.ini
 .DS_Store
 
 # Ignore archivos de configuración personal
-*.suo
-*.user
 *.userosscache
 *.sln.docstates
 
@@ -21,7 +19,8 @@ obj/Debug
 appsettings.json
 appsettings.Development.json
 
-# Ignore Visual Studio files
-.vs\
+# Visual Studio
 .vs/
+*.user
+*.suo
 

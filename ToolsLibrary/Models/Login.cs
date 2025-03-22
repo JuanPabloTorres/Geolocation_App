@@ -8,12 +8,8 @@ namespace ToolsLibrary.Models
 {
     public partial class Login : BaseModel
     {
-        public Login()
-        {
-        }
-
         public string? GoogleId { get; set; }
-        
+
         public string? FacebookId { get; set; }
 
         public string HashPassword { get; set; }
@@ -21,7 +17,7 @@ namespace ToolsLibrary.Models
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [Required(ErrorMessage = $"{nameof(Password)} is required.")]
-        public string? _password;
+        public string? password;
 
         public Providers Provider { get; set; }
 
@@ -34,7 +30,6 @@ namespace ToolsLibrary.Models
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [Required(ErrorMessage = $"{nameof(Username)} is required.")]
-        public string? _username;
-
+        public string? username;
     }
 }

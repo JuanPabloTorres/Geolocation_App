@@ -1,0 +1,311 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\viewmodels\\managelocationviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:viewmodels\\managelocationviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1540ACE2-C3C6-42C7-86E7-4C8B5FDB4B48}|..\\GeolocationAdsAPI\\GeolocationAdsAPI.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationadsapi\\controllers\\advertisementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\pages\\managelocation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:pages\\managelocation.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\pages\\managelocation.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:pages\\managelocation.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\viewmodels\\mycontentviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:viewmodels\\mycontentviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\locationcardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\locationcardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\templatebaseviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\templatebaseviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\juanp\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a9e77781-dc83-2e6e-8132-9766da03e447\\GeolocationAds.ViewModels.BaseViewModel.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\capturetemplateviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\capturetemplateviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\templatebaseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\templatebaseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\nearbytemplateviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\nearbytemplateviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\mangecontenttemplateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\mangecontenttemplateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\contenttypetemplateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\contenttypetemplateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\templateviewmodel\\contenttypetemplateviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:templateviewmodel\\contenttypetemplateviewmodel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|c:\\users\\juanp\\source\\repos\\juanpablotorres\\geolocation_app\\geolocationads\\services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2240481-67A5-4114-AD16-2B540AA23159}|GeolocationAds.csproj|solutionrelative:services\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 202,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 17,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdvertisementController.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "RelativeDocumentMoniker": "..\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "RelativeToolTip": "..\\GeolocationAdsAPI\\Controllers\\AdvertisementController.cs",
+              "ViewState": "AgIAAKgBAAAAAAAAAAAAwMgBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T20:11:42.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ManageLocation.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Pages\\ManageLocation.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\ManageLocation.xaml.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Pages\\ManageLocation.xaml.cs",
+              "RelativeToolTip": "Pages\\ManageLocation.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T20:09:03.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAzwJoAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T20:08:31.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GeolocationAds.ViewModels.BaseViewModel.g.cs [generated]",
+              "DocumentMoniker": "C:\\Users\\juanp\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a9e77781-dc83-2e6e-8132-9766da03e447\\GeolocationAds.ViewModels.BaseViewModel.g.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\VSGeneratedDocuments\\a9e77781-dc83-2e6e-8132-9766da03e447\\GeolocationAds.ViewModels.BaseViewModel.g.cs",
+              "ToolTip": "GeolocationAds.ViewModels.BaseViewModel.g.cs [generated by CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator]",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenToolTip": "GeolocationAds.ViewModels.BaseViewModel.g.cs [generated by CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator]",
+              "WhenOpened": "2025-03-22T19:51:57.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MyContentViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\MyContentViewModel2.cs",
+              "RelativeDocumentMoniker": "ViewModels\\MyContentViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\MyContentViewModel2.cs",
+              "RelativeToolTip": "ViewModels\\MyContentViewModel2.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAkwIYAAACPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:07:02.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ContentTypeTemplateViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\ContentTypeTemplateViewModel2.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\ContentTypeTemplateViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\ContentTypeTemplateViewModel2.cs",
+              "RelativeToolTip": "TemplateViewModel\\ContentTypeTemplateViewModel2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:26.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ContentTypeTemplateViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\ContentTypeTemplateViewModel.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\ContentTypeTemplateViewModel.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\ContentTypeTemplateViewModel.cs",
+              "RelativeToolTip": "TemplateViewModel\\ContentTypeTemplateViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:18.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CaptureTemplateViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\CaptureTemplateViewModel2.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\CaptureTemplateViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\CaptureTemplateViewModel2.cs",
+              "RelativeToolTip": "TemplateViewModel\\CaptureTemplateViewModel2.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAowK0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:17.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MangeContentTemplateViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\MangeContentTemplateViewModel.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\MangeContentTemplateViewModel.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\MangeContentTemplateViewModel.cs",
+              "RelativeToolTip": "TemplateViewModel\\MangeContentTemplateViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:15.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "NearByTemplateViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\NearByTemplateViewModel2.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\NearByTemplateViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\NearByTemplateViewModel2.cs",
+              "RelativeToolTip": "TemplateViewModel\\NearByTemplateViewModel2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:13.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TemplateBaseViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\TemplateBaseViewModel.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\TemplateBaseViewModel.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\TemplateBaseViewModel.cs",
+              "RelativeToolTip": "TemplateViewModel\\TemplateBaseViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:12.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TemplateBaseViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\TemplateBaseViewModel2.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\TemplateBaseViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\TemplateBaseViewModel2.cs",
+              "RelativeToolTip": "TemplateViewModel\\TemplateBaseViewModel2.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T19:47:08.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ManageLocation.xaml",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Pages\\ManageLocation.xaml",
+              "RelativeDocumentMoniker": "Pages\\ManageLocation.xaml",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Pages\\ManageLocation.xaml",
+              "RelativeToolTip": "Pages\\ManageLocation.xaml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-22T19:06:29.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BaseViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\BaseViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\BaseViewModel.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\BaseViewModel.cs",
+              "RelativeToolTip": "ViewModels\\BaseViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:49:48.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LocationCardViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\LocationCardViewModel.cs",
+              "RelativeDocumentMoniker": "TemplateViewModel\\LocationCardViewModel.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\TemplateViewModel\\LocationCardViewModel.cs",
+              "RelativeToolTip": "TemplateViewModel\\LocationCardViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:49:30.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Services\\BaseService.cs",
+              "RelativeDocumentMoniker": "Services\\BaseService.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\Services\\BaseService.cs",
+              "RelativeToolTip": "Services\\BaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:46:53.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ManageLocationViewModel2.cs",
+              "DocumentMoniker": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\ManageLocationViewModel2.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ManageLocationViewModel2.cs",
+              "ToolTip": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\GeolocationAds\\ViewModels\\ManageLocationViewModel2.cs",
+              "RelativeToolTip": "ViewModels\\ManageLocationViewModel2.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T18:28:09.872Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
