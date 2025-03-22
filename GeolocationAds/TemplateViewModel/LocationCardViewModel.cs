@@ -8,22 +8,26 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class TemplateCardViewModel<M, S> : BaseViewModel where M : class
+    public partial class LocationCardViewModel<T, S> : TemplateBaseViewModel2 where T : class
     {
         [ObservableProperty]
-        private M model;
+        private T model;
 
         protected S service { get; set; }
 
-        public TemplateCardViewModel(M model, S service)
+        public Action<T> ItemDeleted { get; set; }  // ✅ Se usa Action en vez de event para borrar.
+
+        public LocationCardViewModel(T model, S service, Action<T> onDelete)
         {
             this.Model = model;
 
             this.service = service;
+
+            ItemDeleted = onDelete;
         }
 
         [RelayCommand]
-        public async Task Remove(M item)
+        public async Task Remove(T item)
         {
             try
             {
@@ -33,13 +37,15 @@ namespace GeolocationAds.TemplateViewModel
 
                 if (isConfirmed)
                 {
-                    int id = GenericTool<M>.GetPropertyValueFromObject<int>(item, nameof(BaseModel.ID));
+                    int id = GenericTool<T>.GetPropertyValueFromObject<int>(item, nameof(BaseModel.ID));
 
                     var response = await RemoveItemAsync(id);
 
                     if (response.IsSuccess)
                     {
                         //EventManager2.Instance.Publish(this, CurrentPageContext);
+
+                        ItemDeleted?.Invoke(item);
                     }
                     else
                     {
@@ -57,11 +63,11 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        private async Task<ResponseTool<M>> RemoveItemAsync(int id)
+        private async Task<ResponseTool<T>> RemoveItemAsync(int id)
         {
             object[] parameters = { id };
 
-            return await GenericTool<ResponseTool<M>>.InvokeMethodName<ResponseTool<M>>(this.service, nameof(BaseService<M>.Remove), parameters);
+            return await GenericTool<ResponseTool<T>>.InvokeMethodName<ResponseTool<T>>(this.service, nameof(BaseService<T>.Remove), parameters);
         }
 
     }

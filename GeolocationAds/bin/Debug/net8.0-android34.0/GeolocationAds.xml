@@ -365,6 +365,19 @@
         <member name="P:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.OpenMetaDataPopUpCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.ContentViewTemplateViewModel.OpenMetaDataPopUp"/>.</summary>
         </member>
+        <member name="T:GeolocationAds.TemplateViewModel.LocationCardViewModel`2">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.LocationCardViewModel`2.Model">
+            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.LocationCardViewModel`2.model"/>
+        </member>
+        <member name="F:GeolocationAds.TemplateViewModel.LocationCardViewModel`2.removeCommand">
+            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.LocationCardViewModel`2.RemoveCommand"/>.</summary>
+        </member>
+        <member name="P:GeolocationAds.TemplateViewModel.LocationCardViewModel`2.RemoveCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.LocationCardViewModel`2.Remove(`0)"/>.</summary>
+        </member>
         <member name="T:GeolocationAds.TemplateViewModel.NearByTemplateViewModel2">
             <inheritdoc/>
             <inheritdoc/>
@@ -472,19 +485,6 @@
         </member>
         <member name="P:GeolocationAds.TemplateViewModel.TemplateBaseViewModel2.IsLoading">
             <inheritdoc cref="F:GeolocationAds.TemplateViewModel.TemplateBaseViewModel2.isLoading"/>
-        </member>
-        <member name="T:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2">
-            <inheritdoc/>
-            <inheritdoc/>
-        </member>
-        <member name="P:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.Model">
-            <inheritdoc cref="F:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.model"/>
-        </member>
-        <member name="F:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.removeCommand">
-            <summary>The backing field for <see cref="P:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.RemoveCommand"/>.</summary>
-        </member>
-        <member name="P:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.RemoveCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:GeolocationAds.TemplateViewModel.TemplateCardViewModel`2.Remove(`0)"/>.</summary>
         </member>
         <member name="T:GeolocationAds.ViewModels.AppShellViewModel2">
             <inheritdoc/>
@@ -1220,11 +1220,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CanGoForward">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CanGoForward" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLoading">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLoading" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Model">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Model" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsLoading" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.UserName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "UserName" generated properties.</summary>
@@ -1322,11 +1322,11 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CanGoForward">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CanGoForward" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLoading">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLoading" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Model">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Model" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsLoading">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsLoading" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.UserName">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "UserName" generated properties.</summary>
