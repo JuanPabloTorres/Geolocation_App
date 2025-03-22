@@ -7,6 +7,6 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private bool isLoading;
 
-        public static string CurrentPageContext { get; set; }
+       
     }
 }

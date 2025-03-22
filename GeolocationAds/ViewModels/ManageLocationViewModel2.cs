@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
@@ -18,13 +19,13 @@ namespace GeolocationAds.ViewModels
     public partial class ManageLocationViewModel2 : BaseViewModel3<Advertisement, IAdvertisementService>
     {
         [ObservableProperty]
-        private MapType seletedMapSetting=new ();
+        private MapType seletedMapSetting = new();
 
         public ObservableCollection<Pin> Positions { get; set; } = new();
 
-        public ObservableCollection<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>> TemplateCardViewModel = new();
+        public ObservableCollection<LocationCardViewModel<GeolocationAd, IGeolocationAdService>> LocationCardViewModels { get; set; } = new();
 
-        public ObservableCollection<MapType> MapSettings = new();
+        public ObservableCollection<MapType> MapSettings { get; set; } = new(Enum.GetValues(typeof(MapType)).Cast<MapType>().ToObservableCollection());
 
         private readonly IContainerManageLocation containerManageLocation;
 
@@ -32,46 +33,27 @@ namespace GeolocationAds.ViewModels
         {
             this.containerManageLocation = containerManageLocation;
 
-           
-
             this.ApplyQueryAttributesCompleted = async () => await ManageLocationViewModel_ApplyQueryAttributesCompleted();
-
-            // Subscribe to the ItemDeletedEvent
-            //EventManager2.Instance.Subscribe<TemplateCardViewModel<GeolocationAd, IGeolocationAdService>>(async (eventArgs) =>
-            //{
-            //    // Handle the item deleted event here.
-            //    await HandleItemDeletedEventAsync(eventArgs.Model);
-            //}, this);
         }
 
-        private async Task HandleItemDeletedEventAsync(GeolocationAd eventArgs)
+        private async void HandleItemDeletedEventAsync(GeolocationAd eventArgs)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
                 if (!eventArgs.IsObjectNull())
                 {
-                    var toRemoveViewModel = this.TemplateCardViewModel.FirstOrDefault(v => v.Model.ID == eventArgs.ID);
+                    var toRemoveViewModel = this.LocationCardViewModels.FirstOrDefault(v => v.Model.ID == eventArgs.ID);
 
                     var toRemovePosition = this.Positions.FirstOrDefault(p => p.MarkerId.ToString() == eventArgs.ID.ToString());
 
                     if (!toRemoveViewModel.IsObjectNull() && !toRemovePosition.IsObjectNull())
                     {
-                        this.TemplateCardViewModel.Remove(toRemoveViewModel);
+                        this.LocationCardViewModels.Remove(toRemoveViewModel);
 
                         this.Positions.Remove(toRemovePosition);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         private void AddPinToPositions(GeolocationAd geo)
@@ -97,14 +79,11 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         protected override async Task LoadData(int? pageIndex = 1)
         {
-       
-
-
             await RunWithLoadingIndicator(async () =>
             {
                 this.Positions.Clear();
 
-                this.TemplateCardViewModel.Clear();
+                this.LocationCardViewModels.Clear();
 
                 var _apiResponse = await this.service.Get(this.Model.ID);
 
@@ -114,76 +93,31 @@ namespace GeolocationAds.ViewModels
                     {
                         AddPinToPositions(geo);
 
-                        var _cardViewModel = new TemplateCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService);
-                        this.TemplateCardViewModel.Add(_cardViewModel);
+                        var _cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService, HandleItemDeletedEventAsync);
+
+                        this.LocationCardViewModels.Add(_cardViewModel);
                     }
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
+                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
                 }
             });
         }
 
         private async Task ManageLocationViewModel_ApplyQueryAttributesCompleted()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
-                //TemplateCardViewModel<GeolocationAd, IGeolocationAdService>.CurrentPageContext = this.GetType().Name;
-
-                //// Subscribe to the ItemDeletedEvent
-                //EventManager2.Instance.Subscribe<GeolocationAd>(async (eventArgs) =>
-                //{
-                //    // Handle the item deleted event here.
-                //    await HandleItemDeletedEventAsync(eventArgs);
-                //}, this);
-
                 foreach (var geo in this.Model.GeolocationAds)
                 {
                     AddPinToPositions(geo);
 
-                    var _cardViewModel = new TemplateCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService);
+                    var _cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService, HandleItemDeletedEventAsync);
 
-                    this.TemplateCardViewModel.Add(_cardViewModel);
+                    this.LocationCardViewModels.Add(_cardViewModel);
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
-        }
-
-        private async void _cardViewModel_ItemDeleted(object sender, EventArgs e)
-        {
-            try
-            {
-                this.IsLoading = true;
-
-                if (sender is TemplateCardViewModel<GeolocationAd, IGeolocationAdService> model)
-                {
-                    var _toRemove = this.TemplateCardViewModel.Where(v => v.Model.ID == model.Model.ID).FirstOrDefault();
-
-                    var _positionToRemove = this.Positions.Where(v => v.Location.Latitude == model.Model.Latitude && v.Location.Longitude == model.Model.Longitude).FirstOrDefault();
-
-                    this.Positions.Remove(_positionToRemove);
-
-                    this.TemplateCardViewModel.Remove(_toRemove);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         private void _pin_MarkerClicked(object sender, PinClickedEventArgs e)
@@ -194,46 +128,36 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task CreateAdToLocation()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                var locationResponse = await GeolocationTool.GetLocation();
 
-                var locationReponse = await GeolocationTool.GetLocation();
-
-                if (!locationReponse.IsSuccess)
+                if (!locationResponse.IsSuccess)
                 {
-                    await CommonsTool.DisplayAlert("Error", locationReponse.Message);
+                    await CommonsTool.DisplayAlert("Error", locationResponse.Message);
 
                     return;
                 }
 
-                GeolocationAd newLocation = GeolocationAdFactory.CreateGeolocationAd(this.Model.ID, locationReponse.Data);
+                var newLocation = GeolocationAdFactory.CreateGeolocationAd(this.Model.ID, locationResponse.Data);
 
-                var _apiResponse = await this.containerManageLocation.GeolocationAdService.Add(newLocation);
+                var apiResponse = await this.containerManageLocation.GeolocationAdService.Add(newLocation);
 
-                if (_apiResponse.IsSuccess)
+                if (apiResponse.IsSuccess)
                 {
-                    AddPinToPositions(_apiResponse.Data);
+                    AddPinToPositions(apiResponse.Data);
 
-                    var _cardViewModel = new TemplateCardViewModel<GeolocationAd, IGeolocationAdService>(_apiResponse.Data, this.containerManageLocation.GeolocationAdService);
+                    var cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(apiResponse.Data, this.containerManageLocation.GeolocationAdService, HandleItemDeletedEventAsync);
 
-                    this.TemplateCardViewModel.Add(_cardViewModel);
+                    this.LocationCardViewModels.Add(cardViewModel);
 
-                    await CommonsTool.DisplayAlert("Notification", _apiResponse.Message);
+                    await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
                 }
                 else
                 {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                    await CommonsTool.DisplayAlert("Error", apiResponse.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
     }
 }

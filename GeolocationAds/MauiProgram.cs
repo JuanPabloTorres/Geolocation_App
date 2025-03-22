@@ -122,22 +122,38 @@ public static class MauiProgram
     private static void RegisterViewModels(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<CreateAdvertismentViewModel2>();
+
         builder.Services.AddScoped<MangeContentTemplateViewModel>();
         builder.Services.AddScoped<MyContentViewModel2>();
+
         builder.Services.AddScoped<SearchAdViewModel2>();
+
         builder.Services.AddScoped<LoginViewModel2>();
+
         builder.Services.AddScoped<RegisterViewModel>();
+
         builder.Services.AddScoped<AppShellViewModel2>();
+
         builder.Services.AddScoped<GoogleMapViewModel2>();
+
         builder.Services.AddScoped<EditAdvertismentViewModel2>();
+
         builder.Services.AddScoped<UserSettingViewModel>();
+
         builder.Services.AddScoped<EditUserPerfilViewModel>();
+
         builder.Services.AddScoped<EditLoginCredentialViewModel>();
+
         builder.Services.AddScoped<RecoveryPasswordViewModel>();
+
         builder.Services.AddScoped<FilterPopUpViewModel>();
+
         builder.Services.AddScoped<FilterPopUpViewModel2>();
+
         builder.Services.AddScoped<CaptureViewModel2>();
-        builder.Services.AddScoped<ManageLocationViewModel>();
+
+        //builder.Services.AddScoped<ManageLocationViewModel>();
+
         builder.Services.AddScoped<ManageLocationViewModel2>();
 
         builder.Services.AddScoped<ContentViewTemplateViewModel>();

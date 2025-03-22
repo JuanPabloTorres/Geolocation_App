@@ -21,10 +21,13 @@ namespace ToolsLibrary.Extensions
         }
 
         // IEnumerable doesn't have a built-in Add method, so this extension returns a new collection
-        public static IEnumerable<T> AddRange<T>(this IEnumerable<T> collection, IEnumerable<T> items)
+        public static void AddRange<T>(this List<T> collection, IEnumerable<T> items)
         {
-            return collection.Concat(items);
+            if (collection == null || items == null) return; // Evitar errores de nulos
+
+            collection.AddRange(items);
         }
+
 
         public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int batchSize)
         {

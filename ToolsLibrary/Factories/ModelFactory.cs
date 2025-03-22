@@ -4,34 +4,28 @@
     {
         public static T Build(T model)
         {
-            var _newModel = Activator.CreateInstance<T>();
-
-            var properties = typeof(T).GetProperties();
-
-            foreach (var property in properties)
+            try
             {
-                var value = property.GetValue(model);
+                var _newModel = Activator.CreateInstance<T>();
 
-                property.SetValue(_newModel, value);
+                var properties = typeof(T).GetProperties();
+
+                foreach (var property in properties)
+                {
+                    if (!property.CanWrite) // ❌ Evitar propiedades sin 'set'
+                        continue;
+
+                    var value = property.GetValue(model);
+
+                    property.SetValue(_newModel, value);
+                }
+
+                return _newModel;
             }
-
-            return _newModel;
-        }
-
-        public static T Build(object model)
-        {
-            var _newModel = Activator.CreateInstance<T>();
-
-            var properties = typeof(T).GetProperties();
-
-            foreach (var property in properties)
+            catch (Exception ex)
             {
-                var value = property.GetValue(model);
-
-                property.SetValue(_newModel, value);
+                return default;
             }
-
-            return _newModel;
         }
     }
 }

@@ -194,6 +194,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             if (this.Provider != provider)
             {
                 this.Provider = provider;
+
                 await ConfirmRememberUserAsync();
             }
 

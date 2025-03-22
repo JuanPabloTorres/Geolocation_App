@@ -1,9 +1,13 @@
-﻿namespace ToolsLibrary.Models
-{
-    public class AppSetting : BaseModel
-    {
-        public string SettingName { get; set; }
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-        public string Value { get; set; }
+namespace ToolsLibrary.Models
+{
+    public partial class AppSetting : BaseModel
+    {
+        [ObservableProperty]
+        public string settingName;
+
+        [ObservableProperty]
+        public string value;
     }
 }
