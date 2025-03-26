@@ -68,8 +68,6 @@ namespace GeolocationAds.ViewModels
         {
             await RunWithLoadingIndicator(async () =>
             {
-                
-
                 this.ContentTypesTemplate.Clear();
 
                 Url = string.Empty;
@@ -271,7 +269,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        partial void OnSelectedAdTypeChanged(AppSetting value)
+        private partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             _ = HandleAdTypeChangeAsync(value).ContinueWith(task =>
             {
@@ -337,7 +335,7 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task Clear()
         {
-           await  SetDefault();
+            await SetDefault();
         }
     }
 }

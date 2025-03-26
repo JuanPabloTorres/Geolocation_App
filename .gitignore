@@ -77,3 +77,4 @@ ToolsLibrary/obj/Debug/net8.0-maccatalyst/ToolsLibrary.GeneratedMSBuildEditorCon
 *.g.i.cs
 *.editorconfig
 *.nuget.*
+.vs/
