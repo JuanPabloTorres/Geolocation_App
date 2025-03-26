@@ -6,35 +6,66 @@ namespace GeolocationAds.Pages;
 
 public partial class ManageLocation : ContentPage
 {
+    private ManageLocationViewModel2 manageLocationViewModel2;
+
     public ManageLocation(ManageLocationViewModel2 manageLocationViewModel)
     {
         InitializeComponent();
 
-        this.BindingContext = manageLocationViewModel;
+        manageLocationViewModel2 = manageLocationViewModel;
+
+        this.BindingContext = manageLocationViewModel2;
     }
 
-    private void googleMap_MapClicked(object sender, Microsoft.Maui.Controls.Maps.MapClickedEventArgs e)
+    private async void googleMap_MapClicked(object sender, Microsoft.Maui.Controls.Maps.MapClickedEventArgs e)
     {
+        var clickedLocation = e.Location;
+
+        await manageLocationViewModel2.CreateAdToLocation(clickedLocation);
     }
 
     protected override async void OnAppearing()
     {
-        try
-        {
-            var _currentLocation = await GeolocationTool.GetLocation();
+        //try
+        //{
+        //    var _currentLocation = await GeolocationTool.GetLocation();
 
-            if (!_currentLocation.IsSuccess)
+        //    if (!_currentLocation.IsSuccess)
+        //    {
+        //        await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
+        //    }
+
+        //    MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocation.Data, Distance.FromMiles(0.05));
+
+        //    this.myMap.MoveToRegion(mapSpan);
+        //}
+        //catch (Exception ex)
+        //{
+        //    await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+        //}
+
+        await manageLocationViewModel2.RunWithLoadingIndicator(async () =>
+        {
+            try
             {
-                await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
+                var _currentLocation = await GeolocationTool.GetLocation();
+
+                if (!_currentLocation.IsSuccess)
+                {
+                    await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
+
+                    return;
+                }
+
+                MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocation.Data, Distance.FromMiles(0.01));
+                this.myMap.MoveToRegion(mapSpan);
             }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+        });
 
-            MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocation.Data, Distance.FromMiles(0.1));
 
-            this.myMap.MoveToRegion(mapSpan);
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-        }
     }
 }

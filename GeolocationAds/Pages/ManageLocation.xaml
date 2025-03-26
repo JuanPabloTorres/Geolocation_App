@@ -31,6 +31,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <maps:Map
@@ -101,12 +102,7 @@
                                 Command="{Binding RemoveCommand}"
                                 CommandParameter="{Binding Model}"
                                 HorizontalOptions="EndAndExpand"
-                                Style="{StaticResource XButtonGray}">
-
-                                <!--<Button.ImageSource>
-                                        <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" Color="{StaticResource AppGray}" />
-                                    </Button.ImageSource>-->
-                            </Button>
+                                Style="{StaticResource XButtonGray}" />
 
                             <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
                                 <Label
@@ -145,7 +141,32 @@
                 <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <Label Style="{StaticResource emptyCollectionLabel}" Text="No Location available." />
                 </StackLayout>
+
+
             </CollectionView.EmptyView>
+
+            <!--<CollectionView.Footer>
+                <Label Text="{Binding LocationCardViewModels.Count}" />
+            </CollectionView.Footer>-->
         </CollectionView>
+
+
+        <HorizontalStackLayout
+            Grid.Row="4"
+            Padding="10"
+            BackgroundColor="{StaticResource AppGray}"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding LocationCardViewModels.Count}"
+            VerticalOptions="End">
+
+            <Label
+                x:Name="totalAdsLabel"
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource globalsubTitle}"
+                Text="{Binding LocationCardViewModels.Count, StringFormat='Pins Locations Total: {0:N0}'}"
+                TextColor="White" />
+        </HorizontalStackLayout>
+
+
     </Grid>
 </ContentPage>

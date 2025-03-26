@@ -269,7 +269,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        private partial void OnSelectedAdTypeChanged(AppSetting value)
+        partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             _ = HandleAdTypeChangeAsync(value).ContinueWith(task =>
             {
