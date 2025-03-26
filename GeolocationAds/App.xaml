@@ -516,7 +516,7 @@
             <converters:UserProviderToBooleanConverter x:Key="UserProviderToBooleanConverter" />
 
             <BackButtonBehavior x:Key="NoBackButton" IsVisible="False" />
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

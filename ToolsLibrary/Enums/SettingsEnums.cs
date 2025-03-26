@@ -10,4 +10,16 @@
         MeterDistance,
         AdTypes,
     }
+
+    public enum AdType
+    {
+        Broadcast,
+        Social,
+        Store,
+        Offer,
+        News
+    }
+
+
+
 }

@@ -68,9 +68,13 @@ namespace GeolocationAds.ViewModels
         {
             await RunWithLoadingIndicator(async () =>
             {
-                ContentTypeTemplateViewModel2.CurrentPageContext = this.GetType().Name;
+                
 
                 this.ContentTypesTemplate.Clear();
+
+                Url = string.Empty;
+
+                SelectedAdType = AdTypesSettings.FirstOrDefault(v => v.Value == AdType.Broadcast.ToString());
 
                 var adSetting = new AdvertisementSettings
                 {
@@ -249,17 +253,6 @@ namespace GeolocationAds.ViewModels
             this.Model.Contents.Add(_content);
         }
 
-        private void RemoveDefaultImageIfPresent()
-        {
-            var defaultImg = this.ContentTypesTemplate.FirstOrDefault(v => v.ContentType.ContentName == ConstantsTools.FILENAME);
-
-            if (defaultImg == null) return;
-
-            this.ContentTypesTemplate.Remove(defaultImg);
-
-            this.Model.Contents.Remove(defaultImg.ContentType);
-        }
-
         private async Task GetImageSourceFromFile2()
         {
             try
@@ -278,7 +271,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-         partial void OnSelectedAdTypeChanged(AppSetting value)
+        partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             _ = HandleAdTypeChangeAsync(value).ContinueWith(task =>
             {
@@ -339,6 +332,12 @@ namespace GeolocationAds.ViewModels
                     SettingId = value.ID
                 });
             });
+        }
+
+        [RelayCommand]
+        public async Task Clear()
+        {
+           await  SetDefault();
         }
     }
 }

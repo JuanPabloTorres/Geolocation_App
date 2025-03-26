@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ToolsLibrary.Models
 {
-    public class Advertisement : BaseModel
+    public partial class Advertisement : BaseModel
     {
         public Advertisement()
         {
@@ -27,11 +28,13 @@ namespace ToolsLibrary.Models
         public ICollection<GeolocationAd> GeolocationAds { get; set; }
         public ICollection<AdvertisementSettings> Settings { get; set; }
 
+        [ObservableProperty]
         [Required(ErrorMessage = $"{nameof(Description)} is required.")]
-        public string Description { get; set; }
+        public string description;
 
+        [ObservableProperty]
         [Required(ErrorMessage = $"{nameof(Title)} is required.")]
-        public string Title { get; set; }
+        public string title;
 
         public int UserId { get; set; }
     }
