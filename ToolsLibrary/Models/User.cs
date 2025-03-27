@@ -20,6 +20,8 @@ namespace ToolsLibrary.Models
         public User()
         {
             Advertisements = new List<Advertisement>();
+
+            Login = new Login();
         }
 
         // 🔹 Lista de anuncios del usuario
@@ -53,5 +55,10 @@ namespace ToolsLibrary.Models
         // 🔹 Estado del usuario
         [ObservableProperty]
         public UserStatus userStatus;
+
+
+        // Imagen como arreglo de bytes
+        [ObservableProperty]
+        public byte[]? profileImageBytes;
     }
 }

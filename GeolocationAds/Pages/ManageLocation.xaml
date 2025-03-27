@@ -72,8 +72,6 @@
             </ContentView.Content>
         </ContentView>
 
-
-
         <CollectionView
             Grid.Row="3"
             ItemsSource="{Binding LocationCardViewModels, Mode=TwoWay}"
@@ -141,15 +139,8 @@
                 <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <Label Style="{StaticResource emptyCollectionLabel}" Text="No Location available." />
                 </StackLayout>
-
-
             </CollectionView.EmptyView>
-
-            <!--<CollectionView.Footer>
-                <Label Text="{Binding LocationCardViewModels.Count}" />
-            </CollectionView.Footer>-->
         </CollectionView>
-
 
         <HorizontalStackLayout
             Grid.Row="4"
@@ -166,7 +157,5 @@
                 Text="{Binding LocationCardViewModels.Count, StringFormat='Pins Locations Total: {0:N0}'}"
                 TextColor="White" />
         </HorizontalStackLayout>
-
-
     </Grid>
 </ContentPage>

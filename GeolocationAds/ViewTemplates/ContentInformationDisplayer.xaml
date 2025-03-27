@@ -12,8 +12,6 @@
         Text="{Binding Advertisement.Title}"
         TextColor="White" />
 
-
-
     <VerticalStackLayout>
         <Label
             LineBreakMode="WordWrap"
@@ -31,5 +29,4 @@
             </Label.GestureRecognizers>
         </Label>
     </VerticalStackLayout>
-
 </VerticalStackLayout>

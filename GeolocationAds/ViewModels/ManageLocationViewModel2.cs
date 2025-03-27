@@ -28,16 +28,12 @@ namespace GeolocationAds.ViewModels
         public ObservableCollection<MapType> MapSettings { get; set; } = new(Enum.GetValues(typeof(MapType)).Cast<MapType>().ToObservableCollection());
 
         private readonly IContainerManageLocation containerManageLocation;
-        //public IAsyncRelayCommand<(double? Latitude, double? Longitude)> CreateAdToLocationCommand { get; set; }
 
         public ManageLocationViewModel2(IContainerManageLocation containerManageLocation) : base(containerManageLocation.Model, containerManageLocation.AdvertisementService, containerManageLocation.LogUserPerfilTool)
         {
             this.containerManageLocation = containerManageLocation;
 
             this.ApplyQueryAttributesCompleted = async () => await ManageLocationViewModel_ApplyQueryAttributesCompleted();
-
-            //CreateAdToLocationCommand = new AsyncRelayCommand<(double? Latitude, double? Longitude)>(tuple =>
-            //CreateAdToLocation(tuple.Latitude, tuple.Longitude));
         }
 
         private async void HandleItemDeletedEventAsync(GeolocationAd eventArgs)
@@ -129,51 +125,6 @@ namespace GeolocationAds.ViewModels
             throw new NotImplementedException();
         }
 
-        //[RelayCommand]
-        //public async Task CreateAdToLocation(double? latitude = null, double? longitude = null)
-        //{
-        //    await RunWithLoadingIndicator(async () =>
-        //    {
-
-        //        ResponseTool<Location> locationResponse = null ;
-
-        //        // Si no se pasan coordenadas, obtener la ubicación actual
-        //        if (latitude == null || longitude == null)
-        //        {
-        //             locationResponse = await GeolocationTool.GetLocation();
-
-        //            if (!locationResponse.IsSuccess)
-        //            {
-        //                await CommonsTool.DisplayAlert("Error", locationResponse.Message);
-
-        //                return;
-        //            }
-        //        }
-
-
-
-        //        var newLocation = GeolocationAdFactory.CreateGeolocationAd(this.Model.ID, locationResponse.Data);
-
-        //        var apiResponse = await this.containerManageLocation.GeolocationAdService.Add(newLocation);
-
-        //        if (apiResponse.IsSuccess)
-        //        {
-        //            AddPinToPositions(apiResponse.Data);
-
-        //            var cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(apiResponse.Data, this.containerManageLocation.GeolocationAdService, HandleItemDeletedEventAsync);
-
-        //            this.LocationCardViewModels.Add(cardViewModel);
-
-        //            await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
-        //        }
-        //        else
-        //        {
-        //            await CommonsTool.DisplayAlert("Error", apiResponse.Message);
-        //        }
-        //    });
-        //}
-
-
         [RelayCommand]
         public async Task CreateAdToLocation(Location? location)
         {
@@ -182,7 +133,7 @@ namespace GeolocationAds.ViewModels
                 Location position;
 
                 // Si no se pasan coordenadas, obtener la ubicación actual
-                if (location.IsObjectNull() )
+                if (location.IsObjectNull())
                 {
                     var locationResponse = await GeolocationTool.GetLocation();
 
@@ -225,6 +176,5 @@ namespace GeolocationAds.ViewModels
                 }
             });
         }
-
     }
 }

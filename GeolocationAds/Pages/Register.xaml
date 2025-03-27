@@ -4,7 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="New User"
     BackgroundColor="WhiteSmoke"
     Routing.Route="Register">
@@ -67,6 +69,40 @@
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
             </CollectionView>
+
+            <VerticalStackLayout
+                Margin="0,10,0,0"
+                HorizontalOptions="Center"
+                Spacing="5">
+                <!--  Imagen si el usuario seleccionó una  -->
+
+
+                <ffimageloading:CachedImage
+                    Aspect="Fill"
+                    FadeAnimationEnabled="True"
+                    IsVisible="{Binding HasProfileImage}"
+                    Source="{Binding ProfileImage}" />
+
+                <!--  Avatar con inicial del nombre si no hay imagen  -->
+                <toolkit:AvatarView
+                    BackgroundColor="LightGray"
+                    CornerRadius="50"
+                    FontAttributes="Bold"
+                    FontSize="36"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding HasProfileImage, Converter={StaticResource InverseBoolConverter}}"
+                    Text="{Binding Avatar}"
+                    TextColor="Black"
+                    WidthRequest="100" />
+
+                <!--  Botón para seleccionar imagen  -->
+                <Button
+                    Command="{Binding SelectProfileImageCommand}"
+                    HorizontalOptions="Center"
+                    Text="Seleccionar imagen" />
+            </VerticalStackLayout>
+
 
             <!--  Section Title for Personal Information  -->
             <Label Style="{StaticResource globalLabel}" Text="Personal Information" />

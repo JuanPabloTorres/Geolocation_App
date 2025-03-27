@@ -69,6 +69,18 @@
                     </CollectionView.ItemsLayout>
                 </CollectionView>
 
+                <!--  Profile Picture Upload  -->
+                <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <Image
+                        Aspect="AspectFill"
+                        BackgroundColor="LightGray"
+                        HeightRequest="100"
+                        Source="{Binding ProfileImage}"
+                        WidthRequest="100" />
+
+                    <Button Command="{Binding SelectProfileImageCommand}" Text="Seleccionar imagen" />
+                </VerticalStackLayout>
+
                 <local:CustomEntryContentView
                     Grid.Row="3"
                     IconSource="&#xe7fd;"

@@ -83,13 +83,6 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-
-
-
-
-
-
-
         <displayer:PaginControls
             x:Name="paginControls"
             Grid.Row="1"
