@@ -18,20 +18,16 @@ namespace GeolocationAds.ViewModels
     {
         private IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
 
-        //private readonly IAppSettingService appSettingService;
-
-        //private readonly IAdvertisementService advertisementService;
-
         private readonly IContainerCapture containerCapture;
 
         [ObservableProperty]
-        private AppSetting selectedAdType = new AppSetting();
+        private AppSetting selectedAdType = new();
 
         private FilterPopUpViewModel filterPopUpViewModel;
 
-        public ObservableCollection<CaptureTemplateViewModel2> CaptureTemplateViewModels { get; set; } = new ObservableCollection<CaptureTemplateViewModel2>();
+        public ObservableCollection<CaptureTemplateViewModel2> CaptureTemplateViewModels { get; set; } = new();
 
-        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new ObservableCollection<AppSetting>();
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
         public CaptureViewModel2(IContainerCapture containerCapture) : base(containerCapture.Model, containerCapture.CaptureService, containerCapture.LogUserPerfilTool)
         {
@@ -43,27 +39,6 @@ namespace GeolocationAds.ViewModels
 
                 await InitializeAsync();
             });
-            // Subscribe to the ItemDeletedEvent
-            EventManager2.Instance.Subscribe<CaptureTemplateViewModel2>(async (eventArgs) => { await HandleItemDeletedEventAsync(eventArgs); }, this);
-        }
-
-        private async Task HandleItemDeletedEventAsync(CaptureTemplateViewModel2 eventArgs)
-        {
-            try
-            {
-                var _toRemoveAdContent = this.CaptureTemplateViewModels.FirstOrDefault(vm => vm.Capture.ID == eventArgs.Capture.ID);
-
-                if (!_toRemoveAdContent.IsObjectNull())
-                {
-                    this.CaptureTemplateViewModels.Remove(_toRemoveAdContent);
-
-                    await CommonsTool.DisplayAlert("Notification", "Capture has been successfully removed.");
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
         }
 
         public async Task InitializeSettingsAsync()
@@ -71,119 +46,83 @@ namespace GeolocationAds.ViewModels
             await LoadSettings2Async();
         }
 
-        private async void CaptureTemplateViewModel_ItemDeleted(object sender, EventArgs e)
+        private async void CaptureTemplateViewModel_ItemDeleted(CaptureTemplateViewModel2 sender)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                if (sender is CaptureTemplateViewModel2 model)
+                var toRemoveAdContent = CaptureTemplateViewModels
+                    .FirstOrDefault(vm => vm.Capture.ID == sender.Capture.ID);
+
+                if (!toRemoveAdContent.IsObjectNull())
                 {
-                    var _toRemoveAdContent = this.CaptureTemplateViewModels.FirstOrDefault(vm => vm.Capture.ID == model.Capture.ID);
+                    CaptureTemplateViewModels.Remove(toRemoveAdContent);
 
-                    if (!_toRemoveAdContent.IsObjectNull())
-                    {
-                        this.CaptureTemplateViewModels.Remove(_toRemoveAdContent);
-
-                        await CommonsTool.DisplayAlert("Notification", "Capture has been successfully removed.");
-                    }
+                    await CommonsTool.DisplayAlert("Notification", "Capture has been successfully removed.");
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+            });
         }
 
-        private async void FilterPopUpViewModel_FilterItem(object sender, EventArgs e)
+        private async void FilterPopUpViewModel_FilterItem(FilterPopUpViewModel sender)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
                 await this._filterPopUp.CloseAsync();
 
-                var _sender = sender as FilterPopUpViewModel;
+                this.CaptureTemplateViewModels.Clear();
 
-                if (sender is FilterPopUpViewModel filterPopUpViewModel)
-                {
-                    this.CaptureTemplateViewModels.Clear();
+                this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
 
-                    this.SelectedAdType = filterPopUpViewModel.SelectedAdType;
-
-                    await InitializeAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
+                await InitializeAsync();
+            });
         }
 
         private async Task LoadSettings2Async()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                var apiResponse = await containerCapture.AppSettingService.GetAppSettingByNames(settings);
 
-                var _apiResponse = await this.containerCapture.AppSettingService.GetAppSettingByNames(settings);
-
-                if (_apiResponse.IsSuccess)
+                if (!apiResponse.IsSuccess)
                 {
-                    AdTypesSettings.AddRange(_apiResponse.Data.Where(item => item.SettingName == SettingName.AdTypes.ToString()).ToList());
-
-                    SelectedAdType = AdTypesSettings.FirstOrDefault();
-
-                    filterPopUpViewModel = new FilterPopUpViewModel(this.AdTypesSettings);
-
-                    this.filterPopUpViewModel.OnFilterItem += FilterPopUpViewModel_FilterItem;
+                    throw new Exception(apiResponse.Message); // Deja que RunWithLoadingIndicator maneje el error
                 }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+
+                var adTypes = apiResponse.Data.Where(item => item.SettingName == SettingName.AdTypes.ToString()).ToList();
+
+                AdTypesSettings.AddRange(adTypes);
+
+                SelectedAdType = AdTypesSettings.FirstOrDefault();
+
+                filterPopUpViewModel = new FilterPopUpViewModel(AdTypesSettings);
+
+                filterPopUpViewModel.OnFilterItem = FilterPopUpViewModel_FilterItem;
+            });
         }
 
         public async Task InitializeAsync(int? pageIndex = 1)
         {
-            CaptureTemplateViewModel2.CurrentPageContext = this.GetType().Name;
-
             await LoadData(pageIndex);
         }
 
         protected override async Task LoadData(int? pageIndex = 1)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                var userId = LogUserPerfilTool.GetUserId();
 
-                var _apiResponse = await this.service.GetMyCaptures(LogUserPerfilTool.GetUserId(), this.SelectedAdType.ID, pageIndex);
+                var apiResponse = await service.GetMyCaptures(userId, SelectedAdType.ID, pageIndex);
 
-                if (_apiResponse.IsSuccess)
+                if (!apiResponse.IsSuccess)
                 {
-                    this.CaptureTemplateViewModels
-                       .AddRange(
-                        _apiResponse.Data.Select(s => new CaptureTemplateViewModel2(s, this.service, this.containerCapture.AdvertisementService))
-                       .ToList());
+                    throw new Exception(apiResponse.Message); // Deja que RunWithLoadingIndicator maneje el error
                 }
-                else
-                {
-                    await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+
+                var captures = apiResponse.Data
+                    .Select(s => new CaptureTemplateViewModel2(s, service, containerCapture.AdvertisementService, CaptureTemplateViewModel_ItemDeleted))
+                    .ToList();
+
+                CaptureTemplateViewModels.AddRange(captures);
+            });
         }
 
         [RelayCommand]
@@ -191,10 +130,7 @@ namespace GeolocationAds.ViewModels
         {
             PageIndex = 1;
 
-            if (this.CaptureTemplateViewModels.Any())
-            {
-                this.CaptureTemplateViewModels.Clear();
-            }
+            this.CaptureTemplateViewModels.Clear();
 
             await InitializeAsync();
         }

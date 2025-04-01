@@ -5,43 +5,13 @@ using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class FilterPopUpViewModel : BaseViewModel
+    public partial class FilterPopUpViewModel : RootBaseViewModel
     {
-        //public ICommand FilterCommand { get; set; }
-
         [ObservableProperty]
         private AppSetting selectedAdType;
 
-        //public AppSetting SelectedAdType
-        //{
-        //    get => _selectedAdType;
-        //    set
-        //    {
-        //        if (_selectedAdType != value)
-        //        {
-        //            _selectedAdType = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         [ObservableProperty]
         private string selectedDistance;
-
-        //public string SelectedDistance
-        //{
-        //    get => _selectedDistance;
-        //    set
-        //    {
-        //        if (_selectedDistance != value)
-        //        {
-        //            _selectedDistance = value;
-
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
 
         public ObservableCollection<string> DistanceSettings { get; set; }
 
@@ -56,8 +26,6 @@ namespace GeolocationAds.ViewModels
             SelectedAdType = AdTypesSettings.FirstOrDefault();
 
             SelectedDistance = DistanceSettings.FirstOrDefault();
-
-            //this.FilterCommand = new Command(OnsubmitFilter);
         }
 
         public FilterPopUpViewModel(IEnumerable<AppSetting> appSettings)
@@ -65,23 +33,31 @@ namespace GeolocationAds.ViewModels
             this.AdTypesSettings = new ObservableCollection<AppSetting>(appSettings);
 
             SelectedAdType = AdTypesSettings.FirstOrDefault();
-
-            //this.FilterCommand = new Command(OnsubmitFilter);
         }
 
-        public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
+        //public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
 
-        public event SubmitFilterEventHandler OnFilterItem;
+        //public event SubmitFilterEventHandler OnFilterItem;
 
-        public virtual void FilterItemInvoke(EventArgs e)
+        //public virtual void FilterItemInvoke(EventArgs e)
+        //{
+        //    OnFilterItem?.Invoke(this, e);
+        //}
+
+        // Reemplazo del delegado personalizado y el evento por un Action
+        public Action<FilterPopUpViewModel>? OnFilterItem { get; set; }
+
+        // Método para invocar la acción
+        public virtual void FilterItemInvoke()
         {
-            OnFilterItem?.Invoke(this, e);
+            OnFilterItem?.Invoke(this);
         }
+
 
         [RelayCommand]
         public void Filter()
         {
-            FilterItemInvoke(EventArgs.Empty);
+            FilterItemInvoke();
         }
     }
 }

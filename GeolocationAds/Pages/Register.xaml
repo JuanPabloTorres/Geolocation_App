@@ -119,7 +119,7 @@
 
             <!--  Section Title for Personal Information  -->
             <Label Style="{StaticResource globalLabel}" Text="Personal Information" />
-            
+
             <BoxView HeightRequest="0.1" />
 
             <!--  FullName Input  -->

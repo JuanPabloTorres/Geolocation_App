@@ -14,7 +14,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class CaptureTemplateViewModel2 : TemplateBaseViewModel2
+    public partial class CaptureTemplateViewModel2 : TemplateBaseViewModel2<CaptureTemplateViewModel2>
     {
         public ICaptureService Service { get; set; }
 
@@ -40,13 +40,15 @@ namespace GeolocationAds.TemplateViewModel
 
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
-        public CaptureTemplateViewModel2(Capture capture, ICaptureService service, IAdvertisementService advertisementService) : base(advertisementService)
+        public CaptureTemplateViewModel2(Capture capture, ICaptureService service, IAdvertisementService advertisementService, Action<CaptureTemplateViewModel2> onDelete) : base(advertisementService)
         {
             this.Capture = capture;
 
             this.Advertisement = capture.Advertisements;
 
             this.Service = service;
+
+            ItemDeleted = onDelete;
 
             Task.Run(async () =>
             {
@@ -61,49 +63,6 @@ namespace GeolocationAds.TemplateViewModel
             return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
         }
 
-        private string GetTruncatedDescription(string description)
-        {
-            if (description.Length <= MaxLengthWithoutExpand)
-                return description;
-
-            int endIndex = description.LastIndexOf(' ', MaxLengthWithoutExpand);
-
-            if (endIndex == -1 || endIndex < MaxLengthWithoutExpand / 2)
-            {
-                endIndex = MaxLengthWithoutExpand;
-            }
-
-            return description.Substring(0, endIndex) + "...";
-        }
-
-        private string GetFullDescriptionWithNewLines(string description)
-        {
-            if (description.Length <= MaxLengthWithoutExpand)
-                return description;
-
-            int midIndex = description.LastIndexOf(' ', description.Length / 2);
-
-            if (midIndex == -1)
-            {
-                midIndex = description.Length / 2;
-            }
-
-            // Insertar un salto de línea en la mitad de la descripción completa
-            return description.Insert(midIndex, "\n");
-        }
-
-        //private string GetTruncatedDescription(string description)
-        //{
-        //    if (description.Length <= MaxLengthWithoutExpand)
-        //        return description;
-
-        //    int midIndex = description.Length / 2;
-
-        //    string truncated = description.Substring(0, midIndex) + "\n" + description.Substring(midIndex);
-
-        //    return truncated.Length > MaxLengthWithoutExpand ? truncated.Substring(0, MaxLengthWithoutExpand) + "..." : truncated;
-        //}
-
         [RelayCommand]
         private void ToggleExpand()
         {
@@ -114,95 +73,64 @@ namespace GeolocationAds.TemplateViewModel
 
         public async Task InitializeAsync()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                var contents = this.Advertisement.Contents.FirstOrDefault();
+                var contents = Advertisement.Contents.FirstOrDefault();
 
-                if (contents == null)
+                if (contents.IsObjectNull())
                 {
-                    contents = await AppToolCommon.GetDefaultContentType(this.Advertisement.CreateBy);
+                    contents = await AppToolCommon.GetDefaultContentType(Advertisement.CreateBy);
                 }
 
                 switch (contents.Type)
                 {
                     case ContentVisualType.URL:
-
-                        this.UrlSource = new Uri(contents.Url);
-
+                        UrlSource = new Uri(contents.Url);
                         break;
 
                     case ContentVisualType.Image:
-
-                        if (this.Image.IsObjectNull())
+                        if (Image.IsObjectNull())
                         {
-                            this.Image = new Image();
+                            Image = new Image();
                         }
 
                         byte[] imageBytes = contents.Content;
-
-                        this.Image.Source = AppToolCommon.LoadImageFromBytes(imageBytes);
-
+                        Image.Source = AppToolCommon.LoadImageFromBytes(imageBytes);
                         break;
 
                     case ContentVisualType.Video:
-
-                        var streamingResponse = await this.advertisementService.GetStreamingVideoUrl(contents.ID);
+                        var streamingResponse = await advertisementService.GetStreamingVideoUrl(contents.ID);
 
                         if (!streamingResponse.IsSuccess)
                         {
-                            await CommonsTool.DisplayAlert("Error", streamingResponse.Message);
-
-                            return;
+                            throw new Exception(streamingResponse.Message);
                         }
 
-                        this.MediaSource = streamingResponse.Data;
-
+                        MediaSource = streamingResponse.Data;
                         break;
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         [RelayCommand]
         public override async Task RemoveCurrentItem()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
+                var confirm = await Shell.Current.DisplayAlert("Notification", "Are you sure you want to remove this item?", "Yes", "No");
 
-                var _removeResponse = await Shell.Current.DisplayAlert("Notification", $"Are you sure you want to remove this item?", "Yes", "No");
+                if (!confirm)
+                    return;
 
-                if (_removeResponse)
+                var apiResponse = await Service.Remove(Capture.ID);
+
+                if (!apiResponse.IsSuccess)
                 {
-                    var _apiResponse = await this.Service.Remove(this.Capture.ID);
-
-                    if (_apiResponse.IsSuccess)
-                    {
-                        //OnDeleteType(EventArgs.Empty);
-
-                        EventManager2.Instance.Publish(this, CurrentPageContext);
-                    }
-                    else
-                    {
-                        await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
-                    }
+                    throw new Exception(apiResponse.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+
+                OnDeleteType(this);
+            });
         }
 
         [RelayCommand]
@@ -234,7 +162,7 @@ namespace GeolocationAds.TemplateViewModel
         {
             try
             {
-                await Browser.Default.OpenAsync(source.Url, BrowserLaunchMode.SystemPreferred);  // Open the URL in the system preferred browser.
+                await Launcher.Default.TryOpenAsync(source.Url);  // Open the URL in the system preferred browser.
             }
             catch (Exception ex)
             {
@@ -275,35 +203,23 @@ namespace GeolocationAds.TemplateViewModel
         [RelayCommand]
         public async Task ReloadMedia(MediaElement mediaElement)
         {
-            //mediaElement.Stop();
-
-            //mediaElement.Play();
-
             await mediaElement.SeekTo(TimeSpan.Zero);
 
             mediaElement.Play();
         }
 
-
         [RelayCommand]
         public async Task GoDetail(int adId)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
-                var navigationParameter = new Dictionary<string, object> { { "ID", this.Advertisement.ID } };
+                var navigationParameter = new Dictionary<string, object>
+                {
+                    { "ID", Advertisement.ID }
+                };
 
                 await NavigateAsync(nameof(NearByItemDetail), navigationParameter);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         [RelayCommand]

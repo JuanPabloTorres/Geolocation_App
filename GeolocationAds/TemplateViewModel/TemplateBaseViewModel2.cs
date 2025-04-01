@@ -1,19 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using GeolocationAds.Services;
+using GeolocationAds.ViewModels;
 using System.ComponentModel;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class TemplateBaseViewModel2 : ObservableObject
+    public partial class TemplateBaseViewModel2<T> : RootBaseViewModel
     {
-        [ObservableProperty]
-        private bool isLoading;
-
-        public Action<ContentTypeTemplateViewModel2> ItemDeleted { get; set; }  // ✅ Se usa Action en vez de event
-
-        public static string CurrentPageContext { get; set; }
+        public Action<T> ItemDeleted { get; set; }  // ✅ Se usa Action en vez de event
 
         protected IAdvertisementService advertisementService { get; set; }
         protected IGeolocationAdService geolocationAdService { get; set; }
@@ -46,7 +42,7 @@ namespace GeolocationAds.TemplateViewModel
             }
         }
 
-        protected virtual void OnDeleteType(ContentTypeTemplateViewModel2 contentTypeTemplateViewModel2)
+        protected virtual void OnDeleteType(T contentTypeTemplateViewModel2)
         {
             ItemDeleted?.Invoke(contentTypeTemplateViewModel2);  // ✅ Se usa Action en lugar de event
         }
@@ -60,5 +56,4 @@ namespace GeolocationAds.TemplateViewModel
             await Shell.Current.GoToAsync($"{pageName}{queryString}");
         }
     }
-
 }
