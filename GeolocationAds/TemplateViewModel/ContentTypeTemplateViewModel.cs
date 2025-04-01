@@ -1,100 +1,65 @@
 ﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ToolsLibrary.Models;
 using ToolsLibrary.TemplateViewModel;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public class ContentTypeTemplateViewModel : TemplateBaseViewModel
+    public partial class ContentTypeTemplateViewModel : TemplateBaseViewModel2<ContentTypeTemplateViewModel>
     {
-        private ContentType _contentType;
+        [ObservableProperty]
+        private ContentType contentType;
 
-        public ContentType ContentType
+        [ObservableProperty]
+        private MediaSource mediaSource;
+
+        [ObservableProperty]
+        private ImageSource image;
+
+       
+
+        protected virtual void OnDeleteType()
         {
-            get => _contentType;
-
-            set
-            {
-                if (_contentType != value)
-                {
-                    _contentType = value;
-
-                    OnPropertyChanged();
-                }
-            }
+            ItemDeleted?.Invoke(this);
         }
 
-        private MediaSource _mediaSource;
-
-        public MediaSource MediaSource
+        public ContentTypeTemplateViewModel(Action<ContentTypeTemplateViewModel> onDelete)
         {
-            get => _mediaSource;
-            set
-            {
-                if (_mediaSource != value)
-                {
-                    _mediaSource = value;
+            //RemoveCommand = new Command(RemoveCurrentItem);
 
-                    OnPropertyChanged();
-                }
-            }
+            ItemDeleted = onDelete;
         }
 
-        private ImageSource _image;
-
-        public ImageSource Image
-        {
-            get => _image;
-            set
-            {
-                if (_image != value)
-                {
-                    _image = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public delegate void ApplyQueryAttributesEventHandler(object sender, EventArgs e);
-
-        public event ApplyQueryAttributesEventHandler ContentTypeDeleted;
-
-        protected virtual void OnDeleteType(EventArgs e)
-        {
-            ContentTypeDeleted?.Invoke(this, e);
-        }
-
-        public ContentTypeTemplateViewModel()
-        {
-            RemoveCommand = new Command(RemoveCurrentItem);
-        }
-
-        public ContentTypeTemplateViewModel(ContentType contentType, MediaSource mediaSource)
+        public ContentTypeTemplateViewModel(ContentType contentType, MediaSource mediaSource, Action<ContentTypeTemplateViewModel> onDelete)
         {
             this.ContentType = contentType;
 
             this.MediaSource = mediaSource;
 
-            RemoveCommand = new Command(RemoveCurrentItem);
+            ItemDeleted = onDelete;
+
+            //RemoveCommand = new Command(RemoveCurrentItem);
         }
 
-        public ContentTypeTemplateViewModel(ContentType contentType, ImageSource imageSource)
+        public ContentTypeTemplateViewModel(ContentType contentType, ImageSource imageSource, Action<ContentTypeTemplateViewModel> onDelete)
         {
             this.ContentType = contentType;
 
             this.Image = imageSource;
 
-            RemoveCommand = new Command(RemoveCurrentItem);
+            ItemDeleted = onDelete;
+
+            //RemoveCommand = new Command(RemoveCurrentItem);
         }
 
-        public override async void RemoveCurrentItem()
+        public override async Task RemoveCurrentItem()
         {
             try
             {
                 this.IsLoading = true;
 
-                OnDeleteType(EventArgs.Empty);
+                OnDeleteType();
             }
             catch (Exception ex)
             {

@@ -10,7 +10,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class NearByItemDetailViewModel : BaseViewModel3<Advertisement, IAdvertisementService>
+    public partial class NearByItemDetailViewModel : BaseViewModel<Advertisement, IAdvertisementService>
     {
         private readonly INearByItemDetailContainer nearByItemDetailContainer;
 

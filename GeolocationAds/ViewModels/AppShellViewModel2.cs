@@ -24,16 +24,6 @@ namespace GeolocationAds.ViewModels
 
         public AppShellViewModel2()
         {
-            //WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
-            //{
-            //    MainThread.BeginInvokeOnMainThread(() =>
-            //    {
-            //        this.UserName = m.Value.FullName;
-
-            //        this.Avatar = this.UserName.FirstOrDefault().ToString();
-            //    });
-            //});
-
             WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
@@ -41,17 +31,14 @@ namespace GeolocationAds.ViewModels
                     var user = m.Value;
 
                     UserName = user.FullName;
-                    Avatar = !string.IsNullOrWhiteSpace(UserName)
-                        ? UserName.Trim()[0].ToString().ToUpper()
-                        : "?";
+
+                    Avatar = !string.IsNullOrWhiteSpace(UserName) ? UserName.Trim()[0].ToString().ToUpper() : "?";
 
                     HasProfileImage = user.ProfileImageBytes?.Length > 0;
 
                     if (HasProfileImage)
                     {
-                        //ProfileImage = ImageSource.FromStream(() => new MemoryStream(user.ProfileImageBytes));
-
-                        ProfileImage= AppToolCommon.LoadImageFromBytes(user.ProfileImageBytes);
+                        ProfileImage = AppToolCommon.LoadImageFromBytes(user.ProfileImageBytes);
                     }
                     else
                     {
@@ -59,7 +46,6 @@ namespace GeolocationAds.ViewModels
                     }
                 });
             });
-
         }
 
         [RelayCommand]

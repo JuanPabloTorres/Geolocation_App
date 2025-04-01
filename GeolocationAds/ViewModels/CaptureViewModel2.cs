@@ -14,7 +14,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class CaptureViewModel2 : BaseViewModel3<Capture, ICaptureService>
+    public partial class CaptureViewModel2 : BaseViewModel<Capture, ICaptureService>
     {
         private IList<string> settings = new List<string>() { SettingName.AdTypes.ToString() };
 

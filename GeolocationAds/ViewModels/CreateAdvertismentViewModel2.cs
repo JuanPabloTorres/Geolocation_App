@@ -18,7 +18,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class CreateAdvertismentViewModel2 : BaseViewModel3<Advertisement, IAdvertisementService>
+    public partial class CreateAdvertismentViewModel2 : BaseViewModel<Advertisement, IAdvertisementService>
     {
         [ObservableProperty]
         private AppSetting selectedAdType = new();

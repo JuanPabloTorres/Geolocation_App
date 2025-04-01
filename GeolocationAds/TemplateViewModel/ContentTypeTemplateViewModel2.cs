@@ -146,25 +146,12 @@ namespace GeolocationAds.TemplateViewModel
             this.IsAnimation = true;      // Set to true after delay
         }
 
-        [RelayCommand]
         public override async Task RemoveCurrentItem()
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
                 OnDeleteType(this);
-
-                //EventManager2.Instance.Publish(this, CurrentPageContext);
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
     }
 }

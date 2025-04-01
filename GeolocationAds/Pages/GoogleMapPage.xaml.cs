@@ -1,6 +1,8 @@
 using GeolocationAds.Tools;
 using GeolocationAds.ViewModels;
+using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using System.Collections.ObjectModel;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Tools;
 using Map = Microsoft.Maui.Controls.Maps.Map;
@@ -21,81 +23,53 @@ public partial class GoogleMapPage : ContentPage
 
         BindingContext = googleMapViewModel;
 
-        this._viewModel.PinsUpdated += _viewModel_PinsUpdated;
+        this._viewModel.PinsUpdated = _viewModel_PinsUpdated;
     }
 
-    private async void _viewModel_PinsUpdated(object sender, EventArgs e)
+    private async void _viewModel_PinsUpdated(ObservableCollection<Pin> sender)
     {
-        try
+        await _viewModel.RunWithLoadingIndicator(async () =>
         {
-            this._viewModel.IsLoading = true;
-
             this.myMap.Pins.Clear();
 
-            var _pinData = this._viewModel.GetContentPins();
-
-            this.myMap.Pins.AddRange(_pinData);
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            this._viewModel.IsLoading = false;
-        }
+            this.myMap.Pins.AddRange(sender);
+        });
     }
 
     protected override async void OnAppearing()
     {
-        try
+        await _viewModel.RunWithLoadingIndicator(async () =>
         {
-            this._viewModel.IsLoading = true;
+            var locationResult = await GeolocationTool.GetLocation();
 
-            var _currentLocation = await GeolocationTool.GetLocation();
-
-            if (_currentLocation.IsSuccess)
+            if (!locationResult.IsSuccess)
             {
-                var _mapChildren = this.mapContainer.Children.Where(v => v.GetType() == typeof(Map)).FirstOrDefault();
-
-                if (!_mapChildren.IsObjectNull())
-                {
-                    this.mapContainer.Children.Remove(_mapChildren);
-                }
-
-                MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocation.Data, Distance.FromMiles(0.1));
-
-                this.myMap = new Map(mapSpan)
-                {
-                    IsScrollEnabled = true,
-
-                    IsShowingUser = true,
-
-                    IsZoomEnabled = true,
-
-                    MapType = MapType.Hybrid
-                };
-
-                await _viewModel.InitializeAsync();
-
-                var _pinData = this._viewModel.GetContentPins();
-
-                this.myMap.Pins.AddRange(_pinData);
-
-                this.mapContainer.Children.Add(myMap);
+                await Shell.Current.DisplayAlert("Error", locationResult.Message, "OK");
+                return;
             }
-            else
+
+            var existingMap = mapContainer.Children.FirstOrDefault(v => v is Map);
+
+            if (existingMap != null)
+                mapContainer.Children.Remove(existingMap);
+
+            var mapSpan = MapSpan.FromCenterAndRadius(locationResult.Data, Distance.FromMiles(0.1));
+
+            myMap = new Map(mapSpan)
             {
-                await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
-            }
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-        }
-        finally
-        {
-            this._viewModel.IsLoading = false;
-        }
+                IsScrollEnabled = true,
+                IsShowingUser = true,
+                IsZoomEnabled = true,
+                MapType = MapType.Hybrid
+            };
+
+            await _viewModel.InitializeAsync();
+
+            var pinData = _viewModel.GetContentPins();
+
+            myMap.Pins.AddRange(pinData);
+
+            mapContainer.Children.Add(myMap);
+        });
     }
 }

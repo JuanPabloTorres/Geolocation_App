@@ -7,7 +7,6 @@
     BackgroundColor="{StaticResource AppBlack}">
 
     <Label
-        HorizontalOptions="CenterAndExpand"
         Style="{StaticResource globalLabel}"
         Text="{Binding Advertisement.Title}"
         TextColor="White" />

@@ -15,7 +15,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class MyContentViewModel2 : BaseViewModel3<ContentViewTemplateViewModel, IGeolocationAdService>
+    public partial class MyContentViewModel2 : BaseViewModel<ContentViewTemplateViewModel, IGeolocationAdService>
     {
         private readonly IContainerMyContentServices containerMyContentServices;
 

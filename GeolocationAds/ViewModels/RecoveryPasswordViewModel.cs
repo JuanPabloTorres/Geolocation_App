@@ -1,98 +1,36 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
+using GeolocationAds.ValidatorsModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
+using ToolsLibrary.Attributes.ValidationAttributes;
 using ToolsLibrary.Dto;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class RecoveryPasswordViewModel : BaseViewModel
+    public partial class RecoveryPasswordViewModel : BaseViewModel<NewPasswordDto, IForgotPasswordService>
     {
-        public ObservableCollection<ValidationResult> ValidationResults { get; set; }
-
         private const int StepTotal = 3;
 
-        private string _email;
+        [ObservableProperty]      
+        public string email;
 
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                if (_email != value)
-                {
-                    _email = value;
+        [ObservableProperty]
+        public string code;
 
-                    OnPropertyChanged();
-                }
-            }
-        }
+        [ObservableProperty]
+        public NewPasswordDto newPassword;
 
-        private string _code;
+        [ObservableProperty]
+        public int stepIndex;
 
-        public string Code
-        {
-            get => _code;
-            set
-            {
-                if (_code != value)
-                {
-                    _code = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private NewPasswordDto _newPassword;
-
-        public NewPasswordDto NewPassword
-        {
-            get => _newPassword;
-            set
-            {
-                if (_newPassword != value)
-                {
-                    _newPassword = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _stepIndex;
-
-        public int StepIndex
-        {
-            get => _stepIndex;
-            set
-            {
-                if (_stepIndex != value)
-                {
-                    _stepIndex = value;
-
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public ICommand ForgotPasswordCommand { get; set; }
-
-        public ICommand ConfirmCodeCommand { get; set; }
-
-        public ICommand SubmitNewPasswordCommand { get; set; }
-
-        public ICommand BackCommand { get; set; }
-
-        public ICommand ForwardCommand { get; set; }
-
-        private IForgotPasswordService service;
-
-        public RecoveryPasswordViewModel(IForgotPasswordService forgotPasswordService)
+        public RecoveryPasswordViewModel(IForgotPasswordService forgotPasswordService, NewPasswordDto model) : base(model, forgotPasswordService)
         {
             this.service = forgotPasswordService;
 
@@ -101,58 +39,65 @@ namespace GeolocationAds.ViewModels
             this.NewPassword = new NewPasswordDto();
 
             ValidationResults = new ObservableCollection<ValidationResult>();
-
-            ForgotPasswordCommand = new Command(RecoveryPassword);
-
-            ConfirmCodeCommand = new Command(ConfirmCode);
-
-            SubmitNewPasswordCommand = new Command(OnSubmit);
-
-            ForwardCommand = new Command(GoForward);
-
-            BackCommand = new Command(GoBack);
         }
 
-        public async void RecoveryPassword()
+        [RelayCommand]
+        public async Task RecoveryPassword()
         {
-            this.IsLoading = true;
-
-            var _apiResponse = await this.service.RecoveryPassword(this.Email);
-
-            if (_apiResponse.IsSuccess)
+            await RunWithLoadingIndicator(async () =>
             {
-                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                ValidationResults.Clear();
 
-                this.StepIndex = 2;
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-            }
+                var validatorModel = new EmailValidatorModel { Email = Email };
 
-            this.IsLoading = false;
+                var context = new ValidationContext(validatorModel);
+
+                bool isValid = Validator.TryValidateObject(validatorModel, context, ValidationResults, true);
+
+                if (!isValid)
+                    return;
+
+                var apiResponse = await service.RecoveryPassword(Email);
+
+                if (!apiResponse.IsSuccess)
+                    throw new Exception(apiResponse.Message);
+
+                await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+
+                StepIndex = 2;
+            });
         }
 
-        public async void ConfirmCode()
+        [RelayCommand]
+        public async Task ConfirmCode()
         {
-            this.IsLoading = true;
+          
 
-            var _apiResponse = await this.service.ConfirmCode(this.Code);
-
-            if (_apiResponse.IsSuccess)
+            await RunWithLoadingIndicator(async () =>
             {
-                await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
+                ValidationResults.Clear();
 
-                this.StepIndex = 3;
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-            }
+                var validatorModel = new CodeValidatorModel { Code = Code };
 
-            this.IsLoading = false;
+                var context = new ValidationContext(validatorModel);
+
+                bool isValid = Validator.TryValidateObject(validatorModel, context, ValidationResults, true);
+
+                if (!isValid)
+                    return;
+
+                var apiResponse = await service.ConfirmCode(Code);
+
+                if (!apiResponse.IsSuccess)
+                    throw new Exception(apiResponse.Message);
+
+                await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+
+                StepIndex = 3;
+            });
         }
 
+        [RelayCommand]
         public void GoBack()
         {
             this.ValidationResults.Clear();
@@ -163,6 +108,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
+        [RelayCommand]
         public void GoForward()
         {
             this.ValidationResults.Clear();
@@ -173,44 +119,32 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        public async void OnSubmit()
+        public override async Task Submit(NewPasswordDto model)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                IsLoading = true;
-
                 ValidationResults.Clear();
 
-                this.NewPassword.Code = this.Code;
+                NewPassword.Code = Code;
 
-                var validationContextCurrentType = new ValidationContext(this.NewPassword);
+                var validationContext = new ValidationContext(model);
 
-                var isValiteObj = Validator.TryValidateObject(this.NewPassword, validationContextCurrentType, ValidationResults, true);
+                bool isValid = Validator.TryValidateObject(model, validationContext, ValidationResults, true);
 
-                if (isValiteObj)
+                if (!isValid)
+                    return;
+
+                var apiResponse = await service.ChangePassword(model);
+
+                if (!apiResponse.IsSuccess)
                 {
-                    var _apiResponse = await this.service.ChangePassword(this.NewPassword);
-
-                    if (_apiResponse.IsSuccess)
-                    {
-                        await Shell.Current.DisplayAlert("Notification", _apiResponse.Message, "OK");
-
-                        WeakReferenceMessenger.Default.Send(new UpdateMessage<ForgotPassword>(_apiResponse.Data));
-                    }
-                    else
-                    {
-                        await Shell.Current.DisplayAlert("Error", _apiResponse.Message, "OK");
-                    }
+                    throw new Exception(apiResponse.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+
+                await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+
+                WeakReferenceMessenger.Default.Send(new UpdateMessage<ForgotPassword>(apiResponse.Data));
+            });
         }
     }
 }

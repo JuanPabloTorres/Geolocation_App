@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using GeolocationAds.Services;
 using GeolocationAds.ViewModels;
 using System.ComponentModel;
@@ -26,10 +27,16 @@ namespace GeolocationAds.TemplateViewModel
             this.advertisementService = advertisementService;
         }
 
+        public TemplateBaseViewModel2(IGeolocationAdService geolocationAdService)
+        {
+            this.advertisementService = advertisementService;
+        }
+
         public TemplateBaseViewModel2()
         {
         }
 
+        [RelayCommand]
         public virtual async Task RemoveCurrentItem()
         {
             try

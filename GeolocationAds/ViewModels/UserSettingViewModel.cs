@@ -7,7 +7,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class UserSettingViewModel : BaseViewModel3<User, IUserService>
+    public partial class UserSettingViewModel : BaseViewModel<User, IUserService>
     {
         public UserSettingViewModel(User model, IUserService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
         {

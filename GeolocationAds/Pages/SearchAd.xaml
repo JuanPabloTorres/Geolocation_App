@@ -101,7 +101,6 @@
         <HorizontalStackLayout
             Grid.Row="2"
             BackgroundColor="{StaticResource AppGray}"
-            HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             VerticalOptions="End">
             <Label

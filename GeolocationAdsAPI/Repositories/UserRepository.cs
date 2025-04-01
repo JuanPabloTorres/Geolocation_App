@@ -70,28 +70,21 @@ namespace GeolocationAdsAPI.Repositories
 
         public async Task<ResponseTool<User>> GetUserByEmail(string email)
         {
-            ResponseTool<User> response;
-
             try
             {
-                var _user = await _context.Users.Where(v => v.Email == email).FirstOrDefaultAsync();
+                var _user = await _context.Users.Include("Login").Where(v => v.Email == email).FirstOrDefaultAsync();
 
-                if (!_user.IsObjectNull())
-                {
-                    response = ResponseFactory<User>.BuildSuccess("Entity Found successfully.", _user, ToolsLibrary.Tools.Type.Added);
-                }
-                else
-                {
-                    response = ResponseFactory<User>.BuildFail("Entity Not Found.", null, ToolsLibrary.Tools.Type.NotFound);
-                }
+                if (_user.IsObjectNull())
+                    return ResponseFactory<User>.BuildFail("Entity Not Found.", null, ToolsLibrary.Tools.Type.NotFound);
 
-                return response;
+                if (_user.Login.IsExternaUser())
+                    return ResponseFactory<User>.BuildFail("Could Not Change Password To this User.", null, ToolsLibrary.Tools.Type.ExternalUser);
+
+                return ResponseFactory<User>.BuildSuccess("Entity Found successfully.", _user, ToolsLibrary.Tools.Type.Found);
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-                return response;
+                return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
 
@@ -126,32 +119,27 @@ namespace GeolocationAdsAPI.Repositories
         //{
         //    ResponseTool<User> response;
 
-        //    try
-        //    {
-        //        var _userToUpdate = await _context.Users.Include(l => l.Login).FirstOrDefaultAsync(u => u.ID == id);
+        // try { var _userToUpdate = await _context.Users.Include(l =>
+        // l.Login).FirstOrDefaultAsync(u => u.ID == id);
 
-        //        if (_userToUpdate.IsObjectNull())
-        //        {
-        //            response = ResponseFactory<User>.BuildFail("Entity Not Found.", null, ToolsLibrary.Tools.Type.NotFound);
+        // if (_userToUpdate.IsObjectNull()) { response = ResponseFactory<User>.BuildFail("Entity
+        // Not Found.", null, ToolsLibrary.Tools.Type.NotFound);
 
-        //            return response;
-        //        }
+        // return response; }
 
-        //        _userToUpdate.SetUpdateInformation(_userToUpdate.ID);
+        // _userToUpdate.SetUpdateInformation(_userToUpdate.ID);
 
-        //        _userToUpdate.Login.Password = entity.Login.Password;
+        // _userToUpdate.Login.Password = entity.Login.Password;
 
-        //        var _newHash = CommonsTool.GenerateHashPassword(entity.Login.Password);
+        // var _newHash = CommonsTool.GenerateHashPassword(entity.Login.Password);
 
-        //        _userToUpdate.Login.HashPassword = CommonsTool.GenerateHashPassword(entity.Login.Password);
+        // _userToUpdate.Login.HashPassword = CommonsTool.GenerateHashPassword(entity.Login.Password);
 
-        //        await _context.SaveChangesAsync();
+        // await _context.SaveChangesAsync();
 
-        //        return ResponseFactory<User>.BuildSuccess("Entity Found successfully.", _userToUpdate, ToolsLibrary.Tools.Type.Updated);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        // return ResponseFactory<User>.BuildSuccess("Entity Found successfully.", _userToUpdate,
+        // ToolsLibrary.Tools.Type.Updated); } catch (Exception ex) { response =
+        // ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
         //        return response;
         //    }

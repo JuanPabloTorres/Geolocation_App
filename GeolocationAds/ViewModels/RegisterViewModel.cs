@@ -10,7 +10,7 @@ using ToolsLibrary.Models;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class RegisterViewModel : BaseViewModel3<User, IUserService>
+    public partial class RegisterViewModel : BaseViewModel<User, IUserService>
     {
         [ObservableProperty]
         private User _newUser = new User();

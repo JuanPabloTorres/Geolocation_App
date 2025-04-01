@@ -56,7 +56,14 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var entity = await _context.ForgotPasswords.Where(v => v.Code == code && v.ExpTime >= DateTime.Now).FirstOrDefaultAsync();
+                //var entity = await _context.ForgotPasswords.Where(v => v.Code == code && v.ExpTime >= DateTime.UtcNow).FirstOrDefaultAsync();
+
+                var now = DateTime.Now;
+
+                var entity = await _context.ForgotPasswords
+                    .Where(fp => !string.IsNullOrEmpty(fp.Code) && fp.Code == code &&  now <= fp.ExpTime)
+                    .FirstOrDefaultAsync();
+
 
                 if (!entity.IsObjectNull())
                 {

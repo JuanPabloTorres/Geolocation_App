@@ -112,7 +112,7 @@ namespace GeolocationAds.TemplateViewModel
             });
         }
 
-        [RelayCommand]
+       
         public override async Task RemoveCurrentItem()
         {
             await RunWithLoadingIndicator(async () =>

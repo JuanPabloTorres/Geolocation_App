@@ -10,7 +10,6 @@ namespace ToolsLibrary.Tools
 {
     public static class CommonsTool
     {
-
         public static class ConfigurationLoader
         {
             public static IConfiguration LoadConfiguration()
@@ -32,7 +31,6 @@ namespace ToolsLibrary.Tools
                 return configuration;
             }
         }
-
 
         // Compress a byte array using GZip compression
         public static byte[] Compress(byte[] data)
@@ -144,8 +142,6 @@ namespace ToolsLibrary.Tools
 
         public static async Task<byte[]> GetFileBytesAsync(FileResult fileResult)
         {
-
-
             if (fileResult is null)
             {
                 return null;
@@ -337,73 +333,6 @@ namespace ToolsLibrary.Tools
             }
         }
 
-        //public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock=0, long endBlock=ConstantsTools.SegmentSize)
-        //{
-        //    try
-        //    {
-        //        // If no file path is provided, generate a unique file name
-        //        if (string.IsNullOrEmpty(filePath))
-        //        {
-        //            filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp4");  // Using .mp4 as the extension for clarity
-        //        }
-
-        //        // Append the byte array to the file
-        //        using (var stream = new FileStream(filePath, FileMode.Append, FileAccess.Write))
-        //        {
-        //            await stream.WriteAsync(byteArray, 0, byteArray.Length);
-        //        }
-
-        //        return filePath;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-
-        //        return string.Empty;
-        //    }
-        //}
-
-        //public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock = 0, long endBlock = ConstantsTools.SegmentSize)
-        //{
-        //    try
-        //    {
-        //        // If no file path is provided, generate a unique file name
-        //        if (string.IsNullOrEmpty(filePath))
-        //        {
-        //            filePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".mp4");  // Using .mp4 as the extension for clarity
-        //        }
-
-        //        // Ensure the file exists, if not create it
-        //        if (!File.Exists(filePath))
-        //        {
-        //            using (var createStream = File.Create(filePath))
-        //            {
-        //                // Optionally initialize file to expected size to optimize disk allocation
-        //                if (endBlock > 0)
-        //                {
-        //                    createStream.SetLength(endBlock);
-        //                }
-        //            }
-        //        }
-
-        //        // Open the file with the ability to seek, then write the bytes at the specific start block position
-        //        using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Write, FileShare.None))
-        //        {
-        //            stream.Seek(startBlock, SeekOrigin.Begin);
-
-        //            await stream.WriteAsync(byteArray, 0, byteArray.Length);
-        //        }
-
-        //        return filePath;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await CommonsTool.DisplayAlert("Error", ex.Message);
-
-        //        return string.Empty;
-        //    }
-        //}
-
         public static async Task<string> SaveByteArrayToPartialFile3(byte[] byteArray, string filePath, long startBlock = 0, long endBlock = ConstantsTools.SegmentSize)
         {
             int maxRetries = 5;
@@ -508,31 +437,6 @@ namespace ToolsLibrary.Tools
             return fileBytes.Length;
         }
 
-        //        public static bool IsValidUrl(string url)
-        //        {
-        //            try
-        //            {
-        //                //string urlPattern = @"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*(\?[\w=&]+)?(#\w*)?$";
-
-        //                string urlPattern = @"^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(:[0-9]+)?([\/\w \.-]*)*\/?(\?[\w=&%]+)?(#\w*)?$
-        //";
-
-
-        //                if (string.IsNullOrWhiteSpace(url))
-        //                    return false;
-
-        //                Regex regex = new Regex(urlPattern, RegexOptions.IgnoreCase);
-
-        //                return regex.IsMatch(url);
-        //            }
-        //            catch (Exception ex)
-        //            {
-
-        //                return false;
-        //            }
-
-        //        }
-
         public static bool IsValidUrl(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
@@ -540,6 +444,5 @@ namespace ToolsLibrary.Tools
 
             return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
-
     }
 }

@@ -11,7 +11,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class SearchAdViewModel2 : BaseViewModel3<Advertisement, IGeolocationAdService>
+    public partial class SearchAdViewModel2 : BaseViewModel<Advertisement, IGeolocationAdService>
     {
         [ObservableProperty]
         private int carouselViewPosition;

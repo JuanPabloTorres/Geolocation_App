@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="GeolocationAds.ViewTemplates.StatusBarOverlay"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="root"
+    BackgroundColor="{StaticResource AppGray}"
+    IsVisible="{Binding IsVisible, Source={x:Reference root}}"
+    VerticalOptions="End"
+    ZIndex="998">
+
+    <HorizontalStackLayout VerticalOptions="End">
+
+        <Label
+            x:Name="counterLabel"
+            Style="{StaticResource globalsubTitle}"
+            Text="{Binding CollectionCount, Source={x:Reference root}, StringFormat='Nearby: {0:N0}'}"
+            TextColor="White" />
+
+        <Label
+            x:Name="filterType"
+            Style="{StaticResource globalsubTitle}"
+            Text="{Binding AdType, Source={x:Reference root}}"
+            TextColor="White" />
+
+        <Label
+            x:Name="filterDistance"
+            Style="{StaticResource globalsubTitle}"
+            Text="{Binding Distance, Source={x:Reference root}, StringFormat='Distance: {0}'}"
+            TextColor="White" />
+    </HorizontalStackLayout>
+</ContentView>

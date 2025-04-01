@@ -13,7 +13,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class EditUserPerfilViewModel : BaseViewModel3<User, IUserService>
+    public partial class EditUserPerfilViewModel : BaseViewModel<User, IUserService>
     {
         public string Avatar => !string.IsNullOrWhiteSpace(Model.FullName) ? Model.FullName.Trim()[0].ToString().ToUpper() : "?";
 

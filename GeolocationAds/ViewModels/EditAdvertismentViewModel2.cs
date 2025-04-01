@@ -18,7 +18,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class EditAdvertismentViewModel2 : BaseViewModel3<Advertisement, IAdvertisementService>
+    public partial class EditAdvertismentViewModel2 : BaseViewModel<Advertisement, IAdvertisementService>
     {
         private readonly IContainerEditAdvertisment containerEditAdvertisment;
 

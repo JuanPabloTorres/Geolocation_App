@@ -31,5 +31,10 @@ namespace ToolsLibrary.Models
         [NotifyDataErrorInfo]
         [Required(ErrorMessage = $"{nameof(Username)} is required.")]
         public string? username;
+
+        public bool IsExternaUser()
+        {
+            return (Provider == Providers.Facebook || Provider == Providers.Google);
+        }
     }
 }

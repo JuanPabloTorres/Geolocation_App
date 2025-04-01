@@ -3,6 +3,7 @@ using GeolocationAds.App_ViewModel_Factory;
 using GeolocationAds.Services;
 using GeolocationAds.TemplateViewModel;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -39,17 +40,6 @@ namespace GeolocationAds.AppTools
 
                 return null;
             }
-        }
-
-        public static Stream GetEmbeddedResourceStream(string resourceFileName)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = $"GeolocationAds.Resources.Images.{resourceFileName}";
-
-            var resourceStream = assembly.GetManifestResourceStream(resourceName);
-            if (resourceStream == null)
-                throw new FileNotFoundException($"Resource not found: {resourceFileName}", resourceName);
-            return resourceStream;
         }
 
         public static async Task<ContentTypeTemplateViewModel2> ProcessContentItem(ContentType item, IAdvertisementService advertisementService)
@@ -166,6 +156,13 @@ namespace GeolocationAds.AppTools
                 <= 6 => $"({digits[..3]})-{digits[3..]}",
                 _ => $"({digits[..3]})-{digits[3..6]}-{digits[6..]}"
             };
+        }
+
+        public static bool IsValidEmail(string email)
+        {
+            Regex EmailRegex = new(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|io|co|biz|info|me)$", RegexOptions.IgnoreCase);
+
+            return EmailRegex.IsMatch(email);
         }
     }
 }

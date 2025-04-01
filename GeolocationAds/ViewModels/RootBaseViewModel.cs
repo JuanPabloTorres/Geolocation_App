@@ -10,7 +10,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class RootBaseViewModel : ObservableObject, IQueryAttributable
+    public partial class RootBaseViewModel : ObservableValidator, IQueryAttributable
     {
         [ObservableProperty]
         public bool isLoading;

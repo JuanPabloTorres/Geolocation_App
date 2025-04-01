@@ -29,7 +29,8 @@
         EntityNotFound,
         Succesfully,
         IsRecoveryPassword,
-        NotRecoveryPassword
+        NotRecoveryPassword,
+        ExternalUser
 
 
     }

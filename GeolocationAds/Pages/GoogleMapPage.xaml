@@ -4,8 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-    Title="Content Around Map"
-     BackgroundColor="WhiteSmoke"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
+    Title="Around"
+    BackgroundColor="WhiteSmoke"
     Routing.Route="Map">
 
     <ContentPage.ToolbarItems>
@@ -20,17 +21,26 @@
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe152;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
+
+        <ToolbarItem Command="{Binding MoreSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe2c0;" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <Grid x:Name="mapContainer" VerticalOptions="FillAndExpand">
+    <Grid x:Name="mapContainer">
 
-        <ContentView
-            x:Name="LoadingIndicatorContainer"
-            IsVisible="{Binding IsLoading}"
-            VerticalOptions="FillAndExpand">
-            <ContentView.Content>
-                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-            </ContentView.Content>
-        </ContentView>
+        <!--  Mapa u otro contenido principal se inyecta dinámicamente desde el code-behind  -->
+
+        <views:LoadingOverlay IsVisible="{Binding IsLoading}" />
+
+        <!--  Bottom Status Bar  -->
+        <views:StatusBarOverlay
+            AdType="{Binding SelectedAdType.Value}"
+            CollectionCount="{Binding CollectionModel.Count}"
+            Distance="{Binding SelectedDistance}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
+
     </Grid>
 </ContentPage>

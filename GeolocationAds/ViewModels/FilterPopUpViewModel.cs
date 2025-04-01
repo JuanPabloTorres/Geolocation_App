@@ -35,15 +35,6 @@ namespace GeolocationAds.ViewModels
             SelectedAdType = AdTypesSettings.FirstOrDefault();
         }
 
-        //public delegate void SubmitFilterEventHandler(object sender, EventArgs e);
-
-        //public event SubmitFilterEventHandler OnFilterItem;
-
-        //public virtual void FilterItemInvoke(EventArgs e)
-        //{
-        //    OnFilterItem?.Invoke(this, e);
-        //}
-
         // Reemplazo del delegado personalizado y el evento por un Action
         public Action<FilterPopUpViewModel>? OnFilterItem { get; set; }
 
@@ -52,7 +43,6 @@ namespace GeolocationAds.ViewModels
         {
             OnFilterItem?.Invoke(this);
         }
-
 
         [RelayCommand]
         public void Filter()

@@ -113,6 +113,8 @@ public static class MauiProgram
         builder.Services.AddScoped<ToolsLibrary.Models.Advertisement>();
 
         builder.Services.AddScoped<ToolsLibrary.Models.Capture>();
+        
+        builder.Services.AddScoped<ToolsLibrary.Dto.NewPasswordDto>();
     }
 
     #endregion **Registro de Modelos**
@@ -124,6 +126,7 @@ public static class MauiProgram
         builder.Services.AddTransient<CreateAdvertismentViewModel2>();
 
         builder.Services.AddScoped<MangeContentTemplateViewModel>();
+
         builder.Services.AddScoped<MyContentViewModel2>();
 
         builder.Services.AddScoped<SearchAdViewModel2>();

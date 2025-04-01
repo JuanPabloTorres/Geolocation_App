@@ -16,7 +16,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class ManageLocationViewModel2 : BaseViewModel3<Advertisement, IAdvertisementService>
+    public partial class ManageLocationViewModel2 : BaseViewModel<Advertisement, IAdvertisementService>
     {
         [ObservableProperty]
         private MapType seletedMapSetting = new();

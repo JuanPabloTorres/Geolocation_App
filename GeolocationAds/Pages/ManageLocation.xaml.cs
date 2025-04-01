@@ -28,16 +28,18 @@ public partial class ManageLocation : ContentPage
     {
         await manageLocationViewModel2.RunWithLoadingIndicator(async () =>
         {
-            var _currentLocation = await GeolocationTool.GetLocation();
+            var _currentLocationResponse = await GeolocationTool.GetLocation();
 
-            if (!_currentLocation.IsSuccess)
+            if (!_currentLocationResponse.IsSuccess)
             {
-                await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
+                //await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
+
+                throw new Exception(_currentLocationResponse.Message);
 
                 return;
             }
 
-            MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocation.Data, Distance.FromMiles(0.1));
+            MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocationResponse.Data, Distance.FromMiles(0.1));
 
             this.myMap.MoveToRegion(mapSpan);
         });

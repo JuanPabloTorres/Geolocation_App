@@ -18,7 +18,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels;
 
-public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login, ILoginService>
+public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, ILoginService>
 {
     private readonly IContainerLoginServices _containerLoginServices;
 
@@ -38,7 +38,7 @@ public partial class LoginViewModel2 : BaseViewModel3<ToolsLibrary.Models.Login,
             {
                 await _passwordRecoveryPage.CloseAsync();
 
-                _containerLoginServices.RecoveryPasswordViewModel = new RecoveryPasswordViewModel(_containerLoginServices.ForgotPasswordService);
+                _containerLoginServices.RecoveryPasswordViewModel = new RecoveryPasswordViewModel(_containerLoginServices.ForgotPasswordService, new NewPasswordDto());
             });
         });
 
