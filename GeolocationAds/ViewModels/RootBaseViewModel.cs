@@ -25,6 +25,13 @@ namespace GeolocationAds.ViewModels
 
         protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
+
+        [ObservableProperty]
+        public bool hasProfileImage;
+
+        [ObservableProperty]
+        public ImageSource profileImage;
+
         public RootBaseViewModel(LogUserPerfilTool logUserPerfilTool)
         {
             LogUserPerfilTool = logUserPerfilTool;

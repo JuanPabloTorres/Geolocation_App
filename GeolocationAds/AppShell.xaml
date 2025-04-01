@@ -2,6 +2,7 @@
     x:Class="GeolocationAds.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds"
     xmlns:pages="clr-namespace:GeolocationAds.Pages"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -46,8 +47,10 @@
             Icon="setting.png" />
     </FlyoutItem>
 
-    <Shell.FlyoutHeader>
-        <!--  Custom navigation header  -->
+    <!--<Shell.FlyoutHeader>
+    -->
+    <!--  Custom navigation header  -->
+    <!--
         <StackLayout Orientation="Horizontal">
             <Border
                 HeightRequest="50"
@@ -70,7 +73,55 @@
                 Style="{StaticResource globalTitle}"
                 Text="{Binding UserName, Mode=TwoWay}" />
         </StackLayout>
+    </Shell.FlyoutHeader>-->
+
+    <Shell.FlyoutHeader>
+        <HorizontalStackLayout
+            Padding="10"
+            Spacing="10"
+            VerticalOptions="Center">
+
+            <!--  Contenedor del avatar o imagen  -->
+            <Grid
+                HeightRequest="90"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                WidthRequest="90">
+
+                <!--  Imagen si el usuario la tiene  -->
+                <ffimageloading:CachedImage
+                    Aspect="AspectFill"
+                    HeightRequest="70"
+                    IsVisible="{Binding HasProfileImage}"
+                    Source="{Binding ProfileImage}"
+                    WidthRequest="70" />
+
+                <!--  Avatar si no hay imagen  -->
+                <toolkit:AvatarView
+                    BackgroundColor="LightGray"
+                    CornerRadius="45"
+                    FontAttributes="Bold"
+                    FontSize="36"
+                    HeightRequest="70"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding HasProfileImage, Converter={StaticResource InverseBoolConverter}}"
+                    Text="{Binding Avatar}"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    WidthRequest="70" />
+            </Grid>
+
+            <!--  Nombre del usuario  -->
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Style="{StaticResource globalTitle}"
+                Text="{Binding UserName}"
+                VerticalOptions="Center" />
+        </HorizontalStackLayout>
     </Shell.FlyoutHeader>
+
+
 
     <!--<Shell.FlyoutFooter>
 

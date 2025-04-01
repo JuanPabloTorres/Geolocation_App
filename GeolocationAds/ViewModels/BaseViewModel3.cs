@@ -33,6 +33,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<T> CollectionModel { get; set; } = new ObservableCollection<T>();
 
+
         public BaseViewModel3(T model, S service, LogUserPerfilTool logUserPerfil = null) : base(logUserPerfil)
         {
             Model = model;
@@ -293,5 +294,44 @@ namespace GeolocationAds.ViewModels
                 await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
+
+        [RelayCommand]
+        public virtual async Task SelectProfileImageAsync()
+        {
+            if (Model is not ToolsLibrary.Models.User userModel)
+                return;
+
+            await RunWithLoadingIndicator(async () =>
+            {
+                try
+                {
+                    var pickOptions = new PickOptions
+                    {
+                        PickerTitle = "Selecciona una imagen",
+                        FileTypes = FilePickerFileType.Images
+                    };
+
+                    var result = await FilePicker.PickAsync(pickOptions);
+
+                    if (result.IsObjectNull())
+                        return;
+
+                    await using var stream = await result.OpenReadAsync();
+                    using var memoryStream = new MemoryStream();
+                    await stream.CopyToAsync(memoryStream);
+
+                    userModel.ProfileImageBytes = memoryStream.ToArray();
+
+                    ProfileImage = ImageSource.FromStream(() => new MemoryStream(userModel.ProfileImageBytes));
+
+                    HasProfileImage = userModel.ProfileImageBytes?.Length > 0;
+                }
+                catch (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Error", $"No se pudo cargar la imagen: {ex.Message}", "OK");
+                }
+            });
+        }
+
     }
 }

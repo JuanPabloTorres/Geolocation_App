@@ -198,6 +198,9 @@
 	  <MauiXaml Update="ViewTemplates\PaginControls.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ViewTemplates\ProfileImageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ViewTemplates\VideoDisplayer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

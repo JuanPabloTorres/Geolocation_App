@@ -15,11 +15,7 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private User _newUser = new User();
 
-        [ObservableProperty]
-        private bool hasProfileImage;
-
-        [ObservableProperty]
-        public ImageSource profileImage;
+      
 
         public RegisterViewModel(User user, IUserService service) : base(user, service)
         {
@@ -80,39 +76,37 @@ namespace GeolocationAds.ViewModels
             this.Model.Login.Password = string.Empty;
         }
 
-        public string Avatar => !string.IsNullOrWhiteSpace(Model.FullName)
-    ? Model.FullName.Trim()[0].ToString().ToUpper()
-    : "?";
+        public string Avatar => !string.IsNullOrWhiteSpace(Model.FullName)    ? Model.FullName.Trim()[0].ToString().ToUpper(): "?";
 
-        [RelayCommand]
-        private async Task SelectProfileImageAsync()
-        {
-            await RunWithLoadingIndicator(async () =>
-            {
-                var pickOptions = new PickOptions
-                {
-                    PickerTitle = "Selecciona una imagen",
-                    FileTypes = FilePickerFileType.Images
-                };
+        //[RelayCommand]
+        //private async Task SelectProfileImageAsync()
+        //{
+        //    await RunWithLoadingIndicator(async () =>
+        //    {
+        //        var pickOptions = new PickOptions
+        //        {
+        //            PickerTitle = "Selecciona una imagen",
+        //            FileTypes = FilePickerFileType.Images
+        //        };
 
-                var result = await FilePicker.PickAsync(pickOptions);
+        //        var result = await FilePicker.PickAsync(pickOptions);
 
-                if (result.IsObjectNull())
-                    return;
+        //        if (result.IsObjectNull())
+        //            return;
 
-                await using var stream = await result.OpenReadAsync();
+        //        await using var stream = await result.OpenReadAsync();
 
-                using var memoryStream = new MemoryStream();
+        //        using var memoryStream = new MemoryStream();
 
-                await stream.CopyToAsync(memoryStream);
+        //        await stream.CopyToAsync(memoryStream);
 
-                Model.ProfileImageBytes = memoryStream.ToArray();
+        //        Model.ProfileImageBytes = memoryStream.ToArray();
 
-                ProfileImage = ImageSource.FromStream(() => new MemoryStream(Model.ProfileImageBytes));
+        //        ProfileImage = ImageSource.FromStream(() => new MemoryStream(Model.ProfileImageBytes));
 
-                HasProfileImage = true;
-            });
-        }
+        //        HasProfileImage = true;
+        //    });
+        //}
 
 
     }

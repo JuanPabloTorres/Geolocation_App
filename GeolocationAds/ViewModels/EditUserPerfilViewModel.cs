@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
 using System.Collections.ObjectModel;
@@ -14,17 +15,24 @@ namespace GeolocationAds.ViewModels
 {
     public partial class EditUserPerfilViewModel : BaseViewModel3<User, IUserService>
     {
-        [ObservableProperty] private User _user;
+        public string Avatar => !string.IsNullOrWhiteSpace(Model.FullName) ? Model.FullName.Trim()[0].ToString().ToUpper() : "?";
 
         public EditUserPerfilViewModel(User model, IUserService service, LogUserPerfilTool logUserPerfil)
-            : base(model,service, logUserPerfil)
+            : base(model, service, logUserPerfil)
         {
             UpdateModel();
         }
 
         public void UpdateModel()
         {
-            User = LogUserPerfilTool.LogUser;
+            Model = LogUserPerfilTool.LogUser;
+
+            HasProfileImage = Model?.ProfileImageBytes?.Length > 0;
+
+            if (HasProfileImage)
+            {
+                ProfileImage = AppToolCommon.LoadImageFromBytes(Model.ProfileImageBytes);
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "ApplicationSettings": {
-    "ServiceIPAddress": "192.168.0.3",
+    "ServiceIPAddress": "192.168.0.6",
     "ServicePort": "5160",
-    "GlobalLocalBackendUrl": "http://192.168.0.3:5160/api"
+    "GlobalLocalBackendUrl": "http://192.168.0.6:5160/api"
   },
   "GoogleSettings": {
     "GoogleClientId": "1077762545698-0qfvitd24opptajm1le5ek72h35ib14s.apps.googleusercontent.com",

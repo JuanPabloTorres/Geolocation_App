@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using GeolocationAds.Messages;
 using System.Windows.Input;
 using ToolsLibrary.Models;
+using GeolocationAds.AppTools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class AppShellViewModel2 : ObservableObject
+    public partial class AppShellViewModel2 : RootBaseViewModel
     {
         [ObservableProperty]
         private string userName;
@@ -23,15 +24,42 @@ namespace GeolocationAds.ViewModels
 
         public AppShellViewModel2()
         {
+            //WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
+            //{
+            //    MainThread.BeginInvokeOnMainThread(() =>
+            //    {
+            //        this.UserName = m.Value.FullName;
+
+            //        this.Avatar = this.UserName.FirstOrDefault().ToString();
+            //    });
+            //});
+
             WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    this.UserName = m.Value.FullName;
+                    var user = m.Value;
 
-                    this.Avatar = this.UserName.FirstOrDefault().ToString();
+                    UserName = user.FullName;
+                    Avatar = !string.IsNullOrWhiteSpace(UserName)
+                        ? UserName.Trim()[0].ToString().ToUpper()
+                        : "?";
+
+                    HasProfileImage = user.ProfileImageBytes?.Length > 0;
+
+                    if (HasProfileImage)
+                    {
+                        //ProfileImage = ImageSource.FromStream(() => new MemoryStream(user.ProfileImageBytes));
+
+                        ProfileImage= AppToolCommon.LoadImageFromBytes(user.ProfileImageBytes);
+                    }
+                    else
+                    {
+                        ProfileImage = null;
+                    }
                 });
             });
+
         }
 
         [RelayCommand]
