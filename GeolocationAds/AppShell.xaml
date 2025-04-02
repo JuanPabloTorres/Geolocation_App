@@ -1,4 +1,4 @@
-<Shell
+﻿<Shell
     x:Class="GeolocationAds.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:GeolocationAds"
     xmlns:pages="clr-namespace:GeolocationAds.Pages"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Shell.BackgroundColor="{StaticResource DeepBlue}"
+    Shell.BackgroundColor="{StaticResource appPrimaryOpt2ColorPrimary}"
     Shell.TabBarIsVisible="False">
 
     <ShellContent
@@ -17,111 +17,109 @@
         Shell.FlyoutBehavior="Disabled" />
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="SearchAd">
-        <ShellContent
-            Title="Search and Discover"
-            ContentTemplate="{DataTemplate pages:SearchAd}"
-            Icon="travelexplore.png" />
+        <ShellContent Title="Search and Discover" ContentTemplate="{DataTemplate pages:SearchAd}">
 
-        <ShellContent
-            Title="My Captures"
-            ContentTemplate="{DataTemplate pages:MyFavorites}"
-            Icon="star.png" />
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe2db;"
+                    Color="{StaticResource AppBlack}" />
+            </ShellContent.Icon>
 
-        <ShellContent
-            Title="Content Creation"
-            ContentTemplate="{DataTemplate pages:CreateAdvertisment}"
-            Icon="plus.png" />
-        <ShellContent
-            Title="Created by Me"
-            ContentTemplate="{DataTemplate pages:MyContentPage}"
-            Icon="filebox.png" />
+        </ShellContent>
 
-        <ShellContent
-            Title="Near You: Explore Now"
-            ContentTemplate="{DataTemplate pages:GoogleMapPage}"
-            Icon="map.png" />
+        <ShellContent Title="My Captures" ContentTemplate="{DataTemplate pages:MyFavorites}">
 
-        <ShellContent
-            Title="Settings"
-            ContentTemplate="{DataTemplate pages:UserSetting}"
-            Icon="setting.png" />
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe87d;"
+                    Color="{StaticResource AppBlack}" />
+            </ShellContent.Icon>
+
+        </ShellContent>
+
+        <ShellContent Title="Content Creation" ContentTemplate="{DataTemplate pages:CreateAdvertisment}">
+
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe145;"
+                    Color="{StaticResource AppBlack}" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+
+        <ShellContent Title="Created by Me" ContentTemplate="{DataTemplate pages:MyContentPage}">
+
+
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe865;"
+                    Color="{StaticResource AppBlack}" />
+            </ShellContent.Icon>
+
+        </ShellContent>
+
+        <ShellContent Title="Near You: Explore Now" ContentTemplate="{DataTemplate pages:GoogleMapPage}">
+
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe55e;"
+                    Color="{StaticResource AppBlack}" />
+            </ShellContent.Icon>
+
+        </ShellContent>
+
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate pages:UserSetting}">
+
+
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph="&#xe8b8;"
+                    Color="{StaticResource AppBlack}" />
+            </ShellContent.Icon>
+
+        </ShellContent>
     </FlyoutItem>
 
-    <!--<Shell.FlyoutHeader>
-    -->
-    <!--  Custom navigation header  -->
-    <!--
-        <StackLayout Orientation="Horizontal">
-            <Border
-                HeightRequest="50"
-                Style="{StaticResource avatarBorderStyle}"
-                WidthRequest="50">
-
-                <toolkit:AvatarView
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    HeightRequest="90"
-                    Text="{Binding Avatar, Mode=TwoWay}"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="90" />
-            </Border>
-
-            <Label
-                FontAttributes="Bold"
-                HorizontalOptions="CenterAndExpand"
-                Style="{StaticResource globalTitle}"
-                Text="{Binding UserName, Mode=TwoWay}" />
-        </StackLayout>
-    </Shell.FlyoutHeader>-->
-
     <Shell.FlyoutHeader>
-        <HorizontalStackLayout
-            Padding="10"
-            Spacing="10"
-            VerticalOptions="Center">
+        <HorizontalStackLayout Padding="10" Spacing="10">
 
             <!--  Contenedor del avatar o imagen  -->
-            <Grid
-                HeightRequest="90"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                WidthRequest="90">
+            <Border Style="{StaticResource avatarBorderStyle}">
 
-                <!--  Imagen si el usuario la tiene  -->
-                <ffimageloading:CachedImage
-                    Aspect="AspectFill"
-                    HeightRequest="70"
-                    IsVisible="{Binding HasProfileImage}"
-                    Source="{Binding ProfileImage}"
-                    WidthRequest="70" />
+                <Grid>
 
-                <!--  Avatar si no hay imagen  -->
-                <toolkit:AvatarView
-                    BackgroundColor="LightGray"
-                    CornerRadius="45"
-                    FontAttributes="Bold"
-                    FontSize="36"
-                    HeightRequest="70"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding HasProfileImage, Converter={StaticResource InverseBoolConverter}}"
-                    Text="{Binding Avatar}"
-                    TextColor="Black"
-                    VerticalOptions="Center"
-                    WidthRequest="70" />
-            </Grid>
+                    <!--  Imagen si el usuario la tiene  -->
+                    <ffimageloading:CachedImage
+                        Aspect="AspectFit"
+                        HeightRequest="80"
+                        IsVisible="{Binding HasProfileImage}"
+                        Source="{Binding ProfileImage}"
+                        WidthRequest="80" />
+
+                    <!--  Avatar si no hay imagen  -->
+                    <toolkit:AvatarView
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        FontAttributes="Bold"
+                        FontSize="35"
+                        HeightRequest="80"
+                        IsVisible="{Binding HasProfileImage, Converter={StaticResource InverseBoolConverter}}"
+                        Text="{Binding Avatar}"
+                        TextColor="Black"
+                        WidthRequest="80" />
+                </Grid>
+            </Border>
 
             <!--  Nombre del usuario  -->
-            <Label
-                FontAttributes="Bold"
-                HorizontalOptions="Start"
-                Style="{StaticResource globalTitle}"
-                Text="{Binding UserName}"
-                VerticalOptions="Center" />
+            <Label Style="{StaticResource globalTitle}" Text="{Binding UserName}" />
         </HorizontalStackLayout>
     </Shell.FlyoutHeader>
-
-
 
     <!--<Shell.FlyoutFooter>
 

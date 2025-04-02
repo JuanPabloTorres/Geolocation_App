@@ -3,75 +3,77 @@
     x:Class="GeolocationAds.PopUps.MetaDataPopUp"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui">
-    <Grid
-        Margin="5"
-        BackgroundColor="White"
-        WidthRequest="300">
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    Color="Transparent">
+    <Border HeightRequest="150" Style="{StaticResource popUpBorder}">
 
-        <Grid.RowDefinitions>
+        <Grid Padding="5" BackgroundColor="White">
 
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <!--  Altura del header con semicírculo  -->
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        </Grid.RowDefinitions>
+            <!--  🟠 Semicírculo decorativo con texto encima  -->
+            <Grid Grid.Row="0">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+                <!--  Título encima del semicírculo  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Meta Data"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
-        </Grid.ColumnDefinitions>
+                <!--  ❌ Botón de cerrar  -->
+                <Button
+                    BackgroundColor="Transparent"
+                    Clicked="OnCloseButtonClicked"
+                    Style="{StaticResource XButton}">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.3"
+                            Radius="30"
+                            Offset="2,2" />
+                    </Button.Shadow>
+
+                    <Button.ImageSource>
+                        <FontImageSource
+                            FontFamily="MaterialIconsOutlined-Regular"
+                            Glyph="&#xe5cd;"
+                            Color="White" />
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+
+            <!--  📅 Fecha de creación  -->
+            <Label
+                Grid.Row="1"
+                Margin="15,0,15,0"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding CreateDate, StringFormat='Created Date: {0:MM/dd/yyyy}'}" />
+
+            <!--  📦 Tamaño de datos  -->
+            <Label
+                Grid.Row="2"
+                Margin="15,0,15,10"
+                Style="{StaticResource globalLabel}"
+                Text="{Binding DataSize, Converter={StaticResource DataSizeConverter}}" />
+        </Grid>
+    </Border>
 
 
-
-        <Label
-            Grid.Row="0"
-            Grid.Column="0"
-            Style="{StaticResource globalLabel}"
-            Text="Meta Data" />
-
-        <Button
-            Grid.Row="0"
-            Grid.Column="2"
-            Margin="5"
-            BackgroundColor="Transparent"
-            Clicked="OnCloseButtonClicked"
-            HorizontalOptions="EndAndExpand"
-            Style="{StaticResource XButton}">
-
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
-
-            <Button.ImageSource>
-                <FontImageSource
-                    FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph="&#xe5cd;"
-                    Color="#3e4144" />
-            </Button.ImageSource>
-        </Button>
-
-
-
-
-        <Label
-            Grid.Row="1"
-            Grid.Column="0"
-            HorizontalOptions="Start"
-            LineBreakMode="WordWrap"
-            Style="{StaticResource globalLabel}"
-            Text="{Binding CreateDate, StringFormat='Created Date: {0:MM/dd/yyyy}'}" />
-        <Label
-            Grid.Row="2"
-            Grid.Column="0"
-            HorizontalOptions="Start"
-            Style="{StaticResource globalLabel}"
-            Text="{Binding DataSize, Converter={StaticResource DataSizeConverter}}" />
-
-    </Grid>
 </mct:Popup>

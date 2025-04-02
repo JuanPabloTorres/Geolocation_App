@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace GeolocationAds.ViewTemplates;
 
-public partial class PaginControls : StackLayout
+public partial class PaginControls : Grid
 {
     // Define public events for clicks
     //public event EventHandler BackClicked;

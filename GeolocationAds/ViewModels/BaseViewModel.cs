@@ -258,7 +258,9 @@ namespace GeolocationAds.ViewModels
 
                     if (!apiResponse.IsSuccess) throw new Exception(apiResponse.Message);
 
-                    await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+                    //await Shell.Current.DisplayAlert("Notification", apiResponse.Message, "OK");
+
+                    await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
 
                     WeakReferenceMessenger.Default.Send(new UpdateMessage<T>(apiResponse.Data));
 

@@ -26,6 +26,10 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(SearchAd), typeof(SearchAd));
 
         Routing.RegisterRoute(nameof(Login), typeof(Login));
+      
+        Routing.RegisterRoute(nameof(CreateAdvertisment), typeof(CreateAdvertisment));
+        
+        Routing.RegisterRoute(nameof(UserSetting), typeof(UserSetting));
 
         Routing.RegisterRoute(nameof(EditAdvertisment), typeof(EditAdvertisment));
 

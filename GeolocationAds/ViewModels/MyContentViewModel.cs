@@ -38,41 +38,42 @@ namespace GeolocationAds.ViewModels
                 await InitializeAsync();
             });
 
-            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (r, m) =>
+            WeakReferenceMessenger.Default.Register<UpdateMessage<Advertisement>>(this, (recipient, message) =>
             {
-                if (m?.Value == null) return; // 🔹 Evita errores si el mensaje es nulo
+                if (message?.Value == null) return;
 
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    var existingItem = CollectionModel.FirstOrDefault(x => x.Advertisement.ID == m.Value.ID);
+                    var updatedAd = message.Value;
 
-                    if (existingItem != null)
+                    var existingViewModel = CollectionModel.FirstOrDefault(vm => vm.Advertisement.ID == updatedAd.ID);
+
+                    if (existingViewModel == null) return;
+
+                    var updatedSettingId = updatedAd.Settings.FirstOrDefault()?.SettingId;
+
+                    var currentFilterSettingId = SelectedAdType?.ID;
+
+                    bool matchesFilter = updatedSettingId == currentFilterSettingId;
+
+                    if (matchesFilter)
                     {
-                        var existingType = existingItem.Advertisement.Contents.FirstOrDefault()?.Type;
+                        // Reemplazar el ViewModel en la misma posición
+                        int index = CollectionModel.IndexOf(existingViewModel);
 
-                        var newType = m.Value.Contents.FirstOrDefault()?.Type;
+                        var newViewModel = new ContentViewTemplateViewModel(
+                            containerMyContentServices.AdvertisementService,
+                            service,
+                            updatedAd,
+                            On_ItemDeleted
+                        );
 
-                        var existingSettingId = existingItem.Advertisement.Settings.FirstOrDefault()?.ID;
-
-                        var newSettingId = SelectedAdType?.ID;
-
-                        if (existingType == newType && existingSettingId == newSettingId)
-                        {
-                            // 🔹 Sustituye el elemento actualizado en la misma posición
-                            var itemIndex = CollectionModel.IndexOf(existingItem);
-
-                            CollectionModel[itemIndex] = new ContentViewTemplateViewModel(
-                                containerMyContentServices.AdvertisementService,
-                                service,
-                                m.Value,
-                                On_ItemDeleted
-                            );
-                        }
-                        else
-                        {
-                            // 🔹 Elimina el elemento si el tipo de contenido o el Setting ID no coinciden
-                            CollectionModel.Remove(existingItem);
-                        }
+                        CollectionModel[index] = newViewModel;
+                    }
+                    else
+                    {
+                        // Eliminar si ya no pertenece al filtro actual
+                        CollectionModel.Remove(existingViewModel);
                     }
                 });
             });
@@ -190,12 +191,9 @@ namespace GeolocationAds.ViewModels
 
         public override async Task OpenFilterPopUpForSearch()
         {
-            await RunWithLoadingIndicator(async () =>
-            {
-                _filterPopUp = new FilterPopUp(filterPopUpViewModel);
+            _filterPopUp = new FilterPopUp(filterPopUpViewModel);
 
-                await Shell.Current.CurrentPage.ShowPopupAsync(_filterPopUp);
-            });
+            await Shell.Current.CurrentPage.ShowPopupAsync(_filterPopUp);
         }
     }
 }

@@ -403,7 +403,6 @@
                 WidthRequest="300" />
 
             <Button
-                BackgroundColor="{StaticResource DarkViolet}"
                 Command="{Binding SetURLCommand}"
                 CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"

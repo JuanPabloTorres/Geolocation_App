@@ -3,6 +3,7 @@
     x:Class="GeolocationAds.PopUps.FilterPopUp"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
@@ -10,37 +11,139 @@
     Color="Transparent">
 
     <Border Style="{StaticResource popUpBorder}">
+        <Grid Padding="10" BackgroundColor="White">
 
-        <VerticalStackLayout BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!--  SemiCircle Header  -->
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
 
-            <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End">
+            </Grid.RowDefinitions>
 
-                <Button
-                    Margin="5"
-                    BackgroundColor="Transparent"
-                    Clicked="OnCloseButtonClicked"
-                    HorizontalOptions="EndAndExpand"
-                    Style="{StaticResource XButton}">
+            <!--  🎨 SemiCircle Header  -->
+            <Grid Grid.Row="0">
+                <GraphicsView BackgroundColor="Transparent">
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
 
-                    <Button.Shadow>
-                        <Shadow
-                            Brush="Black"
-                            Opacity="0.5"
-                            Radius="40"
-                            Offset="5,5" />
-                    </Button.Shadow>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Filter"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
 
+                <Button Clicked="OnCloseButtonClicked" Style="{StaticResource XButton}">
                     <Button.ImageSource>
                         <FontImageSource
                             FontFamily="MaterialIconsOutlined-Regular"
                             Glyph="&#xe5cd;"
-                            Color="#3e4144" />
+                            Color="White" />
                     </Button.ImageSource>
                 </Button>
-            </HorizontalStackLayout>
+            </Grid>
 
-            <VerticalStackLayout Grid.Row="1">
 
+
+            <!--  🏷️ Type Picker  -->
+            <Label
+                Grid.Row="1"
+                Style="{StaticResource globalLabel}"
+                Text="Type:" />
+
+            <localControl:CustomPickerContentView
+                Grid.Row="2"
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                IconSource="arrow.png"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType}" />
+
+            <!--  🔘 Filter Button  -->
+            <Button
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Command="{Binding FilterCommand}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}">
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="MaterialIconsOutlined-Regular"
+                        Glyph="&#xe8b6;"
+                        Color="White" />
+                </Button.ImageSource>
+            </Button>
+
+            <!--  ⏳ Loader  -->
+            <ActivityIndicator
+                Grid.Row="3"
+                IsRunning="{Binding IsLoading}"
+                IsVisible="{Binding IsLoading}"
+                Style="{StaticResource globalLoading}" />
+        </Grid>
+    </Border>
+
+    <!--<Border Style="{StaticResource popUpBorder}">
+
+        <Grid
+            Padding="10"
+            BackgroundColor="White"
+            ColumnDefinitions="*,Auto"
+            RowDefinitions="Auto,Auto,Auto,Auto">
+
+    -->
+    <!--  🏷️ Encabezado: Texto y Botón de Cerrar  -->
+    <!--
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="Filters"
+                TextColor="{StaticResource AppBlack}"
+                VerticalOptions="Center" />
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Transparent"
+                Clicked="OnCloseButtonClicked"
+                Style="{StaticResource XButton}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.3"
+                        Radius="30"
+                        Offset="2,2" />
+                </Button.Shadow>
+
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="MaterialIconsOutlined-Regular"
+                        Glyph="&#xe5cd;"
+                        Color="#3e4144" />
+                </Button.ImageSource>
+            </Button>
+
+    -->
+    <!--  🔽 Picker Section  -->
+    <!--
+            <VerticalStackLayout
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Margin="0,10,0,0"
+                Spacing="5">
                 <Label
                     HorizontalOptions="Start"
                     Style="{StaticResource globalLabel}"
@@ -55,8 +158,13 @@
                     SelectedItem="{Binding SelectedAdType}" />
             </VerticalStackLayout>
 
+    -->
+    <!--  🔘 Botón Filtrar  -->
+    <!--
             <Button
                 Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="0,10,0,0"
                 Command="{Binding FilterCommand}"
                 IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Style="{StaticResource globalButton}">
@@ -69,11 +177,18 @@
                 </Button.ImageSource>
             </Button>
 
+    -->
+    <!--  ⏳ Loader  -->
+    <!--
             <ActivityIndicator
-                Grid.Row="2"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
                 IsRunning="{Binding IsLoading}"
                 IsVisible="{Binding IsLoading}"
                 Style="{StaticResource globalLoading}" />
-        </VerticalStackLayout>
-    </Border>
+        </Grid>
+
+
+
+    </Border>-->
 </mct:Popup>

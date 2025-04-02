@@ -6,13 +6,11 @@
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-    CanBeDismissedByTappingOutsideOfPopup="False">
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Color="Transparent">
 
-
-
-    <Grid x:Name="lottieContainer" BackgroundColor="Transparent">
-
-        <Border>
+    <Border Style="{StaticResource popUpBorder}">
+        <Grid x:Name="lottieContainer" BackgroundColor="White">
 
             <skia:SKLottieView
                 x:Name="complete"
@@ -21,12 +19,9 @@
                 HorizontalOptions="Center"
                 IsAnimationEnabled="True"
                 RepeatCount="0"
-                Source="complete5.json"
+                Source="CompleteAnimation.json"
                 VerticalOptions="Center"
                 WidthRequest="200" />
-        </Border>
-
-    </Grid>
-
-
+        </Grid>
+    </Border>
 </mct:Popup>

@@ -3,10 +3,137 @@
     x:Class="GeolocationAds.PopUps.FilterPopUpForSearch"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
-    <Grid
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Color="Transparent">
+
+    <Border HeightRequest="410" Style="{StaticResource popUpBorder}">
+        <Grid
+            Padding="10"
+            BackgroundColor="White"
+            ColumnDefinitions="*, Auto"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+            WidthRequest="280">
+
+            <Grid
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                BackgroundColor="Transparent">
+                <GraphicsView BackgroundColor="Transparent">
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <!--<Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Filter"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />-->
+            </Grid>
+
+            <!--  🏷️ Header  -->
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Filter"
+                TextColor="White"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <!--  ❌ Close Button  -->
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Transparent"
+                Clicked="OnCloseButtonClicked"
+                Style="{StaticResource XButton}">
+
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.3"
+                        Radius="30"
+                        Offset="2,2" />
+                </Button.Shadow>
+
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="MaterialIconsOutlined-Regular"
+                        Glyph="&#xe5cd;"
+                        Color="White" />
+                </Button.ImageSource>
+            </Button>
+
+            <!--  📏 Distance Label  -->
+            <Label
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource globalLabel}"
+                Text="Distance (M):" />
+
+            <!--  📏 Distance Picker  -->
+            <localControl:CustomPickerContentView
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                ItemsSource="{Binding DistanceSettings}"
+                SelectedItem="{Binding SelectedDistance}" />
+
+            <!--  🏷️ Ad Type Label  -->
+            <Label
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource globalLabel}"
+                Text="Type:" />
+
+            <!--  📂 Ad Type Picker  -->
+            <localControl:CustomPickerContentView
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                IconSource="arrow.png"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType}" />
+
+            <!--  🔘 Filter Button  -->
+            <Button
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                Command="{Binding FilterCommand}"
+                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                Style="{StaticResource globalButton}">
+
+                <Button.ImageSource>
+                    <FontImageSource
+                        FontFamily="MaterialIconsOutlined-Regular"
+                        Glyph="&#xe8b6;"
+                        Color="White" />
+                </Button.ImageSource>
+            </Button>
+
+            <!--  ⏳ Activity Indicator  -->
+            <ActivityIndicator
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                IsRunning="{Binding IsLoading}"
+                IsVisible="{Binding IsLoading}"
+                Style="{StaticResource globalLoading}" />
+        </Grid>
+    </Border>
+    <!--<Grid
         Padding="15"
         BackgroundColor="White"
         WidthRequest="280">
@@ -96,5 +223,5 @@
             IsRunning="{Binding IsLoading}"
             IsVisible="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />
-    </Grid>
+    </Grid>-->
 </mct:Popup>

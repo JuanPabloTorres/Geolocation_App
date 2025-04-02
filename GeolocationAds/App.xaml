@@ -20,26 +20,47 @@
             <Color x:Key="AppBlack">#242124</Color>
 
             <Color x:Key="DeepBlue">#1c1447</Color>
-            <!--  Un azul oscuro profundo  -->
+
 
             <Color x:Key="MediumPurple">#7f2481</Color>
-            <!--  Un púrpura medio  -->
+
 
             <Color x:Key="BrightOrangeRed">#e1482b</Color>
-            <!--  Un rojo anaranjado brillante  -->
+
 
             <Color x:Key="Burgundy">#961e52</Color>
-            <!--  Un rojo burdeos  -->
+
 
             <Color x:Key="DarkViolet">#5a1b60</Color>
-            <!--  Un violeta oscuro  -->
+
 
             <Color x:Key="DarkFuchsia">#bf1d57</Color>
 
             <Color x:Key="WhiteSmoke">#F5F5F5</Color>
 
             <Color x:Key="FacebookColor">#1877F2</Color>
-            <!--  Un fucsia oscuro  -->
+
+            <!--  App Opt 2 Primary Color Scheme  -->
+            <Color x:Key="appPrimaryOpt2ColorPrimary">#FFA725</Color>
+
+            <Color x:Key="appPrimaryOpt2ColorPrimaryLight">#FFF5E4</Color>
+
+            <Color x:Key="appPrimaryOpt2ColorPrimarySoft">#C1D8C3</Color>
+
+            <Color x:Key="appPrimaryOpt2ColorPrimaryDark">#6A9C89</Color>
+
+            <!--  App Opt 3 Primary Color Scheme  -->
+            <Color x:Key="appPrimaryOpt3ColorPrimary">#D84040</Color>
+            <!--  Rojo vibrante  -->
+            <Color x:Key="appPrimaryOpt3ColorPrimaryDark">#A31D1D</Color>
+            <!--  Rojo oscuro  -->
+            <Color x:Key="appPrimaryOpt3ColorPrimarySoft">#ECDCBF</Color>
+            <!--  Crema suave  -->
+            <Color x:Key="appPrimaryOpt3ColorPrimaryLight">#F8F2DE</Color>
+            <!--  Beige claro  -->
+
+
+
 
             <x:Double x:Key="OpacityValue">0.9</x:Double>
 
@@ -57,10 +78,10 @@
             <Style x:Key="globalTitle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="TextColor" Value="{StaticResource AppGray}" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="5" />
             </Style>
 
@@ -131,7 +152,7 @@
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="25" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkFuchsia}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt2ColorPrimary}" />
                 <Setter Property="Shadow">
                     <Setter.Value>
                         <Shadow
@@ -155,15 +176,14 @@
             </Style>
 
             <Style x:Key="globalButtonUrL" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BackgroundColor" Value="{StaticResource DarkFuchsia}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt2ColorPrimary}" />
                 <Setter Property="Shadow">
                     <Setter.Value>
                         <Shadow
@@ -184,7 +204,7 @@
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="BorderWidth" Value="0.5" />
-                <Setter Property="BackgroundColor" Value="{StaticResource AppGray}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt2ColorPrimarySoft}" />
 
                 <Setter Property="Shadow">
                     <Setter.Value>
@@ -249,14 +269,14 @@
             </Style>
 
             <Style x:Key="avatarBorderStyle" TargetType="Border">
-                <Setter Property="Margin" Value="4" />
-                <Setter Property="Padding" Value="6" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
                 <Setter Property="Background" Value="#F5F5F5" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="#961e52" />
+                <Setter Property="Stroke" Value="{StaticResource appPrimaryOpt2ColorPrimaryLight}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
-                        <RoundRectangle CornerRadius="5" />
+                        <RoundRectangle CornerRadius="8" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="StrokeThickness" Value="0.5" />
@@ -296,14 +316,14 @@
             <Style x:Key="popUpBorder" TargetType="Border">
                 <Setter Property="Margin" Value="8" />
                 <Setter Property="Padding" Value="0" />
-                <Setter Property="WidthRequest" Value="250" />
-                <Setter Property="HeightRequest" Value="270" />
+                <Setter Property="WidthRequest" Value="280" />
+                <Setter Property="HeightRequest" Value="280" />
                 <Setter Property="Background" Value="White" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
                 <Setter Property="Stroke" Value="{StaticResource White}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
-                        <RoundRectangle CornerRadius="10,10,0,0" />
+                        <RoundRectangle CornerRadius="10,10,10,10" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="StrokeThickness" Value="2" />
@@ -312,7 +332,7 @@
             <Style x:Key="verticalStandarStyle" TargetType="VerticalStackLayout">
                 <Setter Property="Margin" Value="15" />
                 <Setter Property="Padding" Value="10" />
-                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" />
             </Style>
 
             <!--  Labels  -->
@@ -373,7 +393,7 @@
                 <Setter Property="FontFamily" Value="RobotoBold" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="CornerRadius" Value="0" />
-                <Setter Property="TextColor" Value="{StaticResource AppGray}" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
 
                 <Setter Property="ImageSource">
