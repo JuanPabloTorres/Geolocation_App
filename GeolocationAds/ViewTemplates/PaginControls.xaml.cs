@@ -6,9 +6,12 @@ namespace GeolocationAds.ViewTemplates;
 public partial class PaginControls : StackLayout
 {
     // Define public events for clicks
-    public event EventHandler BackClicked;
+    //public event EventHandler BackClicked;
 
-    public event EventHandler NextClicked;
+    //public event EventHandler NextClicked;
+
+    public Action? OnBackClickedAction { get; set; }
+    public Action? OnNextClickedAction { get; set; }
 
     public static readonly BindableProperty IsBackButtonEnabledProperty = BindableProperty.Create(
             "IsBackButtonEnabled",
@@ -69,12 +72,16 @@ public partial class PaginControls : StackLayout
 
     private void BackItemButton_Clicked(object sender, EventArgs e)
     {
-        BackClicked?.Invoke(this, e);
+        //BackClicked?.Invoke();
+
+        OnBackClickedAction?.Invoke();
     }
 
     private void NextItemButton_Clicked(object sender, EventArgs e)
     {
-        NextClicked?.Invoke(this, e);
+        //NextClicked?.Invoke();
+
+        OnNextClickedAction?.Invoke();
     }
 
     private static void OnIsBackButtonEnabledChanged(BindableObject bindable, object oldValue, object newValue)

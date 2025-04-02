@@ -6,6 +6,7 @@
     xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:tVm="clr-namespace:GeolocationAds.TemplateViewModel"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="My Content"
     BackgroundColor="WhiteSmoke">
     <ContentPage.ToolbarItems>
@@ -48,7 +49,6 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
     </ContentPage.Resources>
 
-
     <Grid>
 
         <Grid.RowDefinitions>
@@ -73,7 +73,6 @@
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" />
             </CarouselView.ItemsLayout>
-
         </CarouselView>
 
         <!--  Eliminación de MultiBinding para optimización  -->
@@ -82,110 +81,19 @@
             Grid.Row="1"
             IsVisible="{Binding HasPagination}" />
 
-        <HorizontalStackLayout
+        <views:StatusBarOverlay
+            x:Name="statusBar"
             Grid.Row="2"
-            Padding="2"
-            BackgroundColor="{StaticResource AppGray}"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding HasContent}"
-            VerticalOptions="End">
+            AdType="{Binding SelectedAdType.Value}"
+            CollectionCount="{Binding CollectionModel.Count}"
+            CountFormat="Nearby: {0:N0}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            ShowAdType="True"
+            ShowCount="True"
+            ShowDistance="False" />
 
-            <Label
-                x:Name="counterLabel"
-                HorizontalOptions="End"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding CollectionModel.Count, StringFormat='Display: {0:N0}'}"
-                TextColor="White" />
-
-            <Label
-                x:Name="filterType"
-                HorizontalOptions="End"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding SelectedAdType.Value}"
-                TextColor="White" />
-        </HorizontalStackLayout>
-
-        <!--  Overlay para mostrar el loading con fondo blanco  -->
-        <Grid
-            x:Name="loadingOverlay"
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
-            AbsoluteLayout.LayoutFlags="All"
-            BackgroundColor="White"
-            IsVisible="{Binding IsLoading}"
-            Opacity="0.8"
-            ZIndex="10">
-
-            <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-        </Grid>
-
+        <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
     </Grid>
-
-    <!--<Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-    -->
-    <!--  Optimización: Carga diferida del contenido en el CarouselView  -->
-    <!--
-        <CarouselView
-            x:Name="carouselView"
-            Grid.Row="0"
-            IsSwipeEnabled="True"
-            IsVisible="{Binding HasContent}"
-            ItemTemplate="{StaticResource typeSelector}"
-            ItemsSource="{Binding CollectionModel}">
-
-            <CarouselView.EmptyView>
-                <Label Style="{StaticResource emptyCollectionLabel}" Text="No content available." />
-            </CarouselView.EmptyView>
-
-            <CarouselView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" />
-            </CarouselView.ItemsLayout>
-
-        </CarouselView>
-
-    -->
-    <!--  Eliminación de MultiBinding para optimización  -->
-    <!--
-        <displayer:PaginControls
-            x:Name="paginControls"
-            Grid.Row="1"
-            IsVisible="{Binding HasPagination}" />
-
-        <HorizontalStackLayout
-            Grid.Row="2"
-            BackgroundColor="{StaticResource AppGray}"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding HasContent}"
-            VerticalOptions="End">
-
-            <Label
-                x:Name="counterLabel"
-                HorizontalOptions="End"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding CollectionModel.Count, StringFormat='Display: {0:N0}'}"
-                TextColor="White" />
-
-            <Label
-                x:Name="filterType"
-                HorizontalOptions="End"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding SelectedAdType.Value}"
-                TextColor="White" />
-        </HorizontalStackLayout>
-
-        <ActivityIndicator
-            Grid.Row="1"
-            IsRunning="{Binding IsLoading}"
-            IsVisible="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}" />
-
-    </Grid>-->
 
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="LoadingState">

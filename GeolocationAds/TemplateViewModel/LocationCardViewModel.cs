@@ -8,7 +8,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class LocationCardViewModel<T, S> : TemplateBaseViewModel2<T> where T : class
+    public partial class LocationCardViewModel<T, S> : TemplateBaseViewModel<T> where T : class
     {
         [ObservableProperty]
         private T model;

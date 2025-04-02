@@ -15,7 +15,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.ViewModels
 {
-    public partial class MyContentViewModel2 : BaseViewModel<ContentViewTemplateViewModel, IGeolocationAdService>
+    public partial class MyContentViewModel : BaseViewModel<ContentViewTemplateViewModel, IGeolocationAdService>
     {
         private readonly IContainerMyContentServices containerMyContentServices;
 
@@ -27,7 +27,7 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
-        public MyContentViewModel2(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
+        public MyContentViewModel(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
         {
             this.containerMyContentServices = myContentServices;
 

@@ -8,9 +8,9 @@ namespace GeolocationAds.Pages;
 
 public partial class SearchAd : ContentPage
 {
-    private SearchAdViewModel2 viewModel;
+    private SearchAdViewModel viewModel;
 
-    public SearchAd(SearchAdViewModel2 searchAdViewModel)
+    public SearchAd(SearchAdViewModel searchAdViewModel)
     {
         InitializeComponent();
 
@@ -18,9 +18,9 @@ public partial class SearchAd : ContentPage
 
         BindingContext = searchAdViewModel;
 
-        this.paginControls.NextClicked += NextItemButton_Clicked;
+        this.paginControls.OnNextClickedAction = NextItemButton_Clicked;
 
-        this.paginControls.BackClicked += BackItemButton_Clicked;
+        this.paginControls.OnBackClickedAction = BackItemButton_Clicked;
 
         this.viewModel.NearByTemplateViewModels.CollectionChanged += NearByTemplateViewModels_CollectionChanged;
     }
@@ -31,11 +31,7 @@ public partial class SearchAd : ContentPage
 
         if (!collection.IsObjectNull())
         {
-            this.counterLabel.IsVisible = collection.Count > 0;
-
-            this.filterType.IsVisible = collection.Count > 0;
-
-            this.filterDistance.IsVisible = collection.Count > 0;
+            statusBar.IsVisible = collection.Count > 0;
         }
     }
 
@@ -43,13 +39,9 @@ public partial class SearchAd : ContentPage
     {
         if (this.viewModel.NearByTemplateViewModels.Count == 0)
         {
-            SearchAdViewModel2.PageIndex = 1;
+            SearchAdViewModel.PageIndex = 1;
 
-            this.counterLabel.IsVisible = false;
-
-            this.filterType.IsVisible = false;
-
-            this.filterDistance.IsVisible = false;
+            statusBar.IsVisible = false;
 
             this.paginControls.IsBackButtonEnabled = false;
 
@@ -61,12 +53,10 @@ public partial class SearchAd : ContentPage
         }
     }
 
-    private async void BackItemButton_Clicked(object sender, EventArgs e)
+    private async void BackItemButton_Clicked()
     {
-        try
+        await viewModel.RunWithLoadingIndicator(async () =>
         {
-            viewModel.IsLoading = true;
-
             if (carouselView.Position > 0)
             {
                 carouselView.Position--;
@@ -84,23 +74,13 @@ public partial class SearchAd : ContentPage
 
                 this.paginControls.IsNextButtonEnabled = true;
             }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            viewModel.IsLoading = false;
-        }
+        });
     }
 
-    private async void NextItemButton_Clicked(object sender, EventArgs e)
+    private async void NextItemButton_Clicked()
     {
-        try
+        await this.viewModel.RunWithLoadingIndicator(async () =>
         {
-            this.viewModel.IsLoading = true;
-
             this.paginControls.IsNextButtonEnabled = false;
 
             this.paginControls.IsBackButtonEnabled = false;
@@ -114,9 +94,9 @@ public partial class SearchAd : ContentPage
             {
                 var _oldCount = GetSourceLastIndexCount();
 
-                SearchAdViewModel2.PageIndex++;
+                SearchAdViewModel.PageIndex++;
 
-                await this.viewModel.InitializeDataLoadingAsync(SearchAdViewModel2.PageIndex);
+                await this.viewModel.InitializeDataLoadingAsync(SearchAdViewModel.PageIndex);
 
                 var _newCount = GetSourceLastIndexCount();
 
@@ -128,57 +108,19 @@ public partial class SearchAd : ContentPage
                 if (_newCount == _oldCount)
                 {
                     this.paginControls.IsBackButtonEnabled = true;
-
-                    SearchAdViewModel2.PageIndex--;
+                    SearchAdViewModel.PageIndex--;
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            this.viewModel.IsLoading = false;
 
             this.paginControls.IsNextButtonEnabled = true;
 
             this.paginControls.IsBackButtonEnabled = true;
-        }
+        });
     }
 
     private int GetSourceLastIndexCount()
     {
         return carouselView.ItemsSource.Cast<object>().ToList().Count - 1;
-    }
-
-    private async Task ChangePositionBy(int delta)
-    {
-        try
-        {
-            viewModel.IsLoading = true;
-
-            // Cache the item count to avoid multiple enumerations
-            var itemCount = GetSourceLastIndexCount();
-
-            if (itemCount == 0) return; // Exit if there are no items
-
-            var newPosition = carouselView.Position + delta;
-
-            newPosition = Math.Max(0, Math.Min(newPosition, itemCount - 1)); // Clamp to valid range
-
-            carouselView.Position = newPosition;
-
-            UpdateButtonStates(newPosition, itemCount);
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
-        finally
-        {
-            viewModel.IsLoading = false;
-        }
     }
 
     private void UpdateButtonStates(int currentPosition, int itemCount)

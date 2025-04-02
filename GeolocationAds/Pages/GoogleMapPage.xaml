@@ -36,11 +36,23 @@
         <views:LoadingOverlay IsVisible="{Binding IsLoading}" />
 
         <!--  Bottom Status Bar  -->
-        <views:StatusBarOverlay
+        <!--<views:StatusBarOverlay
             AdType="{Binding SelectedAdType.Value}"
             CollectionCount="{Binding CollectionModel.Count}"
             Distance="{Binding SelectedDistance}"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />-->
+
+        <views:StatusBarOverlay
+            AdType="{Binding SelectedAdType.Value}"
+            CollectionCount="{Binding CollectionModel.Count}"
+            CountFormat="Nearby: {0:N0}"
+            Distance="{Binding SelectedDistance}"
+            DistanceFormat="Within: {0} radius"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            ShowAdType="True"
+            ShowCount="True"
+            ShowDistance="True" />
+
 
     </Grid>
 </ContentPage>

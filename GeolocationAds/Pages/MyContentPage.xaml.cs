@@ -5,9 +5,9 @@ namespace GeolocationAds.Pages;
 
 public partial class MyContentPage : ContentPage
 {
-    private MyContentViewModel2 _viewModel;
+    private MyContentViewModel _viewModel;
 
-    public MyContentPage(MyContentViewModel2 vm)
+    public MyContentPage(MyContentViewModel vm)
     {
         InitializeComponent();
 
@@ -15,9 +15,9 @@ public partial class MyContentPage : ContentPage
 
         BindingContext = vm;
 
-        this.paginControls.NextClicked += NextItemButton_Clicked;
+        this.paginControls.OnNextClickedAction = NextItemButton_Clicked;
 
-        this.paginControls.BackClicked += BackItemButton_Clicked;
+        this.paginControls.OnBackClickedAction = BackItemButton_Clicked;
 
         this.paginControls.IsBackButtonEnabled = false;
 
@@ -29,7 +29,7 @@ public partial class MyContentPage : ContentPage
         return carouselView.ItemsSource.Cast<object>().ToList().Count - 1;
     }
 
-    private async void NextItemButton_Clicked(object sender, EventArgs e)
+    private async void NextItemButton_Clicked()
     {
         if (_viewModel.IsLoading) return; // 🔹 Evita llamadas repetitivas si ya está cargando
 
@@ -54,9 +54,9 @@ public partial class MyContentPage : ContentPage
             {
                 int oldCount = lastIndex;
 
-                MyContentViewModel2.PageIndex++;
+                MyContentViewModel.PageIndex++;
 
-                await _viewModel.InitializeAsync(MyContentViewModel2.PageIndex);
+                await _viewModel.InitializeAsync(MyContentViewModel.PageIndex);
 
                 int newCount = GetSourceLastIndexCount();
 
@@ -73,7 +73,7 @@ public partial class MyContentPage : ContentPage
         this.paginControls.IsBackButtonEnabled = true;
     }
 
-    private async void BackItemButton_Clicked(object sender, EventArgs e)
+    private async void BackItemButton_Clicked()
     {
         if (_viewModel.IsLoading || carouselView.Position == 0) return; // 🔹 Evita navegación redundante
 

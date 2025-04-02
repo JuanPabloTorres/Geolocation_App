@@ -15,9 +15,13 @@ public partial class MyFavorites : ContentPage
 
         this.BindingContext = captureViewModel;
 
-        this.paginControls.NextClicked += NextItemButton_Clicked;
+        //this.paginControls.NextClicked += NextItemButton_Clicked;
 
-        this.paginControls.BackClicked += BackItemButton_Clicked;
+        //this.paginControls.BackClicked += BackItemButton_Clicked;
+
+        this.paginControls.OnNextClickedAction = NextItemButton_Clicked;
+
+        this.paginControls.OnBackClickedAction = BackItemButton_Clicked;
     }
 
 
@@ -27,7 +31,7 @@ public partial class MyFavorites : ContentPage
     //}
 
 
-    private async void BackItemButton_Clicked(object sender, EventArgs e)
+    private async void BackItemButton_Clicked()
     {
         try
         {
@@ -61,7 +65,7 @@ public partial class MyFavorites : ContentPage
         }
     }
 
-    private async void NextItemButton_Clicked(object sender, EventArgs e)
+    private async void NextItemButton_Clicked()
     {
         try
         {

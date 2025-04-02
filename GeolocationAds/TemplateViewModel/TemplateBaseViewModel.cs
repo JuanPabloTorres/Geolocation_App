@@ -1,14 +1,19 @@
-﻿using GeolocationAds.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.Services;
+using GeolocationAds.ViewModels;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using ToolsLibrary.Extensions;
+using ToolsLibrary.Tools;
 
-namespace ToolsLibrary.TemplateViewModel
+namespace GeolocationAds.TemplateViewModel
 {
-    public class TemplateBaseViewModel : INotifyPropertyChanged
+    public partial class TemplateBaseViewModel<T> : RootBaseViewModel
     {
-        private bool isLoading;
+        public Action<T> ItemDeleted { get; set; }  // ✅ Se usa Action en vez de event
+
+        protected IAdvertisementService advertisementService { get; set; }
+        protected IGeolocationAdService geolocationAdService { get; set; }
 
         public TemplateBaseViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService)
         {
@@ -22,58 +27,40 @@ namespace ToolsLibrary.TemplateViewModel
             this.advertisementService = advertisementService;
         }
 
+        public TemplateBaseViewModel(IGeolocationAdService geolocationAdService)
+        {
+            this.advertisementService = advertisementService;
+        }
+
         public TemplateBaseViewModel()
         {
         }
 
-        public delegate void RemoveItemEventHandler(object sender, EventArgs e);
-
-        public static event RemoveItemEventHandler ItemDeleted;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsLoading
+        [RelayCommand]
+        public virtual async Task RemoveCurrentItem()
         {
-            get => isLoading;
-            set
+            try
             {
-                if (isLoading != value)
-                {
-                    isLoading = value;
-
-                    OnPropertyChanged();
-                }
+                await Shell.Current.DisplayAlert("Notification", "Must Implement.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", ex.Message);
             }
         }
 
-        public ICommand RemoveCommand { get; set; }
-        protected IAdvertisementService advertisementService { get; set; }
-
-        protected IGeolocationAdService geolocationAdService { get; set; }
+        protected virtual void OnDeleteType(T contentTypeTemplateViewModel2)
+        {
+            ItemDeleted?.Invoke(contentTypeTemplateViewModel2);  // ✅ Se usa Action en lugar de event
+        }
 
         public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
         {
-            var queryString = string.Empty;
-
-            if (!queryParameters.IsObjectNull() && queryParameters.Count > 0)
-            {
-                queryString = string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"));
-
-                queryString = "?" + queryString;
-            }
+            var queryString = queryParameters != null && queryParameters.Count > 0
+                ? "?" + string.Join("&", queryParameters.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value.ToString())}"))
+                : string.Empty;
 
             await Shell.Current.GoToAsync($"{pageName}{queryString}");
-        }
-
-        public virtual void OnDeleteItem(EventArgs e)
-        {
-            ItemDeleted?.Invoke(this, e);
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-        public virtual void RemoveCurrentItem()
-        {
         }
     }
 }

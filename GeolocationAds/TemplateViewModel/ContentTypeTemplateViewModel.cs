@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ToolsLibrary.Models;
-using ToolsLibrary.TemplateViewModel;
+
 using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class ContentTypeTemplateViewModel : TemplateBaseViewModel2<ContentTypeTemplateViewModel>
+    public partial class ContentTypeTemplateViewModel : TemplateBaseViewModel<ContentTypeTemplateViewModel>
     {
         [ObservableProperty]
         private ContentType contentType;

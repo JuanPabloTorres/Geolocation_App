@@ -113,7 +113,7 @@ public static class MauiProgram
         builder.Services.AddScoped<ToolsLibrary.Models.Advertisement>();
 
         builder.Services.AddScoped<ToolsLibrary.Models.Capture>();
-        
+
         builder.Services.AddScoped<ToolsLibrary.Dto.NewPasswordDto>();
     }
 
@@ -125,11 +125,9 @@ public static class MauiProgram
     {
         builder.Services.AddTransient<CreateAdvertismentViewModel2>();
 
-        builder.Services.AddScoped<MangeContentTemplateViewModel>();
+        builder.Services.AddScoped<MyContentViewModel>();
 
-        builder.Services.AddScoped<MyContentViewModel2>();
-
-        builder.Services.AddScoped<SearchAdViewModel2>();
+        builder.Services.AddScoped<SearchAdViewModel>();
 
         builder.Services.AddScoped<LoginViewModel2>();
 
@@ -175,13 +173,22 @@ public static class MauiProgram
     private static void RegisterContainers(MauiAppBuilder builder)
     {
         builder.Services.AddScoped<IContainerMyContentServices, ContainerMyContentServices>();
+
         builder.Services.AddScoped<IContainerMapServices, ContainerMapServices>();
+
         builder.Services.AddScoped<IContainerEditAdvertisment, ContainerEditAdvertisment>();
+
         builder.Services.AddScoped<IContainerCreateAdvertisment, ContainerCreateAdvertisment>();
+
         builder.Services.AddScoped<INearByItemDetailContainer, NearByItemDetailContainer>();
+
         builder.Services.AddScoped<IContainerManageLocation, ContainerManageLocation>();
+
         builder.Services.AddScoped<IContainerCapture, ContainerCapture>();
+
         builder.Services.AddScoped<IContainerLoginServices, ContainerLoginServices>();
+
+        builder.Services.AddScoped<IContainerSearchAdServices, ContainerSearchAdServices>();
     }
 
     #endregion **Registro de Contenedores**

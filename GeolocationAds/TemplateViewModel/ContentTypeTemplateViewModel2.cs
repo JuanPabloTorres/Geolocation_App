@@ -7,7 +7,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class ContentTypeTemplateViewModel2 : TemplateBaseViewModel2<ContentTypeTemplateViewModel2>
+    public partial class ContentTypeTemplateViewModel2 : TemplateBaseViewModel<ContentTypeTemplateViewModel2>
     {
         [ObservableProperty]
         private ContentType contentType;

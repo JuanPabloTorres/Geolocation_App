@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Discover"
     BackgroundColor="WhiteSmoke"
     Routing.Route="SearchAd">
@@ -98,41 +99,19 @@
             </displayer:PaginControls.IsVisible>
         </displayer:PaginControls>
 
-        <HorizontalStackLayout
+        <views:StatusBarOverlay
+            x:Name="statusBar"
             Grid.Row="2"
-            BackgroundColor="{StaticResource AppGray}"
+            AdType="{Binding SelectedAdType.Value}"
+            CollectionCount="{Binding NearByTemplateViewModels.Count}"
+            CountFormat="Nearby: {0:N0}"
+            Distance="{Binding SelectedDistance}"
+            DistanceFormat="Within: {0} radius"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            VerticalOptions="End">
-            <Label
-                x:Name="counterLabel"
-                Grid.Row="0"
-                HorizontalOptions="End"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding NearByTemplateViewModels.Count, StringFormat='Nearby: {0:N0}'}"
-                TextColor="White" />
+            ShowAdType="True"
+            ShowCount="True"
+            ShowDistance="True" />
 
-            <Label
-                x:Name="filterType"
-                Grid.Row="0"
-                HorizontalOptions="End"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding SelectedAdType.Value, StringFormat='{0}'}"
-                TextColor="White" />
-            <Label
-                x:Name="filterDistance"
-                Grid.Row="0"
-                HorizontalOptions="End"
-                IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding SelectedDistance, StringFormat='Distance: {0}'}"
-                TextColor="White" />
-        </HorizontalStackLayout>
-
-        <ActivityIndicator
-            Grid.Row="1"
-            IsRunning="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}" />
+        <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
     </Grid>
 </ContentPage>

@@ -14,7 +14,7 @@ using ToolsLibrary.Tools;
 
 namespace GeolocationAds.TemplateViewModel
 {
-    public partial class CaptureTemplateViewModel2 : TemplateBaseViewModel2<CaptureTemplateViewModel2>
+    public partial class CaptureTemplateViewModel2 : TemplateBaseViewModel<CaptureTemplateViewModel2>
     {
         public ICaptureService Service { get; set; }
 

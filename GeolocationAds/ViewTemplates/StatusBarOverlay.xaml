@@ -12,21 +12,21 @@
     <HorizontalStackLayout VerticalOptions="End">
 
         <Label
-            x:Name="counterLabel"
+            IsVisible="{Binding ShowCount, Source={x:Reference root}}"
             Style="{StaticResource globalsubTitle}"
-            Text="{Binding CollectionCount, Source={x:Reference root}, StringFormat='Nearby: {0:N0}'}"
+            Text="{Binding FormattedCount, Source={x:Reference root}}"
             TextColor="White" />
 
         <Label
-            x:Name="filterType"
+            IsVisible="{Binding ShowAdType, Source={x:Reference root}}"
             Style="{StaticResource globalsubTitle}"
             Text="{Binding AdType, Source={x:Reference root}}"
             TextColor="White" />
 
         <Label
-            x:Name="filterDistance"
+            IsVisible="{Binding ShowDistance, Source={x:Reference root}}"
             Style="{StaticResource globalsubTitle}"
-            Text="{Binding Distance, Source={x:Reference root}, StringFormat='Distance: {0}'}"
+            Text="{Binding FormattedDistance, Source={x:Reference root}}"
             TextColor="White" />
     </HorizontalStackLayout>
 </ContentView>

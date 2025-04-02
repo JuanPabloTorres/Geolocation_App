@@ -6,6 +6,7 @@
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
     xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="{Binding Model.Title}"
     BackgroundColor="WhiteSmoke">
 
@@ -29,8 +30,8 @@
 
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -55,6 +56,11 @@
             </maps:Map.ItemTemplate>
         </maps:Map>
 
+        <views:LoadingOverlay
+            Grid.Row="0"
+            Grid.RowSpan="5"
+            IsVisible="{Binding IsLoading}" />
+
         <localControl:CustomPickerContentView
             Grid.Row="1"
             IconSource="arrow.png"
@@ -62,23 +68,24 @@
             ItemsSource="{Binding MapSettings}"
             SelectedItem="{Binding SeletedMapSetting}" />
 
-        <ContentView
+        <!--<ContentView
             x:Name="LoadingIndicatorContainer"
             Grid.Row="1"
-            IsVisible="{Binding IsLoading}"
-            VerticalOptions="FillAndExpand">
+            IsVisible="{Binding IsLoading}">
             <ContentView.Content>
                 <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
             </ContentView.Content>
-        </ContentView>
+        </ContentView>-->
+
+
 
         <CollectionView
-            Grid.Row="3"
+            Grid.Row="2"
             ItemsSource="{Binding LocationCardViewModels, Mode=TwoWay}"
             SelectionMode="Single">
 
             <CollectionView.Header>
-                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                <StackLayout VerticalOptions="Start">
                     <Label Style="{StaticResource globalTitle}" Text="Pins Locations: " />
                 </StackLayout>
             </CollectionView.Header>
@@ -99,10 +106,9 @@
                                 Grid.Row="0"
                                 Command="{Binding RemoveCommand}"
                                 CommandParameter="{Binding Model}"
-                                HorizontalOptions="EndAndExpand"
                                 Style="{StaticResource XButtonGray}" />
 
-                            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                            <HorizontalStackLayout Grid.Row="1">
                                 <Label
                                     Grid.Row="1"
                                     HorizontalOptions="Start"
@@ -118,14 +124,10 @@
 
                             <Label
                                 Grid.Row="2"
-                                HorizontalOptions="CenterAndExpand"
                                 Style="{StaticResource globalTitle}"
                                 Text="{Binding Model.ExpirationDate, StringFormat='Expiration Date: {0:MM/dd/yyyy}'}" />
 
-                            <ContentView
-                                Grid.Row="3"
-                                IsVisible="{Binding IsLoading}"
-                                VerticalOptions="FillAndExpand">
+                            <ContentView Grid.Row="3" IsVisible="{Binding IsLoading}">
                                 <ContentView.Content>
                                     <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
                                 </ContentView.Content>
@@ -136,26 +138,31 @@
             </CollectionView.ItemTemplate>
 
             <CollectionView.EmptyView>
-                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout>
                     <Label Style="{StaticResource emptyCollectionLabel}" Text="No Location available." />
                 </StackLayout>
             </CollectionView.EmptyView>
         </CollectionView>
 
-        <HorizontalStackLayout
-            Grid.Row="4"
-            Padding="10"
+        <!--<HorizontalStackLayout
+            Grid.Row="3"
             BackgroundColor="{StaticResource AppGray}"
-            HorizontalOptions="FillAndExpand"
             IsVisible="{Binding LocationCardViewModels.Count}"
             VerticalOptions="End">
 
             <Label
                 x:Name="totalAdsLabel"
-                HorizontalOptions="CenterAndExpand"
                 Style="{StaticResource globalsubTitle}"
                 Text="{Binding LocationCardViewModels.Count, StringFormat='Pins Locations Total: {0:N0}'}"
                 TextColor="White" />
-        </HorizontalStackLayout>
+        </HorizontalStackLayout>-->
+
+        <!--  Bottom Status Bar  -->
+        <views:StatusBarOverlay
+            Grid.Row="3"
+            AdType="{Binding SelectedAdType.Value}"
+            CollectionCount="{Binding LocationCardViewModels.Count}"
+            Distance="{Binding SelectedDistance}"
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
     </Grid>
 </ContentPage>
