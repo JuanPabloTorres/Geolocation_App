@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<HorizontalStackLayout
+<Grid
     x:Class="GeolocationAds.ViewTemplates.ContentHeaderView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="{StaticResource AppBlack}"
+    BackgroundColor="Transparent"
+    ColumnDefinitions="Auto,Auto,Auto"
+    HorizontalOptions="End"
     Opacity="{StaticResource OpacityValue}">
 
     <Button
+        Grid.Column="0"
         Command="{Binding OpenActionPopUpCommand}"
         CommandParameter="{Binding Advertisement}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -18,6 +21,7 @@
     </Button>
 
     <Button
+        Grid.Column="1"
         Command="{Binding OpenMetaDataPopUpCommand}"
         CommandParameter="{Binding Advertisement}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -29,6 +33,7 @@
     </Button>
 
     <Button
+        Grid.Column="2"
         Command="{Binding RemoveContentYesOrNoAlertCommand}"
         CommandParameter="{Binding Advertisement}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -38,4 +43,4 @@
             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
         </Button.ImageSource>
     </Button>
-</HorizontalStackLayout>
+</Grid>

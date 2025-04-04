@@ -4,116 +4,60 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
-    xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates">
+    xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates">
 
     <ffimageloading:CachedImage
-        Grid.Row="0"
         Aspect="Fill"
         FadeAnimationEnabled="True"
         Source="{Binding Image.Source}" />
 
+    <!--  Capa semitransparente para legibilidad  -->
+
 
     <Grid x:Name="myContentStackHeader">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-
 
         <headerView:ContentHeaderView
             Grid.Row="0"
-            Grid.Column="1"
-            HorizontalOptions="EndAndExpand"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="StartAndExpand" />
-
-
+            BackgroundColor="Transparent"
+            Opacity="{StaticResource OpacityValue}" />
 
         <headerView:ContentInformationDisplayer
             Grid.Row="1"
-            Grid.Column="1"
-            HorizontalOptions="EndAndExpand"
+            Margin="0,4,0,0"
+            BackgroundColor="Transparent"
             Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="EndAndExpand" />
-
-
-
+            VerticalOptions="End" />
     </Grid>
 
     <Grid x:Name="searchContentStackHeader">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <headerView:HomeContentItemHeaderView
-            Grid.Row="0"
-            Grid.Column="1"
-            HorizontalOptions="EndAndExpand"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="StartAndExpand" />
+        <headerView:HomeContentItemHeaderView Grid.Row="0" Opacity="{StaticResource OpacityValue}" />
 
-        <headerView:ContentInformationDisplayer
-            Grid.Row="1"
-            Grid.Column="1"
-            HorizontalOptions="EndAndExpand"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="EndAndExpand" />
-
-
-
+        <headerView:ContentInformationDisplayer Grid.Row="0" Opacity="{StaticResource OpacityValue}" />
     </Grid>
 
     <Grid x:Name="myCaptureHeader">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <headerView:CaptureHeaderDisplayer Grid.Row="0" Opacity="{StaticResource OpacityValue}" />
 
-
-
-        <headerView:CaptureHeaderDisplayer
-            Grid.Row="0"
-            Grid.Column="1"
-            HorizontalOptions="EndAndExpand"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="StartAndExpand" />
-
-        <headerView:ContentInformationDisplayer
-            Grid.Row="1"
-            Grid.Column="1"
-            HorizontalOptions="EndAndExpand"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="EndAndExpand" />
+        <headerView:ContentInformationDisplayer Grid.Row="1" Opacity="{StaticResource OpacityValue}" />
     </Grid>
 
-
-
-
-    <ActivityIndicator
-        Grid.Row="0"
-        IsRunning="{Binding IsLoading}"
-        IsVisible="{Binding IsLoading}"
-        Style="{StaticResource globalLoading}"
-        VerticalOptions="CenterAndExpand" />
+    <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

@@ -66,7 +66,7 @@
 
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -76,9 +76,10 @@
             </Style>
 
             <Style x:Key="globalTitle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextTransform" Value="Uppercase" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />

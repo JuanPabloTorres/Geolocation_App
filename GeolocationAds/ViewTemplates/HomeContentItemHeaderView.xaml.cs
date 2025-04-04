@@ -1,6 +1,6 @@
 namespace GeolocationAds.ViewTemplates;
 
-public partial class HomeContentItemHeaderView : HorizontalStackLayout
+public partial class HomeContentItemHeaderView : Grid
 {
     public HomeContentItemHeaderView()
     {

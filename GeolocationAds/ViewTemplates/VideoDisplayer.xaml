@@ -5,356 +5,157 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:GeolocationAds.App_Converter"
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
+    RowDefinitions="Auto,Auto,*,Auto">
 
-    <Grid.RowDefinitions>
+    <!--<Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
 
+        <RowDefinition Height="Auto" />
+    -->
+    <!--  Header  -->
+    <!--
+        <RowDefinition Height="*" />
+    -->
+    <!--  Video  -->
+    <!--
+        <RowDefinition Height="Auto" />
+    -->
+    <!--  Controles  -->
+    <!--
+    </Grid.RowDefinitions>-->
+
+    <!--  🎬 Header según el tipo de pantalla  -->
+    <Grid x:Name="myContentStackHeader" Grid.Row="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <headerView:ContentHeaderView Grid.Row="0" />
+        <!--<headerView:ContentInformationDisplayer Grid.Row="1" />-->
+    </Grid>
+
+    <Grid x:Name="searchContentStackHeader" Grid.Row="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <headerView:HomeContentItemHeaderView Grid.Row="0" />
+        <!--<headerView:ContentInformationDisplayer Grid.Row="1" />-->
+    </Grid>
+
+    <Grid x:Name="myCaptureHeader" Grid.Row="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <headerView:CaptureHeaderDisplayer Grid.Row="0" />
+
+    </Grid>
+
+    <headerView:ContentInformationDisplayer Grid.Row="1" />
+
+    <!--  ▶️ Reproductor de video  -->
     <toolkit:MediaElement
         x:Name="videoPlayer"
-        Grid.Row="1"
-        Aspect="Fill"
+        Grid.Row="2"
+        Aspect="AspectFill"
         MediaFailed="videoPlayer_MediaFailed"
-        ShouldAutoPlay="false"
+        ShouldAutoPlay="False"
         ShouldKeepScreenOn="True"
         ShouldLoopPlayback="False"
         ShouldShowPlaybackControls="False"
         Source="{Binding MediaSource}" />
 
-    <Grid x:Name="myContentStackHeader" Grid.Row="0">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-
-        </Grid.ColumnDefinitions>
-
-        <Grid
-            Grid.Row="0"
-            Grid.Column="0"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
-            <!--  Button is placed in the same cell as the image  -->
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <!--  New row for the buttons  -->
-            </Grid.RowDefinitions>
-
+    <!--  ⏯️ Controles de video  -->
+    <Border
+        Grid.Row="3"
+        Margin="2"
+        Padding="2"
+        BackgroundColor="{StaticResource AppBlack}"
+        StrokeShape="RoundRectangle 5">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!--  Controles  -->
             <Button
                 Grid.Column="0"
-                BackgroundColor="Transparent"
                 Command="{Binding BackMediaCommand}"
                 CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="⏪"
-                TextColor="White" />
-
+                Style="{StaticResource XButton}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe059;" />
+                </Button.ImageSource>
+            </Button>
             <Button
                 Grid.Column="1"
-                BackgroundColor="Transparent"
                 Command="{Binding PlayPauseCommand}"
                 CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="⏯️"
-                TextColor="Black" />
-
+                Style="{StaticResource XButton}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe1c4;" />
+                </Button.ImageSource>
+            </Button>
             <Button
                 Grid.Column="2"
-                BackgroundColor="Transparent"
                 Command="{Binding ReloadMediaCommand}"
                 CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="🔁"
-                TextColor="Black" />
-
+                Style="{StaticResource XButton}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9d6;" />
+                </Button.ImageSource>
+            </Button>
             <Button
                 Grid.Column="3"
-                BackgroundColor="Transparent"
                 Command="{Binding ForwardMediaCommand}"
                 CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="⏩"
-                TextColor="White" />
+                Style="{StaticResource XButton}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe056;" />
+                </Button.ImageSource>
+            </Button>
 
-            <VerticalStackLayout
-                Grid.RowSpan="2"
-                Grid.Column="4"
-                VerticalOptions="Center">
+            <!--  Progreso  -->
+            <HorizontalStackLayout Grid.Column="4">
+                <VerticalStackLayout>
 
-                <Label
-                    Grid.Column="4"
-                    Text="{Binding Source={x:Reference videoPlayer}, Path=Position, StringFormat='{0:mm\\:ss}'}"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
+                    <Slider Maximum="{Binding Source={x:Reference videoPlayer}, Path=Duration.TotalSeconds}" Value="{Binding Source={x:Reference videoPlayer}, Path=Position.TotalSeconds, Mode=TwoWay}" />
 
-
-                <Label
-                    Grid.Column="4"
-                    Text="{Binding Source={x:Reference videoPlayer}, Path=Duration, StringFormat='{0:mm\\:ss}'}"
-                    TextColor="Black"
-                    VerticalOptions="Center" />
-            </VerticalStackLayout>
-
-            <!--<Label
-                Grid.Column="4"
-                Text="{Binding Source={x:Reference videoPlayer}, Path=Position, StringFormat='{0:mm\\:ss}'}"
-                TextColor="Black"
-                VerticalOptions="CenterAndExpand" />-->
-            <Slider
-                Grid.Row="1"
-                Grid.ColumnSpan="4"
-                Maximum="{Binding Source={x:Reference videoPlayer}, Path=Duration.TotalSeconds}"
-                Value="{Binding Source={x:Reference videoPlayer}, Path=Position.TotalSeconds, Mode=TwoWay}" />
+                    <HorizontalStackLayout>
+                        <Label
+                            FontSize="15"
+                            Text="{Binding Source={x:Reference videoPlayer}, Path=Position, StringFormat='{0:mm\\:ss}'}"
+                            TextColor="White" />
+                        <Label
+                            FontSize="12"
+                            Text=" / "
+                            TextColor="White" />
+                        <Label
+                            FontSize="15"
+                            Text="{Binding Source={x:Reference videoPlayer}, Path=Duration, StringFormat='{0:mm\\:ss}'}"
+                            TextColor="White" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
         </Grid>
+    </Border>
 
-        <headerView:ContentHeaderView Grid.Row="0" Grid.Column="1" />
-
-        <headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />
-
-
-
-
-    </Grid>
-
-    <Grid x:Name="searchContentStackHeader" Grid.Row="0">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-
-        </Grid.ColumnDefinitions>
-
-        <Grid
-            Grid.Row="0"
-            Grid.Column="0"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
-            <!--  Button is placed in the same cell as the image  -->
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <!--  New row for the buttons  -->
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Button
-                Grid.Column="0"
-                BackgroundColor="Transparent"
-                Command="{Binding BackMediaCommand}"
-                CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="⏪"
-                TextColor="White" />
-
-            <Button
-                Grid.Column="1"
-                BackgroundColor="Transparent"
-                Command="{Binding PlayPauseCommand}"
-                CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="⏯️"
-                TextColor="Black" />
-
-            <Button
-                Grid.Column="2"
-                BackgroundColor="Transparent"
-                Command="{Binding ReloadMediaCommand}"
-                CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="🔁"
-                TextColor="Black" />
-
-            <Button
-                Grid.Column="3"
-                BackgroundColor="Transparent"
-                Command="{Binding ForwardMediaCommand}"
-                CommandParameter="{x:Reference videoPlayer}"
-                CornerRadius="0"
-                Text="⏩"
-                TextColor="White" />
-
-            <VerticalStackLayout
-                Grid.RowSpan="2"
-                Grid.Column="4"
-                VerticalOptions="Center">
-
-                <Label
-                    Grid.Column="4"
-                    Text="{Binding Source={x:Reference videoPlayer}, Path=Position, StringFormat='{0:mm\\:ss}'}"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
-
-
-                <Label
-                    Grid.Column="4"
-                    Text="{Binding Source={x:Reference videoPlayer}, Path=Duration, StringFormat='{0:mm\\:ss}'}"
-                    TextColor="Black"
-                    VerticalOptions="Center" />
-            </VerticalStackLayout>
-
-            <!--<Label
-         Grid.Column="4"
-         Text="{Binding Source={x:Reference videoPlayer}, Path=Position, StringFormat='{0:mm\\:ss}'}"
-         TextColor="Black"
-         VerticalOptions="CenterAndExpand" />-->
-            <Slider
-                Grid.Row="1"
-                Grid.ColumnSpan="4"
-                Maximum="{Binding Source={x:Reference videoPlayer}, Path=Duration.TotalSeconds}"
-                Value="{Binding Source={x:Reference videoPlayer}, Path=Position.TotalSeconds, Mode=TwoWay}" />
-        </Grid>
-
-        <headerView:HomeContentItemHeaderView Grid.Row="0" Grid.Column="1" />
-
-        <headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />
-
-
-
-
-    </Grid>
-
-    <Grid x:Name="myCaptureHeader">
-
-         <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="Auto" />
-
-  </Grid.RowDefinitions>
-
-  <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="Auto" />
-
-  </Grid.ColumnDefinitions>
-
-        <Grid
-       Grid.Row="0"
-       Grid.Column="0"
-       IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
-            <!--  Button is placed in the same cell as the image  -->
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <!--  New row for the buttons  -->
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Button
-           Grid.Column="0"
-           BackgroundColor="Transparent"
-           Command="{Binding BackMediaCommand}"
-           CommandParameter="{x:Reference videoPlayer}"
-           CornerRadius="0"
-           Text="⏪"
-           TextColor="White" />
-
-            <Button
-           Grid.Column="1"
-           BackgroundColor="Transparent"
-           Command="{Binding PlayPauseCommand}"
-           CommandParameter="{x:Reference videoPlayer}"
-           CornerRadius="0"
-           Text="⏯️"
-           TextColor="Black" />
-
-            <Button
-           Grid.Column="2"
-           BackgroundColor="Transparent"
-           Command="{Binding ReloadMediaCommand}"
-           CommandParameter="{x:Reference videoPlayer}"
-           CornerRadius="0"
-           Text="🔁"
-           TextColor="Black" />
-
-            <Button
-           Grid.Column="3"
-           BackgroundColor="Transparent"
-           Command="{Binding ForwardMediaCommand}"
-           CommandParameter="{x:Reference videoPlayer}"
-           CornerRadius="0"
-           Text="⏩"
-           TextColor="White" />
-
-            <VerticalStackLayout
-           Grid.RowSpan="2"
-           Grid.Column="4"
-           VerticalOptions="Center">
-
-                <Label
-               Grid.Column="4"
-               Text="{Binding Source={x:Reference videoPlayer}, Path=Position, StringFormat='{0:mm\\:ss}'}"
-               TextColor="Black"
-               VerticalOptions="CenterAndExpand" />
-
-
-                <Label
-               Grid.Column="4"
-               Text="{Binding Source={x:Reference videoPlayer}, Path=Duration, StringFormat='{0:mm\\:ss}'}"
-               TextColor="Black"
-               VerticalOptions="Center" />
-            </VerticalStackLayout>
-
-          
-            <Slider
-           Grid.Row="1"
-           Grid.ColumnSpan="4"
-           Maximum="{Binding Source={x:Reference videoPlayer}, Path=Duration.TotalSeconds}"
-           Value="{Binding Source={x:Reference videoPlayer}, Path=Position.TotalSeconds, Mode=TwoWay}" />
-        </Grid>
-        
-        <headerView:CaptureHeaderDisplayer
-           Grid.Row="0" Grid.Column="1" />
-
-        <headerView:ContentInformationDisplayer
-           Grid.Row="1" Grid.ColumnSpan="2" />
-
-
-
-
-    </Grid>
-
-    <ActivityIndicator
+    <!--<ActivityIndicator
         Grid.Row="0"
         IsRunning="{Binding IsLoading}"
         IsVisible="{Binding IsLoading}"
         Style="{StaticResource globalLoading}"
-        VerticalOptions="CenterAndExpand" />
+        VerticalOptions="CenterAndExpand" />-->
+
+    <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

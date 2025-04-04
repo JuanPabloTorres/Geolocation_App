@@ -7,7 +7,7 @@
     BackgroundColor="{StaticResource AppBlack}">
 
     <Label
-        Style="{StaticResource globalLabel}"
+        Style="{StaticResource globalTitle}"
         Text="{Binding Advertisement.Title}"
         TextColor="White" />
 
@@ -21,7 +21,7 @@
         <Label
             HorizontalOptions="End"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Text="{Binding IsExpanded, Converter={StaticResource BoolToTextConverter}, ConverterParameter='See More,See Less'}"
+            Text="{Binding IsExpanded, Converter={StaticResource BoolToTextConverter}, ConverterParameter='More,Less'}"
             TextColor="LightBlue">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ToggleExpandCommand}" />

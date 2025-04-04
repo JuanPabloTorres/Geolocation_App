@@ -28,11 +28,25 @@
         Style="{StaticResource XButton}">
 
         <Button.ImageSource>
-            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe619;" />
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
         </Button.ImageSource>
     </Button>
 
     <!--  Button  -->
+
+    <Button
+        Grid.Row="0"
+        Grid.Column="2"
+        Command="{Binding OpenMetaDataPopUpCommand}"
+        CommandParameter="{Binding Advertisement}"
+        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+        Style="{StaticResource XButton}">
+
+        <Button.ImageSource>
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe88e;" />
+        </Button.ImageSource>
+    </Button>
+
     <Button
         Grid.Row="0"
         Grid.Column="1"
@@ -55,20 +69,6 @@
             <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
         </Button.ImageSource>
     </Button>
-
-    <Button
-        Grid.Row="0"
-        Grid.Column="2"
-        Command="{Binding OpenMetaDataPopUpCommand}"
-        CommandParameter="{Binding Advertisement}"
-        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-        Style="{StaticResource XButton}">
-
-        <Button.ImageSource>
-            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe88e;" />
-        </Button.ImageSource>
-    </Button>
-
 
 
 

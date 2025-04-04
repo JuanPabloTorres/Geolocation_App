@@ -3,20 +3,19 @@
     x:Class="GeolocationAds.ViewTemplates.WebViewDisplayer"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates">
+    xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates">
 
     <!--  Define reusable resources  -->
     <Grid.Resources>
         <ResourceDictionary>
-            <Shadow
-                x:Key="ButtonShadow"
-                Brush="Black"
-                Opacity="0.5"
-                Radius="40"
-                Offset="5,5" />
-            <Style x:Key="NavigationButtonStyle" TargetType="Button">
+
+            <Style
+                x:Key="NavigationButtonStyle"
+                BaseResourceKey="globalButton"
+                TargetType="Button">
                 <Setter Property="CornerRadius" Value="0" />
-                <Setter Property="Shadow" Value="{StaticResource ButtonShadow}" />
+
                 <Setter Property="IsVisible" Value="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
             </Style>
         </ResourceDictionary>
@@ -25,147 +24,113 @@
     <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
     <!--  Extracted reusable navigation buttons template  -->
-    <ContentView x:Name="NavigationButtons" Grid.Row="0">
-        <Grid HorizontalOptions="FillAndExpand">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
 
-            <Button
-                Grid.Column="0"
-                Margin="2,0"
-                Command="{Binding BackCommand}"
-                CommandParameter="{x:Reference web}"
-                HorizontalOptions="FillAndExpand"
-                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}"
-                Style="{StaticResource NavigationButtonStyle}">
-                <Button.ImageSource>
-                    <FontImageSource
-                        FontFamily="MaterialIconsOutlined-Regular"
-                        Glyph=""
-                        Size="24" />
-                </Button.ImageSource>
-            </Button>
+    <Grid
+        x:Name="NavigationButtons"
+        Grid.Row="0"
+        ColumnDefinitions="*,*,*,*">
 
-            <Button
-                Grid.Column="1"
-                Margin="2,0"
-                Command="{Binding ForwardCommand}"
-                CommandParameter="{x:Reference web}"
-                HorizontalOptions="FillAndExpand"
-                IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}"
-                Style="{StaticResource NavigationButtonStyle}">
-                <Button.ImageSource>
-                    <FontImageSource
-                        FontFamily="MaterialIconsOutlined-Regular"
-                        Glyph=""
-                        Size="24" />
-                </Button.ImageSource>
-            </Button>
+        <Button
+            Grid.Column="0"
+            Margin="2,0"
+            Command="{Binding BackCommand}"
+            CommandParameter="{x:Reference web}"
+            IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}"
+            Style="{StaticResource NavigationButtonStyle}">
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph=""
+                    Size="24" />
+            </Button.ImageSource>
+        </Button>
 
-            <Button
-                Grid.Column="2"
-                Margin="2,0"
-                Command="{Binding ReloadCommand}"
-                CommandParameter="{x:Reference web}"
-                HorizontalOptions="FillAndExpand"
-                Style="{StaticResource NavigationButtonStyle}">
-                <Button.ImageSource>
-                    <FontImageSource
-                        FontFamily="MaterialIconsOutlined-Regular"
-                        Glyph=""
-                        Size="24" />
-                </Button.ImageSource>
-            </Button>
+        <Button
+            Grid.Column="1"
+            Margin="2,0"
+            Command="{Binding ForwardCommand}"
+            CommandParameter="{x:Reference web}"
+            IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}"
+            Style="{StaticResource NavigationButtonStyle}">
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph=""
+                    Size="24" />
+            </Button.ImageSource>
+        </Button>
 
-            <Button
-                Grid.Column="3"
-                Margin="2,0"
-                Command="{Binding OpenUrlCommand}"
-                CommandParameter="{Binding Source={x:Reference web}, Path=Source}"
-                HorizontalOptions="FillAndExpand"
-                Style="{StaticResource NavigationButtonStyle}">
-                <Button.ImageSource>
-                    <FontImageSource
-                        FontFamily="MaterialIconsOutlined-Regular"
-                        Glyph=""
-                        Size="24" />
-                </Button.ImageSource>
-            </Button>
-        </Grid>
-    </ContentView>
+        <Button
+            Grid.Column="2"
+            Margin="2,0"
+            Command="{Binding ReloadCommand}"
+            CommandParameter="{x:Reference web}"
+            Style="{StaticResource NavigationButtonStyle}">
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph=""
+                    Size="24" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            Grid.Column="3"
+            Margin="2,0"
+            Command="{Binding OpenUrlCommand}"
+            CommandParameter="{Binding Source={x:Reference web}, Path=Source}"
+            Style="{StaticResource NavigationButtonStyle}">
+            <Button.ImageSource>
+                <FontImageSource
+                    FontFamily="MaterialIconsOutlined-Regular"
+                    Glyph=""
+                    Size="24" />
+            </Button.ImageSource>
+        </Button>
+    </Grid>
 
     <!--  Main content grids  -->
-    <Grid x:Name="myContentStackHeader" Grid.Row="1">
+    <Grid
+        x:Name="myContentStackHeader"
+        Grid.Row="1"
+        RowDefinitions="Auto">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <headerView:ContentHeaderView
+            Grid.Row="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            HorizontalOptions="Fill" />
+    </Grid>
 
-        <headerView:ContentHeaderView Grid.Row="0" Grid.ColumnSpan="4" />
+    <Grid
+        x:Name="searchContentStackHeader"
+        Grid.Row="1"
+        RowDefinitions="Auto">
+
+        <headerView:HomeContentItemHeaderView Grid.Row="0" BackgroundColor="{StaticResource AppBlack}" />
+    </Grid>
+
+    <Grid
+        x:Name="myCaptureHeader"
+        Grid.Row="1"
+        RowDefinitions="Auto">
+
+        <headerView:CaptureHeaderDisplayer Grid.Row="0" BackgroundColor="{StaticResource AppBlack}" />
 
 
     </Grid>
-
-    <Grid x:Name="searchContentStackHeader" Grid.Row="1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <headerView:HomeContentItemHeaderView Grid.Row="0" Grid.Column="1" />
-
-        <!--<headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />-->
-    </Grid>
-
-    <Grid x:Name="myCaptureHeader" Grid.Row="1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <headerView:CaptureHeaderDisplayer Grid.Row="0" Grid.Column="1" />
-
-        <!--<headerView:ContentInformationDisplayer Grid.Row="1" Grid.ColumnSpan="2" />-->
-    </Grid>
-
-    <headerView:ContentInformationDisplayer Grid.Row="2" />
 
     <!--  WebView and ActivityIndicator  -->
     <WebView
         x:Name="web"
-        Grid.Row="3"
+        Grid.Row="2"
         Source="{Binding UrlSource, Mode=TwoWay}" />
 
-    <!--  Overlay para mostrar el loading con fondo blanco  -->
-    <Grid
-        x:Name="loadingOverlay"
-        Grid.Row="1"
-        AbsoluteLayout.LayoutBounds="0,0,1,1"
-        AbsoluteLayout.LayoutFlags="All"
-        BackgroundColor="White"
-        IsVisible="{Binding IsLoading}"
-        Opacity="0.8"
-        ZIndex="10">
+    <headerView:ContentInformationDisplayer Grid.Row="3" />
 
-        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-    </Grid>
+    <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>
