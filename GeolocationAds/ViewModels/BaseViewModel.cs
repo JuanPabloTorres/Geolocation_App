@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+
+using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
 using System.Collections.ObjectModel;
@@ -11,10 +13,9 @@ using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
 
-
 namespace GeolocationAds.ViewModels
 {
-    public partial class BaseViewModel<T, S> : RootBaseViewModel
+    public partial class BaseViewModel<T, S> : RootBaseViewModel, IInitializableViewModel
     {
         [ObservableProperty]
         private T _model;
@@ -40,6 +41,8 @@ namespace GeolocationAds.ViewModels
             this.service = service;
 
             LogUserPerfilTool = logUserPerfil;
+
+            RegisterForUserUpdates();
         }
 
         public BaseViewModel(T model, S service)
@@ -47,7 +50,51 @@ namespace GeolocationAds.ViewModels
             Model = model;
 
             this.service = service;
+
+            RegisterForUserUpdates();
         }
+
+        public BaseViewModel()
+        {
+            RegisterForUserUpdates();
+        }
+
+        protected void RegisterForUserUpdates()
+        {
+            WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (m.Value is User user && typeof(T) == typeof(User))
+                    {
+                        // Asignación segura con conversión directa
+                        Model = (T)(object)user;
+
+                        HasProfileImage = user.HasProfileImage();
+
+                        IsInternalUser = user.Login.IsInternalUser();
+
+                        if (HasProfileImage)
+                        {
+                            ProfileImage = AppToolCommon.LoadImageFromBytes(user.ProfileImageBytes);
+                        }
+                        else
+                        {
+                            ProfileImage = null;
+
+                            Avatar = !string.IsNullOrWhiteSpace(user.FullName) ? user.FullName.Trim()[0].ToString().ToUpper() : "?";
+                        }
+                    }
+
+                });
+            });
+        }
+
+    
+
+
+
+
 
         protected override async Task Get(int id)
         {
@@ -339,6 +386,11 @@ namespace GeolocationAds.ViewModels
                     await Shell.Current.DisplayAlert("Error", $"No se pudo cargar la imagen: {ex.Message}", "OK");
                 }
             });
+        }
+
+        public virtual void Initialize()
+        {
+            RegisterForUserUpdates();
         }
     }
 }

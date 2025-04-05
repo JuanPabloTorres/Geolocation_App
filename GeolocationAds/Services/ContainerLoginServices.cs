@@ -25,7 +25,7 @@ namespace GeolocationAds.Services
             IGoogleAuthService googleAuthService,
             ISecureStoreService secureStoreService,
             ILoginFactory loginFactory,
-            IFirebaseAuthService firebaseAuthService,
+
             IUserFactory userFactory,
             FacebookAuthWebViewViewModel facebookAuthWebViewViewModel,
             GoogleAuthWebViewViewModel googleAuthWebViewViewModel) : base(logUserPerfil, appShellViewModel2)
@@ -50,8 +50,6 @@ namespace GeolocationAds.Services
 
             this.UserFactory = userFactory;
 
-            this.FirebaseAuthService = firebaseAuthService;
-
             FacebookAuthWebViewViewModel = facebookAuthWebViewViewModel;
 
             GoogleAuthWebViewViewModel = googleAuthWebViewViewModel;
@@ -67,7 +65,7 @@ namespace GeolocationAds.Services
         public ILoginService LoginService { get; }
         public RecoveryPasswordViewModel RecoveryPasswordViewModel { get; set; }
         public IUserService UserService { get; }
-        public IFirebaseAuthService FirebaseAuthService { get; set; }
+
         public FacebookAuthWebViewViewModel FacebookAuthWebViewViewModel { get; set; }
         public GoogleAuthWebViewViewModel GoogleAuthWebViewViewModel { get; set; }
     }

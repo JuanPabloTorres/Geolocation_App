@@ -9,52 +9,59 @@
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     RowDefinitions="Auto,Auto,*,Auto">
 
-    <!--<Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-
-        <RowDefinition Height="Auto" />
-    -->
-    <!--  Header  -->
-    <!--
-        <RowDefinition Height="*" />
-    -->
-    <!--  Video  -->
-    <!--
-        <RowDefinition Height="Auto" />
-    -->
-    <!--  Controles  -->
-    <!--
-    </Grid.RowDefinitions>-->
-
     <!--  🎬 Header según el tipo de pantalla  -->
-    <Grid x:Name="myContentStackHeader" Grid.Row="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid
+        x:Name="myContentStackHeader"
+        Grid.Row="0"
+        ColumnDefinitions="*,*"
+        RowDefinitions="Auto">
 
-        <headerView:ContentHeaderView Grid.Row="0" />
-        <!--<headerView:ContentInformationDisplayer Grid.Row="1" />-->
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            Opacity="{StaticResource OpacityValue}" />
+
+        <headerView:ContentHeaderView
+            Grid.Row="0"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource AppBlack}" />
     </Grid>
 
-    <Grid x:Name="searchContentStackHeader" Grid.Row="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid
+        x:Name="searchContentStackHeader"
+        Grid.Row="0"
+        ColumnDefinitions="*,*"
+        RowDefinitions="Auto">
 
-        <headerView:HomeContentItemHeaderView Grid.Row="0" />
-        <!--<headerView:ContentInformationDisplayer Grid.Row="1" />-->
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            Opacity="{StaticResource OpacityValue}" />
+
+        <headerView:HomeContentItemHeaderView
+            Grid.Row="0"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource AppBlack}" />
     </Grid>
 
-    <Grid x:Name="myCaptureHeader" Grid.Row="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid
+        x:Name="myCaptureHeader"
+        Grid.Row="0"
+        ColumnDefinitions="*,*"
+        RowDefinitions="Auto">
 
-        <headerView:CaptureHeaderDisplayer Grid.Row="0" />
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            Opacity="{StaticResource OpacityValue}" />
 
+        <headerView:CaptureHeaderDisplayer
+            Grid.Row="0"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource AppBlack}" />
     </Grid>
 
     <headerView:ContentInformationDisplayer Grid.Row="1" />
@@ -149,13 +156,6 @@
             </HorizontalStackLayout>
         </Grid>
     </Border>
-
-    <!--<ActivityIndicator
-        Grid.Row="0"
-        IsRunning="{Binding IsLoading}"
-        IsVisible="{Binding IsLoading}"
-        Style="{StaticResource globalLoading}"
-        VerticalOptions="CenterAndExpand" />-->
 
     <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

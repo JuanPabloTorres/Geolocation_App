@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using FFImageLoading.Maui;
-using Firebase.Auth;
-using Firebase.Auth.Providers;
 using GeolocationAds.Factories;
 using GeolocationAds.Pages;
 using GeolocationAds.PopUps;
@@ -39,6 +37,8 @@ public static class MauiProgram
         var configuration = CommonsTool.ConfigurationLoader.LoadConfiguration();
 
         builder.Services.AddSingleton<IConfiguration>(configuration);
+
+        ServiceRegistry.Services = builder.Services;
 
         // Registrar dependencias
         RegisterApiServices(builder);
@@ -86,7 +86,7 @@ public static class MauiProgram
         builder.Services.AddTransient<IAppSettingService, AppSettingService>();
         builder.Services.AddTransient<IForgotPasswordService, ForgotPasswordService>();
         builder.Services.AddTransient<ICaptureService, CaptureService>();
-        builder.Services.AddTransient<IFirebaseAuthService, FirebaseAuthService>();
+    
         builder.Services.AddTransient<IGoogleAuthService, GoogleAuthService>();
 
         builder.Services.AddSingleton<HttpClient>(provider =>
@@ -123,7 +123,7 @@ public static class MauiProgram
 
     private static void RegisterViewModels(MauiAppBuilder builder)
     {
-        builder.Services.AddTransient<CreateAdvertismentViewModel2>();
+        builder.Services.AddScoped<CreateAdvertismentViewModel2>();
 
         builder.Services.AddScoped<MyContentViewModel>();
 
@@ -152,8 +152,6 @@ public static class MauiProgram
         builder.Services.AddScoped<FilterPopUpViewModel2>();
 
         builder.Services.AddScoped<CaptureViewModel2>();
-
-        //builder.Services.AddScoped<ManageLocationViewModel>();
 
         builder.Services.AddScoped<ManageLocationViewModel2>();
 

@@ -60,6 +60,10 @@
             <!--  Beige claro  -->
 
 
+            <Color x:Key="appPrimaryOpt4ColorPrimaryDarkest">#18230F</Color>
+            <Color x:Key="appPrimaryOpt4ColorPrimaryDark">#27391C</Color>
+            <Color x:Key="appPrimaryOpt4ColorPrimary">#255F38</Color>
+            <Color x:Key="appPrimaryOpt4ColorPrimaryLight">#1F7D53</Color>
 
 
             <x:Double x:Key="OpacityValue">0.9</x:Double>

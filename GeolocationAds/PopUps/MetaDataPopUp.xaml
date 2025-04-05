@@ -74,6 +74,4 @@
                 Text="{Binding DataSize, Converter={StaticResource DataSizeConverter}}" />
         </Grid>
     </Border>
-
-
 </mct:Popup>

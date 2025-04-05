@@ -102,9 +102,8 @@
 	  <PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
 	  <PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.1.1" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-	  <PackageReference Include="FFImageLoading.Maui" Version="1.2.4" />
+	  <PackageReference Include="FFImageLoading.Maui" Version="1.2.7" />
 	  <PackageReference Include="FFmpeg.AutoGen" Version="7.0.0" />
-	  <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
 	  <PackageReference Include="GoogleMapsApi" Version="1.2.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.4.24266.19" />

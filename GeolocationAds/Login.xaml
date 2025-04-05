@@ -14,7 +14,7 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
-    <VerticalStackLayout VerticalOptions="CenterAndExpand">
+    <VerticalStackLayout VerticalOptions="Center">
 
         <Label
             Margin="5"
@@ -86,7 +86,7 @@
                         HorizontalOptions="End"
                         Style="{StaticResource globalButton}"
                         Text="Forgot Password?"
-                        TextColor="{StaticResource Burgundy}" />
+                        TextColor="{StaticResource appPrimaryOpt2ColorPrimaryDark}" />
                 </HorizontalStackLayout>
 
                 <Button
@@ -104,30 +104,24 @@
 
                 <VerticalStackLayout
                     Padding="10"
-                    HorizontalOptions="FillAndExpand"
                     IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     Spacing="5"
                     VerticalOptions="Center">
 
-                    <StackLayout
-                        HorizontalOptions="Fill"
-                        Orientation="Horizontal"
-                        VerticalOptions="Center">
-                        <BoxView
-                            BackgroundColor="{StaticResource AppBlack}"
-                            HeightRequest="1"
-                            HorizontalOptions="FillAndExpand" />
+
+
+                    <!--<HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
                         <Label
                             Margin="10,0"
                             HorizontalOptions="Center"
                             Text="OR"
                             TextColor="{StaticResource AppBlack}"
                             VerticalOptions="Center" />
-                        <BoxView
-                            BackgroundColor="{StaticResource AppBlack}"
-                            HeightRequest="1"
-                            HorizontalOptions="FillAndExpand" />
-                    </StackLayout>
+
+                    </HorizontalStackLayout>-->
+
+                    <BoxView BackgroundColor="{StaticResource AppBlack}" HeightRequest="1" />
 
                     <!--<Label HorizontalOptions="Center" Text="Or sign in with" />-->
 
@@ -183,12 +177,6 @@
                 TextColor="White" />
         </HorizontalStackLayout>
 
-        <!--<Button
-            BackgroundColor="Transparent"
-            Command="{Binding GoToRegisterCommand}"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}"
-            Text="Do you want to Sign Up?"
-            TextColor="White" />-->
+
     </VerticalStackLayout>
 </ContentPage>

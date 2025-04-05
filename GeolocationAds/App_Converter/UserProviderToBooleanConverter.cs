@@ -24,5 +24,8 @@ namespace GeolocationAds.App_Converter
         {
             throw new NotImplementedException(); // No se necesita convertir de vuelta
         }
+
+
+
     }
 }

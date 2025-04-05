@@ -6,6 +6,7 @@
     xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:view="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Update Profile"
     BackgroundColor="WhiteSmoke">
 
@@ -14,7 +15,7 @@
         <ToolbarItem
             Command="{Binding SubmitUpdateCommand}"
             CommandParameter="{Binding Model}"
-            IsEnabled="{Binding Model.Login.Provider, Converter={StaticResource UserProviderToBooleanConverter}}">
+            IsEnabled="{Binding IsInternalUser}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe876;" />
             </ToolbarItem.IconImageSource>
@@ -100,14 +101,8 @@
                     Text="{Binding Model.Email, Mode=TwoWay}" />
             </VerticalStackLayout>
 
-            <ContentView
-                x:Name="LoadingIndicatorContainer"
-                Grid.Row="8"
-                IsVisible="{Binding IsLoading}">
-                <ContentView.Content>
-                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                </ContentView.Content>
-            </ContentView>
+            <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

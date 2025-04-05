@@ -19,6 +19,8 @@ namespace GeolocationAds.ViewModels
 
         public string ID { get; private set; }
 
+        public string Avatar;
+
         public ObservableCollection<ValidationResult> ValidationResults { get; set; } = new();
 
         protected ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
@@ -30,6 +32,9 @@ namespace GeolocationAds.ViewModels
 
         [ObservableProperty]
         public ImageSource profileImage;
+
+        [ObservableProperty]
+        public bool isInternalUser;
 
         public RootBaseViewModel(LogUserPerfilTool logUserPerfilTool)
         {

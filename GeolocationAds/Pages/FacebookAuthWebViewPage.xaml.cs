@@ -8,7 +8,7 @@ using Microsoft.Maui.Storage;
 using GeolocationAds.ViewModels;
 using Microsoft.Extensions.Configuration;
 using ToolsLibrary.Tools;
-using Firebase.Auth;
+
 
 namespace GeolocationAds.Pages
 {

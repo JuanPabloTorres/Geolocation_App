@@ -15,7 +15,7 @@ public partial class EditUserPerfil : ContentPage
     {
         if (BindingContext is EditUserPerfilViewModel viewModel)
         {
-            viewModel.UpdateModel();
+            //viewModel.UpdateModel();
 
             viewModel.ValidationResults.Clear();
         }

@@ -184,9 +184,6 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
 
             service.SetJwtToken(LogUserPerfilTool.JsonToken);
 
-            // Notificar inicio de sesión
-            WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
-
             // Configurar la UI de la aplicación
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
 
@@ -198,9 +195,32 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
                 await ConfirmRememberUserAsync();
             }
 
+            //InitializePostLoginViewModels();
+
+            // Notificar inicio de sesión
+            WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
+
+            // Notificar inicio de sesión
+            WeakReferenceMessenger.Default.Send(new UpdateMessage<ToolsLibrary.Models.Login>(LogUserPerfilTool.LogUser.Login));
+
             // Navegar a la pantalla principal
             await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
         });
+    }
+
+    private void InitializePostLoginViewModels()
+    {
+        var provider = App.Current?.Handler?.MauiContext?.Services;
+
+        foreach (var serviceDescriptor in ServiceRegistry.Services)
+        {
+            if (serviceDescriptor.ServiceType is not null &&
+                typeof(IInitializableViewModel).IsAssignableFrom(serviceDescriptor.ServiceType))
+            {
+                var viewModel = provider?.GetService(serviceDescriptor.ServiceType) as IInitializableViewModel;
+                viewModel?.Initialize();
+            }
+        }
     }
 
     // Métodos específicos para cada proveedor, llamando al método genérico
@@ -407,10 +427,6 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
 
             this.service.SetJwtToken(this.LogUserPerfilTool.JsonToken);
 
-            //WeakReferenceMessenger.Default.Send(new LogInMessage<string>(user.FullName));
-
-            WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
-
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
 
             if (user.UserStatus == ToolsLibrary.Models.UserStatus.ResetPassword)
@@ -424,6 +440,11 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
 
                 await ConfirmRememberUserAsync();
             }
+
+            WeakReferenceMessenger.Default.Send(new UpdateMessage<User>(LogUserPerfilTool.LogUser));
+
+            // Notificar inicio de sesión
+            WeakReferenceMessenger.Default.Send(new UpdateMessage<ToolsLibrary.Models.Login>(LogUserPerfilTool.LogUser.Login));
 
             await Shell.Current.GoToAsync($"///{nameof(SearchAd)}");
         });

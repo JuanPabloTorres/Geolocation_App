@@ -19,7 +19,8 @@ namespace ToolsLibrary.Models
         [Required(ErrorMessage = $"{nameof(Password)} is required.")]
         public string? password;
 
-        public Providers Provider { get; set; }
+        [ObservableProperty]
+        public Providers provider;
 
         [ForeignKey("UserId")]
         [JsonIgnore]
@@ -35,6 +36,11 @@ namespace ToolsLibrary.Models
         public bool IsExternaUser()
         {
             return (Provider == Providers.Facebook || Provider == Providers.Google);
+        }
+
+        public bool IsInternalUser()
+        {
+            return Provider == Providers.App;
         }
     }
 }

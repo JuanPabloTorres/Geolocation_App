@@ -9,7 +9,7 @@
     Opacity="{StaticResource OpacityValue}">
 
     <Button
-        Grid.Row="0"
+        Grid.Column="0"
         Command="{Binding CaptureItemCommand}"
         CommandParameter="{Binding Advertisement}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -21,7 +21,7 @@
     </Button>
 
     <Button
-        Grid.Row="1"
+        Grid.Column="1"
         Command="{Binding GoDetailCommand}"
         CommandParameter="{Binding Advertisement.ID}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -33,7 +33,7 @@
     </Button>
 
     <Button
-        Grid.Row="2"
+        Grid.Column="2"
         Command="{Binding OpenMetaDataPopUpCommand}"
         CommandParameter="{Binding Advertisement}"
         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"

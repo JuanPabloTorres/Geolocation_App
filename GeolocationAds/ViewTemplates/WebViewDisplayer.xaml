@@ -43,10 +43,7 @@
             IsEnabled="{Binding Source={x:Reference web}, Path=CanGoBack}"
             Style="{StaticResource NavigationButtonStyle}">
             <Button.ImageSource>
-                <FontImageSource
-                    FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph=""
-                    Size="24" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5e0;" />
             </Button.ImageSource>
         </Button>
 
@@ -58,10 +55,7 @@
             IsEnabled="{Binding Source={x:Reference web}, Path=CanGoForward}"
             Style="{StaticResource NavigationButtonStyle}">
             <Button.ImageSource>
-                <FontImageSource
-                    FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph=""
-                    Size="24" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5e1;" />
             </Button.ImageSource>
         </Button>
 
@@ -72,10 +66,7 @@
             CommandParameter="{x:Reference web}"
             Style="{StaticResource NavigationButtonStyle}">
             <Button.ImageSource>
-                <FontImageSource
-                    FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph=""
-                    Size="24" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d5;" />
             </Button.ImageSource>
         </Button>
 
@@ -86,10 +77,7 @@
             CommandParameter="{Binding Source={x:Reference web}, Path=Source}"
             Style="{StaticResource NavigationButtonStyle}">
             <Button.ImageSource>
-                <FontImageSource
-                    FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph=""
-                    Size="24" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe051;" />
             </Button.ImageSource>
         </Button>
     </Grid>
@@ -98,10 +86,18 @@
     <Grid
         x:Name="myContentStackHeader"
         Grid.Row="1"
+        ColumnDefinitions="*,*"
         RowDefinitions="Auto">
+
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            Opacity="{StaticResource OpacityValue}" />
 
         <headerView:ContentHeaderView
             Grid.Row="0"
+            Grid.Column="1"
             BackgroundColor="{StaticResource AppBlack}"
             HorizontalOptions="Fill" />
     </Grid>
@@ -109,17 +105,36 @@
     <Grid
         x:Name="searchContentStackHeader"
         Grid.Row="1"
+        ColumnDefinitions="*,*"
         RowDefinitions="Auto">
 
-        <headerView:HomeContentItemHeaderView Grid.Row="0" BackgroundColor="{StaticResource AppBlack}" />
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            Opacity="{StaticResource OpacityValue}" />
+        <headerView:HomeContentItemHeaderView
+            Grid.Row="0"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource AppBlack}" />
     </Grid>
 
     <Grid
         x:Name="myCaptureHeader"
         Grid.Row="1"
+        ColumnDefinitions="*,*"
         RowDefinitions="Auto">
 
-        <headerView:CaptureHeaderDisplayer Grid.Row="0" BackgroundColor="{StaticResource AppBlack}" />
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            BackgroundColor="{StaticResource AppBlack}"
+            Opacity="{StaticResource OpacityValue}" />
+
+        <headerView:CaptureHeaderDisplayer
+            Grid.Row="0"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource AppBlack}" />
 
 
     </Grid>

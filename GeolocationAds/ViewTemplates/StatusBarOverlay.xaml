@@ -9,7 +9,7 @@
     VerticalOptions="End"
     ZIndex="998">
 
-    <HorizontalStackLayout VerticalOptions="End">
+    <HorizontalStackLayout HorizontalOptions="Center">
 
         <Label
             IsVisible="{Binding ShowCount, Source={x:Reference root}}"
@@ -20,7 +20,19 @@
         <Label
             IsVisible="{Binding ShowAdType, Source={x:Reference root}}"
             Style="{StaticResource globalsubTitle}"
+            Text="■"
+            TextColor="White" />
+
+        <Label
+            IsVisible="{Binding ShowAdType, Source={x:Reference root}}"
+            Style="{StaticResource globalsubTitle}"
             Text="{Binding AdType, Source={x:Reference root}}"
+            TextColor="White" />
+
+        <Label
+            IsVisible="{Binding ShowDistance, Source={x:Reference root}}"
+            Style="{StaticResource globalsubTitle}"
+            Text="■"
             TextColor="White" />
 
         <Label

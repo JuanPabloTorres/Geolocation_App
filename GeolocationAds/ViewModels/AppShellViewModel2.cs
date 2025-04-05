@@ -19,9 +19,6 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private string userName;
 
-        [ObservableProperty]
-        private string avatar;
-
         public AppShellViewModel2()
         {
             WeakReferenceMessenger.Default.Register<UpdateMessage<User>>(this, (r, m) =>

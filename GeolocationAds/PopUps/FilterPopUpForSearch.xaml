@@ -26,15 +26,7 @@
                         <drawable:SemiCircle />
                     </GraphicsView.Drawable>
                 </GraphicsView>
-                <!--<Label
-                    FontAttributes="Bold"
-                    FontSize="24"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Text="Filter"
-                    TextColor="White"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />-->
+
             </Grid>
 
             <!--  🏷️ Header  -->

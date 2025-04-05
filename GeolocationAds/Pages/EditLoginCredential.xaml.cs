@@ -18,5 +18,7 @@ public partial class EditLoginCredential : ContentPage
     protected override void OnAppearing()
     {
         this._editLoginCredentialViewModel.ValidationResults.Clear();
+
+        //_editLoginCredentialViewModel.UpdateModel();
     }
 }

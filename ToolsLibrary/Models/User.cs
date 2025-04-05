@@ -60,5 +60,11 @@ namespace ToolsLibrary.Models
         // Imagen como arreglo de bytes
         [ObservableProperty]
         public byte[]? profileImageBytes;
+
+
+        public bool HasProfileImage()
+        {
+            return profileImageBytes != null || profileImageBytes?.Length > 0;
+        }
     }
 }

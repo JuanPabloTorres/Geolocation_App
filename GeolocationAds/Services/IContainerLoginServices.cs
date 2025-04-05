@@ -32,7 +32,7 @@ namespace GeolocationAds.Services
 
         IUserFactory UserFactory { get; }
 
-        IFirebaseAuthService FirebaseAuthService { get; set; }
+
 
         FacebookAuthWebViewViewModel FacebookAuthWebViewViewModel { get; set; }
 

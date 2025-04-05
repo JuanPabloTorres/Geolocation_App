@@ -25,7 +25,6 @@
                     Glyph="&#xe2db;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
-
         </ShellContent>
 
         <ShellContent Title="My Captures" ContentTemplate="{DataTemplate pages:MyFavorites}">
@@ -36,7 +35,6 @@
                     Glyph="&#xe87d;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
-
         </ShellContent>
 
         <ShellContent Title="Content Creation" ContentTemplate="{DataTemplate pages:CreateAdvertisment}">
@@ -49,9 +47,7 @@
             </ShellContent.Icon>
         </ShellContent>
 
-
         <ShellContent Title="Created by Me" ContentTemplate="{DataTemplate pages:MyContentPage}">
-
 
             <ShellContent.Icon>
                 <FontImageSource
@@ -59,7 +55,6 @@
                     Glyph="&#xe865;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
-
         </ShellContent>
 
         <ShellContent Title="Near You: Explore Now" ContentTemplate="{DataTemplate pages:GoogleMapPage}">
@@ -70,11 +65,9 @@
                     Glyph="&#xe55e;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
-
         </ShellContent>
 
         <ShellContent Title="Settings" ContentTemplate="{DataTemplate pages:UserSetting}">
-
 
             <ShellContent.Icon>
                 <FontImageSource
@@ -82,7 +75,6 @@
                     Glyph="&#xe8b8;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
-
         </ShellContent>
     </FlyoutItem>
 
@@ -95,7 +87,7 @@
                 <Grid>
 
                     <!--  Imagen si el usuario la tiene  -->
-                    <ffimageloading:CachedImage
+                    <Image
                         Aspect="AspectFit"
                         HeightRequest="80"
                         IsVisible="{Binding HasProfileImage}"
@@ -120,19 +112,4 @@
             <Label Style="{StaticResource globalTitle}" Text="{Binding UserName}" />
         </HorizontalStackLayout>
     </Shell.FlyoutHeader>
-
-    <!--<Shell.FlyoutFooter>
-
-        <VerticalStackLayout>
-            <Button
-                Command="{Binding SignOutCommand}"
-                Style="{StaticResource globalButton}"
-                Text="Sign Out">
-
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
-                </Button.ImageSource>
-            </Button>
-        </VerticalStackLayout>
-    </Shell.FlyoutFooter>-->
 </Shell>
