@@ -85,16 +85,9 @@ namespace GeolocationAds.ViewModels
                             Avatar = !string.IsNullOrWhiteSpace(user.FullName) ? user.FullName.Trim()[0].ToString().ToUpper() : "?";
                         }
                     }
-
                 });
             });
         }
-
-    
-
-
-
-
 
         protected override async Task Get(int id)
         {

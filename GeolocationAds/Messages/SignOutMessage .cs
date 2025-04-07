@@ -3,9 +3,9 @@ using ToolsLibrary.Models;
 
 namespace GeolocationAds.Messages
 {
-    class LogOffMessage : ValueChangedMessage<User>
+    public class SignOutMessage : ValueChangedMessage<string>
     {
-        public LogOffMessage(User value) : base(value)
+        public SignOutMessage(string reason = "SessionExpired") : base(reason)
         {
         }
 

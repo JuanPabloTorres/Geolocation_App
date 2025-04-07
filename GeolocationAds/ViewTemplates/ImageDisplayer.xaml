@@ -29,7 +29,6 @@
 
         <headerView:ContentInformationDisplayer
             Grid.Row="1"
-            Margin="0,4,0,0"
             BackgroundColor="Transparent"
             Opacity="{StaticResource OpacityValue}"
             VerticalOptions="End" />
@@ -39,12 +38,15 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <headerView:HomeContentItemHeaderView Grid.Row="0" Opacity="{StaticResource OpacityValue}" />
 
-        <headerView:ContentInformationDisplayer Grid.Row="0" Opacity="{StaticResource OpacityValue}" />
+        <headerView:ContentInformationDisplayer
+            Grid.Row="1"
+            Opacity="{StaticResource OpacityValue}"
+            VerticalOptions="End" />
     </Grid>
 
     <Grid x:Name="myCaptureHeader">

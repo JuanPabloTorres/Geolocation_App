@@ -5,24 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="App Setting"
     BackgroundColor="WhiteSmoke"
     Routing.Route="userSetting">
 
-    <Grid VerticalOptions="Start">
+    <Grid RowDefinitions="*,*,*,*" VerticalOptions="Start">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+
 
         <Border
             Grid.Row="0"
             BackgroundColor="White"
             HeightRequest="150"
-            HorizontalOptions="FillAndExpand"
             StrokeThickness="0"
             VerticalOptions="Start">
             <Grid>
@@ -56,13 +51,6 @@
             TextTransform="Uppercase"
             VerticalOptions="Center">
 
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
 
             <Button.ImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe923;" />
@@ -78,13 +66,7 @@
             Text="Update Credential"
             TextTransform="Uppercase">
 
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
+
 
             <Button.ImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe923;" />
@@ -100,17 +82,13 @@
             Text="Sign Out"
             TextTransform="Uppercase">
 
-            <Button.Shadow>
-                <Shadow
-                    Brush="Black"
-                    Opacity="0.5"
-                    Radius="40"
-                    Offset="5,5" />
-            </Button.Shadow>
+
 
             <Button.ImageSource>
                 <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe9ba;" />
             </Button.ImageSource>
         </Button>
+
+        <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
     </Grid>
 </ContentPage>

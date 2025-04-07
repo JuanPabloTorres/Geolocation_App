@@ -20,8 +20,6 @@ namespace GeolocationAds.ViewModels
             : base(model, service, logUserPerfil)
         {
             UpdateModel();
-
-            //RegisterForUserUpdates();
         }
 
         public void UpdateModel()

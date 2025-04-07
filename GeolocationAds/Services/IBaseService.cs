@@ -6,7 +6,7 @@ namespace GeolocationAds.Services
     {
         void SetJwtToken(string jwtToken);
 
-         Task<ResponseTool<T>> Add(T data);
+        Task<ResponseTool<T>> Add(T data);
 
         Task<ResponseTool<T>> Get(int Id);
 

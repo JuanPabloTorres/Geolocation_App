@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
@@ -19,10 +21,7 @@ namespace GeolocationAds.Services
 
         public BaseService(HttpClient httpClient, IConfiguration configuration)
         {
-
-
             var backendUrl = configuration.GetValue<string>("ApplicationSettings:GlobalLocalBackendUrl");
-
 
             string _httpResourceName = string.Empty;
 
@@ -154,8 +153,8 @@ namespace GeolocationAds.Services
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that may occur during the request
-                // For simplicity, we'll just return an error ResponseTool with the exception message
+                // Handle any exceptions that may occur during the request For simplicity, we'll
+                // just return an error ResponseTool with the exception message
 
                 var failResponse = ResponseFactory<IEnumerable<T>>.BuildFail($"An error occurred: {ex.Message}", null);
 
@@ -163,8 +162,8 @@ namespace GeolocationAds.Services
             }
         }
 
-        // This method must be in a class in a platform project, even if
-        // the HttpClient object is constructed in a shared project.
+        // This method must be in a class in a platform project, even if the HttpClient object is
+        // constructed in a shared project.
         public HttpClientHandler GetInsecureHandler()
         {
             HttpClientHandler handler = new HttpClientHandler();
@@ -255,6 +254,50 @@ namespace GeolocationAds.Services
 
                 return failResponse;
             }
+        }
+
+        private bool IsTokenExpired(HttpResponseMessage response)
+        {
+            return response.StatusCode == System.Net.HttpStatusCode.Unauthorized;
+        }
+
+        public async Task<ResponseTool<TResponse>> HandleRequest<TResponse>(Func<Task<HttpResponseMessage>> httpCall)
+        {
+            try
+            {
+                var response = await httpCall();
+
+                if (IsTokenExpired(response))
+                {
+                    // Lógica para cerrar sesión automáticamente
+                    await App.Current.Dispatcher.DispatchAsync(async () =>
+                    {
+                        await SecureLogoutAndRedirectToLogin(); // implementado abajo
+                    });
+
+                    return ResponseFactory<TResponse>.BuildFail("Token expirado. Cerrando sesión por seguridad.", default);
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<ResponseTool<TResponse>>(json);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<TResponse>.BuildFail($"Error: {ex.Message}", default);
+            }
+        }
+
+        private async Task SecureLogoutAndRedirectToLogin()
+        {
+            //LogUserPerfilTool.LogUser = null;
+
+            //LogUserPerfilTool.JsonToken = null;
+
+            //await Shell.Current.GoToAsync(nameof(Login));
+
+            // ⛔ Token expirado, notificar al ViewModel para cerrar sesión
+            WeakReferenceMessenger.Default.Send(new SignOutMessage("SessionExpired"));
         }
     }
 }

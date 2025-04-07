@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Text;
 using ToolsLibrary.Factories;
@@ -15,47 +14,32 @@ namespace GeolocationAds.Services
         {
         }
 
-        public async Task<ResponseTool<ToolsLibrary.Models.User>> VerifyCredential(ToolsLibrary.Models.Login credential)
+        public async Task<ResponseTool<bool>> SignOutAsync(ToolsLibrary.Models.Login login)
         {
             try
             {
-                // Convert the data object to JSON
-                var json = JsonConvert.SerializeObject(credential);
+                var json = JsonConvert.SerializeObject(login);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                // Build the full API endpoint URL
-                var apiUrl = APIPrefix + ApiSuffix;
+                var _httpResponse = await _httpClient.PostAsync($"{this.BaseApiUri}/SignOut", content);
 
-                // Send the POST request to the API
-                var _httpResponse = await _httpClient.PostAsync($"{this.BaseApiUri}/{nameof(VerifyCredential)}", content);
-
-                // Check if the request was successful
                 if (_httpResponse.IsSuccessStatusCode)
                 {
-                    // Read the response content and deserialize it to the appropriate type T
                     var responseJson = await _httpResponse.Content.ReadAsStringAsync();
 
-                    var responseData = JsonConvert.DeserializeObject<ResponseTool<ToolsLibrary.Models.User>>(responseJson);
-
-                    // Build a success response with the data
-                    //var successResponse = ResponseFactory<T>.BuildSusccess("Successfully added.", responseData);
-
-                    //return successResponse;
+                    var responseData = JsonConvert.DeserializeObject<ResponseTool<bool>>(responseJson);
 
                     return responseData;
                 }
                 else
                 {
-                    // Build a fail response with the error message from the API
-                    var failResponse = ResponseFactory<ToolsLibrary.Models.User>.BuildFail("Bad Request.", null);
-
-                    return failResponse;
+                    return ResponseFactory<bool>.BuildFail("Sign out failed.", false);
                 }
             }
             catch (Exception ex)
             {
-                return ResponseFactory<ToolsLibrary.Models.User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
             }
         }
 

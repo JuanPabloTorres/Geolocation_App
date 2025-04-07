@@ -247,6 +247,8 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         }
 
         this.IsRemember = rememberMe;
+
+        RegisterForSignOutMessage();
     }
 
     private async Task AutoLoginAsync()
@@ -330,21 +332,20 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         }
     }
 
-     partial void OnIsRememberChanged(bool isRemember)
+     async partial void OnIsRememberChanged(bool value)
     {
-        Task.Run(async () =>
         {
-            if (isRemember)
+            if (value)
             {
-                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, this.Model.FacebookId, isRemember);
+                await _containerLoginServices.SecureStoreService.SaveAsync(this.Provider, this.Model.Username, this.Model.Password, this.Model.GoogleId, this.Model.FacebookId, value);
             }
             else
             {
                 await _containerLoginServices.SecureStoreService.ClearAll();
             }
 
-            this.IsRemember = isRemember;
-        });
+            this.IsRemember = value;
+        }
     }
 
     private async Task AuthenticateUserAsync(ToolsLibrary.Models.Login credential)
@@ -485,5 +486,44 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         {
             this.IsLoading = false;
         }
+    }
+
+    private void RegisterForSignOutMessage()
+    {
+
+        if(WeakReferenceMessenger.Default.IsRegistered<SignOutMessage>(this))
+            return;
+
+        WeakReferenceMessenger.Default.Register<SignOutMessage>(this, async (r, m) =>
+        {
+            await RunWithLoadingIndicator(async () =>
+            {
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+
+                var result = await this.service.SignOutAsync(this._containerLoginServices.LogUserPerfilTool.LogUser.Login);
+
+                if (result.IsSuccess)
+                {
+                    // Limpia la sesión local
+                    LogUserPerfilTool.LogUser = null;
+
+                    LogUserPerfilTool.JsonToken = string.Empty;
+
+                    // 🧠 Cancelar mensajes
+                    WeakReferenceMessenger.Default.UnregisterAll(this);
+
+                    // Evita que regrese con el botón atrás
+                    Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
+
+                    await Shell.Current.GoToAsync(nameof(Login));
+
+                    Shell.Current.FlyoutIsPresented = false;
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", result.Message ?? "No se pudo cerrar sesión.");
+                }
+            });
+        });
     }
 }

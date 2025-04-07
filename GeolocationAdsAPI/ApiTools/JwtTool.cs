@@ -19,37 +19,10 @@ namespace GeolocationAdsAPI.ApiTools
             var token = new JwtSecurityToken(config["Jwt:Issuer"],
               config["Jwt:Issuer"],
               claims,
-              expires: DateTime.Now.AddHours(1),
+              expires: DateTime.Now.AddMinutes(1),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        public static string GenerateJwtToken(string userId)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            // Example usage
-            byte[] _generatedKey = GenerateSecureKey(32); // 32 bytes for HMACSHA256
-
-            // Convert the key to a base64-encoded string for storage or transmission
-            string base64Key = Convert.ToBase64String(_generatedKey);
-
-            var key = Encoding.ASCII.GetBytes(base64Key);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, userId)
-                }),
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
         }
 
         // Generate a secure random key of a specific length (e.g., 32 bytes for HMACSHA256)

@@ -2,6 +2,8 @@
 using GeolocationAdsAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -15,15 +17,11 @@ namespace GeolocationAdsAPI.Controllers
     {
         private readonly ILoginRespository loginRespository;
 
-        private readonly IForgotPasswordRepository forgotPasswordRepository;
-
         private readonly IConfiguration _config;
 
-        public LoginController(ILoginRespository loginRespository, IForgotPasswordRepository forgotPasswordRepository, IConfiguration config)
+        public LoginController(ILoginRespository loginRespository, IConfiguration config)
         {
             this.loginRespository = loginRespository;
-
-            this.forgotPasswordRepository = forgotPasswordRepository;
 
             _config = config;
         }
@@ -65,115 +63,6 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(response);
             }
         }
-
-        //[HttpPost("[action]")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> VerifyCredential(Login loginCredential)
-        //{
-        //    try
-        //    {
-        //        ResponseTool<User> response;
-
-        //        if (loginCredential.Provider == ToolsLibrary.Enums.Providers.Google)
-        //        {
-        //            response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
-        //        }
-        //        else
-        //        {
-        //            response = await this.loginRespository.VerifyCredential(loginCredential);
-        //        }
-
-        //        if (response.IsSuccess)
-        //        {
-        //            // Authenticate the user and generate a JWT token.
-        //            var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
-
-        //            return Ok(response);
-        //        }
-        //        else
-        //        {
-        //            return Ok(response);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-        //        return Ok(_exceptionResponse);
-        //    }
-        //}
-
-        [HttpPost("[action]")]
-        [AllowAnonymous]
-        public async Task<IActionResult> VerifyCredential(Login loginCredential)
-        {
-            try
-            {
-                ResponseTool<User> response;
-
-                // Verifica el proveedor y llama al método correspondiente
-                switch (loginCredential.Provider)
-                {
-                    case ToolsLibrary.Enums.Providers.Google:
-                        response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
-                        break;
-
-                    case ToolsLibrary.Enums.Providers.Facebook:
-                        response = await this.loginRespository.VerifyCredentialByProvider(loginCredential);
-                        break;
-
-                    default:
-                        // Por defecto, usa la verificación estándar
-                        response = await this.loginRespository.VerifyCredential(loginCredential);
-                        break;
-                }
-
-                if (response.IsSuccess)
-                {
-                    // Autenticar al usuario y generar un token JWT
-                    var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
-
-                    return Ok(token);
-                }
-
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                var exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-                return Ok(exceptionResponse);
-            }
-        }
-
-
-        //[HttpPost("[action]")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> GenerateJSONWebToken()
-        //{
-        //    try
-        //    {
-        //        var response = await this.loginRespository.VerifyCredential(loginCredential);
-
-        //        if (response.IsSuccess)
-        //        {
-        //            // Authenticate the user and generate a JWT token.
-        //            var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
-
-        //            return Ok(response);
-        //        }
-        //        else
-        //        {
-        //            return Ok(response);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-        //        return Ok(_exceptionResponse);
-        //    }
-        //}
 
         [HttpPost("[action]")]
         [AllowAnonymous]
@@ -227,6 +116,32 @@ namespace GeolocationAdsAPI.Controllers
             catch (Exception ex)
             {
                 var _exceptionResponse = ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+
+                return Ok(_exceptionResponse);
+            }
+        }
+
+        [HttpPost("[action]")]
+        [AllowAnonymous] // Permitir el acceso incluso si el token expiró
+        public IActionResult SignOut(Login login)
+        {
+            try
+            {
+                // ✅ Verificar si se recibió correctamente el userId
+                if (login.IsObjectNull())
+                {
+                    return Ok(ResponseFactory<bool>.BuildFail("No se recibió un userId válido.", false));
+                }
+
+                // Aquí podrías revocar el token si tuvieras una lista de blacklisted tokens
+
+                // Ejemplo: await _tokenService.BlacklistToken(userId);
+
+                return Ok(ResponseFactory<bool>.BuildSuccess("Sesión cerrada exitosamente.", true));
+            }
+            catch (Exception ex)
+            {
+                var _exceptionResponse = ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
 
                 return Ok(_exceptionResponse);
             }

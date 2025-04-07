@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using GeolocationAds.Messages;
 using GeolocationAds.Pages;
 using GeolocationAds.Services;
 using System.Windows.Input;
@@ -9,9 +11,19 @@ namespace GeolocationAds.ViewModels
 {
     public partial class UserSettingViewModel : BaseViewModel<User, IUserService>
     {
-        public UserSettingViewModel(User model, IUserService service, LogUserPerfilTool logUserPerfil) : base(model, service, logUserPerfil)
+        private readonly AppShellViewModel2 appShellViewModel2;
+
+        private readonly ILoginService loginService;
+
+        public UserSettingViewModel(User model, IUserService service, LogUserPerfilTool logUserPerfil, AppShellViewModel2 appShellViewModel, ILoginService loginService) : base(model, service, logUserPerfil)
         {
+            this.loginService = loginService;
+
             this.Model = logUserPerfil.LogUser;
+
+            appShellViewModel2 = appShellViewModel;
+
+            //RegisterForSignOutMessage();
         }
 
         [RelayCommand]
@@ -41,11 +53,39 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task SignOut()
         {
-            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+            await RunWithLoadingIndicator(async () =>
+            {
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
 
-            await Shell.Current.GoToAsync(nameof(Login));
+                var result = await this.loginService.SignOutAsync(Model.Login);
 
-            Shell.Current.FlyoutIsPresented = false;
+                if (result.IsSuccess)
+                {
+                    // Limpia la sesión local
+                    LogUserPerfilTool.LogUser = null;
+
+                    LogUserPerfilTool.JsonToken = string.Empty;
+
+                    // Evita que regrese con el botón atrás
+                    Application.Current.MainPage = new AppShell(appShellViewModel2);
+
+                    await Shell.Current.GoToAsync(nameof(Login));
+
+                    Shell.Current.FlyoutIsPresented = false;
+                }
+                else
+                {
+                    await CommonsTool.DisplayAlert("Error", result.Message ?? "No se pudo cerrar sesión.");
+                }
+            });
+        }
+
+        private void RegisterForSignOutMessage()
+        {
+            WeakReferenceMessenger.Default.Register<SignOutMessage>(this, async (r, m) =>
+            {
+                await SignOut();
+            });
         }
     }
 }

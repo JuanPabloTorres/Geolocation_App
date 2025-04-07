@@ -269,19 +269,9 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        partial void OnSelectedAdTypeChanged(AppSetting value)
+         async partial void OnSelectedAdTypeChanged(AppSetting value)
         {
-            _ = HandleAdTypeChangeAsync(value).ContinueWith(task =>
-            {
-                if (task.Exception != null)
-                {
-                    // 🔹 Opcionalmente, podrías mostrar una alerta si lo necesitas
-                    MainThread.BeginInvokeOnMainThread(async () =>
-                    {
-                        await CommonsTool.DisplayAlert("Error", $"Ocurrió un error: {task.Exception.Flatten().InnerException?.Message}");
-                    });
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            await HandleAdTypeChangeAsync(value);
         }
 
         [RelayCommand]
