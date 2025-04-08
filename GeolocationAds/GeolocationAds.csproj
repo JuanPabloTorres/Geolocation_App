@@ -68,7 +68,6 @@
 	  <None Remove="Resources\Images\complete01.gif" />
 	  <None Remove="Resources\Images\facebook.png" />
 	  <None Remove="Resources\Images\google.png" />
-	  <None Remove="Resources\Images\instagram.png" />
 	  <None Remove="Resources\Images\loginbackground.jpeg" />
 	  <None Remove="Resources\Images\nearby2.jpeg" />
 	  <None Remove="Resources\Images\padlock.png" />
@@ -78,7 +77,6 @@
 	  <None Remove="Resources\Images\text.png" />
 	  <None Remove="Resources\Images\url.png" />
 	  <None Remove="Resources\Images\user.png" />
-	  <None Remove="Resources\Images\youtube.png" />
 	  <None Remove="Resources\Raw\c1.json" />
 	  <None Remove="Resources\Raw\c2.json" />
 	  <None Remove="Resources\Raw\c3.json" />
@@ -159,10 +157,16 @@
 	  <MauiXaml Update="Pages\SearchAd.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="PopUps\CapturePopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PopUps\CompletePopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopUps\MetaDataPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PopUps\RemovePopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ViewTemplates\CaptureHeaderDisplayer.xaml">

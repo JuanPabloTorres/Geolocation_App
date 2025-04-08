@@ -88,31 +88,12 @@ namespace GeolocationAds.TemplateViewModel
             return description.Insert(midIndex, "\n");
         }
 
-        //private string GetTruncatedDescription(string description)
-        //{
-        //    if (description.Length <= MaxLengthWithoutExpand)
-        //        return description;
-
-        // int midIndex = description.Length / 2;
-
-        // string truncated = description.Substring(0, midIndex) + "\n" + description.Substring(midIndex);
-
-        //    return truncated.Length > MaxLengthWithoutExpand ? truncated.Substring(0, MaxLengthWithoutExpand) + "..." : truncated;
-        //}
-
         [RelayCommand]
         private void ToggleExpand()
         {
             IsExpanded = !IsExpanded;
 
             OnPropertyChanged(nameof(DisplayDescription));
-        }
-
-        private string AddNewLine(string description)
-        {
-            int midIndex = description.Length / 2;
-
-            return description.Insert(midIndex, "\n");
         }
 
         public async Task InitializeAsync()
@@ -176,47 +157,75 @@ namespace GeolocationAds.TemplateViewModel
         [RelayCommand]
         public async Task OpenActionPopUp()
         {
-            try
-            {
-                this.IsLoading = true;
+            //try
+            //{
+            //    this.IsLoading = true;
 
+            // string action = await Shell.Current.DisplayActionSheet("Actions: ", "Cancel", null,
+            // "Detail", "Set Location", "Manage Location");
+
+            // switch (action) { case "Detail":
+
+            // await Navigate(this.Advertisement.ID);
+
+            // break;
+
+            // case "Set Location":
+
+            // await SetLocationYesOrNoAlert(this.Advertisement);
+
+            // break;
+
+            // case "Manage Location":
+
+            // var navigationParameter = new Dictionary<string, object> { { "ID",
+            // this.Advertisement.ID } };
+
+            // await NavigateAsync(nameof(ManageLocation), navigationParameter);
+
+            // break;
+
+            // default:
+
+            //            break;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    await CommonsTool.DisplayAlert("Error", ex.Message);
+            //}
+            //finally
+            //{
+            //    this.IsLoading = false;
+            //}
+
+            await RunWithLoadingIndicator(async () =>
+            {
                 string action = await Shell.Current.DisplayActionSheet("Actions: ", "Cancel", null, "Detail", "Set Location", "Manage Location");
 
                 switch (action)
                 {
                     case "Detail":
-
                         await Navigate(this.Advertisement.ID);
-
                         break;
 
                     case "Set Location":
-
                         await SetLocationYesOrNoAlert(this.Advertisement);
-
                         break;
 
                     case "Manage Location":
-
-                        var navigationParameter = new Dictionary<string, object> { { "ID", this.Advertisement.ID } };
+                        var navigationParameter = new Dictionary<string, object>
+                        {
+                            { "ID", this.Advertisement.ID }
+                        };
 
                         await NavigateAsync(nameof(ManageLocation), navigationParameter);
-
                         break;
 
                     default:
-
                         break;
                 }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+            });
         }
 
         private async Task CreateAdToLocation(Advertisement ad)
@@ -245,7 +254,6 @@ namespace GeolocationAds.TemplateViewModel
             });
         }
 
-
         private async Task RemoveContent(Advertisement ad)
         {
             await RunWithLoadingIndicator(async () =>
@@ -257,9 +265,11 @@ namespace GeolocationAds.TemplateViewModel
                     await CommonsTool.DisplayAlert("Error", apiResponse.Message);
                 }
 
+                await Shell.Current.CurrentPage.ShowPopupAsync(new RemovePopUp());
+
                 RemoveCurrentItem();
 
-                await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
+                //await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
             });
         }
 
@@ -372,10 +382,6 @@ namespace GeolocationAds.TemplateViewModel
         [RelayCommand]
         public async Task ReloadMedia(MediaElement mediaElement)
         {
-            //mediaElement.Stop();
-
-            //mediaElement.Play();
-
             await mediaElement.SeekTo(TimeSpan.Zero);
 
             mediaElement.Play();

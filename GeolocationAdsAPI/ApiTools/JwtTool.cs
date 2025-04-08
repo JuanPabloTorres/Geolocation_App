@@ -19,7 +19,7 @@ namespace GeolocationAdsAPI.ApiTools
             var token = new JwtSecurityToken(config["Jwt:Issuer"],
               config["Jwt:Issuer"],
               claims,
-              expires: DateTime.Now.AddMinutes(1),
+              expires: DateTime.Now.AddHours(1),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

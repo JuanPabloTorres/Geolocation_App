@@ -9,19 +9,22 @@
     CanBeDismissedByTappingOutsideOfPopup="False"
     Color="Transparent">
 
-    <Border Style="{StaticResource popUpBorder}">
+    <Border
+        HeightRequest="180"
+        Style="{StaticResource popUpBorder}"
+        WidthRequest="180">
         <Grid x:Name="lottieContainer" BackgroundColor="White">
 
             <skia:SKLottieView
                 x:Name="complete"
                 AnimationCompleted="SKLottieView_AnimationCompleted"
-                HeightRequest="200"
+                HeightRequest="180"
                 HorizontalOptions="Center"
                 IsAnimationEnabled="True"
                 RepeatCount="0"
                 Source="CompleteAnimation.json"
                 VerticalOptions="Center"
-                WidthRequest="200" />
+                WidthRequest="180" />
         </Grid>
     </Border>
 </mct:Popup>

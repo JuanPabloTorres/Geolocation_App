@@ -257,8 +257,6 @@ namespace GeolocationAds.ViewModels
             {
                 var _defaultTemplate = await AppToolCommon.GetDefaultContentTypeTemplateViewModel(this.LogUserPerfilTool.GetUserId());
 
-                //_defaultTemplate.ItemDeleted = ContentTypeTemplateViewModel_ContentTypeDeleted;
-
                 this.ContentTypesTemplate.Add(_defaultTemplate);
 
                 this.Model.Contents.Add(_defaultTemplate.ContentType);
@@ -293,8 +291,6 @@ namespace GeolocationAds.ViewModels
                 var content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null, this.LogUserPerfilTool.LogUser.ID, null, null);
 
                 var template = ContentTypeTemplateFactory.BuilContentType(content, uri);
-
-                //template.ItemDeleted = ContentTypeTemplateViewModel_ContentTypeDeleted;
 
                 this.ContentTypesTemplate.Add(template);
 

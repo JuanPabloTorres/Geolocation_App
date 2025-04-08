@@ -100,7 +100,10 @@ namespace GeolocationAds.AppTools
 
                 if (!_defaulMedia.IsObjectNull())
                 {
-                    var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, userId, ConstantsTools.FILENAME);
+
+                    var _defaultImagePath = AppToolCommon.GetEmbeddedResourceFullPath(ConstantsTools.FILENAME);
+
+                    var _content = ContentTypeFactory.BuilContentType(_defaulMedia, ContentVisualType.Image, null, userId,ConstantsTools.FILENAME, _defaultImagePath);
 
                     _content.ContentName = ConstantsTools.FILENAME;
 
@@ -164,5 +167,39 @@ namespace GeolocationAds.AppTools
 
             return EmailRegex.IsMatch(email);
         }
+
+        /// <summary>
+        /// Devuelve el nombre completo del recurso embebido que coincide parcialmente con el nombre especificado.
+        /// </summary>
+        /// <param name="partialName">Parte del nombre del recurso, por ejemplo "logo.png"</param>
+        /// <returns>El nombre completo del recurso (ej. "GeolocationAds.Resources.Images.logo.png")</returns>
+        public static string GetEmbeddedResourceFullPath(string partialName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var resourceName = assembly
+                .GetManifestResourceNames()
+                .FirstOrDefault(r => r.EndsWith(partialName, StringComparison.OrdinalIgnoreCase));
+
+            return resourceName;
+        }
+
+        public static async Task<byte[]> GetEmbeddedResourceAsync(string resourceName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using Stream stream = assembly.GetManifestResourceStream(resourceName);
+
+            if (stream == null)
+                throw new FileNotFoundException($"Embedded resource '{resourceName}' not found.");
+
+            using var memoryStream = new MemoryStream();
+
+            await stream.CopyToAsync(memoryStream);
+
+            return memoryStream.ToArray();
+        }
+
+
     }
 }

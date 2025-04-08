@@ -44,7 +44,6 @@ namespace GeolocationAds.TemplateViewModel
 
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
-
         public NearByTemplateViewModel2(ICaptureService captureService, IAdvertisementService advertisementService, Advertisement advertisement, LogUserPerfilTool logUser) : base(advertisementService)
         {
             this.LogUser = logUser;
@@ -124,13 +123,6 @@ namespace GeolocationAds.TemplateViewModel
             return await Task.Run(() => AppToolCommon.LoadImageFromBytes(imageData));
         }
 
-        private async Task<MediaSource> SaveToTempAsync(byte[] videoData)
-        {
-            VideoFilePath = await CommonsTool.SaveByteArrayToPartialFile3(videoData, string.Empty);
-
-            return VideoFilePath;
-        }
-
         public async Task FillTemplate()
         {
             try
@@ -166,10 +158,8 @@ namespace GeolocationAds.TemplateViewModel
         [RelayCommand]
         public async Task CaptureItem(Advertisement advertisement)
         {
-            try
+            await RunWithLoadingIndicator(async () =>
             {
-                this.IsLoading = true;
-
                 var _capture = new Capture()
                 {
                     AdvertisementId = this.Advertisement.ID,
@@ -180,23 +170,13 @@ namespace GeolocationAds.TemplateViewModel
 
                 var _apiResponse = await this.service.Add(_capture);
 
-                if (_apiResponse.IsSuccess)
+                if (!_apiResponse.IsSuccess)
                 {
-                    await CommonsTool.DisplayAlert("Notification", "Capture completed successfully.");
+                    throw new Exception(_apiResponse.Message);
                 }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                await CommonsTool.DisplayAlert("Error", ex.Message);
-            }
-            finally
-            {
-                this.IsLoading = false;
-            }
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(new CapturePopUp());
+            });
         }
 
         [RelayCommand]
@@ -311,10 +291,6 @@ namespace GeolocationAds.TemplateViewModel
         [RelayCommand]
         public async Task ReloadMedia(MediaElement mediaElement)
         {
-            //mediaElement.Stop();
-
-            //mediaElement.Play();
-
             await mediaElement.SeekTo(TimeSpan.Zero);
 
             mediaElement.Play();

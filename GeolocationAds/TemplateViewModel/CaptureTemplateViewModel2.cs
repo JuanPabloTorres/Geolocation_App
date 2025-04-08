@@ -129,6 +129,8 @@ namespace GeolocationAds.TemplateViewModel
                     throw new Exception(apiResponse.Message);
                 }
 
+                await Shell.Current.CurrentPage.ShowPopupAsync(new RemovePopUp());
+
                 OnDeleteType(this);
             });
         }

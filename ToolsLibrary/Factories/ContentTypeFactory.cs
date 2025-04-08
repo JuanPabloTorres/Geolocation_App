@@ -15,12 +15,13 @@ namespace ToolsLibrary.Factories
                 CreateDate = DateTime.Now,
                 CreateBy = createdById.HasValue ? createdById.Value : 0,
                 ContentName = contentName,
+                
             };
 
             return _contentType;
         }
 
-        public static ContentType BuilContentType(byte[] content, ContentVisualType visualType, int? advertisingId, int? createdById, string? contentName, string filePath)
+        public static ContentType BuilContentType(byte[] content, ContentVisualType visualType, int? advertisingId, int? createdById, string? contentName, string? filePath)
         {
             var _contentType = new ContentType()
             {
@@ -37,7 +38,7 @@ namespace ToolsLibrary.Factories
             return _contentType;
         }
 
-        public static ContentType BuilContentType(string url, ContentVisualType visualType, int? advertisingId, int? createdById, string? contentName, string filePath)
+        public static ContentType BuilContentType(string url, ContentVisualType visualType, int? advertisingId, int? createdById, string? contentName, string? filePath)
         {
             var _contentType = new ContentType()
             {
@@ -47,6 +48,7 @@ namespace ToolsLibrary.Factories
                 CreateDate = DateTime.Now,
                 CreateBy = createdById.HasValue ? createdById.Value : 0,
                 ContentName = contentName,
+                FilePath=filePath,
                 Url = url
 
             };

@@ -52,14 +52,11 @@ namespace GeolocationAds.ViewModels
         {
             await RunWithLoadingIndicator(async () =>
             {
-                var toRemoveAdContent = CaptureTemplateViewModels
-                    .FirstOrDefault(vm => vm.Capture.ID == sender.Capture.ID);
+                var toRemoveAdContent = CaptureTemplateViewModels.FirstOrDefault(vm => vm.Capture.ID == sender.Capture.ID);
 
                 if (!toRemoveAdContent.IsObjectNull())
                 {
                     CaptureTemplateViewModels.Remove(toRemoveAdContent);
-
-                    await CommonsTool.DisplayAlert("Notification", "Capture has been successfully removed.");
                 }
             });
         }
@@ -151,7 +148,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        protected async override Task OnSignOutMessageReceivedAsync()
+        protected override async Task OnSignOutMessageReceivedAsync()
         {
             PageIndex = 1;
 
