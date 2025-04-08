@@ -68,17 +68,6 @@
             ItemsSource="{Binding MapSettings}"
             SelectedItem="{Binding SeletedMapSetting}" />
 
-        <!--<ContentView
-            x:Name="LoadingIndicatorContainer"
-            Grid.Row="1"
-            IsVisible="{Binding IsLoading}">
-            <ContentView.Content>
-                <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-            </ContentView.Content>
-        </ContentView>-->
-
-
-
         <CollectionView
             Grid.Row="2"
             ItemsSource="{Binding LocationCardViewModels, Mode=TwoWay}"
@@ -102,21 +91,26 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource globalTitle}"
+                                Text="Pin Location" />
+
                             <Button
                                 Grid.Row="0"
+                                Grid.Column="1"
                                 Command="{Binding RemoveCommand}"
                                 CommandParameter="{Binding Model}"
                                 Style="{StaticResource XButtonGray}" />
 
                             <HorizontalStackLayout Grid.Row="1">
                                 <Label
-                                    Grid.Row="1"
                                     HorizontalOptions="Start"
                                     Style="{StaticResource globalTitle}"
                                     Text="{Binding Model.Latitude, StringFormat='Latitude: {0:F2}'}" />
 
                                 <Label
-                                    Grid.Row="2"
                                     HorizontalOptions="Start"
                                     Style="{StaticResource globalTitle}"
                                     Text="{Binding Model.Longitude, StringFormat='Longitude: {0:F2}'}" />
@@ -144,25 +138,14 @@
             </CollectionView.EmptyView>
         </CollectionView>
 
-        <!--<HorizontalStackLayout
-            Grid.Row="3"
-            BackgroundColor="{StaticResource AppGray}"
-            IsVisible="{Binding LocationCardViewModels.Count}"
-            VerticalOptions="End">
-
-            <Label
-                x:Name="totalAdsLabel"
-                Style="{StaticResource globalsubTitle}"
-                Text="{Binding LocationCardViewModels.Count, StringFormat='Pins Locations Total: {0:N0}'}"
-                TextColor="White" />
-        </HorizontalStackLayout>-->
-
         <!--  Bottom Status Bar  -->
         <views:StatusBarOverlay
             Grid.Row="3"
             AdType="{Binding SelectedAdType.Value}"
             CollectionCount="{Binding LocationCardViewModels.Count}"
             Distance="{Binding SelectedDistance}"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />
+            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+            ShowAdType="False"
+            ShowDistance="False" />
     </Grid>
 </ContentPage>

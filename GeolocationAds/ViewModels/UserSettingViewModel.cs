@@ -23,7 +23,7 @@ namespace GeolocationAds.ViewModels
 
             appShellViewModel2 = appShellViewModel;
 
-            //RegisterForSignOutMessage();
+            RegisterForSignOutMessage();
         }
 
         [RelayCommand]
@@ -80,12 +80,9 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-        private void RegisterForSignOutMessage()
+        protected async override Task OnSignOutMessageReceivedAsync()
         {
-            WeakReferenceMessenger.Default.Register<SignOutMessage>(this, async (r, m) =>
-            {
-                await SignOut();
-            });
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }

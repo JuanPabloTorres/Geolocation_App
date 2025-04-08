@@ -35,7 +35,9 @@ public partial class SearchAd : ContentPage
         }
     }
 
-    protected override void OnAppearing()
+    
+
+    protected async override void OnAppearing()
     {
         if (this.viewModel.NearByTemplateViewModels.Count == 0)
         {
@@ -50,7 +52,14 @@ public partial class SearchAd : ContentPage
             this.paginControls.IsNextButtonVisible = false;
 
             this.paginControls.IsBackButtonVisible = false;
+
+           
         }
+
+        //if (viewModel.SelectedAdType.IsObjectNull())
+        //{
+        //    await viewModel.InitializeDataLoadingSettingsAsync();
+        //}
     }
 
     private async void BackItemButton_Clicked()

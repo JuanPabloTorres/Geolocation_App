@@ -50,6 +50,8 @@ namespace GeolocationAds.ViewModels
             SelectedAdType = new AppSetting();
 
             Task.Run(async () => { await InitializeDataLoadingSettingsAsync(); });
+
+            RegisterForSignOutMessage();
         }
 
         [RelayCommand]
@@ -165,6 +167,13 @@ namespace GeolocationAds.ViewModels
 
                 filterPopUpViewModel.OnFilterItem = FilterPopUpViewModel_FilterItem;
             });
+        }
+
+        protected async override Task OnSignOutMessageReceivedAsync()
+        {
+            PageIndex = 1;
+
+            this.NearByTemplateViewModels.Clear();
         }
     }
 }

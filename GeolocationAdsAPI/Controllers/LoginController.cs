@@ -70,8 +70,6 @@ namespace GeolocationAdsAPI.Controllers
         {
             try
             {
-                //var response = await this.loginRespository.VerifyCredential(loginCredential);
-
                 ResponseTool<User> response;
 
                 // Verifica el proveedor y llama al método correspondiente
@@ -91,27 +89,20 @@ namespace GeolocationAdsAPI.Controllers
                         break;
                 }
 
-                if (response.IsSuccess)
-                {
-                    // Authenticate the user and generate a JWT token.
-                    //var token = JwtTool.GenerateJwtToken(response.Data.ID.ToString());
-
-                    var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
-
-                    var _userPerfil = new LogUserPerfilTool()
-                    {
-                        JsonToken = token,
-                        LogUser = response.Data
-                    };
-
-                    var _perfilResponse = ResponseFactory<LogUserPerfilTool>.BuildSuccess(response.Message, _userPerfil);
-
-                    return Ok(_perfilResponse);
-                }
-                else
-                {
+                if (!response.IsSuccess)
                     return Ok(response);
-                }
+
+                var token = JwtTool.GenerateJSONWebToken(this._config, response.Data.ID.ToString());
+
+                var _userPerfil = new LogUserPerfilTool()
+                {
+                    JsonToken = token,
+                    LogUser = response.Data
+                };
+
+                var _perfilResponse = ResponseFactory<LogUserPerfilTool>.BuildSuccess(response.Message, _userPerfil);
+
+                return Ok(_perfilResponse);
             }
             catch (Exception ex)
             {

@@ -20,7 +20,7 @@
         <Label
             IsVisible="{Binding ShowAdType, Source={x:Reference root}}"
             Style="{StaticResource globalsubTitle}"
-            Text="■"
+            Text="•"
             TextColor="White" />
 
         <Label
@@ -32,7 +32,7 @@
         <Label
             IsVisible="{Binding ShowDistance, Source={x:Reference root}}"
             Style="{StaticResource globalsubTitle}"
-            Text="■"
+            Text="•"
             TextColor="White" />
 
         <Label

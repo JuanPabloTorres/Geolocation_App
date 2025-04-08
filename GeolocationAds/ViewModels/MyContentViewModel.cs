@@ -77,6 +77,8 @@ namespace GeolocationAds.ViewModels
                     }
                 });
             });
+
+            RegisterForSignOutMessage();
         }
 
         [RelayCommand]
@@ -139,11 +141,8 @@ namespace GeolocationAds.ViewModels
                 // 🔹 Modifica la UI solo si hay cambios y en el hilo principal
                 if (newViewModels.Count > 0)
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
-                    {
-                        //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
-                        CollectionModel.AddRange(newViewModels);
-                    });
+                    //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
+                    CollectionModel.AddRange(newViewModels);
                 }
 
                 // 🔹 Si la lista está vacía después de cargar, vuelve a mostrar el mensaje
@@ -194,6 +193,13 @@ namespace GeolocationAds.ViewModels
             _filterPopUp = new FilterPopUp(filterPopUpViewModel);
 
             await Shell.Current.CurrentPage.ShowPopupAsync(_filterPopUp);
+        }
+
+        protected override async Task OnSignOutMessageReceivedAsync()
+        {
+            PageIndex = 1;
+
+            this.CollectionModel.Clear();
         }
     }
 }

@@ -107,32 +107,25 @@ namespace GeolocationAds.Services
         //    {
         //        // Build the full API endpoint URL for the "all" endpoint
 
-        //        // Send an HTTP GET request to the "all" endpoint of your API
-        //        HttpResponseMessage response = await this._httpClient.GetAsync($"{this.BaseApiUri}/{nameof(GetAdvertisementsOfUser)}/{userId}/{typeId}/{pageIndex}");
+        // // Send an HTTP GET request to the "all" endpoint of your API HttpResponseMessage
+        // response = await this._httpClient.GetAsync($"{this.BaseApiUri}/{nameof(GetAdvertisementsOfUser)}/{userId}/{typeId}/{pageIndex}");
 
-        //        // Ensure the request was successful
-        //        response.EnsureSuccessStatusCode();
+        // // Ensure the request was successful response.EnsureSuccessStatusCode();
 
-        //        // Read the response content as a string
-        //        string responseContent = await response.Content.ReadAsStringAsync();
+        // // Read the response content as a string string responseContent = await response.Content.ReadAsStringAsync();
 
-        //        // Deserialize the response content to your custom ResponseTool<IEnumerable<T>> type
-        //        var result = JsonConvert.DeserializeObject<ResponseTool<IEnumerable<Advertisement>>>(responseContent);
+        // // Deserialize the response content to your custom ResponseTool<IEnumerable<T>> type var
+        // result = JsonConvert.DeserializeObject<ResponseTool<IEnumerable<Advertisement>>>(responseContent);
 
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle any exceptions that may occur during the request For simplicity, we'll
-        //        // just return an error ResponseTool with the exception message
+        // return result; } catch (Exception ex) { // Handle any exceptions that may occur during
+        // the request For simplicity, we'll // just return an error ResponseTool with the exception message
 
-        //        var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail($"An error occurred: {ex.Message}", null);
+        // var failResponse = ResponseFactory<IEnumerable<Advertisement>>.BuildFail($"An error
+        // occurred: {ex.Message}", null);
 
         //        return failResponse;
         //    }
         //}
-
-    
 
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int? pageIndex)
         {
@@ -143,7 +136,6 @@ namespace GeolocationAds.Services
                 return await _httpClient.GetAsync(url);
             });
         }
-
 
         public async Task<byte[]> GetContentVideoAsync(int id, string range)
         {
@@ -267,8 +259,6 @@ namespace GeolocationAds.Services
             }
         }
 
-      
-
         public override async Task<ResponseTool<Advertisement>> Update(Advertisement data, int currentId)
         {
             try
@@ -340,9 +330,5 @@ namespace GeolocationAds.Services
                 return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
             }
         }
-
-    
-
-       
     }
 }

@@ -43,6 +43,8 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         });
 
         Task.Run(async () => await AutoLoginAsync());
+
+        RegisterForSignOutMessage();
     }
 
     /// <summary>
@@ -208,21 +210,6 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         });
     }
 
-    private void InitializePostLoginViewModels()
-    {
-        var provider = App.Current?.Handler?.MauiContext?.Services;
-
-        foreach (var serviceDescriptor in ServiceRegistry.Services)
-        {
-            if (serviceDescriptor.ServiceType is not null &&
-                typeof(IInitializableViewModel).IsAssignableFrom(serviceDescriptor.ServiceType))
-            {
-                var viewModel = provider?.GetService(serviceDescriptor.ServiceType) as IInitializableViewModel;
-                viewModel?.Initialize();
-            }
-        }
-    }
-
     // Métodos específicos para cada proveedor, llamando al método genérico
     private async Task GoogleAuthenticateAndNavigateAsync(ToolsLibrary.Models.Login googleCredential) =>
         await AuthenticateAndNavigateAsync(googleCredential, Providers.Google);
@@ -247,8 +234,6 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         }
 
         this.IsRemember = rememberMe;
-
-        RegisterForSignOutMessage();
     }
 
     private async Task AutoLoginAsync()
@@ -332,7 +317,7 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         }
     }
 
-     async partial void OnIsRememberChanged(bool value)
+    async partial void OnIsRememberChanged(bool value)
     {
         {
             if (value)
@@ -488,42 +473,37 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         }
     }
 
-    private void RegisterForSignOutMessage()
+    protected override async Task OnSignOutMessageReceivedAsync()
     {
-
-        if(WeakReferenceMessenger.Default.IsRegistered<SignOutMessage>(this))
-            return;
-
-        WeakReferenceMessenger.Default.Register<SignOutMessage>(this, async (r, m) =>
+        await RunWithLoadingIndicator(async () =>
         {
-            await RunWithLoadingIndicator(async () =>
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+
+            var result = await this.service.SignOutAsync(this._containerLoginServices.LogUserPerfilTool.LogUser.Login);
+
+            if (result.IsSuccess)
             {
-                Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+                // Limpia la sesión local
+                LogUserPerfilTool.LogUser = null;
 
-                var result = await this.service.SignOutAsync(this._containerLoginServices.LogUserPerfilTool.LogUser.Login);
+                LogUserPerfilTool.JsonToken = string.Empty;
 
-                if (result.IsSuccess)
-                {
-                    // Limpia la sesión local
-                    LogUserPerfilTool.LogUser = null;
+                // 🧠 Cancelar mensajes
+                //WeakReferenceMessenger.Default.UnregisterAll(this);
 
-                    LogUserPerfilTool.JsonToken = string.Empty;
+                await Task.Delay(1000);
 
-                    // 🧠 Cancelar mensajes
-                    WeakReferenceMessenger.Default.UnregisterAll(this);
+                // Evita que regrese con el botón atrás
+                Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
 
-                    // Evita que regrese con el botón atrás
-                    Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
+                await Shell.Current.GoToAsync(nameof(Login));
 
-                    await Shell.Current.GoToAsync(nameof(Login));
-
-                    Shell.Current.FlyoutIsPresented = false;
-                }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", result.Message ?? "No se pudo cerrar sesión.");
-                }
-            });
+                Shell.Current.FlyoutIsPresented = false;
+            }
+            else
+            {
+                await CommonsTool.DisplayAlert("Error", result.Message ?? "No se pudo cerrar sesión.");
+            }
         });
     }
 }

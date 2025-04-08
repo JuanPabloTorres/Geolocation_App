@@ -108,6 +108,8 @@
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
 
+
+
                 <Setter Property="Margin" Value="0" />
             </Style>
 
@@ -250,10 +252,10 @@
                 <Setter Property="Padding" Value="6" />
                 <Setter Property="Background" Value="White" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="Stroke" Value="{StaticResource appPrimaryOpt2ColorPrimaryLight}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
-                        <RoundRectangle CornerRadius="5" />
+                        <RoundRectangle CornerRadius="12" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="StrokeThickness" Value="0.5" />
@@ -264,7 +266,7 @@
                 <Setter Property="Padding" Value="6" />
                 <Setter Property="Background" Value="White" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="Transparent" />
+                <Setter Property="Stroke" Value="{StaticResource AppBlack}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
                         <RoundRectangle CornerRadius="5" />
@@ -276,15 +278,16 @@
             <Style x:Key="avatarBorderStyle" TargetType="Border">
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
+
                 <Setter Property="Background" Value="#F5F5F5" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
                 <Setter Property="Stroke" Value="{StaticResource appPrimaryOpt2ColorPrimaryLight}" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
-                        <RoundRectangle CornerRadius="8" />
+                        <RoundRectangle CornerRadius="10" />
                     </Setter.Value>
                 </Setter>
-                <Setter Property="StrokeThickness" Value="0.5" />
+                <Setter Property="StrokeThickness" Value="0.1" />
             </Style>
 
             <Style x:Key="borderOnHeaderControls" TargetType="Border">

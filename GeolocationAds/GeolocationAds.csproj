@@ -70,14 +70,12 @@
 	  <None Remove="Resources\Images\google.png" />
 	  <None Remove="Resources\Images\instagram.png" />
 	  <None Remove="Resources\Images\loginbackground.jpeg" />
-	  <None Remove="Resources\Images\mail.png" />
 	  <None Remove="Resources\Images\nearby2.jpeg" />
 	  <None Remove="Resources\Images\padlock.png" />
 	  <None Remove="Resources\Images\phone.png" />
 	  <None Remove="Resources\Images\radar.gif" />
 	  <None Remove="Resources\Images\tag.png" />
 	  <None Remove="Resources\Images\text.png" />
-	  <None Remove="Resources\Images\tiktok.png" />
 	  <None Remove="Resources\Images\url.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Images\youtube.png" />

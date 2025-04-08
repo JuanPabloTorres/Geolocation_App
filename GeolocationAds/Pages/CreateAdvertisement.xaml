@@ -10,6 +10,7 @@
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewTemplate="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Create"
     BackgroundColor="WhiteSmoke"
     Routing.Route="create">
@@ -49,72 +50,67 @@
 
         <DataTemplate x:Key="WebViewDataTemplateCreate">
 
-            <VerticalStackLayout>
 
 
+            <!--<WebView
+                x:Name="web"
+                Grid.Row="0"
+                Loaded="OnWebViewLoaded"
+                Navigating="WebView_Navigating"
+                Source="{Binding UrlSource, Mode=TwoWay}" />-->
+
+            <Grid>
                 <WebView
-                    x:Name="web"
-                    Grid.Row="0"
+                    HorizontalOptions="Fill"
                     Loaded="OnWebViewLoaded"
                     Navigating="WebView_Navigating"
-                    Source="{Binding UrlSource, Mode=TwoWay}" />
+                    Source="{Binding UrlSource, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
+            </Grid>
 
-
-            </VerticalStackLayout>
         </DataTemplate>
 
         <DataTemplate x:Key="ImageDataTemplateCreate">
 
-            <Grid RowDefinitions="Auto">
 
+
+            <!--<ffimageloading:CachedImage
+                Grid.Row="0"
+                Aspect="AspectFit"
+                FadeAnimationEnabled="True"
+                Source="{Binding Image}" />-->
+
+            <Grid>
                 <ffimageloading:CachedImage
-                    Grid.Row="0"
                     Aspect="Fill"
                     FadeAnimationEnabled="True"
-                    Source="{Binding Image}" />
+                    HorizontalOptions="Fill"
+                    Source="{Binding Image}"
+                    VerticalOptions="Fill" />
             </Grid>
+
         </DataTemplate>
 
         <DataTemplate x:Key="VideoDataTemplateCreate">
 
-            <Grid RowDefinitions="*">
 
+
+            <!--<toolkit:MediaElement
+                Grid.Row="0"
+                Aspect="Fill"
+                ShouldShowPlaybackControls="True"
+                Source="{Binding MediaSource, Mode=TwoWay}" />-->
+
+            <Grid>
                 <toolkit:MediaElement
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Aspect="Fill"
+                    Aspect="AspectFit"
+                    HeightRequest="400"
+                    HorizontalOptions="Fill"
                     ShouldShowPlaybackControls="True"
-                    Source="{Binding MediaSource, Mode=TwoWay}" />
-
-                <!--  Button Container Grid  -->
-                <Grid>
-                    <!--  Button is placed in the same cell as the image  -->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <!--  Button  -->
-                    <Button
-                        Grid.Row="0"
-                        Command="{Binding RemoveCurrentItemCommand}"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Style="{StaticResource XButton}"
-                        VerticalOptions="Start">
-
-                        <Button.Shadow>
-                            <Shadow
-                                Brush="Black"
-                                Opacity="0.5"
-                                Radius="40"
-                                Offset="5,5" />
-                        </Button.Shadow>
-
-                        <Button.ImageSource>
-                            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5cd;" />
-                        </Button.ImageSource>
-                    </Button>
-                </Grid>
+                    Source="{Binding MediaSource, Mode=TwoWay}"
+                    VerticalOptions="Fill" />
             </Grid>
+
         </DataTemplate>
 
         <templateSelector:ContentTypeTemplateSelector
@@ -134,7 +130,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="100*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
@@ -167,7 +163,6 @@
             <local:CustomPickerContentView
                 Grid.Row="3"
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                HorizontalOptions="FillAndExpand"
                 IconSource="arrow.png"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 ItemDisplayBindingPath="Value"
@@ -175,7 +170,7 @@
                 SelectValue="{Binding SelectedAdType}"
                 SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
 
-            <Grid Grid.Row="4" HorizontalOptions="CenterAndExpand">
+            <Grid Grid.Row="4">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -212,10 +207,14 @@
                 ItemTemplate="{StaticResource typeSelector}"
                 ItemsSource="{Binding ContentTypesTemplate}" />
 
-            <ActivityIndicator
-                Grid.Row="5"
-                IsRunning="{Binding IsLoading}"
-                Style="{StaticResource globalLoading}" />
+
+
+            <views:LoadingOverlay
+                Grid.Row="0"
+                Grid.RowSpan="6"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="Fill" />
         </Grid>
     </ScrollView>
 </ContentPage>

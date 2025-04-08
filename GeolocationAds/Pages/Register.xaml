@@ -34,7 +34,7 @@
         <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
 
             <Border
-                BackgroundColor="White"
+                BackgroundColor="WhiteSmoke"
                 HeightRequest="150"
                 StrokeThickness="0"
                 VerticalOptions="Start">
@@ -70,52 +70,11 @@
                 </CollectionView.ItemsLayout>
             </CollectionView>
 
-            <!--<VerticalStackLayout
-                Margin="0,10,0,0"
-                HorizontalOptions="Center"
-                Spacing="5">
-            -->
-            <!--  Imagen si el usuario seleccionó una  -->
-            <!--
-
-
-                <ffimageloading:CachedImage
-                    Aspect="Fill"
-                    FadeAnimationEnabled="True"
-                    IsVisible="{Binding HasProfileImage}"
-                    Source="{Binding ProfileImage}" />
-
-            -->
-            <!--  Avatar con inicial del nombre si no hay imagen  -->
-            <!--
-                <toolkit:AvatarView
-                    BackgroundColor="LightGray"
-                    CornerRadius="50"
-                    FontAttributes="Bold"
-                    FontSize="36"
-                    HeightRequest="100"
-                    HorizontalOptions="Center"
-                    IsVisible="{Binding HasProfileImage, Converter={StaticResource InverseBoolConverter}}"
-                    Text="{Binding Avatar}"
-                    TextColor="Black"
-                    WidthRequest="100" />
-
-            -->
-            <!--  Botón para seleccionar imagen  -->
-            <!--
-                <Button
-                    Command="{Binding SelectProfileImageCommand}"
-                    HorizontalOptions="Center"
-                    Text="Seleccionar imagen" />
-            </VerticalStackLayout>-->
-
             <view:ProfileImageView
                 Avatar="{Binding Avatar}"
                 HasProfileImage="{Binding HasProfileImage}"
                 ProfileImage="{Binding ProfileImage}"
                 SelectProfileImageCommand="{Binding SelectProfileImageCommand}" />
-
-
 
             <!--  Section Title for Personal Information  -->
             <Label Style="{StaticResource globalLabel}" Text="Personal Information" />
@@ -169,15 +128,7 @@
                 Placeholder="Password"
                 Text="{Binding Model.Login.Password, Mode=TwoWay}" />
 
-            <ContentView
-                x:Name="LoadingIndicatorContainer"
-                Grid.Row="8"
-                IsVisible="{Binding IsLoading}"
-                VerticalOptions="FillAndExpand">
-                <ContentView.Content>
-                    <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource globalLoading}" />
-                </ContentView.Content>
-            </ContentView>
+            <view:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

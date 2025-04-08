@@ -19,6 +19,7 @@
             TextColor="White" />
 
         <Label
+            FontAttributes="Bold"
             HorizontalOptions="End"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             Text="{Binding IsExpanded, Converter={StaticResource BoolToTextConverter}, ConverterParameter='More,Less'}"

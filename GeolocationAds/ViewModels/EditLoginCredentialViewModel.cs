@@ -15,6 +15,8 @@ namespace GeolocationAds.ViewModels
             UpdateModel();
 
             RegisterForLoginUpdates();
+
+            RegisterForSignOutMessage();
         }
 
         public void UpdateModel()
@@ -22,7 +24,7 @@ namespace GeolocationAds.ViewModels
             IsInternalUser = LogUserPerfilTool.LogUser.Login.IsInternalUser();
         }
 
-        private  void RegisterForLoginUpdates()
+        private void RegisterForLoginUpdates()
         {
             WeakReferenceMessenger.Default.Register<UpdateMessage<ToolsLibrary.Models.Login>>(this, (r, m) =>
             {
@@ -36,6 +38,11 @@ namespace GeolocationAds.ViewModels
                     });
                 }
             });
+        }
+
+        protected override async Task OnSignOutMessageReceivedAsync()
+        {
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }

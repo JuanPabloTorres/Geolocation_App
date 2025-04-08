@@ -10,7 +10,7 @@ public partial class EditAdvertisment : ContentPage
 {
     private EditAdvertismentViewModel2 viewModel;
 
-    private const int MaxRetryCount = 3;
+   
 
     public EditAdvertisment(EditAdvertismentViewModel2 editAdvertismentViewModel)
     {
@@ -20,9 +20,17 @@ public partial class EditAdvertisment : ContentPage
 
         BindingContext = editAdvertismentViewModel;
 
-        contentCollection.Loaded += ContentCollection_Loaded; ;
+        //contentCollection.Loaded += ContentCollection_Loaded; ;
 
-        contentCollection.Scrolled += Handle_Scrolled;
+        //contentCollection.Scrolled += Handle_Scrolled;
+    }
+
+    private void OnWebViewLoaded(object sender, EventArgs e)
+    {
+        if (sender is WebView webView && webView.BindingContext is ContentTypeTemplateViewModel2 viewModel)
+        {
+            viewModel.AttachWebView(webView);
+        }
     }
 
     private async void Handle_Scrolled(object sender, ItemsViewScrolledEventArgs e)

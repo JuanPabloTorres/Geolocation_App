@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.TemplateViewModel;
@@ -69,7 +71,7 @@ namespace GeolocationAds.ViewModels
                 Location = location,
                 Label = this.Model.Title,
                 Address = this.Model.Description,
-                Type = Microsoft.Maui.Controls.Maps.PinType.Generic,
+                Type = Microsoft.Maui.Controls.Maps.PinType.SavedPin,
                 MarkerId = geo.ID
             };
 
@@ -87,20 +89,18 @@ namespace GeolocationAds.ViewModels
 
                 var _apiResponse = await this.service.Get(this.Model.ID);
 
-                if (_apiResponse.IsSuccess)
+                if (!_apiResponse.IsSuccess)
                 {
-                    foreach (var geo in _apiResponse.Data.GeolocationAds)
-                    {
-                        AddPinToPositions(geo);
-
-                        var _cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService, HandleItemDeletedEventAsync);
-
-                        this.LocationCardViewModels.Add(_cardViewModel);
-                    }
+                    throw new Exception(_apiResponse.Message);
                 }
-                else
+
+                foreach (var geo in _apiResponse.Data.GeolocationAds)
                 {
-                    await CommonsTool.DisplayAlert("Error", _apiResponse.Message);
+                    AddPinToPositions(geo);
+
+                    var _cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(geo, this.containerManageLocation.GeolocationAdService, HandleItemDeletedEventAsync);
+
+                    this.LocationCardViewModels.Add(_cardViewModel);
                 }
             });
         }
@@ -120,10 +120,7 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-        private void _pin_MarkerClicked(object sender, PinClickedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         [RelayCommand]
         public async Task CreateAdToLocation(Location? location)
@@ -139,9 +136,7 @@ namespace GeolocationAds.ViewModels
 
                     if (!locationResponse.IsSuccess)
                     {
-                        await CommonsTool.DisplayAlert("Error", locationResponse.Message);
-
-                        return;
+                        throw new Exception(locationResponse.Message);
                     }
 
                     position = locationResponse.Data;
@@ -156,24 +151,22 @@ namespace GeolocationAds.ViewModels
 
                 var apiResponse = await this.containerManageLocation.GeolocationAdService.Add(newLocation);
 
-                if (apiResponse.IsSuccess)
+                if (!apiResponse.IsSuccess)
                 {
-                    AddPinToPositions(apiResponse.Data);
-
-                    var cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(
-                        apiResponse.Data,
-                        this.containerManageLocation.GeolocationAdService,
-                        HandleItemDeletedEventAsync
-                    );
-
-                    this.LocationCardViewModels.Add(cardViewModel);
-
-                    await CommonsTool.DisplayAlert("Notification", apiResponse.Message);
+                    throw new Exception(apiResponse.Message);
                 }
-                else
-                {
-                    await CommonsTool.DisplayAlert("Error", apiResponse.Message);
-                }
+
+                AddPinToPositions(apiResponse.Data);
+
+                var cardViewModel = new LocationCardViewModel<GeolocationAd, IGeolocationAdService>(
+                    apiResponse.Data,
+                    this.containerManageLocation.GeolocationAdService,
+                    HandleItemDeletedEventAsync
+                );
+
+                this.LocationCardViewModels.Add(cardViewModel);
+
+                await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
             });
         }
     }

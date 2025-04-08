@@ -45,41 +45,6 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        //public async Task<ResponseTool<User>> VerifyCredential(Login credential)
-        //{
-        //    ResponseTool<User> response = null;
-
-        // try { // Primero obtenemos el usuario que coincide con el nombre de usuario proporcionado
-        // var foundLogin = await _context.Logins .Where(v => v.Username == credential.Username) .FirstOrDefaultAsync();
-
-        // // Si no se encuentra el usuario, devolvemos una respuesta de credenciales inválidas if
-        // (foundLogin.IsObjectNull() || !BCrypt.Net.BCrypt.Verify(credential.Password,
-        // foundLogin.HashPassword)) { response = ResponseFactory<User>.BuildFail("Invalid
-        // Credential", null, ToolsLibrary.Tools.Type.NotFound);
-
-        // return response; }
-
-        // // Si las credenciales son válidas, obtenemos el usuario asociado var foundUser = await
-        // _context.Users .Where(v => v.ID == foundLogin.UserId) .Include(u => u.Login) .FirstOrDefaultAsync();
-
-        // if (!foundUser.IsObjectNull()) { // Verificamos el estado del usuario if
-        // (foundUser.UserStatus == UserStatus.ResetPassword) { response =
-        // ResponseFactory<User>.BuildFail("User Reset Password", null, ToolsLibrary.Tools.Type.Fail);
-
-        // return response; }
-
-        // response = ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser,
-        // ToolsLibrary.Tools.Type.Found); } else { response =
-        // ResponseFactory<User>.BuildFail("Invalid Credential", null,
-        // ToolsLibrary.Tools.Type.NotFound); }
-
-        // return response; } catch (Exception ex) { response =
-        // ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-
-        //        return response;
-        //    }
-        //}
-
         public async Task<ResponseTool<User>> VerifyCredential(Login credential)
         {
             try
@@ -156,50 +121,5 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
-
-        //public async Task<ResponseTool<User>> VerifyCredentialByProvider(Login credential)
-        //{
-        //    try
-        //    {
-        //        User foundUser = null;
-
-        //        if (credential.Provider == ToolsLibrary.Enums.Providers.Google)
-        //        {
-        //            // Intentar encontrar el login con GoogleId coincidente
-        //            var foundLogin = await _context.Logins.Include(u => u.User).FirstOrDefaultAsync(v => v.GoogleId == credential.GoogleId);
-
-        //            if (!foundLogin.IsObjectNull())
-        //            {
-        //                foundUser = foundLogin.User;
-        //            }
-        //        }
-
-        //        if (credential.Provider == ToolsLibrary.Enums.Providers.Facebook)
-        //        {
-        //            // Intentar encontrar el login con GoogleId coincidente
-        //            var foundLogin = await _context.Logins.Include(u => u.User).FirstOrDefaultAsync(v => v.FacebookId == credential.FacebookId);
-
-        //            if (!foundLogin.IsObjectNull())
-        //            {
-        //                foundUser = foundLogin.User;
-        //            }
-        //        }
-
-        //        // Verifica si se encontró el usuario
-        //        if (foundUser.IsObjectNull())
-        //        {
-        //            return ResponseFactory<User>.BuildFail("User not found", null, ToolsLibrary.Tools.Type.NotFound);
-        //        }
-
-        //        // Si todas las verificaciones pasan, devuelve una respuesta exitosa
-        //        return ResponseFactory<User>.BuildSuccess("Valid Credential", foundUser, ToolsLibrary.Tools.Type.Found);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Manejo genérico de excepciones
-        //        return ResponseFactory<User>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
     }
 }

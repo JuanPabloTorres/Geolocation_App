@@ -20,6 +20,8 @@ namespace GeolocationAds.ViewModels
             : base(model, service, logUserPerfil)
         {
             UpdateModel();
+
+            RegisterForSignOutMessage();
         }
 
         public void UpdateModel()
@@ -40,6 +42,13 @@ namespace GeolocationAds.ViewModels
             {
                 Avatar = !string.IsNullOrWhiteSpace(Model.FullName) ? Model.FullName.Trim()[0].ToString().ToUpper() : "?";
             }
+        }
+
+        protected async override Task OnSignOutMessageReceivedAsync()
+        {
+            await Shell.Current.Navigation.PopAsync();
+
+           
         }
     }
 }

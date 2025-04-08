@@ -95,7 +95,7 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-  
+
 
         [RelayCommand]
         public async Task UploadContent()
@@ -223,7 +223,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-         partial void OnSelectedAdTypeChanged(AppSetting value)
+        partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             // Invoke the asynchronous method and forget it
             HandleAdTypeChangeAsync(value).ContinueWith(task =>

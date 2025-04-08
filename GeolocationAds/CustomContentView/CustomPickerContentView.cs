@@ -155,36 +155,47 @@ public class CustomPickerContentView : ContentView
 
     protected override void OnBindingContextChanged()
     {
-        if (!string.IsNullOrEmpty(ItemDisplayBindingPath))
+        try
         {
-            picker.ItemDisplayBinding = new Binding(ItemDisplayBindingPath);
-
-            // Select the first item from the ItemsSource if it's not empty
-
-            if (!DisplayItem.IsObjectNull())
+            if (!string.IsNullOrEmpty(ItemDisplayBindingPath))
             {
-                SelectedItem = DisplayItem;
-            }
-            else
-            {
-                if (ItemsSource != null && ItemsSource.GetEnumerator().MoveNext())
+                picker.ItemDisplayBinding = new Binding(ItemDisplayBindingPath);
+
+                // Select the first item from the ItemsSource if it's not empty
+
+                if (!DisplayItem.IsObjectNull())
                 {
-                    // Use LINQ to find the item with the matching "Value"
-                    var matchingItem = ItemsSource?.Cast<object>().FirstOrDefault(item =>
+                    SelectedItem = DisplayItem;
+                }
+                else
+                {
+                    if (ItemsSource != null && ItemsSource.GetEnumerator().MoveNext())
                     {
-                        // Replace "Value" with the name of the property you want to check
-                        var valueProperty = item.GetType().GetProperty("Value");
-                        if (valueProperty != null)
+                        // Use LINQ to find the item with the matching "Value"
+                        var matchingItem = ItemsSource?.Cast<object>().FirstOrDefault(item =>
                         {
-                            var itemValue = valueProperty.GetValue(item);
-                            return itemValue != null && itemValue.ToString() == SelectValue;
-                        }
-                        return false;
-                    });
+                            // Replace "Value" with the name of the property you want to check
+                            var valueProperty = item.GetType().GetProperty("Value");
 
-                    SelectedItem = ItemsSource.Cast<object>().FirstOrDefault();
+                            if (valueProperty != null)
+                            {
+                                var itemValue = valueProperty.GetValue(item);
+
+                                return itemValue != null && itemValue.ToString() == SelectValue;
+                            }
+                            return false;
+                        });
+
+                        SelectedItem = ItemsSource.Cast<object>().FirstOrDefault();
+                    }
                 }
             }
         }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+      
     }
 }

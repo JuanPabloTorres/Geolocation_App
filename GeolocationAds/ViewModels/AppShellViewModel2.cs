@@ -45,14 +45,6 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-        [RelayCommand]
-        public async Task SignOut()
-        {
-            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
-
-            await Shell.Current.GoToAsync(nameof(Login));
-
-            Shell.Current.FlyoutIsPresented = false;
-        }
+      
     }
 }

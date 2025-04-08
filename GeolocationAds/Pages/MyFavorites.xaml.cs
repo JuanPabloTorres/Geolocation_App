@@ -5,9 +5,9 @@ namespace GeolocationAds.Pages;
 
 public partial class MyFavorites : ContentPage
 {
-    private CaptureViewModel2 viewModel;
+    private CaptureViewModel viewModel;
 
-    public MyFavorites(CaptureViewModel2 captureViewModel)
+    public MyFavorites(CaptureViewModel captureViewModel)
     {
         InitializeComponent();
 
@@ -15,21 +15,10 @@ public partial class MyFavorites : ContentPage
 
         this.BindingContext = captureViewModel;
 
-        //this.paginControls.NextClicked += NextItemButton_Clicked;
-
-        //this.paginControls.BackClicked += BackItemButton_Clicked;
-
         this.paginControls.OnNextClickedAction = NextItemButton_Clicked;
 
         this.paginControls.OnBackClickedAction = BackItemButton_Clicked;
     }
-
-
-    //protected override void OnAppearing()
-    //{
-    //    CaptureTemplateViewModel2.CurrentPageContext = nameof(CaptureViewModel2);
-    //}
-
 
     private async void BackItemButton_Clicked()
     {
@@ -84,9 +73,9 @@ public partial class MyFavorites : ContentPage
             {
                 var _oldCount = GetSourceLastIndexCount();
 
-                CaptureViewModel2.PageIndex++;
+                CaptureViewModel.PageIndex++;
 
-                await this.viewModel.InitializeAsync(CaptureViewModel2.PageIndex);
+                await this.viewModel.InitializeAsync(CaptureViewModel.PageIndex);
 
                 var _newCount = GetSourceLastIndexCount();
 

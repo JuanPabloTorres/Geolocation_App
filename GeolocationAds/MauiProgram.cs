@@ -151,7 +151,7 @@ public static class MauiProgram
 
         builder.Services.AddScoped<FilterPopUpViewModel2>();
 
-        builder.Services.AddScoped<CaptureViewModel2>();
+        builder.Services.AddScoped<CaptureViewModel>();
 
         builder.Services.AddScoped<ManageLocationViewModel2>();
 

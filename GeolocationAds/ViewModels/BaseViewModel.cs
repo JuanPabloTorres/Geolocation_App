@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.AppTools;
 using GeolocationAds.Messages;
 using GeolocationAds.PopUps;
+using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -24,9 +25,7 @@ namespace GeolocationAds.ViewModels
 
         protected FilterPopUpForSearch _filterPopUpForSearch;
 
-        protected MetaDataPopUp _metaDataPopUp;
-
-        protected CompletePopUp _completePopUp;
+        protected MetaDataPopUp _metaDataPopUp;        
 
         protected FilterPopUpViewModel2 filterPopUpViewModel;
 
@@ -224,13 +223,7 @@ namespace GeolocationAds.ViewModels
 
                                 this.IsLoading = false;
 
-                                //_completePopUp = new CompletePopUp();
-
                                 await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
-
-                                //await _completePopUp.ShowStarAnimation();
-
-                                //this.Model = default(T);
 
                                 WeakReferenceMessenger.Default.Send(new CleanOnSubmitMessage<T>(this.Model));
 
@@ -384,6 +377,28 @@ namespace GeolocationAds.ViewModels
         public virtual void Initialize()
         {
             RegisterForUserUpdates();
+        }
+
+        protected virtual void RegisterForSignOutMessage()
+        {
+            if (WeakReferenceMessenger.Default.IsRegistered<SignOutMessage>(this))
+                return;
+
+            WeakReferenceMessenger.Default.Register<SignOutMessage>(this, async (r, m) =>
+            {
+                await OnSignOutMessageReceivedAsync();
+
+                this.IsLoading = false;
+            });
+        }
+
+        protected virtual async Task OnSignOutMessageReceivedAsync()
+        {
+        }
+
+        public async Task DisplayCompletePopUp()
+        {
+            await Shell.Current.CurrentPage.ShowPopupAsync(new CompletePopUp());
         }
     }
 }

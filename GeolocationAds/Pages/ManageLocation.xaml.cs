@@ -32,11 +32,7 @@ public partial class ManageLocation : ContentPage
 
             if (!_currentLocationResponse.IsSuccess)
             {
-                //await Shell.Current.DisplayAlert("Error", _currentLocation.Message, "OK");
-
                 throw new Exception(_currentLocationResponse.Message);
-
-                return;
             }
 
             MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocationResponse.Data, Distance.FromMiles(0.1));
