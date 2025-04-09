@@ -92,6 +92,8 @@ namespace GeolocationAds.AppTools
             }
         }
 
+       
+
         public static async Task<ContentTypeTemplateViewModel2> GetDefaultContentTypeTemplateViewModel(int? userId)
         {
             try

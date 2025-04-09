@@ -133,6 +133,11 @@ namespace GeolocationAds.Services
         {
             try
             {
+                if (!await IsConnectedToInternetAsync())
+                {
+                    return ResponseFactory<TResponse>.BuildFail("No estás conectado a Internet. Verifica tu conexión e inténtalo nuevamente.", default);
+                }
+
                 var response = await httpCall();
 
                 if (IsTokenExpired(response))
@@ -160,6 +165,13 @@ namespace GeolocationAds.Services
         {
             // ⛔ Token expirado, notificar al ViewModel para cerrar sesión
             WeakReferenceMessenger.Default.Send(new SignOutMessage("SessionExpired"));
+        }
+
+        private async Task<bool> IsConnectedToInternetAsync()
+        {
+            var current = Connectivity.Current.NetworkAccess;
+
+            return current == NetworkAccess.Internet;
         }
     }
 }
