@@ -154,7 +154,7 @@ namespace GeolocationAdsAPI.Repositories
                 ContentName = ct.ContentName ?? string.Empty,
                 Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
                 FileSize = ct.FileSize,
-            })       
+            })
             .Take(1)
             .ToList(),
         Settings = s.Settings
@@ -272,7 +272,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 existingAdvertisement.Settings = toUpdate.Settings;
 
-                existingAdvertisement.SetUpdateInformation(toUpdate.UpdateBy);
+                existingAdvertisement.SetUpdateInformation(toUpdate.UpdateBy.Value);
 
                 _context.Entry(existingAdvertisement).State = EntityState.Modified;
 
@@ -285,111 +285,6 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
-        //public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
-        //{
-        //    try
-        //    {
-        //        await this.UpdateAd(id, updatedAdvertisement);
-
-        // await this.contentTypeRepository.UpdateContentTypesOfAd(id,
-        // updatedAdvertisement.UpdateBy, updatedAdvertisement.Contents);
-
-        //        return ResponseFactory<Advertisement>.BuildSuccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
-
-        //public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
-        //{
-        //    try
-        //    {
-        //        // 🔹 Cargar el anuncio existente sin rastreo para evitar conflictos de seguimiento
-        //        var existingAdvertisement = await _context.Advertisements
-        //            .AsNoTracking()
-        //            .Include(a => a.Contents)
-        //            .Include(a => a.Settings)
-        //            .FirstOrDefaultAsync(a => a.ID == id);
-
-        //        if (existingAdvertisement.IsObjectNull())
-        //        {
-        //            return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
-        //        }
-
-        //        // Copy scalar properties
-        //        existingAdvertisement.Title = updatedAdvertisement.Title;
-
-        //        existingAdvertisement.Description = updatedAdvertisement.Description;
-
-        //        existingAdvertisement.UpdateDate = DateTime.UtcNow;
-
-        //        existingAdvertisement.UpdateBy = updatedAdvertisement.UpdateBy;
-        //        // Add more properties as needed
-
-        //        // Update nested collections (Contents, Settings)
-
-        //        // Handle the Contents collection updates carefully
-        //        var updatedContentsIds = updatedAdvertisement.Contents.Select(c => c.ID).ToList();
-
-        //        foreach (var existingContent in existingAdvertisement.Contents.ToList())
-        //        {
-        //            var updatedContent = updatedAdvertisement.Contents.FirstOrDefault(c => c.ID == existingContent.ID);
-
-        //            if (!updatedContent.IsObjectNull() && updatedContent.Type == ContentVisualType.Video)
-        //            {
-        //                updatedContent.CreateDate = existingContent.CreateDate;
-
-        //                updatedContent.CreateBy = existingContent.CreateBy;
-
-        //                //updatedContent.UpdateBy = updatedAdvertisement.UpdateBy;
-
-        //                //updatedContent.UpdateDate = DateTime.Now;
-
-        //                updatedContent.SetUpdateInformation(updatedAdvertisement.UpdateBy);
-
-        //                var _contentBytes = await this.contentTypeRepository.GetContentById(updatedContent.ID);
-
-        //                updatedContent.Content = ApiCommonsTools.Combine(_contentBytes.Data);
-
-        //                _context.Entry(existingContent).CurrentValues.SetValues(updatedContent);
-        //            }
-        //            else
-        //            {
-        //                _context.ContentTypes.Remove(existingContent);
-        //            }
-        //        }
-
-        //        // Add new contents
-        //        foreach (var newContent in updatedAdvertisement.Contents)
-        //        {
-        //            if (!existingAdvertisement.Contents.Any(c => c.ID == newContent.ID))
-        //            {
-        //                newContent.SetUpdateInformation(updatedAdvertisement.UpdateBy);
-
-        //                existingAdvertisement.Contents.Add(newContent);
-        //            }
-        //        }
-
-        //        existingAdvertisement.Contents = updatedAdvertisement.Contents;
-
-        //        existingAdvertisement.Settings = updatedAdvertisement.Settings;
-
-        //        _context.Update(existingAdvertisement);
-
-        //        //_context.Entry(existingAdvertisement).CurrentValues.SetValues(updatedAdvertisement);
-
-        //        await _context.SaveChangesAsync();
-
-        //        return ResponseFactory<Advertisement>.BuildSuccess("Advertisement updated successfully.", null, ToolsLibrary.Tools.Type.Updated);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
 
         public override async Task<ResponseTool<Advertisement>> UpdateAsync(int id, Advertisement updatedAdvertisement)
         {
@@ -431,7 +326,7 @@ namespace GeolocationAdsAPI.Repositories
 
                         updatedContent.CreateBy = existingContent.CreateBy;
 
-                        updatedContent.SetUpdateInformation(updatedAdvertisement.UpdateBy);
+                        updatedContent.SetUpdateInformation(updatedAdvertisement.UpdateBy.Value);
 
                         // Obtener el contenido actualizado desde la base de datos si es necesario
                         var _contentBytes = await this.contentTypeRepository.GetContentById(updatedContent.ID);
@@ -453,7 +348,7 @@ namespace GeolocationAdsAPI.Repositories
                 {
                     if (!existingAdvertisement.Contents.Any(c => c.ID == newContent.ID))
                     {
-                        newContent.SetUpdateInformation(updatedAdvertisement.UpdateBy);
+                        newContent.SetUpdateInformation(updatedAdvertisement.UpdateBy.Value);
 
                         _context.Attach(newContent);  // Asegurar que EF no duplique el seguimiento
 
@@ -479,7 +374,6 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<Advertisement>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
 
         public async Task UpdateContentsAsync(IEnumerable<ContentType> existingContents, IEnumerable<ContentType> updatedContents, int updatedByUserId, int advertisingId)
         {

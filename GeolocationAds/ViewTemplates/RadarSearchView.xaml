@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="GeolocationAds.ViewTemplates.RadarSearchView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    HeightRequest="200"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
+    WidthRequest="200">
+
+    <skia:SKLottieView
+        x:Name="captureAnimation"
+        HeightRequest="200"
+        HorizontalOptions="Center"
+        IsAnimationEnabled="True"
+        RepeatCount="-1"
+        Source="nearRadar.json"
+        VerticalOptions="Center"
+        WidthRequest="200" />
+</ContentView>

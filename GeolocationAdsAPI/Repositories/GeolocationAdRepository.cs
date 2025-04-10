@@ -37,13 +37,30 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement)
-                    .ThenInclude(a => a.Settings)
-                    .Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
-                    DateTime.Now <= v.ExpirationDate &&
-                    v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId)).OrderBy(c => c.Advertisement.CreateDate)
-                    .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
-                   .Distinct().ToListAsync();
+                //var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(a => a.Settings)
+                //    .AsNoTracking()
+                //    .Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
+                //    DateTime.Now <= v.ExpirationDate &&
+                //    v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId)).OrderBy(c => c.Advertisement.CreateDate)
+                //    .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
+                //   .Distinct().ToListAsync();
+
+                var allEntities = await _context.GeolocationAds
+          .AsNoTracking()
+          .Include(v => v.Advertisement)
+              .ThenInclude(a => a.Settings)
+          .Where(v =>
+              GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
+              DateTime.Now <= v.ExpirationDate &&
+              v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId))
+          .OrderByDescending(c => c.Advertisement.CreateDate)
+          .Select(s => new GeolocationAd
+          {
+              Advertisement = s.Advertisement,
+              Latitude = s.Latitude,
+              Longitude = s.Longitude
+          })
+          .ToListAsync();
 
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Entities fetched successfully.", allEntities);
             }
@@ -96,43 +113,116 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
+        //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
+        //{
+        //    try
+        //    {
+        //        // Assume pre-calculation or efficient distance filtering
+        //        var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(a => a.Settings)
+        //            .AsNoTracking()
+        //            .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance &&
+        //            DateTime.Now <= geo.ExpirationDate &&
+        //            geo.Advertisement.Settings.Any(setting => setting.SettingId == settingId)).OrderBy(c => c.Advertisement.CreateDate)
+        //            .Select(geo => geo.AdvertisingId)
+        //            .ToListAsync();
+
+        // // Assume pre-calculation or efficient distance filtering //var allEntities = await
+        // _context.GeolocationAds // .AsNoTracking() // .Where(geo =>
+        // GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude,
+        // currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <=
+        // geo.ExpirationDate) // .Select(geo => geo.AdvertisingId) // .Distinct() // .ToListAsync();
+
+        // // var allEntities = await _context.GeolocationAds.Include(v =>
+        // v.Advertisement).ThenInclude(a => a.Settings) // .AsNoTracking() // .Where(v => //
+        // GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude,
+        // currentLocation.Longitude, v.Latitude, v.Longitude) <= distance && // DateTime.Now <=
+        // v.ExpirationDate && // v.Advertisement.Settings // .Any(setting => setting.SettingId ==
+        // settingId)) // .OrderBy(c => c.Advertisement.CreateDate) //.Select(geo =>
+        // geo.AdvertisingId) // .Distinct().ToListAsync();
+
+        // var filteredAds = _context.Advertisements .AsNoTracking() .Where(ad => allEntities.Any(a
+        // => a == ad.ID)) .OrderByDescending(ad => ad.CreateDate) // Consider ordering by a
+        // meaningful field .Select(ad => new Advertisement { ID = ad.ID, Description =
+        // ad.Description, Title = ad.Title, UserId = ad.UserId, CreateDate = ad.CreateDate,
+
+        // Contents = ad.Contents.Select(content => new ContentType { CreateDate =
+        // content.CreateDate, ID = content.ID, FileSize = content.FileSize, Type = content.Type,
+        // Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() :
+        // content.Content,// Apply byte range here Url = content.Type == ContentVisualType.URL ?
+        // content.Url : string.Empty }).Take(1).ToList(), // Only take necessary content })
+        // .Skip((pageIndex - 1) * ConstantsTools.PageSize) .Take(ConstantsTools.PageSize);
+
+        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", filteredAds);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(
+    CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
         {
             try
             {
-                // Assume pre-calculation or efficient distance filtering
-                var relevantAdIds = await _context.GeolocationAds
-                    .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <= geo.ExpirationDate)
-                    .Select(geo => geo.AdvertisingId)
-                    .Distinct()
-                    .ToListAsync();
-
-                var filteredAds = _context.Advertisements
+                var nearbyAdIds = await _context.GeolocationAds
+                    .Include(a => a.Advertisement).ThenInclude(ad => ad.Contents)
+                    .Include(a => a.Advertisement).ThenInclude(ad => ad.Settings)
                     .AsNoTracking()
-                    .Where(ad => relevantAdIds.Any(a => a == ad.ID) && ad.Settings.Any(s => s.SettingId == settingId))
-                    .OrderByDescending(ad => ad.CreateDate)  // Consider ordering by a meaningful field
+                    .Where(geo =>
+                        GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance &&
+                        DateTime.Now <= geo.ExpirationDate &&
+                        geo.Advertisement.Settings.Any(s => s.SettingId == settingId))
+                     .OrderByDescending(ad => ad.CreateDate)
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
                      .Select(ad => new Advertisement
                      {
-                         ID = ad.ID,
-                         Description = ad.Description,
-                         Title = ad.Title,
-                         UserId = ad.UserId,
-                         CreateDate = ad.CreateDate,
-
-                         Contents = ad.Contents.Select(content => new ContentType
+                         ID = ad.Advertisement.ID,
+                         Description = ad.Advertisement.Description,
+                         Title = ad.Advertisement.Title,
+                         UserId = ad.Advertisement.UserId,
+                         CreateDate = ad.Advertisement.CreateDate,
+                         Contents = ad.Advertisement.Contents.Select(content => new ContentType
                          {
                              CreateDate = content.CreateDate,
                              ID = content.ID,
                              FileSize = content.FileSize,
                              Type = content.Type,
-                             Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,// Apply byte range here
+                             Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,
                              Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
-                         }).Take(1).ToList(),  // Only take necessary content
+                         }).ToList(),
                      })
-                     .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                     .Take(ConstantsTools.PageSize);
+                    .ToListAsync();
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", filteredAds);
+                //var filteredAds = await _context.Advertisements
+                //    .AsNoTracking()
+                //    .Where(ad =>
+                //        nearbyAdIds.Contains(ad.ID) &&
+                //        ad.Settings.Any(s => s.SettingId == settingId))
+                //    .OrderByDescending(ad => ad.CreateDate)
+                //    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                //    .Take(ConstantsTools.PageSize)
+                //    .Select(ad => new Advertisement
+                //    {
+                //        ID = ad.ID,
+                //        Description = ad.Description,
+                //        Title = ad.Title,
+                //        UserId = ad.UserId,
+                //        CreateDate = ad.CreateDate,
+                //        Contents = ad.Contents.Select(content => new ContentType
+                //        {
+                //            CreateDate = content.CreateDate,
+                //            ID = content.ID,
+                //            FileSize = content.FileSize,
+                //            Type = content.Type,
+                //            Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,
+                //            Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
+                //        }).Take(1).ToList(),
+                //    })
+                //    .ToListAsync();
+
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", nearbyAdIds);
             }
             catch (Exception ex)
             {

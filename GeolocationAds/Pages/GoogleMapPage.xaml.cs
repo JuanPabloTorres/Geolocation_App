@@ -13,7 +13,7 @@ public partial class GoogleMapPage : ContentPage
 {
     private GoogleMapViewModel2 _viewModel;
 
-    private Map myMap;
+    //private Map myMap;
 
     public GoogleMapPage(GoogleMapViewModel2 googleMapViewModel)
     {
@@ -45,23 +45,26 @@ public partial class GoogleMapPage : ContentPage
             if (!locationResult.IsSuccess)
             {
                 await Shell.Current.DisplayAlert("Error", locationResult.Message, "OK");
+
                 return;
             }
 
-            var existingMap = mapContainer.Children.FirstOrDefault(v => v is Map);
+            //var existingMap = mapContainer.Children.FirstOrDefault(v => v is Map);
 
-            if (existingMap != null)
-                mapContainer.Children.Remove(existingMap);
+            //if (existingMap != null)
+            //    mapContainer.Children.Remove(existingMap);
 
             var mapSpan = MapSpan.FromCenterAndRadius(locationResult.Data, Distance.FromMiles(0.1));
 
-            myMap = new Map(mapSpan)
-            {
-                IsScrollEnabled = true,
-                IsShowingUser = true,
-                IsZoomEnabled = true,
-                MapType = MapType.Hybrid
-            };
+            //myMap = new Map(mapSpan)
+            //{
+            //    IsScrollEnabled = true,
+            //    IsShowingUser = true,
+            //    IsZoomEnabled = true,
+            //    MapType = MapType.Hybrid
+            //};
+
+            myMap.MoveToRegion(mapSpan);
 
             await _viewModel.InitializeAsync();
 
@@ -69,7 +72,7 @@ public partial class GoogleMapPage : ContentPage
 
             myMap.Pins.AddRange(pinData);
 
-            mapContainer.Children.Add(myMap);
+            //mapContainer.Children.Add(myMap);
         });
     }
 }

@@ -35,7 +35,7 @@ public partial class SearchAd : ContentPage
         }
     }
 
-    
+
 
     protected async override void OnAppearing()
     {
@@ -53,7 +53,7 @@ public partial class SearchAd : ContentPage
 
             this.paginControls.IsBackButtonVisible = false;
 
-           
+
         }
 
         //if (viewModel.SelectedAdType.IsObjectNull())
@@ -138,4 +138,21 @@ public partial class SearchAd : ContentPage
 
         this.paginControls.IsNextButtonEnabled = currentPosition < itemCount - 1;
     }
+
+    //private void CarouselView_Loaded(object sender, EventArgs e)
+    //{
+    //    // Intenta encontrar el SKLottieView dentro del RadarSearchView
+    //    if (radarView?.Content is Grid grid)
+    //    {
+    //        var lottie = grid.Children
+    //            .OfType<SkiaSharp.Extended.UI.Controls.SKLottieView>()
+    //            .FirstOrDefault();
+
+    //        if (lottie != null)
+    //        {
+    //            lottie.IsAnimationEnabled = true;
+
+    //        }
+    //    }
+    //}
 }

@@ -25,23 +25,19 @@ namespace GeolocationAds.Services
 
             string _httpResourceName = string.Empty;
 
-#if DEBUG
-            _httpResourceName = "BackendUrl";
-#endif
+//#if DEBUG
+//            _httpResourceName = "BackendUrl";
+//#endif
 
-#if IIS
-                          _httpResourceName = "IISBackendUrl";
-#endif
+//#if IIS
+//                          _httpResourceName = "IISBackendUrl";
+//#endif
 
-#if Release
-                        _httpResourceName = "ProdBackendUrl";
-#endif
+//#if Release
+//                        _httpResourceName = "ProdBackendUrl";
+//#endif
 
             this._httpClient = httpClient;
-
-            //_httpClient.Timeout = TimeSpan.FromMinutes(30); // Set the timeout here
-
-            //var backendUrl = Application.Current.Resources[_httpResourceName] as string;
 
             this.BaseApiUri = new Uri($"{backendUrl}/{typeof(T).Name}", UriKind.RelativeOrAbsolute);
         }

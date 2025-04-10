@@ -7,6 +7,7 @@
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Discover"
@@ -68,15 +69,58 @@
 
             <CarouselView.EmptyView>
 
+
+
+                <!--<ffimageloading:CachedImage
+                    Aspect="AspectFill"
+                    FadeAnimationEnabled="True"
+                    HeightRequest="150"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Source="nearradar3.gif"
+                    WidthRequest="150" />-->
+
+
+                <!--<skia:SKLottieView
+                    x:Name="captureAnimation"
+                    HeightRequest="200"
+                    IsAnimationEnabled="True"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    RepeatCount="-1"
+                    Source="nearRadar.json"
+                    WidthRequest="200" />-->
+
+                <!--<VerticalStackLayout VerticalOptions="Center">
+
+                -->
+                <!--<ContentView
+                    x:Name="EmptyViewContainer"
+                    HeightRequest="200"
+                    WidthRequest="200">
+
+
+                    <skia:SKLottieView
+                        x:Name="captureAnimation"
+                        HeightRequest="200"
+                        IsAnimationEnabled="True"
+                        RepeatCount="-1"
+                        Source="nearRadar.json"
+                        WidthRequest="200" />
+
+                </ContentView>-->
+
                 <Grid>
 
-                    <ffimageloading:CachedImage
-                        Aspect="AspectFit"
-                        FadeAnimationEnabled="True"
-                        HeightRequest="100"
-                        IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Source="radar.gif" />
+                    <views:RadarSearchView />
                 </Grid>
+
+
+
+                <!--</VerticalStackLayout>-->
+
+
+
+                <!--<views:RadarSearchView x:Name="radarView" />-->
+
             </CarouselView.EmptyView>
 
             <CarouselView.ItemsLayout>

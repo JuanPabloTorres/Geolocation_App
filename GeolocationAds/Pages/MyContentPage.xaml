@@ -86,7 +86,7 @@
             Grid.Row="2"
             AdType="{Binding SelectedAdType.Value}"
             CollectionCount="{Binding CollectionModel.Count}"
-            CountFormat="Nearby: {0:N0}"
+            CountFormat="Total: {0:N0}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ShowAdType="True"
             ShowCount="True"

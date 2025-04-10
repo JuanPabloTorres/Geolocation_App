@@ -22,10 +22,8 @@ namespace GeolocationAdsAPI.Repositories
                 {
                     return ResponseFactory<bool>.BuildSuccess("You've already captured it.", true, ToolsLibrary.Tools.Type.Exist);
                 }
-                else
-                {
-                    return ResponseFactory<bool>.BuildFail("You haven't captured it.", false, ToolsLibrary.Tools.Type.NotExist);
-                }
+
+                return ResponseFactory<bool>.BuildFail("You haven't captured it.", false, ToolsLibrary.Tools.Type.NotExist);
             }
             catch (Exception ex)
             {
@@ -37,116 +35,33 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                //var result = await _context.Captures
-                //    .Where(v =>
-                //    v.UserId == userId &&
-                //    v.Advertisements.GeolocationAds.Any(g => DateTime.Now <= g.ExpirationDate) &&
-                //    v.Advertisements.Settings.Any(s => s.SettingId == typeId))
-                //    .Include(a => a.Advertisements).ThenInclude(c => c.Contents)
-                //    .Include(s => s.Advertisements.Settings)
-                //    .Include(s => s.Advertisements.GeolocationAds)
-                //    .Select(s =>
-                //    new Capture()
-                //    {
-                //        ID = s.ID,
-                //        CreateDate = s.CreateDate,
-                //        Advertisements = new Advertisement()
-                //        {
-                //            ID = s.Advertisements.ID,
-                //            CreateDate = s.CreateDate,
-                //            Contents = s.Advertisements.Contents
-                //            .Select(ct => new ContentType
-                //            {
-                //                ID = ct.ID,
-                //                Type = ct.Type,
-                //                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,// Apply byte range here
-                //                ContentName = ct.ContentName ?? string.Empty,
-                //                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
-                //                FileSize = ct.FileSize
-                //            })
-                //            .Take(1)
-                //            .ToList(),
-                //            Title = s.Advertisements.Title,
-                //            Description = s.Advertisements.Description
-                //        }
-                //    })
-                //    .OrderByDescending(ad => ad.CreateDate)
-                //    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                //    .Take(ConstantsTools.PageSize)
-                //    .ToListAsync();
-
-
-                //          var query = _context.Captures
-                //.Where(v => v.UserId == userId &&
-                //            v.Advertisements.GeolocationAds.Any(g => DateTime.Now <= g.ExpirationDate) &&
-                //            v.Advertisements.Settings.Any(s => s.SettingId == typeId));
-
-                //          var captures = await query
-                //              .Include(a => a.Advertisements).ThenInclude(c => c.Contents)
-                //              .Include(s => s.Advertisements.Settings)
-                //              .Include(s => s.Advertisements.GeolocationAds)
-                //              .Select(s => new Capture
-                //              {
-                //                  ID = s.ID,
-                //                  CreateDate = s.CreateDate,
-                //                  Advertisements = new Advertisement
-                //                  {
-                //                      ID = s.Advertisements.ID,
-                //                      CreateDate = s.CreateDate,
-                //                      Contents = s.Advertisements.Contents
-                //                          .Select(ct => new ContentType
-                //                          {
-                //                              ID = ct.ID,
-                //                              Type = ct.Type,
-                //                              Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content, // Apply byte range here
-                //                              ContentName = ct.ContentName ?? string.Empty,
-                //                              Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
-                //                              FileSize = ct.FileSize
-                //                          })
-                //                          .Take(1)
-                //                          .ToList(),
-                //                      Title = s.Advertisements.Title,
-                //                      Description = s.Advertisements.Description
-                //                  }
-                //              })
-                //              .OrderByDescending(ad => ad.CreateDate)
-                //              .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                //              .Take(ConstantsTools.PageSize)
-                //              .ToListAsync();
-
-                var captures = await _context.Captures
-    .Where(v => v.UserId == userId &&
+                var captures = await _context.Captures.Where(v => v.UserId == userId &&
                 v.Advertisements.GeolocationAds.Any(g => DateTime.Now <= g.ExpirationDate) &&
                 v.Advertisements.Settings.Any(s => s.SettingId == typeId))
-    .Select(s => new Capture
-    {
-        ID = s.ID,
-        CreateDate = s.CreateDate,
-        Advertisements = new Advertisement
-        {
-            ID = s.Advertisements.ID,
-            CreateDate = s.Advertisements.CreateDate,
-            Contents = s.Advertisements.Contents
-                .Select(ct => new ContentType
-                {
-                    ID = ct.ID,
-                    Type = ct.Type,
-                    Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content, // Apply byte range here
-                    ContentName = ct.ContentName ?? string.Empty,
-                    Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
-                    FileSize = ct.FileSize
-                })
-                .Take(1)
-                .ToList(),
-            Title = s.Advertisements.Title,
-            Description = s.Advertisements.Description
-        }
-    })
-    .OrderByDescending(ad => ad.CreateDate)
-    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-    .Take(ConstantsTools.PageSize)
-    .ToListAsync();
-
+                    .Select(s => new Capture
+                    {
+                        ID = s.ID,
+                        CreateDate = s.CreateDate,
+                        Advertisements = new Advertisement
+                        {
+                            ID = s.Advertisements.ID,
+                            CreateDate = s.Advertisements.CreateDate,
+                            Contents = s.Advertisements.Contents
+                            .Select(ct => new ContentType
+                            {
+                                ID = ct.ID,
+                                Type = ct.Type,
+                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,
+                                ContentName = ct.ContentName ?? string.Empty,
+                                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
+                                FileSize = ct.FileSize
+                            })
+                            .Take(1).ToList(),
+                            Title = s.Advertisements.Title,
+                            Description = s.Advertisements.Description
+                        }
+                    })
+                    .OrderByDescending(ad => ad.CreateDate).Skip((pageIndex - 1) * ConstantsTools.PageSize).Take(ConstantsTools.PageSize).ToListAsync();
 
                 return ResponseFactory<IEnumerable<Capture>>.BuildSuccess("Entity found.", captures);
             }

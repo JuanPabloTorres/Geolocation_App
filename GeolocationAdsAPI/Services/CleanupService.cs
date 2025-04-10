@@ -13,37 +13,6 @@ namespace GeolocationAdsAPI.Services
             wwwrootPath = $"{env.WebRootPath}\\hls";
         }
 
-        //protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        //{
-        //    while (!stoppingToken.IsCancellationRequested)
-        //    {
-        //        //var files = Directory.GetFiles(wwwrootPath);
-
-        //        var files = Directory.GetFiles(wwwrootPath, "*.*", SearchOption.AllDirectories);
-
-        //        foreach (var file in files)
-        //        {
-        //            try
-        //            {
-        //                //var fileInfo = new FileInfo(file);
-
-        //                var directoryInfo = new DirectoryInfo(directory);
-
-        //                if (DateTime.UtcNow - fileInfo.LastAccessTimeUtc > fileAgeLimit)
-        //                {
-        //                    fileInfo.Delete();
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                // Log or handle exceptions
-        //            }
-        //        }
-
-        //        await Task.Delay(TimeSpan.FromHours(24), stoppingToken); // Ejecutar una vez al día
-        //    }
-        //}
-
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
@@ -64,8 +33,8 @@ namespace GeolocationAdsAPI.Services
                     }
                     catch (Exception ex)
                     {
-                        // Log or handle exceptions
-                        // For example, you might want to log the exception message along with the directory path
+                        // Log or handle exceptions For example, you might want to log the exception
+                        // message along with the directory path
                     }
                 }
 

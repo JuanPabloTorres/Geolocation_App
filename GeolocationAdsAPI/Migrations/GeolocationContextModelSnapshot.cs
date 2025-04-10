@@ -41,15 +41,18 @@ namespace GeolocationAdsAPI.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -79,13 +82,16 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SettingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -111,14 +117,17 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("SettingName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Value")
@@ -135,9 +144,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 1,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "MeterDistance",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "10"
                         },
                         new
@@ -145,9 +153,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 2,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "MeterDistance",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "20"
                         },
                         new
@@ -155,9 +162,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 3,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "MeterDistance",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "30"
                         },
                         new
@@ -165,9 +171,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 4,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "MeterDistance",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "40"
                         },
                         new
@@ -175,9 +180,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 5,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "MeterDistance",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "50"
                         },
                         new
@@ -185,9 +189,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 6,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "AdTypes",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "Broadcast"
                         },
                         new
@@ -195,9 +198,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 7,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "AdTypes",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "Social"
                         },
                         new
@@ -205,9 +207,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 8,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "AdTypes",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "Store"
                         },
                         new
@@ -215,9 +216,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 9,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "AdTypes",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "Offer"
                         },
                         new
@@ -225,9 +225,8 @@ namespace GeolocationAdsAPI.Migrations
                             ID = 10,
                             CreateBy = 0,
                             CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = false,
                             SettingName = "AdTypes",
-                            UpdateBy = 0,
-                            UpdateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Value = "News"
                         });
                 });
@@ -249,10 +248,13 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -294,13 +296,16 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
@@ -333,13 +338,16 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("ExpTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsValid")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -370,16 +378,19 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -412,6 +423,9 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<string>("HashPassword")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -419,10 +433,10 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<int>("Provider")
                         .HasColumnType("int");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -462,6 +476,9 @@ namespace GeolocationAdsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("LoginId")
                         .HasColumnType("int");
 
@@ -472,10 +489,10 @@ namespace GeolocationAdsAPI.Migrations
                     b.Property<byte[]>("ProfileImageBytes")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("UpdateBy")
+                    b.Property<int?>("UpdateBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserStatus")

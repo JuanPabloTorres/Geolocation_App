@@ -54,8 +54,6 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-
-
         [HttpPost("[action]/{distance}/{settinTypeId}")]
         public async Task<IActionResult> FindAdsNearby(CurrentLocation currentLocation, int distance, int settinTypeId)
         {
@@ -90,8 +88,6 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
-
-
         [HttpPost("[action]/{distance}/{settingTypeId}/{pageIndex}")]
         public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settingTypeId, int pageIndex)
         {
@@ -111,8 +107,6 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("No nearby content found.", advertisements, ToolsLibrary.Tools.Type.NotFound));
                 }
 
-                //var adsNear = advertisements.OrderByDescending(o => o.CreateDate).Reverse().ToList();
-
                 // Assuming the data is ordered in the repository method itself
                 return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", advertisements, ToolsLibrary.Tools.Type.DataFound));
             }
@@ -122,7 +116,6 @@ namespace GeolocationAdsAPI.Controllers
                 return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception));
             }
         }
-
 
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> Remove(int id)

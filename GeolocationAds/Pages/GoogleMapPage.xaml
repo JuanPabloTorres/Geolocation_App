@@ -33,14 +33,17 @@
 
         <!--  Mapa u otro contenido principal se inyecta dinámicamente desde el code-behind  -->
 
+        <!--  Mapa base  -->
+        <maps:Map
+            x:Name="myMap"
+            IsScrollEnabled="True"
+            IsShowingUser="True"
+            IsZoomEnabled="True"
+            MapType="Hybrid" />
+
         <views:LoadingOverlay IsVisible="{Binding IsLoading}" />
 
-        <!--  Bottom Status Bar  -->
-        <!--<views:StatusBarOverlay
-            AdType="{Binding SelectedAdType.Value}"
-            CollectionCount="{Binding CollectionModel.Count}"
-            Distance="{Binding SelectedDistance}"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}" />-->
+
 
         <views:StatusBarOverlay
             AdType="{Binding SelectedAdType.Value}"

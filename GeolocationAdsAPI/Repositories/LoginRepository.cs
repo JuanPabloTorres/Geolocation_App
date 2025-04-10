@@ -29,7 +29,7 @@ namespace GeolocationAdsAPI.Repositories
                     return response;
                 }
 
-                _toUpdate.SetUpdateInformation(entity.UpdateBy);
+                _toUpdate.SetUpdateInformation(entity.UpdateBy.Value);
 
                 _toUpdate.HashPassword = CommonsTool.GenerateHashPassword(entity.Password);
 
