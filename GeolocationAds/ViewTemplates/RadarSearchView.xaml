@@ -4,18 +4,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-    HeightRequest="200"
     HorizontalOptions="Center"
-    VerticalOptions="Center"
-    WidthRequest="200">
+    VerticalOptions="Center">
+
+
 
     <skia:SKLottieView
         x:Name="captureAnimation"
-        HeightRequest="200"
-        HorizontalOptions="Center"
+        HeightRequest="300"
+        HorizontalOptions="Fill"
         IsAnimationEnabled="True"
+        IsClippedToBounds="True"
         RepeatCount="-1"
         Source="nearRadar.json"
-        VerticalOptions="Center"
-        WidthRequest="200" />
+        VerticalOptions="Fill"
+        WidthRequest="300" />
+
+
 </ContentView>
