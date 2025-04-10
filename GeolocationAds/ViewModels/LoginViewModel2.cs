@@ -317,7 +317,7 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         }
     }
 
-    async partial void OnIsRememberChanged(bool value)
+     async partial void OnIsRememberChanged(bool value)
     {
         {
             if (value)
@@ -479,31 +479,29 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
         {
             Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
 
-            var result = await this.service.SignOutAsync(this._containerLoginServices.LogUserPerfilTool.LogUser.Login);
+            var apiResponse = await this.service.SignOutAsync(this._containerLoginServices.LogUserPerfilTool.LogUser.Login);
 
-            if (result.IsSuccess)
+            if (!apiResponse.IsSuccess)
             {
-                // Limpia la sesión local
-                LogUserPerfilTool.LogUser = null;
-
-                LogUserPerfilTool.JsonToken = string.Empty;
-
-                // 🧠 Cancelar mensajes
-                //WeakReferenceMessenger.Default.UnregisterAll(this);
-
-                await Task.Delay(1000);
-
-                // Evita que regrese con el botón atrás
-                Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
-
-                await Shell.Current.GoToAsync(nameof(Login));
-
-                Shell.Current.FlyoutIsPresented = false;
+                throw new Exception(apiResponse.Message);
             }
-            else
-            {
-                await CommonsTool.DisplayAlert("Error", result.Message ?? "No se pudo cerrar sesión.");
-            }
+
+            // Limpia la sesión local
+            LogUserPerfilTool.LogUser = null;
+
+            LogUserPerfilTool.JsonToken = string.Empty;
+
+            // 🧠 Cancelar mensajes
+            //WeakReferenceMessenger.Default.UnregisterAll(this);
+
+            await Task.Delay(1000);
+
+            // Evita que regrese con el botón atrás
+            Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);
+
+            await Shell.Current.GoToAsync(nameof(Login));
+
+            Shell.Current.FlyoutIsPresented = false;
         });
     }
 }

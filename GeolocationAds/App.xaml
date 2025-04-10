@@ -355,11 +355,12 @@
             </Style>
 
             <Style x:Key="emptyCollectionLabel" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="FontFamily" Value="RobotoBold" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
             </Style>
 
             <Style x:Key="ErrorLabelStyle" TargetType="Label">

@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -62,6 +63,11 @@ namespace GeolocationAdsAPI.Repositories
                         }
                     })
                     .OrderByDescending(ad => ad.CreateDate).Skip((pageIndex - 1) * ConstantsTools.PageSize).Take(ConstantsTools.PageSize).ToListAsync();
+
+                if (captures.IsEmpty())
+                {
+                    return ResponseFactory<IEnumerable<Capture>>.BuildFail($"No Captures found.", captures, ToolsLibrary.Tools.Type.EmptyCollection);
+                }
 
                 return ResponseFactory<IEnumerable<Capture>>.BuildSuccess("Entity found.", captures);
             }

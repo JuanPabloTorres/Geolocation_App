@@ -145,7 +145,7 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (dataFoundResult.IsEmpty())
                 {
-                    return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess($"Empty Collection", dataFoundResult, ToolsLibrary.Tools.Type.EmptyCollection);
+                    return ResponseFactory<IEnumerable<Advertisement>>.BuildFail($"Empty Collection", dataFoundResult, ToolsLibrary.Tools.Type.EmptyCollection);
                 }
 
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found", dataFoundResult, ToolsLibrary.Tools.Type.DataFound);

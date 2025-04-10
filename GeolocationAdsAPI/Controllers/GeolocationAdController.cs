@@ -95,20 +95,17 @@ namespace GeolocationAdsAPI.Controllers
             {
                 var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settingTypeId, pageIndex);
 
-                if (!geoAdResponse.IsSuccess)
-                {
-                    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
-                }
+                //if (!geoAdResponse.IsSuccess)
+                //{
+                //    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
+                //}
 
-                var advertisements = geoAdResponse.Data;
+                //var advertisements = geoAdResponse.Data;
 
-                if (advertisements.IsObjectNull() || !advertisements.Any())
-                {
-                    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("No nearby content found.", advertisements, ToolsLibrary.Tools.Type.NotFound));
-                }
 
+                return Ok(geoAdResponse);
                 // Assuming the data is ordered in the repository method itself
-                return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", advertisements, ToolsLibrary.Tools.Type.DataFound));
+                //return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", advertisements, ToolsLibrary.Tools.Type.DataFound));
             }
             catch (Exception ex)
             {

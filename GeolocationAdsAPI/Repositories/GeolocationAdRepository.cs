@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -195,34 +196,12 @@ namespace GeolocationAdsAPI.Repositories
                      })
                     .ToListAsync();
 
-                //var filteredAds = await _context.Advertisements
-                //    .AsNoTracking()
-                //    .Where(ad =>
-                //        nearbyAdIds.Contains(ad.ID) &&
-                //        ad.Settings.Any(s => s.SettingId == settingId))
-                //    .OrderByDescending(ad => ad.CreateDate)
-                //    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-                //    .Take(ConstantsTools.PageSize)
-                //    .Select(ad => new Advertisement
-                //    {
-                //        ID = ad.ID,
-                //        Description = ad.Description,
-                //        Title = ad.Title,
-                //        UserId = ad.UserId,
-                //        CreateDate = ad.CreateDate,
-                //        Contents = ad.Contents.Select(content => new ContentType
-                //        {
-                //            CreateDate = content.CreateDate,
-                //            ID = content.ID,
-                //            FileSize = content.FileSize,
-                //            Type = content.Type,
-                //            Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,
-                //            Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
-                //        }).Take(1).ToList(),
-                //    })
-                //    .ToListAsync();
+                if (nearbyAdIds.IsEmpty())
+                {
+                    return ResponseFactory<IEnumerable<Advertisement>>.BuildFail("No nearby content found.", nearbyAdIds, ToolsLibrary.Tools.Type.EmptyCollection);
+                }
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", nearbyAdIds);
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found.", nearbyAdIds,ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {

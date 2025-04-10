@@ -41,31 +41,7 @@ public partial class SearchAd : ContentPage
     protected async override void OnAppearing()
     {
 
-        // Crea el SKLottieView manualmente
-        //var radarAnimation = new SKLottieView
-        //{
-        //    Source = (SKLottieImageSource)SKLottieImageSource.FromFile( "nearRadar.json"),
-        //    RepeatCount = -1,
-        //    HeightRequest = 200,
-        //    WidthRequest = 200,
-        //    HorizontalOptions = LayoutOptions.Center,
-        //    VerticalOptions = LayoutOptions.Center,
-        //    IsAnimationEnabled = true
-        //};
-
-        //// Usa SKLottieImageSource en lugar de string directamente
-        //var source = new SKLottieImageSource
-        //{
-        //    Source = "nearRadar.json"
-        //};
-
-        // Asignamos el LottieView como EmptyView
-        //carouselView.EmptyView = new ContentView
-        //{
-        //    Content = radarAnimation,
-        //    HorizontalOptions = LayoutOptions.Center,
-        //    VerticalOptions = LayoutOptions.Center
-        //};
+      
 
         if (this.viewModel.NearByTemplateViewModels.Count == 0)
         {

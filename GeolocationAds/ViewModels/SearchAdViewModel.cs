@@ -90,7 +90,9 @@ namespace GeolocationAds.ViewModels
             var apiResponse = await service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID, pageIndex);
 
             if (!apiResponse.IsSuccess)
+            {
                 throw new Exception(apiResponse.Message);
+            }
 
             var viewModels = apiResponse.Data
                 .Distinct()
@@ -169,7 +171,7 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-        protected async override Task OnSignOutMessageReceivedAsync()
+        protected override async Task OnSignOutMessageReceivedAsync()
         {
             PageIndex = 1;
 

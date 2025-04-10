@@ -22,9 +22,6 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private AppSetting selectedAdType;
 
-        [ObservableProperty]
-        private string isResetMessage = "No content available.";
-
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
         public MyContentViewModel(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
@@ -120,15 +117,13 @@ namespace GeolocationAds.ViewModels
         {
             await RunWithLoadingIndicator(async () =>
             {
-                IsResetMessage = ""; // 🔹 Oculta el mensaje mientras carga
-
                 var userId = LogUserPerfilTool.GetUserId();
 
                 var apiResponse = await containerMyContentServices.AdvertisementService
                     .GetAdvertisementsOfUser(userId, SelectedAdType?.ID ?? 0, pageIndex)
                     .ConfigureAwait(false);
 
-                if (!apiResponse.IsSuccess || apiResponse.ResponseType == ToolsLibrary.Tools.Type.EmptyCollection)
+                if (!apiResponse.IsSuccess)
                 {
                     throw new Exception(apiResponse.Message);
                 }
@@ -144,9 +139,6 @@ namespace GeolocationAds.ViewModels
                     //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
                     CollectionModel.AddRange(newViewModels);
                 }
-
-                // 🔹 Si la lista está vacía después de cargar, vuelve a mostrar el mensaje
-                IsResetMessage = CollectionModel.Count == 0 ? "No content available." : "";
             });
         }
 
