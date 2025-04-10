@@ -11892,11 +11892,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\juanp\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj",
       "projectName": "ToolsLibrary",
-      "projectPath": "C:\\Users\\juanp\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj",
+      "projectPath": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\ToolsLibrary.csproj",
       "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\juanp\\source\\repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\obj\\",
+      "outputPath": "C:\\Users\\juanp\\Source\\Repos\\JuanPabloTorres\\Geolocation_App\\ToolsLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [

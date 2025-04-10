@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using GeolocationAds.PopUps;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,7 +71,9 @@ namespace GeolocationAds.ViewModels
                 }
                 else
                 {
-                    await CommonsTool.DisplayAlert("Error", ex.Message);
+                    //await CommonsTool.DisplayAlert("Error", ex.Message);
+
+                    await Shell.Current.CurrentPage.ShowPopupAsync(new NotFoundPopup(ex.Message));
                 }
             }
             finally

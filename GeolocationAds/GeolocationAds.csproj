@@ -77,7 +77,6 @@
 	  <None Remove="Resources\Images\text.png" />
 	  <None Remove="Resources\Images\url.png" />
 	  <None Remove="Resources\Images\user.png" />
-	  <None Remove="Resources\Raw\c1.json" />
 	  <None Remove="Resources\Raw\c2.json" />
 	  <None Remove="Resources\Raw\c3.json" />
 	  <None Remove="Resources\Raw\c4.json" />
@@ -164,6 +163,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopUps\MetaDataPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PopUps\NotFoundPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PopUps\RemovePopUp.xaml">

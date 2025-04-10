@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup
+    x:Class="GeolocationAds.PopUps.NotFoundPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    Color="Transparent">
+
+    <Border
+        Padding="10"
+        HeightRequest="240"
+        Style="{StaticResource popUpBorder}"
+        WidthRequest="240">
+
+        <Grid
+            Padding="10"
+            BackgroundColor="White"
+            HorizontalOptions="Center"
+            RowDefinitions="Auto,Auto,Auto"
+            VerticalOptions="Center">
+
+            <!--  Lottie Animation  -->
+            <skia:SKLottieView
+                x:Name="notFoundAnimation"
+                Grid.Row="0"
+                AnimationCompleted="SKLottieView_AnimationCompleted"
+                HeightRequest="180"
+                HorizontalOptions="Center"
+                IsAnimationEnabled="True"
+                RepeatCount="0"
+                Source="NotFound.json"
+                VerticalOptions="Center"
+                WidthRequest="180" />
+
+            <!--  Message  -->
+            <Label
+                Grid.Row="1"
+                Margin="0,10,0,0"
+                FontAttributes="Bold"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                Text="{Binding .}"
+                TextColor="{StaticResource AppBlack}" />
+        </Grid>
+    </Border>
+</mct:Popup>

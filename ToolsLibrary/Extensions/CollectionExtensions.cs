@@ -12,6 +12,16 @@ namespace ToolsLibrary.Extensions
             }
         }
 
+        public static bool IsEmpty<T>(this IEnumerable<T> collection)
+        {
+            return collection == null || !collection.Any();
+        }
+
+        public static bool IsEmpty<T>(this IList<T> collection)
+        {
+            return collection == null || !collection.Any();
+        }
+
         public static void AddRange<T>(this ObservableCollection<T> collection, IEnumerable<T> items)
         {
             foreach (var item in items)
@@ -27,7 +37,6 @@ namespace ToolsLibrary.Extensions
 
             collection.AddRange(items);
         }
-
 
         public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int batchSize)
         {

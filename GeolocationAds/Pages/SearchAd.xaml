@@ -76,7 +76,7 @@
                 <Grid>
 
                     <Image
-                        Aspect="AspectFill"
+                        Aspect="AspectFit"
                         IsAnimationPlaying="True"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                         Source="near_radar1.gif" />

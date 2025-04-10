@@ -128,7 +128,7 @@ namespace GeolocationAds.ViewModels
                     .GetAdvertisementsOfUser(userId, SelectedAdType?.ID ?? 0, pageIndex)
                     .ConfigureAwait(false);
 
-                if (!apiResponse.IsSuccess)
+                if (!apiResponse.IsSuccess || apiResponse.ResponseType == ToolsLibrary.Tools.Type.EmptyCollection)
                 {
                     throw new Exception(apiResponse.Message);
                 }

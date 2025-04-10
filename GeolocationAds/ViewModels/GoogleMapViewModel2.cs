@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.Tools;
