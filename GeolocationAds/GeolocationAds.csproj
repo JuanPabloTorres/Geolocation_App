@@ -171,6 +171,9 @@
 	  <MauiXaml Update="PopUps\RemovePopUp.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Resources\Converters\Converters.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ViewTemplates\CaptureHeaderDisplayer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

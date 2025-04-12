@@ -17,17 +17,8 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         public bool isLoading;
 
-        public static int PageIndex { get; set; } = 1;
-
-        public string ID { get; private set; }
-
-        public string Avatar;
-
-        public ObservableCollection<ValidationResult> ValidationResults { get; set; } = new();
-
-        protected ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
-
-        protected LogUserPerfilTool LogUserPerfilTool { get; set; }
+        [ObservableProperty]
+        public string avatar;
 
         [ObservableProperty]
         public bool hasProfileImage;
@@ -37,6 +28,16 @@ namespace GeolocationAds.ViewModels
 
         [ObservableProperty]
         public bool isInternalUser;
+
+        public static int PageIndex { get; set; } = 1;
+
+        public string ID { get; private set; }
+
+        public ObservableCollection<ValidationResult> ValidationResults { get; set; } = new();
+
+        protected ICollection<ValidationContext> ValidationContexts = new List<ValidationContext>();
+
+        protected LogUserPerfilTool LogUserPerfilTool { get; set; }
 
         public RootBaseViewModel(LogUserPerfilTool logUserPerfilTool)
         {

@@ -36,11 +36,11 @@ namespace GeolocationAds.ViewModels
             base(ContainerCreateAdvertisment.Model, ContainerCreateAdvertisment.AdvertisementService, ContainerCreateAdvertisment.LogUserPerfilTool)
         {
             this.ContainerCreateAdvertisment = ContainerCreateAdvertisment;
+        }
 
-            Task.Run(async () =>
-            {
-                await LoadSetting();
-            });
+        public async Task InitializeAsync()
+        {
+            await LoadSetting();
         }
 
         public async Task LoadSetting()
@@ -72,7 +72,15 @@ namespace GeolocationAds.ViewModels
 
                 Url = string.Empty;
 
-                SelectedAdType = AdTypesSettings.FirstOrDefault(v => v.Value == AdType.Broadcast.ToString());
+                if (AdTypesSettings is null || !AdTypesSettings.Any())
+                {
+                    //throw new ArgumentOutOfRangeException(nameof(AdTypesSettings), "AdTypesSettings está vacío o no ha sido inicializado.");
+
+                    return;
+                }
+
+                SelectedAdType = AdTypesSettings.FirstOrDefault(v => v.Value == AdType.Broadcast.ToString())
+                                 ?? AdTypesSettings.First(); // fallback
 
                 var adSetting = new AdvertisementSettings
                 {
@@ -89,7 +97,7 @@ namespace GeolocationAds.ViewModels
             {
                 if (ex is ArgumentOutOfRangeException)
                 {
-                    await CommonsTool.DisplayAlert("Index Error", "Please check collection operations.");
+                    await CommonsTool.DisplayAlert("Data Error", "No hay configuraciones de tipo de anuncio disponibles.");
                 }
                 else
                 {
@@ -267,7 +275,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-         async partial void OnSelectedAdTypeChanged(AppSetting value)
+        async partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             await HandleAdTypeChangeAsync(value);
         }

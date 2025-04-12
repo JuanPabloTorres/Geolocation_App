@@ -238,7 +238,15 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
 
     private async Task AutoLoginAsync()
     {
-        try
+        //try
+        //{
+        //}
+        //catch (Exception ex)
+        //{
+        //    await CommonsTool.DisplayAlert("Error", ex.Message);
+        //}
+
+        await RunWithLoadingIndicator(async () =>
         {
             var isRemember = await _containerLoginServices.SecureStoreService.GetAsync("isRemember");
 
@@ -266,11 +274,7 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
             {
                 throw new ArgumentException("Invalid provider type.");
             }
-        }
-        catch (Exception ex)
-        {
-            await CommonsTool.DisplayAlert("Error", ex.Message);
-        }
+        });
     }
 
     private async Task HandleProviderLoginAsync(Providers provider)
@@ -494,7 +498,7 @@ public partial class LoginViewModel2 : BaseViewModel<ToolsLibrary.Models.Login, 
             // 🧠 Cancelar mensajes
             //WeakReferenceMessenger.Default.UnregisterAll(this);
 
-            await Task.Delay(1000);
+            await Task.Delay(5000);
 
             // Evita que regrese con el botón atrás
             Application.Current.MainPage = new AppShell(this._containerLoginServices.AppShellViewModel);

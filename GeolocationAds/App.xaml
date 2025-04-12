@@ -21,18 +21,13 @@
 
             <Color x:Key="DeepBlue">#1c1447</Color>
 
-
             <Color x:Key="MediumPurple">#7f2481</Color>
-
 
             <Color x:Key="BrightOrangeRed">#e1482b</Color>
 
-
             <Color x:Key="Burgundy">#961e52</Color>
 
-
             <Color x:Key="DarkViolet">#5a1b60</Color>
-
 
             <Color x:Key="DarkFuchsia">#bf1d57</Color>
 
@@ -59,12 +54,13 @@
             <Color x:Key="appPrimaryOpt3ColorPrimaryLight">#F8F2DE</Color>
             <!--  Beige claro  -->
 
-
             <Color x:Key="appPrimaryOpt4ColorPrimaryDarkest">#18230F</Color>
-            <Color x:Key="appPrimaryOpt4ColorPrimaryDark">#27391C</Color>
-            <Color x:Key="appPrimaryOpt4ColorPrimary">#255F38</Color>
-            <Color x:Key="appPrimaryOpt4ColorPrimaryLight">#1F7D53</Color>
 
+            <Color x:Key="appPrimaryOpt4ColorPrimaryDark">#27391C</Color>
+
+            <Color x:Key="appPrimaryOpt4ColorPrimary">#255F38</Color>
+
+            <Color x:Key="appPrimaryOpt4ColorPrimaryLight">#1F7D53</Color>
 
             <x:Double x:Key="OpacityValue">0.9</x:Double>
 
@@ -107,8 +103,6 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
-
-
 
                 <Setter Property="Margin" Value="0" />
             </Style>
@@ -172,7 +166,7 @@
             </Style>
 
             <Style x:Key="downArrowglobalButton" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -455,68 +449,6 @@
                         ShouldShowPlaybackControls="True"
                         Source="{Binding MediaSource}" />
                 </Grid>
-            </DataTemplate>
-
-            <DataTemplate x:Key="ImageDataTemplate2">
-                <Frame Style="{StaticResource cardFrame}">
-                    <StackLayout>
-
-                        <Button
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding CurrentAdvertisement}"
-                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                            Style="{StaticResource XButton}"
-                            Text="X" />
-
-                        <Frame Style="{StaticResource imageFrame}">
-
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="300"
-                                IsAnimationPlaying="True"
-                                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToImageSourceConverter}, Mode=TwoWay}"
-                                WidthRequest="400" />
-                        </Frame>
-
-                        <ActivityIndicator
-                            IsRunning="{Binding IsLoading}"
-                            IsVisible="{Binding IsLoading}"
-                            Style="{StaticResource globalLoading}" />
-                    </StackLayout>
-                </Frame>
-            </DataTemplate>
-
-            <DataTemplate x:Key="VideoDataTemplate2">
-                <Frame Style="{StaticResource cardFrame}">
-                    <StackLayout>
-
-                        <Button
-                            Command="{Binding RemoveCommand}"
-                            CommandParameter="{Binding CurrentAdvertisement}"
-                            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                            Style="{StaticResource XButton}"
-                            Text="X" />
-
-                        <Frame Style="{StaticResource imageFrame}">
-
-                            <WebView
-                                x:Name="SelectedVideo"
-                                HeightRequest="300"
-                                Source="{Binding ContentType.Content, Converter={StaticResource ByteArrayToVideSourceConverter}, Mode=TwoWay}"
-                                WidthRequest="400" />
-                        </Frame>
-
-                        <ActivityIndicator
-                            IsRunning="{Binding IsLoading}"
-                            IsVisible="{Binding IsLoading}"
-                            Style="{StaticResource globalLoading}" />
-                    </StackLayout>
-                </Frame>
-            </DataTemplate>
-
-            <DataTemplate x:Key="WebViewDataTemplateForDisplay">
-
-                <displayer:WebViewDisplayer IsMyContentStackHeaderVisible="True" />
             </DataTemplate>
 
             <!--  Converters  -->

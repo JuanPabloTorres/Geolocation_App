@@ -21,7 +21,17 @@ public partial class ManageLocation : ContentPage
     {
         var clickedLocation = e.Location;
 
-        await manageLocationViewModel2.CreateAdToLocation(clickedLocation);
+        // Show confirmation alert
+        bool confirm = await Shell.Current.DisplayAlert(
+            "Add Location",
+            $"Do you want to pin this location?\n\nLatitude: {clickedLocation.Latitude:F5}\nLongitude: {clickedLocation.Longitude:F5}",
+            "Yes",
+            "Cancel");
+
+        if (confirm)
+        {
+            await manageLocationViewModel2.CreateAdToLocation(clickedLocation);
+        }
     }
 
     protected override async void OnAppearing()

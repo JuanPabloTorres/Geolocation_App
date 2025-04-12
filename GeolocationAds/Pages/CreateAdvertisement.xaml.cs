@@ -1,3 +1,4 @@
+
 using GeolocationAds.TemplateViewModel;
 using GeolocationAds.ViewModels;
 using System.Text.RegularExpressions;
@@ -17,11 +18,17 @@ public partial class CreateAdvertisment : ContentPage
 
         viewModel = createGeolocationViewModel;
 
+
         BindingContext = createGeolocationViewModel;
     }
 
     protected override async void OnAppearing()
     {
+        if (!viewModel.AdTypesSettings.Any())
+        {
+            await viewModel.InitializeAsync();
+        }
+
         await this.viewModel.SetDefault();
     }
 

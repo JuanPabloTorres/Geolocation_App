@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="GeolocationAds.Resources.Converters.Converters"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary">
+
+
+    <!--  Converters  -->
+    <converters:IsEnableConverter x:Key="IsEnableConverter" />
+    <converters:IsVisibleConverterMultiParam x:Key="IsVisibleConverterMultiParam" />
+    <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+    <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
+    <converters:SubstringConverter x:Key="SubstringConverter" />
+    <converters:StepViewConverter x:Key="StepViewConverter" />
+    <converters:ImageOrVideoCheckConverter x:Key="ImageOrVideoCheckConverter" />
+    <converters:ByteArrayToVideSourceConverter x:Key="ByteArrayToVideSourceConverter" />
+    <converters:SpanConverter x:Key="SpanConverter" />
+    <converters:BoolToTextConverter x:Key="BoolToTextConverter" />
+    <converters:DataSizeConverter x:Key="DataSizeConverter" />
+    <converters:UserProviderToBooleanConverter x:Key="UserProviderToBooleanConverter" />
+    <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+</ResourceDictionary>

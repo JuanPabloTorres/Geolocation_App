@@ -25,17 +25,17 @@ namespace GeolocationAds.Services
 
             string _httpResourceName = string.Empty;
 
-//#if DEBUG
-//            _httpResourceName = "BackendUrl";
-//#endif
+            //#if DEBUG
+            //            _httpResourceName = "BackendUrl";
+            //#endif
 
-//#if IIS
-//                          _httpResourceName = "IISBackendUrl";
-//#endif
+            //#if IIS
+            //                          _httpResourceName = "IISBackendUrl";
+            //#endif
 
-//#if Release
-//                        _httpResourceName = "ProdBackendUrl";
-//#endif
+            //#if Release
+            //                        _httpResourceName = "ProdBackendUrl";
+            //#endif
 
             this._httpClient = httpClient;
 
@@ -131,7 +131,7 @@ namespace GeolocationAds.Services
             {
                 if (!await IsConnectedToInternetAsync())
                 {
-                    return ResponseFactory<TResponse>.BuildFail("No estás conectado a Internet. Verifica tu conexión e inténtalo nuevamente.", default);
+                    return ResponseFactory<TResponse>.BuildFail("You are not connected to the internet. Please check your connection and try again.", default);
                 }
 
                 var response = await httpCall();
@@ -144,7 +144,7 @@ namespace GeolocationAds.Services
                         await SecureLogoutAndRedirectToLogin(); // implementado abajo
                     });
 
-                    return ResponseFactory<TResponse>.BuildFail("Token expirado. Cerrando sesión por seguridad.", default);
+                    return ResponseFactory<TResponse>.BuildFail("Token has expired. Logging out for security reasons.", default);
                 }
 
                 var json = await response.Content.ReadAsStringAsync();

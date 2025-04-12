@@ -142,7 +142,7 @@ public class CustomPickerContentView : ContentView
 
         var frame = new Border
         {
-            Style = (Style)Application.Current.Resources["CustomBorderStyleOrange"],
+            Style = (Style)Application.Current.Resources["CustomBorderStyle"],
             Content = grid
         };
 
