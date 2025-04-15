@@ -28,6 +28,8 @@ namespace GeolocationAdsAPI.Context
         public DbSet<AppSetting> Settings { get; set; }
 
         public DbSet<User> Users { get; set; }
+        
+        public DbSet<RestrictedZone> RestrictedZones { get; set; }
 
         [DbFunction("VincentyFormulaSQL2", "dbo")]
         public static double VincentyFormulaSQL2(double lat1, double lon1, double lat2, double lon2)

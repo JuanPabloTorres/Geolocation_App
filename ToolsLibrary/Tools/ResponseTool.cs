@@ -31,7 +31,8 @@
         IsRecoveryPassword,
         NotRecoveryPassword,
         ExternalUser,
-        EmptyCollection
+        EmptyCollection,
+        Restriction
 
 
     }

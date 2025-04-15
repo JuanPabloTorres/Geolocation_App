@@ -219,5 +219,60 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<bool>.BuildFail($"Error: {ex.Message}", false, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+        //public async Task<ResponseTool<bool>> IsLocationRestrictedAsync(double lat, double lng)
+        //{
+        //    try
+        //    {
+        //        var restrictedZones = await _context.RestrictedZones
+        //            .Where(zone =>
+        //                GeolocationContext.VincentyFormulaSQL2(lat, lng, zone.Latitude, zone.Longitude) <= zone.RadiusInMeters)
+        //            .ToListAsync();
+
+        //        bool isRestricted = restrictedZones.Any();
+
+        //        return ResponseFactory<bool>.BuildSuccess("Checked restricted area", isRestricted);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
+        public async Task<ResponseTool<bool>> IsLocationRestrictedAsync(double lat, double lng)
+        {
+            try
+            {
+                var isRestricted = await _context.RestrictedZones
+                    .AsNoTracking()
+                    .Where(zone =>
+                        zone.IsActive &&
+                        GeolocationContext.VincentyFormulaSQL2(lat, lng, zone.Latitude, zone.Longitude) <= zone.RadiusInMeters)
+                    .AnyAsync();
+
+                if (isRestricted)
+                {
+                    return ResponseFactory<bool>.BuildFail(
+                        "The selected area is restricted. You cannot place a pin here.",
+                        false,
+                        ToolsLibrary.Tools.Type.Restriction);
+                }
+
+                return ResponseFactory<bool>.BuildSuccess(
+                    "The selected location is available. You can proceed.",
+                    true);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<bool>.BuildFail(
+                    $"An error occurred while checking for restricted zones: {ex.Message}",
+                    false,
+                    ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+
+
+
     }
 }

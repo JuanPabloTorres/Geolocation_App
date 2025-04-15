@@ -35,6 +35,13 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
+                var _restrictedZone = await geolocationAdRepository.IsLocationRestrictedAsync(newGeolocationAd.Latitude, newGeolocationAd.Longitude);
+
+                if (!_restrictedZone.IsSuccess)
+                {
+                    throw new Exception(_restrictedZone.Message);
+                }
+
                 var canAddMorePinResponse = await geolocationAdRepository.CanAddMorePinsAsync(newGeolocationAd.AdvertisingId);
 
                 if (!canAddMorePinResponse.IsSuccess)
@@ -48,14 +55,7 @@ namespace GeolocationAdsAPI.Controllers
 
                 response = await this.geolocationAdRepository.CreateAsync(newGeolocationAd);
 
-                if (response.IsSuccess)
-                {
-                    return Ok(response);
-                }
-                else
-                {
-                    return Ok(response);
-                }
+                return Ok(response);
             }
             catch (Exception ex)
             {

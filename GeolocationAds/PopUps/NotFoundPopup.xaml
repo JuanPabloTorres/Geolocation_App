@@ -26,13 +26,13 @@
                 x:Name="notFoundAnimation"
                 Grid.Row="0"
                 AnimationCompleted="SKLottieView_AnimationCompleted"
-                HeightRequest="145"
+                HeightRequest="130"
                 HorizontalOptions="Center"
                 IsAnimationEnabled="True"
                 RepeatCount="0"
                 Source="NotFound.json"
                 VerticalOptions="Center"
-                WidthRequest="145" />
+                WidthRequest="130" />
 
             <!--  Message  -->
             <Label
