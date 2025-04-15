@@ -18,7 +18,7 @@ namespace GeolocationAds.ViewModels
     {
         public IList<Pin> FoundLocations = new List<Pin>();
 
-        private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
+        //private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
 
         private readonly IContainerMapServices containerMapServices;
 
@@ -116,7 +116,7 @@ namespace GeolocationAds.ViewModels
 
                 foreach (var item in _apiResponse.Data)
                 {
-                    if (item.SettingName == SettingName.MeterDistance.ToString())
+                    if (item.SettingName == SettingName.SearchRadiusRange.ToString())
                         DistanceSettings.Add(item.Value);
 
                     if (item.SettingName == SettingName.AdTypes.ToString())

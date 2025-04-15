@@ -9,7 +9,7 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:view="clr-namespace:GeolocationAds.ViewTemplates"
     Title="New User"
-    BackgroundColor="WhiteSmoke"
+    BackgroundColor="GhostWhite"
     Routing.Route="Register">
 
     <ContentPage.ToolbarItems>
@@ -25,17 +25,17 @@
 
         <ToolbarItem Command="{Binding ClearDataCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe0b8;" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5c9;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ScrollView HorizontalScrollBarVisibility="Never">
-        <VerticalStackLayout Spacing="10" VerticalOptions="Fill">
+        <VerticalStackLayout Spacing="8" VerticalOptions="Fill">
 
             <Border
-                BackgroundColor="WhiteSmoke"
-                HeightRequest="150"
+                BackgroundColor="GhostWhite"
+                HeightRequest="120"
                 StrokeThickness="0"
                 VerticalOptions="Start">
                 <Grid>
@@ -46,87 +46,90 @@
                     </GraphicsView>
                     <Label
                         FontAttributes="Bold"
-                        FontSize="24"
+                        FontSize="22"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="Welcome Sign up to Continue"
+                        Text="Welcome, Sign up to Continue"
                         TextColor="White"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
                 </Grid>
             </Border>
+            <VerticalStackLayout Padding="6">
+                <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
 
-            <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout HorizontalOptions="Center">
-                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
 
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
-                </CollectionView.ItemsLayout>
-            </CollectionView>
+                <view:ProfileImageView
+                    Avatar="{Binding Avatar}"
+                    HasProfileImage="{Binding HasProfileImage}"
+                    ProfileImage="{Binding ProfileImage}"
+                    SelectProfileImageCommand="{Binding SelectProfileImageCommand}" />
 
-            <view:ProfileImageView
-                Avatar="{Binding Avatar}"
-                HasProfileImage="{Binding HasProfileImage}"
-                ProfileImage="{Binding ProfileImage}"
-                SelectProfileImageCommand="{Binding SelectProfileImageCommand}" />
+                <!--  Section Title for Personal Information  -->
+                <Label Style="{StaticResource globalLabel}" Text="Personal Information" />
 
-            <!--  Section Title for Personal Information  -->
-            <Label Style="{StaticResource globalLabel}" Text="Personal Information" />
+                <BoxView HeightRequest="0.1" />
 
-            <BoxView HeightRequest="0.1" />
+                <!--  FullName Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="2"
+                    IconSource="&#xe7fd;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Enter your fullname..."
+                    Text="{Binding Model.FullName, Mode=TwoWay}" />
 
-            <!--  FullName Input  -->
-            <local:CustomEntryContentView
-                Grid.Row="2"
-                IconSource="&#xe7fd;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="FullName"
-                Text="{Binding Model.FullName, Mode=TwoWay}" />
+                <!--  Phone Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="4"
+                    IconSource="&#xe0b0;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="(XXX)-XXX-XXXX"
+                    Text="{Binding Model.Phone, Mode=TwoWay}"
+                    TextChanged="onPhoneChange" />
 
-            <!--  Phone Input  -->
-            <local:CustomEntryContentView
-                Grid.Row="4"
-                IconSource="&#xe0b0;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="(XXX)-XXX-XXXX"
-                Text="{Binding Model.Phone, Mode=TwoWay}"
-                TextChanged="onPhoneChange" />
+                <!--  Email Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="6"
+                    IconSource="&#xe158;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Enter your email..."
+                    Text="{Binding Model.Email, Mode=TwoWay}"
+                    TextChanged="onEmailChange" />
 
-            <!--  Email Input  -->
-            <local:CustomEntryContentView
-                Grid.Row="6"
-                IconSource="&#xe158;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Email"
-                Text="{Binding Model.Email, Mode=TwoWay}"
-                TextChanged="onEmailChange" />
+                <!--  Section Title for Account Information  -->
+                <Label Style="{StaticResource globalLabel}" Text="Credentials " />
+                <BoxView HeightRequest="0.1" />
 
-            <!--  Section Title for Account Information  -->
-            <Label Style="{StaticResource globalLabel}" Text="Account Information" />
-            <BoxView HeightRequest="0.1" />
+                <!--  Username Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="8"
+                    IconSource="&#xe8e8;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Enter your username..."
+                    Text="{Binding Model.Login.Username, Mode=TwoWay}" />
 
-            <!--  Username Input  -->
-            <local:CustomEntryContentView
-                Grid.Row="8"
-                IconSource="&#xe7fd;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="Username"
-                Text="{Binding Model.Login.Username, Mode=TwoWay}" />
+                <!--  Password Input  -->
+                <local:CustomEntryContentView
+                    Grid.Row="10"
+                    IconSource="&#xf042;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    IsPassword="True"
+                    Placeholder="Enter your password..."
+                    Text="{Binding Model.Login.Password, Mode=TwoWay}" />
+            </VerticalStackLayout>
 
-            <!--  Password Input  -->
-            <local:CustomEntryContentView
-                Grid.Row="10"
-                IconSource="&#xe897;"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                IsPassword="True"
-                Placeholder="Password"
-                Text="{Binding Model.Login.Password, Mode=TwoWay}" />
+
 
             <view:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
         </VerticalStackLayout>

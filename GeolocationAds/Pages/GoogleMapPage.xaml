@@ -50,7 +50,7 @@
             CollectionCount="{Binding CollectionModel.Count}"
             CountFormat="Nearby: {0:N0}"
             Distance="{Binding SelectedDistance}"
-            DistanceFormat="Within: {0} radius"
+            DistanceFormat="Search Size: {0}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ShowAdType="True"
             ShowCount="True"

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="GeolocationAds.Resources.Styles.ButtonStyles"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+    <Style x:Key="globalButton" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="TextColor" Value="GhostWhite" />
+        <Setter Property="CornerRadius" Value="25" />
+        <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt3ColorPrimaryDark}" />
+
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="LightGray"
+                    Opacity="0.3"
+                    Radius="5"
+                    Offset="5,5" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+    <Style x:Key="downArrowglobalButton" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="globalButtonUrL" TargetType="Button">
+
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="TextColor" Value="GhostWhite" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt3ColorPrimaryDark}" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="LightGray"
+                    Opacity="0.3"
+                    Radius="5"
+                    Offset="5,5" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="pagingBtn" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="Roboto" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="TextColor" Value="GhostWhite" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BorderWidth" Value="0.1" />
+        <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt3ColorPrimaryDark}" />
+
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow
+                    Brush="LightGray"
+                    Opacity="0.3"
+                    Radius="5"
+                    Offset="5,5" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

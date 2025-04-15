@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:displayer="clr-namespace:GeolocationAds.ViewTemplates"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:ToolsLibrary.Converters;assembly=ToolsLibrary"
     xmlns:localControl="clr-namespace:GeolocationAds.CustomContentView"
@@ -11,14 +12,14 @@
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Discover"
-    BackgroundColor="WhiteSmoke"
+    BackgroundColor="GhostWhite"
     Routing.Route="SearchAd">
 
     <ContentPage.ToolbarItems>
 
         <ToolbarItem Command="{Binding SearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xf04e;" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe569;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
         <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
@@ -62,6 +63,7 @@
         <CarouselView
             x:Name="carouselView"
             Grid.Row="0"
+            BackgroundColor="GhostWhite"
             IsSwipeEnabled="False"
             ItemTemplate="{StaticResource typeSelector}"
             ItemsSource="{Binding NearByTemplateViewModels}"
@@ -74,12 +76,36 @@
             <CarouselView.EmptyView>
 
                 <Grid>
+                    <Border
+                        BackgroundColor="GhostWhite"
+                        HeightRequest="120"
+                        StrokeThickness="0"
+                        VerticalOptions="Start">
+                        <Grid>
+                            <GraphicsView HorizontalOptions="Fill" VerticalOptions="Fill">
+                                <GraphicsView.Drawable>
+                                    <drawable:SemiCircle />
+                                </GraphicsView.Drawable>
+                            </GraphicsView>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="WordWrap"
+                                Text="Here? Discover what’s nearby!"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </Border>
 
                     <Image
                         Aspect="AspectFit"
+                        BackgroundColor="Transparent"
                         IsAnimationPlaying="True"
                         IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                        Source="near_radar1.gif" />
+                        Source="nearpin.gif" />
                 </Grid>
             </CarouselView.EmptyView>
         </CarouselView>
@@ -106,7 +132,7 @@
             CollectionCount="{Binding NearByTemplateViewModels.Count}"
             CountFormat="Nearby: {0:N0}"
             Distance="{Binding SelectedDistance}"
-            DistanceFormat="Within: {0} radius"
+            DistanceFormat="Search Size: {0}"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
             ShowAdType="True"
             ShowCount="True"

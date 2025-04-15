@@ -11,8 +11,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
+
+
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+                <ResourceDictionary Source="Resources/Converters/Converters.xaml" />
+
+                <ResourceDictionary Source="Resources/Styles/ButtonStyles.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
 
             <Color x:Key="AppGray">#3e4144</Color>
@@ -36,13 +45,13 @@
             <Color x:Key="FacebookColor">#1877F2</Color>
 
             <!--  App Opt 2 Primary Color Scheme  -->
-            <Color x:Key="appPrimaryOpt2ColorPrimary">#FFA725</Color>
+            <Color x:Key="appPrimaryOpt02ColorPrimary">#D84040</Color>
 
             <Color x:Key="appPrimaryOpt2ColorPrimaryLight">#FFF5E4</Color>
 
-            <Color x:Key="appPrimaryOpt2ColorPrimarySoft">#C1D8C3</Color>
+            <Color x:Key="appPrimaryOpt2ColorPrimarySoft">#F8F2DE</Color>
 
-            <Color x:Key="appPrimaryOpt2ColorPrimaryDark">#6A9C89</Color>
+            <Color x:Key="appPrimaryOpt2ColorPrimaryDark">#A31D1D</Color>
 
             <!--  App Opt 3 Primary Color Scheme  -->
             <Color x:Key="appPrimaryOpt3ColorPrimary">#D84040</Color>
@@ -71,8 +80,9 @@
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="FontAttributes" Value="Italic" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
-                <Setter Property="Margin" Value="5" />
+                <Setter Property="Margin" Value="2" />
             </Style>
 
             <Style x:Key="globalTitle" TargetType="Label">
@@ -83,7 +93,7 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
-                <Setter Property="Margin" Value="5" />
+                <Setter Property="Margin" Value="2" />
             </Style>
 
             <Style x:Key="globalsubTitle" TargetType="Label">
@@ -97,7 +107,7 @@
             </Style>
 
             <Style x:Key="globalEntry" TargetType="Entry">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -144,80 +154,6 @@
                 <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
 
-            <Style x:Key="globalButton" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="25" />
-                <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt2ColorPrimary}" />
-                <Setter Property="Shadow">
-                    <Setter.Value>
-                        <Shadow
-                            Brush="{StaticResource AppBlack}"
-                            Opacity="0.3"
-                            Radius="10"
-                            Offset="5,5" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="downArrowglobalButton" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="2" />
-                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
-            </Style>
-
-            <Style x:Key="globalButtonUrL" TargetType="Button">
-
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt2ColorPrimary}" />
-                <Setter Property="Shadow">
-                    <Setter.Value>
-                        <Shadow
-                            Brush="{StaticResource AppBlack}"
-                            Opacity="0.3"
-                            Radius="10"
-                            Offset="5,5" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="pagingBtn" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="FontSize" Value="25" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Roboto" />
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="BorderWidth" Value="0.5" />
-                <Setter Property="BackgroundColor" Value="{StaticResource appPrimaryOpt2ColorPrimarySoft}" />
-
-                <Setter Property="Shadow">
-                    <Setter.Value>
-                        <Shadow
-                            Brush="{StaticResource AppBlack}"
-                            Opacity="0.3"
-                            Radius="10"
-                            Offset="5,5" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
             <Style x:Key="globalLoading" TargetType="ActivityIndicator">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
@@ -235,30 +171,30 @@
             <!--  Define the Shadow resource first  -->
             <Shadow
                 x:Key="MyShadow"
-                Brush="#99000000"
+                Brush="LightGray"
                 Opacity="0.8"
-                Radius="6"
-                Offset="0,4" />
+                Radius="2"
+                Offset="0,3" />
 
             <!--  Define the Border style  -->
             <Style x:Key="CustomBorderStyle" TargetType="Border">
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="Padding" Value="6" />
-                <Setter Property="Background" Value="White" />
+                <Setter Property="Margin" Value="3" />
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Background" Value="WhiteSmoke" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="{StaticResource appPrimaryOpt2ColorPrimaryLight}" />
+                <Setter Property="Stroke" Value="LightGray" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
                         <RoundRectangle CornerRadius="12" />
                     </Setter.Value>
                 </Setter>
-                <Setter Property="StrokeThickness" Value="0.5" />
+                <Setter Property="StrokeThickness" Value="0.1" />
             </Style>
 
             <Style x:Key="CustomBorderStyle2" TargetType="Border">
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="Padding" Value="6" />
-                <Setter Property="Background" Value="White" />
+                <Setter Property="Background" Value="WhiteSmoke" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
                 <Setter Property="Stroke" Value="{StaticResource AppBlack}" />
                 <Setter Property="StrokeShape">
@@ -420,63 +356,8 @@
                 <Setter Property="DatePicker.Format" Value="yyyy-MM-dd" />
             </Style>
 
-            <DataTemplate x:Key="ImageDataTemplateForDisplay">
 
-                <Grid>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <ffimageloading:CachedImage Aspect="Fill" Source="{Binding Image}" />
-                </Grid>
-            </DataTemplate>
-
-            <DataTemplate x:Key="VideoDataTemplateForDisplay">
-
-                <Grid>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <toolkit:MediaElement
-                        Grid.Row="1"
-                        Aspect="Fill"
-                        ShouldAutoPlay="False"
-                        ShouldKeepScreenOn="True"
-                        ShouldLoopPlayback="False"
-                        ShouldShowPlaybackControls="True"
-                        Source="{Binding MediaSource}" />
-                </Grid>
-            </DataTemplate>
-
-            <!--  Converters  -->
-            <converters:IsEnableConverter x:Key="IsEnableConverter" />
-
-            <converters:IsVisibleConverterMultiParam x:Key="IsVisibleConverterMultiParam" />
-
-            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
-
-            <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
-
-            <converters:SubstringConverter x:Key="SubstringConverter" />
-
-            <converters:StepViewConverter x:Key="StepViewConverter" />
-
-            <converters:ImageOrVideoCheckConverter x:Key="ImageOrVideoCheckConverter" />
-
-            <converters:ByteArrayToVideSourceConverter x:Key="ByteArrayToVideSourceConverter" />
-
-            <converters:SpanConverter x:Key="SpanConverter" />
-
-            <converters:BoolToTextConverter x:Key="BoolToTextConverter" />
-
-            <converters:DataSizeConverter x:Key="DataSizeConverter" />
-
-            <converters:UserProviderToBooleanConverter x:Key="UserProviderToBooleanConverter" />
-
-            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
 
             <BackButtonBehavior x:Key="NoBackButton" IsVisible="False" />
         </ResourceDictionary>

@@ -11,7 +11,7 @@
     Color="Transparent">
 
     <Border Style="{StaticResource popUpBorder}">
-        <Grid Padding="10" BackgroundColor="White">
+        <Grid Padding="10" BackgroundColor="GhostWhite">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

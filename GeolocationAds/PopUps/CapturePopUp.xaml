@@ -17,13 +17,13 @@
             <skia:SKLottieView
                 x:Name="captureAnimation"
                 AnimationCompleted="SKLottieView_AnimationCompleted"
-                HeightRequest="180"
+                HeightRequest="150"
                 HorizontalOptions="Center"
                 IsAnimationEnabled="True"
                 RepeatCount="0"
                 Source="favoriteCapture.json"
                 VerticalOptions="Center"
-                WidthRequest="180" />
+                WidthRequest="150" />
         </Grid>
     </Border>
 </mct:Popup>

@@ -53,30 +53,13 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task SignOut()
         {
-            //await RunWithLoadingIndicator(async () =>
-            //{
-            //    Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
-
-            // var result = await this.loginService.SignOutAsync(Model.Login);
-
-            // if (result.IsSuccess) { // Limpia la sesión local LogUserPerfilTool.LogUser = null;
-
-            // LogUserPerfilTool.JsonToken = string.Empty;
-
-            // // Evita que regrese con el botón atrás Application.Current.MainPage = new AppShell(appShellViewModel2);
-
-            // await Shell.Current.GoToAsync(nameof(Login));
-
-            //        Shell.Current.FlyoutIsPresented = false;
-            //    }
-            //    else
-            //    {
-            //        await CommonsTool.DisplayAlert("Error", result.Message ?? "No se pudo cerrar sesión.");
-            //    }
-            //});
+            await RunWithLoadingIndicator(async () =>
+            {
+                WeakReferenceMessenger.Default.Send(new SignOutMessage("SessionExpired"));
+            });
 
             // ⛔ Token expirado, notificar al ViewModel para cerrar sesión
-            WeakReferenceMessenger.Default.Send(new SignOutMessage("SessionExpired"));
+         
         }
 
         protected override async Task OnSignOutMessageReceivedAsync()

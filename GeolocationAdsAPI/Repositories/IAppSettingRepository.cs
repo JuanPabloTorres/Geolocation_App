@@ -8,5 +8,7 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<IEnumerable<AppSetting>>> GetAppSettingByName(string settingName);
 
         Task<ResponseTool<IEnumerable<AppSetting>>> GetAppSettingByNames(IList<string> settingNames);
+
+        Task<ResponseTool<int>> GetRadiusValueByLabelAsync(string label);
     }
 }

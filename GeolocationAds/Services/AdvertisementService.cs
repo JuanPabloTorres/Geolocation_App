@@ -22,223 +22,159 @@ namespace GeolocationAds.Services
         //    //{
         //    //    using var multipartContent = new MultipartFormDataContent();
 
-        //    //    var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image || v.Type == ContentVisualType.Video).ToList();
+        // // var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image ||
+        // v.Type == ContentVisualType.Video).ToList();
 
-        //    //    foreach (var item in _videosAndImage)
-        //    //    {
-        //    //        data.Contents.Remove(item);
-        //    //    }
+        // // foreach (var item in _videosAndImage) // { // data.Contents.Remove(item); // }
 
-        //    //    var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
-        //    //    {
-        //    //        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        //    //    });
+        // // var advertisementMetadata = JsonConvert.SerializeObject(data, new
+        // JsonSerializerSettings // { // ReferenceLoopHandling = ReferenceLoopHandling.Ignore // });
 
-        //    //    multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+        // // multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8,
+        // "application/json"), "advertisementMetadata");
 
-        //    //    try
-        //    //    {
-        //    //        //foreach (var content in _videosAndImage)
-        //    //        //{
-        //    //        //    if (!string.IsNullOrEmpty(content.FilePath) && content.Content != null && content.Content.Length > 0 && (content.Type == ContentVisualType.Image || content.Type == ContentVisualType.Video))
-        //    //        //    {
-        //    //        //        var fileInfo = new FileInfo(content.FilePath);
+        // // try // { // //foreach (var content in _videosAndImage) // //{ // // if
+        // (!string.IsNullOrEmpty(content.FilePath) && content.Content != null &&
+        // content.Content.Length > 0 && (content.Type == ContentVisualType.Image || content.Type ==
+        // ContentVisualType.Video)) // // { // // var fileInfo = new FileInfo(content.FilePath);
 
-        //    //        //        if (fileInfo.Length > ConstantsTools.MaxFileSize)
-        //    //        //        {
-        //    //        //            throw new InvalidOperationException($"File size {fileInfo.Length} exceeds the limit of {ConstantsTools.MaxFileSize} bytes.");
-        //    //        //        }
+        // // // if (fileInfo.Length > ConstantsTools.MaxFileSize) // // { // // throw new
+        // InvalidOperationException($"File size {fileInfo.Length} exceeds the limit of
+        // {ConstantsTools.MaxFileSize} bytes."); // // }
 
-        //    //        //        var memoryStream = new MemoryStream();
+        // // // var memoryStream = new MemoryStream();
 
-        //    //        //        using (var fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-        //    //        //        {
-        //    //        //            await fileStream.CopyToAsync(memoryStream);
-        //    //        //        }
-        //    //        //        memoryStream.Position = 0; // Reset the position after copying
+        // // // using (var fileStream = new FileStream(content.FilePath, FileMode.Open,
+        // FileAccess.Read, FileShare.Read)) // // { // // await
+        // fileStream.CopyToAsync(memoryStream); // // } // // memoryStream.Position = 0; // Reset
+        // the position after copying
 
-        //    //        //        //var byteContent = new ByteArrayContent(content.Content);
+        // // // //var byteContent = new ByteArrayContent(content.Content);
 
-        //    //        //        //byteContent.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
+        // // // //byteContent.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
 
-        //    //        //        var contentStream = new StreamContent(memoryStream)
-        //    //        //        {
-        //    //        //            Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
-        //    //        //        };
+        // // // var contentStream = new StreamContent(memoryStream) // // { // // Headers = {
+        // ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) } // // };
 
-        //    //        //        contentStream.Headers.Add("ContentName", content.ContentName);
+        // // // contentStream.Headers.Add("ContentName", content.ContentName);
 
-        //    //        //        contentStream.Headers.Add("FilePath", content.FilePath);
+        // // // contentStream.Headers.Add("FilePath", content.FilePath);
 
-        //    //        //        contentStream.Headers.Add("FileSize", content.Content.Length.ToString());
+        // // // contentStream.Headers.Add("FileSize", content.Content.Length.ToString());
 
-        //    //        //        contentStream.Headers.Add("CreatedBy", data.UserId.ToString()); // Assuming 'ID' is a property of the content object
+        // // // contentStream.Headers.Add("CreatedBy", data.UserId.ToString()); // Assuming 'ID' is
+        // a property of the content object
 
-        //    //        //        multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
-        //    //        //    }
-        //    //        //}
+        // // // multipartContent.Add(contentStream, "contents", content.ContentName ?? "file"); //
+        // // } // //}
 
-        //    //        foreach (var content in _videosAndImage)
-        //    //        {
-        //    //            if (!string.IsNullOrEmpty(content.FilePath) && content.Content != null && content.Content.Length > 0 &&
-        //    //                (content.Type == ContentVisualType.Image || content.Type == ContentVisualType.Video))
-        //    //            {
-        //    //                Stream fileStream;
+        // // foreach (var content in _videosAndImage) // { // if
+        // (!string.IsNullOrEmpty(content.FilePath) && content.Content != null &&
+        // content.Content.Length > 0 && // (content.Type == ContentVisualType.Image || content.Type
+        // == ContentVisualType.Video)) // { // Stream fileStream;
 
-        //    //                // Detectamos si es un recurso embebido (está dentro del assembly)
-        //    //                if (content.FilePath.StartsWith("GeolocationAds.Resources"))
-        //    //                {
-        //    //                    var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(content.FilePath);
+        // // // Detectamos si es un recurso embebido (está dentro del assembly) // if
+        // (content.FilePath.StartsWith("GeolocationAds.Resources")) // { // var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(content.FilePath);
 
-        //    //                    if (resourceStream == null)
-        //    //                        throw new FileNotFoundException($"Embedded resource not found: {content.FilePath}");
+        // // if (resourceStream == null) // throw new FileNotFoundException($"Embedded resource not
+        // found: {content.FilePath}");
 
-        //    //                    fileStream = resourceStream;
-        //    //                }
-        //    //                else
-        //    //                {
-        //    //                    // Es un archivo físico en disco
-        //    //                    if (!System.IO.File.Exists(content.FilePath))
-        //    //                        throw new FileNotFoundException($"File not found: {content.FilePath}");
+        // // fileStream = resourceStream; // } // else // { // // Es un archivo físico en disco //
+        // if (!System.IO.File.Exists(content.FilePath)) // throw new FileNotFoundException($"File
+        // not found: {content.FilePath}");
 
-        //    //                    fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-        //    //                }
+        // // fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read,
+        // FileShare.Read); // }
 
-        //    //                using var memoryStream = new MemoryStream();
+        // // using var memoryStream = new MemoryStream();
 
-        //    //                await fileStream.CopyToAsync(memoryStream);
+        // // await fileStream.CopyToAsync(memoryStream);
 
-        //    //                memoryStream.Position = 0;
+        // // memoryStream.Position = 0;
 
-        //    //                if (memoryStream.Length > ConstantsTools.MaxFileSize)
-        //    //                {
-        //    //                    throw new InvalidOperationException($"File size {memoryStream.Length} exceeds the limit of {ConstantsTools.MaxFileSize} bytes.");
-        //    //                }
+        // // if (memoryStream.Length > ConstantsTools.MaxFileSize) // { // throw new
+        // InvalidOperationException($"File size {memoryStream.Length} exceeds the limit of
+        // {ConstantsTools.MaxFileSize} bytes."); // }
 
-        //    //                var contentStream = new StreamContent(memoryStream)
-        //    //                {
-        //    //                    Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
-        //    //                };
+        // // var contentStream = new StreamContent(memoryStream) // { // Headers = { ContentType =
+        // new MediaTypeHeaderValue(GetMediaType(content.Type)) } // };
 
-        //    //                contentStream.Headers.Add("ContentName", content.ContentName);
+        // // contentStream.Headers.Add("ContentName", content.ContentName);
 
-        //    //                contentStream.Headers.Add("FilePath", content.FilePath);
+        // // contentStream.Headers.Add("FilePath", content.FilePath);
 
-        //    //                contentStream.Headers.Add("FileSize", memoryStream.Length.ToString());
+        // // contentStream.Headers.Add("FileSize", memoryStream.Length.ToString());
 
-        //    //                contentStream.Headers.Add("CreatedBy", data.UserId.ToString());
+        // // contentStream.Headers.Add("CreatedBy", data.UserId.ToString());
 
-        //    //                multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
-        //    //            }
-        //    //        }
+        // // multipartContent.Add(contentStream, "contents", content.ContentName ?? "file"); // }
+        // // }
 
+        // // var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
 
-        //    //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+        // // if (response.IsSuccessStatusCode) // { // var responseJson = await response.Content.ReadAsStringAsync();
 
-        //    //        if (response.IsSuccessStatusCode)
-        //    //        {
-        //    //            var responseJson = await response.Content.ReadAsStringAsync();
+        // // return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson); // }
+        // // else // { // var errorResponse = await response.Content.ReadAsStringAsync();
 
-        //    //            return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
-        //    //        }
-        //    //        else
-        //    //        {
-        //    //            var errorResponse = await response.Content.ReadAsStringAsync();
+        // // return ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}",
+        // null); // } // } // finally // { // } //} //catch (Exception ex) //{ // return
+        // ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null); //}
 
-        //    //            return ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}", null);
-        //    //        }
-        //    //    }
-        //    //    finally
-        //    //    {
-        //    //    }
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
-        //    //}
+        // var openedStreams = new List<Stream>();
 
-        //    var openedStreams = new List<Stream>();
+        // try { using var multipartContent = new MultipartFormDataContent();
 
-        //    try
-        //    {
-        //        using var multipartContent = new MultipartFormDataContent();
+        // var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image ||
+        // v.Type == ContentVisualType.Video).ToList();
 
-        //        var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image || v.Type == ContentVisualType.Video).ToList();
+        // foreach (var item in _videosAndImage) { data.Contents.Remove(item); }
 
-        //        foreach (var item in _videosAndImage)
-        //        {
-        //            data.Contents.Remove(item);
-        //        }
+        // var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
+        // { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
-        //        var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
-        //        {
-        //            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        //        });
+        // multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8,
+        // "application/json"), "advertisementMetadata");
 
-        //        multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
+        // foreach (var content in _videosAndImage) { if (!string.IsNullOrEmpty(content.FilePath) &&
+        // content.Content?.Length > 0) { Stream fileStream;
 
-        //        foreach (var content in _videosAndImage)
-        //        {
-        //            if (!string.IsNullOrEmpty(content.FilePath) && content.Content?.Length > 0)
-        //            {
-        //                Stream fileStream;
+        // if (content.FilePath.StartsWith("GeolocationAds.Resources")) { fileStream =
+        // Assembly.GetExecutingAssembly().GetManifestResourceStream(content.FilePath) ?? throw new
+        // FileNotFoundException($"Embedded resource not found: {content.FilePath}"); } else { if
+        // (!System.IO.File.Exists(content.FilePath)) throw new FileNotFoundException($"File not
+        // found: {content.FilePath}");
 
-        //                if (content.FilePath.StartsWith("GeolocationAds.Resources"))
-        //                {
-        //                    fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(content.FilePath)
-        //                                  ?? throw new FileNotFoundException($"Embedded resource not found: {content.FilePath}");
-        //                }
-        //                else
-        //                {
-        //                    if (!System.IO.File.Exists(content.FilePath))
-        //                        throw new FileNotFoundException($"File not found: {content.FilePath}");
+        // fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read,
+        // FileShare.Read); }
 
-        //                    fileStream = new FileStream(content.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-        //                }
+        // var memoryStream = new MemoryStream(); await fileStream.CopyToAsync(memoryStream);
+        // memoryStream.Position = 0;
 
-        //                var memoryStream = new MemoryStream();
-        //                await fileStream.CopyToAsync(memoryStream);
-        //                memoryStream.Position = 0;
+        // // 👉 Guarda los streams abiertos para cerrarlos después openedStreams.Add(fileStream); openedStreams.Add(memoryStream);
 
-        //                // 👉 Guarda los streams abiertos para cerrarlos después
-        //                openedStreams.Add(fileStream);
-        //                openedStreams.Add(memoryStream);
+        // var contentStream = new StreamContent(memoryStream) { Headers = { ContentType = new
+        // MediaTypeHeaderValue(GetMediaType(content.Type)) } };
 
-        //                var contentStream = new StreamContent(memoryStream)
-        //                {
-        //                    Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
-        //                };
+        // contentStream.Headers.Add("ContentName", content.ContentName);
+        // contentStream.Headers.Add("FilePath", content.FilePath);
+        // contentStream.Headers.Add("FileSize", memoryStream.Length.ToString());
+        // contentStream.Headers.Add("CreatedBy", data.UserId.ToString());
 
-        //                contentStream.Headers.Add("ContentName", content.ContentName);
-        //                contentStream.Headers.Add("FilePath", content.FilePath);
-        //                contentStream.Headers.Add("FileSize", memoryStream.Length.ToString());
-        //                contentStream.Headers.Add("CreatedBy", data.UserId.ToString());
+        // multipartContent.Add(contentStream, "contents", content.ContentName ?? "file"); } }
 
-        //                multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
-        //            }
-        //        }
+        // var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
 
-        //        var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
+        // var responseJson = await response.Content.ReadAsStringAsync();
 
-        //        var responseJson = await response.Content.ReadAsStringAsync();
+        // return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson); } catch
+        // (Exception ex) { return ResponseFactory<Advertisement>.BuildFail($"An error occurred:
+        // {ex.Message}", null); }
 
-        //        return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
-        //    }
-
-        //    finally
-        //    {
-        //        // ❌ Nunca cierres el stream antes de enviar
-        //        foreach (var s in openedStreams)
-        //            s.Dispose();
-        //    }
+        // finally { // ❌ Nunca cierres el stream antes de enviar foreach (var s in openedStreams)
+        // s.Dispose(); }
 
         //}
-
-
 
         //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int? pageIndex)
         //{
@@ -350,7 +286,6 @@ namespace GeolocationAds.Services
                     s.Dispose();
             }
         }
-
 
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int? pageIndex)
         {
@@ -484,18 +419,125 @@ namespace GeolocationAds.Services
             }
         }
 
+        //public override async Task<ResponseTool<Advertisement>> Update(Advertisement data, int currentId)
+        //{
+        //    try
+        //    {
+        //        using var multipartContent = new MultipartFormDataContent();
+
+        // var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image ||
+        // v.Type == ContentVisualType.Video).ToList();
+
+        // // Removing video and image content from the main data object to prevent serialization
+        // data.Contents = data.Contents.Except(_videosAndImage).ToList();
+
+        // // Serialize the advertisement data without the image and video content var
+        // advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings {
+        // ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        // multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8,
+        // "application/json"), "advertisementMetadata");
+
+        // // Add media files to the multipart form data with additional metadata foreach (var
+        // content in _videosAndImage) { if (content.Content != null) { var memoryStream = new MemoryStream(content.Content);
+
+        // var contentStream = new StreamContent(memoryStream) { Headers = { ContentType = new
+        // MediaTypeHeaderValue(GetMediaType(content.Type)) } };
+
+        // // Adding additional headers to include metadata contentStream.Headers.ContentDisposition
+        // = new ContentDispositionHeaderValue("form-data") { Name = "contents", FileName =
+        // content.ContentName ?? "file" }; contentStream.Headers.Add("ContentName", content.ContentName);
+
+        // contentStream.Headers.Add("FilePath", content.FilePath);
+
+        // contentStream.Headers.Add("FileSize", content.FileSize.ToString());
+
+        // contentStream.Headers.Add("ID", content.ID.ToString()); // Assuming 'ID' is a property of
+        // the content object
+
+        // contentStream.Headers.Add("AdId", data.ID.ToString()); // Assuming 'ID' is a property of
+        // the content object
+
+        // multipartContent.Add(contentStream, "contents", content.ContentName ?? "file"); } }
+
+        // var response = await _httpClient.PutAsync($"{this.BaseApiUri}/Update2/{currentId}", multipartContent);
+
+        // if (response.IsSuccessStatusCode) { var responseJson = await response.Content.ReadAsStringAsync();
+
+        // return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson); } else {
+        // var errorResponse = await response.Content.ReadAsStringAsync();
+
+        //            return ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}", null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //}
+
+        //public override async Task<ResponseTool<Advertisement>> Update(Advertisement data, int currentId)
+        //{
+        //    var openedStreams = new List<Stream>();
+
+        // try { using var multipartContent = new MultipartFormDataContent();
+
+        // var _videosAndImage = data.Contents .Where(v => v.Type == ContentVisualType.Image ||
+        // v.Type == ContentVisualType.Video) .ToList();
+
+        // data.Contents = data.Contents.Except(_videosAndImage).ToList();
+
+        // var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
+        // { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+        // multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8,
+        // "application/json"), "advertisementMetadata");
+
+        // foreach (var content in _videosAndImage) { if (content.Content != null) { var
+        // memoryStream = new MemoryStream(content.Content); openedStreams.Add(memoryStream);
+
+        // var contentStream = new StreamContent(memoryStream) { Headers = { ContentType = new
+        // MediaTypeHeaderValue(GetMediaType(content.Type)) } };
+
+        // contentStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+        // { Name = "contents", FileName = content.ContentName ?? "file" };
+
+        // contentStream.Headers.Add("ContentName", content.ContentName);
+        // contentStream.Headers.Add("FilePath", content.FilePath);
+        // contentStream.Headers.Add("FileSize", content.FileSize.ToString());
+        // contentStream.Headers.Add("ID", content.ID.ToString()); contentStream.Headers.Add("AdId", data.ID.ToString());
+
+        // multipartContent.Add(contentStream, "contents", content.ContentName ?? "file"); } }
+
+        //        return await HandleRequest<Advertisement>(async () =>
+        //        {
+        //            return await _httpClient.PutAsync($"{this.BaseApiUri}/Update2/{currentId}", multipartContent);
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null);
+        //    }
+        //    finally
+        //    {
+        //        foreach (var s in openedStreams)
+        //            s.Dispose();
+        //    }
+        //}
+
         public override async Task<ResponseTool<Advertisement>> Update(Advertisement data, int currentId)
         {
             try
             {
                 using var multipartContent = new MultipartFormDataContent();
 
-                var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image || v.Type == ContentVisualType.Video).ToList();
+                var _videosAndImage = data.Contents
+                    .Where(v => v.Type == ContentVisualType.Image || v.Type == ContentVisualType.Video)
+                    .ToList();
 
-                // Removing video and image content from the main data object to prevent serialization
+                // Removemos los medios pesados del objeto para serialización más liviana
                 data.Contents = data.Contents.Except(_videosAndImage).ToList();
 
-                // Serialize the advertisement data without the image and video content
                 var advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -503,52 +545,37 @@ namespace GeolocationAds.Services
 
                 multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8, "application/json"), "advertisementMetadata");
 
-                // Add media files to the multipart form data with additional metadata
                 foreach (var content in _videosAndImage)
                 {
-                    if (content.Content != null)
+                    if (content.Content != null && content.Content.Length > 0)
                     {
-                        var memoryStream = new MemoryStream(content.Content);
+                        var byteContent = new ByteArrayContent(content.Content);
 
-                        var contentStream = new StreamContent(memoryStream)
-                        {
-                            Headers = { ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type)) }
-                        };
+                        byteContent.Headers.ContentType = new MediaTypeHeaderValue(GetMediaType(content.Type));
 
-                        // Adding additional headers to include metadata
-                        contentStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                        byteContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
                         {
                             Name = "contents",
                             FileName = content.ContentName ?? "file"
                         };
-                        contentStream.Headers.Add("ContentName", content.ContentName);
 
-                        contentStream.Headers.Add("FilePath", content.FilePath);
+                        byteContent.Headers.Add("ContentName", content.ContentName);
+                        byteContent.Headers.Add("FilePath", content.FilePath);
+                        byteContent.Headers.Add("FileSize", content.FileSize.ToString());
+                        byteContent.Headers.Add("ID", content.ID.ToString());
+                        byteContent.Headers.Add("AdId", data.ID.ToString());
 
-                        contentStream.Headers.Add("FileSize", content.FileSize.ToString());
+                        multipartContent.Add(byteContent, "contents", content.ContentName ?? "file");
 
-                        contentStream.Headers.Add("ID", content.ID.ToString()); // Assuming 'ID' is a property of the content object
-
-                        contentStream.Headers.Add("AdId", data.ID.ToString()); // Assuming 'ID' is a property of the content object
-
-                        multipartContent.Add(contentStream, "contents", content.ContentName ?? "file");
+                        // 🔽 Libera el arreglo de bytes después de usarlo (si no será reutilizado)
+                        content.Content = null;
                     }
                 }
 
-                var response = await _httpClient.PutAsync($"{this.BaseApiUri}/Update2/{currentId}", multipartContent);
-
-                if (response.IsSuccessStatusCode)
+                return await HandleRequest<Advertisement>(async () =>
                 {
-                    var responseJson = await response.Content.ReadAsStringAsync();
-
-                    return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson);
-                }
-                else
-                {
-                    var errorResponse = await response.Content.ReadAsStringAsync();
-
-                    return ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}", null);
-                }
+                    return await _httpClient.PutAsync($"{this.BaseApiUri}/Update2/{currentId}", multipartContent);
+                });
             }
             catch (Exception ex)
             {

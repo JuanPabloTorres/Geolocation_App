@@ -31,8 +31,6 @@ namespace GeolocationAds.ViewModels
 
         public readonly IContainerSearchAdServices _containerSearchAdServices;
 
-        private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
-
         [ObservableProperty]
         private string selectedDistance;
 
@@ -151,7 +149,7 @@ namespace GeolocationAds.ViewModels
                 {
                     switch (item.SettingName)
                     {
-                        case var name when name == SettingName.MeterDistance.ToString():
+                        case var name when name == SettingName.SearchRadiusRange.ToString():
                             DistanceSettings.Add(item.Value);
                             break;
 

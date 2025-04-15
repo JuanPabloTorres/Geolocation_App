@@ -10,7 +10,7 @@
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Login"
-    BackgroundImageSource="loginbackground3.png"
+    BackgroundImageSource="loginbackground.png"
     Routing.Route="Login"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -19,50 +19,48 @@
 
         <Label
             Margin="5"
+            FontAttributes="Bold"
             FontFamily="Roboto"
             FontSize="40"
             Style="{StaticResource globalTitle}"
-            Text="Geo-Connect"
-            TextColor="White" />
+            Text="Geo-Connect "
+            TextColor="{StaticResource White}" />
 
         <Border
             Grid.Row="1"
-            StrokeShape="RoundRectangle 12,12,12,12"
-            StrokeThickness="0.4"
             Style="{StaticResource CustomBorderStyle}"
             VerticalOptions="Center">
 
-            <VerticalStackLayout BackgroundColor="White" VerticalOptions="End">
+            <VerticalStackLayout BackgroundColor="GhostWhite" HorizontalOptions="Fill">
 
                 <Label
-                    Margin="5"
-                    FontFamily="Roboto"
-                    FontSize="40"
+                    FontAttributes="Italic"
+                    FontSize="35"
+                    HorizontalOptions="Center"
                     Style="{StaticResource globalTitle}"
-                    Text="Welcome Back!"
+                    Text="Welcome Back "
                     TextColor="#3e4144" />
 
                 <Label
-                    Margin="5"
+                    FontAttributes="Italic"
                     FontFamily="Roboto"
-                    FontSize="Medium"
                     Style="{StaticResource globalsubTitle}"
-                    Text="Search And Discover"
+                    Text="Search And Discover "
                     TextColor="#3e4144" />
 
                 <local:CustomEntryContentView
-                    IconSource="&#xe7fd;"
+                    IconSource="&#xe8e8;"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="False"
-                    Placeholder="Username"
+                    Placeholder="Enter your username..."
                     Text="{Binding Model.Username}" />
 
                 <local:CustomEntryContentView
                     Title="Password"
-                    IconSource="&#xe897;"
+                    IconSource="&#xf042;"
                     IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                     IsPassword="True"
-                    Placeholder="Password"
+                    Placeholder="Enter your password..."
                     Text="{Binding Model.Password}" />
 
                 <HorizontalStackLayout HorizontalOptions="Center" IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
@@ -72,7 +70,7 @@
                         <CheckBox
                             IsChecked="{Binding IsRemember}"
                             VerticalOptions="Center"
-                            Color="Black" />
+                            Color="{StaticResource AppBlack}" />
 
                         <Label
                             FontAttributes="Bold"
@@ -83,8 +81,6 @@
                     <Button
                         BackgroundColor="Transparent"
                         Command="{Binding OpenRecoveryPopUpCommand}"
-                        FontSize="Medium"
-                        HorizontalOptions="End"
                         Style="{StaticResource globalButton}"
                         Text="Forgot Password?"
                         TextColor="{StaticResource appPrimaryOpt2ColorPrimaryDark}" />
@@ -109,7 +105,7 @@
                     Spacing="5"
                     VerticalOptions="Center">
 
-                    <BoxView BackgroundColor="{StaticResource AppBlack}" HeightRequest="1" />
+                    <BoxView HeightRequest="0.1" />
 
                     <!--<Label HorizontalOptions="Center" Text="Or sign in with" />-->
 
@@ -121,8 +117,7 @@
                             HorizontalOptions="Center"
                             ImageSource="google.png"
                             Text="Google"
-                            TextColor="Black"
-                            WidthRequest="130" />
+                            TextColor="Black" />
                         <!--  Ensure you have a Google logo in your Resources  -->
 
                         <Button
@@ -132,8 +127,7 @@
                             HorizontalOptions="Center"
                             ImageSource="facebook.png"
                             Text="Facebook"
-                            TextColor="Black"
-                            WidthRequest="135" />
+                            TextColor="Black" />
                         <!--  Ensure you have a Facebook logo in your Resources  -->
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
@@ -143,7 +137,7 @@
                     IsVisible="{Binding IsLoading}"
                     Style="{StaticResource globalLoading}" />
 
-                <!--<views:LoadingOverlay IsVisible="{Binding IsLoading}" />-->
+
             </VerticalStackLayout>
         </Border>
 
@@ -156,7 +150,8 @@
 
             <Label
                 Text="Don't have an account?"
-                TextColor="White"
+                TextColor="{StaticResource White}"
+                TextDecorations="Underline"
                 VerticalOptions="Center" />
             <Button
                 Padding="0"
@@ -164,7 +159,7 @@
                 Command="{Binding GoToRegisterCommand}"
                 Style="{StaticResource globalButton}"
                 Text="Sign Up"
-                TextColor="White" />
+                TextColor="{StaticResource White}" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

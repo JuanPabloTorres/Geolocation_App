@@ -17,11 +17,15 @@ namespace GeolocationAdsAPI.Controllers
 
         private readonly IGeolocationAdRepository geolocationAdRepository;
 
-        public GeolocationAdController(IGeolocationAdRepository geolocationAdRepository, IAdvertisementRepository advertisementRepository)
+        private readonly IAppSettingRepository settingRepository;
+
+        public GeolocationAdController(IGeolocationAdRepository geolocationAdRepository, IAdvertisementRepository advertisementRepository, IAppSettingRepository appSettingRepository)
         {
             this.geolocationAdRepository = geolocationAdRepository;
 
             this.advertisementRepository = advertisementRepository;
+
+            this.settingRepository = appSettingRepository;
         }
 
         [HttpPost("[action]")]
@@ -31,6 +35,13 @@ namespace GeolocationAdsAPI.Controllers
 
             try
             {
+                var canAddMorePinResponse = await geolocationAdRepository.CanAddMorePinsAsync(newGeolocationAd.AdvertisingId);
+
+                if (!canAddMorePinResponse.IsSuccess)
+                {
+                    throw new Exception(canAddMorePinResponse.Message);
+                }
+
                 var _currentAdToPost = newGeolocationAd.Advertisement;
 
                 newGeolocationAd.Advertisement = null;
@@ -55,18 +66,25 @@ namespace GeolocationAdsAPI.Controllers
         }
 
         [HttpPost("[action]/{distance}/{settinTypeId}")]
-        public async Task<IActionResult> FindAdsNearby(CurrentLocation currentLocation, int distance, int settinTypeId)
+        public async Task<IActionResult> FindAdsNearby(CurrentLocation currentLocation, string distance, int settinTypeId)
         {
             ResponseTool<IEnumerable<GeolocationAd>> response;
 
-            if (currentLocation.IsObjectNull())
-            {
-                return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail("Current location must be provided.", null, ToolsLibrary.Tools.Type.Fail));
-            }
-
             try
             {
-                var geoAdResponse = await geolocationAdRepository.GetAllWithNavigationPropertyAsync(currentLocation.Latitude, currentLocation.Longitude, distance, settinTypeId);
+                if (currentLocation.IsObjectNull())
+                {
+                    throw new Exception("Current location must be provided.");
+                }
+
+                var _settingResponse = await settingRepository.GetRadiusValueByLabelAsync(distance);
+
+                if (!_settingResponse.IsSuccess)
+                {
+                    return Ok(_settingResponse);
+                }
+
+                var geoAdResponse = await geolocationAdRepository.GetAllWithNavigationPropertyAsync(currentLocation.Latitude, currentLocation.Longitude, _settingResponse.Data, settinTypeId);
 
                 if (!geoAdResponse.IsSuccess)
                 {
@@ -89,23 +107,21 @@ namespace GeolocationAdsAPI.Controllers
         }
 
         [HttpPost("[action]/{distance}/{settingTypeId}/{pageIndex}")]
-        public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, int distance, int settingTypeId, int pageIndex)
+        public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, string distance, int settingTypeId, int pageIndex)
         {
             try
             {
-                var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, distance, settingTypeId, pageIndex);
+                var _settingResponse = await settingRepository.GetRadiusValueByLabelAsync(distance);
 
-                //if (!geoAdResponse.IsSuccess)
-                //{
-                //    return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildFail(geoAdResponse.Message, null, ToolsLibrary.Tools.Type.Fail));
-                //}
+                if (!_settingResponse.IsSuccess)
+                {
+                    return Ok(_settingResponse);
+                }
 
-                //var advertisements = geoAdResponse.Data;
-
+                var geoAdResponse = await this.geolocationAdRepository
+                                              .GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, _settingResponse.Data, settingTypeId, pageIndex);
 
                 return Ok(geoAdResponse);
-                // Assuming the data is ordered in the repository method itself
-                //return Ok(ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Content Found.", advertisements, ToolsLibrary.Tools.Type.DataFound));
             }
             catch (Exception ex)
             {

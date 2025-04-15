@@ -10,9 +10,9 @@
 
     <Border
         Padding="10"
-        HeightRequest="240"
+        HeightRequest="200"
         Style="{StaticResource popUpBorder}"
-        WidthRequest="240">
+        WidthRequest="200">
 
         <Grid
             Padding="10"
@@ -26,13 +26,13 @@
                 x:Name="notFoundAnimation"
                 Grid.Row="0"
                 AnimationCompleted="SKLottieView_AnimationCompleted"
-                HeightRequest="180"
+                HeightRequest="145"
                 HorizontalOptions="Center"
                 IsAnimationEnabled="True"
                 RepeatCount="0"
                 Source="NotFound.json"
                 VerticalOptions="Center"
-                WidthRequest="180" />
+                WidthRequest="145" />
 
             <!--  Message  -->
             <Label
@@ -41,6 +41,7 @@
                 FontAttributes="Bold"
                 FontSize="14"
                 HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
                 Text="{Binding .}"
                 TextColor="{StaticResource AppBlack}" />
         </Grid>

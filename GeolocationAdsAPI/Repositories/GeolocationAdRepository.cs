@@ -38,14 +38,6 @@ namespace GeolocationAdsAPI.Repositories
         {
             try
             {
-                //var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(a => a.Settings)
-                //    .AsNoTracking()
-                //    .Where(v => GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
-                //    DateTime.Now <= v.ExpirationDate &&
-                //    v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId)).OrderBy(c => c.Advertisement.CreateDate)
-                //    .Select(s => new GeolocationAd() { Advertisement = s.Advertisement, Latitude = s.Latitude, Longitude = s.Longitude })
-                //   .Distinct().ToListAsync();
-
                 var allEntities = await _context.GeolocationAds
           .AsNoTracking()
           .Include(v => v.Advertisement)
@@ -114,53 +106,6 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        //public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
-        //{
-        //    try
-        //    {
-        //        // Assume pre-calculation or efficient distance filtering
-        //        var allEntities = await _context.GeolocationAds.Include(v => v.Advertisement).ThenInclude(a => a.Settings)
-        //            .AsNoTracking()
-        //            .Where(geo => GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude, currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance &&
-        //            DateTime.Now <= geo.ExpirationDate &&
-        //            geo.Advertisement.Settings.Any(setting => setting.SettingId == settingId)).OrderBy(c => c.Advertisement.CreateDate)
-        //            .Select(geo => geo.AdvertisingId)
-        //            .ToListAsync();
-
-        // // Assume pre-calculation or efficient distance filtering //var allEntities = await
-        // _context.GeolocationAds // .AsNoTracking() // .Where(geo =>
-        // GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude,
-        // currentLocation.Longitude, geo.Latitude, geo.Longitude) <= distance && DateTime.Now <=
-        // geo.ExpirationDate) // .Select(geo => geo.AdvertisingId) // .Distinct() // .ToListAsync();
-
-        // // var allEntities = await _context.GeolocationAds.Include(v =>
-        // v.Advertisement).ThenInclude(a => a.Settings) // .AsNoTracking() // .Where(v => //
-        // GeolocationContext.VincentyFormulaSQL2(currentLocation.Latitude,
-        // currentLocation.Longitude, v.Latitude, v.Longitude) <= distance && // DateTime.Now <=
-        // v.ExpirationDate && // v.Advertisement.Settings // .Any(setting => setting.SettingId ==
-        // settingId)) // .OrderBy(c => c.Advertisement.CreateDate) //.Select(geo =>
-        // geo.AdvertisingId) // .Distinct().ToListAsync();
-
-        // var filteredAds = _context.Advertisements .AsNoTracking() .Where(ad => allEntities.Any(a
-        // => a == ad.ID)) .OrderByDescending(ad => ad.CreateDate) // Consider ordering by a
-        // meaningful field .Select(ad => new Advertisement { ID = ad.ID, Description =
-        // ad.Description, Title = ad.Title, UserId = ad.UserId, CreateDate = ad.CreateDate,
-
-        // Contents = ad.Contents.Select(content => new ContentType { CreateDate =
-        // content.CreateDate, ID = content.ID, FileSize = content.FileSize, Type = content.Type,
-        // Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() :
-        // content.Content,// Apply byte range here Url = content.Type == ContentVisualType.URL ?
-        // content.Url : string.Empty }).Take(1).ToList(), // Only take necessary content })
-        // .Skip((pageIndex - 1) * ConstantsTools.PageSize) .Take(ConstantsTools.PageSize);
-
-        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Entities fetched successfully.", filteredAds);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
-
         public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(
     CurrentLocation currentLocation, int distance, int settingId, int pageIndex)
         {
@@ -198,10 +143,15 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (nearbyAdIds.IsEmpty())
                 {
+                    if (pageIndex > 0)
+                    {
+                        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail("No more nearby content found.", nearbyAdIds, ToolsLibrary.Tools.Type.EmptyCollection);
+                    }
+
                     return ResponseFactory<IEnumerable<Advertisement>>.BuildFail("No nearby content found.", nearbyAdIds, ToolsLibrary.Tools.Type.EmptyCollection);
                 }
 
-                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found.", nearbyAdIds,ToolsLibrary.Tools.Type.DataFound);
+                return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess("Data Found.", nearbyAdIds, ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
@@ -227,6 +177,46 @@ namespace GeolocationAdsAPI.Repositories
             catch (Exception ex)
             {
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        /// <summary>
+        /// Verifica si el anuncio puede tener más pines basándose en el valor de configuración "AdMaxPinAllow".
+        /// </summary>
+        /// <param name="adId">
+        /// ID del anuncio
+        /// </param>
+        /// <returns>
+        /// True si puede agregar más pines, false si alcanzó el máximo.
+        /// </returns>
+        public async Task<ResponseTool<bool>> CanAddMorePinsAsync(int adId)
+        {
+            try
+            {
+                // Contar cuántos pines tiene actualmente el anuncio
+                var currentPinCount = await _context.GeolocationAds.CountAsync(g => g.AdvertisingId == adId);
+
+                // Obtener el valor máximo permitido desde la configuración
+                var setting = await _context.Settings.AsNoTracking().FirstOrDefaultAsync(s => s.SettingName == "AdMaxPinAllow");
+
+                if (setting.IsObjectNull() || !int.TryParse(setting.Value, out var maxAllowed))
+                {
+                    throw new Exception("Could not retrieve max pin setting.");
+                }
+
+                // Verificar si aún puede agregar más pines
+                var canAdd = currentPinCount < maxAllowed;
+
+                if (!canAdd)
+                {
+                    return ResponseFactory<bool>.BuildFail("Have  reach max pin allow.", canAdd);
+                }
+
+                return ResponseFactory<bool>.BuildSuccess("Pin check complete.", canAdd);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<bool>.BuildFail($"Error: {ex.Message}", false, ToolsLibrary.Tools.Type.Exception);
             }
         }
     }

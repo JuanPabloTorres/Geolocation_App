@@ -8,16 +8,28 @@
 
     <!--  Converters  -->
     <converters:IsEnableConverter x:Key="IsEnableConverter" />
+
     <converters:IsVisibleConverterMultiParam x:Key="IsVisibleConverterMultiParam" />
+
     <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+
     <converters:ErrorMessageConverter x:Key="ErrorMessageConverter" />
+
     <converters:SubstringConverter x:Key="SubstringConverter" />
+
     <converters:StepViewConverter x:Key="StepViewConverter" />
+
     <converters:ImageOrVideoCheckConverter x:Key="ImageOrVideoCheckConverter" />
+
     <converters:ByteArrayToVideSourceConverter x:Key="ByteArrayToVideSourceConverter" />
+
     <converters:SpanConverter x:Key="SpanConverter" />
+
     <converters:BoolToTextConverter x:Key="BoolToTextConverter" />
+
     <converters:DataSizeConverter x:Key="DataSizeConverter" />
+
     <converters:UserProviderToBooleanConverter x:Key="UserProviderToBooleanConverter" />
+
     <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
 </ResourceDictionary>

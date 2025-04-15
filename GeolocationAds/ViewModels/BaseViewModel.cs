@@ -10,6 +10,7 @@ using GeolocationAds.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
@@ -28,6 +29,8 @@ namespace GeolocationAds.ViewModels
         protected MetaDataPopUp _metaDataPopUp;        
 
         protected FilterPopUpViewModel2 filterPopUpViewModel;
+
+        protected IList<string> settings = new List<string>() { SettingName.SearchRadiusRange.ToString(), SettingName.AdTypes.ToString() };
 
         protected S service { get; set; }
 

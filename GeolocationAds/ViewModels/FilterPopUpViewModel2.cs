@@ -49,6 +49,8 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public void Filter()
         {
+
+
             FilterItemInvoke();
         }
     }

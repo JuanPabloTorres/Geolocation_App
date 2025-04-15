@@ -12,7 +12,7 @@
     xmlns:viewTemplate="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
     Title="Create"
-    BackgroundColor="WhiteSmoke"
+    BackgroundColor="GhostWhite"
     Routing.Route="create">
 
     <ContentPage.ToolbarItems>

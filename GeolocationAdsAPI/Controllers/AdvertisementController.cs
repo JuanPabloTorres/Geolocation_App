@@ -275,6 +275,59 @@ namespace GeolocationAdsAPI.Controllers
             return $"{ip}:{port}";
         }
 
+        //[HttpPut("Update2/{Id}")]
+        //[RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
+        //[RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
+        //public async Task<IActionResult> Update2(int Id)
+        //{
+        //    try
+        //    {
+        //        if (!Request.HasFormContentType)
+        //        {
+        //            return Ok(ResponseFactory<string>.BuildFail("Unsupported media type", string.Empty, ToolsLibrary.Tools.Type.Exception));
+        //        }
+
+        //        // 🔹 Obtener datos del formulario
+        //        var formDataResponse = await ApiCommonsTools.GetFormDataFromHttpRequest(Request);
+
+        //        if (!formDataResponse.IsSuccess)
+        //        {
+        //            return Ok(ResponseFactory<string>.BuildFail(formDataResponse.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
+        //        }
+
+        //        var formCollection = formDataResponse.Data;
+
+        //        if (!formCollection.ContainsKey("advertisementMetadata"))
+        //        {
+        //            return Ok(ResponseFactory<string>.BuildFail("Advertisement metadata is required.", string.Empty, ToolsLibrary.Tools.Type.Exception));
+        //        }
+
+        //        // 🔹 Deserializar anuncio
+        //        var advertisementJson = formCollection["advertisementMetadata"];
+
+        //        var advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
+
+        //        if (advertisement == null)
+        //        {
+        //            return Ok(ResponseFactory<string>.BuildFail("Invalid advertisement data.", string.Empty, ToolsLibrary.Tools.Type.Exception));
+        //        }
+
+        //        // 🔹 Procesar archivos subidos
+        //        var uploadedContents = await FileManager.ProcessUploadedFilesAsync(formCollection);
+
+        //        advertisement.Contents.AddRange(uploadedContents);
+
+        //        // 🔹 Actualizar anuncio en base de datos
+        //        var response = await advertisementRepository.UpdateAsync(Id, advertisement);
+
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Ok(ResponseFactory<string>.BuildFail(ex.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
+        //    }
+        //}
+
         [HttpPut("Update2/{Id}")]
         [RequestFormLimits(MultipartBodyLengthLimit = ConstantsTools.MaxRequestBodySize)]
         [RequestSizeLimit(ConstantsTools.MaxRequestBodySize)]
@@ -282,51 +335,81 @@ namespace GeolocationAdsAPI.Controllers
         {
             try
             {
+                // ✅ Validar tipo de contenido
                 if (!Request.HasFormContentType)
                 {
-                    return Ok(ResponseFactory<string>.BuildFail("Unsupported media type", string.Empty, ToolsLibrary.Tools.Type.Exception));
+                    return Ok(ResponseFactory<string>.BuildFail(
+                        "The request must be of form-data type.",
+                        string.Empty,
+                        ToolsLibrary.Tools.Type.Exception));
                 }
 
-                // 🔹 Obtener datos del formulario
+                // ✅ Extraer formulario
                 var formDataResponse = await ApiCommonsTools.GetFormDataFromHttpRequest(Request);
 
                 if (!formDataResponse.IsSuccess)
                 {
-                    return Ok(ResponseFactory<string>.BuildFail(formDataResponse.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
+                    return Ok(ResponseFactory<string>.BuildFail(
+                        $"Form data error: {formDataResponse.Message}",
+                        string.Empty,
+                        ToolsLibrary.Tools.Type.Exception));
                 }
 
                 var formCollection = formDataResponse.Data;
 
+                // ✅ Validar que se incluya el JSON de metadata
                 if (!formCollection.ContainsKey("advertisementMetadata"))
                 {
-                    return Ok(ResponseFactory<string>.BuildFail("Advertisement metadata is required.", string.Empty, ToolsLibrary.Tools.Type.Exception));
+                    return Ok(ResponseFactory<string>.BuildFail(
+                        "Missing advertisement metadata in form.",
+                        string.Empty,
+                        ToolsLibrary.Tools.Type.Exception));
                 }
 
-                // 🔹 Deserializar anuncio
-                var advertisementJson = formCollection["advertisementMetadata"];
-
-                var advertisement = JsonConvert.DeserializeObject<Advertisement>(advertisementJson);
+                // ✅ Deserializar el objeto Advertisement
+                Advertisement advertisement;
+                try
+                {
+                    advertisement = JsonConvert.DeserializeObject<Advertisement>(formCollection["advertisementMetadata"]);
+                }
+                catch (JsonException jsonEx)
+                {
+                    return Ok(ResponseFactory<string>.BuildFail(
+                        $"Invalid JSON: {jsonEx.Message}",
+                        string.Empty,
+                        ToolsLibrary.Tools.Type.Exception));
+                }
 
                 if (advertisement == null)
                 {
-                    return Ok(ResponseFactory<string>.BuildFail("Invalid advertisement data.", string.Empty, ToolsLibrary.Tools.Type.Exception));
+                    return Ok(ResponseFactory<string>.BuildFail(
+                        "Advertisement data is null or malformed.",
+                        string.Empty,
+                        ToolsLibrary.Tools.Type.Exception));
                 }
 
-                // 🔹 Procesar archivos subidos
+                // ✅ Procesar archivos multimedia (imágenes y videos)
                 var uploadedContents = await FileManager.ProcessUploadedFilesAsync(formCollection);
 
-                advertisement.Contents.AddRange(uploadedContents);
+                if (uploadedContents.Any())
+                {
+                    advertisement.Contents.AddRange(uploadedContents);
+                }
 
-                // 🔹 Actualizar anuncio en base de datos
-                var response = await advertisementRepository.UpdateAsync(Id, advertisement);
+                // ✅ Llamar al repositorio para actualizar
+                var updateResult = await advertisementRepository.UpdateAsync(Id, advertisement);
 
-                return Ok(response);
+                return Ok(updateResult);
             }
             catch (Exception ex)
             {
-                return Ok(ResponseFactory<string>.BuildFail(ex.Message, string.Empty, ToolsLibrary.Tools.Type.Exception));
+                return Ok(ResponseFactory<string>.BuildFail(
+                    $"Unexpected error: {ex.Message}",
+                    string.Empty,
+                    ToolsLibrary.Tools.Type.Exception));
             }
         }
+
 
         private string ConvertVideoToHLS3(string videoFilePath)
         {

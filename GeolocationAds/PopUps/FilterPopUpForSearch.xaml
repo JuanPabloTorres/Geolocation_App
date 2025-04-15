@@ -20,7 +20,7 @@
             <Grid
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
-                BackgroundColor="Transparent">
+                BackgroundColor="GhostWhite">
                 <GraphicsView BackgroundColor="Transparent">
                     <GraphicsView.Drawable>
                         <drawable:SemiCircle />
@@ -125,95 +125,5 @@
                 Style="{StaticResource globalLoading}" />
         </Grid>
     </Border>
-    <!--<Grid
-        Padding="15"
-        BackgroundColor="White"
-        WidthRequest="280">
 
-        <Grid.RowDefinitions>
-
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <StackLayout Grid.Row="0" Orientation="Horizontal">
-
-            <Label Style="{StaticResource globalLabel}" Text="Filter" />
-
-            <Button
-                Margin="5"
-                BackgroundColor="Transparent"
-                Clicked="OnCloseButtonClicked"
-                HorizontalOptions="EndAndExpand"
-                Style="{StaticResource XButton}">
-
-                <Button.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.5"
-                        Radius="40"
-                        Offset="5,5" />
-                </Button.Shadow>
-
-
-                <Button.ImageSource>
-                    <FontImageSource
-                        FontFamily="MaterialIconsOutlined-Regular"
-                        Glyph="&#xe5cd;"
-                        Color="#3e4144" />
-                </Button.ImageSource>
-
-            </Button>
-        </StackLayout>
-
-        <VerticalStackLayout Grid.Row="1">
-
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="Distance: (M)" />
-
-            <localControl:CustomPickerContentView
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                ItemsSource="{Binding DistanceSettings}"
-                SelectedItem="{Binding SelectedDistance}" />
-
-            <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource globalLabel}"
-                Text="Type:" />
-            <localControl:CustomPickerContentView
-                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-                IconSource="arrow.png"
-                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                ItemDisplayBindingPath="Value"
-                ItemsSource="{Binding AdTypesSettings}"
-                SelectValue="{Binding SelectedAdType}"
-                SelectedItem="{Binding SelectedAdType}" />
-        </VerticalStackLayout>
-
-        <Button
-            Grid.Row="2"
-            Command="{Binding FilterCommand}"
-            HorizontalOptions="Center"
-            IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Style="{StaticResource globalButton}">
-
-            <Button.ImageSource>
-                <FontImageSource
-                    FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph="&#xe8b6;"
-                    Color="White" />
-            </Button.ImageSource>
-
-
-        </Button>
-
-        <ActivityIndicator
-            Grid.Row="2"
-            IsRunning="{Binding IsLoading}"
-            IsVisible="{Binding IsLoading}"
-            Style="{StaticResource globalLoading}" />
-    </Grid>-->
 </mct:Popup>

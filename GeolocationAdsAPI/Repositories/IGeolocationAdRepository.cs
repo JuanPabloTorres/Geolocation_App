@@ -14,5 +14,7 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id);
 
         Task<ResponseTool<bool>> AdvertisementExistInGeolocationAd(int id);
+
+        Task<ResponseTool<bool>> CanAddMorePinsAsync(int adId);
     }
 }
