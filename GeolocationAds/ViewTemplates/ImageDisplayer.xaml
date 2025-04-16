@@ -5,54 +5,53 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
-    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates">
+    xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
+    ColumnDefinitions="*,*"
+    RowDefinitions="*">
 
     <ffimageloading:CachedImage
+        Grid.ColumnSpan="2"
         Aspect="Fill"
+        BackgroundColor="{StaticResource AppBlack}"
         FadeAnimationEnabled="True"
         Source="{Binding Image.Source}" />
 
     <!--  Capa semitransparente para legibilidad  -->
 
-    <Grid x:Name="myContentStackHeader" RowDefinitions="Auto,*">
+    <Grid x:Name="myContentStackHeader" Grid.Column="1">
 
         <headerView:ContentHeaderView
-            Grid.Row="0"
             BackgroundColor="Transparent"
-            Opacity="{StaticResource OpacityValue}" />
+            HorizontalOptions="End"
+            VerticalOptions="Start" />
 
-        <headerView:ContentInformationDisplayer
-            Grid.Row="1"
-            BackgroundColor="Transparent"
-            Opacity="{StaticResource OpacityValue}"
-            VerticalOptions="End" />
+
     </Grid>
 
-    <Grid x:Name="searchContentStackHeader" RowDefinitions="Auto,*">
+    <Grid x:Name="searchContentStackHeader" Grid.Column="1">
 
         <headerView:HomeContentItemHeaderView
-            Grid.Row="0"
             BackgroundColor="Transparent"
-            Opacity="{StaticResource OpacityValue}" />
-
-        <headerView:ContentInformationDisplayer
-            Grid.Row="1"
-            Opacity="{StaticResource OpacityValue}"
+            HorizontalOptions="End"
             VerticalOptions="End" />
+
+
     </Grid>
 
-    <Grid x:Name="myCaptureHeader" RowDefinitions="Auto,*">
+    <Grid x:Name="myCaptureHeader" Grid.Column="1">
 
         <headerView:CaptureHeaderDisplayer
-            Grid.Row="0"
             BackgroundColor="Transparent"
-            Opacity="{StaticResource OpacityValue}" />
-
-        <headerView:ContentInformationDisplayer
-            Grid.Row="1"
-            Opacity="{StaticResource OpacityValue}"
+            HorizontalOptions="End"
             VerticalOptions="End" />
+
+
     </Grid>
+
+    <headerView:ContentInformationDisplayer
+        Grid.Column="0"
+        HorizontalOptions="Start"
+        VerticalOptions="End" />
 
     <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

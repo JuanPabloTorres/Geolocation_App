@@ -34,7 +34,7 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private bool isExpanded;
 
-        private const int MaxLengthWithoutExpand = 100;
+        private const int MaxLengthWithoutExpand = 25;
 
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
@@ -52,7 +52,7 @@ namespace GeolocationAds.TemplateViewModel
 
         private string TruncateDescription(string description)
         {
-            const int maxLength = 100; // Adjust the length as needed
+            const int maxLength = 25; // Adjust the length as needed
 
             return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
         }

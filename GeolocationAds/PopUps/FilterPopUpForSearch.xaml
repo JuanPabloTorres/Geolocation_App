@@ -71,7 +71,7 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 Style="{StaticResource globalLabel}"
-                Text="Distance (M):" />
+                Text="Search Range:" />
 
             <!--  📏 Distance Picker  -->
             <localControl:CustomPickerContentView

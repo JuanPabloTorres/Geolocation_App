@@ -3,6 +3,7 @@
     x:Class="GeolocationAds.ViewTemplates.ContentInformationDisplayer"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Margin="2"
     Padding="5"
     BackgroundColor="Transparent">
 
@@ -22,8 +23,18 @@
             FontAttributes="Bold"
             HorizontalOptions="End"
             IsVisible="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Text="{Binding IsExpanded, Converter={StaticResource BoolToTextConverter}, ConverterParameter='More,Less'}"
-            TextColor="LightBlue">
+            Text="{Binding IsExpanded, Converter={StaticResource BoolToTextConverter}, ConverterParameter='More ,Less '}"
+            TextColor="{StaticResource Blue100Accent}">
+
+            <!--  🎯 Sombra  -->
+            <Label.Shadow>
+                <Shadow
+                    Brush="{StaticResource AppBlack}"
+                    Opacity="0.4"
+                    Radius="2"
+                    Offset="1,1" />
+            </Label.Shadow>
+
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ToggleExpandCommand}" />
             </Label.GestureRecognizers>

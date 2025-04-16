@@ -7,56 +7,62 @@
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
-    RowDefinitions="*">
+    ColumnDefinitions="*,*"
+    RowDefinitions="*,Auto">
 
     <!--  ▶️ Reproductor de video  -->
     <toolkit:MediaElement
         x:Name="videoPlayer"
+        Grid.ColumnSpan="2"
         Aspect="AspectFill"
         MediaFailed="videoPlayer_MediaFailed"
         ShouldAutoPlay="False"
         ShouldKeepScreenOn="True"
         ShouldLoopPlayback="False"
-        ShouldShowPlaybackControls="True"
+        ShouldShowPlaybackControls="False"
         Source="{Binding MediaSource}" />
 
     <!--  🎬 Header según el tipo de pantalla  -->
-    <Grid x:Name="myContentStackHeader">
+    <Grid x:Name="myContentStackHeader" Grid.Column="1">
 
 
         <headerView:ContentHeaderView
             BackgroundColor="Transparent"
             HorizontalOptions="End"
-            VerticalOptions="Start" />
+            VerticalOptions="End" />
     </Grid>
 
-    <Grid x:Name="searchContentStackHeader">
+    <Grid x:Name="searchContentStackHeader" Grid.Column="1">
 
 
 
         <headerView:HomeContentItemHeaderView
             BackgroundColor="Transparent"
             HorizontalOptions="End"
-            VerticalOptions="Start" />
+            VerticalOptions="End" />
     </Grid>
 
-    <Grid x:Name="myCaptureHeader">
+    <Grid x:Name="myCaptureHeader" Grid.Column="1">
 
 
 
         <headerView:CaptureHeaderDisplayer
             BackgroundColor="Transparent"
             HorizontalOptions="End"
-            VerticalOptions="Start" />
+            VerticalOptions="End" />
     </Grid>
 
-    <!--<headerView:ContentInformationDisplayer Grid.Row="1" VerticalOptions="Start" />-->
+    <headerView:ContentInformationDisplayer
+        Grid.Column="0"
+        HorizontalOptions="Start"
+        VerticalOptions="End" />
 
 
 
     <!--  ⏯️ Controles de video  -->
-    <!--<Border
-        Grid.Row="3"
+    <Border
+        Grid.Row="1"
+        Grid.ColumnSpan="2"
         Margin="2"
         Padding="2"
         BackgroundColor="{StaticResource AppBlack}"
@@ -70,9 +76,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-    -->
-    <!--  Controles  -->
-    <!--
+
+            <!--  Controles  -->
+
             <Button
                 Grid.Column="0"
                 Command="{Binding BackMediaCommand}"
@@ -110,9 +116,9 @@
                 </Button.ImageSource>
             </Button>
 
-    -->
-    <!--  Progreso  -->
-    <!--
+
+            <!--  Progreso  -->
+
             <HorizontalStackLayout Grid.Column="4">
                 <VerticalStackLayout>
 
@@ -135,7 +141,7 @@
                 </VerticalStackLayout>
             </HorizontalStackLayout>
         </Grid>
-    </Border>-->
+    </Border>
 
     <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

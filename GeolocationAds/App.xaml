@@ -94,6 +94,16 @@
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="2" />
+
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.9"
+                            Radius="5"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style x:Key="globalsubTitle" TargetType="Label">
@@ -143,7 +153,7 @@
             </Style>
 
             <Style x:Key="globalDescriptionLabel" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
 
                 <Setter Property="FontSize" Value="14" />
@@ -152,6 +162,16 @@
                 <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
+
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.9"
+                            Radius="5"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style x:Key="globalLoading" TargetType="ActivityIndicator">
@@ -314,7 +334,7 @@
             </Style>
 
             <Style x:Key="XButton" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="HorizontalOptions" Value="End" />
 
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -323,6 +343,16 @@
                 <Setter Property="CornerRadius" Value="0" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="Transparent" />
+
+                <Setter Property="Shadow">
+                    <Setter.Value>
+                        <Shadow
+                            Brush="{StaticResource AppBlack}"
+                            Opacity="0.5"
+                            Radius="2"
+                            Offset="5,5" />
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <Style x:Key="XButtonGray" TargetType="Button">

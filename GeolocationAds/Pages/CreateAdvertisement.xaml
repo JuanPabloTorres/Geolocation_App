@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:GeolocationAds.App_Converter"
+    xmlns:drawable="clr-namespace:GeolocationAds.CustomCotrols"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
@@ -82,7 +83,7 @@
 
             <Grid>
                 <ffimageloading:CachedImage
-                    Aspect="Fill"
+                    Aspect="AspectFit"
                     FadeAnimationEnabled="True"
                     HorizontalOptions="Fill"
                     Source="{Binding Image}"
@@ -120,6 +121,7 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateCreate}" />
     </ContentPage.Resources>
 
+
     <ScrollView>
 
         <Grid>
@@ -130,14 +132,36 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <CollectionView Grid.Row="0" ItemsSource="{Binding ValidationResults}">
+            <Grid Grid.Row="0" HeightRequest="120">
+                <GraphicsView HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    Text="Don’t wait for something to happen… create it here."
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource ErrorLabelStyle}"
+                                Text="{Binding ErrorMessage}" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -148,20 +172,20 @@
             </CollectionView>
 
             <local:CustomEntryContentView
-                Grid.Row="1"
+                Grid.Row="2"
                 IconSource="&#xf05b;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Title"
                 Text="{Binding Model.Title, Mode=TwoWay}" />
 
             <local:CustomEditorContentView
-                Grid.Row="2"
+                Grid.Row="3"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
                 Placeholder="Description"
                 Text="{Binding Model.Description, Mode=TwoWay}" />
 
             <local:CustomPickerContentView
-                Grid.Row="3"
+                Grid.Row="4"
                 DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
                 IconSource="arrow.png"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
@@ -170,7 +194,7 @@
                 SelectValue="{Binding SelectedAdType}"
                 SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
 
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="5">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -203,7 +227,7 @@
 
             <viewTemplate:EditAndCreateCarousel
                 x:Name="contentCollection"
-                Grid.Row="5"
+                Grid.Row="6"
                 ItemTemplate="{StaticResource typeSelector}"
                 ItemsSource="{Binding ContentTypesTemplate}" />
 
@@ -211,10 +235,11 @@
 
             <views:LoadingOverlay
                 Grid.Row="0"
-                Grid.RowSpan="6"
+                Grid.RowSpan="7"
                 HorizontalOptions="Fill"
                 IsVisible="{Binding IsLoading}"
                 VerticalOptions="Fill" />
         </Grid>
     </ScrollView>
+
 </ContentPage>
