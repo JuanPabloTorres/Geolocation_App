@@ -36,13 +36,8 @@ public partial class SearchAd : ContentPage
         }
     }
 
-
-
-    protected async override void OnAppearing()
+    protected override async void OnAppearing()
     {
-
-      
-
         if (this.viewModel.NearByTemplateViewModels.Count == 0)
         {
             SearchAdViewModel.PageIndex = 1;
@@ -56,14 +51,7 @@ public partial class SearchAd : ContentPage
             this.paginControls.IsNextButtonVisible = false;
 
             this.paginControls.IsBackButtonVisible = false;
-
-
         }
-
-        //if (viewModel.SelectedAdType.IsObjectNull())
-        //{
-        //    await viewModel.InitializeDataLoadingSettingsAsync();
-        //}
     }
 
     private async void BackItemButton_Clicked()
@@ -152,9 +140,7 @@ public partial class SearchAd : ContentPage
     //            .OfType<SkiaSharp.Extended.UI.Controls.SKLottieView>()
     //            .FirstOrDefault();
 
-    //        if (lottie != null)
-    //        {
-    //            lottie.IsAnimationEnabled = true;
+    // if (lottie != null) { lottie.IsAnimationEnabled = true;
 
     //        }
     //    }

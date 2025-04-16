@@ -157,44 +157,54 @@ namespace GeolocationAds.ViewModels
             });
         }
 
+      
+
         [RelayCommand]
         public async Task UploadContent()
         {
             await RunWithLoadingIndicator(async () =>
             {
-                var customFileTypes = GetCommonFileTypes();
+                FileResult result = null;
 
-                FileResult result = await FilePicker.PickAsync(new PickOptions
+                // Mostrar opciones al usuario
+                string option = await Shell.Current.DisplayActionSheet("Choose media", "Cancel", null, "Photo", "Video");
+
+                if (option == "Photo")
                 {
-                    FileTypes = customFileTypes,
-                });
-
-                if (!result.IsObjectNull())
+                    result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                    {
+                        Title = "Pick a photo"
+                    });
+                }
+                else if (option == "Video")
                 {
-                    this.Model.Contents.Clear();
-
-                    this.ContentTypesTemplate.Clear();
-
-                    await ProcessSelectedFile(result);
+                    result = await MediaPicker.PickVideoAsync(new MediaPickerOptions
+                    {
+                        Title = "Pick a video"
+                    });
+                }
+                else
+                {
+                    return; // cancelado
                 }
 
-                foreach (var item in ContentTypesTemplate)
-                {
-                    await item.SetAnimation();
-                }
+                if (result.IsObjectNull())
+                    return;
+
+                this.Model.Contents.Clear();
+
+                this.ContentTypesTemplate.Clear();
+
+                await ProcessSelectedFile(result);
+
+                //foreach (var item in ContentTypesTemplate)
+                //{
+                //    await item.SetAnimation();
+                //}
             });
         }
 
-        private FilePickerFileType GetCommonFileTypes()
-        {
-            var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" } },
-                { DevicePlatform.iOS, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" } }
-            };
-
-            return new FilePickerFileType(fileTypes);
-        }
+      
 
         private async Task ProcessSelectedFile(FileResult result)
         {
@@ -275,7 +285,7 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        async partial void OnSelectedAdTypeChanged(AppSetting value)
+         async partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             await HandleAdTypeChangeAsync(value);
         }

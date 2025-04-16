@@ -156,6 +156,57 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
+        public async Task<ResponseTool<IAsyncEnumerable<Advertisement>>> GetAdvertisementsOfUserAsyncStream(int userId, int typeId, int pageIndex)
+        {
+            try
+            {
+                var query = _context.Advertisements
+                    .Where(v => v.UserId == userId && v.Settings.Any(s => s.SettingId == typeId))
+                    .OrderByDescending(s => s.CreateDate)
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .Select(s => new Advertisement
+                    {
+                        ID = s.ID,
+                        Description = s.Description,
+                        Title = s.Title,
+                        UserId = s.UserId,
+                        CreateDate = s.CreateDate,
+                        Contents = s.Contents
+                            .Select(ct => new ContentType
+                            {
+                                ID = ct.ID,
+                                Type = ct.Type,
+                                Content = ct.Type == ContentVisualType.Video ? Array.Empty<byte>() : ct.Content,
+                                ContentName = ct.ContentName ?? string.Empty,
+                                Url = ct.Type == ContentVisualType.URL ? ct.Url : string.Empty,
+                                FileSize = ct.FileSize,
+                            })
+                            .Take(1)
+                            .ToList(),
+                        Settings = s.Settings
+                            .Select(st => new AdvertisementSettings
+                            {
+                                ID = st.ID,
+                                SettingId = st.SettingId,
+                                AdvertisementId = st.AdvertisementId,
+                                Setting = st.Setting
+                            })
+                            .ToList()
+                    })
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
+                    .AsAsyncEnumerable(); // 👉 Habilita el streaming
+
+                return ResponseFactory<IAsyncEnumerable<Advertisement>>.BuildSuccess("Data Stream Started", query, ToolsLibrary.Tools.Type.DataFound);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IAsyncEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+
         public override async Task<ResponseTool<Advertisement>> Remove(int id)
         {
             try
@@ -269,8 +320,7 @@ namespace GeolocationAdsAPI.Repositories
             {
                 // 🔹 Cargar el anuncio existente sin rastreo para evitar conflictos de seguimiento
                 var existingAdvertisement = await _context.Advertisements
-                    .AsNoTracking()
-                    .Include(a => a.Contents)
+                   .Include(a => a.Contents)
                     .Include(a => a.Settings)
                     .FirstOrDefaultAsync(a => a.ID == id);
 

@@ -19,7 +19,7 @@
 
         <ToolbarItem Command="{Binding SearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe569;" />
+                <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xeb3a;" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
         <ToolbarItem Command="{Binding OpenFilterPopUpForSearchCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}">

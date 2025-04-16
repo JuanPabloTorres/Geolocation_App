@@ -1,5 +1,6 @@
 ﻿using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Factories;
 using ToolsLibrary.Models;
@@ -62,6 +63,9 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+     
+
 
         public async Task<ResponseTool<IEnumerable<GeolocationAd>>> GetAllWithNavigationPropertyAsyncAndSettingEqualTo(int settingId)
         {
@@ -159,6 +163,81 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
+
+        public async Task<ResponseTool<IAsyncEnumerable<Advertisement>>> GetAllWithNavigationPropertyStreamedAsync(
+        CurrentLocation currentLocation,
+        int distance,
+        int settingId,
+        int pageIndex)
+        {
+            try
+            {
+                var query = _context.GeolocationAds
+                    .Include(a => a.Advertisement).ThenInclude(ad => ad.Contents)
+                    .Include(a => a.Advertisement).ThenInclude(ad => ad.Settings)
+                    .AsNoTracking()
+                    .Where(geo =>
+                        GeolocationContext.VincentyFormulaSQL2(
+                            currentLocation.Latitude,
+                            currentLocation.Longitude,
+                            geo.Latitude,
+                            geo.Longitude) <= distance &&
+                        DateTime.Now <= geo.ExpirationDate &&
+                        geo.Advertisement.Settings.Any(s => s.SettingId == settingId))
+                    .OrderByDescending(ad => ad.CreateDate)
+                    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
+                    .Take(ConstantsTools.PageSize)
+                    .Select(ad => ad.Advertisement)
+                    .AsAsyncEnumerable();
+
+                async IAsyncEnumerable<Advertisement> StreamWithProjection([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken = default)
+                {
+                    await foreach (var ad in query.WithCancellation(cancellationToken))
+                    {
+                        var projectedAd = new Advertisement
+                        {
+                            ID = ad.ID,
+                            Description = ad.Description,
+                            Title = ad.Title,
+                            UserId = ad.UserId,
+                            CreateDate = ad.CreateDate,
+                            Contents = ad.Contents.Select(content => new ContentType
+                            {
+                                CreateDate = content.CreateDate,
+                                ID = content.ID,
+                                FileSize = content.FileSize,
+                                Type = content.Type,
+                                Content = content.Type == ContentVisualType.Video ? Array.Empty<byte>() : content.Content,
+                                Url = content.Type == ContentVisualType.URL ? content.Url : string.Empty
+                            }).ToList(),
+                            Settings = ad.Settings
+                        };
+
+                        yield return projectedAd;
+                    }
+                }
+
+                return ResponseFactory<IAsyncEnumerable<Advertisement>>.BuildSuccess(
+                    "Advertisements streamed successfully.",
+                    StreamWithProjection(),
+                    ToolsLibrary.Tools.Type.DataFound
+                );
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<IAsyncEnumerable<Advertisement>>.BuildFail(
+                    $"Error while streaming advertisements: {ex.Message}",
+                    null,
+                    ToolsLibrary.Tools.Type.Exception
+                );
+            }
+        }
+
+
+
+
+
+
         public async Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id)
         {
             try
@@ -194,7 +273,7 @@ namespace GeolocationAdsAPI.Repositories
             try
             {
                 // Contar cuántos pines tiene actualmente el anuncio
-                var currentPinCount = await _context.GeolocationAds.CountAsync(g => g.AdvertisingId == adId);
+                var currentPinCount = await _context.GeolocationAds.CountAsync(g => g.AdvertisingId == adId && DateTime.Now <= g.ExpirationDate);
 
                 // Obtener el valor máximo permitido desde la configuración
                 var setting = await _context.Settings.AsNoTracking().FirstOrDefaultAsync(s => s.SettingName == "AdMaxPinAllow");
@@ -220,24 +299,6 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        //public async Task<ResponseTool<bool>> IsLocationRestrictedAsync(double lat, double lng)
-        //{
-        //    try
-        //    {
-        //        var restrictedZones = await _context.RestrictedZones
-        //            .Where(zone =>
-        //                GeolocationContext.VincentyFormulaSQL2(lat, lng, zone.Latitude, zone.Longitude) <= zone.RadiusInMeters)
-        //            .ToListAsync();
-
-        //        bool isRestricted = restrictedZones.Any();
-
-        //        return ResponseFactory<bool>.BuildSuccess("Checked restricted area", isRestricted);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return ResponseFactory<bool>.BuildFail(ex.Message, false, ToolsLibrary.Tools.Type.Exception);
-        //    }
-        //}
 
         public async Task<ResponseTool<bool>> IsLocationRestrictedAsync(double lat, double lng)
         {
@@ -270,6 +331,32 @@ namespace GeolocationAdsAPI.Repositories
                     ToolsLibrary.Tools.Type.Exception);
             }
         }
+
+        public async IAsyncEnumerable<ResponseTool<GeolocationAd>> StreamNearbyAdsAsync(double latitud, double longitude, int distance, int settinTypeId)
+        {
+            var query = _context.GeolocationAds
+                .AsNoTracking()
+                .Include(v => v.Advertisement)
+                    .ThenInclude(a => a.Settings)
+                .Where(v =>
+                    GeolocationContext.VincentyFormulaSQL2(latitud, longitude, v.Latitude, v.Longitude) <= distance &&
+                    DateTime.Now <= v.ExpirationDate &&
+                    v.Advertisement.Settings.Any(setting => setting.SettingId == settinTypeId))
+                .OrderByDescending(c => c.Advertisement.CreateDate)
+                .Select(s => new GeolocationAd
+                {
+                    Advertisement = s.Advertisement,
+                    Latitude = s.Latitude,
+                    Longitude = s.Longitude
+                })
+                .AsAsyncEnumerable();
+
+            await foreach (var item in query)
+            {
+                yield return ResponseFactory<GeolocationAd>.BuildSuccess("Item streamed", item);
+            }
+        }
+
 
 
 

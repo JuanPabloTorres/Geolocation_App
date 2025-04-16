@@ -7,79 +7,55 @@
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
-    RowDefinitions="Auto,Auto,*,Auto">
-
-    <!--  🎬 Header según el tipo de pantalla  -->
-    <Grid
-        x:Name="myContentStackHeader"
-        Grid.Row="0"
-        ColumnDefinitions="*,*"
-        RowDefinitions="Auto">
-
-        <BoxView
-            Grid.Row="0"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource AppBlack}"
-            Opacity="{StaticResource OpacityValue}" />
-
-        <headerView:ContentHeaderView
-            Grid.Row="0"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource AppBlack}" />
-    </Grid>
-
-    <Grid
-        x:Name="searchContentStackHeader"
-        Grid.Row="0"
-        ColumnDefinitions="*,*"
-        RowDefinitions="Auto">
-
-        <BoxView
-            Grid.Row="0"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource AppBlack}"
-            Opacity="{StaticResource OpacityValue}" />
-
-        <headerView:HomeContentItemHeaderView
-            Grid.Row="0"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource AppBlack}" />
-    </Grid>
-
-    <Grid
-        x:Name="myCaptureHeader"
-        Grid.Row="0"
-        ColumnDefinitions="*,*"
-        RowDefinitions="Auto">
-
-        <BoxView
-            Grid.Row="0"
-            Grid.Column="0"
-            BackgroundColor="{StaticResource AppBlack}"
-            Opacity="{StaticResource OpacityValue}" />
-
-        <headerView:CaptureHeaderDisplayer
-            Grid.Row="0"
-            Grid.Column="1"
-            BackgroundColor="{StaticResource AppBlack}" />
-    </Grid>
-
-    <headerView:ContentInformationDisplayer Grid.Row="1" />
+    RowDefinitions="*">
 
     <!--  ▶️ Reproductor de video  -->
     <toolkit:MediaElement
         x:Name="videoPlayer"
-        Grid.Row="2"
         Aspect="AspectFill"
         MediaFailed="videoPlayer_MediaFailed"
         ShouldAutoPlay="False"
         ShouldKeepScreenOn="True"
         ShouldLoopPlayback="False"
-        ShouldShowPlaybackControls="False"
+        ShouldShowPlaybackControls="True"
         Source="{Binding MediaSource}" />
 
+    <!--  🎬 Header según el tipo de pantalla  -->
+    <Grid x:Name="myContentStackHeader">
+
+
+        <headerView:ContentHeaderView
+            BackgroundColor="Transparent"
+            HorizontalOptions="End"
+            VerticalOptions="Start" />
+    </Grid>
+
+    <Grid x:Name="searchContentStackHeader">
+
+
+
+        <headerView:HomeContentItemHeaderView
+            BackgroundColor="Transparent"
+            HorizontalOptions="End"
+            VerticalOptions="Start" />
+    </Grid>
+
+    <Grid x:Name="myCaptureHeader">
+
+
+
+        <headerView:CaptureHeaderDisplayer
+            BackgroundColor="Transparent"
+            HorizontalOptions="End"
+            VerticalOptions="Start" />
+    </Grid>
+
+    <!--<headerView:ContentInformationDisplayer Grid.Row="1" VerticalOptions="Start" />-->
+
+
+
     <!--  ⏯️ Controles de video  -->
-    <Border
+    <!--<Border
         Grid.Row="3"
         Margin="2"
         Padding="2"
@@ -94,7 +70,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!--  Controles  -->
+    -->
+    <!--  Controles  -->
+    <!--
             <Button
                 Grid.Column="0"
                 Command="{Binding BackMediaCommand}"
@@ -132,7 +110,9 @@
                 </Button.ImageSource>
             </Button>
 
-            <!--  Progreso  -->
+    -->
+    <!--  Progreso  -->
+    <!--
             <HorizontalStackLayout Grid.Column="4">
                 <VerticalStackLayout>
 
@@ -155,7 +135,7 @@
                 </VerticalStackLayout>
             </HorizontalStackLayout>
         </Grid>
-    </Border>
+    </Border>-->
 
     <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

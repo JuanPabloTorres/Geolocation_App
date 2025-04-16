@@ -106,6 +106,51 @@ namespace GeolocationAdsAPI.Controllers
             }
         }
 
+        [HttpPost("[action]/{distance}/{settinTypeId}")]
+        public async Task<IActionResult> FindNearByStreaming(CurrentLocation currentLocation, string distance, int settinTypeId)
+        {
+            try
+            {
+                if (currentLocation.IsObjectNull())
+                {
+                    return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail("Current location must be provided.", null, ToolsLibrary.Tools.Type.Fail));
+                }
+
+                var settingResponse = await settingRepository.GetRadiusValueByLabelAsync(distance);
+
+                if (!settingResponse.IsSuccess)
+                {
+                    return Ok(settingResponse);
+                }
+
+                var adsList = new List<GeolocationAd>();
+
+                await foreach (var response in geolocationAdRepository.StreamNearbyAdsAsync(
+                    currentLocation.Latitude,
+                    currentLocation.Longitude,
+                    settingResponse.Data,
+                    settinTypeId))
+                {
+                    if (response.IsSuccess && response.Data != null)
+                    {
+                        adsList.Add(response.Data);
+                    }
+                }
+
+                if (!adsList.Any())
+                {
+                    return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("No nearby content.", null, ToolsLibrary.Tools.Type.NotFound));
+                }
+
+                return Ok(ResponseFactory<IEnumerable<GeolocationAd>>.BuildSuccess("Content found.", adsList, ToolsLibrary.Tools.Type.DataFound));
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = ResponseFactory<IEnumerable<GeolocationAd>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                return Ok(errorResponse);
+            }
+        }
+
         [HttpPost("[action]/{distance}/{settingTypeId}/{pageIndex}")]
         public async Task<IActionResult> FindAdNear2(CurrentLocation currentLocation, string distance, int settingTypeId, int pageIndex)
         {
@@ -118,8 +163,7 @@ namespace GeolocationAdsAPI.Controllers
                     return Ok(_settingResponse);
                 }
 
-                var geoAdResponse = await this.geolocationAdRepository
-                                              .GetAllWithNavigationPropertyAsyncAndSettingEqualTo2(currentLocation, _settingResponse.Data, settingTypeId, pageIndex);
+                var geoAdResponse = await this.geolocationAdRepository.GetAllWithNavigationPropertyStreamedAsync(currentLocation, _settingResponse.Data, settingTypeId, pageIndex);
 
                 return Ok(geoAdResponse);
             }

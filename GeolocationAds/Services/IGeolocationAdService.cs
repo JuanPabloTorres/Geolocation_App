@@ -8,5 +8,9 @@ namespace GeolocationAds.Services
         Task<ResponseTool<IEnumerable<GeolocationAd>>> FindAdsNearby(CurrentLocation currentLocation, string distance, int settinTypeId);
 
         Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear2(CurrentLocation currentLocation, string distance, int settinTypeId, int? pageIndex = 1);
+
+        Task<ResponseTool<IEnumerable<GeolocationAd>>> FindNearByStreaming(CurrentLocation currentLocation, string distance, int settinTypeId);
+
+        Task<ResponseTool<IEnumerable<Advertisement>>> FindAdNear2Streamed(CurrentLocation currentLocation, string distance, int settinTypeId, int? pageIndex = 1);
     }
 }

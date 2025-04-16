@@ -25,20 +25,17 @@ namespace GeolocationAds.Services
         // // var _videosAndImage = data.Contents.Where(v => v.Type == ContentVisualType.Image ||
         // v.Type == ContentVisualType.Video).ToList();
 
-        // // foreach (var item in _videosAndImage) // { // data.Contents.Remove(item); // }
-
-        // // var advertisementMetadata = JsonConvert.SerializeObject(data, new
-        // JsonSerializerSettings // { // ReferenceLoopHandling = ReferenceLoopHandling.Ignore // });
-
-        // // multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8,
+        // // foreach (var item in _videosAndImage) // { // data.Contents.Remove(item); // } // var
+        // advertisementMetadata = JsonConvert.SerializeObject(data, new JsonSerializerSettings // {
+        // // ReferenceLoopHandling = ReferenceLoopHandling.Ignore // }); //
+        // multipartContent.Add(new StringContent(advertisementMetadata, Encoding.UTF8,
         // "application/json"), "advertisementMetadata");
 
         // // try // { // //foreach (var content in _videosAndImage) // //{ // // if
         // (!string.IsNullOrEmpty(content.FilePath) && content.Content != null &&
         // content.Content.Length > 0 && (content.Type == ContentVisualType.Image || content.Type ==
-        // ContentVisualType.Video)) // // { // // var fileInfo = new FileInfo(content.FilePath);
-
-        // // // if (fileInfo.Length > ConstantsTools.MaxFileSize) // // { // // throw new
+        // ContentVisualType.Video)) // // { // // var fileInfo = new FileInfo(content.FilePath); //
+        // // if (fileInfo.Length > ConstantsTools.MaxFileSize) // // { // // throw new
         // InvalidOperationException($"File size {fileInfo.Length} exceeds the limit of
         // {ConstantsTools.MaxFileSize} bytes."); // // }
 
@@ -71,12 +68,11 @@ namespace GeolocationAds.Services
         // // foreach (var content in _videosAndImage) // { // if
         // (!string.IsNullOrEmpty(content.FilePath) && content.Content != null &&
         // content.Content.Length > 0 && // (content.Type == ContentVisualType.Image || content.Type
-        // == ContentVisualType.Video)) // { // Stream fileStream;
-
-        // // // Detectamos si es un recurso embebido (está dentro del assembly) // if
-        // (content.FilePath.StartsWith("GeolocationAds.Resources")) // { // var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(content.FilePath);
-
-        // // if (resourceStream == null) // throw new FileNotFoundException($"Embedded resource not
+        // == ContentVisualType.Video)) // { // Stream fileStream; // // Detectamos si es un recurso
+        // embebido (está dentro del assembly) // if
+        // (content.FilePath.StartsWith("GeolocationAds.Resources")) // { // var resourceStream =
+        // Assembly.GetExecutingAssembly().GetManifestResourceStream(content.FilePath); // if
+        // (resourceStream == null) // throw new FileNotFoundException($"Embedded resource not
         // found: {content.FilePath}");
 
         // // fileStream = resourceStream; // } // else // { // // Es un archivo físico en disco //
@@ -112,13 +108,12 @@ namespace GeolocationAds.Services
 
         // // var response = await _httpClient.PostAsync($"{this.BaseApiUri}/Add2", multipartContent);
 
-        // // if (response.IsSuccessStatusCode) // { // var responseJson = await response.Content.ReadAsStringAsync();
-
-        // // return JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson); // }
-        // // else // { // var errorResponse = await response.Content.ReadAsStringAsync();
-
-        // // return ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}",
-        // null); // } // } // finally // { // } //} //catch (Exception ex) //{ // return
+        // // if (response.IsSuccessStatusCode) // { // var responseJson = await
+        // response.Content.ReadAsStringAsync(); // return
+        // JsonConvert.DeserializeObject<ResponseTool<Advertisement>>(responseJson); // } // else //
+        // { // var errorResponse = await response.Content.ReadAsStringAsync(); // return
+        // ResponseFactory<Advertisement>.BuildFail($"Bad Request: {errorResponse}", null); // } //
+        // } // finally // { // } //} //catch (Exception ex) //{ // return
         // ResponseFactory<Advertisement>.BuildFail($"An error occurred: {ex.Message}", null); //}
 
         // var openedStreams = new List<Stream>();
@@ -296,6 +291,52 @@ namespace GeolocationAds.Services
                 return await _httpClient.GetAsync(url);
             });
         }
+
+        public async Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUserStreamedAsync(int userId, int typeId, int? pageIndex)
+        {
+            return await HandleRequest<IEnumerable<Advertisement>>(
+                async () =>
+                {
+                    var url = $"{this.BaseApiUri}/{nameof(GetAdvertisementsOfUser)}/{userId}/{typeId}/{pageIndex}";
+                    return await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                },
+                async response =>
+                {
+                    await using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
+                    using var reader = new StreamReader(stream);
+
+                    using var jsonReader = new JsonTextReader(reader);
+
+                    var serializer = new JsonSerializer();
+
+                    var wrapper = serializer.Deserialize<ResponseTool<List<Advertisement>>>(jsonReader);
+
+                    if (wrapper == null || !wrapper.IsSuccess || wrapper.Data == null)
+                    {
+                        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(
+                            wrapper?.Message ?? "Empty or invalid response.",
+                            null,
+                            ToolsLibrary.Tools.Type.Fail);
+                    }
+
+                    if (!wrapper.Data.Any())
+                    {
+                        return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(
+                            "No advertisements found.",
+                            Enumerable.Empty<Advertisement>(),
+                            ToolsLibrary.Tools.Type.NotFound);
+                    }
+
+                    return ResponseFactory<IEnumerable<Advertisement>>.BuildSuccess(
+                        "Advertisements streamed and parsed successfully.",
+                        wrapper.Data,
+                        ToolsLibrary.Tools.Type.DataFound);
+                });
+        }
+
+
+
 
         public async Task<byte[]> GetContentVideoAsync(int id, string range)
         {
@@ -547,7 +588,7 @@ namespace GeolocationAds.Services
 
                 foreach (var content in _videosAndImage)
                 {
-                    if (content.Content != null && content.Content.Length > 0)
+                    if (content.Content != null)
                     {
                         var byteContent = new ByteArrayContent(content.Content);
 

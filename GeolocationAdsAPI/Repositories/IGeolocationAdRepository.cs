@@ -18,5 +18,9 @@ namespace GeolocationAdsAPI.Repositories
         Task<ResponseTool<bool>> IsLocationRestrictedAsync(double lat, double lng);
 
         Task<ResponseTool<IEnumerable<GeolocationAd>>> RemoveAllOfAdvertisementId(int id);
+
+        IAsyncEnumerable<ResponseTool<GeolocationAd>> StreamNearbyAdsAsync(double latitud, double longitude, int distance, int settinTypeId);
+
+        Task<ResponseTool<IAsyncEnumerable<Advertisement>>> GetAllWithNavigationPropertyStreamedAsync(CurrentLocation currentLocation, int distance, int settingId, int pageIndex);
     }
 }

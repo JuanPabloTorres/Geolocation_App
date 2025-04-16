@@ -157,6 +157,37 @@ namespace GeolocationAds.Services
             }
         }
 
+        public async Task<ResponseTool<TResponse>> HandleRequest<TResponse>(    Func<Task<HttpResponseMessage>> httpCall,    Func<HttpResponseMessage, Task<ResponseTool<TResponse>>> processResponse)
+        {
+            try
+            {
+                if (!await IsConnectedToInternetAsync())
+                {
+                    return ResponseFactory<TResponse>.BuildFail("You are not connected to the internet. Please check your connection and try again.", default);
+                }
+
+                var response = await httpCall();
+
+                if (IsTokenExpired(response))
+                {
+                    await App.Current.Dispatcher.DispatchAsync(async () =>
+                    {
+                        await SecureLogoutAndRedirectToLogin();
+                    });
+
+                    return ResponseFactory<TResponse>.BuildFail("Token has expired. Logging out for security reasons.", default);
+                }
+
+                // 👉 Aquí usas el delegate externo para procesar como tú quieras (ej. streaming)
+                return await processResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return ResponseFactory<TResponse>.BuildFail($"Error: {ex.Message}", default);
+            }
+        }
+
+
         private async Task SecureLogoutAndRedirectToLogin()
         {
             // ⛔ Token expirado, notificar al ViewModel para cerrar sesión

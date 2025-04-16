@@ -175,17 +175,19 @@ namespace GeolocationAdsAPI.Controllers
         [HttpGet("[action]/{userId}/{typeId}/{pageIndex}")]
         public async Task<IActionResult> GetAdvertisementsOfUser(int userId, int typeId, int pageIndex)
         {
-            ResponseTool<IEnumerable<Advertisement>> response;
+            //ResponseTool<IEnumerable<Advertisement>> response;
+           
+            ResponseTool<IAsyncEnumerable<Advertisement>> response;
 
             try
             {
-                response = await this.advertisementRepository.GetAdvertisementsOfUser(userId, typeId, pageIndex);
+                response = await this.advertisementRepository.GetAdvertisementsOfUserAsyncStream(userId, typeId, pageIndex);
 
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                response = ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                response = ResponseFactory<IAsyncEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
 
                 return Ok(response);
             }

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="{StaticResource AppBlack}"
     ColumnDefinitions="Auto,Auto,Auto"
-    HorizontalOptions="End"
+    HorizontalOptions="Center"
     Opacity="{StaticResource OpacityValue}">
 
     <Button
@@ -28,7 +28,7 @@
         Style="{StaticResource XButton}">
 
         <Button.ImageSource>
-            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe5d3;" />
+            <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe8f4;" />
         </Button.ImageSource>
     </Button>
 

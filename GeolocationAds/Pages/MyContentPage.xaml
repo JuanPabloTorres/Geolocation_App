@@ -55,6 +55,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
 
         <!--  Optimización: Carga diferida del contenido en el CarouselView  -->
@@ -86,7 +87,19 @@
         <displayer:PaginControls
             x:Name="paginControls"
             Grid.Row="1"
-            IsVisible="{Binding HasPagination}" />
+            IsBackButtonEnabled="{Binding IsBackEnabled, Mode=TwoWay}"
+            IsBackButtonVisible="{Binding IsBackVisible, Mode=TwoWay}"
+            IsNextButtonEnabled="{Binding IsNextEnabled, Mode=TwoWay}"
+            IsNextButtonVisible="{Binding IsNextVisible, Mode=TwoWay}">
+
+            <displayer:PaginControls.IsVisible>
+                <MultiBinding Converter="{StaticResource IsVisibleConverterMultiParam}">
+                    <Binding Path="IsLoading" />
+                    <Binding Path="CollectionModel.Count" />
+                </MultiBinding>
+            </displayer:PaginControls.IsVisible>
+        </displayer:PaginControls>
+
 
         <views:StatusBarOverlay
             x:Name="statusBar"
@@ -102,23 +115,5 @@
         <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
     </Grid>
 
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="LoadingState">
-            <VisualState x:Name="Loading">
-                <VisualState.Setters>
-                    <Setter TargetName="carouselView" Property="IsVisible" Value="False" />
-                    <Setter TargetName="paginControls" Property="IsVisible" Value="False" />
-                    <Setter TargetName="activityIndicator" Property="IsVisible" Value="True" />
-                </VisualState.Setters>
-            </VisualState>
 
-            <VisualState x:Name="Loaded">
-                <VisualState.Setters>
-                    <Setter TargetName="carouselView" Property="IsVisible" Value="True" />
-                    <Setter TargetName="paginControls" Property="IsVisible" Value="True" />
-                    <Setter TargetName="activityIndicator" Property="IsVisible" Value="False" />
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
 </ContentPage>

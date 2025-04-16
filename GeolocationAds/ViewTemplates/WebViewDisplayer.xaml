@@ -145,7 +145,7 @@
         Grid.Row="2"
         Source="{Binding UrlSource, Mode=TwoWay}" />
 
-    <headerView:ContentInformationDisplayer Grid.Row="3" />
+    <!--<headerView:ContentInformationDisplayer Grid.Row="2" VerticalOptions="End"/>-->
 
     <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
 </Grid>

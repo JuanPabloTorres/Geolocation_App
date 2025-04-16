@@ -10,9 +10,9 @@
 
     <Border
         Padding="10"
-        HeightRequest="200"
+        HeightRequest="215"
         Style="{StaticResource popUpBorder}"
-        WidthRequest="200">
+        WidthRequest="215">
 
         <Grid
             Padding="10"

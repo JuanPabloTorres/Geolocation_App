@@ -85,7 +85,7 @@ namespace GeolocationAds.ViewModels
                 throw new Exception("Failed to retrieve location information. Please check your settings and try again.");
             }
 
-            var apiResponse = await service.FindAdNear2(currentLocation, SelectedDistance, SelectedAdType.ID, pageIndex);
+            var apiResponse = await service.FindAdNear2Streamed(currentLocation, SelectedDistance, SelectedAdType.ID, pageIndex);
 
             if (!apiResponse.IsSuccess)
             {

@@ -7,6 +7,8 @@ namespace GeolocationAds.Services
     {
         Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUser(int userId, int typeId, int? pageIndex);
 
+        Task<ResponseTool<IEnumerable<Advertisement>>> GetAdvertisementsOfUserStreamedAsync(int userId, int typeId, int? pageIndex);
+
         Task<byte[]> GetContentVideoAsync(int id, string range);
 
         Task<ResponseTool<string>> GetStreamingVideoUrl(int id);

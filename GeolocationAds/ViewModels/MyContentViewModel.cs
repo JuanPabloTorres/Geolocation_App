@@ -24,6 +24,23 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
 
+        [ObservableProperty]
+        private int carouselViewPosition;
+
+        [ObservableProperty]
+        private bool isNextVisible;
+
+        [ObservableProperty]
+        private bool isBackVisible;
+
+        [ObservableProperty]
+        private bool isNextEnabled;
+
+        [ObservableProperty]
+        private bool isBackEnabled;
+
+        public  Action<IEnumerable<ContentViewTemplateViewModel>> OnSearchExecute { get; set; }
+
         public MyContentViewModel(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
         {
             this.containerMyContentServices = myContentServices;
@@ -129,18 +146,115 @@ namespace GeolocationAds.ViewModels
                 }
 
                 var newViewModels = apiResponse.Data
-                    .AsParallel() // 🔹 Usa procesamiento paralelo para mayor eficiencia
+                     // 🔹 Usa procesamiento paralelo para mayor eficiencia
                     .Select(ad => new ContentViewTemplateViewModel(containerMyContentServices.AdvertisementService, service, ad, On_ItemDeleted))
                     .ToList();
 
                 // 🔹 Modifica la UI solo si hay cambios y en el hilo principal
-                if (newViewModels.Count > 0)
-                {
+              
                     //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
                     CollectionModel.AddRange(newViewModels);
-                }
+
+                // Control de visibilidad y botones
+                bool hasItems = CollectionModel.Any();
+
+                IsNextVisible = hasItems;
+
+                IsBackVisible = hasItems;
+
+                IsBackEnabled = false; // Siempre inicia deshabilitado
+
+                IsNextEnabled = hasItems;
+
+                OnSearchExecute.Invoke(CollectionModel);
+
             });
         }
+
+        //protected override async Task LoadData(int? pageIndex = 1)
+        //{
+        //    //await RunWithLoadingIndicator(async () =>
+        //    //{
+        //    //    var userId = LogUserPerfilTool.GetUserId();
+
+        //    //    var apiResponse = await containerMyContentServices.AdvertisementService
+        //    //        .GetAdvertisementsOfUserStreamedAsync(userId, SelectedAdType?.ID ?? 0, pageIndex);
+                    
+
+        //    //    if (!apiResponse.IsSuccess)
+        //    //    {
+        //    //        throw new Exception(apiResponse.Message);
+        //    //    }
+
+        //    //    var newViewModels = apiResponse.Data
+        //    //        .Distinct() // 🔹 Usa procesamiento paralelo para mayor eficiencia
+        //    //        .Select(ad => new ContentViewTemplateViewModel(containerMyContentServices.AdvertisementService, service, ad, On_ItemDeleted))
+        //    //        .ToList();
+
+
+
+        //    //    //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
+        //    //    CollectionModel.AddRange(newViewModels);
+
+        //    //    // Control de visibilidad y botones
+        //    //    bool hasItems = CollectionModel.Count > 0;
+
+        //    //    IsNextVisible = hasItems;
+
+        //    //    IsBackVisible = hasItems;
+
+        //    //    IsBackEnabled = false; // Siempre inicia deshabilitado
+
+        //    //    IsNextEnabled = hasItems;
+
+        //    //    OnSearchExecute.Invoke(CollectionModel);
+        //    //});
+
+        //    await RunWithLoadingIndicator(async () =>
+        //    {
+        //        var userId = LogUserPerfilTool.GetUserId();
+
+        //        var apiResponse = await containerMyContentServices.AdvertisementService
+        //            .GetAdvertisementsOfUserStreamedAsync(userId, SelectedAdType?.ID ?? 0, pageIndex);
+
+        //        if (!apiResponse.IsSuccess)
+        //        {
+        //            throw new Exception(apiResponse.Message);
+        //        }
+
+        //        var seenIds = new HashSet<int>();
+        //        var newViewModels = new List<ContentViewTemplateViewModel>();
+
+        //        foreach (var ad in apiResponse.Data)
+        //        {
+        //            if (seenIds.Add(ad.ID)) // Elimina duplicados
+        //            {
+        //                var vm = new ContentViewTemplateViewModel(
+        //                    containerMyContentServices.AdvertisementService,
+        //                    service,
+        //                    ad,
+        //                    On_ItemDeleted);
+
+        //                newViewModels.Add(vm);
+        //            }
+        //        }
+
+        //        // 🔹 Limpia y agrega nuevos elementos
+        //        CollectionModel.Clear();
+        //        CollectionModel.AddRange(newViewModels);
+
+        //        // 🔹 Control de visibilidad y botones
+        //        bool hasItems = CollectionModel.Count > 0;
+
+        //        IsNextVisible = hasItems;
+        //        IsBackVisible = hasItems;
+        //        IsBackEnabled = false;
+        //        IsNextEnabled = hasItems;
+
+        //        OnSearchExecute.Invoke(CollectionModel);
+        //    });
+
+        //}
 
         private async Task LoadSettingsAsync()
         {

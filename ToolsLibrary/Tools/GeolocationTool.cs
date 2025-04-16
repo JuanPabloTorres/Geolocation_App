@@ -6,33 +6,73 @@ namespace GeolocationAds.Tools
 {
     public static class GeolocationTool
     {
+        //public static async Task<ResponseTool<Location>> GetLocation()
+        //{
+        //    try
+        //    {
+        //        // Verifica si ya tiene permisos antes de solicitar
+        //        var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+
+        //        if (status != PermissionStatus.Granted)
+        //        {
+        //            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
+
+        //            if (status != PermissionStatus.Granted)
+        //            {
+        //                return ResponseFactory<Location>.BuildFail("Permission denied for location access.", null);
+        //            }
+        //        }
+
+        //        // Obtiene la ubicación con la mejor precisión disponible
+        //        var location = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Best)).ConfigureAwait(false);
+
+        //        return location is not null ? ResponseFactory<Location>.BuildSuccess("Location found", location) : ResponseFactory<Location>.BuildFail("Unable to retrieve location", null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<Location>.BuildFail($"Error retrieving location: {ex.Message}", null);
+        //    }
+        //}
+
         public static async Task<ResponseTool<Location>> GetLocation()
         {
             try
             {
-                // Verifica si ya tiene permisos antes de solicitar
+                // 🔹 Verifica y solicita permisos solo si es necesario
                 var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
 
                 if (status != PermissionStatus.Granted)
                 {
                     status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>().ConfigureAwait(false);
-
                     if (status != PermissionStatus.Granted)
-                    {
                         return ResponseFactory<Location>.BuildFail("Permission denied for location access.", null);
-                    }
                 }
 
-                // Obtiene la ubicación con la mejor precisión disponible
-                var location = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Best)).ConfigureAwait(false);
+                // 🔹 Usa precisión media para balancear velocidad y precisión
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(8));
 
-                return location is not null ? ResponseFactory<Location>.BuildSuccess("Location found", location) : ResponseFactory<Location>.BuildFail("Unable to retrieve location", null);
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+
+                var location = await Geolocation.GetLocationAsync(request, cts.Token).ConfigureAwait(false);
+
+                return location is not null
+                    ? ResponseFactory<Location>.BuildSuccess("Location found", location)
+                    : ResponseFactory<Location>.BuildFail("Unable to retrieve location", null);
+            }
+            catch (FeatureNotSupportedException)
+            {
+                return ResponseFactory<Location>.BuildFail("Location feature is not supported on this device.", null);
+            }
+            catch (PermissionException)
+            {
+                return ResponseFactory<Location>.BuildFail("Location permission error occurred.", null);
             }
             catch (Exception ex)
             {
                 return ResponseFactory<Location>.BuildFail($"Error retrieving location: {ex.Message}", null);
             }
         }
+
 
         public static double VincentyFormula4(double lat1, double lon1, double lat2, double lon2)
         {

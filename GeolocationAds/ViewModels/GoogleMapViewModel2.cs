@@ -55,7 +55,7 @@ namespace GeolocationAds.ViewModels
 
                 var currentLocation = new CurrentLocation(locationResponse.Data.Latitude, locationResponse.Data.Longitude);
 
-                var apiResponse = await service.FindAdsNearby(currentLocation, SelectedDistance, SelectedAdType.ID);
+                var apiResponse = await service.FindNearByStreaming(currentLocation, SelectedDistance, SelectedAdType.ID);
 
                 CollectionModel.Clear();
 

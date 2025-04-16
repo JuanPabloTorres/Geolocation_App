@@ -97,31 +97,76 @@ namespace GeolocationAds.ViewModels
 
 
 
+        //[RelayCommand]
+        //public async Task UploadContent()
+        //{
+        //    await RunWithLoadingIndicator(async () =>
+        //    {
+        //        var customFileTypes = GetCommonFileTypes();
+
+        //        FileResult result = await FilePicker.PickAsync(new PickOptions
+        //        {
+        //            FileTypes = customFileTypes,
+        //        });
+
+        //        if (!result.IsObjectNull())
+        //        {
+        //            this.Model.Contents.Clear();
+
+        //            this.ContentTypesTemplate.Clear();
+
+        //            await ProcessSelectedFile(result);
+        //        }
+
+        //        foreach (var item in ContentTypesTemplate)
+        //        {
+        //            await item.SetAnimation();
+        //        }
+        //    });
+        //}
+
         [RelayCommand]
         public async Task UploadContent()
         {
             await RunWithLoadingIndicator(async () =>
             {
-                var customFileTypes = GetCommonFileTypes();
+                FileResult result = null;
 
-                FileResult result = await FilePicker.PickAsync(new PickOptions
+                // Mostrar opciones al usuario
+                string option = await Shell.Current.DisplayActionSheet("Choose media", "Cancel", null, "Photo", "Video");
+
+                if (option == "Photo")
                 {
-                    FileTypes = customFileTypes,
-                });
-
-                if (!result.IsObjectNull())
+                    result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                    {
+                        Title = "Pick a photo"
+                    });
+                }
+                else if (option == "Video")
                 {
-                    this.Model.Contents.Clear();
-
-                    this.ContentTypesTemplate.Clear();
-
-                    await ProcessSelectedFile(result);
+                    result = await MediaPicker.PickVideoAsync(new MediaPickerOptions
+                    {
+                        Title = "Pick a video"
+                    });
+                }
+                else
+                {
+                    return; // cancelado
                 }
 
-                foreach (var item in ContentTypesTemplate)
-                {
-                    await item.SetAnimation();
-                }
+                if (result.IsObjectNull())
+                    return;
+
+                this.Model.Contents.Clear();
+
+                this.ContentTypesTemplate.Clear();
+
+                await ProcessSelectedFile(result);
+
+                //foreach (var item in ContentTypesTemplate)
+                //{
+                //    await item.SetAnimation();
+                //}
             });
         }
 

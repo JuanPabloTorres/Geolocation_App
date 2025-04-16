@@ -33,7 +33,7 @@ namespace GeolocationAds.TemplateViewModel
         {
         }
 
-        public static Action<ContentViewTemplateViewModel> ItemDeleted { get; set; }
+        public  Action<ContentViewTemplateViewModel> ItemDeleted { get; set; }
 
         public async Task NavigateAsync(string pageName, Dictionary<string, object> queryParameters = null)
         {
