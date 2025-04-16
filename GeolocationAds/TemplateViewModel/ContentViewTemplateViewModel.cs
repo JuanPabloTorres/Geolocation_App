@@ -34,8 +34,6 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private bool isExpanded;
 
-        private const int MaxLengthWithoutExpand = 25;
-
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
         public ContentViewTemplateViewModel(IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, Advertisement advertisement, Action<ContentViewTemplateViewModel> onDelete) : base(advertisementService, geolocationAdService)
@@ -52,41 +50,34 @@ namespace GeolocationAds.TemplateViewModel
 
         private string TruncateDescription(string description)
         {
-            const int maxLength = 25; // Adjust the length as needed
-
-            return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
+            return description.Length > ConstantsTools.MaxLengthWithoutExpand ? description.Substring(0, ConstantsTools.MaxLengthWithoutExpand) + "..." : description;
         }
 
-        private string GetTruncatedDescription(string description)
-        {
-            if (description.Length <= MaxLengthWithoutExpand)
-                return description;
+        //private string GetTruncatedDescription(string description)
+        //{
+        //    if (description.Length <= MaxLengthWithoutExpand)
+        //        return description;
 
-            int endIndex = description.LastIndexOf(' ', MaxLengthWithoutExpand);
+        // int endIndex = description.LastIndexOf(' ', MaxLengthWithoutExpand);
 
-            if (endIndex == -1 || endIndex < MaxLengthWithoutExpand / 2)
-            {
-                endIndex = MaxLengthWithoutExpand;
-            }
+        // if (endIndex == -1 || endIndex < MaxLengthWithoutExpand / 2) { endIndex =
+        // MaxLengthWithoutExpand; }
 
-            return description.Substring(0, endIndex) + "...";
-        }
+        //    return description.Substring(0, endIndex) + "...";
+        //}
 
-        private string GetFullDescriptionWithNewLines(string description)
-        {
-            if (description.Length <= MaxLengthWithoutExpand)
-                return description;
+        //private string GetFullDescriptionWithNewLines(string description)
+        //{
+        //    if (description.Length <= MaxLengthWithoutExpand)
+        //        return description;
 
-            int midIndex = description.LastIndexOf(' ', description.Length / 2);
+        // int midIndex = description.LastIndexOf(' ', description.Length / 2);
 
-            if (midIndex == -1)
-            {
-                midIndex = description.Length / 2;
-            }
+        // if (midIndex == -1) { midIndex = description.Length / 2; }
 
-            // Insertar un salto de línea en la mitad de la descripción completa
-            return description.Insert(midIndex, "\n");
-        }
+        //    // Insertar un salto de línea en la mitad de la descripción completa
+        //    return description.Insert(midIndex, "\n");
+        //}
 
         [RelayCommand]
         private void ToggleExpand()

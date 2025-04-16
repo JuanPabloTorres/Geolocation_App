@@ -23,7 +23,7 @@
         <headerView:ContentHeaderView
             BackgroundColor="Transparent"
             HorizontalOptions="End"
-            VerticalOptions="Start" />
+            VerticalOptions="End" />
 
 
     </Grid>

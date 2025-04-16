@@ -20,5 +20,7 @@
 
         public const int MaxAdLimit = 1;
 
+        public const int MaxLengthWithoutExpand = 25;
+
     }
 }

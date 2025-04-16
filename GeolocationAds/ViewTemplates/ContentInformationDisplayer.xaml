@@ -30,7 +30,7 @@
             <Label.Shadow>
                 <Shadow
                     Brush="{StaticResource AppBlack}"
-                    Opacity="0.4"
+                    Opacity="0.5"
                     Radius="2"
                     Offset="1,1" />
             </Label.Shadow>

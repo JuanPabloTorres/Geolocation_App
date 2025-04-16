@@ -20,30 +20,18 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private bool isExpanded;
 
-        private const int MaxLengthWithoutExpand = 100;
-
         public string DisplayDescription => IsExpanded ? this.Model.Description : TruncateDescription(this.Model.Description);
-
-
 
         public NearByItemDetailViewModel(INearByItemDetailContainer nearByItemDetailContainer) : base(nearByItemDetailContainer.Model, nearByItemDetailContainer.AdvertisementService, nearByItemDetailContainer.LogUserPerfilTool)
         {
             this.nearByItemDetailContainer = nearByItemDetailContainer;
 
-            //this.ApplyQueryAttributesCompleted += EditAdvertismentViewModel_ApplyQueryAttributesCompleted;
-
-
-
-
             this.ApplyQueryAttributesCompleted = async () => await EditAdvertismentViewModel_ApplyQueryAttributesCompleted();
-
-
         }
+
         private string TruncateDescription(string description)
         {
-            const int maxLength = 100; // Adjust the length as needed
-
-            return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
+            return description.Length > ConstantsTools.MaxLengthWithoutExpand ? description.Substring(0, ConstantsTools.MaxLengthWithoutExpand) + "..." : description;
         }
 
         [RelayCommand]
@@ -53,7 +41,6 @@ namespace GeolocationAds.ViewModels
 
             OnPropertyChanged(nameof(DisplayDescription));
         }
-
 
         public ObservableCollection<ContentTypeTemplateViewModel2> ContentTypesTemplate { get; set; } = new ObservableCollection<ContentTypeTemplateViewModel2>();
 

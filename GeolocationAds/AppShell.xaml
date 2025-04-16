@@ -109,7 +109,7 @@
             </Border>
 
             <!--  Nombre del usuario  -->
-            <Label Style="{StaticResource globalTitle}" Text="{Binding UserName}" />
+            <Label Style="{StaticResource globalTitleHeaders}" Text="{Binding UserName}" />
         </HorizontalStackLayout>
     </Shell.FlyoutHeader>
 </Shell>

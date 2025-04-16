@@ -99,11 +99,24 @@
                     <Setter.Value>
                         <Shadow
                             Brush="{StaticResource AppBlack}"
-                            Opacity="0.9"
-                            Radius="5"
-                            Offset="5,5" />
+                            Opacity="0.5"
+                            Radius="2"
+                            Offset="2,2" />
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style x:Key="globalTitleHeaders" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Roboto" />
+                <Setter Property="TextColor" Value="{StaticResource AppBlack}" />
+                <Setter Property="Margin" Value="2" />
+
+
             </Style>
 
             <Style x:Key="globalsubTitle" TargetType="Label">
@@ -167,9 +180,9 @@
                     <Setter.Value>
                         <Shadow
                             Brush="{StaticResource AppBlack}"
-                            Opacity="0.9"
-                            Radius="5"
-                            Offset="5,5" />
+                            Opacity="0.5"
+                            Radius="2"
+                            Offset="2,2" />
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -194,7 +207,7 @@
                 Brush="LightGray"
                 Opacity="0.8"
                 Radius="2"
-                Offset="0,3" />
+                Offset="2,2" />
 
             <!--  Define the Border style  -->
             <Style x:Key="CustomBorderStyle" TargetType="Border">
@@ -202,7 +215,7 @@
                 <Setter Property="Padding" Value="2" />
                 <Setter Property="Background" Value="WhiteSmoke" />
                 <Setter Property="Shadow" Value="{StaticResource MyShadow}" />
-                <Setter Property="Stroke" Value="LightGray" />
+                <Setter Property="Stroke" Value="WhiteSmoke" />
                 <Setter Property="StrokeShape">
                     <Setter.Value>
                         <RoundRectangle CornerRadius="12" />
@@ -350,9 +363,23 @@
                             Brush="{StaticResource AppBlack}"
                             Opacity="0.5"
                             Radius="2"
-                            Offset="5,5" />
+                            Offset="2,2" />
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style x:Key="XButtonClose" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="End" />
+
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="RobotoBold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+
+
             </Style>
 
             <Style x:Key="XButtonGray" TargetType="Button">

@@ -40,7 +40,18 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
 
-                <Button Clicked="OnCloseButtonClicked" Style="{StaticResource XButton}">
+                <Button
+                    BackgroundColor="Transparent"
+                    Clicked="OnCloseButtonClicked"
+                    Style="{StaticResource XButton}">
+
+                    <Button.Shadow>
+                        <Shadow
+                            Brush="Black"
+                            Opacity="0.3"
+                            Radius="30"
+                            Offset="2,2" />
+                    </Button.Shadow>
                     <Button.ImageSource>
                         <FontImageSource
                             FontFamily="MaterialIconsOutlined-Regular"

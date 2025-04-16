@@ -40,8 +40,6 @@ namespace GeolocationAds.TemplateViewModel
         [ObservableProperty]
         private bool isExpanded;
 
-        private const int MaxLengthWithoutExpand = 100;
-
         public string DisplayDescription => IsExpanded ? Advertisement.Description : TruncateDescription(Advertisement.Description);
 
         public NearByTemplateViewModel2(ICaptureService captureService, IAdvertisementService advertisementService, Advertisement advertisement, LogUserPerfilTool logUser) : base(advertisementService)
@@ -60,9 +58,7 @@ namespace GeolocationAds.TemplateViewModel
 
         private string TruncateDescription(string description)
         {
-            const int maxLength = 100; // Adjust the length as needed
-
-            return description.Length > maxLength ? description.Substring(0, maxLength) + "..." : description;
+            return description.Length > ConstantsTools.MaxLengthWithoutExpand ? description.Substring(0, ConstantsTools.MaxLengthWithoutExpand) + "..." : description;
         }
 
         [RelayCommand]

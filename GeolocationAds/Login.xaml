@@ -28,6 +28,7 @@
 
         <Border
             Grid.Row="1"
+            Margin="10"
             Style="{StaticResource CustomBorderStyle}"
             VerticalOptions="Center">
 
@@ -37,7 +38,7 @@
                     FontAttributes="Italic"
                     FontSize="35"
                     HorizontalOptions="Center"
-                    Style="{StaticResource globalTitle}"
+                    Style="{StaticResource globalTitleHeaders}"
                     Text="Welcome Back "
                     TextColor="#3e4144" />
 
