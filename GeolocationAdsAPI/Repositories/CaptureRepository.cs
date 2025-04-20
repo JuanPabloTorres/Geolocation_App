@@ -66,6 +66,10 @@ namespace GeolocationAdsAPI.Repositories
 
                 if (captures.IsEmpty())
                 {
+                    if (pageIndex > 1)
+                    {
+                        return ResponseFactory<IEnumerable<Capture>>.BuildFail($"No more Captures found.", captures, ToolsLibrary.Tools.Type.EmptyCollection);
+                    }
                     return ResponseFactory<IEnumerable<Capture>>.BuildFail($"No Captures found.", captures, ToolsLibrary.Tools.Type.EmptyCollection);
                 }
 

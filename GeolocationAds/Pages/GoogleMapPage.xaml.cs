@@ -49,20 +49,16 @@ public partial class GoogleMapPage : ContentPage
                 return;
             }
 
-            //var existingMap = mapContainer.Children.FirstOrDefault(v => v is Map);
+            // Cargar zonas restringidas desde el ViewModel
+            await _viewModel.LoadRestrictedZonesAsync();
 
-            //if (existingMap != null)
-            //    mapContainer.Children.Remove(existingMap);
+            // Dibujar los círculos en el mapa
+            foreach (var circle in _viewModel.RestrictedZonesElements)
+            {
+                myMap.MapElements.Add(circle);
+            }
 
             var mapSpan = MapSpan.FromCenterAndRadius(locationResult.Data, Distance.FromMiles(0.1));
-
-            //myMap = new Map(mapSpan)
-            //{
-            //    IsScrollEnabled = true,
-            //    IsShowingUser = true,
-            //    IsZoomEnabled = true,
-            //    MapType = MapType.Hybrid
-            //};
 
             myMap.MoveToRegion(mapSpan);
 
@@ -71,8 +67,6 @@ public partial class GoogleMapPage : ContentPage
             var pinData = _viewModel.GetContentPins();
 
             myMap.Pins.AddRange(pinData);
-
-            //mapContainer.Children.Add(myMap);
         });
     }
 }

@@ -48,6 +48,15 @@ public partial class ManageLocation : ContentPage
             MapSpan mapSpan = MapSpan.FromCenterAndRadius(_currentLocationResponse.Data, Distance.FromMiles(0.1));
 
             this.myMap.MoveToRegion(mapSpan);
+
+            // Cargar zonas restringidas desde el ViewModel
+            await manageLocationViewModel2.LoadRestrictedZonesAsync();
+
+            // Dibujar los círculos en el mapa
+            foreach (var circle in manageLocationViewModel2.RestrictedZonesElements)
+            {
+                myMap.MapElements.Add(circle);
+            }
         });
     }
 }

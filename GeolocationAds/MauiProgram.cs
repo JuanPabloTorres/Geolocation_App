@@ -80,14 +80,22 @@ public static class MauiProgram
     private static void RegisterApiServices(MauiAppBuilder builder)
     {
         builder.Services.AddTransient<IGeolocationAdService, GeolocationAdService>();
+
         builder.Services.AddTransient<IAdvertisementService, AdvertisementService>();
+
         builder.Services.AddTransient<ILoginService, LoginService>();
+
         builder.Services.AddTransient<IUserService, UserService>();
+
         builder.Services.AddTransient<IAppSettingService, AppSettingService>();
+
         builder.Services.AddTransient<IForgotPasswordService, ForgotPasswordService>();
+
         builder.Services.AddTransient<ICaptureService, CaptureService>();
-    
+
         builder.Services.AddTransient<IGoogleAuthService, GoogleAuthService>();
+
+        builder.Services.AddTransient<IRestrictedZoneService, RestrictedZoneService>();
 
         builder.Services.AddSingleton<HttpClient>(provider =>
         {

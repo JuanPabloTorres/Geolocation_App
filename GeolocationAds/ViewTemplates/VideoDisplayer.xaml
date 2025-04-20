@@ -7,7 +7,7 @@
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
-    ColumnDefinitions="*,*"
+    ColumnDefinitions="80*,20*"
     RowDefinitions="*,Auto">
 
     <!--  ▶️ Reproductor de video  -->
@@ -54,7 +54,7 @@
 
     <headerView:ContentInformationDisplayer
         Grid.Column="0"
-        HorizontalOptions="Start"
+        HorizontalOptions="Fill"
         VerticalOptions="End" />
 
 
@@ -143,5 +143,8 @@
         </Grid>
     </Border>
 
-    <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
+    <views:LoadingOverlay
+        Grid.Row="0"
+        Grid.ColumnSpan="2"
+        IsVisible="{Binding IsLoading}" />
 </Grid>

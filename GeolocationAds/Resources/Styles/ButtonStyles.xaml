@@ -76,9 +76,9 @@
             <Setter.Value>
                 <Shadow
                     Brush="LightGray"
-                    Opacity="0.3"
-                    Radius="5"
-                    Offset="5,5" />
+                    Opacity="0.5"
+                    Radius="10"
+                    Offset="6,6" />
             </Setter.Value>
         </Setter>
     </Style>

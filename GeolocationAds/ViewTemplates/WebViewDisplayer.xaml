@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:headerView="clr-namespace:GeolocationAds.ViewTemplates"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
+    ColumnDefinitions="80*,20*"
     RowDefinitions="*,Auto">
 
 
@@ -17,6 +18,7 @@
     <WebView
         x:Name="web"
         Grid.Row="0"
+        Grid.ColumnSpan="2"
         Source="{Binding UrlSource, Mode=TwoWay}" />
 
     <!--  ⏯️ Controles de video  -->
@@ -76,7 +78,7 @@
         </Grid>
     </Border>
     <!--  Main content grids  -->
-    <Grid x:Name="myContentStackHeader" Grid.Row="0">
+    <Grid x:Name="myContentStackHeader" Grid.Column="1">
 
 
 
@@ -86,7 +88,7 @@
             VerticalOptions="End" />
     </Grid>
 
-    <Grid x:Name="searchContentStackHeader" Grid.Row="0">
+    <Grid x:Name="searchContentStackHeader" Grid.Column="1">
 
 
         <headerView:HomeContentItemHeaderView
@@ -95,7 +97,7 @@
             VerticalOptions="End" />
     </Grid>
 
-    <Grid x:Name="myCaptureHeader" Grid.Row="0">
+    <Grid x:Name="myCaptureHeader" Grid.Column="1">
 
 
 
@@ -110,8 +112,11 @@
 
     <headerView:ContentInformationDisplayer
         Grid.Column="0"
-        HorizontalOptions="Start"
+        HorizontalOptions="Fill"
         VerticalOptions="End" />
 
-    <views:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
+    <views:LoadingOverlay
+        Grid.Row="0"
+        Grid.ColumnSpan="2"
+        IsVisible="{Binding IsLoading}" />
 </Grid>

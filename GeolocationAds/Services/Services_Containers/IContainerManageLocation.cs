@@ -9,6 +9,8 @@ namespace GeolocationAds.Services.Services_Containers
 
         IAdvertisementService AdvertisementService { get; }
 
+        IRestrictedZoneService RestrictedZoneService { get; }
+
         Advertisement Model { get; }
     }
 }

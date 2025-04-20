@@ -97,6 +97,8 @@ builder.Services.AddTransient<IContentTypeRepository, ContentTypeRepository>();
 
 builder.Services.AddTransient<ICaptureRepository, CaptureRepository>();
 
+builder.Services.AddTransient<IRestrictedZoneRepository, RestrictedZoneRepository>();
+
 builder.Services.AddHostedService<CleanupService>();
 
 // In ConfigureServices method

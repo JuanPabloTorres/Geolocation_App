@@ -6,6 +6,8 @@ namespace GeolocationAds.Services.Services_Containers
     {
 
         IGeolocationAdService GeolocationAdService { get; }
+        
+        IRestrictedZoneService RestrictedZoneService { get; }
         Pin Model { get; }
     }
 }

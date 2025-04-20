@@ -6,6 +6,7 @@
     x:Name="root"
     BackgroundColor="{StaticResource AppGray}"
     IsVisible="{Binding IsVisible, Source={x:Reference root}}"
+    Opacity="{StaticResource OpacityValue}"
     VerticalOptions="End"
     ZIndex="998">
 

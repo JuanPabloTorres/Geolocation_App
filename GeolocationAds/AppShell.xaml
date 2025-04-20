@@ -22,12 +22,12 @@
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph="&#xe2db;"
+                    Glyph="&#xe562;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent Title="My Captures" ContentTemplate="{DataTemplate pages:MyFavorites}">
+        <ShellContent Title="Captured" ContentTemplate="{DataTemplate pages:MyFavorites}">
 
             <ShellContent.Icon>
                 <FontImageSource
@@ -37,7 +37,7 @@
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent Title="Content Creation" ContentTemplate="{DataTemplate pages:CreateAdvertisment}">
+        <ShellContent Title="Create" ContentTemplate="{DataTemplate pages:CreateAdvertisment}">
 
             <ShellContent.Icon>
                 <FontImageSource
@@ -47,12 +47,12 @@
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent Title="Created by Me" ContentTemplate="{DataTemplate pages:MyContentPage}">
+        <ShellContent Title="My Content" ContentTemplate="{DataTemplate pages:MyContentPage}">
 
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph="&#xe865;"
+                    Glyph="&#xe411;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
         </ShellContent>
@@ -62,7 +62,7 @@
             <ShellContent.Icon>
                 <FontImageSource
                     FontFamily="MaterialIconsOutlined-Regular"
-                    Glyph="&#xe55e;"
+                    Glyph="&#xe87a;"
                     Color="{StaticResource AppBlack}" />
             </ShellContent.Icon>
         </ShellContent>

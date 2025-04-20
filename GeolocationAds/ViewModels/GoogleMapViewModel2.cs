@@ -5,20 +5,20 @@ using GeolocationAds.PopUps;
 using GeolocationAds.Services;
 using GeolocationAds.Services.Services_Containers;
 using GeolocationAds.Tools;
+using GoogleMapsApi.Entities.Directions.Response;
 using Microsoft.Maui.Controls.Maps;
 using System.Collections.ObjectModel;
 using ToolsLibrary.Enums;
 using ToolsLibrary.Extensions;
 using ToolsLibrary.Models;
 using ToolsLibrary.Tools;
+using Microsoft.Maui.Maps;
 
 namespace GeolocationAds.ViewModels
 {
     public partial class GoogleMapViewModel2 : BaseViewModel<Pin, IGeolocationAdService>
     {
         public IList<Pin> FoundLocations = new List<Pin>();
-
-        //private IList<string> settings = new List<string>() { SettingName.MeterDistance.ToString(), SettingName.AdTypes.ToString() };
 
         private readonly IContainerMapServices containerMapServices;
 
@@ -32,6 +32,8 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<string> DistanceSettings { get; set; } = new();
 
+        public ObservableCollection<MapElement> RestrictedZonesElements { get; set; } = new();
+
         public Action<ObservableCollection<Pin>>? PinsUpdated { get; set; }
 
         public GoogleMapViewModel2(IContainerMapServices containerMapServices) : base(containerMapServices.Model, containerMapServices.GeolocationAdService, containerMapServices.LogUserPerfilTool)
@@ -43,6 +45,38 @@ namespace GeolocationAds.ViewModels
                 await InitializeSettingsAsync();
             });
         }
+
+        public async Task LoadRestrictedZonesAsync()
+        {
+            try
+            {
+                var response = await containerMapServices.RestrictedZoneService.GetAllActiveRestrictedZones();
+
+                if (!response.IsSuccess || response.Data == null)
+                    return;
+
+                RestrictedZonesElements.Clear();
+
+                foreach (var zone in response.Data)
+                {
+                    var circle = new Circle
+                    {
+                        Center = new Location(zone.Latitude, zone.Longitude),
+                        Radius = new Microsoft.Maui.Maps.Distance(zone.RadiusInMeters),
+                        StrokeColor = Color.FromArgb("#88FF0000"),
+                        StrokeWidth = 8,
+                        FillColor = Color.FromArgb("#88FFC0CB")
+                    };
+
+                    RestrictedZonesElements.Add(circle);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", $"Could not load restricted zones: {ex.Message}");
+            }
+        }
+
 
         protected override async Task LoadData(int? pageIndex = 1)
         {

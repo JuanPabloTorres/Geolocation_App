@@ -27,6 +27,8 @@ namespace GeolocationAds.ViewModels
 
         public ObservableCollection<LocationCardViewModel<GeolocationAd, IGeolocationAdService>> LocationCardViewModels { get; set; } = new();
 
+        public ObservableCollection<MapElement> RestrictedZonesElements { get; set; } = new();
+
         public ObservableCollection<MapType> MapSettings { get; set; } = new(Enum.GetValues(typeof(MapType)).Cast<MapType>().ToObservableCollection());
 
         private readonly IContainerManageLocation containerManageLocation;
@@ -56,6 +58,37 @@ namespace GeolocationAds.ViewModels
                     }
                 }
             });
+        }
+
+        public async Task LoadRestrictedZonesAsync()
+        {
+            try
+            {
+                var response = await containerManageLocation.RestrictedZoneService.GetAllActiveRestrictedZones();
+
+                if (!response.IsSuccess || response.Data == null)
+                    return;
+
+                RestrictedZonesElements.Clear();
+
+                foreach (var zone in response.Data)
+                {
+                    var circle = new Circle
+                    {
+                        Center = new Location(zone.Latitude, zone.Longitude),
+                        Radius = new Microsoft.Maui.Maps.Distance(zone.RadiusInMeters),
+                        StrokeColor = Color.FromArgb("#88FF0000"),
+                        StrokeWidth = 8,
+                        FillColor = Color.FromArgb("#88FFC0CB")
+                    };
+
+                    RestrictedZonesElements.Add(circle);
+                }
+            }
+            catch (Exception ex)
+            {
+                await CommonsTool.DisplayAlert("Error", $"Could not load restricted zones: {ex.Message}");
+            }
         }
 
         private void AddPinToPositions(GeolocationAd geo)

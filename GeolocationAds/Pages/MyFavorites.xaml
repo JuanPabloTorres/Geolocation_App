@@ -9,7 +9,7 @@
     xmlns:templateSelector="clr-namespace:GeolocationAds.DataTemplates"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:GeolocationAds.ViewTemplates"
-    Title="My Captures"
+    Title="Captured"
     BackgroundColor="WhiteSmoke"
     Routing.Route="favorites">
 

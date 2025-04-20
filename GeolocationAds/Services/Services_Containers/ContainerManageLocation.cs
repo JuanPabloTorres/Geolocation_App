@@ -5,11 +5,13 @@ namespace GeolocationAds.Services.Services_Containers
 {
     public class ContainerManageLocation : BaseContainer, IContainerManageLocation
     {
-        public ContainerManageLocation(Advertisement model, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService, LogUserPerfilTool logUserPerfilTool) : base(logUserPerfilTool)
+        public ContainerManageLocation(Advertisement model, IAdvertisementService advertisementService, IGeolocationAdService geolocationAdService,IRestrictedZoneService restrictedZoneService ,LogUserPerfilTool logUserPerfilTool) : base(logUserPerfilTool)
         {
             this.GeolocationAdService = geolocationAdService;
 
             this.AdvertisementService = advertisementService;
+
+            this.RestrictedZoneService = restrictedZoneService;
 
             this.Model = model;
         }
@@ -19,5 +21,7 @@ namespace GeolocationAds.Services.Services_Containers
         public IAdvertisementService AdvertisementService { get; }
 
         public Advertisement Model { get; }
+
+        public IRestrictedZoneService RestrictedZoneService { get; }
     }
 }
