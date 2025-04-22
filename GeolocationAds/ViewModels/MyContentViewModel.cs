@@ -39,7 +39,7 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private bool isBackEnabled;
 
-        public  Action<IEnumerable<ContentViewTemplateViewModel>> OnSearchExecute { get; set; }
+        public Action<IEnumerable<ContentViewTemplateViewModel>> OnSearchExecute { get; set; }
 
         public MyContentViewModel(IContainerMyContentServices myContentServices) : base(myContentServices.AdLocationTemplateViewModel, myContentServices.GeolocationAdService, myContentServices.LogUserPerfilTool)
         {
@@ -136,9 +136,8 @@ namespace GeolocationAds.ViewModels
             {
                 var userId = LogUserPerfilTool.GetUserId();
 
-                var apiResponse = await containerMyContentServices.AdvertisementService
-                    .GetAdvertisementsOfUser(userId, SelectedAdType?.ID ?? 0, pageIndex)
-                    .ConfigureAwait(false);
+                var apiResponse = await containerMyContentServices.AdvertisementService.GetAdvertisementsOfUser(userId, SelectedAdType?.ID ?? 0, pageIndex);
+                  
 
                 if (!apiResponse.IsSuccess)
                 {
@@ -146,115 +145,54 @@ namespace GeolocationAds.ViewModels
                 }
 
                 var newViewModels = apiResponse.Data
-                     // 🔹 Usa procesamiento paralelo para mayor eficiencia
+                    // 🔹 Usa procesamiento paralelo para mayor eficiencia
                     .Select(ad => new ContentViewTemplateViewModel(containerMyContentServices.AdvertisementService, service, ad, On_ItemDeleted))
                     .ToList();
 
-                // 🔹 Modifica la UI solo si hay cambios y en el hilo principal
-              
-                    //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
+
+
+                ////CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
+                //CollectionModel.AddRange(newViewModels);
+
+                //// Control de visibilidad y botones
+                //bool hasItems = CollectionModel.Any();
+
+                //IsNextVisible = hasItems;
+
+                //IsBackVisible = hasItems;
+
+                //IsBackEnabled = false; // Siempre inicia deshabilitado
+
+                //IsNextEnabled = hasItems;
+
+                //OnSearchExecute.Invoke(CollectionModel);
+
+                //var viewModels = new List<ContentViewTemplateViewModel>();
+
+                // foreach (var ad in apiResponse.Data)
+                //{
+                //    var vm = new ContentViewTemplateViewModel(containerMyContentServices.AdvertisementService, service, ad, On_ItemDeleted);
+                //    viewModels.Add(vm);
+                //}
+
+                // ✅ Actualizar UI en el hilo principal
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
                     CollectionModel.AddRange(newViewModels);
 
-                // Control de visibilidad y botones
-                bool hasItems = CollectionModel.Any();
+                    bool hasItems = CollectionModel.Any();
 
-                IsNextVisible = hasItems;
+                    IsNextVisible = hasItems;
+                    IsBackVisible = hasItems;
+                    IsBackEnabled = false;
+                    IsNextEnabled = hasItems;
 
-                IsBackVisible = hasItems;
-
-                IsBackEnabled = false; // Siempre inicia deshabilitado
-
-                IsNextEnabled = hasItems;
-
-                OnSearchExecute.Invoke(CollectionModel);
-
+                    OnSearchExecute?.Invoke(CollectionModel);
+                });
             });
         }
 
-        //protected override async Task LoadData(int? pageIndex = 1)
-        //{
-        //    //await RunWithLoadingIndicator(async () =>
-        //    //{
-        //    //    var userId = LogUserPerfilTool.GetUserId();
-
-        //    //    var apiResponse = await containerMyContentServices.AdvertisementService
-        //    //        .GetAdvertisementsOfUserStreamedAsync(userId, SelectedAdType?.ID ?? 0, pageIndex);
-                    
-
-        //    //    if (!apiResponse.IsSuccess)
-        //    //    {
-        //    //        throw new Exception(apiResponse.Message);
-        //    //    }
-
-        //    //    var newViewModels = apiResponse.Data
-        //    //        .Distinct() // 🔹 Usa procesamiento paralelo para mayor eficiencia
-        //    //        .Select(ad => new ContentViewTemplateViewModel(containerMyContentServices.AdvertisementService, service, ad, On_ItemDeleted))
-        //    //        .ToList();
-
-
-
-        //    //    //CollectionModel.Clear(); // 🔹 Limpia antes de agregar nuevos elementos
-        //    //    CollectionModel.AddRange(newViewModels);
-
-        //    //    // Control de visibilidad y botones
-        //    //    bool hasItems = CollectionModel.Count > 0;
-
-        //    //    IsNextVisible = hasItems;
-
-        //    //    IsBackVisible = hasItems;
-
-        //    //    IsBackEnabled = false; // Siempre inicia deshabilitado
-
-        //    //    IsNextEnabled = hasItems;
-
-        //    //    OnSearchExecute.Invoke(CollectionModel);
-        //    //});
-
-        //    await RunWithLoadingIndicator(async () =>
-        //    {
-        //        var userId = LogUserPerfilTool.GetUserId();
-
-        //        var apiResponse = await containerMyContentServices.AdvertisementService
-        //            .GetAdvertisementsOfUserStreamedAsync(userId, SelectedAdType?.ID ?? 0, pageIndex);
-
-        //        if (!apiResponse.IsSuccess)
-        //        {
-        //            throw new Exception(apiResponse.Message);
-        //        }
-
-        //        var seenIds = new HashSet<int>();
-        //        var newViewModels = new List<ContentViewTemplateViewModel>();
-
-        //        foreach (var ad in apiResponse.Data)
-        //        {
-        //            if (seenIds.Add(ad.ID)) // Elimina duplicados
-        //            {
-        //                var vm = new ContentViewTemplateViewModel(
-        //                    containerMyContentServices.AdvertisementService,
-        //                    service,
-        //                    ad,
-        //                    On_ItemDeleted);
-
-        //                newViewModels.Add(vm);
-        //            }
-        //        }
-
-        //        // 🔹 Limpia y agrega nuevos elementos
-        //        CollectionModel.Clear();
-        //        CollectionModel.AddRange(newViewModels);
-
-        //        // 🔹 Control de visibilidad y botones
-        //        bool hasItems = CollectionModel.Count > 0;
-
-        //        IsNextVisible = hasItems;
-        //        IsBackVisible = hasItems;
-        //        IsBackEnabled = false;
-        //        IsNextEnabled = hasItems;
-
-        //        OnSearchExecute.Invoke(CollectionModel);
-        //    });
-
-        //}
+    
 
         private async Task LoadSettingsAsync()
         {

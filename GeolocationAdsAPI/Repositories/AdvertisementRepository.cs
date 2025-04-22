@@ -10,10 +10,9 @@ namespace GeolocationAdsAPI.Repositories
 {
     public class AdvertisementRepository : BaseRepositoryImplementation<Advertisement>, IAdvertisementRepository
     {
-        private readonly IContentTypeRepository contentTypeRepository;
-
         private readonly IAdvertisementSettingsRepository advertisementSettingsRepository;
 
+        private readonly IContentTypeRepository contentTypeRepository;
         public AdvertisementRepository(GeolocationContext context, IContentTypeRepository contentTypeRepository, IAdvertisementSettingsRepository advertisementSettingsRepository) : base(context)
         {
             this.contentTypeRepository = contentTypeRepository;
@@ -27,11 +26,6 @@ namespace GeolocationAdsAPI.Repositories
             {
                 // Add the advertisement entity to the DbSet
                 await _context.Advertisements.AddAsync(advertisement);
-
-                //// Optionally, you can also add related entities in a similar way if needed.
-                //await _context.ContentTypes.AddRangeAsync(advertisement.Contents);
-
-                //await _context.AdvertisementSettings.AddRangeAsync(advertisement.Settings);
 
                 // Save changes asynchronously
                 await _context.SaveChangesAsync();
@@ -63,6 +57,7 @@ namespace GeolocationAdsAPI.Repositories
                         Description = s.Description,
                         Title = s.Title,
                         UserId = s.UserId,
+                        Metadata = s.Metadata,
                         GeolocationAds = s.GeolocationAds
                         .Where(gv => DateTime.Today <= gv.ExpirationDate)
                         .Select(gv => new GeolocationAd()
@@ -136,12 +131,8 @@ namespace GeolocationAdsAPI.Repositories
                 SettingId = st.SettingId,
                 AdvertisementId = st.AdvertisementId,
                 Setting = st.Setting
-            })
-            .ToList()
-    })
-    .Skip((pageIndex - 1) * ConstantsTools.PageSize)
-    .Take(ConstantsTools.PageSize)
-    .ToListAsync();
+            }).ToList()
+    }).Skip((pageIndex - 1) * ConstantsTools.PageSize).Take(ConstantsTools.PageSize).ToListAsync();
 
                 if (dataFoundResult.IsEmpty())
                 {
@@ -205,7 +196,6 @@ namespace GeolocationAdsAPI.Repositories
                 return ResponseFactory<IAsyncEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
             }
         }
-
 
         public override async Task<ResponseTool<Advertisement>> Remove(int id)
         {
@@ -322,9 +312,10 @@ namespace GeolocationAdsAPI.Repositories
                 var existingAdvertisement = await _context.Advertisements
                    .Include(a => a.Contents)
                     .Include(a => a.Settings)
+                    .Include(a => a.Metadata)
                     .FirstOrDefaultAsync(a => a.ID == id);
 
-                if (existingAdvertisement == null)
+                if (existingAdvertisement.IsObjectNull())
                 {
                     return ResponseFactory<Advertisement>.BuildFail("Advertisement not found.", null, ToolsLibrary.Tools.Type.EntityNotFound);
                 }
@@ -338,35 +329,60 @@ namespace GeolocationAdsAPI.Repositories
 
                 existingAdvertisement.UpdateBy = updatedAdvertisement.UpdateBy;
 
-                // 🔹 Obtener los IDs de los contenidos actualizados
-                var updatedContentsIds = updatedAdvertisement.Contents.Select(c => c.ID).ToList();
+                //// 🔹 Obtener los IDs de los contenidos actualizados
+                //var updatedContentsIds = updatedAdvertisement.Contents.Select(c => c.ID).ToList();
 
-                // 🔹 Manejar la actualización de la colección de Contents
-                foreach (var existingContent in existingAdvertisement.Contents.ToList())
+                //// 🔹 Manejar la actualización de la colección de Contents
+                //foreach (var existingContent in existingAdvertisement.Contents.ToList())
+                //{
+                //    var updatedContent = updatedAdvertisement.Contents.FirstOrDefault(c => c.ID == existingContent.ID);
+
+                //    if (updatedContent != null && updatedContent.Type == ContentVisualType.Video)
+                //    {
+                //        // Mantener la información de creación y actualizar datos
+                //        updatedContent.CreateDate = existingContent.CreateDate;
+
+                //        updatedContent.CreateBy = existingContent.CreateBy;
+
+                //        updatedContent.SetUpdateInformation(updatedAdvertisement.UpdateBy.Value);
+
+                //        // Obtener el contenido actualizado desde la base de datos si es necesario
+                //        var _contentBytes = await this.contentTypeRepository.GetContentById(updatedContent.ID);
+
+                //        updatedContent.Content = ApiCommonsTools.Combine(_contentBytes.Data);
+
+                //        // Aplicar cambios sin añadir una nueva instancia
+                //        _context.Entry(existingContent).CurrentValues.SetValues(updatedContent);
+                //    }
+                //    else
+                //    {
+                //        // Eliminar contenido si no existe en la actualización
+                //        _context.ContentTypes.Remove(existingContent);
+                //    }
+                //}
+
+                // 🎞️ Actualizar Contents existentes
+                foreach (var oldContent in existingAdvertisement.Contents.ToList())
                 {
-                    var updatedContent = updatedAdvertisement.Contents.FirstOrDefault(c => c.ID == existingContent.ID);
+                    var newContent = updatedAdvertisement.Contents.FirstOrDefault(c => c.ID == oldContent.ID);
 
-                    if (updatedContent != null && updatedContent.Type == ContentVisualType.Video)
+                    if (newContent != null && newContent.Type == ContentVisualType.Video)
                     {
-                        // Mantener la información de creación y actualizar datos
-                        updatedContent.CreateDate = existingContent.CreateDate;
+                        newContent.CreateDate = oldContent.CreateDate;
 
-                        updatedContent.CreateBy = existingContent.CreateBy;
+                        newContent.CreateBy = oldContent.CreateBy;
 
-                        updatedContent.SetUpdateInformation(updatedAdvertisement.UpdateBy.Value);
+                        newContent.SetUpdateInformation(updatedAdvertisement.UpdateBy.Value);
 
-                        // Obtener el contenido actualizado desde la base de datos si es necesario
-                        var _contentBytes = await this.contentTypeRepository.GetContentById(updatedContent.ID);
+                        var bytes = await contentTypeRepository.GetContentById(newContent.ID);
 
-                        updatedContent.Content = ApiCommonsTools.Combine(_contentBytes.Data);
+                        newContent.Content = ApiCommonsTools.Combine(bytes.Data);
 
-                        // Aplicar cambios sin añadir una nueva instancia
-                        _context.Entry(existingContent).CurrentValues.SetValues(updatedContent);
+                        _context.Entry(oldContent).CurrentValues.SetValues(newContent);
                     }
                     else
                     {
-                        // Eliminar contenido si no existe en la actualización
-                        _context.ContentTypes.Remove(existingContent);
+                        _context.ContentTypes.Remove(oldContent);
                     }
                 }
 
@@ -387,6 +403,17 @@ namespace GeolocationAdsAPI.Repositories
                 existingAdvertisement.Contents = updatedAdvertisement.Contents;
 
                 existingAdvertisement.Settings = updatedAdvertisement.Settings;
+
+                updatedAdvertisement.Metadata.AdvertisementId = existingAdvertisement.ID;
+
+                if (existingAdvertisement.Metadata != null)
+                {
+                    _context.Entry(existingAdvertisement.Metadata).CurrentValues.SetValues(updatedAdvertisement.Metadata);
+                }
+                else
+                {
+                    existingAdvertisement.Metadata = updatedAdvertisement.Metadata;
+                }
 
                 // 🔹 Marcar la entidad como modificada
                 _context.Entry(existingAdvertisement).State = EntityState.Modified;
@@ -421,29 +448,6 @@ namespace GeolocationAdsAPI.Repositories
             }
         }
 
-        private async Task UpdateExistingContentAsync(ContentType existingItem, ContentType updatedItem, int updatedByUserId, int advertisingId)
-        {
-            if (!existingItem.IsObjectNull() && existingItem.Type == ContentVisualType.Video && Convert.ToUInt64(existingItem.FileSize) == 0)
-            {
-                existingItem.SetUpdateInformation(updatedByUserId);
-
-                existingItem.AdvertisingId = advertisingId;
-
-                var contentBytes = await this.contentTypeRepository.GetContentById(existingItem.ID);
-
-                existingItem.Content = ApiCommonsTools.Combine(contentBytes.Data);
-            }
-        }
-
-        private void SetNewContentProperties(ContentType existingItem, int updatedByUserId, int advertisingId)
-        {
-            existingItem.CreateDate = DateTime.Now;
-
-            existingItem.CreateBy = updatedByUserId;
-
-            existingItem.AdvertisingId = advertisingId;
-        }
-
         public async Task<ResponseTool<IEnumerable<Advertisement>>> VerifyExpiredAdvertimentOfUser(int userId)
         {
             try
@@ -457,6 +461,29 @@ namespace GeolocationAdsAPI.Repositories
             catch (Exception ex)
             {
                 return ResponseFactory<IEnumerable<Advertisement>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+            }
+        }
+
+        private void SetNewContentProperties(ContentType existingItem, int updatedByUserId, int advertisingId)
+        {
+            existingItem.CreateDate = DateTime.Now;
+
+            existingItem.CreateBy = updatedByUserId;
+
+            existingItem.AdvertisingId = advertisingId;
+        }
+
+        private async Task UpdateExistingContentAsync(ContentType existingItem, ContentType updatedItem, int updatedByUserId, int advertisingId)
+        {
+            if (!existingItem.IsObjectNull() && existingItem.Type == ContentVisualType.Video && Convert.ToUInt64(existingItem.FileSize) == 0)
+            {
+                existingItem.SetUpdateInformation(updatedByUserId);
+
+                existingItem.AdvertisingId = advertisingId;
+
+                var contentBytes = await this.contentTypeRepository.GetContentById(existingItem.ID);
+
+                existingItem.Content = ApiCommonsTools.Combine(contentBytes.Data);
             }
         }
     }

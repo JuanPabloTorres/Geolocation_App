@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="GeolocationAds.ViewTemplates.MetadataDisplayView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <VerticalStackLayout Padding="15" Spacing="15">
+
+        <Label
+            FontAttributes="Bold"
+            FontSize="20"
+            HorizontalOptions="Center"
+            Text="About the Business"
+            TextColor="DarkSlateGray" />
+
+        <!--  Social Links  -->
+        <Button
+            BackgroundColor="#3b5998"
+            Command="{Binding OpenUrlCommand}"
+            CommandParameter="{Binding Model.Metadata.FacebookUrl}"
+            Text="🌐 Facebook"
+            TextColor="White" />
+
+        <Button
+            BackgroundColor="#E1306C"
+            Command="{Binding OpenUrlCommand}"
+            CommandParameter="{Binding Model.Metadata.InstagramUrl}"
+            Text="📷 Instagram"
+            TextColor="White" />
+
+        <Button
+            BackgroundColor="#555"
+            Command="{Binding OpenUrlCommand}"
+            CommandParameter="{Binding Advertisement.Metadata.WebsiteUrl}"
+            Text="🔗 Website"
+            TextColor="White" />
+
+        <!--  Contact  -->
+        <Button
+            BackgroundColor="#2196F3"
+            Command="{Binding SendEmailCommand}"
+            CommandParameter="{Binding Model.Metadata.ContactEmail}"
+            Text="📧 Contact Email"
+            TextColor="White" />
+
+        <Button
+            BackgroundColor="#4CAF50"
+            Command="{Binding CallCommand}"
+            CommandParameter="{Binding Model.Metadata.ContactPhone}"
+            Text="📞 Call Business"
+            TextColor="White" />
+
+        <!--  Location  -->
+        <Button
+            BackgroundColor="#FF9800"
+            Command="{Binding OpenMapCommand}"
+            CommandParameter="{Binding Model.Metadata}"
+            Text="📍 Open Location"
+            TextColor="White" />
+
+    </VerticalStackLayout>
+</ContentView>

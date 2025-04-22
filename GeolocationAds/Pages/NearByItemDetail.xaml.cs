@@ -7,8 +7,7 @@ namespace GeolocationAds.Pages;
 
 public partial class NearByItemDetail : ContentPage
 {
-
-    NearByItemDetailViewModel viewModel;
+    private NearByItemDetailViewModel viewModel;
 
     public NearByItemDetail(NearByItemDetailViewModel nearByItemDetailViewModel)
     {
@@ -98,36 +97,29 @@ public partial class NearByItemDetail : ContentPage
         //    {
         //        Regex regex = new Regex(@"intent://(.*?)(;|$)");
 
-        //        Match match = regex.Match(e.Url);
+        // Match match = regex.Match(e.Url);
 
-        //        string result = string.Empty;
+        // string result = string.Empty;
 
-        //        if (match.Success)
-        //        {
-        //            result = match.Groups[1].Value;  // Capture the URL part
+        // if (match.Success) { result = match.Groups[1].Value; // Capture the URL part
 
-        //            Console.WriteLine(result);
-        //        }
+        // Console.WriteLine(result); }
 
-        //        if (result != string.Empty)
-        //        {
-        //            //var uri = new Uri(result);
+        // if (result != string.Empty) { //var uri = new Uri(result);
 
-        //            bool launcherOpened = await Launcher.Default.TryOpenAsync(result);
+        // bool launcherOpened = await Launcher.Default.TryOpenAsync(result);
 
-        //            if (launcherOpened)
-        //            {
-        //                // Do something fun
-        //            }
+        // if (launcherOpened) { // Do something fun }
 
-        //            //await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);  // Open the URL in the system preferred browser.
+        // //await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred); // Open the
+        // URL in the system preferred browser.
 
-        //            e.Cancel = true;  // Prevent WebView from navigating
-        //        }
+        // e.Cancel = true; // Prevent WebView from navigating }
 
-        //        //var uri = new Uri(result);
+        // //var uri = new Uri(result);
 
-        //        //await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);  // Open the URL in the system preferred browser.
+        // //await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred); // Open the
+        // URL in the system preferred browser.
 
         //        //e.Cancel = true;  // Prevent WebView from navigating
         //    }

@@ -123,6 +123,10 @@ public static class MauiProgram
         builder.Services.AddScoped<ToolsLibrary.Models.Capture>();
 
         builder.Services.AddScoped<ToolsLibrary.Dto.NewPasswordDto>();
+       
+        builder.Services.AddScoped<ToolsLibrary.Models.AdvertisementMetadata>();
+
+        
     }
 
     #endregion **Registro de Modelos**

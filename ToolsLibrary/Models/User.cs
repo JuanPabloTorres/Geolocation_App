@@ -17,6 +17,35 @@ namespace ToolsLibrary.Models
 
     public partial class User : BaseModel
     {
+        // 🔹 Correo electrónico con validación
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Required(ErrorMessage = $"{nameof(Email)} is required.")]
+        [EmailValidation(ErrorMessage = "Invalid email format.")]
+        public string email;
+
+        // 🔹 Nombre completo con validación
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Required(ErrorMessage = $"{nameof(FullName)} is required.")]
+        public string fullName;
+
+        // 🔹 Número de teléfono con validación
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Required(ErrorMessage = $"{nameof(Phone)} is required.")]
+        public string phone;
+
+        // Imagen como arreglo de bytes
+        [ObservableProperty]
+        public byte[]? profileImageBytes;
+
+        // 🔹 Estado del usuario
+        [ObservableProperty]
+        public UserStatus userStatus;
+
+        private int? loginId;
+
         public User()
         {
             Advertisements = new List<Advertisement>();
@@ -31,40 +60,27 @@ namespace ToolsLibrary.Models
         [ForeignKey("LoginId")]
         public virtual Login Login { get; set; }
 
-        private int? loginId;
+        // 🔹 Relación con AppSetting para el rol
+        [ForeignKey("UserRoleId")]
+        public AppSetting? UserRole { get; set; }
 
-        // 🔹 Nombre completo con validación
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [Required(ErrorMessage = $"{nameof(FullName)} is required.")]
-        public string fullName;
+        public int? UserRoleId { get; set; }
 
-        // 🔹 Correo electrónico con validación
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [Required(ErrorMessage = $"{nameof(Email)} is required.")]
-        [EmailValidation(ErrorMessage = "Invalid email format.")]
-        public string email;
-
-        // 🔹 Número de teléfono con validación
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [Required(ErrorMessage = $"{nameof(Phone)} is required.")]
-        public string phone;
-
-        // 🔹 Estado del usuario
-        [ObservableProperty]
-        public UserStatus userStatus;
-
-
-        // Imagen como arreglo de bytes
-        [ObservableProperty]
-        public byte[]? profileImageBytes;
-
+        public string GetUserRoleName() => UserRole?.Value ?? "Undefined";
 
         public bool HasProfileImage()
         {
             return profileImageBytes != null || profileImageBytes?.Length > 0;
+        }
+
+        public bool HasRole(string roleValue)
+        {
+            return string.Equals(this.UserRole?.Value, roleValue, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public string GetRoleName()
+        {
+            return this.UserRole?.Value ?? "Undefined";
         }
     }
 }

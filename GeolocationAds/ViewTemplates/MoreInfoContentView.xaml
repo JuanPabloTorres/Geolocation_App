@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="GeolocationAds.ViewTemplates.MoreInfoContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GeolocationAds.CustomContentView"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <toolkit:Expander>
+        <toolkit:Expander.Header>
+            <VerticalStackLayout Spacing="4">
+                <Label Style="{StaticResource globalTitleHeaders}" Text="Additional Details" />
+                <BoxView
+                    BackgroundColor="{StaticResource AppBlack}"
+                    HeightRequest="0.2"
+                    Color="{StaticResource AppBlack}" />
+            </VerticalStackLayout>
+        </toolkit:Expander.Header>
+
+        <toolkit:Expander.Content>
+            <VerticalStackLayout Padding="10" Spacing="10">
+
+                <!--  🔗 Facebook  -->
+                <local:CustomEntryContentView
+                    IconSource="&#xe158;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Contact Email"
+                    Text="{Binding Model.Metadata.ContactEmail, Mode=TwoWay}" />
+
+                <!--  🔗 Instagram  -->
+                <local:CustomEntryContentView
+                    IconSource="&#xe0b0;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Contact Phone"
+                    Text="{Binding Model.Metadata.ContactPhone, Mode=TwoWay}" />
+
+                <!--  🔗 Facebook  -->
+                <local:CustomEntryContentView
+                    IconSource="&#xe255;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Facebook URL"
+                    Text="{Binding Model.Metadata.FacebookUrl, Mode=TwoWay}" />
+
+                <!--  🔗 Instagram  -->
+                <local:CustomEntryContentView
+                    IconSource="&#xe251;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Instagram URL"
+                    Text="{Binding Model.Metadata.InstagramUrl, Mode=TwoWay}" />
+
+
+
+                <!--  🌍 Coordenadas  -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Button
+                        Command="{Binding SetCurrentLocationCommand}"
+                        IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                        Style="{StaticResource globalButton}"
+                        Text="Set Current Location" />
+
+                    <Label
+                        Text="{Binding Model.Metadata.Latitude, StringFormat='Lat: {0:F5}'}"
+                        TextColor="DarkGreen"
+                        VerticalOptions="Center" />
+                    <Label
+                        Text="{Binding Model.Metadata.Longitude, StringFormat='Lng: {0:F5}'}"
+                        TextColor="DarkGreen"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <!--  🗓️ Fecha del evento  -->
+                <local:CustomEntryContentView
+                    IconSource="&#xe916;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Event Date (YYYY/MM/DD)"
+                    Text="{Binding Model.Metadata.EventDate, StringFormat='{0:yyyy/MM/dd}', Mode=TwoWay}" />
+
+                <!--  🔒 Máximo capturas  -->
+                <local:CustomEntryContentView
+                    IconSource="&#xeb8d;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="Max Captured (optional)"
+                    Text="{Binding Model.Metadata.MaxCaptured, Mode=TwoWay}" />
+
+            </VerticalStackLayout>
+        </toolkit:Expander.Content>
+    </toolkit:Expander>
+</ContentView>

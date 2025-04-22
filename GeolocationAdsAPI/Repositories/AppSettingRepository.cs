@@ -14,19 +14,50 @@ namespace GeolocationAdsAPI.Repositories
         {
         }
 
+        //public async Task<ResponseTool<IEnumerable<AppSetting>>> GetAppSettingByName(string settingName)
+        //{
+        //    try
+        //    {
+        //        var _result = await _context.Settings.Where(v => v.SettingName == settingName).ToListAsync();
+
+        //        return ResponseFactory<IEnumerable<AppSetting>>.BuildSuccess("Data Found", _result, ToolsLibrary.Tools.Type.DataFound);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ResponseFactory<IEnumerable<AppSetting>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+        //    }
+        //}
+
         public async Task<ResponseTool<IEnumerable<AppSetting>>> GetAppSettingByName(string settingName)
         {
             try
             {
-                var _result = await _context.Settings.Where(v => v.SettingName == settingName).ToListAsync();
+                var settings = await _context.Settings
+                    .Where(v => v.SettingName == settingName || v.SettingName.StartsWith($"{settingName}|"))
+                    .ToListAsync();
 
-                return ResponseFactory<IEnumerable<AppSetting>>.BuildSuccess("Data Found", _result, ToolsLibrary.Tools.Type.DataFound);
+                if (!settings.Any())
+                {
+                    return ResponseFactory<IEnumerable<AppSetting>>.BuildFail(
+                        $"No settings found for '{settingName}'.",
+                        null,
+                        ToolsLibrary.Tools.Type.NotFound);
+                }
+
+                return ResponseFactory<IEnumerable<AppSetting>>.BuildSuccess(
+                    "Settings found.",
+                    settings,
+                    ToolsLibrary.Tools.Type.DataFound);
             }
             catch (Exception ex)
             {
-                return ResponseFactory<IEnumerable<AppSetting>>.BuildFail(ex.Message, null, ToolsLibrary.Tools.Type.Exception);
+                return ResponseFactory<IEnumerable<AppSetting>>.BuildFail(
+                    $"Error retrieving app settings: {ex.Message}",
+                    null,
+                    ToolsLibrary.Tools.Type.Exception);
             }
         }
+
 
         public async Task<ResponseTool<IEnumerable<AppSetting>>> GetAppSettingByNames(IList<string> settingNames)
         {

@@ -49,14 +49,9 @@
             VideoDataTemplate="{StaticResource VideoDataTemplateForDisplay2}" />
     </ContentPage.Resources>
 
-    <Grid>
+    <Grid RowDefinitions="*,Auto,Auto">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
 
-        </Grid.RowDefinitions>
 
         <!--  Optimización: Carga diferida del contenido en el CarouselView  -->
         <CarouselView

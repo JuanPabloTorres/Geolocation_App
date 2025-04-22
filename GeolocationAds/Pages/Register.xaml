@@ -129,8 +129,6 @@
                     Text="{Binding Model.Login.Password, Mode=TwoWay}" />
             </VerticalStackLayout>
 
-
-
             <view:LoadingOverlay Grid.Row="0" IsVisible="{Binding IsLoading}" />
         </VerticalStackLayout>
     </ScrollView>

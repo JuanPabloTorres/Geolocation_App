@@ -58,38 +58,7 @@ public partial class MyContentPage : ContentPage
         }
     }
 
-    //private async void NextItemButton_Clicked()
-    //{
-    //    if (_viewModel.IsLoading) return; // 🔹 Evita llamadas repetitivas si ya está cargando
-
-    // await _viewModel.RunWithLoadingIndicator(async () => { this.paginControls.IsNextButtonEnabled
-    // = false;
-
-    // this.paginControls.IsBackButtonEnabled = false;
-
-    // int lastIndex = GetSourceLastIndexCount();
-
-    // // 🔹 Avanza al siguiente ítem si no está en el último if (carouselView.ItemsSource != null
-    // && carouselView.Position < lastIndex) { carouselView.Position++;
-
-    // return; }
-
-    // // 🔹 Si se llega al final, intenta cargar más datos if (carouselView.Position == lastIndex)
-    // { int oldCount = lastIndex;
-
-    // MyContentViewModel.PageIndex++;
-
-    // await _viewModel.InitializeAsync(MyContentViewModel.PageIndex);
-
-    // int newCount = GetSourceLastIndexCount();
-
-    // // 🔹 Solo avanza si hay más elementos if (newCount > oldCount) { carouselView.Position++; }
-    // } });
-
-    // this.paginControls.IsNextButtonEnabled = true;
-
-    //    this.paginControls.IsBackButtonEnabled = true;
-    //}
+ 
 
     private async void NextItemButton_Clicked()
     {
@@ -133,18 +102,7 @@ public partial class MyContentPage : ContentPage
         });
     }
 
-    //private async void BackItemButton_Clicked()
-    //{
-    //    if (_viewModel.IsLoading || carouselView.Position == 0) return; // 🔹 Evita navegación redundante
-
-    // await _viewModel.RunWithLoadingIndicator(async () => { carouselView.Position--;
-
-    // // 🔹 Si está en el primer elemento, desactiva el botón de retroceso
-    // this.paginControls.IsBackButtonEnabled = carouselView.Position > 0;
-
-    //        this.paginControls.IsNextButtonEnabled = true;
-    //    });
-    //}
+  
 
     private async void BackItemButton_Clicked()
     {

@@ -9,7 +9,8 @@
     {
         MeterDistance,
         AdTypes,
-        SearchRadiusRange
+        SearchRadiusRange,
+     
     }
 
     public enum AdType

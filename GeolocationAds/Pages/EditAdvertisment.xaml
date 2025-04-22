@@ -83,119 +83,120 @@
             VideoDataTemplate="{StaticResource VideoDataTemplate2}" />
     </ContentPage.Resources>
 
-    <Grid>
+    <ScrollView>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="100*" />
-        </Grid.RowDefinitions>
+        <Grid>
 
-        <Grid Grid.Row="0" HeightRequest="120">
-            <GraphicsView HorizontalOptions="Fill" VerticalOptions="Fill">
-                <GraphicsView.Drawable>
-                    <drawable:SemiCircle />
-                </GraphicsView.Drawable>
-            </GraphicsView>
-            <Label
-                FontAttributes="Bold"
-                FontSize="15"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                LineBreakMode="WordWrap"
-                Text="Don’t wait for something to happen… modify it here."
-                TextColor="White"
-                VerticalOptions="Center"
-                VerticalTextAlignment="Center" />
-        </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+            <Grid Grid.Row="0" HeightRequest="120">
+                <GraphicsView HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <GraphicsView.Drawable>
+                        <drawable:SemiCircle />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    Text="Don’t wait for something to happen… modify it here."
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
 
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="2" />
-            </CollectionView.ItemsLayout>
-        </CollectionView>
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ValidationResults}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Style="{StaticResource ErrorLabelStyle}" Text="{Binding ErrorMessage}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-        <local:CustomEntryContentView
-            Grid.Row="2"
-            IconSource="&#xf05b;"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Placeholder="Title"
-            Text="{Binding Model.Title}" />
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
 
-        <local:CustomEditorContentView
-            Grid.Row="3"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            Placeholder="Description"
-            Text="{Binding Model.Description, Mode=TwoWay}" />
-
-        <local:CustomPickerContentView
-            Grid.Row="4"
-            DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
-            IconSource="arrow.png"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            ItemDisplayBindingPath="Value"
-            ItemsSource="{Binding AdTypesSettings}"
-            SelectValue="{Binding SelectedAdType}"
-            SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
-
-
-
-
-
-        <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Fill">
             <local:CustomEntryContentView
-                x:Name="urlValue"
-                IconSize="50"
-                IconSource="&#xe902;"
+                Grid.Row="2"
+                IconSource="&#xf05b;"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Placeholder="URL"
-                Text="{Binding Url, Mode=TwoWay}"
-                WidthRequest="300" />
+                Placeholder="Title"
+                Text="{Binding Model.Title}" />
 
-            <Button
-                Command="{Binding SetURLCommand}"
-                CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
-                HeightRequest="45"
+            <local:CustomEditorContentView
+                Grid.Row="3"
                 IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-                Style="{StaticResource globalButtonUrL}"
-                WidthRequest="45">
+                Placeholder="Description"
+                Text="{Binding Model.Description, Mode=TwoWay}" />
 
-                <Button.ImageSource>
-                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe178;" />
-                </Button.ImageSource>
-            </Button>
-        </HorizontalStackLayout>
+            <local:CustomPickerContentView
+                Grid.Row="4"
+                DisplayItem="{Binding SelectedAdType, Mode=TwoWay}"
+                IconSource="arrow.png"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                ItemDisplayBindingPath="Value"
+                ItemsSource="{Binding AdTypesSettings}"
+                SelectValue="{Binding SelectedAdType}"
+                SelectedItem="{Binding SelectedAdType, Mode=TwoWay}" />
 
-        <viewTemplate:EditAndCreateCarousel
-            x:Name="contentCollection"
-            Grid.Row="6"
-            IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
-            ItemTemplate="{StaticResource typeSelector}"
-            ItemsSource="{Binding ContentTypesTemplate}" />
+            <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Fill">
+                <local:CustomEntryContentView
+                    x:Name="urlValue"
+                    IconSize="50"
+                    IconSource="&#xe902;"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Placeholder="URL"
+                    Text="{Binding Url, Mode=TwoWay}"
+                    WidthRequest="300" />
 
-        <!--<ActivityIndicator
+                <Button
+                    Command="{Binding SetURLCommand}"
+                    CommandParameter="{Binding Source={x:Reference urlValue}, Path=Text}"
+                    HeightRequest="45"
+                    IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                    Style="{StaticResource globalButtonUrL}"
+                    WidthRequest="45">
+
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe178;" />
+                    </Button.ImageSource>
+                </Button>
+            </HorizontalStackLayout>
+
+            <viewTemplate:EditAndCreateCarousel
+                x:Name="contentCollection"
+                Grid.Row="6"
+                IsEnabled="{Binding IsLoading, Converter={StaticResource IsEnableConverter}}"
+                ItemTemplate="{StaticResource typeSelector}"
+                ItemsSource="{Binding ContentTypesTemplate}" />
+
+            <!--<ActivityIndicator
             Grid.Row="4"
             IsRunning="{Binding IsLoading}"
             Style="{StaticResource globalLoading}" />-->
 
+            <views:MoreInfoContentView Grid.Row="7" />
 
-        <views:LoadingOverlay
-            Grid.Row="0"
-            Grid.RowSpan="6"
-            HorizontalOptions="Fill"
-            IsVisible="{Binding IsLoading}"
-            VerticalOptions="Fill" />
-    </Grid>
+            <views:LoadingOverlay
+                Grid.Row="0"
+                Grid.RowSpan="6"
+                HorizontalOptions="Fill"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="Fill" />
+        </Grid>
+    </ScrollView>
 </ContentPage>

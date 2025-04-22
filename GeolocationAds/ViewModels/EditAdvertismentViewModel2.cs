@@ -56,8 +56,13 @@ namespace GeolocationAds.ViewModels
 
                 this.ContentTypesTemplate.Clear();
 
+                if (this.Model.Metadata.IsObjectNull())
+                {
+                    this.Model.Metadata = new();
+                }
+
                 // 🔹 Validación segura de Model.Contents antes de procesar
-                if (this.Model.Contents?.Any() == true)
+                if ((bool)(Model.Contents?.Any()))
                 {
                     var contentProcessingTasks = this.Model.Contents
                         .Select(async item =>
@@ -94,36 +99,6 @@ namespace GeolocationAds.ViewModels
                 this.SelectedAdType = AdTypesSettings.FirstOrDefault();
             });
         }
-
-
-
-        //[RelayCommand]
-        //public async Task UploadContent()
-        //{
-        //    await RunWithLoadingIndicator(async () =>
-        //    {
-        //        var customFileTypes = GetCommonFileTypes();
-
-        //        FileResult result = await FilePicker.PickAsync(new PickOptions
-        //        {
-        //            FileTypes = customFileTypes,
-        //        });
-
-        //        if (!result.IsObjectNull())
-        //        {
-        //            this.Model.Contents.Clear();
-
-        //            this.ContentTypesTemplate.Clear();
-
-        //            await ProcessSelectedFile(result);
-        //        }
-
-        //        foreach (var item in ContentTypesTemplate)
-        //        {
-        //            await item.SetAnimation();
-        //        }
-        //    });
-        //}
 
         [RelayCommand]
         public async Task UploadContent()
@@ -168,17 +143,6 @@ namespace GeolocationAds.ViewModels
                 //    await item.SetAnimation();
                 //}
             });
-        }
-
-        private FilePickerFileType GetCommonFileTypes()
-        {
-            var fileTypes = new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.Android, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" } },
-                { DevicePlatform.iOS, new[] { "image/gif", "image/png", "image/jpeg", "video/mp4" } }
-            };
-
-            return new FilePickerFileType(fileTypes);
         }
 
         private async Task ProcessSelectedFile(FileResult result)
@@ -268,18 +232,10 @@ namespace GeolocationAds.ViewModels
             }
         }
 
-        partial void OnSelectedAdTypeChanged(AppSetting value)
+         async partial void OnSelectedAdTypeChanged(AppSetting value)
         {
             // Invoke the asynchronous method and forget it
-            HandleAdTypeChangeAsync(value).ContinueWith(task =>
-            {
-                // Handle exceptions if task fails
-                if (task.Exception != null)
-                {
-                    // Log or handle the exception as needed
-                    Console.WriteLine($"Exception occurred: {task.Exception.Flatten()}");
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext()); // Ensure any continuation runs on the UI thread
+            await HandleAdTypeChangeAsync(value);
         }
 
         private async Task HandleAdTypeChangeAsync(AppSetting value)
@@ -314,48 +270,6 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task SetURL(string url)
         {
-            //try
-            //{
-            //    this.IsLoading = true;
-
-            // if (this.Model.Contents.Count == ConstantsTools.MaxAdLimit) { await
-            // CommonsTool.DisplayAlert("Limit Reached", "You have reached the maximum content limit permitted.");
-
-            // return; }
-
-            // var _isValidUrl = CommonsTool.IsValidUrl(url);
-
-            // if (_isValidUrl) { var _uri = new Uri(url);
-
-            // var _content = ContentTypeFactory.BuilContentType(url, ContentVisualType.URL, null,
-            // this.LogUserPerfilTool.LogUser.ID, null, null);
-
-            // var _template = ContentTypeTemplateFactory.BuilContentType(_content, _uri);
-
-            // //_template.ItemDeleted += ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-            // _template.ItemDeleted = ContentTypeTemplateViewModel_ContentTypeDeleted;
-
-            // this.ContentTypesTemplate.Add(_template);
-
-            // this.Model.Contents.Add(_content);
-
-            //        this.Url = string.Empty;
-            //    }
-            //    else
-            //    {
-            //        await CommonsTool.DisplayAlert("Error", "Url invalid.");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    await CommonsTool.DisplayAlert("Error", ex.Message);
-            //}
-            //finally
-            //{
-            //    this.IsLoading = false;
-            //}
-
             await RunWithLoadingIndicator(async () =>
             {
                 this.Model.Contents.Clear();

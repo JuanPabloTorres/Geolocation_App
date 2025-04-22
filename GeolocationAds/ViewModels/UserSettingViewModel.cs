@@ -64,36 +64,7 @@ namespace GeolocationAds.ViewModels
 
         protected override async Task OnSignOutMessageReceivedAsync()
         {
-            //await RunWithLoadingIndicator(async () =>
-            //{
-            //    Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
-
-            //    await Shell.Current.Navigation.PopAsync();
-
-            //    var apiResponse = await this.loginService.SignOutAsync(this.LogUserPerfilTool.LogUser.Login);
-
-            //    if (!apiResponse.IsSuccess)
-            //    {
-            //        throw new Exception(apiResponse.Message);
-            //    }
-
-            //    // Limpia la sesión local
-            //    LogUserPerfilTool.LogUser = null;
-
-            //    LogUserPerfilTool.JsonToken = string.Empty;
-
-            //    // 🧠 Cancelar mensajes
-            //    //WeakReferenceMessenger.Default.UnregisterAll(this);
-
-            //    await Task.Delay(1000);
-
-            //    // Evita que regrese con el botón atrás
-            //    Application.Current.MainPage = new AppShell(this.appShellViewModel2);
-
-            //    await Shell.Current.GoToAsync(nameof(Login));
-
-            //    Shell.Current.FlyoutIsPresented = false;
-            //});
+           
         }
     }
 }

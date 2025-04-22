@@ -17,9 +17,11 @@ public partial class Register : ContentPage
         BindingContext = registerViewModel;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         this._registerViewModel.ValidationResults.Clear();
+
+    
     }
 
     private void onPhoneChange(object sender, TextChangedEventArgs e)

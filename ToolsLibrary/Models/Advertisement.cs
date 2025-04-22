@@ -7,6 +7,12 @@ namespace ToolsLibrary.Models
     {
         public Advertisement()
         {
+            this.Settings = new List<AdvertisementSettings>() {  };
+
+            this.Contents = new List<ContentType>();
+
+            this.Metadata = new();
+
         }
 
         public Advertisement(int userId, AdvertisementSettings settings)
@@ -22,10 +28,14 @@ namespace ToolsLibrary.Models
             this.Settings = new List<AdvertisementSettings>() { settings };
 
             this.Contents = new List<ContentType>();
+
+            this.Metadata = new();
         }
 
         public ICollection<ContentType> Contents { get; set; }
+
         public ICollection<GeolocationAd> GeolocationAds { get; set; }
+
         public ICollection<AdvertisementSettings> Settings { get; set; }
 
         [ObservableProperty]
@@ -37,5 +47,7 @@ namespace ToolsLibrary.Models
         public string title;
 
         public int UserId { get; set; }
+
+        public AdvertisementMetadata Metadata { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using GeolocationAds.Messages;
 using GeolocationAds.Services;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ToolsLibrary.Extensions;
@@ -15,14 +16,15 @@ namespace GeolocationAds.ViewModels
         [ObservableProperty]
         private User _newUser = new User();
 
-      
+        public ObservableCollection<AppSetting> AdTypesSettings { get; set; } = new();
+
+        private IList<string> rolesSettings = new List<string>() { "UserRole" };
 
         public RegisterViewModel(User user, IUserService service) : base(user, service)
         {
             NewUser = new User();
 
             TestDataDefault();
-
 
             WeakReferenceMessenger.Default.Register<CleanOnSubmitMessage<User>>(this, (r, m) =>
             {
@@ -42,10 +44,6 @@ namespace GeolocationAds.ViewModels
 
             this.Model.Email = "test@gmail.com";
 
-            // ✅ Asegurar que Login no sea null
-            //if (this.Model.Login.IsObjectNull())
-            //    this.Model.Login = new ToolsLibrary.Models.Login();
-
             // ✅ Actualizar propiedades directamente
             this.Model.Login.Username = "test";
 
@@ -61,7 +59,6 @@ namespace GeolocationAds.ViewModels
             HasProfileImage = false;
         }
 
-
         [RelayCommand]
         private void ClearData()
         {
@@ -76,38 +73,6 @@ namespace GeolocationAds.ViewModels
             this.Model.Login.Password = string.Empty;
         }
 
-        public string Avatar => !string.IsNullOrWhiteSpace(Model.FullName)    ? Model.FullName.Trim()[0].ToString().ToUpper(): "?";
-
-        //[RelayCommand]
-        //private async Task SelectProfileImageAsync()
-        //{
-        //    await RunWithLoadingIndicator(async () =>
-        //    {
-        //        var pickOptions = new PickOptions
-        //        {
-        //            PickerTitle = "Selecciona una imagen",
-        //            FileTypes = FilePickerFileType.Images
-        //        };
-
-        //        var result = await FilePicker.PickAsync(pickOptions);
-
-        //        if (result.IsObjectNull())
-        //            return;
-
-        //        await using var stream = await result.OpenReadAsync();
-
-        //        using var memoryStream = new MemoryStream();
-
-        //        await stream.CopyToAsync(memoryStream);
-
-        //        Model.ProfileImageBytes = memoryStream.ToArray();
-
-        //        ProfileImage = ImageSource.FromStream(() => new MemoryStream(Model.ProfileImageBytes));
-
-        //        HasProfileImage = true;
-        //    });
-        //}
-
-
+        public string Avatar => !string.IsNullOrWhiteSpace(Model.FullName) ? Model.FullName.Trim()[0].ToString().ToUpper() : "?";
     }
 }

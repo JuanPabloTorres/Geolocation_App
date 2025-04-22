@@ -71,7 +71,7 @@
 
             <Color x:Key="appPrimaryOpt4ColorPrimaryLight">#1F7D53</Color>
 
-            <x:Double x:Key="OpacityValue">0.5</x:Double>
+            <x:Double x:Key="OpacityValue">0.9</x:Double>
 
             <!--  Global  -->
             <Style x:Key="globalLabel" TargetType="Label">
@@ -205,7 +205,7 @@
             <Shadow
                 x:Key="MyShadow"
                 Brush="LightGray"
-                Opacity="0.8"
+                Opacity="0.9"
                 Radius="2"
                 Offset="2,2" />
 

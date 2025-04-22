@@ -157,8 +157,6 @@ namespace GeolocationAds.ViewModels
             });
         }
 
-      
-
         [RelayCommand]
         public async Task UploadContent()
         {
@@ -203,8 +201,6 @@ namespace GeolocationAds.ViewModels
                 //}
             });
         }
-
-      
 
         private async Task ProcessSelectedFile(FileResult result)
         {

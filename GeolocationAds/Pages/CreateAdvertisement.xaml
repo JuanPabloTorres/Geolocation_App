@@ -53,12 +53,7 @@
 
 
 
-            <!--<WebView
-                x:Name="web"
-                Grid.Row="0"
-                Loaded="OnWebViewLoaded"
-                Navigating="WebView_Navigating"
-                Source="{Binding UrlSource, Mode=TwoWay}" />-->
+
 
             <Grid>
                 <WebView
@@ -75,18 +70,14 @@
 
 
 
-            <!--<ffimageloading:CachedImage
-                Grid.Row="0"
-                Aspect="AspectFit"
-                FadeAnimationEnabled="True"
-                Source="{Binding Image}" />-->
+
 
             <Grid>
-                <ffimageloading:CachedImage
+                <Image
                     Aspect="AspectFit"
-                    FadeAnimationEnabled="True"
                     HorizontalOptions="Fill"
-                    Source="{Binding Image}"
+                    IsAnimationPlaying="True"
+                    Source="{Binding Image, Mode=TwoWay}"
                     VerticalOptions="Fill" />
             </Grid>
 
@@ -96,11 +87,6 @@
 
 
 
-            <!--<toolkit:MediaElement
-                Grid.Row="0"
-                Aspect="Fill"
-                ShouldShowPlaybackControls="True"
-                Source="{Binding MediaSource, Mode=TwoWay}" />-->
 
             <Grid>
                 <toolkit:MediaElement
@@ -134,6 +120,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" HeightRequest="120">
@@ -228,10 +216,13 @@
             <viewTemplate:EditAndCreateCarousel
                 x:Name="contentCollection"
                 Grid.Row="6"
+                HeightRequest="250"
                 ItemTemplate="{StaticResource typeSelector}"
                 ItemsSource="{Binding ContentTypesTemplate}" />
 
 
+
+            <views:MoreInfoContentView Grid.Row="7" />
 
             <views:LoadingOverlay
                 Grid.Row="0"

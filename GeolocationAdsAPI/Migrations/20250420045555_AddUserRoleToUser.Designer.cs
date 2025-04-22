@@ -4,6 +4,7 @@ using GeolocationAdsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeolocationAdsAPI.Migrations
 {
     [DbContext(typeof(GeolocationContext))]
-    partial class GeolocationContextModelSnapshot : ModelSnapshot
+    [Migration("20250420045555_AddUserRoleToUser")]
+    partial class AddUserRoleToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,67 +66,6 @@ namespace GeolocationAdsAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Advertisements", (string)null);
-                });
-
-            modelBuilder.Entity("ToolsLibrary.Models.AdvertisementMetadata", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("AdvertisementId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CreateBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("EventDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FacebookUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InstagramUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("MaxCaptured")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdateBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("WebsiteUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AdvertisementId")
-                        .IsUnique();
-
-                    b.ToTable("AdvertisementMetadata");
                 });
 
             modelBuilder.Entity("ToolsLibrary.Models.AdvertisementSettings", b =>
@@ -621,17 +563,6 @@ namespace GeolocationAdsAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ToolsLibrary.Models.AdvertisementMetadata", b =>
-                {
-                    b.HasOne("ToolsLibrary.Models.Advertisement", "Advertisement")
-                        .WithOne("Metadata")
-                        .HasForeignKey("ToolsLibrary.Models.AdvertisementMetadata", "AdvertisementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Advertisement");
-                });
-
             modelBuilder.Entity("ToolsLibrary.Models.AdvertisementSettings", b =>
                 {
                     b.HasOne("ToolsLibrary.Models.Advertisement", null)
@@ -707,8 +638,6 @@ namespace GeolocationAdsAPI.Migrations
                     b.Navigation("Contents");
 
                     b.Navigation("GeolocationAds");
-
-                    b.Navigation("Metadata");
 
                     b.Navigation("Settings");
                 });
