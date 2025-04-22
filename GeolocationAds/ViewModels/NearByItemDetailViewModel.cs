@@ -106,8 +106,8 @@ namespace GeolocationAds.ViewModels
         [RelayCommand]
         public async Task Call(string phone)
         {
-            if (!string.IsNullOrWhiteSpace(phone))
-                await Launcher.Default.OpenAsync($"tel:{phone}");
+            if (!string.IsNullOrWhiteSpace(phone) && PhoneDialer.Default.IsSupported)
+                PhoneDialer.Default.Open(phone);
         }
 
         [RelayCommand]

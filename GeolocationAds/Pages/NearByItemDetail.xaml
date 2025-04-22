@@ -126,9 +126,9 @@
 
             <Grid>
 
-                <ffimageloading:CachedImage
+                <Image
                     Aspect="Fill"
-                    FadeAnimationEnabled="True"
+                    IsAnimationPlaying="True"
                     Source="{Binding Image}" />
             </Grid>
         </DataTemplate>
@@ -205,10 +205,12 @@
                         Text="{Binding SettingType, StringFormat='Type: {0}'}"
                         TextColor="White"
                         VerticalTextAlignment="Center" />
+
+                    <views:MetadataDisplayView Grid.Row="3" />
                 </VerticalStackLayout>
             </Border>
 
-            <views:MetadataDisplayView Grid.Row="3" />
+
 
             <views:LoadingOverlay
                 Grid.Row="0"

@@ -3,59 +3,152 @@
     x:Class="GeolocationAds.ViewTemplates.MetadataDisplayView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <VerticalStackLayout Padding="15" Spacing="15">
+    <VerticalStackLayout Padding="15" Spacing="20">
 
-        <Label
-            FontAttributes="Bold"
-            FontSize="20"
-            HorizontalOptions="Center"
-            Text="About the Business"
-            TextColor="DarkSlateGray" />
+        <Label Style="{StaticResource globalTitleHeaders}" Text="About the Business" />
 
-        <!--  Social Links  -->
-        <Button
-            BackgroundColor="#3b5998"
-            Command="{Binding OpenUrlCommand}"
-            CommandParameter="{Binding Model.Metadata.FacebookUrl}"
-            Text="🌐 Facebook"
-            TextColor="White" />
+        <!--  🔘 Botones redondos en fila  -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
 
-        <Button
-            BackgroundColor="#E1306C"
-            Command="{Binding OpenUrlCommand}"
-            CommandParameter="{Binding Model.Metadata.InstagramUrl}"
-            Text="📷 Instagram"
-            TextColor="White" />
+            <!--  Facebook  -->
+            <Button
+                Padding="4"
+                BackgroundColor="Transparent"
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="{Binding Model.Metadata.FacebookUrl}"
+                CornerRadius="60"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                TextColor="White"
+                WidthRequest="40">
+                <Button.ImageSource>
+                    <FileImageSource File="fb.png" />
+                </Button.ImageSource>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="10"
+                        Offset="0,4" />
+                </Button.Shadow>
+            </Button>
 
-        <Button
-            BackgroundColor="#555"
-            Command="{Binding OpenUrlCommand}"
-            CommandParameter="{Binding Advertisement.Metadata.WebsiteUrl}"
-            Text="🔗 Website"
-            TextColor="White" />
+            <!--  Instagram  -->
+            <Button
+                Padding="4"
+                BackgroundColor="Transparent"
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="{Binding Model.Metadata.InstagramUrl}"
+                CornerRadius="60"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                TextColor="White"
+                WidthRequest="40">
+                <Button.ImageSource>
+                    <FileImageSource File="instagram.png" />
+                </Button.ImageSource>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="10"
+                        Offset="0,4" />
+                </Button.Shadow>
+            </Button>
 
-        <!--  Contact  -->
-        <Button
-            BackgroundColor="#2196F3"
-            Command="{Binding SendEmailCommand}"
-            CommandParameter="{Binding Model.Metadata.ContactEmail}"
-            Text="📧 Contact Email"
-            TextColor="White" />
+            <!--  Website  -->
+            <Button
+                Padding="4"
+                BackgroundColor="Transparent"
+                Command="{Binding OpenUrlCommand}"
+                CommandParameter="{Binding Advertisement.Metadata.WebsiteUrl}"
+                CornerRadius="60"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                TextColor="White"
+                WidthRequest="40">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe89e;" />
+                </Button.ImageSource>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="10"
+                        Offset="0,4" />
+                </Button.Shadow>
+            </Button>
 
-        <Button
-            BackgroundColor="#4CAF50"
-            Command="{Binding CallCommand}"
-            CommandParameter="{Binding Model.Metadata.ContactPhone}"
-            Text="📞 Call Business"
-            TextColor="White" />
+            <!--  Email  -->
+            <Button
+                Padding="4"
+                BackgroundColor="Transparent"
+                Command="{Binding SendEmailCommand}"
+                CommandParameter="{Binding Model.Metadata.ContactEmail}"
+                CornerRadius="60"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                TextColor="White"
+                WidthRequest="40">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe158;" />
+                </Button.ImageSource>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="10"
+                        Offset="0,4" />
+                </Button.Shadow>
+            </Button>
 
-        <!--  Location  -->
-        <Button
-            BackgroundColor="#FF9800"
-            Command="{Binding OpenMapCommand}"
-            CommandParameter="{Binding Model.Metadata}"
-            Text="📍 Open Location"
-            TextColor="White" />
+            <!--  Call  -->
+            <Button
+                Padding="4"
+                BackgroundColor="Transparent"
+                Command="{Binding CallCommand}"
+                CommandParameter="{Binding Model.Metadata.ContactPhone}"
+                CornerRadius="60"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                TextColor="White"
+                WidthRequest="40">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe0b0;" />
+                </Button.ImageSource>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="10"
+                        Offset="0,4" />
+                </Button.Shadow>
+            </Button>
+
+            <!--  Map  -->
+            <Button
+                Padding="4"
+                BackgroundColor="Transparent"
+                Command="{Binding OpenMapCommand}"
+                CommandParameter="{Binding Model.Metadata}"
+                CornerRadius="60"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                TextColor="White"
+                WidthRequest="40">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialIconsOutlined-Regular" Glyph="&#xe52e;" />
+                </Button.ImageSource>
+                <Button.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="10"
+                        Offset="0,4" />
+                </Button.Shadow>
+            </Button>
+
+        </HorizontalStackLayout>
 
     </VerticalStackLayout>
 </ContentView>
